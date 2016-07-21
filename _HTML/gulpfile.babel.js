@@ -6,7 +6,7 @@
  *
  *
  * @module 		gulpfile
- * @version 	0.7.4
+ * @version 	0.7.5
  * @author 		Олег Дутченко <dutchenko.o.wezom@gmail.com>
  * @sourcefile 	file:gulpfile
 */
