@@ -1,0 +1,322 @@
+<h3>Что документировать?</h3>
+
+<p>Все js файлы, которые участвуют в сборке проекта. Необходимо включить все модули которые пишуться вами.</p>
+
+<h3>Как настроить задачу для документации?</h3>
+
+<p>Непосредственно за генерацию отвечает задача <code>docs:jsdoc:gulp</code>, которая есть частью комплекса <code>docs:gulp</code>, в который входит еще задача очистки предыдущей версии документации.</p>
+<p>Последовательность действий задачи <code>docs:gulp</code></p>
+<ul>
+	<li><strong>docs:clean:gulp</strong> - очищает директорию с документацией - по умолчанию это <samp>./docs/gulp</samp></li>
+	<li><strong>docs:jsdoc:gulp</strong> - генирирует документацию по разделу, после очистки</li>
+</ul>
+<pre class="line-numbers"><code class="language-javascript">
+// GULP
+// ====
+	// очистка директории документации gulp сборки
+	lazyRequireTask('docs:clean:gulp', `${tasks}/clean`, {
+		src: `${docs}/gulp`
+	});
+
+	// генерация документации gulp сборки
+	lazyRequireTask('docs:jsdoc:gulp', `${tasks}/jsdoc`, {
+		systemName: 'Gulp docs',
+		tutorials: `${tuts}/gulp`,
+		dest: `${docs}/gulp`,
+		src: [
+			`${tuts}/gulp-index.md`,
+			`${tasks}/*.js`,
+			`${tasks}/jsdoc-theme/plugins/*.js`,
+			`./gulpfile.babel.js`
+		]
+	});
+
+	// комплексная задача создания документации gulp сборки
+	gulp.task('docs:gulp',
+		gulp.series(
+			'docs:clean:gulp',
+			'docs:jsdoc:gulp'
+		)
+	);
+</code></pre>
+<br>
+<p>Разберем настройку задачи <code>docs:jsdoc:gulp</code>:</p>
+<ul>
+	<li><strong>systemName</strong> - имя документации</li>
+	<li><strong>tutorials</strong> - путь к директории туториалов для раздела документации</li>
+	<li><strong>dest</strong> - путь к директории куда будет сгенерирована документация</li>
+	<li><strong>src</strong> - пути к документируемым файлам
+		<ul>
+			<li>если вы хотите указать основной, вступительный, файл для документации, который должен быть создан по разметке <code>markdown</code>, его нужно указать первым в массиве</li>
+			<li>далее указываем все js файлы из папки tasks и основной <code>gulp</code> файл</li>
+			<li>Дополнительные плагины для <code>jsdoc3</code></li>
+			<li>и основной gulp файл</li>
+		</ul>
+	</li>
+</ul>
+
+<pre class="line-numbers"><code class="language-javascript">
+// генерация документации gulp сборки
+lazyRequireTask('docs:jsdoc:gulp', `${tasks}/jsdoc`, {
+	systemName: 'Gulp docs',
+	tutorials: `${tuts}/gulp`,
+	dest: `${docs}/gulp`,
+	src: [
+		`${tuts}/gulp-index.md`,
+		`${tasks}/*.js`,
+		`${tasks}/jsdoc-theme/plugins/*.js`,
+		`./gulpfile.babel.js`
+	]
+});</code>
+</pre>
+
+
+
+
+
+<h3>Как докуметировать модули?</h3>
+<br>
+<h4>Модуль экспортирующий задачу</h4>
+<h5><strong><em>Имя модуля</em></strong></h5>
+<p>В начале следует указать комментарием имя модуля.</p>
+
+<ul>
+	<li><code>@module</code> - здесь пишем "гибрид" отсносительного пути к файлу по схеме <samp>имяПапки/имяФайла</samp>. Здесь не допуcкаються точки и поэтому не указываем расширение файла (*.js)</li>
+	<li><code>@sourcefile</code> - здесь пишем значение (имяфайла) по схеме <samp>сущностьДоклета:имяПапки:имяФайла</samp>. Этот доклет в дальнейшем можно использовать в туториалах, более подробно смотри {@tutorial jsdoc} -> @sourcefile</li>
+</ul>
+
+<pre class="line-numbers"><code class="language-javascript">
+'use strict';
+
+/**
+ * @module tasks/jsdoc
+ * @sourcefile file:tasks:jsdoc
+*/
+</code></pre>
+
+<p>После блок подключения дополнительных модулей, которые могут вам понадобиться или объявление внутрених переменых или методов для работы</p>
+
+<em>Пример</em>
+
+<pre class="line-numbers"><code class="language-javascript">
+// подключение nodejs модулей
+// ==========================
+	import gulp from 'gulp';
+	import jsdoc3 from 'gulp-jsdoc3';
+
+// подключение внутренних модулей
+// ==============================
+	import _modulesParams from './_modules-params.js';
+
+// подключение системной конфигурации jsdoc
+// ========================================
+	import jsdocConfig from './jsdoc-theme/jsdoc.conf.json';
+</code></pre>
+
+<!--sourcefile= file:tasks:jsdoc -->
+
+
+<h5><strong><em>Экспорт модуля</em></strong></h5>
+<p>Далее, отдельно, следует указать комментарии описывающие сам модуль</p>
+<ul>
+	<li>Описание модуля - первые строки комментария без тега</li>
+	<li><code>@moduleLocal</code> - дополнительный тег, который обозначает локальность модуля. Указывается без значения. Смотри {@tutorial jsdoc} -> @moduleLocal</li>
+	<li><code>@sourcecode</code> - дополнительный тег, при помощи которого можно вывести исходный код документируемого блока, более подробно смотри {@tutorial jsdoc} -> @sourcecode</li>
+	<li>Если вы хотите привязать туториал к модулю, используйте тег <code>@tutorial	имя-файла-туториала</code> (смотри <a target="_blank" href="http://usejsdoc.org/tags-tutorial.html">usejsdoc.org/tags-tutorial.html</a>)</li>
+	<li>Если ваш модуль зависит от дургих модулей, желательно это указать при помощи тега <code>@requires</code> (смотри <a target="_blank" href="http://usejsdoc.org/tags-requires.html">usejsdoc.org/tags-requires.html</a>)<br>в значении которого указать урл на модуль <br><code>@requires {@link https://www.npmjs.com/package/gulp-jsdoc3}</code><br> или ссылку на ваш локальный модуль связав ссылку по его имени <br><code>@requires module:tasks/_modules-params</code></li>
+	<li>Также можно указать дополнительные ссылки на дополнителные метриалы, с которыми можно ознакомиться для уточнения каких-либо деталей. Для этого можно использовать тег <code>@see</code> (смотри <a target="_blank" href="http://usejsdoc.org/tags-see.html">usejsdoc.org/tags-see.html</a>)</li>
+	<li>Указываем передаваемые параметры модулю и данный которые вернет модуль.</li>
+</ul>
+
+<?sourcecode= code:tasks:jsdoc ?>
+<br>
+<hr>
+<h4>Модуль экспортирующий класс</h4>
+<p>Модули которые експортируют классы, в качестве примера можно рассмотреть утилити <samp>./tasks/_helpers.js</samp> или <samp>./tasks/_modules-params.js</samp>, немного отличаються по алгоритму документирования.</p>
+
+<h5><strong><em>Имя модуля</em></strong></h5>
+
+<p>К имени следует добавить блок описания с разметкой в описании, где необходимо вписать свои параметры имен. Это необходимо для нормального отображения пояснительного блока подключения.</p>
+<em>Пример результата:</em>
+
+<div class="description"><p><div class="moduleName"><small>require</small><br><b>const</b> _modulesParams = require(&quot;./tasks/_modules-params&quot;);<br><small>es6 import</small><br><b>import</b> _modulesParams <b>from</b> &quot;./tasks/_modules-params&quot;;</div></div>
+
+<hr>
+
+<p>Также, в отличие от документации модулей задач, все дополнительные теги указываються здесь же. За исключение тегов <samp>@sourcecode</samp> и <samp>@moduleLocal</samp> - их писать не нужно</p>
+
+
+<pre class="line-numbers"><code class="language-javascript">
+'use strict';
+
+/**
+ * &lt;div class="moduleName">&lt;small>require&lt;/small>&lt;br>&lt;b>const&lt;/b> _helpers = require("./tasks/_helpers");&lt;br>&lt;small>es6 import&lt;/small>&lt;br>&lt;b>import&lt;/b> _helpers &lt;b>from&lt;/b> "./tasks/_helpers";&lt;/div>
+ * Модуль который експортирует объект с параметрами для конфигурации nodejs модулей
+ *
+ * @module		tasks/_helpers
+ * @sourcefile	file:tasks:_helpers
+ * @requires	{@link https://www.npmjs.com/package/fs}
+ * @requires	{@link https://www.npmjs.com/package/path}
+ * @requires	{@link https://www.npmjs.com/package/chalk}
+ * @requires	{@link https://www.npmjs.com/package/file-save}
+ * @see			{@link https://nodejs.org/docs/latest/api/fs.html}
+ * @see			{@link https://nodejs.org/docs/latest/api/path.html}
+*/
+</code></pre>
+
+<p>После блок подключения дополнительных модулей, которые могут вам понадобиться или объявление внутрених переменых или методов для работы</p>
+
+<em>Пример</em>
+
+<pre class="line-numbers"><code class="language-javascript">
+// константы
+// ==========================
+	const _indent = '\t';
+	const _symbols = {
+		done: chalk.white.bgGreen(' DONE '),
+		info: chalk.white.bgBlue(' INFO '),
+		error: chalk.white.bgRed('  ERR '),
+		del: chalk.white.bgRed('  DEL '),
+		warn: chalk.black.bgYellow(' WARN ')
+	};
+
+// подключение nodejs модулей
+// ==========================
+	import fs from 'fs';
+	import path from 'path';
+	import chalk from 'chalk';
+	import fileSave from 'file-save';
+</code></pre>
+
+<h5><strong><em>Описание класса</em></strong></h5>
+
+<p>Сначала указываем сам класс</p>
+
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * Набор параметров для конфигурации nodejs модулей
+ * @class
+*/
+class Helpers {
+	...
+}
+</code></pre>
+
+<p>Далее описываем внутри каждый метод отдельно.</p>
+<em>Примеры:</em>
+
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * Набор параметров для конфигурации nodejs модулей
+ * @class
+*/
+class Helpers {
+
+	/**
+	 * Запись файла
+	 *
+	 * @sourcecode
+	 * @param	{string}	filePath - путь к файлу
+	 * @param	{string}	fileContent - собержание файла
+	*/
+		writeFile(filePath, fileContent) {
+			fileSave(filePath)
+				.write(fileContent, 'utf-8', () => {
+					this.logMsg(`writed file ${path.resolve(filePath)}`, 'done');
+				})
+				.error(function() {
+					this.logError(`on write file ${path.resolve(filePath)}`)
+				});
+		}
+
+
+
+	/**
+	 * Составление лог уведомления
+	 *
+	 * @sourcecode
+	 * @param	{string|Array}	message - контент уведомления
+	 * @param	{sring}		[status=] - ключ статуса, по которому будет выбран символ из {@link module:tasks/_helpers~_symbols|_symbols} для уведомления
+	 * @return	{sring}
+	*/
+		consoleMessage(message, status) {
+			status = status in _symbols ? `${_symbols[status]}${_indent}` : `${_indent}`;
+			switch(typeof message) {
+				case 'string':
+					break;
+				case 'object':
+					if (message !== null && message.length) {
+						message = `${message.join(`\n${_indent}`)}`;
+						break;
+					}
+				default:
+					message = `without message`;
+			}
+			return `${status}${message}`;
+		}
+
+
+
+	/**
+	 * Вывод уведомления в консоль терминала
+	 *
+	 * @sourcecode
+	 * @see		{@link module:tasks/_helpers~Helpers#consoleMessage|Helpers#consoleMessage}
+	 * @param	{string}	message - уведомление
+	 * @param	{string}	[messageStatus=info] - уведомление
+	*/
+		logMsg(message, messageStatus='info') {
+			let chalkColor = 'blue';
+			switch(messageStatus) {
+				case 'done':
+					chalkColor = 'green';
+					break;
+				case 'warn':
+					chalkColor = 'yellow';
+					break;
+				case 'del':
+					chalkColor = 'red';
+					break;
+				default:
+					messageStatus = 'info';
+			}
+			message = this.consoleMessage(message, messageStatus);
+			console.log(chalk[chalkColor](message));
+		}
+
+
+
+	/**
+	 * Вывод уведомления в консоль терминала при ошибке.
+	 * Если ошибка критическая - процесс будет остановлен
+	 *
+	 * @sourcecode
+	 * @see		{@link module:tasks/_helpers~Helpers#consoleMessage|Helpers#consoleMessage}
+	 * @param	{string}	message - уведомление
+	 * @param	{boolean}	[isCritical] - флаг критической ошибки
+	*/
+		logError(message, isCritical) {
+			message = this.consoleMessage(message, 'error');
+			console.log(chalk.red(message));
+			if (isCritical) {
+				console.log(chalk.red(`${_indent}Exit !!!`));
+				process.exit(0);
+			}
+		}
+}
+</code></pre>
+
+<h5><strong><em>Экспорт модуля</em></strong></h5>
+
+<p>После описания класса и всех его модулей - экспортируем:</p>
+
+<pre class="line-numbers"><code class="language-javascript">
+module.exports = new Helpers();
+</code></pre>
+
+<hr>
+<h2>Предложения и баги</h2>
+<blockquote>
+	<p>Все обнаруженные баги, проблемы, фиксы, а также предложения - отписывать в трекере основного репозитория шаблона. Четко, аргументировано и развернуто.</p>
+	<p><a href="https://bitbucket.org/wezom/wtpl/issues" target="_blank">https://bitbucket.org/wezom/wtpl/issues</a></p>
+</blockquote>

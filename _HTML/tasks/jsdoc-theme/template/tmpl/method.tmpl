@@ -1,0 +1,146 @@
+<?js
+var data = obj;
+var self = this;
+var _lang = this.wezomCustom._lang;
+var _htmldocLang = this.wezomCustom._htmldocLang;
+var _signature = data.signature;
+var _h4 = true;
+var _header = 'h5';
+var _name = name + (kind !== 'event' ? data.signature : '');
+if (data.__inner !== true && data._testProp && kind !== 'event') {
+	_h4 = false;
+	_header = 'h4';
+	_name = name.replace(/\%signature\%/g, data.signature);
+}
+data._header = _header;
+if (this.navOptions.isHtmldoc) {
+	_name = _name.replace(/\(.*$/,'');
+	_name = _name.split('_');
+	_name[0] = _lang('Point', 'Пункт');
+	_name = _name.join(' ');
+	data.attribs = '';
+}
+?>
+<hr>
+<dt>
+	<?js if (data.summary || data.__inner) { ?>
+		<h4 class="name" id="<?js= id ?>"><?js= data.attribs + (kind === 'class' ? 'new ' : '') + _name ?></h4>
+	<?js } else { ?>
+		<div class="name" id="<?js= id ?>"><?js= data.attribs + (kind === 'class' ? 'new ' : '') + _name ?></div>
+	<?js } ?>
+
+	<?js if (data.summary) { ?>
+	<p class="summary"><?js= summary ?></p>
+	<?js } ?>
+</dt>
+<dd>
+
+	<?js if (data && data.description) { ?>
+	<div class="description">
+		<?js= data.description ?>
+	</div>
+	<?js } ?>
+
+	<?js if (data.augments && data.alias && data.alias.indexOf('module:') === 0) { ?>
+		<h5 class="font-bold">Extends:</h5>
+		<?js= self.partial('augments.tmpl', data) ?>
+	<?js } ?>
+
+	<?js if (kind === 'event' && data && data.type && data.type.names) {?>
+		<h5 class="font-bold"><?js= (_lang('Type', 'Тип'))?>: <?js= self.partial('type.tmpl', data.type.names) ?></h5>
+	<?js } ?>
+
+	<?js if (data.lineNo) { ?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('Lineno', 'Строка'))?> - <samp>&nbsp;<?js= data.lineNo ?>&nbsp;</samp></<?js=_header?>>
+	<?js } ?>
+
+	<?js if (data.kind !== 'module' && data.requires && data.requires.length) { ?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('Requires', 'Для работы необходимы'))?>:</<?js=_header?>>
+	<ul><?js data.requires.forEach(function(r) { ?>
+		<li><?js= self.linkto(r) ?></li>
+	<?js }); ?></ul>
+	<?js } ?>
+
+	<?js if (data.see && see.length) {?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('See', 'Связанные материалы'))?>:</<?js=_header?>>
+	<ul><?js see.forEach(function(s) { ?>
+		<li><?js= self.linkto(s) ?></li>
+		<?js }); ?></ul>
+	<?js } ?>
+
+	<?js if (data.tutorials && tutorials.length) {?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('Tutorials', 'Туториалы'))?>:</<?js=_header?>>
+	<ul><?js tutorials.forEach(function(t) { ?>
+		<li><?js= self.tutoriallink(t) ?></li>
+		<?js }); ?></ul>
+	</dd>
+	<?js } ?>
+
+	<?js if (data.todo && todo.length) {?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('To Do', 'To Do'))?>:</<?js=_header?>>
+	<ul><?js todo.forEach(function(t) { ?>
+		<li><?js= t ?></li>
+		<?js }); ?></ul>
+	<?js } ?>
+
+	<?js if (data['this']) { ?>
+		<<?js=_header?> class="font-bold">This:</<?js=_header?>>
+		<ul><li><?js= this.linkto(data['this'], data['this']) ?></li></ul>
+	<?js } ?>
+	<?js if (data.params && data.params.length) { ?>
+		<<?js=_header?> class="font-bold"><?js= (_lang('Parameters', 'Параметры'))?>:</<?js=_header?>>
+		<?js= this.partial('params.tmpl', params) ?>
+	<?js } ?>
+
+	<?js if (data.returns && returns.length) { ?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('Returns', 'Возвращает'))?>:</<?js=_header?>>
+	<?js if (returns.length > 1) { ?><ul><?js
+		returns.forEach(function(r) { ?>
+			<li><?js= self.partial('returns.tmpl', r) ?></li>
+		<?js });
+	?></ul><?js } else {
+		returns.forEach(function(r) { ?>
+			<?js= self.partial('returns.tmpl', r) ?>
+		<?js });
+	} } ?>
+
+	<?js= this.partial('details.tmpl', data) ?>
+
+	<?js if (data.fires && fires.length) { ?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('Fires', 'Вызывает'))?>:</<?js=_header?>>
+	<ul><?js fires.forEach(function(f) { ?>
+		<li><?js= self.linkto(f) ?></li>
+	<?js }); ?></ul>
+	<?js } ?>
+
+	<?js if (data.listens && listens.length) { ?>
+	<<?js=_header?> class="font-bold">Listens to Events:</<?js=_header?>>
+	<ul><?js listens.forEach(function(f) { ?>
+		<li><?js= self.linkto(f) ?></li>
+	<?js }); ?></ul>
+	<?js } ?>
+
+	<?js if (data.listeners && listeners.length) { ?>
+	<<?js=_header?> class="font-bold">Listeners of This Event:</<?js=_header?>>
+	<ul><?js listeners.forEach(function(f) { ?>
+		<li><?js= self.linkto(f) ?></li>
+	<?js }); ?></ul>
+	<?js } ?>
+
+	<?js if (data.exceptions && exceptions.length) { ?>
+	<<?js=_header?> class="font-bold">Throws:</<?js=_header?>>
+	<?js if (exceptions.length > 1) { ?><ul><?js
+		exceptions.forEach(function(r) { ?>
+			<li><?js= self.partial('exceptions.tmpl', r) ?></li>
+		<?js });
+	?></ul><?js } else {
+		exceptions.forEach(function(r) { ?>
+			<?js= self.partial('exceptions.tmpl', r) ?>
+		<?js });
+	} } ?>
+
+	<?js if (data.examples && examples.length) { ?>
+		<<?js=_header?> class="font-bold"><?js= (_lang('Examples', 'Примеры использования'))?>:</<?js=_header?>>
+		<?js= this.partial('examples.tmpl', examples) ?>
+	<?js } ?>
+</dd>

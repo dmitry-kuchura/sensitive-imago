@@ -1,0 +1,52 @@
+<section class="tutorial-section">
+<?js
+	var sourcefiles = obj.sources.sourcefiles || {};
+	var sourcecodes = obj.sources.sourcecodes || {};
+
+	function _ripFile(_key) {
+		_key = _key.replace(/<\?sourcefile=(\s)*/, '');
+		_key = _key.replace(/(\s)*\?\>/, '');
+		if (sourcefiles.hasOwnProperty(_key)) {
+			return '<pre><code class="language-javascript">'+sourcefiles[_key]+'</code></pre>';
+		}
+		return '';
+	}
+
+	function _ripCode(_key) {
+		_key = _key.replace(/<\?sourcecode=(\s)*/, '');
+		_key = _key.replace(/(\s)*\?\>/, '');
+		if (sourcecodes.hasOwnProperty(_key)) {
+			return '<pre data-start="'+sourcecodes[_key][1]+'"><code class="language-javascript">'+sourcecodes[_key][0]+'</code></pre>';
+		}
+		return '';
+	}
+	var regex_sourcefile = /<\?sourcefile=(\s)*(\w|\:)+(\s)*\?\>/gi;
+	var regex_sourcecode = /<\?sourcecode=(\s)*(\w|\:)+(\s)*\?\>/gi;
+
+	var _content = content.replace(regex_sourcefile, _ripFile);
+	_content = _content.replace(regex_sourcecode, _ripCode);
+
+	var _lang = this.wezomCustom._lang;
+	//console.log(obj.parent);
+?>
+<header>
+
+    <h2><?js= header ?></h2>
+
+	<!-- <div class="breadcrumbs">
+		<span><a href="index.html"><?//js= (_lang('Home', 'Главная'))?></a></span>
+		<span><?//js= header ?></span>
+	</div> -->
+
+    <?js if (children.length > 0) { ?>
+    <p><?js= (_lang('Children tutorials', 'Дочерние разделы'))?>:</p>
+    <ul class="columns"><?js
+        var self = this;
+        children.forEach(function(t) { ?>
+        <li><?js= self.tutoriallink(t.name) ?></li>
+    <?js }); ?></ul>
+    <?js } ?>
+</header>
+<article class="tutorial-article"><?js= _content ?></article>
+
+</section>

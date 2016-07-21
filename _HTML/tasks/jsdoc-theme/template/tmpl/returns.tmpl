@@ -1,0 +1,20 @@
+<?js
+var data = obj;
+var _lang = this.wezomCustom._lang;
+if (data && data.description) {
+?>
+<div class="param-desc">
+    <?js= description ?>
+</div>
+<?js } ?>
+
+<?js if (data && data.type && data.type.names) {?>
+<dl>
+    <!--<dt>
+    	<?js= (_lang('Type', 'Тип возвращаемых данных'))?>:
+    </dt>-->
+    <dd>
+        <code class="language-javascript"><?js= this.partial('type.tmpl', data.type.names) ?></code>
+    </dd>
+</dl>
+<?js } ?>

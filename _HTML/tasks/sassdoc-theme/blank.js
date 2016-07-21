@@ -1,0 +1,5 @@
+/**
+ * blank
+ */
+
+var blank = true;

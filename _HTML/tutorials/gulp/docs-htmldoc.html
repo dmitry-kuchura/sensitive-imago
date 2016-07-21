@@ -1,0 +1,142 @@
+<h3>Что документировать?</h3>
+
+<p>Докуметация файлов разметки, по сути, являет собой скан <em><strong>итоговых файлов верстки</strong></em> на комментарии в которых описаны действия для следующих разработчиков которым может перейти проект.</p>
+
+<blockquote>
+	<p>Основная задача этой доки - составлять <strong>todo list'ы</strong>, которые нужно выполнить</p>
+</blockquote>
+
+<p>Также есть возможность составления туториалов или мини инструкций по особому функионалу, виджету и т.д., при помощи системы туториалов.</p>
+
+<blockquote>
+	Также, рекоммендуется составлять туториалы в которых описанна работа вашего проекта верстки
+</blockquote>
+
+
+
+
+
+<h3>Как настроить задачу для документации?</h3>
+
+<p>Непосредственно за генерацию отвечает задача <code>docs:html:doc</code>, которая есть частью комплекса <code>docs:html</code>, в который входят еще две задача очистки предыдущей версии документации.</p>
+<p>Последовательность действий задачи <code>docs:html</code></p>
+<ul>
+	<li><strong>docs:clean:html</strong> - очистка директории документации с html страниц - по умолчанию это <samp>./docs/htmldoc</samp></li>
+	<li><strong>docs:clean:htmlTmp</strong> - очистка темповской директории документации с html страниц - по умолчанию это <samp>./docs/htmldoc</samp></li>
+	<li><strong>docs:html:doc</strong> - генерация документации с html страниц, после очистки</li>
+</ul>
+<pre class="line-numbers"><code class="language-javascript">
+// HTML todo
+// =========
+	// очистка директории документации с html страниц
+	lazyRequireTask('docs:clean:html', `${tasks}/clean`, {
+		src: `${docs}/html`
+	});
+
+	// очистка темповской директории документации с html страниц
+	lazyRequireTask('docs:clean:htmlTmp', `${tasks}/clean`, {
+		src: `${tmp}/htmldoc`
+	});
+
+	// генерация документации с html страниц
+	lazyRequireTask('docs:html:doc', `${tasks}/htmldoc`, {
+		systemName: `Project docs`,
+		tutorials: `${tuts}/html`,
+		tmpFiles: `${tmp}/htmldoc`,
+		tmpMD: `${tmp}/htmldoc/__todo-list.md`,
+		dest: `${docs}/html`,
+		src: [
+			`${tuts}/html-index.md`,
+			`${dist}/*.html`
+		]
+	});
+
+	// комплексная задача создания документации с html страниц
+	gulp.task('docs:html',
+		gulp.series(
+			'docs:clean:html',
+			'docs:clean:htmlTmp',
+			'docs:html:doc'
+		)
+	);
+</code></pre>
+<br>
+<p>Разберем настройку задачи <code>docs:html:doc</code>:</p>
+<ul>
+	<li><strong>systemName</strong> - имя документации</li>
+	<li><strong>tutorials</strong> - путь к директории туториалов для раздела документации</li>
+	<li><strong>tmpFiles</strong> - директория для темповских файлов</li>
+	<li><strong>tmpMD</strong> - темповские файл где будут вписанны все <code>@todo</code> записи, со всех найденных страниц</li>
+	<li><strong>dest</strong> - путь к директории куда будет сгенерирована документация</li>
+	<li><strong>src</strong> - пути к документируемым файлам
+		<ul>
+			<li>если вы хотите указать основной, вступительный, файл для документации, который должен быть создан по разметке <code>markdown</code>, его нужно указать первым в массиве</li>
+			<li>далее указываем все html файлы из папки dist</li>
+		</ul>
+	</li>
+</ul>
+
+
+
+
+
+<h3>Как писать документацию?</h3>
+
+<p>Принцип составления подобных комментариев</p>
+<ul>
+	<li>В начеле коммента должен быть тег <code>@htmldoc</code></li>
+	<li>Далее, желательно с новой строки каждый тег из аннотации <a href="http://usejsdoc.org/" target="_blank">jsdoc</a>. Чаше всего это будет - <code>@todo</code> которого вполне хватит.</li>
+	<li>НЕ ИСПОЛЬЗУЙТЕ <code>@namespace</code> и <code>@memberof</code>, так как они, в данном контексте, используються для других целей.</li>
+</ul>
+
+<p>Пример записи коммента:</p>
+
+<pre class="line-numbers"><code class="language-markup">
+&lt;!-- @htmldoc
+	@todo Выводить данный блок только на страницах новостей и акций.
+	@todo Дочерний элемент с текстом - ограничить по количеству символов, максимум 300.
+-->
+</code></pre>
+Или с демонстрацией записи кода
+<pre class="line-numbers"><code class="language-markup">
+&lt;!-- @htmldoc
+	@todo Передавать в data-center параметры для карты
+	@example
+		&lt;div id="map-canvas" data-center='{"lat":45.9597317, "lng":39.84621973}'>&lt;/div>
+-->
+</code></pre>
+
+<p>Также смотри <a href="http://verstka.vps.kherson.ua/tpls/htmldoc.html" target="_blank">http://verstka.vps.kherson.ua/tpls/htmldoc.html</a></p>
+
+<h3>HTMLdoc - домашнего производства</h3>
+<p>Это не есть офф модуль с npm'а. Данный модуль - это собственный плагинчик, который позволит быстро создавать сопутствующие пояснения к вашей верстке.</p>
+<p>Как это работает:</p>
+<ul>
+	<li>Сканируем каждую html страницу из готовой верстки, папка <samp>./dist</samp></li>
+	<li>Ищем комменты с началом <code>@htmldoc</code></li>
+	<li>Разбераем каждый коммент и создаем на этой основе <code>js</code> файл с именем html файла, <br>пример - <code>index.html -> index.js</code></li>
+	<li>Такие js файлы будут сохраняться в темповскую папку <samp>./tmp/htmldoc</samp></li>
+	<li>В новых js файлах будут указаны <code>@namespace</code>, в данном контексте - это имена файлов, и составлены, по синтаксису jsdoc'а комменты, за который он сможет "зацепится", со связками <code>@memberof</code></li>
+	<li>После - включаеться уже сам модуль jsdoc и вополняет свою работу, с небольшими личными поправками которые мы ему зададим )))</li>
+</ul>
+
+<blockquote>
+	Также результатом работы этого модуля будет файл в темповской директориии <br><strong>./tmp/htmldoc/__todo-list.md</strong> <br><br>
+	В этом файле будет составленная md версия найденных <strong>@todo</strong> блоков, с указанием имени файла и номера строки, на который данный коммент находится. Такой файл может быть полезен для копирования его содержимого в <strong>README.md</strong> вашего репозитория
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+<hr>
+<h2>Предложения и баги</h2>
+<blockquote>
+	<p>Все обнаруженные баги, проблемы, фиксы, а также предложения - отписывать в трекере основного репозитория шаблона. Четко, аргументировано и развернуто.</p>
+	<p><a href="https://bitbucket.org/wezom/wtpl/issues" target="_blank">https://bitbucket.org/wezom/wtpl/issues</a></p>
+</blockquote>

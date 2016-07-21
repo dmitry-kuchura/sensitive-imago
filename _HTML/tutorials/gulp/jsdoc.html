@@ -1,0 +1,154 @@
+<h3>Основная документация</h2>
+
+<p><a href="http://usejsdoc.org" target="_blank">http://usejsdoc.org</a></p>
+
+
+<h3>Локализация с поснениями</h2>
+
+<p><a href="http://verstka.vps.kherson.ua/tpls/jsdoc3.html" target="_blank">http://verstka.vps.kherson.ua/tpls/jsdoc3.html</a></p>
+
+<h3 id="tag-addons">Дополнительные теги в JSDoc3</h2>
+<p>Общему набору тегов <code>jsdoc</code> можно добавлять собственные теги (смотри <a href="http://usejsdoc.org/about-plugins.html" target="_blank">usejsdoc.org/about-plugins.html</a>).</p>
+<p>Далее описаны дополнительные теги для использования, которые были добавлены (смотри <a href="module-tasks_jsdoc-theme_plugins_defineTags.html">tasks/jsdoc-theme/plugins/defineTags</a>)</p>
+
+
+
+
+<br>
+<h4 id="tag-modulelocal">@moduleLocal</h4>
+<p>Доклет который указывает, что данный модуль написан разработчиком, используеться для модулей, которые экспорттируют задачи. Результатом применения будет отфорамтированный блок с описанием вариантов подключения данного модуля</p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * @moduleLocal
+*/
+module.exports = function(options) {
+	...
+}
+</code></pre>
+<em>Результат:</em>
+<div class="name" id="module:tasks/transfer"><span class="type-signature"></span><div class="moduleName"><small>require</small><br><b>const</b> {moduleName} = require("./tasks/transfer")(options);<br><small>es6 import</small><br><b>import</b> {moduleImportName} <b>from</b> "./tasks/transfer";<br><b>const</b> {moduleName} = {moduleImportName}(options);</div></div>
+
+
+
+
+
+<br>
+<br>
+<h4 id="tag-modulenoes6import">@moduleNoES6Import</h4>
+<p>Если ваш не модуль не поддерживайт import по стандарту es6 - вместе с тегом <code>@moduleLocal</code> укажите <code>@moduleNoES6Import</code></p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * @moduleLocal
+ * @moduleNoES6Import
+*/
+module.exports = function(options) {
+	...
+}
+</code></pre>
+<em>Результат:</em>
+<div class="name" id="module:tasks/sassdoc"><span class="type-signature"></span><div class="moduleName"><small>require</small><br><b>const</b> {moduleName} = require("./tasks/sassdoc")(options);</div></div>
+
+
+<br>
+<br>
+<h4 id="tag-lineno">@lineno</h4>
+<p>Прунудительное определение и вывод номера строки на которой начинаеться документируемый код (не комментарий). <br>Удобно использовать вместе c тегом <code>@todo</code>, чтобы сразу указать на какой строке искать нужный код</p>
+
+<em>Пример:</em>
+<pre class="line-numbers" data-start="137"><code class="language-javascript">
+/**
+ * @lineno
+ * @todo	Write the documentation.
+ * @todo	Implement this function.
+*/
+function foo() {
+    // write me
+}
+</code></pre>
+<br>
+<em>Результат:</em>
+<br>
+<br>
+<div class="font-bold">Строка - <samp>&nbsp;142&nbsp;</samp></div>
+<div class="font-bold">To Do:</div>
+<ul>
+	<li>Write the documentation.</li>
+	<li>Implement this function.</li>
+</ul>
+
+
+
+
+<br>
+<br>
+<br>
+<h4 id="tag-sourcefile">@sourcefile</h4>
+<p>Запоминание полного контента документируемого файла. Можно использовать при написании туториалов, когда нужно показать исходный код всего файла. Вместо того чтобы копировать в туториал код и каждый раз менять его при внесении правок в файл оригинала.</p>
+<p>Необходимо указать значение для тега по схеме <samp>сущностьДоклета:имяПапки:имяФайла</samp>, после чего можна использовать в туториалах при помощи записи шаблонизатора <br><code>&lt;?sourcefile= file:tasks:jsdoc ?&gt;</code>.</p>
+<p>Результатом будет элемент <code>&lt;pre></code> внутри которого будет весь код вашего файла и при внесении правок в основном файле они будут показаны и в описании</p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+'use strict';
+
+
+/**
+ * @module tasks/clean
+ * @sourcefile file:tasks:clean
+*/
+
+...
+</code></pre>
+<pre class="line-numbers"><code class="language-markup">
+&lt;p>... Ниже рассмотрим исходный код файла:&lt;/p>
+&lt;?sourcefile= file:tasks:clean ?&gt;
+&lt;p>Дальше другое описание ...&lt;/p>
+</code></pre>
+<br>
+<em>Результат:</em>
+<p>... Ниже рассмотрим исходный код файла:</p>
+<?sourcefile= file:tasks:clean ?>
+<p>Дальше другое описание ...</p>
+
+
+
+<br>
+<br>
+<h4 id="tag-sourcecode">@sourcecode</h4>
+<p>Запоминание блока контента документируемого js кода. Суть приминения схожа с тегом <code>@sourcefile</code>, за исключением того что при указании данного тега, даже без значения, выведет исходный код на странице документации на ряду с таблицами параметров и других характеристик.</p>
+<p>Если вы хотите чтобы при демонстрации кода также билы отображены комментарии, которые использовались, - в значении нужно указать флаг <code>-c</code>. В качестве значение можно еще указать привязку к файлу по схеме <samp>сущностьДоклета:имяПапки:имяФайла</samp>. Это позволит в дальнейшем использовать данный блок в туториалах.</p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * @sourcecode	code:tasks:clean -c
+*/
+module.exports = function(options) {
+	...
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-markup">
+&lt;p>... Ниже рассмотрим исходный код модуля:&lt;/p>
+&lt;?sourcefile= code:tasks:clean ?&gt;
+&lt;p>Дальше другое описание ...&lt;/p>
+</code></pre>
+<br>
+<em>Результат:</em>
+<p>... Ниже рассмотрим исходный код модуля:</p>
+<?sourcecode= code:tasks:clean ?>
+<p>Дальше другое описание ...</p>
+
+
+
+
+
+<hr>
+<h2>Предложения и баги</h2>
+<blockquote>
+	<p>Все обнаруженные баги, проблемы, фиксы, а также предложения - отписывать в трекере основного репозитория шаблона. Четко, аргументировано и развернуто.</p>
+	<p><a href="https://bitbucket.org/wezom/wtpl/issues" target="_blank">https://bitbucket.org/wezom/wtpl/issues</a></p>
+</blockquote>

@@ -1,0 +1,40 @@
+{
+	"tags": {
+		"allowUnknownTags": true,
+		"dictionaries": ["jsdoc", "closure"]
+	},
+	"plugins": [
+		"plugins/markdown",
+		"./tasks/jsdoc-theme/plugins/defineTags"
+	],
+	"opts": {
+		"template": "./tasks/jsdoc-theme/template/"
+	},
+	"templates": {
+		"footer": "",
+		"logoFile": "",
+		"linenums": true,
+		"cleverLinks": false,
+		"monospaceLinks": false,
+		"collapseSymbols": true,
+		"theme": "wezom-ru",
+		"syntaxTheme": "dark",
+		"navType": "vertical",
+		"protocol": "html://",
+		"methodHeadingReturns": false,
+		"dateFormat": "MMMM Do YYYY",
+		"default": {
+			"outputSourceFiles": true,
+			"layoutFile": "./tasks/jsdoc-theme/template/tmpl/layout.tmpl",
+			"staticFiles": {
+				"include": [
+					"./tasks/jsdoc-theme/template/static"
+				]
+			}
+		}
+	},
+	"markdown": {
+		"parser": "gfm",
+		"hardwrap": true
+	}
+}

@@ -1,0 +1,44 @@
+////
+/// @group test.scss
+////
+
+
+
+
+	// vars
+	// -----
+
+/// Основное имя (префикс) модуля слайдера
+/// @type Keyword
+$sliderName: animSlider;
+
+/// Основное имя (префикс) модуля слайдера
+/// @type Color
+$sliderColor: #3c3;
+
+
+
+
+	// styles
+	// -----
+
+/* animSlider */
+
+/// @require $sliderName
+.#{$sliderName} {
+	clear: both;
+	&, .#{$sliderName}__list {
+		overflow: hidden;
+	}
+	&, .#{$sliderName}__holder {
+		position: relative;
+		display: block;
+	}
+	.#{$sliderName}__list,
+	.#{$sliderName}__item {
+		list-style-type: none;
+		padding-left: 0;
+		margin: 0;
+		display: block;
+	}
+}
