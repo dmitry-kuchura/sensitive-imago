@@ -1,0 +1,16 @@
+// единицы измерения
+$samevar: 100%;
+$samevar2: #f00;
+
+// миксины
+@mixin HVcenter($w, $h) {
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: $w;
+    max-height: $h;
+    margin: auto;
+}

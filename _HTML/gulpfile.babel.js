@@ -67,21 +67,105 @@
  * @param		{String}		taskName - имя задачи
  * @param		{String}		taskFile - путь к файлу, без учета родительской директории задач - `./tasks/`
  * @param		{Object}		[taskOptions={}] - передавемые параметры
- * @param		{boolean}		[toWatchSource=] - флаг автоматического добавления исходных файлов в `watchSources`, объект для `gulp-autowatch`
  * @param		{Function}		[onBefore] - функция которая должна выполниться перед задачей
  *
 */
-	function lazyRequireTask(taskName, taskFile, taskOptions={}, toWatchSource, onBefore) {
+	function lazyRequireTask(taskName, taskFile, taskOptions={}, onBefore) {
 		taskOptions.taskName = taskName;
 		taskOptions.isProduction = isProduction;
-		if (toWatchSource && !!taskOptions.src) {
-			watchSources[taskName] = taskOptions.src;
+		if (taskOptions.watch) {
+			watchSources[taskName] = taskOptions.watch;
 		}
 		gulp.task(taskName, function(cb) {
 			let task = require(taskFile).call(this, taskOptions);
 			return task(cb);
 		});
 	}
+
+
+
+
+
+
+
+
+
+
+// Компиляция стилей
+// ===========================================
+
+	// внутренние переменные
+	// =====================
+		let _sassDest = `${dist}/css`;
+		let _sassData = `${src}/sass/_data/**/*.scss`;
+		let _sassDevelop = `${src}/sass/develop/**/*.scss`;
+		let _sassInline = `${src}/sass/inline/**/*.scss`;
+		let _sassStatic = `${src}/sass/static/**/*.*`;
+
+	// sass:develop
+	// ============
+		lazyRequireTask('sass:develop', `${tasks}/sass`, {
+			src: _sassDevelop,
+			dest: _sassDest,
+			maps: isSourcemaps,
+			min: isMinify,
+			notify: true,
+			watch: [
+				_sassData,
+				_sassDevelop
+			]
+		});
+
+	// sass:inline
+	// ============
+		lazyRequireTask('sass:inline', `${tasks}/sass`, {
+			src: _sassInline,
+			dest: _sassDest,
+			maps: false,
+			min: true,
+			notify: true,
+			watch: [
+				_sassData,
+				_sassInline
+			]
+		});
+
+	// sass:static
+	// ============
+		lazyRequireTask('sass:static', `${tasks}/transfer`, {
+			src: _sassStatic,
+			dest: _sassDest,
+			filter: `combine`,
+			notify: true,
+			watch: [
+				_sassStatic
+			]
+		}, true);
+
+	// sass
+	// комплексная задача создания документации скриптов верстки
+		gulp.task('sass',
+			gulp.series(
+				'sass:develop',
+				'sass:inline',
+				'sass:static'
+			)
+		);
+
+	// sass:clean
+	// очистка директории документации скриптов верстки
+		lazyRequireTask('sass:clean', `${tasks}/clean`, {
+			src: _sassDest
+		});
+
+	// sass:build
+	// комплексная задача создания документации скриптов верстки
+		gulp.task('sass:build',
+			gulp.series(
+				'sass:clean',
+				'sass'
+			)
+		);
 
 
 
@@ -118,54 +202,6 @@
 
 
 
-// Задачи сборки
-// ===========================================
-
-	// demo файлы
-		lazyRequireTask('demo:clean', `${tasks}/clean`, {
-			src: `${dist}`
-		});
-
-		lazyRequireTask('demo:files', `${tasks}/transfer`, {
-			src: `${tasks}/_docs-assets/demo/**/*.*`,
-			dest: `${dist}`,
-			filter: false,
-			notify: true
-		});
-
-	// build
-	// =======
-		gulp.task('build',
-			gulp.series(
-				(cb) => {
-					console.log('\n\tdemo build task\n');
-					cb();
-				},
-				'demo:clean',
-				'demo:files'
-			)
-		);
-
-	// default
-	// =======
-		gulp.task('default',
-			gulp.series(
-				(cb) => {
-					console.log('\n\tdemo default task\n');
-					cb();
-				}
-			)
-		);
-
-
-
-
-
-
-
-
-
-
 // Задачи документации
 // ===========================================
 
@@ -176,17 +212,18 @@
 			theme: `${tasks}/sassdoc-theme`,
 			dest: `${docs}/sassdoc`,
 			groups: {
-				'undefined': 'Без группы'
+				'undefined': `Без группы`
 			},
 			src: [
-				`${src}/sass/**/*.scss`,
-				`!${src}/sass/**/{vendor}/**/*.scss`
+				_sassData,
+				_sassDevelop,
+				_sassInline
 			]
 		});
 
 		// компиляция главной страницы и туториалов для документации scss файлов
 		lazyRequireTask('docs:sass:materials', `${tasks}/sassdoc-materials`, {
-			systemName: 'SASSDoc',
+			systemName: `SASSDoc`,
 			tutorials: `${tuts}/sass`,
 			dest: `${docs}/sassdoc`,
 			blank: `${tasks}/sassdoc-theme/blank.js`,
@@ -212,7 +249,7 @@
 
 		// генерация документации gulp сборки
 		lazyRequireTask('docs:jsdoc:gulp', `${tasks}/jsdoc`, {
-			systemName: 'Gulp docs',
+			systemName: `Gulp docs`,
 			tutorials: `${tuts}/gulp`,
 			dest: `${docs}/gulp`,
 			src: [
@@ -242,7 +279,7 @@
 
 		// генерация документации скриптов верстки
 		lazyRequireTask('docs:jsdoc:js', `${tasks}/jsdoc`, {
-			systemName: 'JSDoc',
+			systemName: `JSDoc`,
 			tutorials: `${tuts}/js`,
 			dest: `${docs}/jsdoc`,
 			src: [
@@ -324,3 +361,67 @@
 			'docs:html:doc',
 			'docs:sass'
 		));
+
+
+
+
+
+
+
+
+
+
+// Задачи сборки
+// ===========================================
+
+	// demo файлы
+		lazyRequireTask('demo:clean', `${tasks}/clean`, {
+			src: `${dist}`
+		});
+
+		lazyRequireTask('demo:files', `${tasks}/transfer`, {
+			src: `${tasks}/_docs-assets/demo/**/*.*`,
+			dest: `${dist}`,
+			filter: false,
+			notify: true
+		});
+
+	// build
+	// =======
+		gulp.task('build',
+			gulp.series(
+				(cb) => {
+					console.log('\n\tdemo build task\n');
+					cb();
+				},
+				'demo:clean',
+				'demo:files'
+			)
+		);
+
+	// default
+	// =======
+		gulp.task('default',
+			gulp.series(
+				(cb) => {
+					console.log('\n\tdemo default task\n');
+					cb();
+				}
+			)
+		);
+
+	// watch
+	// =====
+		console.log(watchSources);
+		gulp.task('watch', () => {
+			autowatch(gulp, watchSources);
+		});
+
+	// start
+	// =======
+		gulp.task('start',
+			gulp.series(
+				'build',
+				'docs'
+			)
+		);
