@@ -143,7 +143,7 @@
 		}, true);
 
 	// sass
-	// комплексная задача создания документации скриптов верстки
+	// ====
 		gulp.task('sass',
 			gulp.series(
 				'sass:develop',
@@ -153,13 +153,13 @@
 		);
 
 	// sass:clean
-	// очистка директории документации скриптов верстки
+	// ==========
 		lazyRequireTask('sass:clean', `${tasks}/clean`, {
 			src: _sassDest
 		});
 
 	// sass:build
-	// комплексная задача создания документации скриптов верстки
+	// ==========
 		gulp.task('sass:build',
 			gulp.series(
 				'sass:clean',
