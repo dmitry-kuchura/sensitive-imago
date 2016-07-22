@@ -131,7 +131,56 @@ class modulesParams {
 
 
 	/**
-	 * Расширение систмной конфигурация модуля `gulp-jsdoc` на основе пользовательских параметров.
+	 * Настройка параметров для модуля `gulp-notify` для метода `onError`.
+	 *
+	 *
+	 *
+	 * @sourcecode
+	 *
+	 * @param		{string}		taskName - имя задачи
+	 *
+	 * @return		{object}		Объект конфигурцаии.
+	 */
+	gulpNotifyOnError(taskName) {
+		return {
+			title: `Error ${taskName}`,
+			message: '<%= error.message %>'
+		};
+	}
+
+
+
+
+
+	/**
+	 * Настройка параметров для модуля `gulp-autoprefixer`.
+	 *
+	 *
+	 *
+	 * @sourcecode
+	 *
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpAutoprefixerBrowsers() {
+		return [
+			'ie >= 11',
+			'ie_mob >= 10',
+			'ff >= 25',
+			'chrome >= 30',
+			'safari >= 7',
+			'opera >= 23',
+			'ios >= 7',
+			'android >= 4.4',
+			'bb >= 10'
+		];
+	}
+
+
+
+
+
+	/**
+	 * Расширение системной конфигурация модуля `gulp-jsdoc` на основе пользовательских параметров.
 	 *
 	 *
 	 *

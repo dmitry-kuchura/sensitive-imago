@@ -16,12 +16,16 @@
 	import _modulesParams from './_modules-params.js';
 
 /**
- * descr
+ * Модуль компиляции `scss` файлов.
+ *
+ * Модуль имеет метод фильтровки, основанный на модуле `gulp-changed`. В отличие от `gulp-newer` - он умеет делать проверку изменений в стриме.
+ * Параметр фильтровки, в отличие от методов фильтровки модуля {@link module:tasks/transfer|transfer}, воспринимает только булевские значения - выключить или включить.
+ * По умолчанию фильтровка включена - `let isFilter = options.filter !== false;`
  *
  *
  *
  * @moduleLocal
- * @sourcecode	code:tasks:sass -c
+ * @sourcecode	code:tasks:sass
  *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
  * @requires   	{@link https://www.npmjs.com/package/gulp-load-plugins}
@@ -30,6 +34,8 @@
  * @requires   	{@link https://www.npmjs.com/package/gulp-autoprefixer}
  * @requires   	{@link https://www.npmjs.com/package/gulp-sourcemaps}
  * @requires   	{@link https://www.npmjs.com/package/gulp-cssnano}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-changed}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-combine-mq}
  * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
  *
  * @param		{Object}		options - передаваемые параметры
@@ -37,7 +43,8 @@
  * @param		{string}		options.isProduction - имя вызывающей задачи
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
- * @param		{Array}			[options.browsers=] - параметры для плагина `gulp-autoprefixer`
+ * @param		{Array}			[options.browsers] - параметры для плагина `gulp-autoprefixer`
+ * @param		{boolean}		[options.filter=true] - фильтровка изменений в стриме
  * @param		{boolean}		[options.notify=false] - выводить уведомление по окончанию трансфера
  * @param		{string}		[options.notifyOn='last'] - метод уведомления, параметр передается дальше методу {@link module:tasks/_modules-params~modulesParams#gulpNotify|modulesParams#gulpNotify}
  * @param		{number}		[options.notifyTime=2000] - время показа уведомления, параметр передается дальше методу {@link module:tasks/_modules-params~modulesParams#gulpNotify|modulesParams#gulpNotify}
@@ -53,18 +60,11 @@ module.exports = function(options) {
 		// список скомпилированных файлов
 		let receivedFilesList = [];
 
-		//
-		let browsers = options.browsers || [
-			'ie >= 11',
-			'ie_mob >= 10',
-			'ff >= 25',
-			'chrome >= 30',
-			'safari >= 7',
-			'opera >= 23',
-			'ios >= 7',
-			'android >= 4.4',
-			'bb >= 10'
-		]
+		// флаг фильтровки
+		let isFilter = options.filter !== false;
+
+		// параметры модуля `gulp-autoprefixer`
+		let browsers = options.browsers || _modulesParams.gulpAutoprefixerBrowsers();
 
 		// возвращаем
 		return gulp.src(options.src)
@@ -73,26 +73,43 @@ module.exports = function(options) {
 				options.maps,
 				$.sourcemaps.init()
 			))
-			.pipe($.sass({
+			.pipe(
+				$.sass({
 					outputStyle: 'expanded'
-				}).on('error', $.sass.logError)
+				}).on('error', $.notify.onError(_modulesParams.gulpNotifyOnError(options.taskName)))
 			)
 			.pipe($.autoprefixer({
 				browsers: browsers,
 				cascade: false
 			}))
+			.pipe($.if(
+				options.isProduction,
+				$.combineMq({
+					beautify: false
+				}))
+			)
 			// если min вкл.
 			.pipe($.if(
 				options.min,
 				$.cssnano({
 					zindex: false,
-        			autoprefixer: false
+					autoprefixer: false
 				})
 			))
 			// если sourcemaps вкл. - пишем карты
 			.pipe($.if(
 				options.maps,
 				$.sourcemaps.write('/')
+			))
+			// фильтровка изменений в стриме
+			.pipe($.if(
+				isFilter,
+				$.changed(
+					options.dest,
+					{
+						hasChanged: $.changed.compareSha1Digest
+					}
+				)
 			))
 			.pipe(gulp.dest(options.dest))
 			.on('data', (file) => {

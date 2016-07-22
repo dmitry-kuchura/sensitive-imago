@@ -41,6 +41,9 @@
 	const isSourcemaps = !isProduction;
 	const isMinify = isProduction;
 
+	console.log(isSourcemaps);
+	console.log(isMinify);
+
 	// объект авто-вотчей
 	const watchSources = {};
 
@@ -98,23 +101,9 @@
 	// =====================
 		let _sassDest = `${dist}/css`;
 		let _sassData = `${src}/sass/_data/**/*.scss`;
-		let _sassDevelop = `${src}/sass/develop/**/*.scss`;
+		let _sassExternal = `${src}/sass/external/**/*.scss`;
 		let _sassInline = `${src}/sass/inline/**/*.scss`;
-		let _sassStatic = `${src}/sass/static/**/*.*`;
-
-	// sass:develop
-	// ============
-		lazyRequireTask('sass:develop', `${tasks}/sass`, {
-			src: _sassDevelop,
-			dest: _sassDest,
-			maps: isSourcemaps,
-			min: isMinify,
-			notify: true,
-			watch: [
-				_sassData,
-				_sassDevelop
-			]
-		});
+		let _sassAssets = `${src}/sass/assets/**/*.*`;
 
 	// sass:inline
 	// ============
@@ -130,15 +119,29 @@
 			]
 		});
 
-	// sass:static
+	// sass:external
 	// ============
-		lazyRequireTask('sass:static', `${tasks}/transfer`, {
-			src: _sassStatic,
+		lazyRequireTask('sass:external', `${tasks}/sass`, {
+			src: _sassExternal,
+			dest: _sassDest,
+			maps: isSourcemaps,
+			min: isMinify,
+			notify: true,
+			watch: [
+				_sassData,
+				_sassExternal
+			]
+		});
+
+	// sass:assets
+	// ============
+		lazyRequireTask('sass:assets', `${tasks}/transfer`, {
+			src: _sassAssets,
 			dest: _sassDest,
 			filter: `combine`,
 			notify: true,
 			watch: [
-				_sassStatic
+				_sassAssets
 			]
 		}, true);
 
@@ -146,9 +149,9 @@
 	// ====
 		gulp.task('sass',
 			gulp.series(
-				'sass:develop',
+				'sass:external',
 				'sass:inline',
-				'sass:static'
+				'sass:assets'
 			)
 		);
 
@@ -216,7 +219,7 @@
 			},
 			src: [
 				_sassData,
-				_sassDevelop,
+				_sassExternal,
 				_sassInline
 			]
 		});
@@ -399,6 +402,13 @@
 			)
 		);
 
+	// watch
+	// =====
+		console.log(watchSources);
+		gulp.task('watch', () => {
+			autowatch(gulp, watchSources);
+		});
+
 	// default
 	// =======
 		gulp.task('default',
@@ -410,12 +420,14 @@
 			)
 		);
 
-	// watch
-	// =====
-		console.log(watchSources);
-		gulp.task('watch', () => {
-			autowatch(gulp, watchSources);
-		});
+	// rebuild
+	// =======
+		gulp.task('rebuild',
+			gulp.series(
+				'build',
+				'default'
+			)
+		);
 
 	// start
 	// =======

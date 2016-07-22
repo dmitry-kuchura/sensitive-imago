@@ -1,0 +1,24 @@
+@import '../_data/_config';
+////
+/// @group test.scss
+////
+
+div {
+	position: relative;
+	z-index: 3;
+	width: $width;
+	@media only screen and (max-width: 980px) {
+		color: $color;
+	}
+}
+
+p {
+	position: relative;
+	font-weight: bold;
+	color: $color;
+	@media only screen and (min-width: 980px) {
+		width: $width;
+	}
+}
+
+
