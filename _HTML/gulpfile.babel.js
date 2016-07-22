@@ -76,7 +76,6 @@
 		if (taskOptions.watch) {
 			watchSources[taskName] = taskOptions.watch;
 		}
-		// git hook
 		gulp.task(taskName, function(cb) {
 			let task = require(taskFile).call(this, taskOptions);
 			return task(cb);
@@ -99,47 +98,47 @@
 	// =====================
 		let _sassDest = `${dist}/css`;
 		let _sassData = `${src}/sass/_data/**/*.scss`;
-		let _sassExternal = `${src}/sass/external/**/*.scss`;
-		let _sassInline = `${src}/sass/inline/**/*.scss`;
-		let _sassAssets = `${src}/sass/assets/**/*.*`;
+		let _sassDynamics = `${src}/sass/dynamics/**/*.scss`;
+		let _sassCriticals = `${src}/sass/criticals/**/*.scss`;
+		let _sassStatics = `${src}/sass/statics/**/*.*`;
 
-	// sass:external
+	// sass:dynamics
 	// ============
-		lazyRequireTask('sass:external', `${tasks}/sass`, {
-			src: _sassExternal,
+		lazyRequireTask('sass:dynamics', `${tasks}/sass`, {
+			src: _sassDynamics,
 			dest: _sassDest,
-			maps: isSourcemaps,
+			maps: false,
 			min: isMinify,
-			sassLint: true,
+			csslint: true,
 			watch: [
 				_sassData,
-				_sassExternal
+				_sassDynamics
 			],
 			notify: true
 		});
 
-	// sass:inline
+	// sass:criticals
 	// ============
-		lazyRequireTask('sass:inline', `${tasks}/sass`, {
-			src: _sassInline,
+		lazyRequireTask('sass:criticals', `${tasks}/sass`, {
+			src: _sassCriticals,
 			dest: _sassDest,
 			maps: false,
 			min: true,
 			watch: [
 				_sassData,
-				_sassInline
+				_sassCriticals
 			],
 			notify: true
 		});
 
-	// sass:assets
+	// sass:statics
 	// ============
-		lazyRequireTask('sass:assets', `${tasks}/transfer`, {
-			src: _sassAssets,
+		lazyRequireTask('sass:statics', `${tasks}/transfer`, {
+			src: _sassStatics,
 			dest: _sassDest,
 			filter: `combine`,
 			watch: [
-				_sassAssets
+				_sassStatics
 			],
 			notify: true
 		});
@@ -154,9 +153,9 @@
 	// ====
 		gulp.task('sass',
 			gulp.series(
-				'sass:external',
-				'sass:inline',
-				'sass:assets'
+				'sass:dynamics',
+				'sass:criticals',
+				'sass:statics'
 			)
 		);
 
@@ -218,8 +217,8 @@
 			},
 			src: [
 				_sassData,
-				_sassExternal,
-				_sassInline
+				_sassDynamics,
+				_sassCriticals
 			]
 		});
 
