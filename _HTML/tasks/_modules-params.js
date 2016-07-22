@@ -153,6 +153,34 @@ class modulesParams {
 
 
 	/**
+	 * Настройка параметров для модуля `gulp-sass-lint`.
+	 *
+	 *
+	 *
+	 * @sourcecode
+	 *
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpSassListConfig() {
+		return {
+			rules: {
+				'indentation': [
+					'1', {
+						size: 'tab'
+					}
+				],
+				'property-sort-order': 0,
+				'clean-import-paths': 0,
+				'no-ids': 2
+			}
+		};
+	}
+
+
+
+
+
+	/**
 	 * Настройка параметров для модуля `gulp-autoprefixer`.
 	 *
 	 *

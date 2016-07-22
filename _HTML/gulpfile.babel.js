@@ -76,6 +76,7 @@
 		if (taskOptions.watch) {
 			watchSources[taskName] = taskOptions.watch;
 		}
+		// git hook
 		gulp.task(taskName, function(cb) {
 			let task = require(taskFile).call(this, taskOptions);
 			return task(cb);
@@ -108,18 +109,12 @@
 			src: _sassExternal,
 			dest: _sassDest,
 			maps: isSourcemaps,
-			min: false,
+			min: isMinify,
+			sassLint: true,
 			watch: [
 				_sassData,
 				_sassExternal
 			],
-			extractMqFrom: {
-				'test.css': {
-					minw980: 'only screen and (min-width: 980px)',
-					maxw980: 'only screen and (max-width: 980px)',
-					maxw640minw980: 'only screen and (max-width: 640px) and (min-width: 980px)'
-				}
-			},
 			notify: true
 		});
 
@@ -159,10 +154,9 @@
 	// ====
 		gulp.task('sass',
 			gulp.series(
-				'sass:clean',
-				'sass:external'//,
-				//'sass:inline',
-				//'sass:assets'
+				'sass:external',
+				'sass:inline',
+				'sass:assets'
 			)
 		);
 

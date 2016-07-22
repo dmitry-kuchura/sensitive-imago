@@ -5,16 +5,24 @@
  * @sourcefile file:tasks:sass
 */
 
+
+
+
+
 // подключение nodejs модулей
 // ==========================
 	import gulp from 'gulp';
-	import extractMq from './_extract-media-mq.js';
+	import multipipe from 'multipipe';
 	import gulpLoadPlugins from 'gulp-load-plugins';
 	const $ = gulpLoadPlugins();
 
 // подключение внутренних модулей
 // ==============================
 	import _modulesParams from './_modules-params.js';
+
+
+
+
 
 /**
  * Модуль компиляции `scss` файлов.
@@ -29,8 +37,7 @@
  * @sourcecode	code:tasks:sass
  *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
- * @requires   	{@link https://www.npmjs.com/package/vinyl}
- * @requires   	{@link https://www.npmjs.com/package/through2}
+ * @requires   	{@link https://www.npmjs.com/package/multipipe}
  * @requires   	{@link https://www.npmjs.com/package/gulp-load-plugins}
  * @requires   	{@link https://www.npmjs.com/package/gulp-if}
  * @requires   	{@link https://www.npmjs.com/package/gulp-sass}
@@ -40,6 +47,8 @@
  * @requires   	{@link https://www.npmjs.com/package/gulp-changed}
  * @requires   	{@link https://www.npmjs.com/package/gulp-combine-mq}
  * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
+ *
+ * @tutorial 	compile-sass
  *
  * @param		{Object}		options - передаваемые параметры
  * @param		{string}		options.taskName - имя вызывающей задачи
@@ -69,50 +78,69 @@ module.exports = function(options) {
 		// параметры модуля `gulp-autoprefixer`
 		let browsers = options.browsers || _modulesParams.gulpAutoprefixerBrowsers();
 
-		// разделять файлы по медиа брейк-поинтам
-		let isExtractMq = (typeof options.extractMqFrom === 'object');
+		// параметры модуля `gulp-sass-lint`
+		let sassLintConfig = options.sassLintConfig || _modulesParams.gulpSassListConfig();
 
-		// возвращаем
-		return gulp.src(options.src)
-			// если sourcemaps вкл. - начинаем запись
-			.pipe($.if(
-				options.maps,
-				$.sourcemaps.init()
-			))
-			.pipe(
-				$.sass({
-					outputStyle: 'expanded'
-				}).on('error', $.notify.onError(_modulesParams.gulpNotifyOnError(options.taskName)))
-			)
-			.pipe($.autoprefixer({
+		let streamSassLint = multipipe(
+			$.sassLint(sassLintConfig),
+			$.sassLint.format(),
+			$.sassLint.failOnError()
+		);
+
+		// составление multipipe
+		let streamSass = multipipe(
+			$.sass({
+				outputStyle: 'expanded'
+			}),
+			$.autoprefixer({
 				browsers: browsers,
 				cascade: false
-			}))
-			.pipe($.if(
+			}),
+			$.if(
+				// если production версия
 				options.isProduction,
 				$.combineMq({
-					beautify: isExtractMq
-				}))
-			)
-			.pipe($.if(
-				(options.isProduction && isExtractMq),
-				extractMq(options.extractMqFrom)
-			))
-			// если min вкл.
-			.pipe($.if(
+					beautify: false
+				})
+			),
+			$.if(
+				// если min вкл.
 				options.min,
 				$.cssnano({
 					zindex: false,
-					autoprefixer: false
+					autoprefixer: false,
+					discardUnused: false
 				})
-			))
-			// если sourcemaps вкл. - пишем карты
+			)
+		);
+
+		streamSassLint.on('error', $.notify.onError(
+			_modulesParams.gulpNotifyOnError(`SASS Lint - ${options.taskName}`))
+		);
+
+		streamSass.on('error', $.notify.onError(
+			_modulesParams.gulpNotifyOnError(options.taskName))
+		);
+
+		// возвращаем
+		return gulp.src(options.src)
 			.pipe($.if(
+				options.sassLint,
+				streamSassLint
+			))
+			.pipe($.if(
+				// если sourcemaps вкл. - начинаем запись
+				options.maps,
+				$.sourcemaps.init()
+			))
+			.pipe(streamSass)
+			.pipe($.if(
+				// если sourcemaps вкл. - пишем карты
 				options.maps,
 				$.sourcemaps.write('/')
 			))
-			// фильтровка изменений в стриме
 			.pipe($.if(
+				// фильтровка изменений в стриме
 				isFilter,
 				$.changed(
 					options.dest,

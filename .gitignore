@@ -1,5 +1,5 @@
-_HTML/node_modules/
-_HTML/tmp/
+*node_modules/
+*tmp/
 design/
 .idea/
 
