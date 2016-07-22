@@ -82,9 +82,9 @@ module.exports = function(options) {
 		let sassLintConfig = options.sassLintConfig || _modulesParams.gulpSassListConfig();
 
 		let streamSassLint = multipipe(
-			$.sassLint(sassLintConfig),
+			$.sassLint(sassLintConfig), // file.sasslint
 			$.sassLint.format(),
-			$.sassLint.failOnError()
+			$.sassLint.failOnError() // exit code = 1
 		);
 
 		// составление multipipe
