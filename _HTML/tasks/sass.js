@@ -8,6 +8,7 @@
 // подключение nodejs модулей
 // ==========================
 	import gulp from 'gulp';
+	import extractMq from './_extract-media-mq.js';
 	import gulpLoadPlugins from 'gulp-load-plugins';
 	const $ = gulpLoadPlugins();
 
@@ -28,6 +29,8 @@
  * @sourcecode	code:tasks:sass
  *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
+ * @requires   	{@link https://www.npmjs.com/package/vinyl}
+ * @requires   	{@link https://www.npmjs.com/package/through2}
  * @requires   	{@link https://www.npmjs.com/package/gulp-load-plugins}
  * @requires   	{@link https://www.npmjs.com/package/gulp-if}
  * @requires   	{@link https://www.npmjs.com/package/gulp-sass}
@@ -66,6 +69,9 @@ module.exports = function(options) {
 		// параметры модуля `gulp-autoprefixer`
 		let browsers = options.browsers || _modulesParams.gulpAutoprefixerBrowsers();
 
+		// разделять файлы по медиа брейк-поинтам
+		let isExtractMq = (typeof options.extractMqFrom === 'object');
+
 		// возвращаем
 		return gulp.src(options.src)
 			// если sourcemaps вкл. - начинаем запись
@@ -85,9 +91,13 @@ module.exports = function(options) {
 			.pipe($.if(
 				options.isProduction,
 				$.combineMq({
-					beautify: false
+					beautify: isExtractMq
 				}))
 			)
+			.pipe($.if(
+				(options.isProduction && isExtractMq),
+				extractMq(options.extractMqFrom)
+			))
 			// если min вкл.
 			.pipe($.if(
 				options.min,

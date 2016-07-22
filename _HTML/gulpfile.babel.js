@@ -41,9 +41,6 @@
 	const isSourcemaps = !isProduction;
 	const isMinify = isProduction;
 
-	console.log(isSourcemaps);
-	console.log(isMinify);
-
 	// объект авто-вотчей
 	const watchSources = {};
 
@@ -105,6 +102,27 @@
 		let _sassInline = `${src}/sass/inline/**/*.scss`;
 		let _sassAssets = `${src}/sass/assets/**/*.*`;
 
+	// sass:external
+	// ============
+		lazyRequireTask('sass:external', `${tasks}/sass`, {
+			src: _sassExternal,
+			dest: _sassDest,
+			maps: isSourcemaps,
+			min: false,
+			watch: [
+				_sassData,
+				_sassExternal
+			],
+			extractMqFrom: {
+				'test.css': {
+					minw980: 'only screen and (min-width: 980px)',
+					maxw980: 'only screen and (max-width: 980px)',
+					maxw640minw980: 'only screen and (max-width: 640px) and (min-width: 980px)'
+				}
+			},
+			notify: true
+		});
+
 	// sass:inline
 	// ============
 		lazyRequireTask('sass:inline', `${tasks}/sass`, {
@@ -112,25 +130,11 @@
 			dest: _sassDest,
 			maps: false,
 			min: true,
-			notify: true,
 			watch: [
 				_sassData,
 				_sassInline
-			]
-		});
-
-	// sass:external
-	// ============
-		lazyRequireTask('sass:external', `${tasks}/sass`, {
-			src: _sassExternal,
-			dest: _sassDest,
-			maps: isSourcemaps,
-			min: isMinify,
-			notify: true,
-			watch: [
-				_sassData,
-				_sassExternal
-			]
+			],
+			notify: true
 		});
 
 	// sass:assets
@@ -139,27 +143,28 @@
 			src: _sassAssets,
 			dest: _sassDest,
 			filter: `combine`,
-			notify: true,
 			watch: [
 				_sassAssets
-			]
-		}, true);
-
-	// sass
-	// ====
-		gulp.task('sass',
-			gulp.series(
-				'sass:external',
-				'sass:inline',
-				'sass:assets'
-			)
-		);
+			],
+			notify: true
+		});
 
 	// sass:clean
 	// ==========
 		lazyRequireTask('sass:clean', `${tasks}/clean`, {
 			src: _sassDest
 		});
+
+	// sass
+	// ====
+		gulp.task('sass',
+			gulp.series(
+				'sass:clean',
+				'sass:external'//,
+				//'sass:inline',
+				//'sass:assets'
+			)
+		);
 
 	// sass:build
 	// ==========
@@ -389,9 +394,9 @@
 			notify: true
 		});
 
-	// build
+	// rebuild
 	// =======
-		gulp.task('build',
+		gulp.task('rebuild',
 			gulp.series(
 				(cb) => {
 					console.log('\n\tdemo build task\n');
@@ -404,7 +409,7 @@
 
 	// watch
 	// =====
-		console.log(watchSources);
+		/*console.log(watchSources);*/
 		gulp.task('watch', () => {
 			autowatch(gulp, watchSources);
 		});
@@ -420,11 +425,11 @@
 			)
 		);
 
-	// rebuild
+	// build
 	// =======
-		gulp.task('rebuild',
+		gulp.task('build',
 			gulp.series(
-				'build',
+				'rebuild',
 				'default'
 			)
 		);
@@ -433,7 +438,7 @@
 	// =======
 		gulp.task('start',
 			gulp.series(
-				'build',
+				'rebuild',
 				'docs'
 			)
 		);
