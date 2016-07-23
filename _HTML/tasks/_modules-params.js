@@ -16,6 +16,11 @@
 
 
 
+
+// подключение nodejs модулей
+// ==========================
+	import deepExtend from 'deep-extend';
+
 // подключение внутренних модулей
 // ==============================
 	import _helpers from './_helpers.js';
@@ -159,6 +164,8 @@ class modulesParams {
 	 *
 	 * @sourcecode
 	 *
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
+	 *
 	 * @return		{Array}		Список конфигурцаии.
 	 */
 	gulpSassListConfig() {
@@ -181,6 +188,28 @@ class modulesParams {
 
 
 	/**
+	 * Настройка параметров для модуля `gulp-csslint`.
+	 *
+	 *
+	 *
+	 * @sourcecode
+	 *
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
+	 *
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpCssLintConfig(customConfig={}) {
+		return deepExtend({
+			'ids': 1,
+			'empty-rules': 1
+		}, customConfig);
+	}
+
+
+
+
+
+	/**
 	 * Настройка параметров для модуля `gulp-autoprefixer`.
 	 *
 	 *
@@ -189,7 +218,7 @@ class modulesParams {
 	 *
 	 * @return		{Array}		Список конфигурцаии.
 	 */
-	gulpAutoprefixerBrowsers() {
+	gulpAutoprefixerBrowsers(customConfig=[]) {
 		return [
 			'ie >= 11',
 			'ie_mob >= 10',

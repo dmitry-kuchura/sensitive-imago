@@ -28,8 +28,13 @@
 
 
 
-// подключение внутренних модулей
-// ==============================
+/**
+ * descr
+ *
+ *
+ *
+ * @param      {File}  file    The file
+ */
 	let cssLintReporter = (file) => {
 		let problems = file.csslint.errorCount;
 		let messages = [];
@@ -82,7 +87,8 @@
  * @requires   	{@link https://www.npmjs.com/package/gulp-csslint}
  * @requires   	{@link https://www.npmjs.com/package/gulp-changed}
  * @requires   	{@link https://www.npmjs.com/package/gulp-combine-mq}
- * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-notify} *
+ * @requires 	{@link module:tasks/_modules-params}
  *
  * @tutorial 	compile-sass
  *
@@ -92,6 +98,7 @@
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
  * @param		{boolean}		options.csslint - флаг линтинга скомпилированных файлов
+ * @param		{boolean}		options.csslintConfig - пользовательские параметры
  * @param		{Array}			[options.browsers] - параметры для плагина `gulp-autoprefixer`
  * @param		{boolean}		[options.filter=true] - фильтровка изменений в стриме
  * @param		{boolean}		[options.notify=false] - выводить уведомление по окончанию трансфера
@@ -113,9 +120,9 @@ module.exports = function(options) {
 		let isFilter = options.filter !== false;
 
 		// параметры модуля `gulp-autoprefixer`
-		let browsers = options.browsers || _modulesParams.gulpAutoprefixerBrowsers();
+		let browsers = _modulesParams.gulpAutoprefixerBrowsers(options.browsers);
 
-		// составление multipipe
+		// составление multipipe компиляции
 		let streamSass = multipipe(
 			$.sass({
 				outputStyle: 'expanded'
@@ -128,7 +135,7 @@ module.exports = function(options) {
 			$.if(
 				options.isProduction,
 				$.combineMq({
-					beautify: false
+					beautify: !options.min
 				})
 			),
 			// если min вкл.
@@ -140,31 +147,21 @@ module.exports = function(options) {
 					discardUnused: false
 				})
 			)
-		);
-
-		streamSass.on('error', $.notify.onError(
+		).on('error', $.notify.onError(
 			_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
 		);
 
-		// составление multipipe
-		// let streamSassLint = multipipe(
-		// 	$.csslint(),
-		// 	$.csslint.reporter(),
-		// 	$.csslint.reporter(cssLinetReporter),
-		// 	$.csslint.reporter('fail')
-		// );
-
+		// параметры модуля `gulp-csslint`
+		let cssLintConfig = _modulesParams.gulpCssLintConfig(options.csslintConfig);
 
 		// составление multipipe для линтинга css
 		let streamCssLint = multipipe(
 			$.if(
 				/\.css$/,
 				multipipe(
-					$.csslint({
-						'ids': 1,
-						'empty-rules': 1
-					}),
+					$.csslint(cssLintConfig),
 					$.csslint.reporter(cssLintReporter),
+					// если есть ошибки - fail
 					$.if(
 						(file) => {
 							return !!file.cssLintFail;
@@ -176,6 +173,7 @@ module.exports = function(options) {
 							})
 						)
 					),
+					// если есть ошибки - предупреждение
 					$.if(
 						(file) => {
 							return !!file.cssLintWarns;
@@ -198,7 +196,13 @@ module.exports = function(options) {
 				options.maps,
 				$.sourcemaps.init()
 			))
+			// компиляция
 			.pipe(streamSass)
+			// если csslint вкл.
+			.pipe($.if(
+				options.csslint,
+				streamCssLint
+			))
 			// если sourcemaps вкл. - пишем карты
 			.pipe($.if(
 				options.maps,
@@ -213,11 +217,6 @@ module.exports = function(options) {
 						hasChanged: $.changed.compareSha1Digest
 					}
 				)
-			))
-			// если csslint вкл.
-			.pipe($.if(
-				options.csslint,
-				streamCssLint
 			))
 			.pipe(gulp.dest(options.dest))
 			.on('data', (file) => {

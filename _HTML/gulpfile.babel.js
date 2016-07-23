@@ -110,6 +110,9 @@
 			maps: isSourcemaps,
 			min: isMinify,
 			csslint: true,
+			cssLintConfig: {
+				'ids': 1
+			},
 			watch: [
 				_sassData,
 				_sassDynamics

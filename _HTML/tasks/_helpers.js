@@ -41,6 +41,7 @@
 	import path from 'path';
 	import chalk from 'chalk';
 	import fileSave from 'file-save';
+	import deepExtend from 'deep-extend';
 
 
 

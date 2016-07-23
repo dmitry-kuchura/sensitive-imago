@@ -1,0 +1,32 @@
+@mixin util-colors {
+
+	$palette: $palette;
+
+	._color-inherit {
+		color: inherit !important;
+	}
+	._color-inherit-hover:hover {
+		color: inherit !important;
+	}
+	@each $name,
+	$color in $palette {
+		._color-#{$name} {
+			color: $color !important;
+		}
+		._color-#{$name}-hover:hover {
+			color: $color !important;
+		}
+		._bg-#{$name} {
+			background-color: $color !important;
+		}
+		._bg-#{$name}-hover:hover {
+			background-color: $color !important;
+		}
+		._fill-#{$name} {
+			fill: $color !important;
+		}
+		._fill-#{$name}-hover:hover {
+			fill: $color !important;
+		}
+	}
+}
