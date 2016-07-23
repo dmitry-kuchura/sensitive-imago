@@ -110,14 +110,14 @@
 			maps: isSourcemaps,
 			min: isMinify,
 			csslint: true,
-			cssLintConfig: {
+			csslintConfig: {
 				'ids': 1
 			},
 			watch: [
 				_sassData,
 				_sassDynamics
 			],
-			notify: true
+			notify: false
 		});
 
 	// sass:criticals

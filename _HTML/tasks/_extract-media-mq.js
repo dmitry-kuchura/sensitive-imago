@@ -54,6 +54,8 @@
  * @moduleLocal
  * @sourcecode	code:tasks:_extract-media-mq
  *
+ * @tutorial 	compile-sass
+ *
  * @requires   	{@link https://www.npmjs.com/package/rework}
  * @requires   	{@link https://www.npmjs.com/package/rework-split-media}
  * @requires   	{@link https://www.npmjs.com/package/rework-move-media}
@@ -61,8 +63,6 @@
  * @requires   	{@link https://www.npmjs.com/package/clean-up-string}
  * @requires   	{@link https://www.npmjs.com/package/through2}
  * @requires   	{@link https://www.npmjs.com/package/path}
- *
- * @tutorial 	compile-sass
  *
  * @param		{Object}		extractMqFrom - список файлов из которых нужно делать экстракт
  * @param		{Object}		extractMqFrom[].fileRelativeKey - набор медиа-запросов для экстракта из файла

@@ -32,8 +32,6 @@
 /**
  * Набор параметров для конфигурации nodejs модулей
  *
- *
- *
  * @class
 */
 class modulesParams {
@@ -72,8 +70,6 @@ class modulesParams {
 	 * Настройка параметров для модуля `gulp-notify`.
 	 * Вывод уведомления после обработки каждого файла.
 	 *
-	 *
-	 *
 	 * @sourcecode
 	 *
 	 * @param		{object}		options - передаваемые параметры
@@ -101,8 +97,6 @@ class modulesParams {
 	/**
 	 * Настройка параметров для модуля `gulp-notify`.
 	 * Вывод уведомления будет в конце вызавыющей задачи, после обработки всех файлов.
-	 *
-	 *
 	 *
 	 * @sourcecode
 	 *
@@ -138,12 +132,8 @@ class modulesParams {
 	/**
 	 * Настройка параметров для модуля `gulp-notify` для метода `onError`.
 	 *
-	 *
-	 *
 	 * @sourcecode
-	 *
 	 * @param		{string}		taskName - имя задачи
-	 *
 	 * @return		{object}		Объект конфигурцаии.
 	 */
 	gulpNotifyOnError(taskName) {
@@ -160,16 +150,12 @@ class modulesParams {
 	/**
 	 * Настройка параметров для модуля `gulp-sass-lint`.
 	 *
-	 *
-	 *
 	 * @sourcecode
-	 *
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
-	 *
 	 * @return		{Array}		Список конфигурцаии.
 	 */
-	gulpSassListConfig() {
-		return {
+	gulpSassLintConfig(customConfig={}) {
+		let baseConfig = {
 			rules: {
 				'indentation': [
 					'1', {
@@ -177,10 +163,14 @@ class modulesParams {
 					}
 				],
 				'property-sort-order': 0,
-				'clean-import-paths': 0,
-				'no-ids': 2
+				'clean-import-paths': 1,
+				'no-ids': 1
 			}
 		};
+		if (customConfig) {
+			return deepExtend(baseConfig, customConfig);
+		}
+		return baseConfig;
 	}
 
 
@@ -190,19 +180,19 @@ class modulesParams {
 	/**
 	 * Настройка параметров для модуля `gulp-csslint`.
 	 *
-	 *
-	 *
 	 * @sourcecode
-	 *
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
-	 *
 	 * @return		{Array}		Список конфигурцаии.
 	 */
 	gulpCssLintConfig(customConfig={}) {
-		return deepExtend({
+		let baseConfig = {
 			'ids': 1,
 			'empty-rules': 1
-		}, customConfig);
+		};
+		if (customConfig) {
+			return deepExtend(baseConfig, customConfig);
+		}
+		return baseConfig;
 	}
 
 
@@ -212,24 +202,73 @@ class modulesParams {
 	/**
 	 * Настройка параметров для модуля `gulp-autoprefixer`.
 	 *
-	 *
-	 *
 	 * @sourcecode
-	 *
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
 	 * @return		{Array}		Список конфигурцаии.
 	 */
-	gulpAutoprefixerBrowsers(customConfig=[]) {
-		return [
-			'ie >= 11',
-			'ie_mob >= 10',
-			'ff >= 25',
-			'chrome >= 30',
-			'safari >= 7',
-			'opera >= 23',
-			'ios >= 7',
-			'android >= 4.4',
-			'bb >= 10'
-		];
+	gulpAutoprefixerConfig(customConfig={}) {
+		let baseConfig = {
+			browsers: [
+				'ie >= 11',
+				'ie_mob >= 10',
+				'ff >= 25',
+				'chrome >= 30',
+				'safari >= 7',
+				'opera >= 23',
+				'ios >= 7',
+				'android >= 4.4',
+				'bb >= 10'
+			],
+			cascade: false
+		};
+		if (customConfig) {
+			return deepExtend(baseConfig, customConfig);
+		}
+		return baseConfig;
+	}
+
+
+
+
+
+	/**
+	 * Настройка параметров для модуля `gulp-autoprefixer`.
+	 *
+	 * @sourcecode
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpCssnanoConfig(customConfig={}) {
+		let baseConfig = {
+			zindex: false,
+			autoprefixer: false,
+			discardUnused: false
+		};
+		if (customConfig) {
+			return deepExtend(baseConfig, customConfig);
+		}
+		return baseConfig;
+	}
+
+
+
+
+
+	/**
+	 * Настройка параметров для модуля `gulp-autoprefixer`.
+	 *
+	 * @sourcecode
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpSassConfig(customConfig={}) {
+		let baseConfig = {
+			outputStyle: 'expanded'
+		};
+		if (customConfig) {
+			return deepExtend(baseConfig, customConfig);
+		}
+		return baseConfig;
 	}
 
 
@@ -238,8 +277,6 @@ class modulesParams {
 
 	/**
 	 * Расширение системной конфигурация модуля `gulp-jsdoc` на основе пользовательских параметров.
-	 *
-	 *
 	 *
 	 * @sourcecode 	code:tasks:_modulesParams:jsdoc3Config
 	 *

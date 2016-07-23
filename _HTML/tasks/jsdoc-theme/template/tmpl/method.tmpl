@@ -39,7 +39,11 @@ if (this.navOptions.isHtmldoc) {
 	<div class="description">
 		<?js= data.description ?>
 	</div>
+	<br>
+	<hr>
 	<?js } ?>
+
+	<h3 id="info-descr"><?js= (_lang('Description functional', 'Описание функционала'))?></h3>
 
 	<?js if (data.augments && data.alias && data.alias.indexOf('module:') === 0) { ?>
 		<h5 class="font-bold">Extends:</h5>
@@ -48,6 +52,21 @@ if (this.navOptions.isHtmldoc) {
 
 	<?js if (kind === 'event' && data && data.type && data.type.names) {?>
 		<h5 class="font-bold"><?js= (_lang('Type', 'Тип'))?>: <?js= self.partial('type.tmpl', data.type.names) ?></h5>
+	<?js } ?>
+
+	<?js if (data.tutorials && tutorials.length) {?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('Tutorials', 'Туториалы'))?>:</<?js=_header?>>
+	<ul><?js tutorials.forEach(function(t) { ?>
+		<li><?js= self.tutoriallink(t) ?></li>
+		<?js }); ?></ul>
+	</dd>
+	<?js } ?>
+
+	<?js if (data.see && see.length) {?>
+	<<?js=_header?> class="font-bold"><?js= (_lang('See', 'Связанные материалы'))?>:</<?js=_header?>>
+	<ul><?js see.forEach(function(s) { ?>
+		<li><?js= self.linkto(s) ?></li>
+		<?js }); ?></ul>
 	<?js } ?>
 
 	<?js if (data.lineNo) { ?>
@@ -59,21 +78,6 @@ if (this.navOptions.isHtmldoc) {
 	<ul><?js data.requires.forEach(function(r) { ?>
 		<li><?js= self.linkto(r) ?></li>
 	<?js }); ?></ul>
-	<?js } ?>
-
-	<?js if (data.see && see.length) {?>
-	<<?js=_header?> class="font-bold"><?js= (_lang('See', 'Связанные материалы'))?>:</<?js=_header?>>
-	<ul><?js see.forEach(function(s) { ?>
-		<li><?js= self.linkto(s) ?></li>
-		<?js }); ?></ul>
-	<?js } ?>
-
-	<?js if (data.tutorials && tutorials.length) {?>
-	<<?js=_header?> class="font-bold"><?js= (_lang('Tutorials', 'Туториалы'))?>:</<?js=_header?>>
-	<ul><?js tutorials.forEach(function(t) { ?>
-		<li><?js= self.tutoriallink(t) ?></li>
-		<?js }); ?></ul>
-	</dd>
 	<?js } ?>
 
 	<?js if (data.todo && todo.length) {?>

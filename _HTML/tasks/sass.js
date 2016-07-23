@@ -29,11 +29,9 @@
 
 
 /**
- * descr
+ * Пользовательский reporter для `gulp-csslint`
  *
- *
- *
- * @param      {File}  file    The file
+ * @param      {File}		file - проверенный файл
  */
 	let cssLintReporter = (file) => {
 		let problems = file.csslint.errorCount;
@@ -42,6 +40,8 @@
 			warning: 0,
 			error: 0
 		};
+
+		// результаты
 		file.csslint.results.forEach(function(result) {
 			let err = result.error;
 			types[err.type]++;
@@ -50,11 +50,15 @@
 			messages.push(`\t${err.rule.desc}`);
 			messages.push(`\t${err.evidence}`);
 		});
+
+		// помечаем файл, как с ошибками или предупреждениями
 		file.cssLintWarns = types.warning > 0;
 		if (types.error > 0) {
 			file.cssLintFail = true;
 			file.cssLintWarns = false;
 		}
+
+		// если есть проблемы выводим лог в консоль терминала
 		console.log(chalk.red(`\n ${problems} problems in ${file.relative} (warnings: ${types.warning}, errors: ${types.error})\n------------------------------------------------------------`));
 		console.log(chalk.yellow(`${messages.join('\n')}\n`));
 	};
@@ -66,14 +70,10 @@
 /**
  * Модуль компиляции `scss` файлов.
  *
- * Модуль имеет метод фильтровки, основанный на модуле `gulp-changed`. В отличие от `gulp-newer` - он умеет делать проверку изменений в стриме.
- * Параметр фильтровки, в отличие от методов фильтровки модуля {@link module:tasks/transfer|transfer}, воспринимает только булевские значения - выключить или включить.
- * По умолчанию фильтровка включена - `let isFilter = options.filter !== false;`
- *
- *
- *
  * @moduleLocal
  * @sourcecode	code:tasks:sass
+ *
+ * @tutorial 	compile-sass
  *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
  * @requires   	{@link https://www.npmjs.com/package/multipipe}
@@ -87,10 +87,8 @@
  * @requires   	{@link https://www.npmjs.com/package/gulp-csslint}
  * @requires   	{@link https://www.npmjs.com/package/gulp-changed}
  * @requires   	{@link https://www.npmjs.com/package/gulp-combine-mq}
- * @requires   	{@link https://www.npmjs.com/package/gulp-notify} *
- * @requires 	{@link module:tasks/_modules-params}
- *
- * @tutorial 	compile-sass
+ * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
+ * @requires 	module:tasks/_modules-params
  *
  * @param		{Object}		options - передаваемые параметры
  * @param		{string}		options.taskName - имя вызывающей задачи
@@ -113,118 +111,139 @@ module.exports = function(options) {
 	// возврашаем функцию для задачи
 	return function(cb) {
 
-		// список скомпилированных файлов
-		let receivedFilesList = [];
+		// vars
+		// ========
 
-		// флаг фильтровки
-		let isFilter = options.filter !== false;
+			// список скомпилированных файлов
+			let receivedFilesList = [];
 
-		// параметры модуля `gulp-autoprefixer`
-		let browsers = _modulesParams.gulpAutoprefixerBrowsers(options.browsers);
+			// флаг фильтровки
+			let isFilter = options.filter !== false;
 
-		// составление multipipe компиляции
-		let streamSass = multipipe(
-			$.sass({
-				outputStyle: 'expanded'
-			}),
-			$.autoprefixer({
-				browsers: browsers,
-				cascade: false
-			}),
-			// если production версия - складываем mq
-			$.if(
-				options.isProduction,
-				$.combineMq({
-					beautify: !options.min
-				})
-			),
-			// если min вкл.
-			$.if(
-				options.min,
-				$.cssnano({
-					zindex: false,
-					autoprefixer: false,
-					discardUnused: false
-				})
-			)
-		).on('error', $.notify.onError(
-			_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
-		);
+			// параметры модуля `gulp-sass`
+			let sassConfig = _modulesParams.gulpSassConfig(options.sassConfig);
 
-		// параметры модуля `gulp-csslint`
-		let cssLintConfig = _modulesParams.gulpCssLintConfig(options.csslintConfig);
+			// параметры модуля `gulp-autoprefixer`
+			let autoprefixerConfig = _modulesParams.gulpAutoprefixerConfig(options.autoprefixerConfig);
 
-		// составление multipipe для линтинга css
-		let streamCssLint = multipipe(
-			$.if(
-				/\.css$/,
-				multipipe(
-					$.csslint(cssLintConfig),
-					$.csslint.reporter(cssLintReporter),
-					// если есть ошибки - fail
-					$.if(
-						(file) => {
-							return !!file.cssLintFail;
-						},
-						multipipe(
-							$.csslint.reporter('fail'),
-							throughObj((file, enc, callback) => {
-								return callback();
+			// параметры модуля `gulp-sass-lint`
+			if (options.min) {
+				var minConfig = _modulesParams.gulpCssnanoConfig(options.minConfig);
+			}
+
+			// параметры модуля `gulp-sass-lint`
+			if (options.sasslint) {
+				var sasslintConfig = _modulesParams.gulpSassLintConfig(options.sasslintConfig);
+			}
+
+			// параметры модуля `gulp-csslint`
+			if (options.csslint) {
+				var csslintConfig = _modulesParams.gulpCssLintConfig(options.csslintConfig);
+			}
+
+
+
+
+
+		// streams
+		// ========
+
+			// составление multipipe компиляции
+			let streamSass = multipipe(
+				$.sass(),
+				$.autoprefixer(autoprefixerConfig),
+				// если production версия - складываем mq
+				$.if(
+					options.isProduction,
+					$.combineMq({
+						beautify: !options.min
+					})
+				),
+				// если min вкл.
+				$.if(
+					options.min,
+					$.cssnano(minConfig)
+				)
+			).on('error', $.notify.onError(
+				_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
+			);
+
+			// составление multipipe для линтинга css
+			let streamCssLint = multipipe(
+				$.if(
+					/\.css$/,
+					multipipe(
+						$.csslint(csslintConfig),
+						$.csslint.reporter(cssLintReporter),
+						// если есть ошибки - fail
+						$.if(
+							(file) => {
+								return !!file.cssLintFail;
+							},
+							multipipe(
+								$.csslint.reporter('fail'),
+								throughObj((file, enc, callback) => {
+									return callback();
+								})
+							)
+						),
+						// если есть предупреждения - notify
+						$.if(
+							(file) => {
+								return !!file.cssLintWarns;
+							},
+							$.notify({
+								title: `CSSLint WARN`,
+								message: `<%= file.relative %>`
 							})
 						)
-					),
-					// если есть ошибки - предупреждение
-					$.if(
-						(file) => {
-							return !!file.cssLintWarns;
-						},
-						$.notify({
-							title: `CSSLint WARN`,
-							message: `<%= file.relative %>`
-						})
 					)
 				)
-			)
-		).on('error', $.notify.onError(
-			_modulesParams.gulpNotifyOnError(`CSSLint - ${options.taskName}`))
-		);
+			).on('error', $.notify.onError(
+				_modulesParams.gulpNotifyOnError(`CSSLint - ${options.taskName}`))
+			);
 
-		// возвращаем
-		return gulp.src(options.src)
-			// если sourcemaps вкл. - начинаем запись
-			.pipe($.if(
-				options.maps,
-				$.sourcemaps.init()
-			))
-			// компиляция
-			.pipe(streamSass)
-			// если csslint вкл.
-			.pipe($.if(
-				options.csslint,
-				streamCssLint
-			))
-			// если sourcemaps вкл. - пишем карты
-			.pipe($.if(
-				options.maps,
-				$.sourcemaps.write('/')
-			))
-			// фильтровка изменений в стриме
-			.pipe($.if(
-				isFilter,
-				$.changed(
-					options.dest,
-					{
-						hasChanged: $.changed.compareSha1Digest
-					}
-				)
-			))
-			.pipe(gulp.dest(options.dest))
-			.on('data', (file) => {
-				receivedFilesList.push(file.relative);
-			})
-			.pipe($.if(
-				options.notify,
-				$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
-			));
+
+
+
+
+		// task
+		// ========
+			return gulp.src(options.src)
+				// если sourcemaps вкл. - начинаем запись
+				.pipe($.if(
+					options.maps,
+					$.sourcemaps.init()
+				))
+				// компиляция
+				.pipe(streamSass)
+				// если csslint вкл.
+				.pipe($.if(
+					options.csslint,
+					streamCssLint
+				))
+				// если sourcemaps вкл. - пишем карты
+				.pipe($.if(
+					options.maps,
+					$.sourcemaps.write('/')
+				))
+				// фильтровка изменений в стриме
+				.pipe($.if(
+					isFilter,
+					$.changed(
+						options.dest,
+						{
+							hasChanged: $.changed.compareSha1Digest
+						}
+					)
+				))
+				.pipe(gulp.dest(options.dest))
+				.on('data', (file) => {
+					receivedFilesList.push(file.relative);
+				})
+				.pipe($.if(
+					options.notify,
+					$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
+				));
 	};
 };
