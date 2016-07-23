@@ -12,6 +12,7 @@
 // подключение nodejs модулей
 // ==========================
 	import gulp from 'gulp';
+	import chalk from 'chalk';
 	import multipipe from 'multipipe';
 	import through2 from 'through2';
 	const throughObj = through2.obj;
@@ -21,6 +22,37 @@
 // подключение внутренних модулей
 // ==============================
 	import _modulesParams from './_modules-params.js';
+
+
+
+
+
+
+// подключение внутренних модулей
+// ==============================
+	let cssLintReporter = (file) => {
+		let problems = file.csslint.errorCount;
+		let messages = [];
+		let types = {
+			warning: 0,
+			error: 0
+		};
+		file.csslint.results.forEach(function(result) {
+			let err = result.error;
+			types[err.type]++;
+			messages.push(` ${err.line}:${err.col}\t${err.rule.id}`);
+			messages.push(`\t${err.message}`);
+			messages.push(`\t${err.rule.desc}`);
+			messages.push(`\t${err.evidence}`);
+		});
+		file.cssLintWarns = types.warning > 0;
+		if (types.error > 0) {
+			file.cssLintFail = true;
+			file.cssLintWarns = false;
+		}
+		console.log(chalk.red(`\n ${problems} problems in ${file.relative} (warnings: ${types.warning}, errors: ${types.error})\n------------------------------------------------------------`));
+		console.log(chalk.yellow(`${messages.join('\n')}\n`));
+	};
 
 
 
@@ -115,20 +147,48 @@ module.exports = function(options) {
 		);
 
 		// составление multipipe
-		let streamCssLint = multipipe(
-			$.csslint(),
-			$.csslint.reporter(),
-			$.csslint.reporter('fail'),
-			throughObj((file, enc, callback) => {
-				if (file.csslint.errorCount > 0) {
-					return callback();
-				}
-				callback(null, file);
-			})
-		);
+		// let streamSassLint = multipipe(
+		// 	$.csslint(),
+		// 	$.csslint.reporter(),
+		// 	$.csslint.reporter(cssLinetReporter),
+		// 	$.csslint.reporter('fail')
+		// );
 
-		streamCssLint.on('error', $.notify.onError(
-			_modulesParams.gulpNotifyOnError(`csslint - ${options.taskName}`))
+
+		// составление multipipe для линтинга css
+		let streamCssLint = multipipe(
+			$.if(
+				/\.css$/,
+				multipipe(
+					$.csslint({
+						'ids': 1,
+						'empty-rules': 1
+					}),
+					$.csslint.reporter(cssLintReporter),
+					$.if(
+						(file) => {
+							return !!file.cssLintFail;
+						},
+						multipipe(
+							$.csslint.reporter('fail'),
+							throughObj((file, enc, callback) => {
+								return callback();
+							})
+						)
+					),
+					$.if(
+						(file) => {
+							return !!file.cssLintWarns;
+						},
+						$.notify({
+							title: `CSSLint WARN`,
+							message: `<%= file.relative %>`
+						})
+					)
+				)
+			)
+		).on('error', $.notify.onError(
+			_modulesParams.gulpNotifyOnError(`CSSLint - ${options.taskName}`))
 		);
 
 		// возвращаем

@@ -17,9 +17,13 @@ div	{
 	}
 }
 
-#foo {
-	content: 'bar';
+.test {
+	/* hjghgjhsdf */
 }
+
+/* #foo {
+	content: 'bar';
+} */
 
 p {
 	position: relative;
@@ -34,4 +38,8 @@ p {
 	@media only screen and (min-width: 980px) {
 		width: $width;
 	}
+}
+
+#fo2 {
+	content: 'bar';
 }

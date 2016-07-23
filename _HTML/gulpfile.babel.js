@@ -107,7 +107,7 @@
 		lazyRequireTask('sass:dynamics', `${tasks}/sass`, {
 			src: _sassDynamics,
 			dest: _sassDest,
-			maps: false,
+			maps: isSourcemaps,
 			min: isMinify,
 			csslint: true,
 			watch: [
@@ -153,9 +153,9 @@
 	// ====
 		gulp.task('sass',
 			gulp.series(
-				'sass:dynamics',
-				'sass:criticals',
-				'sass:statics'
+				'sass:dynamics'//,
+				//'sass:criticals',
+				//'sass:statics'
 			)
 		);
 
