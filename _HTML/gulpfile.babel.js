@@ -109,7 +109,7 @@
 			dest: _sassDest,
 			maps: isSourcemaps,
 			min: isMinify,
-			csslint: true,
+			csslint: false,
 			csslintConfig: {
 				'ids': 1
 			},
@@ -117,7 +117,7 @@
 				_sassData,
 				_sassDynamics
 			],
-			notify: false
+			notify: true
 		});
 
 	// sass:criticals

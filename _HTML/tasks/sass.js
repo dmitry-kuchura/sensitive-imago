@@ -46,7 +46,7 @@
 			let err = result.error;
 			types[err.type]++;
 			messages.push(` ${err.line}:${err.col}\t${err.rule.id}`);
-			messages.push(`\t${err.message}`);
+			//messages.push(`\t${err.message}`);
 			messages.push(`\t${err.rule.desc}`);
 			messages.push(`\t${err.evidence}`);
 		});
@@ -150,7 +150,7 @@ module.exports = function(options) {
 
 			// составление multipipe компиляции
 			let streamSass = multipipe(
-				$.sass(),
+				$.sass(sassConfig),
 				$.autoprefixer(autoprefixerConfig),
 				// если production версия - складываем mq
 				$.if(
