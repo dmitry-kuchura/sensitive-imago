@@ -1,0 +1,8 @@
+////
+/// @group style.scss
+////
+
+@import '../_data/config';
+@import '../_data/_addons/normalize';
+
+@include normalizeExternal;

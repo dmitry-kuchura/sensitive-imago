@@ -109,15 +109,12 @@
 			dest: _sassDest,
 			maps: isSourcemaps,
 			min: isMinify,
-			csslint: false,
-			csslintConfig: {
-				'ids': 1
-			},
 			watch: [
 				_sassData,
 				_sassDynamics
 			],
-			notify: true
+			notify: false,
+			csslint: false
 		});
 
 	// sass:criticals
@@ -126,12 +123,13 @@
 			src: _sassCriticals,
 			dest: _sassDest,
 			maps: false,
-			min: true,
+			min: false,
 			watch: [
 				_sassData,
 				_sassCriticals
 			],
-			notify: true
+			notify: false,
+			csslint: true
 		});
 
 	// sass:statics
@@ -156,9 +154,9 @@
 	// ====
 		gulp.task('sass',
 			gulp.series(
-				'sass:dynamics'//,
-				//'sass:criticals',
-				//'sass:statics'
+				'sass:dynamics',
+				'sass:criticals',
+				'sass:statics'
 			)
 		);
 

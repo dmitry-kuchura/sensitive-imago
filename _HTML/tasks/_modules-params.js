@@ -187,7 +187,10 @@ class modulesParams {
 	gulpCssLintConfig(customConfig={}) {
 		let baseConfig = {
 			'ids': 1,
-			'empty-rules': 1
+			'empty-rules': 1,
+			'box-sizing': 0,
+			'universal-selector': 0,
+			'compatible-vendor-prefixes': 0
 		};
 		if (customConfig) {
 			return deepExtend(baseConfig, customConfig);
