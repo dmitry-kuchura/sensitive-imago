@@ -265,11 +265,21 @@
 			]
 		});
 
+		// трансфер статических файлов
+		lazyRequireTask('docs:jsdoc:gulp:assets', `${tasks}/transfer`, {
+			src: `${tuts}/gulp/assets/**/*.*`,
+			dest: `${docs}/gulp/assets`,
+			filter: 'newer',
+			notify: true,
+			notifyIsShort: true
+		});
+
 		// комплексная задача создания документации gulp сборки
 		gulp.task('docs:gulp',
 			gulp.series(
 				'docs:clean:gulp',
-				'docs:jsdoc:gulp'
+				'docs:jsdoc:gulp',
+				'docs:jsdoc:gulp:assets'
 			)
 		);
 
@@ -362,6 +372,7 @@
 			'docs:clean:htmlTmp',
 			'docs:assets',
 			'docs:jsdoc:gulp',
+			'docs:jsdoc:gulp:assets',
 			'docs:jsdoc:js',
 			'docs:html:doc',
 			'docs:sass'

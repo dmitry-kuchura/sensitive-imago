@@ -1,0 +1,23 @@
+{
+	"all-tasks": {
+		"title": "Gulp задачи"
+	},
+	"docs-gulp": {
+		"title": "Документация GULP сборки"
+	},
+	"docs-htmldoc": {
+		"title": "Документация HTML файлов"
+	},
+	"docs-js": {
+		"title": "Документация JS файлов"
+	},
+	"docs-sass": {
+		"title": "Документация SASS файлов"
+	},
+	"jsdoc": {
+		"title": "Работа с JSDoc3"
+	},
+	"_tutorial-example": {
+		"title": "Заготовка для создания туториала"
+	}
+ }

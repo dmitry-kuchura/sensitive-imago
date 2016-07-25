@@ -1,0 +1,172 @@
+<p>офф документация по созданию туториалов - {@link http://usejsdoc.org/about-tutorials.html}</p>
+<h2>Создание нового туториала</h2>
+
+<p>Создайте два файла в директори туториалов соответствующего раздела</p>
+<ul>
+	<li>./tutorials/gulp</li>
+	<li>./tutorials/html</li>
+	<li>./tutorials/js</li>
+	<li>./tutorials/sass</li>
+</ul>
+
+
+<br>
+<p><strong>1. - html файл</strong>, к примеру <samp>cool-tut.html</samp>.</p>
+<p>В <code>html</code> файле описать свой туториал используя чистую html разметку, без основных элементов <code>html, head, body</code></p>
+
+<br>
+<p><strong>2. - вписать системный ключ имени файл</strong>, должен совпадать с физическим именем html файла</p>
+<pre><code class="language-json">
+{
+	"all-tasks": {
+		"title": "Gulp задачи"
+	},
+	"docs-gulp": {
+		"title": "Документация GULP сборки"
+	},
+	"docs-htmldoc": {
+		"title": "Документация HTML файлов"
+	},
+	"docs-js": {
+		"title": "Документация JS файлов"
+	},
+	"docs-sass": {
+		"title": "Документация SASS файлов"
+	},
+	"jsdoc": {
+		"title": "Работа с JSDoc3"
+	},
+	"_tutorial-example": {
+		"title": "Заготовка для создания туториала"
+	}
+}
+
+</code></pre>
+
+
+
+<hr>
+<h2>Линковка файлов</h2>
+<h4>Обычные ссылки</h4>
+<p>для быстрого создания можно использовать строчный jsdoc тег, как при документировании комментариями, так и внутри html разметки - {@link http://usejsdoc.org/tags-inline-link.html}</p>
+<h4>Ссылки на туториалы</h4>
+<p>Читай - {@link http://usejsdoc.org/tags-tutorial.html} и {@link http://usejsdoc.org/tags-inline-tutorial.html}</p>
+<h4>Краткое описание</h4>
+<p>Для внутренней линковки туториалов используются физические имена файлов. Для линковки с документируемым файлов - используй имя его определения, к примеру <code>module:tasks/sass</code></p>
+<p>Пример ссылки на тоториал при документации блока кода - {@link http://usejsdoc.org/about-tutorials.html#-tutorial-block-tag}</p>
+<pre><code class="language-javascript">
+/**
+ * Class representing a socket connection.
+ *
+ * @class
+ * @tutorial cool-tut
+ */
+function Socket() {}
+</code></pre>
+
+<p>Пример инлайновой ссылки на тоториал в описании при документации блока кода - {@link http://usejsdoc.org/about-tutorials.html#-tutorial-inline-tag}</p>
+<p>В примере специально используеться пробел после открывающей фигурной скобки <code>{ @tutorial ...</code>, для демонстрации,<br> для реализации его нужно удалить <code>{@tutorial ...</code></p>
+<pre><code class="language-javascript">
+/**
+ * Class representing a socket connection. See { @tutorial cool-tut}
+ * for an overview.
+ *
+ * @class
+ */
+function Socket() {}
+</code></pre>
+
+<p>Пример инлайновой ссылки с одного туториала на другой тоториал</p>
+<pre><code class="language-markup">
+&lt;h3 id="gulp-docs:gulp">gulp docs:gulp&lt;/h3>
+&lt;p>Задача для создания документации всех js файлы, которые участвуют в сборке проекта, а также составления сопутствующих туториалов.&lt;/p>
+&lt;p>Более подробно - читай туториал { @tutorial cool-tut}&lt;/p>
+</code></pre>
+
+<br>
+<h4>Внутреняя линковка в sassdoc</h4>
+<blockquote>
+	<p>При документировании sass файлов - внутренние физические имена туториалов не доступны.</p>
+</blockquote>
+<p>Для линковки используйте markdown тег ссылки в описании документируемого блока с относительными путями</p>
+<pre><code class="language-scss">
+/// Глобальное семейство шрифта. Более подробно читай в туториале [_tutorial-example](./tutorial--_tutorial-example.html)
+/// @type Map | Keyword
+$globalFontFamily: sans-serif;
+</code></pre>
+
+
+<hr>
+<h2>Вставка исходного кода</h2>
+
+
+<h3>Подсветка синтаксиса</h3>
+<p>Для подсветки синтаксиса используется плагин {@link http://prismjs.com/|prismjs}. Как читать с плагином читай на офф сайте.</p>
+<p>В плагин включены все доступные языки {@link http://prismjs.com/download.html#components}</p>
+
+
+<h3>Вставка исходного кода из документируемых файлов</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium, eum!</p>
+
+
+<hr>
+<h2>Вставка изображений</h2>
+<p>В каждой директории туториалов есть папка <samp>assets/</samp>. Все файлы с этой директории будут переброшены в сответствующую папку доки, с сохранением относительных путей. Можно использовать эту директорию для хранения и использования изображений</p>
+<pre><code class="language-markup">
+&lt;p class="_align-center">
+	&lt;img src="./assets/no-avatar.png" alt="">
+&lt;/p>
+</code></pre>
+<p class="_align-center">
+	<img src="./assets/no-avatar.png" alt="">
+</p>
+<br>
+<p>Для изображений с альфа-каналом можно использовать доп класс <code></code></p>
+<pre><code class="language-markup">
+&lt;p class="_align-center">
+	&lt;img class="alpha" src="./assets/alpha.png" alt="">
+&lt;/p>
+</code></pre>
+<p class="_align-center">
+	<img class="alpha" src="./assets/alpha.png" alt="">
+</p>
+
+
+<hr>
+<h2>Создание дочерних туториалов</h2>
+<p>Для создания дочерних туториалов - нужны только отдельные html файлы, без json'ов. Для создание связей и заголовков - нужно это все указать в json файле родительского туториала</p>
+<pre><code class="language-json">
+{
+	"all-tasks": {
+		"title": "Gulp задачи",
+		"children": {
+			"childNameA": {
+				"title": "Child A"
+			},
+			"childNameB": {
+				"title": "Child B"
+			}
+		}
+	},
+	"docs-gulp": {
+		"title": "Документация GULP сборки"
+	},
+	"docs-htmldoc": {
+		"title": "Документация HTML файлов"
+	},
+	"docs-js": {
+		"title": "Документация JS файлов"
+	},
+	"docs-sass": {
+		"title": "Документация SASS файлов"
+	},
+	"jsdoc": {
+		"title": "Работа с JSDoc3"
+	},
+	"_tutorial-example": {
+		"title": "Заготовка для создания туториала"
+	}
+}
+</code></pre>
+<br>
+<blockquote>Ссылки на дочерние туториалы будут видны только в теле родительского,  в начале описания. В общем списке туториалов их нее будет</blockquote>

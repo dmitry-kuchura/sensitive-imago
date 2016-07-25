@@ -10,15 +10,15 @@
 	// =============
 
 /// Глобальное семейство шрифта
-/// type Map | Keyword
+/// @type Map | Keyword
 $globalFontFamily: sans-serif;
 
 /// Глобальный размер шрифта
-/// type Number
+/// @type Number
 $globalFontSize: 100%;
 
 /// Глобальная высота текстовой линии
-/// type Number
+/// @type Number
 $globalLineHeight: 1.4em;
 
 
@@ -29,15 +29,15 @@ $globalLineHeight: 1.4em;
 	// =============
 
 /// Цвета текста выделения
-/// type Color
+/// @type Color
 $globalSelectionColor: #fff;
 
 /// Цвета фона выделения
-/// type Color
+/// @type Color
 $globalSelectionBgColor: #2597ff;
 
 /// Цвета плейсхолдера
-/// type Color
+/// @type Color
 $globalPlaceHolderColor: #999;
 
 

@@ -17,6 +17,22 @@ blockquote {
 	box-sizing: content-box;
     border-left: 5px solid #ddd;
 }
+._align-center {
+	text-align: center;
+}
+._align-left {
+	text-align: left;
+}
+._align-right {
+	text-align: right;
+}
+._align-justify {
+	text-align: justify;
+}
+img.alpha {
+	border: 1px solid #444;
+	background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwP/wAALCAAQABABAREA/8QAFgABAQEAAAAAAAAAAAAAAAAACQAK/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQAAPwDfwGdGYf/Z)
+}
 .tutorial-article {
 	min-height: 700px;
 }
