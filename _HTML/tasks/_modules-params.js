@@ -9,6 +9,7 @@
  * @module		tasks/_modules-params
  * @sourcefile	file:tasks:_modulesParams
  *
+ * @requires	{@link https://www.npmjs.com/package/deep-extend}
  * @requires	module:tasks/_helpers
 */
 
@@ -149,6 +150,7 @@ class modulesParams {
 
 	/**
 	 * Настройка параметров для модуля `gulp-sass-lint`.
+	 * - офф документация {@link https://github.com/sasstools/sass-lint/tree/develop/docs}
 	 *
 	 * @sourcecode
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
@@ -157,14 +159,24 @@ class modulesParams {
 	gulpSassLintConfig(customConfig={}) {
 		let baseConfig = {
 			rules: {
+				// warning
+				'clean-import-paths': 1,
+				'no-ids': 1,
 				'indentation': [
-					'1', {
+					1, {
 						size: 'tab'
 					}
 				],
-				'property-sort-order': 0,
-				'clean-import-paths': 1,
-				'no-ids': 1
+				'mixin-name-format': [
+					1, {
+						'allow-leading-underscore': true,
+						'convention': 'camelcase'
+					}
+				],
+
+				// disabled
+				'leading-zero': 0,
+				'property-sort-order': 0
 			}
 		};
 		if (customConfig) {
@@ -179,6 +191,7 @@ class modulesParams {
 
 	/**
 	 * Настройка параметров для модуля `gulp-csslint`.
+	 * - офф документация {@link https://github.com/CSSLint/csslint/wiki/Rules}
 	 *
 	 * @sourcecode
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
@@ -186,10 +199,17 @@ class modulesParams {
 	 */
 	gulpCssLintConfig(customConfig={}) {
 		let baseConfig = {
+
+			// errors
+			'empty-rules': 2,
+
+			// warning
 			'ids': 1,
-			'empty-rules': 1,
+
+			// disabled
 			'box-sizing': 0,
 			'universal-selector': 0,
+			'unqualified-attributes': 0,
 			'compatible-vendor-prefixes': 0
 		};
 		if (customConfig) {
@@ -204,6 +224,7 @@ class modulesParams {
 
 	/**
 	 * Настройка параметров для модуля `gulp-autoprefixer`.
+	 * - офф документация по параметрам {@link https://github.com/postcss/autoprefixer#options}
 	 *
 	 * @sourcecode
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
@@ -236,6 +257,7 @@ class modulesParams {
 
 	/**
 	 * Настройка параметров для модуля `gulp-autoprefixer`.
+	 * - офф документация по параметрам {@link http://cssnano.co/optimisations/}
 	 *
 	 * @sourcecode
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры

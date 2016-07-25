@@ -114,6 +114,7 @@
 				_sassDynamics
 			],
 			notify: true,
+			sasslint: true,
 			csslint: true
 		});
 
@@ -129,6 +130,7 @@
 				_sassCriticals
 			],
 			notify: true,
+			sasslint: true,
 			csslint: true
 		});
 

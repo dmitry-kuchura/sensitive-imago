@@ -93,52 +93,60 @@ module.exports = function(options) {
 	// возврашаем функцию для задачи
 	return function(cb) {
 
-		// список переброшенных файлов
-		let receivedFilesList = [];
+		// vars
+		// ========
 
-		// использовать newer метод ?
-		let isNewer = false;
+			// список переброшенных файлов
+			let receivedFilesList = [];
 
-		// использовать since метод ?
-		let isSince = false;
+			// использовать newer метод ?
+			let isNewer = false;
 
-		switch(options.filter) {
-			case false:
-				break;
-			case 'since':
-				isSince = true;
-				break;
-			case 'newer':
-				isNewer = true;
-				break;
-			default:
-				if (options._isCombinedMethod) {
+			// использовать since метод ?
+			let isSince = false;
+
+			switch(options.filter) {
+				case false:
+					break;
+				case 'since':
 					isSince = true;
-					isNewer = false;
-				} else {
-					isSince = false;
+					break;
+				case 'newer':
 					isNewer = true;
-					options._isCombinedMethod = true;
-				}
-		};
+					break;
+				default:
+					if (options._isCombinedMethod) {
+						isSince = true;
+						isNewer = false;
+					} else {
+						isSince = false;
+						isNewer = true;
+						options._isCombinedMethod = true;
+					}
+			};
 
 
-		// возвращаем
-		return gulp.src(options.src, {
-				buffer: false,
-				since: isSince ? gulp.lastRun(options.taskName) : 0
-			})
-			.pipe($.if(
-				isNewer,
-				$.newer(options.dest)
-			))
-			.pipe(gulp.dest(options.dest))
-			.on('data', (file) => {
-				receivedFilesList.push(file.relative);
-			})
-			.pipe($.if(
-				options.notify,
-				$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'transfered'))
-			));
+
+
+
+		// task
+		// ========
+
+			return gulp.src(options.src, {
+					buffer: false,
+					since: isSince ? gulp.lastRun(options.taskName) : 0
+				})
+				.pipe($.if(
+					isNewer,
+					$.newer(options.dest)
+				))
+				.pipe(gulp.dest(options.dest))
+				.on('data', (file) => {
+					receivedFilesList.push(file.relative);
+				})
+				.pipe($.if(
+					options.notify,
+					$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'transfered'))
+				));
 	};
 };

@@ -55,23 +55,33 @@ module.exports = function(options) {
 	// возврашаем функцию для задачи
 	return function(cb) {
 
-		// список загруженных файлов
-		let receivedFilesList = [];
+		// vars
+		// ========
 
-		// создаем подключение
-		let ftpConnect = vinylFtp.create(options.connect);
-		let remotePath = ftpConnect.config.remotePath;
+			// список загруженных файлов
+			let receivedFilesList = [];
 
-		return gulp.src(options.src, {buffer: false})
-			.pipe(ftpConnect.newer(remotePath))
-			.pipe(ftpConnect.dest(remotePath))
-			.on('data', (file) => {
-				receivedFilesList.push(file.relative);
-			})
-			.pipe($.if(
-				options.notify,
-				$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'uploaded'))
-			));
+			// создаем подключение
+			let ftpConnect = vinylFtp.create(options.connect);
+			let remotePath = ftpConnect.config.remotePath;
+
+
+
+
+
+		// task
+		// ========
+
+			return gulp.src(options.src, {buffer: false})
+				.pipe(ftpConnect.newer(remotePath))
+				.pipe(ftpConnect.dest(remotePath))
+				.on('data', (file) => {
+					receivedFilesList.push(file.relative);
+				})
+				.pipe($.if(
+					options.notify,
+					$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'uploaded'))
+				));
 
 	};
 };

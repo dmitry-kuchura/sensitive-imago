@@ -86,11 +86,3 @@
 
 читай {@link http://usejsdoc.org/about-tutorials.html}
 
-
------
-
-## Предложения и баги
-
-> Все обнаруженные баги, проблемы, фиксы, а также предложения - отписывать в трекере основного репозитория шаблона. Четко, аргументировано и развернуто.
-> <a href="https://bitbucket.org/wezom/wtpl/issues" target="_blank">https://bitbucket.org/wezom/wtpl/issues</a>
-
