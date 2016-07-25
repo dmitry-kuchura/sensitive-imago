@@ -10,25 +10,6 @@
 	// ========
 
 @mixin normalizeCritical {
-	// изменение семейства шрифта по умолчанию во всех браузерах
-	html {
-		font-family: $globalFontFamily;
-		position: relative;
-		height: 100%;
-	}
-
-	// наследуем бокс
-	*, :after, :before {
-		box-sizing: inherit;
-	}
-
-	// убераем margin
-	body {
-		margin: 0;
-		position: relative;
-		height: 100%;
-		box-sizing: border-box;
-	}
 
 	// корректное отображение в IE, Edge и Firefox
 	article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
@@ -36,9 +17,10 @@
 	}
 
 	// корректное отображение в IE 9-
-	audio, canvas, progress, video {
-		display: inline-block;
-	}
+	// раскомментировать при необходимости
+		// audio, canvas, progress, video {
+		// 	display: inline-block;
+		// }
 
 	// корректное отображение в iOS 4-7
 	audio:not([controls]) {
@@ -47,15 +29,171 @@
 	}
 
 	// корректное отображение в Chrome, Firefox и Opera
-	progress {
-		vertical-align: baseline;
-	}
+	// раскомментировать при необходимости
+		// progress {
+		// 	vertical-align: baseline;
+		// }
 
-	// Убераем серый фон, при активном состоянии, в IE 10
+	// убераем серый фон, при активном состоянии, в IE 10
 	// Фикс подчеркинвания в iOS 8+ и Safari 8+
 	a {
 		background-color: transparent;
 		-webkit-text-decoration-skip: objects;
+		// убераем `border` внутри ссылок в IE 10-
+		img {
+			border-style: none;
+		}
+	}
+
+	// ограничиваем по ширине родителя
+	img {
+		max-width: 100%;
+	}
+
+	// Убераем `border-bottom` в Firefox 39-
+	// корректное отображение text decoration в Chrome, Edge, IE, Opera и Safari.
+	abbr[title] {
+		border-bottom: none;
+		text-decoration: underline;
+		text-decoration: underline dotted;
+	}
+
+	// Предотвращение дублированого применения `bolder` по следующему правилу в Safari 6
+	// раскомментировать при необходимости
+		// b, dt, strong {
+		// 	font-weight: inherit;
+		// }
+
+	// корректное отбражение толщины текста в Chrome, Edge и Safari
+	// раскомментировать при необходимости
+		// b, dt, strong {
+		// 	font-weight: bolder;
+		// }
+
+	// корректное отбражение font-style на Android 4.3-
+	// раскомментировать при необходимости
+		// dfn {
+		// 	font-style: italic;
+		// }
+
+	// корректное отбражение IE 9-
+	// раскомментировать при необходимости
+		// mark {
+		// 	background-color: #ff0;
+		// 	color: #000;
+		// }
+
+	// коррекция блочных и строчных цитат
+	blockquote, q {
+		font-style:italic;
+	}
+	blockquote {
+		&:before, &:after {
+			content:'';
+			content:none;
+		}
+	}
+
+	// `overflow` в IE
+	svg:not(:root) {
+		overflow: hidden;
+	}
+
+	// корректное отображение в IE
+	template,
+	[hidden] {
+		display: none;
+	}
+
+	// наследуем все свойства шрифта
+	// убераем `margin` в Firefox и Safari
+	button, input, select, textarea {
+		font: inherit;
+		margin: 0;
+	}
+
+	// восстановливаем толщину шрифта, отключенную предыдущим правилом
+	optgroup {
+		font-weight: bold;
+	}
+
+	// `overflow` в IE.
+	button, input {
+		overflow: visible;
+	}
+
+	// убераем наследование `text-transform` в Edge, Firefox и IE.
+	button,
+	select { /* 1 */
+		text-transform: none;
+	}
+
+	// коррекция стилей интерактивных типов в iOS и Safari
+	button {
+		-webkit-appearance: button;
+	}
+	input {
+		&[type="button"],
+		&[type="reset"],
+		&[type="submit"] {
+			-webkit-appearance: button;
+		}
+	}
+
+	// фикс WebKit bug'a  - дестрой  родных `audio` и `video` контроллов в Android 4.
+	// раскомментировать при необходимости
+		// html [type="button"],
+		// [type="reset"],
+		// [type="submit"] {
+		// 	-webkit-appearance: button;
+		// }
+
+	// убераем дефолтный вертикальный скролл в IE
+	textarea {
+		overflow: auto;
+	}
+
+	input {
+		// коррекция `box-sizing` в IE 10-
+		// убераем `padding` в IE 10-
+		// раскомментировать при необходимости
+			// &[type="checkbox"],
+			// &[type="radio"] {
+			// 	box-sizing: border-box;
+			// 	padding: 0;
+			// }
+
+		// коррекция `appearance` в Chrome и Safari
+		// коррекция `outline` в Safari
+		&[type="search"] {
+			-webkit-appearance: textfield;
+			outline-offset: -2px;
+		}
+
+		// убераем `padding` и `cancel buttons` в Chrome и Safari на OS X
+		&[type="search"]::-webkit-search-cancel-button,
+		&[type="search"]::-webkit-search-decoration {
+			-webkit-appearance: none;
+		}
+	}
+
+	// коррекция стилей интерактивных типов в iOS и Safari
+	// наследуем все свойства шрифта
+	::-webkit-file-upload-button {
+		-webkit-appearance: button;
+		font: inherit;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	td {
+		&, img {
+			vertical-align: top;
+		}
 	}
 }
 
@@ -67,25 +205,80 @@
 	// ========
 
 @mixin normalizeExternal {
+
 	// Предотвращение корректировки размера шрифта после изменения ориентациия в `IE` и `iOS`
 	html {
 		-ms-text-size-adjust: 100%;
 		-webkit-text-size-adjust: 100%;
 	}
 
-	// корректное отображение в IE
-	template,
-	[hidden] {
-		display: none;
-	}
-
+	// убераем outline на сфокусированных ссылках, при :active и :hover
 	a:active,
 	a:hover {
 		outline-width: 0;
 	}
+
+	abbr, dfn {
+		&[title] {
+			cursor: help;
+		}
+	}
+
+	// убераем внутренние `border` и `padding` в Firefox.
+	// фиксим `cursor`
+	button {
+		cursor: pointer;
+		&::-moz-focus-inner {
+			border-style: none;
+			padding: 0;
+		}
+		&:disabled {
+			cursor: not-allowed;
+		}
+	}
+	input {
+		&[type="button"]::-moz-focus-inner,
+		&[type="reset"]::-moz-focus-inner,
+		&[type="submit"]::-moz-focus-inner {
+			border-style: none;
+			padding: 0;
+		}
+		&::-ms-clear {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+    	&::-ms-reveal {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+		&:disabled {
+			cursor: not-allowed;
+		}
+	}
+
+	// восстановливаем `focus` стили, отключенные предыдущим правилом
+	button:-moz-focusring {
+		outline: 1px dotted ButtonText;
+	}
+	input {
+		&[type="button"]:-moz-focusring,
+		&[type="reset"]:-moz-focusring,
+		&[type="submit"]:-moz-focusring {
+			outline: 1px dotted ButtonText;
+		}
+	}
+
+	// коррекция стилей `cursor` для `increment` и `decrement` кнопок в Chrome
+	input {
+		&[type="number"]::-webkit-inner-spin-button,
+		&[type="number"]::-webkit-outer-spin-button {
+			height: auto;
+		}
+	}
+
 }
-
-
 
 
 

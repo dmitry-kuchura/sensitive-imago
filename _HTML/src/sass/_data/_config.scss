@@ -6,8 +6,46 @@
 
 
 
-	// Globals
-	// =======
+	// Global fonts
+	// =============
 
-/// Глобальный шрифт
-$globalFontFamily: serif;
+/// Глобальное семейство шрифта
+/// type Map | Keyword
+$globalFontFamily: sans-serif;
+
+/// Глобальный размер шрифта
+/// type Number
+$globalFontSize: 100%;
+
+/// Глобальная высота текстовой линии
+/// type Number
+$globalLineHeight: 1.4em;
+
+
+
+
+
+	// Global colors
+	// =============
+
+/// Цвета текста выделения
+/// type Color
+$globalSelectionColor: #fff;
+
+/// Цвета фона выделения
+/// type Color
+$globalSelectionBgColor: #2597ff;
+
+/// Цвета плейсхолдера
+/// type Color
+$globalPlaceHolderColor: #999;
+
+
+
+
+
+	// Импорты
+	// =============
+
+@import '_addons/normalize';
+@import '_addons/base';

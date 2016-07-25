@@ -113,8 +113,8 @@
 				_sassData,
 				_sassDynamics
 			],
-			notify: false,
-			csslint: false
+			notify: true,
+			csslint: true
 		});
 
 	// sass:criticals
@@ -123,12 +123,12 @@
 			src: _sassCriticals,
 			dest: _sassDest,
 			maps: false,
-			min: false,
+			min: true,
 			watch: [
 				_sassData,
 				_sassCriticals
 			],
-			notify: false,
+			notify: true,
 			csslint: true
 		});
 
