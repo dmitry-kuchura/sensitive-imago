@@ -26,7 +26,7 @@
 // константы
 // ==========================
 	// проект
-	const projectName = `xtpl`;
+	const projectName = `wtpl`;
 
 	// основные директории
 	const dist = `./dist`;
@@ -38,6 +38,7 @@
 
 	// флаги
 	const isProduction = !!(yargs.argv.prod);
+	const isLinting = !!(yargs.argv.lint);
 	const isSourcemaps = !isProduction;
 	const isMinify = isProduction;
 
@@ -114,8 +115,8 @@
 				_sassDynamics
 			],
 			notify: true,
-			sasslint: true,
-			csslint: true
+			sasslint: isLinting,
+			csslint: isLinting
 		});
 
 	// sass:criticals
@@ -130,8 +131,8 @@
 				_sassCriticals
 			],
 			notify: true,
-			sasslint: true,
-			csslint: true
+			sasslint: isLinting,
+			csslint: isLinting
 		});
 
 	// sass:statics

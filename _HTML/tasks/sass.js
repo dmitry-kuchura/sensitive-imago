@@ -94,8 +94,8 @@
  * 		_sassDynamics
  * 	],
  * 	notify: true,  // boolean
- * 	sasslint: true,  // boolean
- * 	csslint: true  // boolean
+ * 	sasslint: isLinting,  // boolean
+ * 	csslint: isLinting  // boolean
  * });
  * ```
  *
