@@ -1,0 +1,13 @@
+<%
+	class Utils {
+		attrs(attrs) {
+			let array = [];
+			Object.keys(attrs).forEach((entry) => {
+				array.push(`${entry}=${attrs[entry]}`)
+			});
+			return array.join(' ');
+		}
+	};
+
+	locals._utils = new Utils();
+%>

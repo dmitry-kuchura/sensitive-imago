@@ -1,0 +1,25 @@
+<% if (_wezomProject) { %>
+	<!-- (c) студия Wezom | www.wezom.com.ua-->
+<% } %>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<% if (_wezomProject) { %>
+	<title><%= _activeFile.title %> - Верстка | (c) студия Wezom | www.wezom.com.ua</title>
+	<!-- Open Graph -->
+	<meta property="og:title" content="Заголовок страницы">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="site.com">
+	<meta property="og:url" content="http://site.com/current-page">
+	<meta property="og:description" content="краткий текст (новости, товара и т.д)">
+<% } else { %>
+	<title><%= _activeFile.title %></title>
+<% } %>
+<!-- Touch -->
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<!--Responsive-->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="target-densitydpi=device-dpi">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">

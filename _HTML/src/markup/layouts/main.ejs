@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html <%- _utils.attrs(_globalData.htmlAttrs) %>>
+	<head>
+		<%- partial('../views/widgets/head') %>
+	</head>
+	<body>
+		<header>
+			<%-blocks.header%>
+		</header>
+		<ul>
+		</ul>
+		<section>
+			<%-body -%>
+		</section>
+		<footer>
+			<%-blocks.footer%>
+		</footer>
+		<%-stylesheets%>
+		<%-scripts%>
+	</body>
+</html>

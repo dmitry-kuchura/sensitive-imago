@@ -91,6 +91,42 @@
 
 
 
+// Компиляция разметки
+// ===========================================
+
+	// внутренние переменные
+	// =====================
+		let _ejsDest = `${dist}`;
+		let _ejsAll = `${src}/markup/**/*.ejs`;
+		let _ejsViews = `${src}/markup/views/*.ejs`;
+
+	// ejs:markup
+	// ============
+		lazyRequireTask('ejs:markup', `${tasks}/ejs`, {
+			src: _ejsViews,
+			dest: _ejsDest,
+			watch: _ejsAll,
+			locals: {
+				title: projectName
+			},
+			notify: true
+		});
+
+	// sass
+	// ====
+		gulp.task('ejs',
+			gulp.series(
+				'ejs:markup'
+			)
+		);
+
+
+
+
+
+
+
+
 
 // Компиляция стилей
 // ===========================================

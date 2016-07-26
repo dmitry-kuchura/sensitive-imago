@@ -1,0 +1,42 @@
+<%
+
+	// wezom проект
+	// ============
+		locals._wezomProject = true;
+
+	// файлы
+	// ========
+		// список основных файлов
+		locals._viewsFiles = {
+			index: {
+				alias: 'index',
+				file: 'index.html',
+				title: 'Главная страница'
+			},
+			sitemap: {
+				alias: 'sitemap',
+				file: 'sitemap.html',
+				title: 'Карта сайта',
+				parent: 'index'
+			}
+		}
+
+		// текущий файл
+		locals._activeFile = _viewsFiles[_activeFile];
+
+
+
+	// атрибуты
+	// ========
+		// элемент html
+		locals._globalData = {
+			htmlAttrs: {
+				lang: '"ru-ru"',
+				dir: '"ltr"',
+				class: '"no-js"'
+			}
+		}
+
+%>
+
+<% include classes/utils %>

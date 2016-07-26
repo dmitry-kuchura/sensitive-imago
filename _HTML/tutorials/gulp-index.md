@@ -78,5 +78,5 @@
 
 ## Как писать туториалы?
 
-читай {@link http://usejsdoc.org/about-tutorials.html}
+читай {@link http://usejsdoc.org/about-tutorials.html} и {@tutorial _tutorial-example}
 

@@ -42,7 +42,12 @@
  *
  * @param		{Object}		options - передаваемые параметры
  * @param		{string}		options.src - путь к исходным файлам
- * @param		{Object}		options.connect - Имя директории проекта на хосте, необходимо для заливки на инкубатор
+ * @param		{Object}		options.connect - параметры для соединения с хостом
+ * @param		{string}		options.connect.host - хост
+ * @param		{string}		options.connect.user - пользователь
+ * @param		{string}		options.connect.pass - пароль
+ * @param		{string}		options.connect.remotePath - путь к директории на хосте в которую будут залиты файлы
+ * @param		{number}		[options.connect.parallel=3] - количество паралельных трансферов
  * @param		{boolean}		[options.notify=false] - выводить уведомление по окончанию загрузки
  * @param		{string}		[options.notifyOn='last'] - метод уведомления, параметр передается дальше методу {@link module:tasks/_modules-params~modulesParams#gulpNotify|modulesParams#gulpNotify}
  * @param		{number}		[options.notifyTime=2000] - время показа уведомления, параметр передается дальше методу {@link module:tasks/_modules-params~modulesParams#gulpNotify|modulesParams#gulpNotify}
