@@ -36,6 +36,10 @@ module.exports = function(options) {
 			// флаг фильтровки
 			let isFilter = options.filter !== false;
 
+			let ejsLocals = options.locals || {};
+			ejsLocals._isPoduction = options.isProduction;
+			ejsLocals._isDevelop = options.isDevelop;
+
 
 
 
@@ -45,14 +49,11 @@ module.exports = function(options) {
 
 			// составление multipipe компиляции
 			let streamEjs = multipipe(
-				$.ejsLocals(options.locals),
-				$.prettify({
-					indent_char: '\t',
-					indent_size: 1,
-					indent_level: 0,
-					end_with_newline: true,
-					unformatted: ['pre', 'code', 'textarea', 'script']
-				})
+				$.ejsLocals(ejsLocals),
+				$.if(
+					options.beautify,
+					$.htmlBeautify(_modulesParams.gulpHtmlBeautify(options.beautifyConfig))
+				)
 			).on('error', $.notify.onError(
 				_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
 			);

@@ -1,9 +1,5 @@
 <%
 
-	// wezom проект
-	// ============
-		locals._wezomProject = true;
-
 	// файлы
 	// ========
 		// список основных файлов
@@ -11,13 +7,16 @@
 			index: {
 				alias: 'index',
 				file: 'index.html',
-				title: 'Главная страница'
+				title: 'Главная страница',
+				hasSeoText: true,
+				seoTextContent: '../views/seotexts/index'
 			},
 			sitemap: {
 				alias: 'sitemap',
 				file: 'sitemap.html',
 				title: 'Карта сайта',
-				parent: 'index'
+				parent: 'index',
+				hasSeoText: false
 			}
 		}
 

@@ -37,9 +37,10 @@
 	const src = `./src`;
 
 	// флаги
-	const isProduction = !!(yargs.argv.prod);
 	const isLinting = !!(yargs.argv.lint);
-	const isSourcemaps = !isProduction;
+	const isProduction = !!(yargs.argv.prod);
+	const isDevelop = !isProduction;
+	const isSourcemaps = isDevelop;
 	const isMinify = isProduction;
 
 	// объект авто-вотчей
@@ -74,6 +75,7 @@
 	function lazyRequireTask(taskName, taskFile, taskOptions={}, onBefore) {
 		taskOptions.taskName = taskName;
 		taskOptions.isProduction = isProduction;
+		taskOptions.isDevelop = isDevelop;
 		if (taskOptions.watch) {
 			watchSources[taskName] = taskOptions.watch;
 		}
@@ -99,6 +101,7 @@
 		let _ejsDest = `${dist}`;
 		let _ejsAll = `${src}/markup/**/*.ejs`;
 		let _ejsViews = `${src}/markup/views/*.ejs`;
+		let _ejsCtiticals = `${src}/markup/views/criticals`;
 
 	// ejs:markup
 	// ============
@@ -106,8 +109,10 @@
 			src: _ejsViews,
 			dest: _ejsDest,
 			watch: _ejsAll,
+			beautify: isProduction,
 			locals: {
-				title: projectName
+				_projectResponsive: true,
+				_projectWezom: true
 			},
 			notify: true
 		});
@@ -159,9 +164,10 @@
 	// ============
 		lazyRequireTask('sass:criticals', `${tasks}/sass`, {
 			src: _sassCriticals,
-			dest: _sassDest,
+			dest: _ejsCtiticals,
 			maps: false,
 			min: true,
+			changeExt: '.ejs',
 			watch: [
 				_sassData,
 				_sassCriticals
@@ -189,6 +195,12 @@
 			src: _sassDest
 		});
 
+	// sass:clean:criticals
+	// ==========
+		lazyRequireTask('sass:clean:criticals', `${tasks}/clean`, {
+			src: _ejsCtiticals
+		});
+
 	// sass
 	// ====
 		gulp.task('sass',
@@ -204,6 +216,7 @@
 		gulp.task('sass:build',
 			gulp.series(
 				'sass:clean',
+				'sass:clean:criticals',
 				'sass'
 			)
 		);

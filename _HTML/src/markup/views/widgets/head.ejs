@@ -1,9 +1,9 @@
-<% if (_wezomProject) { %>
+<% if (_projectWezom) { %>
 	<!-- (c) студия Wezom | www.wezom.com.ua-->
 <% } %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<% if (_wezomProject) { %>
+<% if (_projectWezom) { %>
 	<title><%= _activeFile.title %> - Верстка | (c) студия Wezom | www.wezom.com.ua</title>
 	<!-- Open Graph -->
 	<meta property="og:title" content="Заголовок страницы">
@@ -14,12 +14,49 @@
 <% } else { %>
 	<title><%= _activeFile.title %></title>
 <% } %>
+
+
+
+
 <!-- Touch -->
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="address=no">
-<!--Responsive-->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="viewport" content="target-densitydpi=device-dpi">
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+
+<% if (_projectResponsive) { %>
+	<!-- Responsive -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="target-densitydpi=device-dpi">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<% } else { %>
+	<!-- not Responsive -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=1000">
+<% } %>
+
+
+
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png?v=69k9gQG8RA">
+<link rel="icon" type="image/png" href="favicons/favicon-32x32.png?v=69k9gQG8RA" sizes="32x32">
+<link rel="icon" type="image/png" href="favicons/favicon-16x16.png?v=69k9gQG8RA" sizes="16x16">
+<link rel="manifest" href="favicons/manifest.json?v=69k9gQG8RA">
+<link rel="mask-icon" href="favicons/safari-pinned-tab.svg?v=69k9gQG8RA" color="#5bbad5">
+<link rel="shortcut icon" href="favicons/favicon.ico?v=69k9gQG8RA">
+<meta name="msapplication-config" content="favicons/browserconfig.xml?v=69k9gQG8RA">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<% if (_isDevelop) { %>
+	<!-- saved from url=(0014)about:internet -->
+<% } %>
+<!--[if IE]><meta http-equiv="imagetoolbar" content="no"><![endif]-->
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+

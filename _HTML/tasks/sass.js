@@ -135,6 +135,7 @@
  * @requires   	{@link https://www.npmjs.com/package/gulp-csslint}
  * @requires   	{@link https://www.npmjs.com/package/gulp-changed}
  * @requires   	{@link https://www.npmjs.com/package/gulp-combine-mq}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-rename}
  * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
  * @requires 	module:tasks/_modules-params
  *
@@ -143,6 +144,7 @@
  * @param		{boolean}		options.isProduction - флаг production версии сборки, задаеться автоматически
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
+ * @param		{boolean}		options.changeExt - сменить расширение файла
  * @param		{boolean}		options.filter - флаг исрользования фильтровки файлов
  * @param		{Array}			[options.watch] - набор путей, для вотчинга
  * @param		{Object}		[options.sassConfig] - пользовательские параметры компиляции sass файлов. параметры по умолчанию - {@link module:tasks/_modules-params~modulesParams#gulpSassConfig|modulesParams#gulpSassConfig}
@@ -176,27 +178,6 @@ module.exports = function(options) {
 			// флаг фильтровки
 			let isFilter = options.filter !== false;
 
-			// параметры модуля `gulp-sass`
-			let sassConfig = _modulesParams.gulpSassConfig(options.sassConfig);
-
-			// параметры модуля `gulp-autoprefixer`
-			let autoprefixerConfig = _modulesParams.gulpAutoprefixerConfig(options.autoprefixerConfig);
-
-			// параметры модуля `gulp-sass-lint`
-			if (options.min) {
-				var minConfig = _modulesParams.gulpCssnanoConfig(options.minConfig);
-			}
-
-			// параметры модуля `gulp-sass-lint`
-			if (options.sasslint) {
-				var sasslintConfig = _modulesParams.gulpSassLintConfig(options.sasslintConfig);
-			}
-
-			// параметры модуля `gulp-csslint`
-			if (options.csslint) {
-				var csslintConfig = _modulesParams.gulpCssLintConfig(options.csslintConfig);
-			}
-
 
 
 
@@ -206,8 +187,8 @@ module.exports = function(options) {
 
 			// составление multipipe компиляции
 			let streamSass = multipipe(
-				$.sass(sassConfig),
-				$.autoprefixer(autoprefixerConfig),
+				$.sass(_modulesParams.gulpSassConfig(options.sassConfig)),
+				$.autoprefixer(_modulesParams.gulpAutoprefixerConfig(options.autoprefixerConfig)),
 				// если production версия - складываем mq
 				$.if(
 					options.isProduction,
@@ -218,7 +199,7 @@ module.exports = function(options) {
 				// если min вкл.
 				$.if(
 					options.min,
-					$.cssnano(minConfig)
+					$.cssnano(_modulesParams.gulpCssnanoConfig(options.minConfig))
 				)
 			).on('error', $.notify.onError(
 				_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
@@ -228,7 +209,7 @@ module.exports = function(options) {
 
 			// составление multipipe для линтинга sass
 			let streamSassLint = multipipe(
-				$.sassLint(sasslintConfig),
+				$.sassLint(_modulesParams.gulpSassLintConfig(options.sasslintConfig)),
 				$.if(
 					(file) => {
 						if (file.sassLint[0].warningCount > 0) {
@@ -253,7 +234,7 @@ module.exports = function(options) {
 				$.if(
 					/\.css$/,
 					multipipe(
-						$.csslint(csslintConfig),
+						$.csslint(_modulesParams.gulpCssLintConfig(options.csslintConfig)),
 						$.csslint.reporter(cssLintReporter),
 						// если есть ошибки - fail
 						$.if(
@@ -311,6 +292,13 @@ module.exports = function(options) {
 				.pipe($.if(
 					options.maps,
 					$.sourcemaps.write('/')
+				))
+				// если sourcemaps вкл. - пишем карты
+				.pipe($.if(
+					!!options.changeExt,
+					$.rename((path) => {
+						path.extname = options.changeExt;
+					})
 				))
 				// фильтровка изменений в стриме
 				.pipe($.if(

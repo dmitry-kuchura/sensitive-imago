@@ -2,20 +2,50 @@
 <html <%- _utils.attrs(_globalData.htmlAttrs) %>>
 	<head>
 		<%- partial('../views/widgets/head') %>
+		<%- partial('../views/widgets/criticals') %>
 	</head>
 	<body>
-		<header>
-			<%-blocks.header%>
-		</header>
-		<ul>
-		</ul>
-		<section>
-			<%-body -%>
-		</section>
-		<footer>
-			<%-blocks.footer%>
-		</footer>
-		<%-stylesheets%>
-		<%-scripts%>
+		<% if (_activeFile.hasSeoText) { %>
+			<main class="pageSeoText js-setSeoText">
+				<div class="pageSize"><%- partial(_activeFile.seoTextContent) %></div>
+			</main>
+			<!-- end pageSeoText -->
+		<% } %>
+		<div class="pageWrapper">
+			<header class="pageHeader">
+				<%- blocks.header %>
+			</header>
+			<!-- end pageHeader -->
+
+
+			<div class="pageContainer">
+				<%- body %>
+			</div>
+			<!-- end pageContainer -->
+
+
+			<footer class="pageFooter">
+				<%- blocks.footer %>
+			</footer>
+			<!-- end pageFooter -->
+
+		</div>
+		<!-- end pageWrapper -->
+
+
+
+
+		<!-- внешние css файлы -->
+		<link rel="stylesheet" property="stylesheet" href="css/style.css">
+
+
+
+
+		<!-- внешние js файлы -->
+		<script src="js/libs.js"></script>
+
+
+
+
 	</body>
 </html>
