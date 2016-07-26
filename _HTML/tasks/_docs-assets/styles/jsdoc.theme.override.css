@@ -338,3 +338,9 @@ ul.columns {
 	padding-left: 0;
 	list-style: none;
 }
+
+pre mark {
+    background-color: #090909;
+    padding: 0 .2em;
+    color: inherit;
+}

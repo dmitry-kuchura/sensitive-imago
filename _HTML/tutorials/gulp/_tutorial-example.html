@@ -15,44 +15,32 @@
 <p>В <code>html</code> файле описать свой туториал используя чистую html разметку, без основных элементов <code>html, head, body</code></p>
 
 <br>
-<p><strong>2. - вписать системный ключ имени файл</strong>, должен совпадать с физическим именем html файла</p>
+<p><strong>2. - создать json файл (если не существует) и вписать системный ключ имени файл</strong>, должен совпадать с физическим именем html файла</p>
 <pre><code class="language-json">
 {
-	"all-tasks": {
-		"title": "Gulp задачи"
+	"cool-tut": {
+		"title": "Мой крутой туториал"
 	},
-	"docs-gulp": {
-		"title": "Документация GULP сборки"
-	},
-	"docs-htmldoc": {
-		"title": "Документация HTML файлов"
-	},
-	"docs-js": {
-		"title": "Документация JS файлов"
-	},
-	"docs-sass": {
-		"title": "Документация SASS файлов"
-	},
-	"jsdoc": {
-		"title": "Работа с JSDoc3"
-	},
-	"_tutorial-example": {
-		"title": "Заготовка для создания туториала"
+	"new-cool-tut": {
+		"title": "Еще один классный туториал"
 	}
 }
-
 </code></pre>
 
 
 
 <hr>
 <h2>Линковка файлов</h2>
-<h4>Обычные ссылки</h4>
+<p>Внутрення линковка достпуна только в пределах своего раздела. Для линковки с раздела в раздел - используйте <samp>markdown</samp> тег ссылки в описании документируемого блока с относительными путями</p>
+
+<h3>Обычные ссылки</h3>
 <p>для быстрого создания можно использовать строчный jsdoc тег, как при документировании комментариями, так и внутри html разметки - {@link http://usejsdoc.org/tags-inline-link.html}</p>
-<h4>Ссылки на туториалы</h4>
+
+<h3>Ссылки на туториалы</h3>
 <p>Читай - {@link http://usejsdoc.org/tags-tutorial.html} и {@link http://usejsdoc.org/tags-inline-tutorial.html}</p>
+
 <h4>Краткое описание</h4>
-<p>Для внутренней линковки туториалов используются физические имена файлов. Для линковки с документируемым файлов - используй имя его определения, к примеру <code>module:tasks/sass</code></p>
+<p>Для внутренней линковки туториалов используются физические имена файлов. Для линковки с документируемым файлом - используй имя его определения, к примеру <code>module:tasks/sass</code></p>
 <p>Пример ссылки на тоториал при документации блока кода - {@link http://usejsdoc.org/about-tutorials.html#-tutorial-block-tag}</p>
 <pre><code class="language-javascript">
 /**
@@ -84,11 +72,11 @@ function Socket() {}
 </code></pre>
 
 <br>
-<h4>Внутреняя линковка в sassdoc</h4>
+<h3>Внутреняя линковка в sassdoc</h3>
 <blockquote>
 	<p>При документировании sass файлов - внутренние физические имена туториалов не доступны.</p>
 </blockquote>
-<p>Для линковки используйте markdown тег ссылки в описании документируемого блока с относительными путями</p>
+<p>Для линковки используйте <samp>markdown</samp> тег ссылки в описании документируемого блока с относительными путями</p>
 <pre><code class="language-scss">
 /// Глобальное семейство шрифта. Более подробно читай в туториале [_tutorial-example](./tutorial--_tutorial-example.html)
 /// @type Map | Keyword
@@ -101,12 +89,25 @@ $globalFontFamily: sans-serif;
 
 
 <h3>Подсветка синтаксиса</h3>
-<p>Для подсветки синтаксиса используется плагин {@link http://prismjs.com/|prismjs}. Как читать с плагином читай на офф сайте.</p>
-<p>В плагин включены все доступные языки {@link http://prismjs.com/download.html#components}</p>
+<p>Для подсветки синтаксиса используется плагин {@link http://prismjs.com/|prismjs}. Как читать с плагином читай на офф сайте.<br>В плагин включены все доступные языки {@link http://prismjs.com/download.html#components}.<br>Подключенные аддоны плагина:</p>
+<ul class="columns">
+	<li>{@link http://prismjs.com/plugins/line-highlight/|Line highlight}</li>
+	<li>{@link http://prismjs.com/plugins/line-numbers/|Line Numbers}</li>
+	<li>{@link http://prismjs.com/plugins/show-language/|Show Language}</li>
+	<li>{@link http://prismjs.com/plugins/highlight-keywords/|Highlight Keywords}</li>
+	<li>{@link http://prismjs.com/plugins/previewer-base|Previewer: Base}</li>
+	<li>{@link http://prismjs.com/plugins/previewer-color|Previewer: Color}</li>
+	<li>{@link http://prismjs.com/plugins/previewer-gradient|Previewer: Gradient}</li>
+	<li>{@link http://prismjs.com/plugins/previewer-easing|Previewer: Easing}</li>
+	<li>{@link http://prismjs.com/plugins/previewer-time|Previewer: Time}</li>
+	<li>{@link http://prismjs.com/plugins/previewer-angle|Previewer: Angle}</li>
+	<li>{@link http://prismjs.com/plugins/keep-markup/|Keep markup}</li>
+	<li>{@link http://prismjs.com/plugins/normalize-whitespace/|Normalize Whitespace}</li>
+</ul>
 
 
 <h3>Вставка исходного кода из документируемых файлов</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium, eum!</p>
+<p>В тутоарилах вы можете использовать документируемый вами код, как целого файла так отдельных блоков.<br>Как это реализовать - читай {@tutorial jsdoc} - теги <strong>@sourcefile</strong> и <strong>@sourcecode</strong></p>
 
 
 <hr>
@@ -137,8 +138,8 @@ $globalFontFamily: sans-serif;
 <p>Для создания дочерних туториалов - нужны только отдельные html файлы, без json'ов. Для создание связей и заголовков - нужно это все указать в json файле родительского туториала</p>
 <pre><code class="language-json">
 {
-	"all-tasks": {
-		"title": "Gulp задачи",
+	"cool-tut": {
+		"title": "Мой крутой туториал",
 		"children": {
 			"childNameA": {
 				"title": "Child A"
@@ -148,23 +149,8 @@ $globalFontFamily: sans-serif;
 			}
 		}
 	},
-	"docs-gulp": {
-		"title": "Документация GULP сборки"
-	},
-	"docs-htmldoc": {
-		"title": "Документация HTML файлов"
-	},
-	"docs-js": {
-		"title": "Документация JS файлов"
-	},
-	"docs-sass": {
-		"title": "Документация SASS файлов"
-	},
-	"jsdoc": {
-		"title": "Работа с JSDoc3"
-	},
-	"_tutorial-example": {
-		"title": "Заготовка для создания туториала"
+	"new-cool-tut": {
+		"title": "Еще один классный туториал"
 	}
 }
 </code></pre>
