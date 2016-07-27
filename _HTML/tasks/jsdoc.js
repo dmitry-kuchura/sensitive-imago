@@ -45,6 +45,9 @@
  * @requires	module:tasks/_modules-params
  *
  * @param		{Object}		options - передаваемые параметры
+ * @param		{string}		options.taskName - имя вызывающей задачи, *задаеться автоматически*
+ * @param		{boolean}		options.isDevelop - флаг dev версии сборки, *задаеться автоматически*
+ * @param		{boolean}		options.isProduction - флаг production версии сборки, *задаеться автоматически*
  * @param		{string}		options.systemName - тайтл документации
  * @param		{string}		options.tutorials - путь к директории туториалов для раздела документации
  * @param		{string}		options.dest - путь к директории итоговой документации

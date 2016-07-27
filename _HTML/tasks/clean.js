@@ -38,7 +38,9 @@
  * @requires   	module:tasks/_helpers
  *
  * @param		{Object}		options - передаваемые параметры
- * @param		{string}		options.taskName - имя задачи
+ * @param		{string}		options.taskName - имя вызывающей задачи, *задаеться автоматически*
+ * @param		{boolean}		options.isDevelop - флаг dev версии сборки, *задаеться автоматически*
+ * @param		{boolean}		options.isProduction - флаг production версии сборки, *задаеться автоматически*
  * @param		{string|Array}	options.src - путь к директории или файлам которые нужно удалить
  * @param		{boolean}		[options.log=true] - флаг вывода лог уведомления при успешном действии
  *

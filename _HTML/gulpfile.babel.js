@@ -40,8 +40,6 @@
 	const isLinting = !!(yargs.argv.lint);
 	const isProduction = !!(yargs.argv.prod);
 	const isDevelop = !isProduction;
-	const isSourcemaps = isDevelop;
-	const isMinify = isProduction;
 
 	// объект авто-вотчей
 	const watchSources = {};
@@ -111,6 +109,7 @@
 			watch: _ejsAll,
 			beautify: isProduction,
 			locals: {
+				_projectName: projectName,
 				_projectResponsive: true,
 				_projectWezom: true
 			},
@@ -149,8 +148,8 @@
 		lazyRequireTask('sass:dynamics', `${tasks}/sass`, {
 			src: _sassDynamics,
 			dest: _sassDest,
-			maps: isSourcemaps,
-			min: isMinify,
+			maps: isDevelop,
+			min: isProduction,
 			watch: [
 				_sassData,
 				_sassDynamics
@@ -166,7 +165,7 @@
 			src: _sassCriticals,
 			dest: _ejsCtiticals,
 			maps: false,
-			min: true,
+			min: isProduction,
 			changeExt: '.ejs',
 			watch: [
 				_sassData,

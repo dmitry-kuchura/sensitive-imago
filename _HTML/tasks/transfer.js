@@ -76,8 +76,9 @@
  * @requires   	module:tasks/_modules-params
  *
  * @param		{Object}		options - передаваемые параметры
- * @param		{string}		options.taskName - имя вызывающей задачи
- * @param		{string}		options.isProduction - имя вызывающей задачи
+ * @param		{string}		options.taskName - имя вызывающей задачи, *задаеться автоматически*
+ * @param		{boolean}		options.isDevelop - флаг dev версии сборки, *задаеться автоматически*
+ * @param		{boolean}		options.isProduction - флаг production версии сборки, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
  * @param		{string|boolean} [options.filter='combine'] - метод фильтровки файлов
