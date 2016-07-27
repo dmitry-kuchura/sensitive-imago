@@ -265,7 +265,7 @@
 		// генерация документации scss файлов
 		lazyRequireTask('docs:sass:doc', `${tasks}/sassdoc`, {
 			theme: `${tasks}/sassdoc-theme`,
-			dest: `${docs}/sassdoc`,
+			dest: `${docs}/sass`,
 			groups: {
 				'undefined': `Без группы`
 			},
@@ -280,16 +280,26 @@
 		lazyRequireTask('docs:sass:materials', `${tasks}/sassdoc-materials`, {
 			systemName: `SASSDoc`,
 			tutorials: `${tuts}/sass`,
-			dest: `${docs}/sassdoc`,
+			dest: `${docs}/sass`,
 			blank: `${tasks}/sassdoc-theme/blank.js`,
 			index: `${tuts}/sass-index.md`
+		});
+
+		// трансфер статических файлов
+		lazyRequireTask('docs:sass:assets', `${tasks}/transfer`, {
+			src: `${tuts}/sass/assets/**/*.*`,
+			dest: `${docs}/sass/assets`,
+			filter: 'newer',
+			notify: true,
+			notifyIsShort: true
 		});
 
 		// комплексная задача создания документации scss файлов
 		gulp.task('docs:sass',
 			gulp.series(
 				'docs:sass:doc',
-				'docs:sass:materials'
+				'docs:sass:materials',
+				'docs:sass:assets'
 			)
 		);
 
@@ -339,14 +349,14 @@
 	// =========
 		// очистка директории документации скриптов верстки
 		lazyRequireTask('docs:clean:js', `${tasks}/clean`, {
-			src: `${docs}/jsdoc`
+			src: `${docs}/js`
 		});
 
 		// генерация документации скриптов верстки
 		lazyRequireTask('docs:jsdoc:js', `${tasks}/jsdoc`, {
 			systemName: `JSDoc`,
 			tutorials: `${tuts}/js`,
-			dest: `${docs}/jsdoc`,
+			dest: `${docs}/js`,
 			src: [
 				`${tuts}/js-index.md`,
 				`${src}/js/**/*.js`,
@@ -354,11 +364,21 @@
 			]
 		});
 
+		// трансфер статических файлов
+		lazyRequireTask('docs:jsdoc:js:assets', `${tasks}/transfer`, {
+			src: `${tuts}/js/assets/**/*.*`,
+			dest: `${docs}/js/assets`,
+			filter: 'newer',
+			notify: true,
+			notifyIsShort: true
+		});
+
 		// комплексная задача создания документации скриптов верстки
 		gulp.task('docs:js',
 			gulp.series(
 				'docs:clean:js',
-				'docs:jsdoc:js'
+				'docs:jsdoc:js',
+				'docs:jsdoc:js:assets'
 			)
 		);
 
@@ -389,12 +409,22 @@
 			]
 		});
 
+		// трансфер статических файлов
+		lazyRequireTask('docs:html:assets', `${tasks}/transfer`, {
+			src: `${tuts}/html/assets/**/*.*`,
+			dest: `${docs}/html/assets`,
+			filter: 'newer',
+			notify: true,
+			notifyIsShort: true
+		});
+
 		// комплексная задача создания документации с html страниц
 		gulp.task('docs:html',
 			gulp.series(
 				'docs:clean:html',
 				'docs:clean:htmlTmp',
-				'docs:html:doc'
+				'docs:html:doc',
+				'docs:html:assets'
 			)
 		);
 
@@ -424,7 +454,9 @@
 			'docs:jsdoc:gulp',
 			'docs:jsdoc:gulp:assets',
 			'docs:jsdoc:js',
+			'docs:jsdoc:js:assets',
 			'docs:html:doc',
+			'docs:html:assets',
 			'docs:sass'
 		));
 

@@ -1,9 +1,86 @@
 <hr>
 <h2 id="main">Основные задачи</h2>
 <hr>
+<h3 id="gulp-default">gulp start</h3>
+<p>Стартовая задача, по сути используеться только один раз - после установки проекта (читай readme.md репозитория). Задача сделает базовое построение итогового проекта верстки и составить основную документацию</p>
+<p>Вызов задачи:</p>
+<pre><code class="language-git">
+	gulp start
+</code></pre>
+<p>Последовательность серий:</p>
+<pre><code class="language-javascript">
+// start
+// =======
+	gulp.task('start',
+		gulp.series(
+			'rebuild',
+			'docs'
+		)
+	);
+</code></pre>
+
+<hr>
 <h3 id="gulp-default">gulp default</h3>
+<p>Вызов задачи:</p>
+<pre><code class="language-git">
+	gulp
+</code></pre>
+<p>Последовательность серий:</p>
+<pre><code class="language-javascript">
+// default
+// =======
+	gulp.task('default',
+		gulp.series(
+			(cb) => {
+				console.log('\n\tdemo default task\n');
+				cb();
+			}
+		)
+	);
+</code></pre>
+
+<hr>
+<h3 id="gulp-build">gulp rebuild</h3>
+<p>Полноя пересборка проекта. После финиша задачи - процесс будет остановлен</p>
+<p>Вызов задачи:</p>
+<pre><code class="language-git">
+	gulp rebuild
+</code></pre>
+<p>Последовательность серий:</p>
+<pre><code class="language-javascript">
+// rebuild
+// =======
+	gulp.task('rebuild',
+		gulp.series(
+			(cb) => {
+				console.log('\n\tdemo build task\n');
+				cb();
+			},
+			'demo:clean',
+			'demo:files'
+		)
+	);
+</code></pre>
+
 <hr>
 <h3 id="gulp-build">gulp build</h3>
+<p>Полноя пересборка проекта. После будет запущена задача <a href="#gulp-default">gulp-default</a></p>
+<p>Вызов задачи:</p>
+<pre><code class="language-git">
+	gulp build
+</code></pre>
+<p>Последовательность серий:</p>
+<pre><code class="language-javascript">
+// build
+// =======
+	gulp.task('build',
+		gulp.series(
+			'rebuild',
+			'default'
+		)
+	);
+</code></pre>
+
 <hr>
 <h3 id="gulp-upload">gulp upload</h3>
 <p>Задача загрузки файлов на фтп. По умолчанию это фтп хост инкубатора, параметры подключения к хосту указываються в конфигурации задачи <code>connect</code>. <br> Задачи выгружает все файлы из директории итоговой сборки <samp>./dist/**/*.*</samp></p>
@@ -99,7 +176,7 @@
 <pre><code class="language-git">
 	gulp docs
 </code></pre>
-<p>Соответственно данная задача будет самой длительной из всех, ниже - код последовательности задач:</p>
+<p>Соответственно данная задача будет самой длительной из всех, ниже - код последовательности серий:</p>
 <pre><code class="language-javascript">
 // генерация документаций по всем разделам
 gulp.task('docs', gulp.series(

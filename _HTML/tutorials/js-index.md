@@ -3,7 +3,7 @@
 - [Project docs](../html/index.html)
 - [Gulp docs](../gulp/index.html)
 - *JSDoc*
-- [SASSDoc](../sassdoc/index.html)
+- [SASSDoc](../sass/index.html)
 
 -----
 

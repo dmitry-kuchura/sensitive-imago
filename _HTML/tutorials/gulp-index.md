@@ -2,8 +2,8 @@
 
 - [Project docs](../html/index.html)
 - *Gulp docs*
-- [JSDoc](../jsdoc/index.html)
-- [SASSDoc](../sassdoc/index.html)
+- [JSDoc](../js/index.html)
+- [SASSDoc](../sass/index.html)
 
 -----
 

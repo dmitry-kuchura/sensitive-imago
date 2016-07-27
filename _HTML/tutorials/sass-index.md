@@ -2,7 +2,7 @@
 
 - [Project docs](../html/index.html)
 - [Gulp docs](../gulp/index.html)
-- [JSDoc](../jsdoc/index.html)
+- [JSDoc](../js/index.html)
 - *SASSDoc*
 
 -----
