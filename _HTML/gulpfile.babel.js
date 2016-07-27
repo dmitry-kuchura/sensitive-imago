@@ -21,6 +21,7 @@
 	import gulp from 'gulp';
 	import autowatch from 'gulp-autowatch';
 	import yargs from 'yargs';
+	import pkg from './package.json';
 
 
 // константы
@@ -74,6 +75,7 @@
 		taskOptions.taskName = taskName;
 		taskOptions.isProduction = isProduction;
 		taskOptions.isDevelop = isDevelop;
+		taskOptions.package = pkg;
 		if (taskOptions.watch) {
 			watchSources[taskName] = taskOptions.watch;
 		}
@@ -165,7 +167,7 @@
 			src: _sassCriticals,
 			dest: _ejsCtiticals,
 			maps: false,
-			min: isProduction,
+			min: true,
 			changeExt: '.ejs',
 			watch: [
 				_sassData,

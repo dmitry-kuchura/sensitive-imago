@@ -12,6 +12,8 @@
 // подключение nodejs модулей
 // ==========================
 	import gulp from 'gulp';
+	import path from 'path';
+	import fs from 'fs';
 	import multipipe from 'multipipe';
 	import gulpLoadPlugins from 'gulp-load-plugins';
 	const $ = gulpLoadPlugins();
@@ -45,6 +47,7 @@
  * @param		{string}		options.taskName - имя вызывающей задачи, *задаеться автоматически*
  * @param		{boolean}		options.isDevelop - флаг dev версии сборки, *задаеться автоматически*
  * @param		{boolean}		options.isProduction - флаг production версии сборки, *задаеться автоматически*
+ * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
  * @param		{Object}		options.locals - обект глобальных данных, которые будут доступны внутри всех `*.ejs` файлов
@@ -80,6 +83,12 @@ module.exports = function(options) {
 			let ejsLocals = options.locals || {};
 			ejsLocals._isPoduction = options.isProduction;
 			ejsLocals._isDevelop = options.isDevelop;
+			ejsLocals._package = options.package;
+			ejsLocals._getActiveFile = (filepath) => {
+				let _filename = filepath.split('\\').pop().split('.');
+				_filename.pop();
+				return _filename.join('.');
+			}
 
 
 

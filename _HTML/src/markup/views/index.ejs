@@ -1,10 +1,6 @@
 <%
 	// конфиг текущего файлы
-	locals._activeFile = 'index';
-
-	var users = ['geddy', 'neil', 'alex'];
+	locals._activeFile = _getActiveFile(filename);
 %>
 <% include ../_config %>
 <% layout('../layouts/main') %>
-
-<ul><% users.forEach(function(user){ %><li><%- user %></li><% }); %></ul>

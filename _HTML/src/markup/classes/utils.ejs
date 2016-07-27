@@ -1,6 +1,6 @@
 <%
 	class Utils {
-		attrs(attrs) {
+		setAttrs(attrs) {
 			let array = [];
 			Object.keys(attrs).forEach((entry) => {
 				array.push(`${entry}=${attrs[entry]}`)
@@ -9,5 +9,5 @@
 		}
 	};
 
-	locals._utils = new Utils();
+	locals.Utils = new Utils();
 %>

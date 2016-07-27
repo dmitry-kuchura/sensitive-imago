@@ -44,6 +44,7 @@
  * @param		{string}		options.taskName - имя вызывающей задачи, *задаеться автоматически*
  * @param		{boolean}		options.isDevelop - флаг dev версии сборки, *задаеться автоматически*
  * @param		{boolean}		options.isProduction - флаг production версии сборки, *задаеться автоматически*
+ * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.src - путь к исходным файлам
  * @param		{Object}		options.connect - параметры для соединения с хостом
  * @param		{string}		options.connect.host - хост

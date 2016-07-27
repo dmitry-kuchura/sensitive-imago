@@ -1,5 +1,7 @@
 <% if (_projectWezom) { %>
-	<!-- (c) студия Wezom | www.wezom.com.ua-->
+	<!-- (c) студия Wezom | www.wezom.com.ua -->
+	<!-- <%- _projectName %> | v#<%- _package.version %> -->
+	<%- (_package.description.length) ? `<!-- ${_package.description} -->` : '' %>
 <% } %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <%- _utils.attrs(_globalData.htmlAttrs) %>>
+<html <%- Utils.setAttrs(_globalData.htmlAttrs) %>>
 	<head>
 		<%- partial('../views/widgets/head') %>
 		<%- partial('../views/widgets/criticals') %>
@@ -7,13 +7,13 @@
 	<body>
 		<% if (_activeFile.hasSeoText) { %>
 			<main class="pageSeoText js-setSeoText">
-				<div class="pageSize"><%- partial(_activeFile.seoTextContent) %></div>
+				<div class="pageSize"><%- partial(_activeFile.seoTextContent, {}) %></div>
 			</main>
 			<!-- end pageSeoText -->
 		<% } %>
 		<div class="pageWrapper">
 			<header class="pageHeader">
-				<%- blocks.header %>
+				<%- partial('../views/widgets/pageHeader', {}) %>
 			</header>
 			<!-- end pageHeader -->
 
@@ -25,7 +25,7 @@
 
 
 			<footer class="pageFooter">
-				<%- blocks.footer %>
+				<%- partial('../views/widgets/pageFooter', {}) %>
 			</footer>
 			<!-- end pageFooter -->
 
