@@ -170,6 +170,7 @@
 	}
 
 	input {
+		display: block;
 		@include placeholder($globalPlaceHolderColor, true);
 		@include placeholderOnFocus();
 	}

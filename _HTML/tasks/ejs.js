@@ -29,6 +29,8 @@
 /**
  * Модуль компиляции `ejs` файлов.
  *
+ * @todo 		Написать подробные туториалы по работе и составлению разметки
+ *
  * @moduleLocal
  * @sourcecode	code:tasks:ejs
  *
@@ -134,6 +136,12 @@ module.exports = function(options) {
 				.pipe($.if(
 					options.notify,
 					$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
+				))
+				.pipe($.if(
+					options.browserSyncReload,
+					options.browserSync.stream({
+						once: true
+					})
 				));
 	};
 };

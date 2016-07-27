@@ -319,6 +319,12 @@ module.exports = function(options) {
 				.pipe($.if(
 					options.notify,
 					$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
+				))
+				.pipe($.if(
+					options.browserSyncReload,
+					options.browserSync.stream({
+						match: "**/*.css"
+					})
 				));
 	};
 };

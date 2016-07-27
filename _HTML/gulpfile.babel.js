@@ -22,6 +22,8 @@
 	import autowatch from 'gulp-autowatch';
 	import yargs from 'yargs';
 	import pkg from './package.json';
+	import browserSyncModule from 'browser-sync';
+	const browserSync = browserSyncModule.create();
 
 
 // константы
@@ -38,9 +40,19 @@
 	const src = `./src`;
 
 	// флаги
-	const isLinting = !!(yargs.argv.lint);
-	const isProduction = !!(yargs.argv.prod);
+	const isLinting = !!(yargs.argv.l) || !!(yargs.argv.lint);
+	const isBsOpenOnInit = (!!(yargs.argv.o) || !!(yargs.argv.open)) ? 'external' : false;
+	const isBsAutoReload = !(!!(yargs.argv.n) || !!(yargs.argv.noreload));
+	const isProduction = !!(yargs.argv.p) || !!(yargs.argv.prod);
 	const isDevelop = !isProduction;
+
+	// browser-sync
+	const bsUse = true;
+	const bsConfig = {
+		proxy: `http://${projectName}/_HTML/${dist.slice(2)}`,
+		open: isBsOpenOnInit,
+		port: 4000
+	};
 
 	// объект авто-вотчей
 	const watchSources = {};
@@ -52,6 +64,25 @@
 		fs.accessSync(tmp);
 	} catch(e) {
 		fs.mkdirSync(tmp);
+	}
+
+
+
+
+
+/**
+ * { function_description }
+ *
+ * @class      BrowserSync (name)
+ * @param      {Function}  cb      { parameter_description }
+ * @return     {<type>}    { description_of_the_return_value }
+ */
+	const BrowserSync = (cb) => {
+		if (bsUse) {
+			browserSync.init(bsConfig);
+		} else {
+			cb();
+		}
 	}
 
 
@@ -76,6 +107,8 @@
 		taskOptions.isProduction = isProduction;
 		taskOptions.isDevelop = isDevelop;
 		taskOptions.package = pkg;
+		taskOptions.browserSyncReload = (bsUse && isBsAutoReload);
+		taskOptions.browserSync = browserSync;
 		if (taskOptions.watch) {
 			watchSources[taskName] = taskOptions.watch;
 		}
@@ -508,10 +541,7 @@
 	// =======
 		gulp.task('default',
 			gulp.series(
-				(cb) => {
-					console.log('\n\tdemo default task\n');
-					cb();
-				}
+				gulp.parallel('watch', BrowserSync)
 			)
 		);
 
