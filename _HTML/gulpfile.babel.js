@@ -274,7 +274,7 @@
 		lazyRequireTask('sass:statics', `${tasks}/transfer`, {
 			src: _sassStatics,
 			dest: _sassDest,
-			filter: `combine`,
+			filter: `newer`,
 			imagemin: isProduction,
 			watch: [
 				_sassStatics
@@ -322,6 +322,94 @@
 
 
 
+// Компиляция скриптов
+// ===========================================
+
+	// внутренние переменные
+	// =====================
+		let _jsDest = `${dist}/js`;
+		let _jsDynamics = `${src}/js/dynamics/**/*.js`;
+		let _jsCriticals = `${src}/js/criticals/**/*.js`;
+		let _jsStatics = `${src}/js/statics/**/*.*`;
+
+	// js:dynamics
+	// =============
+		lazyRequireTask('js:dynamics', `${tasks}/js`, {
+			src: _jsDynamics,
+			dest: _jsDest,
+			maps: isDevelop,
+			min: isProduction,
+			watch: [
+				_jsDynamics
+			],
+			notify: true,
+		});
+
+	// js:dynamics
+	// =============
+		lazyRequireTask('js:criticals', `${tasks}/js`, {
+			src: _jsCriticals,
+			dest: _ejsCtiticalsJs,
+			maps: false,
+			min: true,
+			watch: [
+				_jsCriticals
+			],
+			notify: true,
+		});
+
+	// js:statics
+	// ==========
+		lazyRequireTask('js:statics', `${tasks}/transfer`, {
+			src: _jsStatics,
+			dest: _jsDest,
+			filter: `newer`,
+			watch: [
+				_jsStatics
+			],
+			notify: true
+		});
+
+	// js:clean
+	// ========
+		lazyRequireTask('js:clean', `${tasks}/clean`, {
+			src: _jsDest
+		});
+
+	// js:clean:criticals
+	// ==================
+		lazyRequireTask('js:clean:criticals', `${tasks}/clean`, {
+			src: _ejsCtiticalsJs
+		});
+
+	// js
+	// ==
+		gulp.task('js',
+			gulp.series(
+				'js:dynamics',
+				'js:criticals',
+				'js:statics'
+			)
+		);
+
+	// js:rebuild
+	// ==========
+		gulp.task('js:rebuild',
+			gulp.series(
+				'js:clean',
+				'js:clean:criticals',
+				'js'
+			)
+		);
+
+
+
+
+
+
+
+
+
 
 // Трансферы
 // ===========================================
@@ -336,7 +424,7 @@
 		lazyRequireTask('images', `${tasks}/transfer`, {
 			src: _imagesSrc,
 			dest: _imagesDest,
-			filter: `combine`,
+			filter: `newer`,
 			imagemin: isProduction,
 			watch: [
 				_imagesSrc
@@ -368,7 +456,7 @@
 		lazyRequireTask('favicons', `${tasks}/transfer`, {
 			src: _faviconsSrc,
 			dest: _ejsDest,
-			filter: `combine`,
+			filter: `newer`,
 			imagemin: false,
 			watch: [
 				_faviconsSrc
@@ -655,10 +743,12 @@
 			gulp.series(
 				'clean',
 				'sass:clean:criticals',
+				'js:clean:criticals',
 				'sass',
-				'ejs',
+				'js',
 				'images',
-				'favicons'
+				'favicons',
+				'ejs'
 			)
 		);
 

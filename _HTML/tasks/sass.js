@@ -147,7 +147,6 @@
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
  * @param		{string}		[options.changeExt] - сменить расширение файла, при указании, должно содержать точку вначале
- * @param		{boolean}		options.filter - флаг исрользования фильтровки файлов
  * @param		{Array}			[options.watch] - набор путей, для вотчинга
  * @param		{Object}		[options.sassConfig] - пользовательские параметры компиляции sass файлов. параметры по умолчанию - {@link module:tasks/_modules-params~modulesParams#gulpSassConfig|modulesParams#gulpSassConfig}
  * @param		{Object}		[options.autoprefixerConfig] - пользовательские параметры для `gulp-autoprefixer`. параметры по умолчанию - {@link module:tasks/_modules-params~modulesParams#gulpAutoprefixerConfig|modulesParams#gulpAutoprefixerConfig}
@@ -158,7 +157,7 @@
  * @param		{Object}		[options.sasslintConfig] - пользовательские параметры линтинга. параметры по умолчанию - {@link module:tasks/_modules-params~modulesParams#gulpSassLintConfig|modulesParams#gulpSassLintConfig}
  * @param		{boolean}		options.csslint - флаг линтинга скомпилированных файлов
  * @param		{Object}		[options.csslintConfig] - пользовательские параметры линтинга. параметры по умолчанию - {@link module:tasks/_modules-params~modulesParams#gulpCssLintConfig|modulesParams#gulpCssLintConfig}
- * @param		{boolean}		[options.filter=true] - фильтровка изменений в стриме
+ * @param		{boolean}		[options.filter=true] - флаг исрользования фильтровки файлов
  * @param		{boolean}		[options.notify=false] - выводить уведомление по окончанию трансфера
  * @param		{string}		[options.notifyOn='last'] - метод уведомления, параметр передается дальше методу {@link module:tasks/_modules-params~modulesParams#gulpNotify|modulesParams#gulpNotify}
  * @param		{number}		[options.notifyTime=2000] - время показа уведомления, параметр передается дальше методу {@link module:tasks/_modules-params~modulesParams#gulpNotify|modulesParams#gulpNotify}

@@ -27,26 +27,20 @@
 
 
 /**
- * Модуль компиляции `ejs` файлов.
+ * Модуль компиляции `js` файлов.
  *
- * @todo 		Написать подробные туториалы по работе и составлению разметки
- * @todo 		Написать внутренней роутер, для удобства подлючения файлов, с авто определением относительных путей
+ *
  *
  * @moduleLocal
  * @sourcecode	code:tasks:ejs
- *
- * @see			{@link http://ejs.co/}
- * @see			{@link https://github.com/RandomEtc/ejs-locals/}
  *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
  * @requires   	{@link https://www.npmjs.com/package/multipipe}
  * @requires   	{@link https://www.npmjs.com/package/gulp-load-plugins}
  * @requires   	{@link https://www.npmjs.com/package/gulp-if}
- * @requires   	{@link https://www.npmjs.com/package/gulp-ejs-locals}
- * @requires   	{@link https://www.npmjs.com/package/gulp-html-beautify}
  * @requires   	{@link https://www.npmjs.com/package/gulp-changed}
- * @requires   	{@link https://www.npmjs.com/package/gulp-rename}
  * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-include}
  * @requires 	module:tasks/_modules-params
  *
  * @param		{Object}		options - передаваемые параметры
@@ -56,13 +50,6 @@
  * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
- * @param		{string}		[options.changeExt] - сменить расширение файла, при указании, должно содержать точку вначале
- * @param		{Object}		options.locals - обект глобальных данных, которые будут доступны внутри всех `*.ejs` файлов
- * @param		{string}		options.locals._projectName - Имя проекта
- * @param		{boolean}		options.locals._projectResponsive - флаг адаптавности
- * @param		{boolean}		options.locals._projectWezom - проект студии Wezom
- * @param		{boolean}		options.beautify - флаг форматирования скомпелированного `html` кода
- * @param		{Object}		[options.beautifyConfig] - пользовательские параметры для `gulp-html-beautify`. параметры по умолчанию - {@link module:tasks/_modules-params~modulesParams#gulpHtmlBeautify|modulesParams#gulpHtmlBeautify}
  * @param		{Array}			[options.watch] - набор путей, для вотчинга
  * @param		{boolean}		[options.filter=true] - флаг исрользования фильтровки файлов
  * @param		{boolean}		[options.notify=false] - выводить уведомление по окончанию трансфера
@@ -86,16 +73,6 @@ module.exports = function(options) {
 			// флаг фильтровки
 			let isFilter = options.filter !== false;
 
-			let ejsLocals = options.locals || {};
-			ejsLocals._isPoduction = options.isProduction;
-			ejsLocals._isDevelop = options.isDevelop;
-			ejsLocals._package = options.package;
-			ejsLocals._getActiveFile = (filepath) => {
-				let _filename = filepath.split('\\').pop().split('.');
-				_filename.pop();
-				return _filename.join('.');
-			}
-
 
 
 
@@ -104,11 +81,15 @@ module.exports = function(options) {
 		// ========
 
 			// составление multipipe компиляции
-			let streamEjs = multipipe(
-				$.ejsLocals(ejsLocals),
+			let streamJs = multipipe(
 				$.if(
-					options.beautify,
-					$.htmlBeautify(_modulesParams.gulpHtmlBeautify(options.beautifyConfig))
+					/\.js$/,
+					$.include()
+				),
+				// если min вкл.
+				$.if(
+					options.min,
+					$.uglify(_modulesParams.gulpUglifyConfig(options.minConfig))
 				)
 			).on('error', $.notify.onError(
 				_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
@@ -121,14 +102,17 @@ module.exports = function(options) {
 		// task
 		// ========
 			return gulp.src(options.src)
-				// компиляция
-				.pipe(streamEjs)
-				// если нужно сменить расширенние файла
+				// если sasslint вкл.
 				.pipe($.if(
-					!!options.changeExt,
-					$.rename((path) => {
-						path.extname = options.changeExt;
-					})
+					options.maps,
+					$.sourcemaps.init()
+				))
+				// компиляция
+				.pipe(streamJs)
+				// если sourcemaps вкл. - пишем карты
+				.pipe($.if(
+					options.maps,
+					$.sourcemaps.write('/')
 				))
 				// фильтровка изменений в стриме
 				.pipe($.if(
@@ -150,9 +134,7 @@ module.exports = function(options) {
 				))
 				.pipe($.if(
 					options.browserSyncReload,
-					options.browserSync.stream({
-						once: true
-					})
+					options.browserSync.stream()
 				));
 	};
 };

@@ -155,20 +155,21 @@ module.exports = function(options) {
 				})
 				.pipe($.if(
 					isNewer,
-					$.newer(options.dest)
+					$.newer(options.dest).on('error', $.notify.onError(
+						_modulesParams.gulpNotifyOnError(`transfer - ${options.taskName}`))
+					)
 				))
 				.pipe($.if(
 					isImageMin,
-					multipipe(
-						$.imagemin([
-							$.imagemin.gifsicle(),
-							$.imagemin.jpegtran(),
-							$.imagemin.optipng(),
-							$.imagemin.svgo()
-						], {
-							verbose: true
-						})
-					).on('error', $.notify.onError(
+					$.imagemin([
+						$.imagemin.gifsicle(),
+						$.imagemin.jpegtran(),
+						$.imagemin.optipng(),
+						$.imagemin.svgo()
+					], {
+						verbose: true
+					})
+					.on('error', $.notify.onError(
 						_modulesParams.gulpNotifyOnError(`imagemin - ${options.taskName}`))
 					)
 				))

@@ -280,6 +280,28 @@ class modulesParams {
 
 
 	/**
+	 * Настройка параметров для модуля `gulp-uglify`.
+	 * - офф документация по параметрам {@link http://cssnano.co/optimisations/}
+	 *
+	 * @sourcecode
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpUglifyConfig(customConfig={}) {
+		let baseConfig = {
+			mangle: false
+		};
+		if (customConfig) {
+			return deepExtend(baseConfig, customConfig);
+		}
+		return baseConfig;
+	}
+
+
+
+
+
+	/**
 	 * Настройка параметров для модуля `gulp-autoprefixer`.
 	 *
 	 * @sourcecode
