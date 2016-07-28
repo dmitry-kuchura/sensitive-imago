@@ -14,6 +14,7 @@
 	// корректное отображение в IE, Edge и Firefox
 	article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
 		display: block;
+		position: relative;
 	}
 
 	// корректное отображение в IE 9-

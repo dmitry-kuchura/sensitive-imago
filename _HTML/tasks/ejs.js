@@ -30,9 +30,13 @@
  * Модуль компиляции `ejs` файлов.
  *
  * @todo 		Написать подробные туториалы по работе и составлению разметки
+ * @todo 		Написать внутренней роутер, для удобства подлючения файлов, с авто определением относительных путей
  *
  * @moduleLocal
  * @sourcecode	code:tasks:ejs
+ *
+ * @see			{@link http://ejs.co/}
+ * @see			{@link https://github.com/RandomEtc/ejs-locals/}
  *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
  * @requires   	{@link https://www.npmjs.com/package/multipipe}
@@ -52,6 +56,7 @@
  * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
+ * @param		{string}		[options.changeExt] - сменить расширение файла, при указании, должно содержать точку вначале
  * @param		{Object}		options.locals - обект глобальных данных, которые будут доступны внутри всех `*.ejs` файлов
  * @param		{string}		options.locals._projectName - Имя проекта
  * @param		{boolean}		options.locals._projectResponsive - флаг адаптавности
@@ -119,6 +124,13 @@ module.exports = function(options) {
 			return gulp.src(options.src)
 				// компиляция
 				.pipe(streamEjs)
+				// если нужно сменить расширенние файла
+				.pipe($.if(
+					!!options.changeExt,
+					$.rename((path) => {
+						path.extname = options.changeExt;
+					})
+				))
 				// фильтровка изменений в стриме
 				.pipe($.if(
 					isFilter,

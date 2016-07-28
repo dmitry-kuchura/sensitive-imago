@@ -12,6 +12,7 @@
 // подключение nodejs модулей
 // ==========================
 	import gulp from 'gulp';
+	import multipipe from 'multipipe';
 	import gulpLoadPlugins from 'gulp-load-plugins';
 	const $ = gulpLoadPlugins();
 
@@ -64,6 +65,16 @@
  * ~ 240-544 ms | ~ 849 ms - 1.2 s | ~ 1.5-1.86 s
  *
  *
+ * ### Плагины imagemin
+ *
+ * - {@link https://github.com/imagemin/imagemin-gifsicle}
+ * - {@link https://github.com/imagemin/imagemin-jpegtran}
+ * - {@link https://github.com/imagemin/imagemin-optipng}
+ * - {@link https://github.com/imagemin/imagemin-svgo}
+ *
+ *
+ * @todo 		для минификации изображений, нужно чтение буффера. Определиться, стоит ли вынести оптимизацию изображений в отдельную задачу
+ * @todo 		Настроить и описать принцип минификации изображений
  *
  * @moduleLocal
  * @sourcecode	code:tasks:transfer
@@ -73,6 +84,7 @@
  * @requires   	{@link https://www.npmjs.com/package/gulp-if}
  * @requires   	{@link https://www.npmjs.com/package/gulp-newer}
  * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-imagemin}
  * @requires   	module:tasks/_modules-params
  *
  * @param		{Object}		options - передаваемые параметры
@@ -82,6 +94,7 @@
  * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
+ * @param		{boolean} 		[options.imagemin] - флаг миницикации изображений
  * @param		{string|boolean} [options.filter='combine'] - метод фильтровки файлов
  * @param		{boolean}		[options.notify=false] - выводить уведомление по окончанию трансфера
  * @param		{string}		[options.notifyOn='last'] - метод уведомления, параметр передается дальше методу {@link module:tasks/_modules-params~modulesParams#gulpNotify|modulesParams#gulpNotify}
@@ -100,6 +113,8 @@ module.exports = function(options) {
 
 			// список переброшенных файлов
 			let receivedFilesList = [];
+
+			let isImageMin = options.imagemin === true;
 
 			// использовать newer метод ?
 			let isNewer = false;
@@ -135,12 +150,27 @@ module.exports = function(options) {
 		// ========
 
 			return gulp.src(options.src, {
-					buffer: false,
+					buffer: isImageMin,
 					since: isSince ? gulp.lastRun(options.taskName) : 0
 				})
 				.pipe($.if(
 					isNewer,
 					$.newer(options.dest)
+				))
+				.pipe($.if(
+					isImageMin,
+					multipipe(
+						$.imagemin([
+							$.imagemin.gifsicle(),
+							$.imagemin.jpegtran(),
+							$.imagemin.optipng(),
+							$.imagemin.svgo()
+						], {
+							verbose: true
+						})
+					).on('error', $.notify.onError(
+						_modulesParams.gulpNotifyOnError(`imagemin - ${options.taskName}`))
+					)
 				))
 				.pipe(gulp.dest(options.dest))
 				.on('data', (file) => {

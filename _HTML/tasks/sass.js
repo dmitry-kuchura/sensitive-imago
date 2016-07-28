@@ -146,7 +146,7 @@
  * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
- * @param		{boolean}		options.changeExt - сменить расширение файла
+ * @param		{string}		[options.changeExt] - сменить расширение файла, при указании, должно содержать точку вначале
  * @param		{boolean}		options.filter - флаг исрользования фильтровки файлов
  * @param		{Array}			[options.watch] - набор путей, для вотчинга
  * @param		{Object}		[options.sassConfig] - пользовательские параметры компиляции sass файлов. параметры по умолчанию - {@link module:tasks/_modules-params~modulesParams#gulpSassConfig|modulesParams#gulpSassConfig}
@@ -295,9 +295,9 @@ module.exports = function(options) {
 					options.maps,
 					$.sourcemaps.write('/')
 				))
-				// если sourcemaps вкл. - пишем карты
+				// если нужно сменить расширенние файла
 				.pipe($.if(
-					!!options.changeExt,
+					(/\.css$/ && !!options.changeExt),
 					$.rename((path) => {
 						path.extname = options.changeExt;
 					})

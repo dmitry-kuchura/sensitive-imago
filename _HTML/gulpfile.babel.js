@@ -6,8 +6,6 @@
  *
  *
  * @module 		gulpfile
- * @version 	0.7.5
- * @author 		Олег Дутченко <dutchenko.o.wezom@gmail.com>
  * @sourcefile 	file:gulpfile
 */
 
@@ -29,6 +27,10 @@
 	const browserSync = browserSyncModule.create();
 	import yargs from 'yargs';
 	const argv = yargs.argv;
+
+// подключение внутренних модулей
+// ==============================
+	import _helpers from './tasks/_helpers.js';
 
 
 
@@ -145,9 +147,17 @@
 	// внутренние переменные
 	// =====================
 		let _ejsDest = `${dist}`;
+		let _ejsDestHidden = `${dist}/hidden`;
 		let _ejsAll = `${src}/markup/**/*.ejs`;
 		let _ejsViews = `${src}/markup/views/*.ejs`;
-		let _ejsCtiticals = `${src}/markup/views/criticals`;
+		let _ejsHidden = `${src}/markup/hidden/*.ejs`;
+		let _ejsCtiticalsCss = `${src}/markup/views/criticals/css`;
+		let _ejsCtiticalsJs = `${src}/markup/views/criticals/js`;
+		let _ejsLocals = {
+			_projectName: projectName,
+			_projectResponsive: true,
+			_projectWezom: true
+		}
 
 	// ejs:markup
 	// ==========
@@ -156,19 +166,51 @@
 			dest: _ejsDest,
 			watch: _ejsAll,
 			beautify: isProduction,
-			locals: {
-				_projectName: projectName,
-				_projectResponsive: true,
-				_projectWezom: true
-			},
+			locals: _ejsLocals,
 			notify: true
 		});
 
-	// sass
-	// ====
+	// ejs:hidden
+	// ==========
+		lazyRequireTask('ejs:hidden', `${tasks}/ejs`, {
+			src: _ejsHidden,
+			dest: _ejsDestHidden,
+			watch: _ejsAll,
+			beautify: isProduction,
+			beautify: isProduction,
+			changeExt: '.php',
+			locals: _ejsLocals,
+			notify: true
+		});
+
+	// sass:clean
+	// ==========
+		lazyRequireTask('ejs:clean', `${tasks}/clean`, {
+			src: `${_ejsDest}/*.html`
+		});
+
+	// sass:clean
+	// ==========
+		lazyRequireTask('ejs:clean:hidden', `${tasks}/clean`, {
+			src: _ejsDestHidden
+		});
+
+	// ejs
+	// ===
 		gulp.task('ejs',
 			gulp.series(
-				'ejs:markup'
+				'ejs:markup',
+				'ejs:hidden'
+			)
+		);
+
+	// ejs:rebuild
+	// ===========
+		gulp.task('ejs:rebuild',
+			gulp.series(
+				'ejs:clean',
+				'ejs:clean:hidden',
+				'ejs'
 			)
 		);
 
@@ -186,7 +228,8 @@
 	// внутренние переменные
 	// =====================
 		let _sassDest = `${dist}/css`;
-		let _sassData = `${src}/sass/_data/**/*.scss`;
+		let _sassConfig = `${src}/sass/config.scss`;
+		let _sassData = `${src}/sass/data/**/*.scss`;
 		let _sassDynamics = `${src}/sass/dynamics/**/*.scss`;
 		let _sassCriticals = `${src}/sass/criticals/**/*.scss`;
 		let _sassStatics = `${src}/sass/statics/**/*.*`;
@@ -199,6 +242,7 @@
 			maps: isDevelop,
 			min: isProduction,
 			watch: [
+				_sassConfig,
 				_sassData,
 				_sassDynamics
 			],
@@ -211,11 +255,12 @@
 	// ==============
 		lazyRequireTask('sass:criticals', `${tasks}/sass`, {
 			src: _sassCriticals,
-			dest: _ejsCtiticals,
+			dest: _ejsCtiticalsCss,
 			maps: false,
 			min: true,
 			changeExt: '.ejs',
 			watch: [
+				_sassConfig,
 				_sassData,
 				_sassCriticals
 			],
@@ -230,6 +275,7 @@
 			src: _sassStatics,
 			dest: _sassDest,
 			filter: `combine`,
+			imagemin: isProduction,
 			watch: [
 				_sassStatics
 			],
@@ -245,7 +291,7 @@
 	// sass:clean:criticals
 	// ====================
 		lazyRequireTask('sass:clean:criticals', `${tasks}/clean`, {
-			src: _ejsCtiticals
+			src: _ejsCtiticalsCss
 		});
 
 	// sass
@@ -258,13 +304,93 @@
 			)
 		);
 
-	// sass:build
-	// ==========
-		gulp.task('sass:build',
+	// sass:rebuild
+	// ============
+		gulp.task('sass:rebuild',
 			gulp.series(
 				'sass:clean',
 				'sass:clean:criticals',
 				'sass'
+			)
+		);
+
+
+
+
+
+
+
+
+
+
+// Трансферы
+// ===========================================
+
+	// images
+	// ============
+
+		let _imagesSrc = `${src}/images/**/*.*`;
+		let _imagesDest = `${dist}/images`;
+
+		// transfer
+		lazyRequireTask('images', `${tasks}/transfer`, {
+			src: _imagesSrc,
+			dest: _imagesDest,
+			filter: `combine`,
+			imagemin: isProduction,
+			watch: [
+				_imagesSrc
+			],
+			notify: true
+		});
+
+		// clean
+		lazyRequireTask('images:clean', `${tasks}/clean`, {
+			src: _imagesDest
+		});
+
+		// rebuild
+		gulp.task('images:rebuild',
+			gulp.series(
+				'images:clean',
+				'images'
+			)
+		);
+
+
+
+	// favicons
+	// ============
+
+		let _faviconsSrc = `${src}/favicons/**/*.*`;
+
+		// transfer
+		lazyRequireTask('favicons', `${tasks}/transfer`, {
+			src: _faviconsSrc,
+			dest: _ejsDest,
+			filter: `combine`,
+			imagemin: false,
+			watch: [
+				_faviconsSrc
+			],
+			notify: true
+		});
+
+		// clean
+		lazyRequireTask('favicons:clean', `${tasks}/clean`, {
+			src: [
+				`${_ejsDest}/favicons`,
+				`${_ejsDest}/favicon.ico`,
+				`${_ejsDest}/manifest.json`,
+				`${_ejsDest}/browserconfig.xml`
+			]
+		});
+
+		// rebuild
+		gulp.task('favicons:rebuild',
+			gulp.series(
+				'favicons:clean',
+				'favicons'
 			)
 		);
 
@@ -519,29 +645,20 @@
 // ===========================================
 
 	// demo файлы
-		lazyRequireTask('demo:clean', `${tasks}/clean`, {
+		lazyRequireTask('clean', `${tasks}/clean`, {
 			src: `${dist}`
-		});
-
-		lazyRequireTask('demo:files', `${tasks}/transfer`, {
-			src: `${tasks}/_docs-assets/demo/**/*.*`,
-			dest: `${dist}`,
-			filter: false,
-			notify: true
 		});
 
 	// rebuild
 	// =======
 		gulp.task('rebuild',
 			gulp.series(
-				(cb) => {
-					console.log('\n\tdemo build task\n');
-					cb();
-				},
-				'demo:clean',
+				'clean',
+				'sass:clean:criticals',
 				'sass',
 				'ejs',
-				'demo:files'
+				'images',
+				'favicons'
 			)
 		);
 
@@ -549,6 +666,7 @@
 	// =====
 		/*console.log(watchSources);*/
 		gulp.task('watch', () => {
+			_helpers.logMsg('Start watching');
 			autowatch(gulp, watchSources);
 		});
 
