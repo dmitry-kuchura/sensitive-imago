@@ -7,8 +7,21 @@
 		<ul>
 			<li><a href="#dist">dist/</a>
 				<ul>
-					<li><a href="#dist--css">css/</a></li>
-					<li><a href="#dist--js">js/</a></li>
+					<li><a href="#dist--css">css/</a>
+						<ul>
+							<li><a href="#dist--css--fonts">fonts/</a> **/*.*</li>
+							<li><a href="#dist--css--pic">pic/</a> **/*.*</li>
+							<li><a href="#dist--css--vendor">vendor/</a> **/*.*</li>
+							<li><a href="#dist--css--style">style.css</a></li>
+						</ul>
+					</li>
+					<li><a href="#dist--js">js/</a>
+						<ul>
+							<li><a href="#dist--js--jsons">jsons/</a> **/*.*</li>
+							<li><a href="#dist--js--vendor">vendor/</a> **/*.*</li>
+							<li><a href="#dist--js--init">init.js</a></li>
+						</ul>
+					</li>
 					<li><a href="#dist--index">index.html</a></li>
 				</ul>
 			</li>
@@ -26,7 +39,7 @@
 				<ul>
 					<li><a href="#src--js">js/</a>
 						<ul>
-							<li><a href="#src--js--_data">_data/</a></li>
+							<li><a href="#src--js--data">data/</a></li>
 							<li><a href="#src--js--criticals">criticals/</a></li>
 							<li><a href="#src--js--dynamics">dynamics/</a></li>
 							<li><a href="#src--sass--statics">statics/</a></li>
@@ -46,8 +59,9 @@
 							</li>
 							<li><a href="#src--markup--views">views/</a>
 								<ul>
+									<li><a href="#src--markup--views--contents">contents/</a> **/*.*</li>
 									<li><a href="#src--markup--views--criticals">criticals/</a> **/*.*</li>
-									<li><a href="#src--markup--views--seotexts">seotexts/</a> **/*.*</li>
+									<li><a href="#src--markup--views--forms">forms/</a> **/*.*</li>
 									<li><a href="#src--markup--views--widgets">widgets/</a>
 										<ul>
 											<li><a href="#src--markup--views--widgets--criticals">criticals.ejs</a></li>
@@ -65,9 +79,10 @@
 					</li>
 					<li><a href="#src--sass">sass/</a></li>
 						<ul>
-							<li><a href="#src--sass--data">_data/</a>
+							<li><a href="#src--sass--data">data/</a>
 								<ul>
 									<li><a href="#src--sass--data--functions">functions/</a> **/*.*</li>
+									<li><a href="#src--sass--data--libs">libs/</a> **/*.*</li>
 									<li><a href="#src--sass--data--mixins">mixins/</a> **/*.*</li>
 									<li><a href="#src--sass--data--partials">partials/</a> **/*.*</li>
 								</ul>
@@ -159,25 +174,28 @@
 
 <hr>
 <h3 id="_html">_HTML/</h3>
-<p>описание в процессе ...</p>
+<p>Основная директория проекта верстки. Внутри должны находится все файлы которые нужны для сборки макета верстки.<br>
+<strong>Важно - данную директорию НЕ удалять с репозитория</strong></p>
 
 
 
 <h3 id="gitignore">.gitignore</h3>
-<p>описание в процессе ...</p>
+<p>Список игнорирования дирректорий и файлов, которые не должны быть в репозитории.<br>
+<strong>Важно</strong> - перед сдачей проекта на тестирование или программирование - нужно очистить файл <code>.gitignore</code> от временных игноров</p>
 
 
 
 
 <h3 id="readme">readme.md</h4>
-<p>описание в процессе ...</p>
+<p>Основная информация для ознакомления. Файл является основным, встпительным, контентом вашего репозитория.</p>
 
 
 
 
 <hr>
 <h1 id="dist">dist/</h1>
-<p>описание в процессе ...</p>
+<p>Директория итогового макета верстки.<br>
+Все файлы внутри - это результат компиляции из <a href="#src">директории исходников</a></p>
 
 
 
@@ -185,15 +203,63 @@
 
 <hr>
 <h2 id="dist--css">dist/css/</h2>
-<p>описание в процессе ...</p>
+<p>Итоговые стили и сопутствующие файлы</p>
 
+
+
+
+<hr>
+<h3 id="dist--css--fonts">fonts/</h3>
+<p>Используемые шрифты</p>
+
+
+
+
+<hr>
+<h3 id="dist--css--pic">pic/</h3>
+<p>Используемые изображения <strong><em>в стилизации</em></strong></p>
+
+
+
+
+<hr>
+<h3 id="dist--css--vendor">vendor/</h3>
+<p>Сторонние стили (плагины, библиотеки ...)</p>
+
+
+
+
+<hr>
+<h3 id="dist--css--style">style.css</h3>
+<p>Основной стилевой файл</p>
 
 
 
 
 <hr>
 <h2 id="dist--js">dist/js/</h2>
-<p>описание в процессе ...</p>
+<p>Итоговые скрипты и сопутствующие файлы</p>
+
+
+
+
+<hr>
+<h3 id="dist--js--jsons">jsons/</h3>
+<p>Сопутствующие json'ы</p>
+
+
+
+
+<hr>
+<h3 id="dist--js--vendor">vendor/</h3>
+<p>Сторонние скрипты (плагины, библиотеки ...)</p>
+
+
+
+
+<hr>
+<h3 id="dist--js--init">init.js</h3>
+<p>Основной файл инициализации скриптов</p>
 
 
 
@@ -201,7 +267,7 @@
 
 <hr>
 <h2 id="dist--index">dist/index.html</h2>
-<p>описание в процессе ...</p>
+<p>Главная страница</p>
 
 
 
@@ -209,7 +275,7 @@
 
 <hr>
 <h1 id="docs">docs/</h1>
-<p>описание в процессе ...</p>
+<p>Общая директория составленных разделов документации</p>
 
 
 
@@ -217,7 +283,7 @@
 
 <hr>
 <h2 id="docs--assets">docs/_assets/</h2>
-<p>описание в процессе ...</p>
+<p>Директория файлов, которые нужны для оформления страниц документации</p>
 
 
 
@@ -225,7 +291,7 @@
 
 <hr>
 <h2 id="docs--gulp">docs/gulp/</h2>
-<p>описание в процессе ...</p>
+<p>Итоговые файлы документации по gulp сборке. <br>Более подробно - читай туториал {@tutorial docs-gulp}</p>
 
 
 
@@ -233,7 +299,7 @@
 
 <hr>
 <h2 id="docs--html">docs/html/</h2>
-<p>описание в процессе ...</p>
+<p>Итоговые файлы документации по разметке. <br>Более подробно - читай туториал {@tutorial docs-htmldoc}</p>
 
 
 
@@ -241,7 +307,7 @@
 
 <hr>
 <h2 id="docs--js">docs/js/</h2>
-<p>описание в процессе ...</p>
+<p>Итоговые файлы документации по клиентским скриптам. <br>Более подробно - читай туториал {@tutorial docs-js}</p>
 
 
 
@@ -249,7 +315,7 @@
 
 <hr>
 <h2 id="docs--sass">docs/sass/</h2>
-<p>описание в процессе ...</p>
+<p>Итоговые файлы документации по стилизации. <br>Более подробно - читай туториал {@tutorial docs-sass}</p>
 
 
 
@@ -257,7 +323,7 @@
 
 <hr>
 <h1 id="node_modules">node_modules/</h1>
-<p>описание в процессе ...</p>
+<p>Директория установленных nodejs модулей</p>
 
 
 
@@ -265,7 +331,8 @@
 
 <hr>
 <h1 id="src">src/</h1>
-<p>описание в процессе ...</p>
+<p>Директория сборочного макета верстки.<br>
+Здесь все исходники, с которых будет скомпилированна <a href="#dist">итоговая версия</a></p>
 
 
 
@@ -273,15 +340,15 @@
 
 <hr>
 <h2 id="src--js">src/js/</h2>
-<p>описание в процессе ...</p>
+<p>Исходные скрипты</p>
 
 
 
 
 
 <hr>
-<h3 id="src--js--_data">src/js/_data/</h3>
-<p>описание в процессе ...</p>
+<h3 id="src--js--data">src/js/data/</h3>
+<small>описание в процессе ...</small>
 
 
 
@@ -289,7 +356,7 @@
 
 <hr>
 <h3 id="src--js--criticals">src/js/criticals/</h3>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -297,7 +364,7 @@
 
 <hr>
 <h3 id="src--js--dynamics">src/js/dynamics/</h3>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -305,7 +372,7 @@
 
 <hr>
 <h3 id="src--sass--statics">src/js/statics/</h3>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -313,7 +380,7 @@
 
 <hr>
 <h2 id="src--markup">src/markup/</h2>
-<p>описание в процессе ...</p>
+<p>Исходные файлы шаблонизатора разметки</p>
 
 
 
@@ -321,7 +388,7 @@
 
 <hr>
 <h3 id="src--markup--functions">src/markup/functions/</h3>
-<p>описание в процессе ...</p>
+<p>Все доступные методы, классы и прочее</p>
 
 
 
@@ -329,7 +396,7 @@
 
 <hr>
 <h4 id="src--markup--functions--utils">src/markup/functions/utils.ejs</h4>
-<p>описание в процессе ...</p>
+<p>Класс утилит</p>
 
 
 
@@ -337,7 +404,7 @@
 
 <hr>
 <h3 id="src--markup--layouts">src/markup/layouts/</h3>
-<p>описание в процессе ...</p>
+<p>Директория layout'ов</p>
 
 
 
@@ -345,7 +412,7 @@
 
 <hr>
 <h4 id="src--markup--layouts--main">src/markup/layouts/main.ejs</h4>
-<p>описание в процессе ...</p>
+<p>Основной layout</p>
 
 
 
@@ -353,7 +420,15 @@
 
 <hr>
 <h3 id="src--markup--views">src/markup/views/</h3>
-<p>описание в процессе ...</p>
+<p>Директория въюх. Все файлы внутри (<em>прямые потомки</em>) - будут скомплированны в html файлы.</p>
+
+
+
+
+
+<hr>
+<h4 id="src--markup--views--contents">src/markup/views/contents/</h4>
+<p>Директория c текстовыми контентами - сео текста, пример текстовой и прочее</p>
 
 
 
@@ -361,15 +436,16 @@
 
 <hr>
 <h4 id="src--markup--views--criticals">src/markup/views/criticals/</h4>
-<p>описание в процессе ...</p>
+<p>Директория в которою будут компилираваться инлайновые файлы скриптов и стилей. Вся работа с этой директорий происходит автоматически - очистка, компиляция и прочее.</p>
 
 
 
 
 
 <hr>
-<h4 id="src--markup--views--seotexts">src/markup/views/seotexts/</h4>
-<p>описание в процессе ...</p>
+<h4 id="src--markup--views--forms">src/markup/views/forms/</h4>
+<p>Шаблоны всех форм.</p>
+
 
 
 
@@ -377,7 +453,7 @@
 
 <hr>
 <h4 id="src--markup--views--widgets">src/markup/views/widgets/</h4>
-<p>описание в процессе ...</p>
+<p>Структурные виджеты</p>
 
 
 
@@ -385,7 +461,7 @@
 
 <hr>
 <h5 id="src--markup--views--widgets--criticals">src/markup/views/widgets/criticals.ejs</h5>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -393,7 +469,7 @@
 
 <hr>
 <h5 id="src--markup--views--widgets--head">src/markup/views/widgets/head.ejs</h5>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -401,7 +477,7 @@
 
 <hr>
 <h5 id="src--markup--views--widgets--page-header">src/markup/views/widgets/page-header.ejs</h5>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -409,7 +485,7 @@
 
 <hr>
 <h5 id="src--markup--views--widgets--page-footer">src/markup/views/widgets/page-footer.ejs</h5>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -417,7 +493,7 @@
 
 <hr>
 <h4 id="src--markup--views--index">src/markup/views/index.ejs</h4>
-<p>описание в процессе ...</p>
+<p>Шаблон главной страницы</p>
 
 
 
@@ -425,7 +501,7 @@
 
 <hr>
 <h4 id="src--markup--views--sitemap">src/markup/views/sitemap.ejs</h4>
-<p>описание в процессе ...</p>
+<p>Шаблон карты сайта</p>
 
 
 
@@ -433,7 +509,7 @@
 
 <hr>
 <h3 id="src--markup--config">src/markup/config.ejs</h3>
-<p>описание в процессе ...</p>
+<p>Конифг и инклюд всех системных файлов для шаблонизации</p>
 
 
 
@@ -441,39 +517,47 @@
 
 <hr>
 <h2 id="src--sass">sass/</h2>
-<p>описание в процессе ...</p>
+<p>Директория файлов стилей</p>
 
 
 
 
 
 <hr>
-<h3 id="src--sass--data">sass/_data/</h3>
-<p>описание в процессе ...</p>
+<h3 id="src--sass--data">sass/data/</h3>
+<small>описание в процессе ...</small>
 
 
 
 
 
 <hr>
-<h4 id="src--sass--data--functions">sass/_data/functions/</h4>
-<p>описание в процессе ...</p>
+<h4 id="src--sass--data--functions">sass/data/functions/</h4>
+<small>описание в процессе ...</small>
 
 
 
 
 
 <hr>
-<h4 id="src--sass--data--mixins">sass/_data/mixins/</h4>
-<p>описание в процессе ...</p>
+<h4 id="src--sass--data--libs">sass/data/libs/</h4>
+<small>описание в процессе ...</small>
 
 
 
 
 
 <hr>
-<h4 id="src--sass--data--partials">sass/_data/partials/</h4>
-<p>описание в процессе ...</p>
+<h4 id="src--sass--data--mixins">sass/data/mixins/</h4>
+<small>описание в процессе ...</small>
+
+
+
+
+
+<hr>
+<h4 id="src--sass--data--partials">sass/data/partials/</h4>
+<small>описание в процессе ...</small>
 
 
 
@@ -481,7 +565,7 @@
 
 <hr>
 <h3 id="src--sass--criticals">sass/criticals/</h3>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -489,7 +573,7 @@
 
 <hr>
 <h4 id="src--sass--criticals--reset">sass/criticals/reset.scss</h4>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -497,7 +581,7 @@
 
 <hr>
 <h4 id="src--sass--criticals--seoset">sass/criticals/seoset.scss</h4>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -505,7 +589,7 @@
 
 <hr>
 <h3 id="src--sass--dynamics">sass/dynamics/</h3>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -513,7 +597,7 @@
 
 <hr>
 <h4 id="src--sass--dynamics--vendor">sass/dynamics/vendor/</h4>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -521,7 +605,7 @@
 
 <hr>
 <h4 id="src--sass--dynamics--style">sass/dynamics/style.scss</h4>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -529,7 +613,7 @@
 
 <hr>
 <h3 id="src--sass--statics">sass/statics/</h3>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -537,7 +621,7 @@
 
 <hr>
 <h4 id="src--sass--statics--fonts">sass/statics/fonts/</h4>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -545,7 +629,7 @@
 
 <hr>
 <h4 id="src--sass--statics--pic">sass/statics/pic/</h4>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -553,7 +637,7 @@
 
 <hr>
 <h4 id="src--sass--statics--vendor">sass/statics/vendor/</h4>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
@@ -561,7 +645,7 @@
 
 <hr>
 <h3 id="src--sass--config">sass/config.scss</h3>
-<p>описание в процессе ...</p>
+<small>описание в процессе ...</small>
 
 
 
