@@ -2,7 +2,7 @@
 
 /**
  * <div class="moduleName"><small>require</small><br><b>const</b> _helpers = require("./tasks/_helpers");<br><small>es6 import</small><br><b>import</b> _helpers <b>from</b> "./tasks/_helpers";</div>
- * Модуль который експортирует объект с параметрами для конфигурации nodejs модулей
+ * 
  *
  * ### Связанные материалы
  * - {@link module:tasks/_modules-params}

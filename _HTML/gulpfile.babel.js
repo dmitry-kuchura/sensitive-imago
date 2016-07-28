@@ -15,15 +15,27 @@
 
 
 
+
+
+
+
 // подключение nodejs модулей
 // ==========================
 	import fs from 'fs';
 	import gulp from 'gulp';
-	import autowatch from 'gulp-autowatch';
-	import yargs from 'yargs';
 	import pkg from './package.json';
+	import autowatch from 'gulp-autowatch';
 	import browserSyncModule from 'browser-sync';
 	const browserSync = browserSyncModule.create();
+	import yargs from 'yargs';
+	const argv = yargs.argv;
+
+
+
+
+
+
+
 
 
 // константы
@@ -40,11 +52,14 @@
 	const src = `./src`;
 
 	// флаги
-	const isLinting = !!(yargs.argv.l) || !!(yargs.argv.lint);
-	const isBsOpenOnInit = (!!(yargs.argv.o) || !!(yargs.argv.open)) ? 'external' : false;
-	const isBsAutoReload = !(!!(yargs.argv.n) || !!(yargs.argv.noreload));
-	const isProduction = !!(yargs.argv.p) || !!(yargs.argv.prod);
+	const isLinting = !!argv.l || !!argv.lint;
+	const isBsOpenOnInit = (!!argv.o || !!argv.open) ? 'external' : false;
+	const isBsAutoReload = !(!!argv.n || !!argv.noreload);
+	const isProduction = !!argv.p || !!argv.prod;
 	const isDevelop = !isProduction;
+
+	// объект авто-вотчей
+	const watchSources = {};
 
 	// browser-sync
 	const bsUse = true;
@@ -54,8 +69,21 @@
 		port: 4000
 	};
 
-	// объект авто-вотчей
-	const watchSources = {};
+	// Описание инициализации `browser-sync`.
+	const BrowserSync = (cb) => {
+		if (bsUse) {
+			browserSync.init(bsConfig);
+		} else {
+			cb();
+		}
+	}
+
+
+
+
+
+
+
 
 
 // создание `tmp` директории, если не существует
@@ -69,21 +97,6 @@
 
 
 
-
-/**
- * { function_description }
- *
- * @class      BrowserSync (name)
- * @param      {Function}  cb      { parameter_description }
- * @return     {<type>}    { description_of_the_return_value }
- */
-	const BrowserSync = (cb) => {
-		if (bsUse) {
-			browserSync.init(bsConfig);
-		} else {
-			cb();
-		}
-	}
 
 
 
@@ -137,7 +150,7 @@
 		let _ejsCtiticals = `${src}/markup/views/criticals`;
 
 	// ejs:markup
-	// ============
+	// ==========
 		lazyRequireTask('ejs:markup', `${tasks}/ejs`, {
 			src: _ejsViews,
 			dest: _ejsDest,
@@ -179,7 +192,7 @@
 		let _sassStatics = `${src}/sass/statics/**/*.*`;
 
 	// sass:dynamics
-	// ============
+	// =============
 		lazyRequireTask('sass:dynamics', `${tasks}/sass`, {
 			src: _sassDynamics,
 			dest: _sassDest,
@@ -195,7 +208,7 @@
 		});
 
 	// sass:criticals
-	// ============
+	// ==============
 		lazyRequireTask('sass:criticals', `${tasks}/sass`, {
 			src: _sassCriticals,
 			dest: _ejsCtiticals,
@@ -230,7 +243,7 @@
 		});
 
 	// sass:clean:criticals
-	// ==========
+	// ====================
 		lazyRequireTask('sass:clean:criticals', `${tasks}/clean`, {
 			src: _ejsCtiticals
 		});
@@ -526,6 +539,8 @@
 					cb();
 				},
 				'demo:clean',
+				'sass',
+				'ejs',
 				'demo:files'
 			)
 		);
@@ -540,13 +555,11 @@
 	// default
 	// =======
 		gulp.task('default',
-			gulp.series(
-				gulp.parallel('watch', BrowserSync)
-			)
+			gulp.parallel('watch', BrowserSync)
 		);
 
 	// build
-	// =======
+	// =====
 		gulp.task('build',
 			gulp.series(
 				'rebuild',
@@ -555,7 +568,7 @@
 		);
 
 	// start
-	// =======
+	// =====
 		gulp.task('start',
 			gulp.series(
 				'rebuild',

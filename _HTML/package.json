@@ -46,7 +46,6 @@
     "minimatch": "^3.0.2",
     "multipipe": "^0.3.1",
     "sassdoc": "^2.1.20",
-    "stream-combiner2": "^1.1.1",
     "vinyl-ftp": "^0.5.0",
     "yargs": "^4.7.1"
   }

@@ -2,7 +2,7 @@
 /// @group style.scss
 ////
 
-@import '../_data/config';
+@import '../config';
 
 @include normalizeExternal;
 @include baseExternal;

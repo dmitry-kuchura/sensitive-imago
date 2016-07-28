@@ -1,15 +1,17 @@
-<p>Здесь вы можете ознакомиться на со всем доступными задачами для работы</p>
+<p>Здесь вы можете ознакомиться со всеми доступными задачами для работы</p>
 <hr>
 <h2 id="flags">Флаги</h2>
 
-<p>Флаги - это дополнительный рычаг управления процессами <code>node js</code>. Флаги никак не зависят от вызываемых задач. Их можуно писать когда угодно с люьой задачей.</p>
+<p>Флаги никак не зависят от вызываемых задач. Их можуно писать когда угодно с любой задачей. Также можно использовать несколько флагов одновременно.</p>
 <p>В нашей сборки флаги используются для определения продакш версии сборки или включения линтинга при компиляции. Это реализацию можно было сделать и при помощи переменных / констант внутри gulp файла (хотя по сути - так оно и есть). Но в этом случае чтобы изменить заничение - нужно вручную лезть в файл и переписывать <code>true</code> на <code>false</code> или на оборот</p>
 <p>В случае использования флагов - gulp будет сам менять эти значения в зависимости от ситуации:</p>
 <pre><code class="language-javascript">
 // флаги
-	const isLinting = !!(yargs.argv.l) || !!(yargs.argv.lint);
-	const isProduction = !!(yargs.argv.p) || !!(yargs.argv.prod);
-	const isDevelop = !isProduction;
+const isLinting = !!argv.l || !!argv.lint;
+const isBsOpenOnInit = (!!argv.o || !!argv.open) ? 'external' : false;
+const isBsAutoReload = !(!!argv.n || !!argv.noreload);
+const isProduction = !!argv.p || !!argv.prod;
+const isDevelop = !isProduction;
 </code></pre>
 
 <br>
@@ -21,12 +23,11 @@
 <hr>
 <h3 id="flag-prod">--prod / -p</h3>
 <p>Флаг продакшн сборки. Можно использовать как <em>длинный - <code>--prod</code></em>, так и <em>короткий <code>-p</code></em> флаги</p>
-<h4>Примеры использования</h4>
+<p><strong>Примеры использования</strong></p>
 <p>Пересборка продакш версии</p>
 <pre><code class="language-git">
 gulp build --prod
-</code></pre>
-<pre><code class="language-git">
+# или
 gulp build -p
 </code></pre>
 
@@ -37,15 +38,45 @@ gulp --prod
 
 <hr>
 <h3 id="flag-lint">--lint / -l</h3>
-<p>Флаг включения линтинга при компиляции <code>sass / css / js</code> файлой</p>
+<p>Флаг включения линтинга при компиляции <code>sass / css / js</code> файлов. </p>
+<p><strong>Примеры использования</strong></p>
+<p>Компиляция с линтингом</p>
+<pre><code class="language-git">
+gulp --lint
+# или
+gulp -l
+</code></pre>
+<p>Ребилд с линтингом</p>
+<pre><code class="language-git">
+gulp rebuild --lint
+</code></pre>
+<p>Ребилд продакшн версии с линтингом</p>
+<pre><code class="language-git">
+gulp rebuild --prod --lint
+# или
+gulp rebuild -p -l
+</code></pre>
+
+
 
 <hr>
 <h3 id="flag-prod">--open / -o</h3>
-<p>Флаг открытия прокси url'a после инициализации <code>browser-sync</code></p>
+<p>Флаг открытия прокси url'a в браузере, после инициализации <code>browser-sync</code>.</p>
+<pre><code class="language-git">
+gulp --open
+# или
+gulp -o
+</code></pre>
+
 
 <hr>
 <h3 id="flag-prod">--noreload / -n</h3>
-<p>Флаг отключения прокси url'a после инициализации <code>browser-sync</code></p>
+<p>Флаг отключения автоматичкой перезагрузки или инъекций <code>browser-sync</code></p>
+<pre><code class="language-git">
+gulp --noreload
+# или
+gulp -n
+</code></pre>
 
 
 
@@ -58,7 +89,7 @@ gulp --prod
 <hr>
 <h2 id="main">Основные задачи</h2>
 <hr>
-<h3 id="gulp-start">gulp start</h3>
+<h3 id="gulp-start">start</h3>
 <p>Стартовая задача, по сути используеться только один раз - после установки проекта (читай readme.md репозитория). Задача сделает базовое построение итогового проекта верстки и составить основную документацию</p>
 <p>Вызов задачи:</p>
 <pre><code class="language-git">
@@ -77,28 +108,25 @@ gulp --prod
 </code></pre>
 
 <hr>
-<h3 id="gulp-default">gulp default</h3>
+<h3 id="gulp-default">default</h3>
 <p>Вызов задачи:</p>
 <pre><code class="language-git">
-	gulp
+gulp default
+# или просто
+gulp
 </code></pre>
 <p>Последовательность серий:</p>
 <pre><code class="language-javascript">
 // default
 // =======
 	gulp.task('default',
-		gulp.series(
-			(cb) => {
-				console.log('\n\tdemo default task\n');
-				cb();
-			}
-		)
+		gulp.parallel('watch', BrowserSync)
 	);
 </code></pre>
 
 <hr>
-<h3 id="gulp-rebuild">gulp rebuild</h3>
-<p>Полноя пересборка проекта. После финиша задачи - процесс будет остановлен</p>
+<h3 id="gulp-rebuild">rebuild</h3>
+<p>Полная пересборка проекта. После финиша задачи - процесс будет остановлен</p>
 <p>Вызов задачи:</p>
 <pre><code class="language-git">
 	gulp rebuild
@@ -120,8 +148,8 @@ gulp --prod
 </code></pre>
 
 <hr>
-<h3 id="gulp-build">gulp build</h3>
-<p>Полноя пересборка проекта. После будет запущена задача <a href="#gulp-default">gulp-default</a></p>
+<h3 id="gulp-build">build</h3>
+<p>Полная пересборка проекта. После будет запущена задача <a href="#gulp-default">gulp-default</a></p>
 <p>Вызов задачи:</p>
 <pre><code class="language-git">
 	gulp build
@@ -139,7 +167,7 @@ gulp --prod
 </code></pre>
 
 <hr>
-<h3 id="gulp-upload">gulp upload</h3>
+<h3 id="gulp-upload">upload</h3>
 <p>Задача загрузки файлов на фтп. По умолчанию это фтп хост инкубатора, параметры подключения к хосту указываються в конфигурации задачи <code>connect</code>. <br> Задачи выгружает все файлы из директории итоговой сборки <samp>./dist/**/*.*</samp></p>
 <p>Директория загрузки - <samp>www/inkubator.ks.ua/html/${projectName}/</samp>. <br> Адрес обращения - <samp>www.inkubator.ks.ua/html/${projectName}/</samp></p>
 <pre><code class="language-git">
@@ -165,7 +193,7 @@ gulp --prod
 
 
 <hr>
-<h3 id="gulp-docs:gulp">gulp docs:gulp</h3>
+<h3 id="gulp-docs:gulp">docs:gulp</h3>
 <p>Задача для создания документации всех js файлы, которые участвуют в сборке проекта, а также составления сопутствующих туториалов.</p>
 <p>Более подробно - читай туториал {@tutorial docs-gulp}</p>
 <p>Вызов задачи:</p>
@@ -186,7 +214,7 @@ gulp.task('docs:gulp',
 
 
 <hr>
-<h3 id="gulp-docs:js">gulp docs:js</h3>
+<h3 id="gulp-docs:js">docs:js</h3>
 <p>Документация клиентских скриптов, которые используються в проекте верстки. Документировать исходные файлы сторонних библиотек и плагинов не нужно, за исключением случаев, когда в эти файлы вносяться правки, кастомные расширения функционала (к примеру локализация) и прочее.</p>
 <p>Более подробно - читай туториал {@tutorial docs-js}</p>
 <p>Вызов задачи:</p>
@@ -207,7 +235,7 @@ gulp.task('docs:js',
 
 
 <hr>
-<h3 id="gulp-docs:sass">gulp docs:sass</h3>
+<h3 id="gulp-docs:sass">docs:sass</h3>
 <p>Для докуметирования используется nodejs модуль <strong>sassdoc v2</strong>. Его адаптированая gulp версия <strong>gulp-sassdoc</strong> - являеться устаревшей и НЕ рекомендуеться к использованию.</p>
 <p>Более подробно - читай туториал {@tutorial docs-sass}</p>
 <p>Внутри sassdoc уже вшита очистка директории перед генерацией. все что нужно - это вызвать задачу:</p>
@@ -228,7 +256,7 @@ gulp.task('docs:sass',
 
 
 <hr>
-<h3 id="gulp-docs:htmldoc">gulp docs:html</h3>
+<h3 id="gulp-docs:htmldoc">docs:html</h3>
 <p>Документация <code>html</code> файлов, на основе комментариев и <code>gulp-jsdoc3</code></p>
 <p>Более подробно - читай туториал {@tutorial docs-htmldoc}</p>
 <p>Вызов задачи:</p>
@@ -249,7 +277,7 @@ gulp.task('docs:html',
 
 
 <hr>
-<h3 id="gulp-docs">gulp docs</h3>
+<h3 id="gulp-docs">docs</h3>
 
 <h5 id="gulp-docs:assets"><strong>Файлы оформления</strong></h5>
 <p>Задача трансфера файлов, которые нужны для офрмления страниц документации. Фильтр трансфера у данной задачи <code>'newer'</code> - читай {@link module:tasks/transfer}</p>

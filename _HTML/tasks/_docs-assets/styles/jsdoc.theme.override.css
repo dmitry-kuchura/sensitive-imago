@@ -344,3 +344,12 @@ pre mark {
     padding: 0 .2em;
     color: inherit;
 }
+.list-none ul,
+.list-none ol,
+.list-none {
+	list-style: none;
+	padding-left: 32px;
+}
+.list-none li {
+	margin-top: .2em !important;
+}

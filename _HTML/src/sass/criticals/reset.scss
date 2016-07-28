@@ -2,7 +2,7 @@
 /// @group reset.scss
 ////
 
-@import '../_data/config';
+@import '../config';
 
 @include normalizeCritical;
 @include baseCritical;
