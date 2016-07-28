@@ -328,6 +328,7 @@
 	// внутренние переменные
 	// =====================
 		let _jsDest = `${dist}/js`;
+		let _jsData = `${src}/js/data/**/*.js`;
 		let _jsDynamics = `${src}/js/dynamics/**/*.js`;
 		let _jsCriticals = `${src}/js/criticals/**/*.js`;
 		let _jsStatics = `${src}/js/statics/**/*.*`;
@@ -340,6 +341,7 @@
 			maps: isDevelop,
 			min: isProduction,
 			watch: [
+				_jsData,
 				_jsDynamics
 			],
 			notify: true,
@@ -351,8 +353,10 @@
 			src: _jsCriticals,
 			dest: _ejsCtiticalsJs,
 			maps: false,
-			min: true,
+			min: false,
+			changeExt: '.ejs',
 			watch: [
+				_jsData,
 				_jsCriticals
 			],
 			notify: true,

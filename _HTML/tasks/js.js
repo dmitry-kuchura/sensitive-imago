@@ -50,6 +50,7 @@
  * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
+ * @param		{string}		[options.changeExt] - сменить расширение файла, при указании, должно содержать точку вначале
  * @param		{Array}			[options.watch] - набор путей, для вотчинга
  * @param		{boolean}		[options.filter=true] - флаг исрользования фильтровки файлов
  * @param		{boolean}		[options.notify=false] - выводить уведомление по окончанию трансфера
@@ -113,6 +114,13 @@ module.exports = function(options) {
 				.pipe($.if(
 					options.maps,
 					$.sourcemaps.write('/')
+				))
+				// если нужно сменить расширенние файла
+				.pipe($.if(
+					(/\.js$/ && !!options.changeExt),
+					$.rename((path) => {
+						path.extname = options.changeExt;
+					})
 				))
 				// фильтровка изменений в стриме
 				.pipe($.if(
