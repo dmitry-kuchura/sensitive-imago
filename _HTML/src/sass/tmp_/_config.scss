@@ -1,0 +1,104 @@
+//* Layout
+//================================================================================================== //
+
+$page-maxWidth: 1860px;
+$page-minWidth: 320px;
+$page-color: #000;
+$page-fontSize: 16px;
+$page-lineHeight: 1.4;
+$page-background: #fff;
+
+$global-borderColor: #ccc;
+$global-radius: 2px;
+$global-shadow: 0px 2px 4px 0px rgba(black, 0.3);
+
+//* Fonts
+//================================================================================================== //
+
+$font-primary: 'Proxima Nova', sans-serif;
+$font-secondary: 'Futuris Cyrillic', sans-serif;
+
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-bold: 700;
+
+//* Grid
+//================================================================================================== //
+
+$suffix: '-';
+
+$gutter: 20px;
+
+$gutterFactor: (
+	#{$suffix}half: 0.5,
+	'': 1,
+	#{$suffix}large: 1.5,
+	#{$suffix}double: 2
+);
+
+$breakpoints: (
+	sm: 480px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px
+);
+
+$xs: map-get($breakpoints, sm);
+$sm: map-get($breakpoints, md);
+$md: map-get($breakpoints, lg);
+$lg: map-get($breakpoints, xl);
+
+$xs-max: map-get($breakpoints, sm)-1;
+$sm-max: map-get($breakpoints, md)-1;
+$md-max: map-get($breakpoints, lg)-1;
+$lg-max: map-get($breakpoints, xl)-1;
+
+
+//* Colors
+//================================================================================================== //
+
+$palette: (
+	black: #000,
+	white: #fff,
+	primary: #b19b72,
+	secondary: #394052,
+	success: #14c521,
+	info: #00b3fe,
+	danger: #da0400,
+	gray: #787878,
+	light: #f7f7f7,
+	trans: transparent
+);
+
+$color-black: map-get($palette, black);
+$color-white: map-get($palette, white);
+$color-primary: map-get($palette, primary);
+$color-secondary: map-get($palette, secondary);
+$color-success: map-get($palette, success);
+$color-danger: map-get($palette, danger);
+$color-info: map-get($palette, info);
+$color-gray: map-get($palette, gray);
+$color-light: map-get($palette, light);
+
+//* Settings flags
+//================================================================================================== //
+
+$guttersInRems: false;
+$gridInRems: false;
+
+//* Mixins
+//================================================================================================== //
+
+@import '_mixins/clearfix';
+@import '_mixins/em';
+@import '_mixins/fonts';
+@import '_mixins/hvcenter';
+@import '_mixins/media';
+@import '_mixins/rem';
+@import '_mixins/strip-units';
+@import '_mixins/util-grid';
+@import '_mixins/util-colors';
+@import '_mixins/util-gutters';
+@import '_mixins/util-text';
+@import '_mixins/util-visibility';

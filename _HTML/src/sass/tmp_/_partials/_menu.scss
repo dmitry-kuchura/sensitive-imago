@@ -1,0 +1,65 @@
+$borderColor: $global-borderColor;
+$font-secondary: $font-secondary;
+$color-active: $color-primary;
+
+/* Menu
+==================================================================================================== */
+
+.menu {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	cursor: default;
+	&__item {
+		display: inline-block;
+		vertical-align: top;
+	}
+	&__link {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+	}
+}
+.menu--large {
+	font-family: $font-secondary;
+	font-size: rem(18); /* 18px */
+	padding-bottom: em(10,18); /* 10px*/
+	.menu__item {
+		padding: em(10,18); /* 10px */
+	}
+	.menu__link {
+		line-height: 1;
+		&:hover,
+		&.is-active {
+			color: $color-active;
+		}
+	}
+}
+.menu--bordered {
+	border-bottom: 1px solid $borderColor;
+}
+.menu--buttoned {
+	font-size: rem(12); /* 12px */
+	color: $color-gray;
+	text-transform: uppercase;
+	.menu__item {
+		margin-bottom: em(4,12); /* 4px */
+	}
+	.menu__link {
+		line-height: 1;
+		padding: em(10,12) em(15,12); /* 10px 15px */
+		border: 1px solid transparent;
+		border-radius: 2em;
+		&:hover,
+		&.is-active {
+			color: $color-black;
+			border-color: $color-black;
+		}
+		&:active {
+			box-shadow: inset $global-shadow;
+		}
+	}
+}
+.menu--secondary-in-pageHeader {
+	margin-bottom: em(10,18); /* 10px */
+}
