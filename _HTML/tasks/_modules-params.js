@@ -168,10 +168,7 @@ class modulesParams {
 			],
 			excludeTests: [
 				'checked'
-			],
-			crawl: true,
-			cache: false,
-			classPrefix: "mdz-"
+			]
 		};
 		let currentConfig;
 		if (customConfig) {
