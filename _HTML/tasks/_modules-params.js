@@ -21,6 +21,8 @@
 // подключение nodejs модулей
 // ==========================
 	import deepExtend from 'deep-extend';
+	import gulpLoadPlugins from 'gulp-load-plugins';
+	const $ = gulpLoadPlugins();
 
 // подключение внутренних модулей
 // ==============================
@@ -142,6 +144,65 @@ class modulesParams {
 			title: `Error ${taskName}`,
 			message: '<%= error.message %>'
 		};
+	}
+
+
+
+
+
+	/**
+	 * Настройка параметров для модуля `gulp-sass-lint`.
+	 * - офф документация {@link https://github.com/sasstools/sass-lint/tree/develop/docs}
+	 *
+	 * @sourcecode
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpJsLibModernizr(customConfig={}) {
+		let baseConfig = {
+			options: [
+				'setClasses', 'prefixes'
+			],
+			tests: [
+				'localstorage'
+			],
+			excludeTests: [
+				'checked'
+			],
+			crawl: true,
+			cache: false,
+			classPrefix: "mdz-"
+		};
+		let currentConfig;
+		if (customConfig) {
+			currentConfig = deepExtend(baseConfig, customConfig);
+		} else {
+			currentConfig = baseConfig;
+		}
+		return $.modernizr(currentConfig);
+	}
+
+
+
+
+
+	/**
+	 * Настройка параметров для модуля `gulp-sass-lint`.
+	 * - офф документация {@link https://github.com/sasstools/sass-lint/tree/develop/docs}
+	 *
+	 * @sourcecode
+	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
+	 * @return		{Array}		Список конфигурцаии.
+	 */
+	gulpJsGetLibs(keys=[]) {
+		let libs = [];
+		keys.forEach((key) => {
+			let branch = `gulpJsLib${key.name}`;
+			if (!!this[branch]) {
+				libs.push(this[`gulpJsLibModernizr`](key.options));
+			}
+		});
+		return libs;
 	}
 
 

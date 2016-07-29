@@ -15,6 +15,8 @@
 	import path from 'path';
 	import fs from 'fs';
 	import multipipe from 'multipipe';
+	import through2 from 'through2';
+	const throughObj = through2.obj;
 	import gulpLoadPlugins from 'gulp-load-plugins';
 	const $ = gulpLoadPlugins();
 
@@ -81,11 +83,21 @@ module.exports = function(options) {
 		// streams
 		// ========
 
+
 			// составление multipipe компиляции
 			let streamJs = multipipe(
 				$.if(
 					/\.js$/,
-					$.include()
+					multipipe(
+						$.if(
+							!!options.libs,
+							multipipe(..._modulesParams.gulpJsGetLibs(options.libs))
+						),
+						$.if(
+							options.include,
+							$.include()
+						)
+					)
 				),
 				// если min вкл.
 				$.if(
@@ -97,12 +109,31 @@ module.exports = function(options) {
 			);
 
 
+			// составление multipipe компиляции
+			let streamModernizr = multipipe(
+				multipipe(_modulesParams.gulpJsLibModernizr(options.modernizrConfig)),
+				throughObj((file, enc, callback) => {
+					if (file.extname === undefined) {
+						return callback(null, file);
+					}
+					return callback();
+				})
+			).on('error', $.notify.onError(
+				_modulesParams.gulpNotifyOnError(`modernizr - ${options.taskName}`))
+			);
+
+
 
 
 
 		// task
 		// ========
 			return gulp.src(options.src)
+				// modernizr
+				.pipe($.if(
+					options.modernizr,
+					streamModernizr
+				))
 				// если sasslint вкл.
 				.pipe($.if(
 					options.maps,

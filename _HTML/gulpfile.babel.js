@@ -59,6 +59,7 @@
 	const isBsAutoReload = !(!!argv.n || !!argv.noreload);
 	const isProduction = !!argv.p || !!argv.prod;
 	const isDevelop = !isProduction;
+	const isNotify = true;
 
 	// объект авто-вотчей
 	const watchSources = {};
@@ -167,7 +168,7 @@
 			watch: _ejsAll,
 			beautify: isProduction,
 			locals: _ejsLocals,
-			notify: true
+			notify: isNotify
 		});
 
 	// ejs:hidden
@@ -180,7 +181,7 @@
 			beautify: isProduction,
 			changeExt: '.php',
 			locals: _ejsLocals,
-			notify: true
+			notify: isNotify
 		});
 
 	// sass:clean
@@ -222,144 +223,53 @@
 
 
 
-// Компиляция стилей
-// ===========================================
-
-	// внутренние переменные
-	// =====================
-		let _sassDest = `${dist}/css`;
-		let _sassConfig = `${src}/sass/config.scss`;
-		let _sassData = `${src}/sass/data/**/*.scss`;
-		let _sassDynamics = `${src}/sass/dynamics/**/*.scss`;
-		let _sassCriticals = `${src}/sass/criticals/**/*.scss`;
-		let _sassStatics = `${src}/sass/statics/**/*.*`;
-
-	// sass:dynamics
-	// =============
-		lazyRequireTask('sass:dynamics', `${tasks}/sass`, {
-			src: _sassDynamics,
-			dest: _sassDest,
-			maps: isDevelop,
-			min: isProduction,
-			watch: [
-				_sassConfig,
-				_sassData,
-				_sassDynamics
-			],
-			notify: true,
-			sasslint: isLinting,
-			csslint: isLinting
-		});
-
-	// sass:criticals
-	// ==============
-		lazyRequireTask('sass:criticals', `${tasks}/sass`, {
-			src: _sassCriticals,
-			dest: _ejsCtiticalsCss,
-			maps: false,
-			min: true,
-			changeExt: '.ejs',
-			watch: [
-				_sassConfig,
-				_sassData,
-				_sassCriticals
-			],
-			notify: true,
-			sasslint: isLinting,
-			csslint: isLinting
-		});
-
-	// sass:statics
-	// ============
-		lazyRequireTask('sass:statics', `${tasks}/transfer`, {
-			src: _sassStatics,
-			dest: _sassDest,
-			filter: `newer`,
-			imagemin: isProduction,
-			watch: [
-				_sassStatics
-			],
-			notify: true
-		});
-
-	// sass:clean
-	// ==========
-		lazyRequireTask('sass:clean', `${tasks}/clean`, {
-			src: _sassDest
-		});
-
-	// sass:clean:criticals
-	// ====================
-		lazyRequireTask('sass:clean:criticals', `${tasks}/clean`, {
-			src: _ejsCtiticalsCss
-		});
-
-	// sass
-	// ====
-		gulp.task('sass',
-			gulp.series(
-				'sass:dynamics',
-				'sass:criticals',
-				'sass:statics'
-			)
-		);
-
-	// sass:rebuild
-	// ============
-		gulp.task('sass:rebuild',
-			gulp.series(
-				'sass:clean',
-				'sass:clean:criticals',
-				'sass'
-			)
-		);
-
-
-
-
-
-
-
-
-
 // Компиляция скриптов
 // ===========================================
 
 	// внутренние переменные
 	// =====================
 		let _jsDest = `${dist}/js`;
-		let _jsData = `${src}/js/data/**/*.js`;
+		let _jsDestVendor = `${_jsDest}/vendor`;
 		let _jsDynamics = `${src}/js/dynamics/**/*.js`;
 		let _jsCriticals = `${src}/js/criticals/**/*.js`;
 		let _jsStatics = `${src}/js/statics/**/*.*`;
+		let _jsAddons = [
+			`${src}/js/addons/libs/*.js`
+		];
+		let _jsModernizr = [
+			`${_jsDest}/*.js`,
+			`${dist}/css/*.css`,
+			`${_ejsCtiticalsCss}/*.ejs`,
+			`${_ejsCtiticalsJs}/*.ejs`
+		];
 
 	// js:dynamics
-	// =============
+	// ===========
 		lazyRequireTask('js:dynamics', `${tasks}/js`, {
 			src: _jsDynamics,
 			dest: _jsDest,
 			maps: isDevelop,
 			min: isProduction,
+			include: true,
 			watch: [
-				_jsData,
 				_jsDynamics
-			],
-			notify: true,
+			].concat(_jsAddons),
+			notify: isNotify,
 		});
 
-	// js:dynamics
-	// =============
+	// js:criticals
+	// ============
 		lazyRequireTask('js:criticals', `${tasks}/js`, {
 			src: _jsCriticals,
 			dest: _ejsCtiticalsJs,
 			maps: false,
-			min: false,
+			min: true,
+			include: true,
 			changeExt: '.ejs',
 			watch: [
-				_jsData,
 				_jsCriticals
-			],
-			notify: true,
+			].concat(_jsAddons),
+			notify: isNotify,
 		});
 
 	// js:statics
@@ -371,7 +281,24 @@
 			watch: [
 				_jsStatics
 			],
-			notify: true
+			notify: isNotify
+		});
+
+	// modernizr
+	// =========
+		lazyRequireTask('modernizr', `${tasks}/js`, {
+			src: _jsModernizr,
+			dest: _jsDestVendor,
+			maps: false,
+			min: isProduction,
+			modernizr: true,
+			modernizrConfig: {
+				excludeTests: [
+					'checked'
+				]
+			},
+			filter: false,
+			notify: isNotify
 		});
 
 	// js:clean
@@ -402,7 +329,109 @@
 			gulp.series(
 				'js:clean',
 				'js:clean:criticals',
-				'js'
+				'js',
+				'modernizr'
+			)
+		);
+
+
+
+
+
+
+
+
+
+// Компиляция стилей
+// ===========================================
+
+	// внутренние переменные
+	// =====================
+		let _sassDest = `${dist}/css`;
+		let _sassConfig = `${src}/sass/config.scss`;
+		let _sassAddons = `${src}/sass/addons/**/*.scss`;
+		let _sassDynamics = `${src}/sass/dynamics/**/*.scss`;
+		let _sassCriticals = `${src}/sass/criticals/**/*.scss`;
+		let _sassStatics = `${src}/sass/statics/**/*.*`;
+
+	// sass:dynamics
+	// =============
+		lazyRequireTask('sass:dynamics', `${tasks}/sass`, {
+			src: _sassDynamics,
+			dest: _sassDest,
+			maps: isDevelop,
+			min: isProduction,
+			watch: [
+				_sassConfig,
+				_sassAddons,
+				_sassDynamics
+			],
+			notify: isNotify,
+			sasslint: isLinting,
+			csslint: isLinting
+		});
+
+	// sass:criticals
+	// ==============
+		lazyRequireTask('sass:criticals', `${tasks}/sass`, {
+			src: _sassCriticals,
+			dest: _ejsCtiticalsCss,
+			maps: false,
+			min: true,
+			changeExt: '.ejs',
+			watch: [
+				_sassConfig,
+				_sassAddons,
+				_sassCriticals
+			],
+			notify: isNotify,
+			sasslint: isLinting,
+			csslint: isLinting
+		});
+
+	// sass:statics
+	// ============
+		lazyRequireTask('sass:statics', `${tasks}/transfer`, {
+			src: _sassStatics,
+			dest: _sassDest,
+			filter: `newer`,
+			imagemin: isProduction,
+			watch: [
+				_sassStatics
+			],
+			notify: isNotify
+		});
+
+	// sass:clean
+	// ==========
+		lazyRequireTask('sass:clean', `${tasks}/clean`, {
+			src: _sassDest
+		});
+
+	// sass:clean:criticals
+	// ====================
+		lazyRequireTask('sass:clean:criticals', `${tasks}/clean`, {
+			src: _ejsCtiticalsCss
+		});
+
+	// sass
+	// ====
+		gulp.task('sass',
+			gulp.series(
+				'sass:dynamics',
+				'sass:criticals',
+				'sass:statics'
+			)
+		);
+
+	// sass:rebuild
+	// ============
+		gulp.task('sass:rebuild',
+			gulp.series(
+				'sass:clean',
+				'sass:clean:criticals',
+				'sass',
+				'modernizr'
 			)
 		);
 
@@ -433,7 +462,7 @@
 			watch: [
 				_imagesSrc
 			],
-			notify: true
+			notify: isNotify
 		});
 
 		// clean
@@ -465,7 +494,7 @@
 			watch: [
 				_faviconsSrc
 			],
-			notify: true
+			notify: isNotify
 		});
 
 		// clean
@@ -502,7 +531,7 @@
 	// =========
 		lazyRequireTask('upload', `${tasks}/upload`, {
 			src: `${dist}/**/*.*`,
-			notify: true,
+			notify: isNotify,
 			connect: {
 				host: `91.206.30.13`,
 				user: `inkubator`,
@@ -534,7 +563,7 @@
 				'undefined': `Без группы`
 			},
 			src: [
-				_sassData,
+				_sassAddons,
 				_sassDynamics,
 				_sassCriticals
 			]
@@ -554,7 +583,7 @@
 			src: `${tuts}/sass/assets/**/*.*`,
 			dest: `${docs}/sass/assets`,
 			filter: 'newer',
-			notify: true,
+			notify: isNotify,
 			notifyIsShort: true
 		});
 
@@ -594,7 +623,7 @@
 			src: `${tuts}/gulp/assets/**/*.*`,
 			dest: `${docs}/gulp/assets`,
 			filter: 'newer',
-			notify: true,
+			notify: isNotify,
 			notifyIsShort: true
 		});
 
@@ -633,7 +662,7 @@
 			src: `${tuts}/js/assets/**/*.*`,
 			dest: `${docs}/js/assets`,
 			filter: 'newer',
-			notify: true,
+			notify: isNotify,
 			notifyIsShort: true
 		});
 
@@ -678,7 +707,7 @@
 			src: `${tuts}/html/assets/**/*.*`,
 			dest: `${docs}/html/assets`,
 			filter: 'newer',
-			notify: true,
+			notify: isNotify,
 			notifyIsShort: true
 		});
 
@@ -706,7 +735,7 @@
 			src: `${tasks}/_docs-assets/**/*.*`,
 			dest: `${docs}/_assets`,
 			filter: 'newer',
-			notify: true,
+			notify: isNotify,
 			notifyIsShort: true
 		});
 
@@ -752,6 +781,7 @@
 				'js',
 				'images',
 				'favicons',
+				'modernizr',
 				'ejs'
 			)
 		);
