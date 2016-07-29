@@ -8,7 +8,20 @@
 @include baseCritical;
 
 
-.no-dataview .box { color: red; }
-.dataview .box { color: green; }
-.no-cssexunit .box { color: red; }
-.cssexunit .box { color: green; }
+.safari,
+.webkit,
+.edge,
+.retina,
+.webkit,
+.opera,
+.ie,
+.ie8,
+.ie9,
+.ie10,
+.win,
+.win10,
+.ie11,
+.moz,
+.chrome {
+	color: red;
+}

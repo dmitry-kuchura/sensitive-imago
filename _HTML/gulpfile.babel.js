@@ -15,8 +15,6 @@
 
 
 
-
-
 // подключение nodejs модулей
 // ==========================
 	import fs from 'fs';
@@ -52,6 +50,7 @@
 	const tasks = `./tasks`;
 	const tmp = `./tmp`;
 	const src = `./src`;
+	const nms = `./node_modules`;
 
 	// флаги
 	const isLinting = !!argv.l || !!argv.lint;
@@ -230,11 +229,16 @@
 	// =====================
 		let _jsDest = `${dist}/js`;
 		let _jsDestVendor = `${_jsDest}/vendor`;
+		let _jsAddons = `${src}/js/addons`;
 		let _jsDynamics = `${src}/js/dynamics/**/*.js`;
 		let _jsCriticals = `${src}/js/criticals/**/*.js`;
 		let _jsStatics = `${src}/js/statics/**/*.*`;
-		let _jsAddons = [
-			`${src}/js/addons/libs/*.js`
+		let _jsAddonsWatch = [
+			`${_jsAddons}/libs/*.js`
+		];
+		let _jsDocs = [
+			`${_jsAddons}/libs/*.js`,
+			`${_jsAddons}/libs/modernizr-tests/**/*.js`
 		];
 		let _jsModernizr = [
 			`${_jsDest}/*.js`,
@@ -253,7 +257,7 @@
 			include: true,
 			watch: [
 				_jsDynamics
-			].concat(_jsAddons),
+			].concat(_jsAddonsWatch),
 			notify: isNotify,
 		});
 
@@ -268,7 +272,7 @@
 			changeExt: '.ejs',
 			watch: [
 				_jsCriticals
-			].concat(_jsAddons),
+			].concat(_jsAddonsWatch),
 			notify: isNotify,
 		});
 
@@ -298,6 +302,15 @@
 				]
 			},
 			filter: false,
+			notify: isNotify
+		});
+
+	// modernizr:tests
+	// ==========
+		lazyRequireTask('modernizr:tests', `${tasks}/transfer`, {
+			src: `${_jsAddons}/libs/modernizr-tests/**/*.js`,
+			dest: `${nms}/modernizr/feature-detects`,
+			filter: `newer`,
 			notify: isNotify
 		});
 
@@ -613,6 +626,7 @@
 			src: [
 				`${tuts}/gulp-index.md`,
 				`${tasks}/*.js`,
+				`${tasks}/modernizr-tests/**/*.js`,
 				`${tasks}/jsdoc-theme/plugins/*.js`,
 				`./gulpfile.babel.js`
 			]
@@ -651,10 +665,8 @@
 			tutorials: `${tuts}/js`,
 			dest: `${docs}/js`,
 			src: [
-				`${tuts}/js-index.md`,
-				`${src}/js/**/*.js`,
-				`!${src}/js/**/{vendor}/**/*.js`
-			]
+				`${tuts}/js-index.md`
+			].concat(_jsDocs)
 		});
 
 		// трансфер статических файлов
@@ -813,6 +825,7 @@
 	// =====
 		gulp.task('start',
 			gulp.series(
+				'modernizr:tests',
 				'rebuild',
 				'docs'
 			)
