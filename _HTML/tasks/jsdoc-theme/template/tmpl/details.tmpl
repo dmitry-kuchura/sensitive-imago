@@ -21,6 +21,16 @@ data._header = data._header || 'p';
 
 ?>
 <dl class="details">
+
+	<?js if (data.see && see.length && data.kind === 'member') {?>
+	<dt class="tag-see method-doc-label method-doc-details-label"><?js= (_lang('See', 'Смотри также'))?>:</dt>
+	<dd class="tag-see">
+		<ul><?js see.forEach(function(s) { ?>
+			<li><?js= self.linkto(s) ?></li>
+			<?js }); ?></ul>
+	</dd>
+	<?js } ?>
+
     <?js
         var properties = data.properties;
         if (properties && properties.length && properties.forEach) {
@@ -176,13 +186,4 @@ data._header = data._header || 'p';
 		<?js= meta.shortpath ?>
 	</dd>
 	<?js } ?>
-
-	<!--<?js if (data.see && see.length) {?>
-	<dt class="tag-see method-doc-label method-doc-details-label"><?js= (_lang('See', 'Смотри также'))?>:</dt>
-	<dd class="tag-see">
-		<ul><?js see.forEach(function(s) { ?>
-			<li><?js= self.linkto(s) ?></li>
-			<?js }); ?></ul>
-	</dd>
-	<?js } ?>-->
 </dl>
