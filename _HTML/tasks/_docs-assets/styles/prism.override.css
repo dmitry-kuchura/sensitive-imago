@@ -87,6 +87,12 @@ pre[class*="language-"],
 		color: #66d9ef;
 		font-style: italic;
 	}
+	.language-javascript .token.boolean,
+	.language-javascript .token.number,
+	.language-javascript .token.keyword.keyword-undefined,
+	.language-javascript .token.keyword.keyword-null {
+		color: #ae81ff;
+	}
 
 /* language-git */
 	.language-git .token.command {

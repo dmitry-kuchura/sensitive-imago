@@ -5,10 +5,9 @@
  *
  *
  *
- * @module 		gulpfile
+ * @namespace 	gulp
  * @sourcefile 	file:gulpfile
 */
-
 
 
 
@@ -59,6 +58,8 @@
 	const isProduction = !!argv.p || !!argv.prod;
 	const isDevelop = !isProduction;
 	const isNotify = true;
+	const isProjectResponsive = true;
+	const isProjectWezom = true;
 
 	// объект авто-вотчей
 	const watchSources = {};
@@ -110,6 +111,8 @@
  *
  *
  * @sourcecode 	file:gulpfile:lazyRequireTask
+ * @memberof 	gulp
+ * @private
  *
  * @param		{String}		taskName - имя задачи
  * @param		{String}		taskFile - путь к файлу, без учета родительской директории задач - `./tasks/`
@@ -146,53 +149,73 @@
 
 	// внутренние переменные
 	// =====================
-		let _ejsDest = `${dist}`;
-		let _ejsDestHidden = `${dist}/hidden`;
-		let _ejsAll = `${src}/markup/**/*.ejs`;
-		let _ejsViews = `${src}/markup/views/*.ejs`;
-		let _ejsHidden = `${src}/markup/hidden/*.ejs`;
-		let _ejsCtiticalsCss = `${src}/markup/views/criticals/css`;
-		let _ejsCtiticalsJs = `${src}/markup/views/criticals/js`;
+		let _ejsCtiticalsCss = `./src/markup/views/criticals/css`;
+		let _ejsCtiticalsJs = `./src/markup/views/criticals/js`;
 		let _ejsLocals = {
 			_projectName: projectName,
-			_projectResponsive: true,
-			_projectWezom: true
+			_projectResponsive: isProjectResponsive,
+			_projectWezom: isProjectWezom
 		}
 
-	// ejs:markup
-	// ==========
-		lazyRequireTask('ejs:markup', `${tasks}/ejs`, {
-			src: _ejsViews,
-			dest: _ejsDest,
-			watch: _ejsAll,
+
+	/**
+	 * Задача компиляции пиляции основных файлов разметки.
+	 * ```git
+	 * gulp ejs:markup
+	 * ```
+	 *
+	 * @name 		ejs:markup
+	 * @sourcecode 	gulp:ejs:markup
+	 * @memberof 	gulp
+	 * @newscope 	gulp
+	 * @example
+	 * gulp ejs:markup
+	 */
+		lazyRequireTask('ejs:markup', './tasks/ejs', {
+			src: './src/markup/views/*.ejs',
+			dest: './dist',
+			watch: [
+				'./src/markup/addons/**/*.ejs',
+				'./src/markup/layouts/**/*.ejs',
+				'./src/markup/views/**/*.ejs',
+				'./src/markup/config.ejs'
+			],
 			beautify: isProduction,
 			locals: _ejsLocals,
 			notify: isNotify
-		});
+		}); // endcode gulp:ejs:markup
 
-	// ejs:hidden
-	// ==========
-		lazyRequireTask('ejs:hidden', `${tasks}/ejs`, {
-			src: _ejsHidden,
-			dest: _ejsDestHidden,
-			watch: _ejsAll,
-			beautify: isProduction,
+
+	/**
+	 * Задача компиляции пиляции основных файлов разметки.
+	 * ```git
+	 * gulp ejs:hidden
+	 * ```
+	 *
+	 * @name 		ejs:hidden
+	 * @sourcecode 	gulp:ejs:hidden
+	 * @memberof 	gulp
+	 * @newscope 	gulp
+	 */
+		lazyRequireTask('ejs:hidden', './tasks/ejs', {
+			src: './src/markup/hidden/*.ejs',
+			dest: './dist/hidden',
+			watch: [
+				'./src/markup/hidden/*.ejs'
+			],
 			beautify: isProduction,
 			changeExt: '.php',
 			locals: _ejsLocals,
 			notify: isNotify
-		});
+		}); // endcode gulp:ejs:hidden
 
-	// sass:clean
+	// ejs:clean
 	// ==========
-		lazyRequireTask('ejs:clean', `${tasks}/clean`, {
-			src: `${_ejsDest}/*.html`
-		});
-
-	// sass:clean
-	// ==========
-		lazyRequireTask('ejs:clean:hidden', `${tasks}/clean`, {
-			src: _ejsDestHidden
+		lazyRequireTask('ejs:clean', './tasks/clean', {
+			src: [
+				'./dist/*.html',
+				'./dist/hidden'
+			]
 		});
 
 	// ejs
@@ -209,7 +232,6 @@
 		gulp.task('ejs:rebuild',
 			gulp.series(
 				'ejs:clean',
-				'ejs:clean:hidden',
 				'ejs'
 			)
 		);
@@ -227,12 +249,12 @@
 
 	// внутренние переменные
 	// =====================
-		let _jsDest = `${dist}/js`;
+		let _jsDest = `./dist/js`;
 		let _jsDestVendor = `${_jsDest}/vendor`;
-		let _jsAddons = `${src}/js/addons`;
-		let _jsDynamics = `${src}/js/dynamics/**/*.js`;
-		let _jsCriticals = `${src}/js/criticals/**/*.js`;
-		let _jsStatics = `${src}/js/statics/**/*.*`;
+		let _jsAddons = `./src/js/addons`;
+		let _jsDynamics = `./src/js/dynamics/**/*.js`;
+		let _jsCriticals = `./src/js/criticals/**/*.js`;
+		let _jsStatics = `./src/js/statics/**/*.*`;
 		let _jsAddonsWatch = [
 			`${_jsAddons}/libs/*.js`
 		];
@@ -242,14 +264,14 @@
 		];
 		let _jsModernizr = [
 			`${_jsDest}/*.js`,
-			`${dist}/css/*.css`,
+			`./dist/css/*.css`,
 			`${_ejsCtiticalsCss}/*.ejs`,
 			`${_ejsCtiticalsJs}/*.ejs`
 		];
 
 	// js:dynamics
 	// ===========
-		lazyRequireTask('js:dynamics', `${tasks}/js`, {
+		lazyRequireTask('js:dynamics', './tasks/js', {
 			src: _jsDynamics,
 			dest: _jsDest,
 			maps: isDevelop,
@@ -263,7 +285,7 @@
 
 	// js:criticals
 	// ============
-		lazyRequireTask('js:criticals', `${tasks}/js`, {
+		lazyRequireTask('js:criticals', './tasks/js', {
 			src: _jsCriticals,
 			dest: _ejsCtiticalsJs,
 			maps: false,
@@ -278,7 +300,7 @@
 
 	// js:statics
 	// ==========
-		lazyRequireTask('js:statics', `${tasks}/transfer`, {
+		lazyRequireTask('js:statics', './tasks/transfer', {
 			src: _jsStatics,
 			dest: _jsDest,
 			filter: `newer`,
@@ -290,7 +312,7 @@
 
 	// modernizr
 	// =========
-		lazyRequireTask('modernizr', `${tasks}/js`, {
+		lazyRequireTask('modernizr', './tasks/js', {
 			src: _jsModernizr,
 			dest: _jsDestVendor,
 			maps: false,
@@ -305,9 +327,9 @@
 			notify: isNotify
 		});
 
-	// modernizr:tests
+	// modernizr:add
 	// ==========
-		lazyRequireTask('modernizr:tests', `${tasks}/transfer`, {
+		lazyRequireTask('modernizr:add', './tasks/transfer', {
 			src: `${_jsAddons}/libs/modernizr-tests/**/*.js`,
 			dest: `${nms}/modernizr/feature-detects`,
 			filter: `newer`,
@@ -316,13 +338,13 @@
 
 	// js:clean
 	// ========
-		lazyRequireTask('js:clean', `${tasks}/clean`, {
+		lazyRequireTask('js:clean', './tasks/clean', {
 			src: _jsDest
 		});
 
 	// js:clean:criticals
 	// ==================
-		lazyRequireTask('js:clean:criticals', `${tasks}/clean`, {
+		lazyRequireTask('js:clean:criticals', './tasks/clean', {
 			src: _ejsCtiticalsJs
 		});
 
@@ -360,16 +382,16 @@
 
 	// внутренние переменные
 	// =====================
-		let _sassDest = `${dist}/css`;
-		let _sassConfig = `${src}/sass/config.scss`;
-		let _sassAddons = `${src}/sass/addons/**/*.scss`;
-		let _sassDynamics = `${src}/sass/dynamics/**/*.scss`;
-		let _sassCriticals = `${src}/sass/criticals/**/*.scss`;
-		let _sassStatics = `${src}/sass/statics/**/*.*`;
+		let _sassDest = `./dist/css`;
+		let _sassConfig = `./src/sass/config.scss`;
+		let _sassAddons = `./src/sass/addons/**/*.scss`;
+		let _sassDynamics = `./src/sass/dynamics/**/*.scss`;
+		let _sassCriticals = `./src/sass/criticals/**/*.scss`;
+		let _sassStatics = `./src/sass/statics/**/*.*`;
 
 	// sass:dynamics
 	// =============
-		lazyRequireTask('sass:dynamics', `${tasks}/sass`, {
+		lazyRequireTask('sass:dynamics', './tasks/sass', {
 			src: _sassDynamics,
 			dest: _sassDest,
 			maps: isDevelop,
@@ -386,7 +408,7 @@
 
 	// sass:criticals
 	// ==============
-		lazyRequireTask('sass:criticals', `${tasks}/sass`, {
+		lazyRequireTask('sass:criticals', './tasks/sass', {
 			src: _sassCriticals,
 			dest: _ejsCtiticalsCss,
 			maps: false,
@@ -404,7 +426,7 @@
 
 	// sass:statics
 	// ============
-		lazyRequireTask('sass:statics', `${tasks}/transfer`, {
+		lazyRequireTask('sass:statics', './tasks/transfer', {
 			src: _sassStatics,
 			dest: _sassDest,
 			filter: `newer`,
@@ -417,13 +439,13 @@
 
 	// sass:clean
 	// ==========
-		lazyRequireTask('sass:clean', `${tasks}/clean`, {
+		lazyRequireTask('sass:clean', './tasks/clean', {
 			src: _sassDest
 		});
 
 	// sass:clean:criticals
 	// ====================
-		lazyRequireTask('sass:clean:criticals', `${tasks}/clean`, {
+		lazyRequireTask('sass:clean:criticals', './tasks/clean', {
 			src: _ejsCtiticalsCss
 		});
 
@@ -463,11 +485,11 @@
 	// images
 	// ============
 
-		let _imagesSrc = `${src}/images/**/*.*`;
-		let _imagesDest = `${dist}/images`;
+		let _imagesSrc = `./src/images/**/*.*`;
+		let _imagesDest = `./dist/images`;
 
 		// transfer
-		lazyRequireTask('images', `${tasks}/transfer`, {
+		lazyRequireTask('images', './tasks/transfer', {
 			src: _imagesSrc,
 			dest: _imagesDest,
 			filter: `newer`,
@@ -479,7 +501,7 @@
 		});
 
 		// clean
-		lazyRequireTask('images:clean', `${tasks}/clean`, {
+		lazyRequireTask('images:clean', './tasks/clean', {
 			src: _imagesDest
 		});
 
@@ -496,12 +518,12 @@
 	// favicons
 	// ============
 
-		let _faviconsSrc = `${src}/favicons/**/*.*`;
+		let _faviconsSrc = `./src/favicons/**/*.*`;
 
 		// transfer
-		lazyRequireTask('favicons', `${tasks}/transfer`, {
+		lazyRequireTask('favicons', './tasks/transfer', {
 			src: _faviconsSrc,
-			dest: _ejsDest,
+			dest: './dist',
 			filter: `newer`,
 			imagemin: false,
 			watch: [
@@ -511,12 +533,12 @@
 		});
 
 		// clean
-		lazyRequireTask('favicons:clean', `${tasks}/clean`, {
+		lazyRequireTask('favicons:clean', './tasks/clean', {
 			src: [
-				`${_ejsDest}/favicons`,
-				`${_ejsDest}/favicon.ico`,
-				`${_ejsDest}/manifest.json`,
-				`${_ejsDest}/browserconfig.xml`
+				'./dist/favicons',
+				'./dist/favicon.ico',
+				'./dist/manifest.json',
+				'./dist/browserconfig.xml'
 			]
 		});
 
@@ -542,8 +564,8 @@
 
 	// inkubator
 	// =========
-		lazyRequireTask('upload', `${tasks}/upload`, {
-			src: `${dist}/**/*.*`,
+		lazyRequireTask('upload', './tasks/upload', {
+			src: `./dist/**/*.*`,
 			notify: isNotify,
 			connect: {
 				host: `91.206.30.13`,
@@ -569,7 +591,7 @@
 	// SASS
 	// ====
 		// генерация документации scss файлов
-		lazyRequireTask('docs:sass:doc', `${tasks}/sassdoc`, {
+		lazyRequireTask('docs:sass:doc', './tasks/sassdoc', {
 			theme: `${tasks}/sassdoc-theme`,
 			dest: `${docs}/sass`,
 			groups: {
@@ -583,7 +605,7 @@
 		});
 
 		// компиляция главной страницы и туториалов для документации scss файлов
-		lazyRequireTask('docs:sass:materials', `${tasks}/sassdoc-materials`, {
+		lazyRequireTask('docs:sass:materials', './tasks/sassdoc-materials', {
 			systemName: `SASSDoc`,
 			tutorials: `${tuts}/sass`,
 			dest: `${docs}/sass`,
@@ -592,7 +614,7 @@
 		});
 
 		// трансфер статических файлов
-		lazyRequireTask('docs:sass:assets', `${tasks}/transfer`, {
+		lazyRequireTask('docs:sass:assets', './tasks/transfer', {
 			src: `${tuts}/sass/assets/**/*.*`,
 			dest: `${docs}/sass/assets`,
 			filter: 'newer',
@@ -614,12 +636,12 @@
 	// GULP
 	// ====
 		// очистка директории документации gulp сборки
-		lazyRequireTask('docs:clean:gulp', `${tasks}/clean`, {
+		lazyRequireTask('docs:clean:gulp', './tasks/clean', {
 			src: `${docs}/gulp`
 		});
 
 		// генерация документации gulp сборки
-		lazyRequireTask('docs:jsdoc:gulp', `${tasks}/jsdoc`, {
+		lazyRequireTask('docs:jsdoc:gulp', './tasks/jsdoc', {
 			systemName: `Gulp docs`,
 			tutorials: `${tuts}/gulp`,
 			dest: `${docs}/gulp`,
@@ -633,7 +655,7 @@
 		});
 
 		// трансфер статических файлов
-		lazyRequireTask('docs:jsdoc:gulp:assets', `${tasks}/transfer`, {
+		lazyRequireTask('docs:jsdoc:gulp:assets', './tasks/transfer', {
 			src: `${tuts}/gulp/assets/**/*.*`,
 			dest: `${docs}/gulp/assets`,
 			filter: 'newer',
@@ -655,12 +677,12 @@
 	// JS client
 	// =========
 		// очистка директории документации скриптов верстки
-		lazyRequireTask('docs:clean:js', `${tasks}/clean`, {
+		lazyRequireTask('docs:clean:js', './tasks/clean', {
 			src: `${docs}/js`
 		});
 
 		// генерация документации скриптов верстки
-		lazyRequireTask('docs:jsdoc:js', `${tasks}/jsdoc`, {
+		lazyRequireTask('docs:jsdoc:js', './tasks/jsdoc', {
 			systemName: `JSDoc`,
 			tutorials: `${tuts}/js`,
 			dest: `${docs}/js`,
@@ -670,7 +692,7 @@
 		});
 
 		// трансфер статических файлов
-		lazyRequireTask('docs:jsdoc:js:assets', `${tasks}/transfer`, {
+		lazyRequireTask('docs:jsdoc:js:assets', './tasks/transfer', {
 			src: `${tuts}/js/assets/**/*.*`,
 			dest: `${docs}/js/assets`,
 			filter: 'newer',
@@ -692,17 +714,17 @@
 	// HTML todo
 	// =========
 		// очистка директории документации с html страниц
-		lazyRequireTask('docs:clean:html', `${tasks}/clean`, {
+		lazyRequireTask('docs:clean:html', './tasks/clean', {
 			src: `${docs}/html`
 		});
 
 		// очистка темповской директории документации с html страниц
-		lazyRequireTask('docs:clean:htmlTmp', `${tasks}/clean`, {
+		lazyRequireTask('docs:clean:htmlTmp', './tasks/clean', {
 			src: `${tmp}/htmldoc`
 		});
 
 		// генерация документации с html страниц
-		lazyRequireTask('docs:html:doc', `${tasks}/htmldoc`, {
+		lazyRequireTask('docs:html:doc', './tasks/htmldoc', {
 			systemName: `Project docs`,
 			tutorials: `${tuts}/html`,
 			tmpFiles: `${tmp}/htmldoc`,
@@ -710,12 +732,12 @@
 			dest: `${docs}/html`,
 			src: [
 				`${tuts}/html-index.md`,
-				`${dist}/*.html`
+				`./dist/*.html`
 			]
 		});
 
 		// трансфер статических файлов
-		lazyRequireTask('docs:html:assets', `${tasks}/transfer`, {
+		lazyRequireTask('docs:html:assets', './tasks/transfer', {
 			src: `${tuts}/html/assets/**/*.*`,
 			dest: `${docs}/html/assets`,
 			filter: 'newer',
@@ -738,12 +760,12 @@
 	// ALL
 	// ===
 		// очистка очистка корневой директории
-		lazyRequireTask('docs:clean', `${tasks}/clean`, {
+		lazyRequireTask('docs:clean', './tasks/clean', {
 			src: `${docs}`
 		});
 
 		// трансфер статических файлов для оформления документаций
-		lazyRequireTask('docs:assets', `${tasks}/transfer`, {
+		lazyRequireTask('docs:assets', './tasks/transfer', {
 			src: `${tasks}/_docs-assets/**/*.*`,
 			dest: `${docs}/_assets`,
 			filter: 'newer',
@@ -778,8 +800,8 @@
 // ===========================================
 
 	// demo файлы
-		lazyRequireTask('clean', `${tasks}/clean`, {
-			src: `${dist}`
+		lazyRequireTask('clean', './tasks/clean', {
+			src: `./dist`
 		});
 
 	// rebuild
@@ -825,7 +847,7 @@
 	// =====
 		gulp.task('start',
 			gulp.series(
-				'modernizr:tests',
+				'modernizr:add',
 				'rebuild',
 				'docs'
 			)

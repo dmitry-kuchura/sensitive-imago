@@ -142,7 +142,7 @@
 		var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
 		if (members && members.length && members.forEach) {
 	?>
-		<h3 class="subsection-title"><?js= (_lang('Members', 'Свойства / Переменные'))?></h3>
+		<h3 class="subsection-title"><?js= (_lang('Members', 'Определения'))?></h3>
 
 		<dl><?js members.forEach(function(p) { ?>
 			<?js= self.partial('members.tmpl', p) ?>

@@ -149,6 +149,15 @@
 			}
 		});
 
+		dictionary.defineTag('newscope', {
+			onTagged: function(doclet, tag) {
+				doclet.newScope = true;
+				if (!!tag.value) {
+					doclet.newScopeValue = tag.value;
+				}
+			}
+		});
+
 		// прунудительное определение и вывод номера строки на кторой начинаеться документируемый код
 		dictionary.defineTag('lineno', {
 			onTagged: function(doclet, tag) {
@@ -182,13 +191,20 @@
 				let fileSource = fs.readFileSync(filePath).toString();
 				let range = doclet.meta.range;
 				let codeSource = fileSource.slice(range[0], range[1]);
+				if (tag.hasOwnProperty('value')) {
+					let name = tag.value.replace(/\s\-c$/, '');
+					let endIndex = fileSource.indexOf(`// endcode ${name}`);
+					if (endIndex > range[1]) {
+						codeSource = fileSource.slice(range[1], endIndex);
+					}
+				}
 				if (typeof codeSource == 'string') {
 					if (!/^(\s)*\/\*\*/.test(codeSource)) {
 						codeSource = _normalizeCode(codeSource);
 						doclet.sourcecode = {};
 						let lineno = doclet.meta.lineno;
 						if (tag.hasOwnProperty('value')) {
-							if (/(\s|\t)*\-c/.test(tag.value)) {
+							if (/(\s|\t)*\-c/.test(tag.value) && !!doclet.comment) {
 								let comments = _normalizeComment(doclet.comment);
 								let lines = comments.match(/\n/g);
 								if (lines !== null) {

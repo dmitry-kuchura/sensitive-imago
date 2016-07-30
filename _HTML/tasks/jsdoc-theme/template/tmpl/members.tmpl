@@ -1,6 +1,15 @@
 <?js
 var data = obj;
 var self = this;
+if (data.gulptask === true) {
+	data.attribs = data.attribs.replace('&lt;static>', 'gulp');
+}
+if (data.newScope) {
+	data.attribs = '';
+	if (!!data.newScopeValue) {
+		data.attribs = data.newScopeValue + ' ';
+	}
+}
 ?>
 <hr>
 <dt class="name" id="<?js= id ?>">
