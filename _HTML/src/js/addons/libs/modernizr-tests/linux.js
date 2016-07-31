@@ -17,12 +17,7 @@
 	define(['Modernizr'], function(Modernizr) {
 		Modernizr.addTest(
 			'linux',
-			function() {
-				function platform(key) {
-					return navigator.platform.toLowerCase().indexOf(key) >= 0;
-				}
-				return platform('linux');
-			}
+			(navigator.platform.toLowerCase().indexOf('linux') >= 0)
 		);
 	});
 // endcode modernizrTest:linux

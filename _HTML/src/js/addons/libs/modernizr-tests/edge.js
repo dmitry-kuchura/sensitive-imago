@@ -17,10 +17,7 @@
 	define(['Modernizr'], function(Modernizr) {
 		Modernizr.addTest(
 			'edge',
-			function() {
-				var ua = window.navigator.userAgent.toLowerCase();
-				return ua.indexOf(" edge/") > 0;
-			}
+			(navigator.userAgent.toLowerCase().indexOf(" edge/") > 0)
 		);
 	});
 // endcode modernizrTest:edge

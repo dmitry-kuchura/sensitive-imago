@@ -17,12 +17,7 @@
 	define(['Modernizr'], function(Modernizr) {
 		Modernizr.addTest(
 			'win',
-			function() {
-				function platform(key) {
-					return navigator.platform.toLowerCase().indexOf(key) >= 0;
-				}
-				return platform('win');
-			}
+			(navigator.platform.toLowerCase().indexOf('win') >= 0)
 		);
 	});
 // endcode modernizrTest:win

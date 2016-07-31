@@ -17,12 +17,7 @@
 	define(['Modernizr'], function(Modernizr) {
 		Modernizr.addTest(
 			'mac',
-			function() {
-				function platform(key) {
-					return navigator.platform.toLowerCase().indexOf(key) >= 0;
-				}
-				return platform('mac');
-			}
+			(navigator.platform.toLowerCase().indexOf('mac') >= 0)
 		);
 	});
 // endcode modernizrTest:mac
