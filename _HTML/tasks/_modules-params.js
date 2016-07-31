@@ -159,17 +159,7 @@ class modulesParams {
 	 * @return		{Array}		Список конфигурцаии.
 	 */
 	gulpJsLibModernizr(customConfig={}) {
-		let baseConfig = {
-			options: [
-				'setClasses', 'prefixes'
-			],
-			tests: [
-				'localstorage'
-			],
-			excludeTests: [
-				'checked'
-			]
-		};
+		let baseConfig = {};
 		let currentConfig;
 		if (customConfig) {
 			currentConfig = deepExtend(baseConfig, customConfig);

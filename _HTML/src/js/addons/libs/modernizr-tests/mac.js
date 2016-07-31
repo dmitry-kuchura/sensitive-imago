@@ -6,41 +6,23 @@
 !*/
 
 
-
 /**
  * Определение **mac**
  *
- *
- *
  * @memberof 	modernizrTests
  * @name 		mac
- * @func
- *
- * @param 		{Modernizr} 	Modernizr
- * @param 		{function} 		Modernizr.addTest - метод тестирования
- *
- * @return 		{Boolean}		результат теста
- *
- * @example
-// в примере специально дупущен пробел, `* /`, для примера
-Modernizr.addTest(
-	'mac',
-	function() {
-		function platform(key) {
-			return navigator.platform.toLowerCase().indexOf(key) >= 0;
-		}
-		return platform('mac');
-	}
-);
+ * @sourcecode 	modernizrTest:mac
+ * @newscope	test
 */
-define(['Modernizr'], function(Modernizr) {
-	Modernizr.addTest(
-		'mac',
-		function() {
-			function platform(key) {
-				return navigator.platform.toLowerCase().indexOf(key) >= 0;
+	define(['Modernizr'], function(Modernizr) {
+		Modernizr.addTest(
+			'mac',
+			function() {
+				function platform(key) {
+					return navigator.platform.toLowerCase().indexOf(key) >= 0;
+				}
+				return platform('mac');
 			}
-			return platform('mac');
-		}
-	);
-});
+		);
+	});
+// endcode modernizrTest:mac

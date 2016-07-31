@@ -6,31 +6,18 @@
 !*/
 
 
-
 /**
- * Определение **android 5.x**
- *
- *
+ * Определение **android5**
  *
  * @memberof 	modernizrTests
  * @name 		android5
- * @func
- *
- * @param 		{Modernizr} 	Modernizr
- * @param 		{function} 		Modernizr.addTest - метод тестирования
- *
- * @return 		{Boolean}		результат теста
- *
- * @example
-// в примере специально дупущен пробел, `* /`, для примера
-Modernizr.addTest(
-	'android5',
-	(navigator.userAgent.toLowerCase().indexOf('android 5.') >= 0)
-);
+ * @sourcecode 	modernizrTest:android5
+ * @newscope	test
 */
-define(['Modernizr'], function(Modernizr) {
-	Modernizr.addTest(
-		'android5',
-		(navigator.userAgent.toLowerCase().indexOf('android 5.') >= 0)
-	);
-});
+	define(['Modernizr'], function(Modernizr) {
+		Modernizr.addTest(
+			'android5',
+			(navigator.userAgent.toLowerCase().indexOf('android 5.') >= 0)
+		);
+	});
+// endcode modernizrTest:android5

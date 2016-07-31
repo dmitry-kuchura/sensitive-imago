@@ -79,6 +79,7 @@ pre[class*="language-"],
 		color: #f92672;
 	}
 	.language-javascript .token.keyword.keyword-this,
+	.language-javascript .token.keyword.keyword-const,
 	.language-javascript .token.keyword.keyword-var,
 	.language-javascript .token.keyword.keyword-let,
 	.language-javascript .token.keyword.keyword-window,

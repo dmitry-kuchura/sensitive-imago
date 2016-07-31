@@ -6,31 +6,18 @@
 !*/
 
 
-
 /**
  * Определение браузера **ie9**
  *
- *
- *
  * @memberof 	modernizrTests
  * @name 		ie9
- * @func
- *
- * @param 		{Modernizr} 	Modernizr
- * @param 		{function} 		Modernizr.addTest - метод тестирования
- *
- * @return 		{Boolean}		результат теста
- *
- * @example
-// в примере специально дупущен пробел, `* /`, для примера
-Modernizr.addTest(
-	'ie9',
-	(document.all && !window.atob && !!document.addEventListener)
-);
+ * @sourcecode 	modernizrTest:ie9
+ * @newscope	test
 */
-define(['Modernizr'], function(Modernizr) {
-	Modernizr.addTest(
-		'ie9',
-		(document.all && !window.atob && !!document.addEventListener)
-	);
-});
+	define(['Modernizr'], function(Modernizr) {
+		Modernizr.addTest(
+			'ie9',
+			(document.all && !window.atob && !!document.addEventListener)
+		);
+	});
+// endcode modernizrTest:ie9

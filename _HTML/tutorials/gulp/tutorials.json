@@ -1,9 +1,6 @@
 {
-	"all-folders": {
-		"title": "Структура директорий проекта"
-	},
 	"all-tasks": {
-		"title": "Список gulp задач"
+		"title": "Список основных gulp задач"
 	},
 	"docs-gulp": {
 		"title": "Документация GULP сборки"
@@ -17,8 +14,11 @@
 	"docs-sass": {
 		"title": "Документация SASS файлов"
 	},
-	"jsdoc": {
+	"workwith-gulp-jsdoc3": {
 		"title": "Работа с JSDoc3"
+	},
+	"workwith-gulp-modernizr": {
+		"title": "Работа с gulp-modernizr"
 	},
 	"_tutorial-example": {
 		"title": "Заготовка для создания туториала"

@@ -6,31 +6,18 @@
 !*/
 
 
-
 /**
  * Определение браузера **ie8**
  *
- *
- *
  * @memberof 	modernizrTests
  * @name 		ie8
- * @func
- *
- * @param 		{Modernizr} 	Modernizr
- * @param 		{function} 		Modernizr.addTest - метод тестирования
- *
- * @return 		{Boolean}		результат теста
- *
- * @example
-// в примере специально дупущен пробел, `* /`, для примера
-Modernizr.addTest(
-	'ie8',
-	(document.all && !document.addEventListener)
-);
+ * @sourcecode 	modernizrTest:ie8
+ * @newscope	test
 */
-define(['Modernizr'], function(Modernizr) {
-	Modernizr.addTest(
-		'ie8',
-		(document.all && !document.addEventListener)
-	);
-});
+	define(['Modernizr'], function(Modernizr) {
+		Modernizr.addTest(
+			'ie8',
+			(document.all && !document.addEventListener)
+		);
+	});
+// endcode modernizrTest:ie8

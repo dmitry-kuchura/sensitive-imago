@@ -82,7 +82,7 @@ lazyRequireTask('docs:jsdoc:gulp', `${tasks}/jsdoc`, {
 
 <ul>
 	<li><code>@module</code> - здесь пишем "гибрид" отсносительного пути к файлу по схеме <samp>имяПапки/имяФайла</samp>. Здесь не допуcкаються точки и поэтому не указываем расширение файла (*.js)</li>
-	<li><code>@sourcefile</code> - здесь пишем значение (имяфайла) по схеме <samp>сущностьДоклета:имяПапки:имяФайла</samp>. Этот доклет в дальнейшем можно использовать в туториалах, более подробно смотри {@tutorial jsdoc} -> @sourcefile</li>
+	<li><code>@sourcefile</code> - здесь пишем значение (имяфайла) по схеме <samp>сущностьДоклета:имяПапки:имяФайла</samp>. Этот доклет в дальнейшем можно использовать в туториалах, более подробно смотри {@tutorial workwith-gulp-jsdoc3} -> @sourcefile</li>
 </ul>
 
 <pre class="line-numbers"><code class="language-javascript">
@@ -120,8 +120,8 @@ lazyRequireTask('docs:jsdoc:gulp', `${tasks}/jsdoc`, {
 <p>Далее, отдельно, следует указать комментарии описывающие сам модуль</p>
 <ul>
 	<li>Описание модуля - первые строки комментария без тега</li>
-	<li><code>@moduleLocal</code> - дополнительный тег, который обозначает локальность модуля. Указывается без значения. Смотри {@tutorial jsdoc} -> @moduleLocal</li>
-	<li><code>@sourcecode</code> - дополнительный тег, при помощи которого можно вывести исходный код документируемого блока, более подробно смотри {@tutorial jsdoc} -> @sourcecode</li>
+	<li><code>@moduleLocal</code> - дополнительный тег, который обозначает локальность модуля. Указывается без значения. Смотри {@tutorial workwith-gulp-jsdoc3} -> @moduleLocal</li>
+	<li><code>@sourcecode</code> - дополнительный тег, при помощи которого можно вывести исходный код документируемого блока, более подробно смотри {@tutorial workwith-gulp-jsdoc3} -> @sourcecode</li>
 	<li>Если вы хотите привязать туториал к модулю, используйте тег <code>@tutorial	имя-файла-туториала</code> (смотри <a target="_blank" href="http://usejsdoc.org/tags-tutorial.html">usejsdoc.org/tags-tutorial.html</a>)</li>
 	<li>Если ваш модуль зависит от дургих модулей, желательно это указать при помощи тега <code>@requires</code> (смотри <a target="_blank" href="http://usejsdoc.org/tags-requires.html">usejsdoc.org/tags-requires.html</a>)<br>в значении которого указать урл на модуль <br><code>@requires {@link https://www.npmjs.com/package/gulp-jsdoc3}</code><br> или ссылку на ваш локальный модуль связав ссылку по его имени <br><code>@requires module:tasks/_modules-params</code></li>
 	<li>Также можно указать дополнительные ссылки на дополнителные метриалы, с которыми можно ознакомиться для уточнения каких-либо деталей. Для этого можно использовать тег <code>@see</code> (смотри <a target="_blank" href="http://usejsdoc.org/tags-see.html">usejsdoc.org/tags-see.html</a>)</li>

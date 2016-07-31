@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * @module 		tasks/ejs
- * @sourcefile 	file:tasks:ejs
+ * @module 		tasks/js
+ * @sourcefile 	file:tasks:js
 */
 
 

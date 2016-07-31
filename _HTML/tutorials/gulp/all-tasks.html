@@ -1,18 +1,10 @@
-<p>Здесь вы можете ознакомиться со всеми доступными задачами для работы</p>
+<p>Здесь вы можете ознакомиться со всеми <strong><em>основными</em></strong> задачами для работы. <br>Также смотри полную информацию о {@link gulp|gulp файле и всех задачах}</p>
 <hr>
 <h2 id="flags">Флаги</h2>
 
 <p>Флаги никак не зависят от вызываемых задач. Их можуно писать когда угодно с любой задачей. Также можно использовать несколько флагов одновременно.</p>
 <p>В нашей сборки флаги используются для определения продакш версии сборки или включения линтинга при компиляции. Это реализацию можно было сделать и при помощи переменных / констант внутри gulp файла (хотя по сути - так оно и есть). Но в этом случае чтобы изменить заничение - нужно вручную лезть в файл и переписывать <code>true</code> на <code>false</code> или на оборот</p>
-<p>В случае использования флагов - gulp будет сам менять эти значения в зависимости от ситуации:</p>
-<pre><code class="language-javascript">
-// флаги
-const isLinting = !!argv.l || !!argv.lint;
-const isBsOpenOnInit = (!!argv.o || !!argv.open) ? 'external' : false;
-const isBsAutoReload = !(!!argv.n || !!argv.noreload);
-const isProduction = !!argv.p || !!argv.prod;
-const isDevelop = !isProduction;
-</code></pre>
+<p>В случае использования флагов - gulp будет сам менять эти значения в зависимости от ситуации, подробнее смотри: {@link gulp._constants}</p>
 
 <br>
 
@@ -95,17 +87,7 @@ gulp -n
 <pre><code class="language-git">
 	gulp start
 </code></pre>
-<p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-// start
-// =======
-	gulp.task('start',
-		gulp.series(
-			'rebuild',
-			'docs'
-		)
-	);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.start}</p>
 
 <hr>
 <h3 id="gulp-default">default</h3>
@@ -115,14 +97,7 @@ gulp default
 # или просто
 gulp
 </code></pre>
-<p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-// default
-// =======
-	gulp.task('default',
-		gulp.parallel('watch', BrowserSync)
-	);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.default}</p>
 
 <hr>
 <h3 id="gulp-rebuild">rebuild</h3>
@@ -131,21 +106,7 @@ gulp
 <pre><code class="language-git">
 	gulp rebuild
 </code></pre>
-<p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-// rebuild
-// =======
-	gulp.task('rebuild',
-		gulp.series(
-			(cb) => {
-				console.log('\n\tdemo build task\n');
-				cb();
-			},
-			'demo:clean',
-			'demo:files'
-		)
-	);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.rebuild}</p>
 
 <hr>
 <h3 id="gulp-build">build</h3>
@@ -154,17 +115,7 @@ gulp
 <pre><code class="language-git">
 	gulp build
 </code></pre>
-<p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-// build
-// =======
-	gulp.task('build',
-		gulp.series(
-			'rebuild',
-			'default'
-		)
-	);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.build}</p>
 
 <hr>
 <h3 id="gulp-upload">upload</h3>
@@ -173,6 +124,11 @@ gulp
 <pre><code class="language-git">
 	gulp upload
 </code></pre>
+<p>Подробнее смотри:</p>
+<ul>
+	<li>{@link gulp.upload}</li>
+	<li>{@link module:tasks/upload}</li>
+</ul>
 
 
 
@@ -220,16 +176,8 @@ gulp
 <pre><code class="language-git">
 	gulp docs:gulp
 </code></pre>
-<p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-gulp.task('docs:gulp',
-	gulp.series(
-		'docs:clean:gulp',
-		'docs:jsdoc:gulp',
-		'docs:jsdoc:gulp:assets'
-	)
-);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.docs:gulp}</p>
+
 
 
 
@@ -241,16 +189,7 @@ gulp.task('docs:gulp',
 <pre><code class="language-git">
 	gulp docs:js
 </code></pre>
-<p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-gulp.task('docs:js',
-	gulp.series(
-		'docs:clean:js',
-		'docs:jsdoc:js',
-		'docs:jsdoc:js:assets'
-	)
-);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.docs:js}</p>
 
 
 
@@ -263,15 +202,7 @@ gulp.task('docs:js',
 	gulp docs:sass
 </code></pre>
 <p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-gulp.task('docs:sass',
-	gulp.series(
-		'docs:sass:doc',
-		'docs:sass:materials',
-		'docs:sass:assets'
-	)
-);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.docs:sass}</p>
 
 
 
@@ -283,17 +214,7 @@ gulp.task('docs:sass',
 <pre><code class="language-git">
 	gulp docs:html
 </code></pre>
-<p>Последовательность серий:</p>
-<pre><code class="language-javascript">
-gulp.task('docs:html',
-	gulp.series(
-		'docs:clean:html',
-		'docs:clean:htmlTmp',
-		'docs:html:doc',
-		'docs:html:assets'
-	)
-);
-</code></pre>
+<p>Подробнее смотри: {@link gulp.docs:html}</p>
 
 
 <hr>
@@ -304,12 +225,14 @@ gulp.task('docs:html',
 <pre><code class="language-git">
 	gulp docs:assets
 </code></pre>
+<p>Подробнее смотри: {@link gulp.docs:assets}</p>
 
 <h5 id="gulp-docs:clean"><strong>Удаление всех файлов</strong></h5>
 <p>Полная очистка всех файлов документации</p>
 <pre><code class="language-git">
 	gulp docs:clean
 </code></pre>
+<p>Подробнее смотри: {@link gulp.docs:clean}</p>
 
 <br>
 
@@ -317,16 +240,4 @@ gulp.task('docs:html',
 <pre><code class="language-git">
 	gulp docs
 </code></pre>
-<p>Соответственно данная задача будет самой длительной из всех, ниже - код последовательности серий:</p>
-<pre><code class="language-javascript">
-// генерация документаций по всем разделам
-gulp.task('docs', gulp.series(
-	'docs:clean',
-	'docs:clean:htmlTmp',
-	'docs:assets',
-	'docs:jsdoc:gulp',
-	'docs:jsdoc:js',
-	'docs:html:doc',
-	'docs:sass'
-));
-</code></pre>
+<p>Соответственно данная задача будет самой длительной из всех, ниже - код последовательности серий, подробнее смотри: {@link gulp.docs}</p>

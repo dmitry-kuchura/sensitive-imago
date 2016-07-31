@@ -6,30 +6,18 @@
 !*/
 
 
-
 /**
  * Определение браузера **opera**
  *
- *
- *
  * @memberof 	modernizrTests
  * @name 		opera
- * @func
- *
- * @param 		{Modernizr} 	Modernizr
- * @param 		{function} 		Modernizr.addTest - метод тестирования
- *
- * @return 		{Boolean}		результат теста
- *
- * @example
-Modernizr.addTest(
-	'opera',
-	(!!window.opera || navigator.userAgent.match(/Opera|OPR\//i) !== null)
-);
+ * @sourcecode 	modernizrTest:opera
+ * @newscope	test
 */
-define(['Modernizr'], function(Modernizr) {
-	Modernizr.addTest(
-		'opera',
-		(!!window.opera || navigator.userAgent.match(/Opera|OPR\//) !== null)
-	);
-});
+	define(['Modernizr'], function(Modernizr) {
+		Modernizr.addTest(
+			'opera',
+			(!!window.opera || navigator.userAgent.match(/Opera|OPR\//) !== null)
+		);
+	});
+// endcode modernizrTest:opera

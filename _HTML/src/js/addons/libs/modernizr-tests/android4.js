@@ -6,31 +6,18 @@
 !*/
 
 
-
 /**
- * Определение **android 4.x**
- *
- *
+ * Определение **android4**
  *
  * @memberof 	modernizrTests
  * @name 		android4
- * @func
- *
- * @param 		{Modernizr} 	Modernizr
- * @param 		{function} 		Modernizr.addTest - метод тестирования
- *
- * @return 		{Boolean}		результат теста
- *
- * @example
-// в примере специально дупущен пробел, `* /`, для примера
-Modernizr.addTest(
-	'android4',
-	(navigator.userAgent.toLowerCase().indexOf('android 4.') >= 0)
-);
+ * @sourcecode 	modernizrTest:android4
+ * @newscope	test
 */
-define(['Modernizr'], function(Modernizr) {
-	Modernizr.addTest(
-		'android4',
-		(navigator.userAgent.toLowerCase().indexOf('android 4.') >= 0)
-	);
-});
+	define(['Modernizr'], function(Modernizr) {
+		Modernizr.addTest(
+			'android4',
+			(navigator.userAgent.toLowerCase().indexOf('android 4.') >= 0)
+		);
+	});
+// endcode modernizrTest:android4
