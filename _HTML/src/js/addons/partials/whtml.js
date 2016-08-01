@@ -11,6 +11,7 @@
 
 	// methods
 	// ========================================
+		//=include whtml-addons/seotext.js
 		//=include whtml-addons/mfp-inline.js
 		//=include whtml-addons/mfp-ajax.js
 		//=include whtml-addons/form-validation.js

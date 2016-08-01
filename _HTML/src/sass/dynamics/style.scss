@@ -4,5 +4,11 @@
 
 @import '../config';
 
+//@include normalizeCritical;
+//@include baseCritical;
+
 @include normalizeExternal;
 @include baseExternal;
+
+@include pageStructure;
+@include pageBreadcrumbs;

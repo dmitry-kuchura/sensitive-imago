@@ -15,7 +15,7 @@ $globalFontFamily: sans-serif;
 
 /// Глобальный размер шрифта
 /// @type Number
-$globalFontSize: 100%;
+$globalFontSize: 16px;
 
 /// Глобальная высота текстовой линии
 /// @type Number
@@ -47,5 +47,11 @@ $globalPlaceHolderColor: #999;
 	// Импорты
 	// =============
 
+// libs
 @import 'addons/libs/normalize';
-@import 'addons/partials/base';
+
+// mixins
+@import 'addons/mixins/globals';
+
+// partials
+@import 'addons/partials/breadcrumbs';

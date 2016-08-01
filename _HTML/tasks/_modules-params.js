@@ -270,6 +270,12 @@ class modulesParams {
 						size: 'tab'
 					}
 				],
+				'class-name-format': [
+					1, {
+						'allow-leading-underscore': true,
+						'convention': 'camelcase'
+					}
+				],
 				'mixin-name-format': [
 					1, {
 						'allow-leading-underscore': true,
@@ -279,6 +285,8 @@ class modulesParams {
 
 				// disabled
 				'leading-zero': 0,
+				'empty-line-between-blocks': 0,
+				'force-element-nesting': 0,
 				'property-sort-order': 0
 			}
 		};

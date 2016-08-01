@@ -1,0 +1,23 @@
+////
+/// @group breadcrumbs.scss
+////
+
+
+
+
+
+	// mixins
+	// ========
+
+/// description
+@mixin pageBreadcrumbs() {
+	.pageBreadcrumbs {
+		span {
+			& + span {
+				&:before {
+					content: '/';
+				}
+			}
+		}
+	}
+}

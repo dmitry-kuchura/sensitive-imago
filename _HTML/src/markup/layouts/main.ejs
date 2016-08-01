@@ -5,15 +5,16 @@
 		<%- partial('../views/widgets/criticals') %>
 	</head>
 	<body>
-		<% if (_activeFile.hasSeoText) { %>
-			<main class="pageSeoText js-setSeoText">
-				<div class="pageSize"><%- partial(_activeFile.seoTextContent, {}) %></div>
-			</main>
-			<!-- end pageSeoText -->
-		<% } %>
 		<div class="pageWrapper">
+			<% if (_activeFile.hasSeoText) { %>
+				<main id="seoText" class="pageSeoText">
+					<div class="pageSize"><%- partial(_activeFile.seoTextContent, {}) %></div>
+				</main>
+				<!-- end pageSeoText -->
+			<% } %>
+
 			<header class="pageHeader">
-				<%- partial('../views/widgets/page-header', {}) %>
+				<%- partial('../views/widgets/header', {}) %>
 			</header>
 			<!-- end pageHeader -->
 
@@ -23,9 +24,11 @@
 			</div>
 			<!-- end pageContainer -->
 
+			<div id="seoClone"></div>
+
 
 			<footer class="pageFooter">
-				<%- partial('../views/widgets/page-footer', {}) %>
+				<%- partial('../views/widgets/footer', {}) %>
 			</footer>
 			<!-- end pageFooter -->
 

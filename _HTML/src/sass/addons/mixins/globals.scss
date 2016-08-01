@@ -1,5 +1,5 @@
 ////
-/// @group _base.scss
+/// @group global.scss
 ////
 
 
@@ -27,6 +27,9 @@
 		color: $color;
 	}
 }
+
+
+
 /// установка цвета `placeholder` при фокусе
 /// @param {Color} $color [transparent] - цвет текста
 /// @require {mixin} placeholder
@@ -38,16 +41,25 @@
 
 
 
+/// очистка флоатов при помощи псевдо-элемента `:after`
+@mixin clearfix {
+    &::after {
+        content: '';
+		clear: both;
+		display: block;
+		height: 0;
+    }
+}
 
 
-	// Critical
-	// ========
 
+/// основные стили тегов
 @mixin baseCritical {
 	// изменение семейства шрифта по умолчанию во всех браузерах
 	// корректное отображение и растягивание по экрану
 	html {
 		font-family: $globalFontFamily;
+		font-size: 100%;
 		position: relative;
 		height: 100%;
 	}
@@ -140,16 +152,11 @@
 		// figure {
 		// 	margin: 1em 40px;
 		// }
-
 }
 
 
 
-
-
-	// External
-	// ========
-
+/// основные стили тегов для внешних стилей
 @mixin baseExternal {
 
 	// коррекция выделения текста во всех браузерах
@@ -179,15 +186,30 @@
 		@include placeholder($globalPlaceHolderColor, true);
 		@include placeholderOnFocus();
 	}
-
 }
 
 
 
-	// All
-	// ========
+/// основные стили структурных элементов
+@mixin pageStructure() {
+	.pageWrapper {
+		position: relative;
+		min-height: 100%;
+		overflow: hidden;
+	}
+	.pageSize {
+		position: relative;
+		max-width: 1280px;
+		padding: 0 16px;
+		margin: 0 auto;
+		@include clearfix();
+	}
 
-@mixin baseAll {
-	@include baseCritical;
-	@include baseExternal;
+	.pageHeader {
+		position: relative;
+	}
+
+	.pageFooter {
+		position: relative;
+	}
 }

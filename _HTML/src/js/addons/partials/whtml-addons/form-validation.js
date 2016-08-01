@@ -6,7 +6,7 @@
 	 * @tutorial 	workwith-jquery-validate
 	 * @fires 		wHTML#formOnSubmit
 	 *
-	 * @param 		{string} 		[selector='.js-mfp-ajax'] пользовательский css селектор для поиска и инита
+	 * @param 		{string} 		[selector='.js-form'] пользовательский css селектор для поиска и инита
 	 * @return 		{undefined}
 	 */
 		wHTML.prototype.formValidation = function(selector) {
@@ -14,7 +14,6 @@
 			$(selector).each(function(index, el) {
 				var $form = $(el);
 				var validator = $form.data('validator');
-				console.log(validator);
 				if (typeof validator === 'undefined') {
 
 					if ($form.is('form')) {
@@ -73,7 +72,9 @@
 	 * @param 		{Element} 		$form - текущая форма, `jQuery element`
 	 * @return 		{undefined}
 	 */
-		wHTML.prototype.formAfterSubmit = function($form) {};
+		wHTML.prototype.formAfterSubmit = function($form) {
+			console.warn('HTML => Форма отправлена');
+		};
 
 	/**
 	 * Событие, при успешной валидации формы.
@@ -88,7 +89,6 @@
 	 * @return 		{undefined}
 	 */
 		wHTML.prototype.formOnSubmit = function($form) {
-			console.warn('HTML => Форма отправлена');
 			_self.formAfterSubmit($form);
 		};
 /*>>wHTML.formValidation*/

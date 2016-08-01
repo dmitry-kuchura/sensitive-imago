@@ -6,5 +6,6 @@ jQuery(document).ready(function($) {
 	localStorage.clear();
 
 
+	wHTML.seoText();
 	wHTML.formValidation();
 });
