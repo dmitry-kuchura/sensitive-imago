@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **ios**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:ios
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'ios',
-			(navigator.platform.match(/(iPhone|iPod|iPad)/i) !== null)
-		);
-	});
+	Modernizr.addTest(
+		'ios',
+		(navigator.platform.match(/(iPhone|iPod|iPad)/i) !== null)
+	);
 // endcode modernizrTest:ios
+});

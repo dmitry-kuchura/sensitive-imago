@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение операционной системы **Windows**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:win
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'win',
-			(navigator.platform.toLowerCase().indexOf('win') >= 0)
-		);
-	});
+	Modernizr.addTest(
+		'win',
+		(navigator.platform.toLowerCase().indexOf('win') >= 0)
+	);
 // endcode modernizrTest:win
+});

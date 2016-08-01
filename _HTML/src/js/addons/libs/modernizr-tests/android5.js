@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **android5**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:android5
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'android5',
-			(navigator.userAgent.toLowerCase().indexOf('android 5.') >= 0)
-		);
-	});
+	Modernizr.addTest(
+		'android5',
+		(navigator.userAgent.toLowerCase().indexOf('android 5.') >= 0)
+	);
 // endcode modernizrTest:android5
+});

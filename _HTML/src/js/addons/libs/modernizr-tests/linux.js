@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **linux**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:linux
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'linux',
-			(navigator.platform.toLowerCase().indexOf('linux') >= 0)
-		);
-	});
+	Modernizr.addTest(
+		'linux',
+		(navigator.platform.toLowerCase().indexOf('linux') >= 0)
+	);
 // endcode modernizrTest:linux
+});

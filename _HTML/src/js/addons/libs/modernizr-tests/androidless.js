@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **androidless** - андроиды 4.3 и младше
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:androidless
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'androidless',
-			(navigator.userAgent.match(/\sandroid\s([0-3]|4\.[0-3])/i) !== null)
-		);
-	});
+	Modernizr.addTest(
+		'androidless',
+		(navigator.userAgent.match(/\sandroid\s([0-3]|4\.[0-3])/i) !== null)
+	);
 // endcode modernizrTest:androidless
+});

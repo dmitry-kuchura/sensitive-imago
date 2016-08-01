@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение операционной системы **Windows Vista**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:winvista
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'winvista',
-			(navigator.userAgent.toLowerCase().indexOf('windows nt 6.0') > 0)
-		);
-	});
+	Modernizr.addTest(
+		'winvista',
+		(navigator.userAgent.toLowerCase().indexOf('windows nt 6.0') > 0)
+	);
 // endcode modernizrTest:winvista
+});

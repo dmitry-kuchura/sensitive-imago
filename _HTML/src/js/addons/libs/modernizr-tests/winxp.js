@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение операционной системы **Windows XP**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:winxp
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'winxp',
-			(navigator.userAgent.toLowerCase().indexOf('windows nt 5.1') > 0)
-		);
-	});
+	Modernizr.addTest(
+		'winxp',
+		(navigator.userAgent.toLowerCase().indexOf('windows nt 5.1') > 0)
+	);
 // endcode modernizrTest:winxp
+});

@@ -210,30 +210,39 @@ module.exports = function(options) {
 
 			// составление multipipe для линтинга sass
 			let streamSassLint = multipipe(
-				$.sassLint(_modulesParams.gulpSassLintConfig(options.sasslintConfig)),
 				$.if(
 					(file) => {
-						if (file.sassLint[0].warningCount > 0) {
-							console.log(chalk.magenta('\n\tSASS LINT\n============================================================'));
-						}
-						return false;
+						return (file.extname === '.scss' && file.relative.split('\\')[0] !== 'vendor');
 					},
-					throughObj((file, enc, callback) => {
-						return callback(null, file);
-					})
-				),
-				$.sassLint.format(),
-				$.sassLint.failOnError()
+					multipipe(
+						$.sassLint(_modulesParams.gulpSassLintConfig(options.sasslintConfig)),
+						$.if(
+							(file) => {
+								if (file.sassLint[0].warningCount > 0) {
+									console.log(chalk.magenta('\n\tSASS LINT\n============================================================'));
+								}
+								return false;
+							},
+							throughObj((file, enc, callback) => {
+								return callback(null, file);
+							})
+						),
+						$.sassLint.format(),
+						$.sassLint.failOnError()
+					)
+				)
 			).on('error', $.notify.onError(
 				_modulesParams.gulpNotifyOnError(`SASSLint - ${options.taskName}`))
-			)
+			);
 
 
 
 			// составление multipipe для линтинга css
 			let streamCssLint = multipipe(
 				$.if(
-					/\.css$/,
+					(file) => {
+						return (file.extname === '.css' && file.relative.split('\\')[0] !== 'vendor');
+					},
 					multipipe(
 						$.csslint(_modulesParams.gulpCssLintConfig(options.csslintConfig)),
 						$.csslint.reporter(cssLintReporter),

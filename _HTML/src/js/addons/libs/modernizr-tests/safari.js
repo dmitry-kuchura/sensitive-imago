@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение браузера **safari**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:safari
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'safari',
-			(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
-		);
-	});
+	Modernizr.addTest(
+		'safari',
+		(Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0)
+	);
 // endcode modernizrTest:safari
+});

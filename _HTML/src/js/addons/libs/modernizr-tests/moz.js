@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение браузера **mozilla**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:moz
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'moz',
-			(typeof InstallTrigger !== 'undefined')
-		);
-	});
+	Modernizr.addTest(
+		'moz',
+		(typeof InstallTrigger !== 'undefined')
+	);
 // endcode modernizrTest:moz
+});

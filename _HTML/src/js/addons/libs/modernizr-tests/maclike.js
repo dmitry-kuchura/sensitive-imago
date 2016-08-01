@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **maclike**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:maclike
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'maclike',
-			(navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i) !== null)
-		);
-	});
+	Modernizr.addTest(
+		'maclike',
+		(navigator.platform.match(/(Mac|iPhone|iPod|iPad)/i) !== null)
+	);
 // endcode modernizrTest:maclike
+});

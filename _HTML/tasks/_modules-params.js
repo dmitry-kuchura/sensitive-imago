@@ -151,15 +151,18 @@ class modulesParams {
 
 
 	/**
-	 * Настройка параметров для модуля `gulp-sass-lint`.
-	 * - офф документация {@link https://github.com/sasstools/sass-lint/tree/develop/docs}
+	 * Настройка параметров для модуля `gulp-modernizr` и его `customizr`.
+	 * - офф документация {https://github.com/Modernizr/customizr}
 	 *
 	 * @sourcecode
+	 * @tutorial 	workwith-gulp-modernizr
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
 	 * @return		{Array}		Список конфигурцаии.
 	 */
 	gulpJsLibModernizr(customConfig={}) {
-		let baseConfig = {};
+		let baseConfig = {
+			uglify: true
+		};
 		let currentConfig;
 		if (customConfig) {
 			currentConfig = deepExtend(baseConfig, customConfig);
@@ -174,22 +177,74 @@ class modulesParams {
 
 
 	/**
-	 * Настройка параметров для модуля `gulp-sass-lint`.
-	 * - офф документация {@link https://github.com/sasstools/sass-lint/tree/develop/docs}
+	 * Составление скриптов библиотек - ***метод в работе***.
+	 *
+	 * @sourcecode
+	 * @param 		{Object}	[jsLibs=[]] - библиотеки
+	 * @return		{Steam}		Набор pipe'ов.
+	 */
+	gulpJsGetLibs(jsLibs=[]) {
+		let libs = [];
+		jsLibs.forEach((jsLib) => {
+			let branch = `gulpJsLib${jsLib.name}`;
+			if (!!this[branch]) {
+				libs.push(this[`gulpJsLibModernizr`](jsLib.options));
+			}
+		});
+		return libs;
+	}
+
+
+
+
+
+	/**
+	 * Настройка параметров для модуля `gulp-eslint`.
+	 * - {@link https://github.com/adametry/gulp-eslint}
+	 * - список правил {@link http://eslint.org/docs/rules/}
 	 *
 	 * @sourcecode
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
 	 * @return		{Array}		Список конфигурцаии.
 	 */
-	gulpJsGetLibs(keys=[]) {
-		let libs = [];
-		keys.forEach((key) => {
-			let branch = `gulpJsLib${key.name}`;
-			if (!!this[branch]) {
-				libs.push(this[`gulpJsLibModernizr`](key.options));
-			}
-		});
-		return libs;
+	gulpEsLintConfig(customConfig={}) {
+		let baseConfig = {
+			rules: {
+				// warning
+				'no-debugger': 2,
+				'no-empty': 2,
+				'no-empty-pattern': 2,
+				'no-eval': 2,
+				'no-native-reassign': 2,
+				'no-alert': 2,
+				'use-isnan': 2,
+				'no-console': [
+					2, {
+						allow: ["warn", "error"]
+					}
+				],
+
+				// warning
+				'no-case-declarations': 1,
+				'camelcase': 1,
+				'valid-jsdoc': 1,
+				'valid-typeof': 1,
+
+				// disabled
+				'strict': 0
+			},
+			globals: [
+				'jQuery',
+				'$'
+			],
+			envs: [
+				'browser'
+			]
+		};
+		if (customConfig) {
+			return deepExtend(baseConfig, customConfig);
+		}
+		return baseConfig;
 	}
 
 

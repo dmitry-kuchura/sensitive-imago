@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение браузера **ie**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:ie
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'ie',
-			(/*@cc_on!@*/ false || document.documentMode)
-		);
-	});
+	Modernizr.addTest(
+		'ie',
+		(/*@cc_on!@*/ false || document.documentMode)
+	);
 // endcode modernizrTest:ie
+});

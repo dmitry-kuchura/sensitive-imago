@@ -325,13 +325,15 @@
 		lazyRequireTask('js:dynamics', './tasks/js', {
 			src: './src/js/dynamics/**/*.js',
 			dest: './dist/js',
-			maps: isDevelop,
-			min: isProduction,
-			include: true,
 			watch: [
 				'./src/js/dynamics/**/*.js',
 				'./src/js/addons/libs/*.js'
 			],
+			maps: isDevelop,
+			min: isProduction,
+			include: true,
+			filter: false,
+			eslint: isLinting,
 			notify: globalNotifyFlag,
 		});
 	// endcode gulp:js:dynamics
@@ -354,14 +356,16 @@
 		lazyRequireTask('js:criticals', './tasks/js', {
 			src: './src/js/criticals/**/*.js',
 			dest: './src/markup/views/criticals/js',
-			maps: false,
-			min: true,
-			include: true,
-			changeExt: '.ejs',
 			watch: [
 				'./src/js/criticals/**/*.js',
 				'./src/js/addons/libs/*.js'
 			],
+			maps: false,
+			min: true,
+			include: true,
+			changeExt: '.ejs',
+			filter: false,
+			eslint: isLinting,
 			notify: globalNotifyFlag,
 		});
 	// endcode gulp:js:criticals
@@ -413,7 +417,7 @@
 				'./src/markup/views/criticals/css/*.ejs',
 				'./src/markup/views/criticals/js/*.ej'
 			],
-			dest: './dist/js/*.js',
+			dest: './dist/js/vendor',
 			maps: false,
 			min: isProduction,
 			modernizr: true,

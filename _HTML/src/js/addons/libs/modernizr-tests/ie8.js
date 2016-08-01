@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение браузера **ie8**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:ie8
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'ie8',
-			(document.all && !document.addEventListener)
-		);
-	});
+	Modernizr.addTest(
+		'ie8',
+		(document.all && !document.addEventListener)
+	);
 // endcode modernizrTest:ie8
+});

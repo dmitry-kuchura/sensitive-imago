@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **mac**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:mac
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'mac',
-			(navigator.platform.toLowerCase().indexOf('mac') >= 0)
-		);
-	});
+	Modernizr.addTest(
+		'mac',
+		(navigator.platform.toLowerCase().indexOf('mac') >= 0)
+	);
 // endcode modernizrTest:mac
+});

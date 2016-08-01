@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **edge** браузера
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:edge
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'edge',
-			(navigator.userAgent.toLowerCase().indexOf(" edge/") > 0)
-		);
-	});
+	Modernizr.addTest(
+		'edge',
+		(navigator.userAgent.toLowerCase().indexOf(" edge/") > 0)
+	);
 // endcode modernizrTest:edge
+});

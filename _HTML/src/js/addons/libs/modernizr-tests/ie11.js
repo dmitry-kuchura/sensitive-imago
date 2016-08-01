@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение браузера **ie11**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:ie11
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'ie11',
-			(!!navigator.userAgent.match(/Trident.*rv[ :]*11\./))
-		);
-	});
+	Modernizr.addTest(
+		'ie11',
+		(!!navigator.userAgent.match(/Trident.*rv[ :]*11\./))
+	);
 // endcode modernizrTest:ie11
+});

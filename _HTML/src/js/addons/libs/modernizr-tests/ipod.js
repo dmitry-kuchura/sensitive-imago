@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **ipod**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:ipod
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'ipod',
-			(navigator.userAgent.toLowerCase().indexOf('ipod') >= 0)
-		);
-	});
+	Modernizr.addTest(
+		'ipod',
+		(navigator.userAgent.toLowerCase().indexOf('ipod') >= 0)
+	);
 // endcode modernizrTest:ipod
+});

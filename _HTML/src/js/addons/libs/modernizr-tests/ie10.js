@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение браузера **ie10**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:ie10
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'ie10',
-			(document.all && !!window.atob && !!document.addEventListener)
-		);
-	});
+	Modernizr.addTest(
+		'ie10',
+		(document.all && !!window.atob && !!document.addEventListener)
+	);
 // endcode modernizrTest:ie10
+});

@@ -124,6 +124,46 @@ module.exports = function(options) {
 
 
 
+			// составление multipipe для линтинга css
+			let streamEsLint = multipipe(
+				$.if(
+					(file) => {
+						return (file.extname === '.js' && file.relative.split('\\')[0] !== 'vendor');
+					},
+					multipipe(
+						$.eslint(_modulesParams.gulpEsLintConfig(options.eslintConfig)),
+						$.eslint.format(),
+						$.eslint.failAfterError(),
+						// если есть ошибки - fail
+						$.if(
+							(file) => {
+								console.log(file.relative.split('\\')[0]);
+								return !!file.eslint.errorCount;
+							},
+							multipipe(
+								throughObj((file, enc, callback) => {
+									return callback();
+								})
+							)
+						),
+						// если есть предупреждения - notify
+						$.if(
+							(file) => {
+								return !!file.eslint.warningCount;
+							},
+							$.notify({
+								title: `ESLint WARN`,
+								message: `<%= file.relative %>`
+							})
+						)
+					)
+				)
+			).on('error', $.notify.onError(
+				_modulesParams.gulpNotifyOnError(`ESLint - ${options.taskName}`))
+			);
+
+
+
 
 
 		// task
@@ -141,6 +181,11 @@ module.exports = function(options) {
 				))
 				// компиляция
 				.pipe(streamJs)
+				// если eslint вкл.
+				.pipe($.if(
+					options.eslint,
+					streamEsLint
+				))
 				// если sourcemaps вкл. - пишем карты
 				.pipe($.if(
 					options.maps,

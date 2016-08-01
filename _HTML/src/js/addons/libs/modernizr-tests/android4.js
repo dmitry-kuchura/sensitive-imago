@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение **android4**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:android4
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'android4',
-			(navigator.userAgent.toLowerCase().indexOf('android 4.') >= 0)
-		);
-	});
+	Modernizr.addTest(
+		'android4',
+		(navigator.userAgent.toLowerCase().indexOf('android 4.') >= 0)
+	);
 // endcode modernizrTest:android4
+});

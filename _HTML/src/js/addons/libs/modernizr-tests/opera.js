@@ -6,6 +6,7 @@
 !*/
 
 
+define(['Modernizr'], function(Modernizr) {
 /**
  * Определение браузера **opera**
  *
@@ -14,10 +15,9 @@
  * @sourcecode 	modernizrTest:opera
  * @newscope	test
 */
-	define(['Modernizr'], function(Modernizr) {
-		Modernizr.addTest(
-			'opera',
-			(!!window.opera || navigator.userAgent.match(/Opera|OPR\//) !== null)
-		);
-	});
+	Modernizr.addTest(
+		'opera',
+		(!!window.opera || navigator.userAgent.match(/Opera|OPR\//) !== null)
+	);
 // endcode modernizrTest:opera
+});
