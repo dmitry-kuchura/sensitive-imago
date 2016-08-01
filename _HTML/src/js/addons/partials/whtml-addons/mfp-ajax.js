@@ -1,18 +1,34 @@
-/*>>wHTML.mfpInline*/
-	var _mfpInlineBaseConfig = {
-		type: 'inline',
-		closeBtnInside: true,
-		removalDelay: 300,
-		mainClass: 'zoom-in'
-	};
-
-	wHTML.prototype.mfpInline = function(selector) {
-		selector = selector || '.js-mfp-inline';
-		$(selector).each(function(index, el) {
-			var $el = $(el);
-			var customConfig = $el.data('mfpCustomConfig') || {};
-			var currentConfig = $.extend(true, _mfpInlineBaseConfig, customConfig);
-			$el.magnificPopup(currentConfig);
-		});
-	};
-/*>>wHTML.mfpInlinemfpInline*/
+/*>>wHTML.mfpAjax*/
+	/**
+	 * Инициализация `ajax` метода плагина `magnific-popup`
+	 *
+	 * @sourcecode
+	 * @memberof 	wHTML
+	 * @tutorial 	workwith-magnific-popup
+	 * @see 		{@link http://dimsemenov.com/plugins/magnific-popup/documentation.html#ajax-type}
+	 *
+	 * @param 		{string} 		[selector='.js-mfp-ajax'] пользовательский css селектор для поиска и инита
+	 * @return 		{undefined}
+	 */
+		wHTML.prototype.mfpAjax = function(selector) {
+			selector = selector || '.js-mfp-ajax';
+			$('body').magnificPopup({
+				type: 'ajax',
+				delegate: selector,
+				removalDelay: 300,
+				mainClass: 'zoom-in',
+				callbacks: {
+					elementParse: function(item) {
+						this.st.ajax.settings = {
+							url: item.el.data('url'),
+							type: 'POST',
+							data: item.el.data('param') || {}
+						};
+					},
+					ajaxContentAdded: function(el) {
+						//wHTML.validation();
+					}
+				}
+			});
+		};
+/*>>wHTML.mfpAjax*/

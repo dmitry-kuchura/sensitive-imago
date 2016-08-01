@@ -1,1 +1,11 @@
-{}
+{
+	"workwith-modernizr": {
+		"title": "Работа с Modernizr.js"
+	},
+	"workwith-magnific-popup": {
+		"title": "Работа с MagnificPopup"
+	},
+	"workwith-jquery-validate": {
+		"title": "Работа с jquery validate"
+	}
+ }

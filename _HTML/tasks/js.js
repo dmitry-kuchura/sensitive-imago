@@ -98,11 +98,6 @@ module.exports = function(options) {
 							$.include()
 						)
 					)
-				),
-				// если min вкл.
-				$.if(
-					options.min,
-					$.uglify(_modulesParams.gulpUglifyConfig(options.minConfig))
 				)
 			).on('error', $.notify.onError(
 				_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
@@ -173,13 +168,20 @@ module.exports = function(options) {
 					options.modernizr,
 					streamModernizr
 				))
+				// компиляция
+				.pipe(streamJs)
 				// если sasslint вкл.
 				.pipe($.if(
 					options.maps,
 					$.sourcemaps.init()
 				))
-				// компиляция
-				.pipe(streamJs)
+				// если min вкл.
+				.pipe($.if(
+					options.min,
+					$.uglify(_modulesParams.gulpUglifyConfig(options.minConfig)).on('error', $.notify.onError(
+						_modulesParams.gulpNotifyOnError(`Error uglify - ${options.taskName}`))
+					)
+				))
 				// если eslint вкл.
 				.pipe($.if(
 					options.eslint,

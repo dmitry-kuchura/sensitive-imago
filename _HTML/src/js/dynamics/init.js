@@ -1,5 +1,10 @@
 //=include ../addons/partials/whtml.js
 
 jQuery(document).ready(function($) {
-	console.log(wHTML);
+
+	// очитска localStorage
+	localStorage.clear();
+
+
+	wHTML.formValidation();
 });

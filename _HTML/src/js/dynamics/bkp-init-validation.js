@@ -1,8 +1,3 @@
-/*
-    validation.js v2.0
-    Wezom wTPL v4.0.0
-*/
-
 (function($){
 
     if (typeof wHTML === 'undefined') {
@@ -93,9 +88,6 @@
                         if (form.tagName.toLowerCase() === 'form') {
                             form.submit();
                         } else {
-                            /*if (preloader) {
-                                wPreloader.show(preloader);
-                            }*/
                             if( formJQ.data('ajax') ) {
                                 var data = new FormData();
                                 var name;

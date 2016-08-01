@@ -64,8 +64,8 @@
 	const isProduction = !!argv.p || !!argv.prod;
 	// версия dev сборки
 	const isDevelop = !isProduction;
-	// включение нотифаеров
-	const globalNotifyFlag = true;
+	// включение нотифаеров -s --nonotify
+	const isNotify = !(!!argv.s || !!argv.nonotify);
 	// глобальный метод фильтровки
 	const globalFilterMethod = 'newer';
 	// проект адаптивный
@@ -200,7 +200,7 @@
 			],
 			beautify: isProduction,
 			locals: _ejsLocals,
-			notify: globalNotifyFlag
+			notify: isNotify
 		});
 	// endcode gulp:ejs:markup
 
@@ -227,7 +227,7 @@
 			beautify: isProduction,
 			changeExt: '.php',
 			locals: _ejsLocals,
-			notify: globalNotifyFlag
+			notify: isNotify
 		});
 	// endcode gulp:ejs:hidden
 
@@ -334,7 +334,7 @@
 			min: isProduction,
 			include: true,
 			eslint: isLinting,
-			notify: globalNotifyFlag,
+			notify: isNotify,
 		});
 	// endcode gulp:js:dynamics
 
@@ -366,7 +366,7 @@
 			include: true,
 			changeExt: '.ejs',
 			eslint: isLinting,
-			notify: globalNotifyFlag,
+			notify: isNotify,
 		});
 	// endcode gulp:js:criticals
 
@@ -391,7 +391,7 @@
 			watch: [
 				'./src/js/statics/**/*.*'
 			],
-			notify: globalNotifyFlag
+			notify: isNotify
 		});
 	// endcode gulp:js:statics
 
@@ -433,7 +433,7 @@
 				]
 			},
 			filter: false,
-			notify: globalNotifyFlag
+			notify: isNotify
 		});
 	// endcode gulp:modernizr:scan
 
@@ -460,7 +460,7 @@
 			],
 			imagemin: isProduction,
 			filter: globalFilterMethod,
-			notify: globalNotifyFlag
+			notify: isNotify
 		});
 	// endcode gulp:modernizr:addtests
 
@@ -566,7 +566,7 @@
 				'./src/sass/addons/**/*.scss',
 				'./src/sass/dynamics/**/*.scss'
 			],
-			notify: globalNotifyFlag,
+			notify: isNotify,
 			sasslint: isLinting,
 			csslint: isLinting
 		});
@@ -598,7 +598,7 @@
 				'./src/sass/addons/**/*.scss',
 				'./src/sass/criticals/**/*.scss'
 			],
-			notify: globalNotifyFlag,
+			notify: isNotify,
 			sasslint: isLinting,
 			csslint: isLinting
 		});
@@ -626,7 +626,7 @@
 			],
 			imagemin: isProduction,
 			filter: globalFilterMethod,
-			notify: globalNotifyFlag
+			notify: isNotify
 		});
 	// endcode gulp:sass:statics
 
@@ -731,7 +731,7 @@
 				watch: [
 					'./src/images/**/*.*'
 				],
-				notify: globalNotifyFlag
+				notify: isNotify
 			});
 		// endcode gulp:images:series
 
@@ -802,7 +802,7 @@
 				],
 				imagemin: false,
 				filter: globalFilterMethod,
-				notify: globalNotifyFlag
+				notify: isNotify
 			});
 		// endcode gulp:favicons:series
 
@@ -878,7 +878,7 @@
 	 */
 		lazyRequireTask('upload', './tasks/upload', {
 			src: './dist/**/*.*',
-			notify: globalNotifyFlag,
+			notify: isNotify,
 			connect: {
 				host: '91.206.30.13',
 				user: 'inkubator',
@@ -974,7 +974,7 @@
 				src: './tutorials/sass/assets/**/*.*',
 				dest: './docs/sass/assets',
 				filter: globalFilterMethod,
-				notify: globalNotifyFlag,
+				notify: isNotify,
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:sass:assets
@@ -1070,7 +1070,7 @@
 				src: './tutorials/gulp/assets/**/*.*',
 				dest: './docs/gulp/assets',
 				filter: globalFilterMethod,
-				notify: globalNotifyFlag,
+				notify: isNotify,
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:gulp:assets
@@ -1167,7 +1167,7 @@
 				src: './tutorials/js/assets/**/*.*',
 				dest: './docs/js/assets',
 				filter: globalFilterMethod,
-				notify: globalNotifyFlag,
+				notify: isNotify,
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:js:assets
@@ -1266,7 +1266,7 @@
 				src: './tutorials/html/assets/**/*.*',
 				dest: './docs/html/assets',
 				filter: globalFilterMethod,
-				notify: globalNotifyFlag,
+				notify: isNotify,
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:html:assets
@@ -1335,7 +1335,7 @@
 				src: './tasks/_docs-assets/**/*.*',
 				dest: './docs/_assets',
 				filter: globalFilterMethod,
-				notify: globalNotifyFlag,
+				notify: isNotify,
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:assets
