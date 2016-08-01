@@ -4,6 +4,7 @@
 	 *
 	 * @sourcecode
 	 * @tutorial 	workwith-jquery-validate
+	 * @fires 		wHTML#formOnSubmit
 	 *
 	 * @param 		{string} 		[selector='.js-mfp-ajax'] пользовательский css селектор для поиска и инита
 	 * @return 		{undefined}
@@ -15,9 +16,13 @@
 				var validator = $form.data('validator');
 				console.log(validator);
 				if (typeof validator === 'undefined') {
-					$form.on('submit', function(event) {
-						return false;
-					});
+
+					if ($form.is('form')) {
+						$form.on('submit', function(event) {
+							return false;
+						});
+					}
+
 					$form.validate({
 						showErrors: function(errorMap, errorList) {
 							if (errorList.length) {
@@ -39,6 +44,21 @@
 							_self.formOnSubmit($currentForm);
 						}
 					});
+
+	                if ($form.is('div')) {
+
+		                $form.on('click', '.js-form-submit', function(event) {
+		                    $form.submit();
+		                });
+
+		                $form.on('change', '.js-input-file', function(event) {
+		                    $form.formGetFileValues(this);
+		                });
+
+		                $form.on('click', '.js-form-reset', function(event) {
+	                		$form.formReset();
+		                });
+		            }
 				}
 			});
 		};
@@ -48,13 +68,12 @@
 	 *
 	 * @sourcecode
 	 * @tutorial 	workwith-jquery-validate
+	 * @event 		wHTML#formAfterSubmit
 	 *
 	 * @param 		{Element} 		$form - текущая форма, `jQuery element`
 	 * @return 		{undefined}
 	 */
-		wHTML.prototype.formAfterSubmit = function($form) {
-			console.warn('HTML => Форма отправлена ddddddddddd');
-		};
+		wHTML.prototype.formAfterSubmit = function($form) {};
 
 	/**
 	 * Событие, при успешной валидации формы.
@@ -62,6 +81,8 @@
 	 *
 	 * @sourcecode
 	 * @tutorial 	workwith-jquery-validate
+	 * @fires 		wHTML#formAfterSubmit
+	 * @event 		wHTML#formOnSubmit
 	 *
 	 * @param 		{Element} 		$form - текущая форма, `jQuery element`
 	 * @return 		{undefined}
