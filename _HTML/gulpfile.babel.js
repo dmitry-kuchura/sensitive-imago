@@ -327,12 +327,12 @@
 			dest: './dist/js',
 			watch: [
 				'./src/js/dynamics/**/*.js',
-				'./src/js/addons/libs/*.js'
+				'./src/js/addons/libs/*.js',
+				'./src/js/addons/partials/**/*.js'
 			],
 			maps: isDevelop,
 			min: isProduction,
 			include: true,
-			filter: false,
 			eslint: isLinting,
 			notify: globalNotifyFlag,
 		});
@@ -358,13 +358,13 @@
 			dest: './src/markup/views/criticals/js',
 			watch: [
 				'./src/js/criticals/**/*.js',
-				'./src/js/addons/libs/*.js'
+				'./src/js/addons/libs/*.js',
+				'./src/js/addons/partials/**/*.js'
 			],
 			maps: false,
 			min: true,
 			include: true,
 			changeExt: '.ejs',
-			filter: false,
 			eslint: isLinting,
 			notify: globalNotifyFlag,
 		});
@@ -1142,8 +1142,9 @@
 				src: [
 					'./tutorials/js-index.md',
 					'./src/js/addons/libs/modernizr-tests/**/*.js',
-					'./src/js/criticals/**/*.js',
-					'./src/js/dynamics/*.js'
+					'./src/js/addons/partials/**/*.js',
+					'./src/js/dynamics/*.js',
+					'./src/js/criticals/**/*.js'
 				]
 			});
 		// endcode gulp:docs:jsdoc:js

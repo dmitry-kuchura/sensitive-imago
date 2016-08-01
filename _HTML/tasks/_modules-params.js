@@ -218,17 +218,17 @@ class modulesParams {
 				'no-native-reassign': 2,
 				'no-alert': 2,
 				'use-isnan': 2,
-				'no-console': [
-					2, {
-						allow: ["warn", "error"]
-					}
-				],
 
 				// warning
 				'no-case-declarations': 1,
 				'camelcase': 1,
 				'valid-jsdoc': 1,
 				'valid-typeof': 1,
+				'no-console': [
+					1, {
+						allow: ["warn", "error"]
+					}
+				],
 
 				// disabled
 				'strict': 0

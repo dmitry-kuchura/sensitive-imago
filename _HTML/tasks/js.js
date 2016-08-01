@@ -137,7 +137,6 @@ module.exports = function(options) {
 						// если есть ошибки - fail
 						$.if(
 							(file) => {
-								console.log(file.relative.split('\\')[0]);
 								return !!file.eslint.errorCount;
 							},
 							multipipe(
