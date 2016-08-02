@@ -53,7 +53,7 @@
  * @newscope
  */
  	// имя проекта
-	const projectName = `wtpl`;
+	const projectName = 'sensetive-imago';
 
 	// объект авто-вотчей
 	const watchSources = {};
