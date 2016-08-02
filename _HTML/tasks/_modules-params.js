@@ -151,32 +151,6 @@ class modulesParams {
 
 
 	/**
-	 * Настройка параметров для модуля `gulp-modernizr` и его `customizr`.
-	 * - офф документация {https://github.com/Modernizr/customizr}
-	 *
-	 * @sourcecode
-	 * @tutorial 	workwith-gulp-modernizr
-	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
-	 * @return		{Array}		Список конфигурцаии.
-	 */
-	gulpJsLibModernizr(customConfig={}) {
-		let baseConfig = {
-			uglify: true
-		};
-		let currentConfig;
-		if (customConfig) {
-			currentConfig = deepExtend(baseConfig, customConfig);
-		} else {
-			currentConfig = baseConfig;
-		}
-		return $.modernizr(currentConfig);
-	}
-
-
-
-
-
-	/**
 	 * Составление скриптов библиотек - ***метод в работе***.
 	 *
 	 * @sourcecode

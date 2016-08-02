@@ -5,11 +5,6 @@
 }
 !*/
 
-/**
- * Набор пользовательских тестов для `modernizr.js`. Смотри {@tutorial workwith-modernizr}
- * @namespace modernizrTests
-*/
-
 
 define(['Modernizr', 'docElement'], function(Modernizr, docElement) {
 /**

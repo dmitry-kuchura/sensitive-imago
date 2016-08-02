@@ -1,2 +1,111 @@
+<p>Библиотека тестирует возможности вашего браузера. Результат этих тестов можно использовать для достижения максимальной кроссбраузерности и внесение фиксов (CSS и JS) при определнных ситуациях в соотвествии с особеностами браузера и его возможностей.</p>
+
+<p>Офф сайт - {@link https://modernizr.com/}</p>
+<p>Офф документация - {@link https://modernizr.com/docs}</p>
+<p>Туториалы с офф сайта</p>
+<ul>
+	<li>{@link http://hacks.mozilla.org/2012/07/the-web-developer-toolbox-modernizr/|Mozilla Web Developer Toolbox: Modernizr}</li>
+	<li>{@link http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr/|Taking Advantage of HTML5 and CSS3 with Modernizr}</li>
+	<li>{@link http://webdesignernotebook.com/css/how-to-use-modernizr/|How to use Modernizr}</li>
+	<li>{@link https://learnable.com/courses/modernizr-front-end-development-done-right-2561|Modernizr: front-end development done right}</li>
+	<li>{@link http://www.andismith.com/blog/2012/02/modernizr-prefixed/|Using Modernizr Prefixed}</li>
+</ul>
+
+<hr>
+<h3 id="use">Как использовать</h3>
+<p>CSS</p>
+<pre><code class="language-css">
+.no-csscalc .box { color: red; }
+.csscalc .box { color: green; }
+</code></pre>
+<p>JS</p>
+<pre><code class="language-javascript">
+if (Modernizr.csscalc) {
+	// supported
+} else {
+	// not-supported
+}
+</code></pre>
+
+<hr>
+<h3 id="manual">Ручная сборка скрипта</h3>
+<p>Вы можете вручную собрать скрипт с нужными вам тестами используя <a href="https://modernizr.com/download?addtest-dontmin-setclasses">билдер модернизера</a></p>
+<p>Для более детальной работы со скриптом и добавлением собственных тестов - читай <a href="https://modernizr.com/docs#modernizr-api">Modernizr API</a></p>
+
+<hr>
+<h2 id="manual">Автоматическая сборка</h2>
+<p>автоматическая сборка доступна только в gulp сборке, при помощи nodejs модуля <a href="https://www.npmjs.com/package/gulp-modernizr">gulp-modernizr</a>.</p>
+
+<h3 id="scan">Генерация скрипта</h3>
 <p>В сборке нету физического файла modernizr.js. Он будет генирироватся автоматически.</p>
-<p>Для того чтобы составить скрипт с нужными тестами - необходимо запустить задачу - <code>gulp modernizr:scan</code> ({@link modernizrTest})</p>
+<p>Для того чтобы составить скрипт с нужными тестами - необходимо запустить задачу - <code>gulp modernizr:scan</code> (<a href="../gulp/gulp.html#.modernizr:scan">Gulp / Пространства имен / gulp / gulp modernizr:scan</a>).</p>
+<p>Задача сканирует итоговые файлы разработок js / css из <samp>./dist/js/*.js</samp> и <samp>./dist/css/*.css</samp>, а также инлайновые файлы - <samp>./src/markup/views/criticals/css/*.ejs</samp> и <samp>./src/markup/views/criticals/js/*.ej</samp>. При нахождении соответствующих css классов или js обращений к Modernizr'у, модуль составить ядро модуля (даже и без обнаружения) и добавить к скрипту только найденные тесты.</p>
+<p>Задача не входит в вотч, поэтому ее слудет запускать вручную (в отдельной консоли). Сам скрипт modernizr.js будет скомпилирован в <samp>./dist/js/vendor/</samp>. Если вам нужнa min версия - запустите задачу с флагом продашн версии</p>
+<pre><code class="language-git">
+gulp modernizr:scan -p
+# или
+gulp modernizr:scan --prod
+</code></pre>
+
+<h3 id="addtests">Настройка генерации</h3>
+<p>Для детальной настройки смотри параметры - <a href="https://github.com/Modernizr/customizr#config-file">https://github.com/Modernizr/customizr</a>. Эти значения можно использовать в описании вызова задачи - <a href="../gulp/gulp.html#.modernizr:scan">Gulp / Пространства имен / gulp / gulp modernizr:scan</a> - принудительно добавить или исключить тесты и опции</p>
+<em>Пример:</em>
+<pre><code class="language-javascript">
+modernizrConfig: {
+	options: [
+		'setClasses', 'prefixes'
+	],
+	tests: [],
+	excludeTests: [
+		'checked'
+	]
+}
+</code></pre>
+
+<hr>
+<h3 id="addtests">Пользовательские тесты</h3>
+<p>Для добавления собственных тестов, которых нету в стандартном наборе modernizr'a, нужно добавить собственные скрипты в <samp>./src/js/addons/libs/modernizr-tests/</samp>. <br>Каждый тест должен быть отдельным скриптом.</p>
+<p>В качестве заготовки можно использовать уже существующие тесты в это директории. <br>Разберем на примере теста для обнаружения всех андроидов < 4.4 - androidless.js</p>
+<pre><code class="language-javascript">
+/*!
+{
+  "name": "androidless",
+  "property": "androidless"
+}
+!*/
+
+
+define(['Modernizr'], function(Modernizr) {
+/**
+ * Определение **androidless** - андроиды 4.3 и младше
+ *
+ * @memberof 	modernizrTests
+ * @name 		androidless
+ * @sourcecode 	modernizrTest:androidless
+ * @newscope	test
+*/
+	Modernizr.addTest(
+		'androidless',
+		(navigator.userAgent.match(/\sandroid\s([0-3]|4\.[0-3])/i) !== null)
+	);
+// endcode modernizrTest:androidless
+});
+</code></pre>
+<br>
+<ul>
+	<li>Блок комментариев - это системное означение теста - должно присутствовать обязательно. При его помощи модуль будет опредялть тест и включать его в сборку</li>
+	<li>Далее блок опрделения теста <code>define(['Modernizr'], function(Modernizr) {</code></li>
+	<li>Блок комментов документации</li>
+	<li>Сам тест
+		<ol>
+			<li>аргумент - это имя теста</li>
+			<li>аргумент - вычисление, которое должно вернуть булевское значение</li>
+		</ol>
+	</li>
+	<li>Скрипт теста должен закончится закрытием определения define - <code>});</code>. После ничего не должно быть - иначе вы будете получать ошибку при минификации файла</li>
+</ul>
+<p>После составления нужных тестов или внесении правок в готовые - нужно добавить тесты в билдер модуля - для этого используется задача - <code>gulp modernizr:addtests</code> (<a href="../gulp/gulp.html#.modernizr:addtests">Gulp / Пространства имен / gulp / gulp modernizr:addtests</a>)</p>
+<p>После добавления новых тестов, нужно провести новое сканиирование - чтобы добавить ващи тесты, если они используються в итоговых файлах</p>
+
+<h3 id="addtests">Список готовых пользовательских тестов</h3>
+<p>Смотри {@link modernizrTests}</p>

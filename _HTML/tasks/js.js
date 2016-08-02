@@ -104,9 +104,9 @@ module.exports = function(options) {
 			);
 
 
-			// составление multipipe компиляции
+			// составление multipipe компиляции modernizr.js
 			let streamModernizr = multipipe(
-				multipipe(_modulesParams.gulpJsLibModernizr(options.modernizrConfig)),
+				$.modernizr(options.modernizrConfig || {}),
 				throughObj((file, enc, callback) => {
 					if (file.extname === undefined) {
 						return callback(null, file);

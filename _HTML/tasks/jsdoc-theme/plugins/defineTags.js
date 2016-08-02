@@ -181,6 +181,7 @@
 					name: tag.value,
 					source: fileSource
 				}
+				//console.log(doclet);
 			}
 		});
 
