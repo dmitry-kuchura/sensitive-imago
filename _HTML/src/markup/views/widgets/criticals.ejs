@@ -1,8 +1,11 @@
 <!-- reset styles -->
 <style><% include ../criticals/css/reset %></style>
-<% if (_activeFile.hasSeoText) { %>
+<% if (_activeFileData.hasSeoText) { %>
 	<!-- seoTxt styles -->
 	<style><% include ../criticals/css/seoset %></style>
 <% } %>
 <!-- localstorage-test.js -->
 <script><% include ../criticals/js/localstorage-test %></script>
+<% if (_activeFileData.hasSeoText) { %>
+	<script>localStorage.clear();</script>
+<% } %>

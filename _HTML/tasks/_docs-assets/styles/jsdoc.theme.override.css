@@ -33,9 +33,9 @@ img.alpha {
 	border: 1px solid #444;
 	background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwP/wAALCAAQABABAREA/8QAFgABAQEAAAAAAAAAAAAAAAAACQAK/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQAAPwDfwGdGYf/Z)
 }
-.tutorial-article {
+/* .tutorial-article {
 	min-height: 700px;
-}
+} */
 .tutorial-article hr {
 	margin-top: 2.4em;
 	margin-bottom: 3.2em;

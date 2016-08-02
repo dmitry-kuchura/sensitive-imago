@@ -15,8 +15,12 @@
 <h3 id="use">Как использовать</h3>
 <p>CSS</p>
 <pre><code class="language-css">
-.no-csscalc .box { color: red; }
-.csscalc .box { color: green; }
+.no-csscalc .box {
+	width: 92%;
+}
+.csscalc .box {
+	width: calc(100% - 50px);
+}
 </code></pre>
 <p>JS</p>
 <pre><code class="language-javascript">

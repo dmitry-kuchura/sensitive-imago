@@ -1,1 +1,19 @@
-{}
+{
+	"folder": {
+		"title": "Исходные файлы сборки",
+		"children": {
+			"folder-addons": {
+				"title": "директория addons"
+			},
+			"folder-hidden": {
+				"title": "директория hidden"
+			},
+			"folder-layouts": {
+				"title": "директория layouts"
+			},
+			"folder-views": {
+				"title": "директория views"
+			}
+		}
+	}
+}

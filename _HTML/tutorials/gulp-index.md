@@ -29,11 +29,18 @@
 
 -----
 
+## Структура директорий
+
+читай туториал {@tutorial all-folders}
+
+-----
+
 ## Компиляция файлов
 
 - {@tutorial compile-ejs}
 - {@tutorial compile-js}
 - {@tutorial compile-sass}
+- {@tutorial compile-transfer}
 
 -----
 

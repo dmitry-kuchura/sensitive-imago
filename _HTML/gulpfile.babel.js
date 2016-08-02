@@ -194,6 +194,7 @@
 	 * @sourcecode 	gulp:ejs:markup
 	 * @tutorial 	compile-ejs
 	 * @see 		{@link module:tasks/ejs}
+	 * @see			[Project docs / Туториалы / Исходные файлы сборки](../html/tutorial-folder.html)
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -221,9 +222,10 @@
 	 * ```
 	 *
 	 * @name 		ejs:hidden
-	 * @sourcecode 	gulp:ejs:hidden
+	 * @sourcecode 	gulp:ejs:hidden:php
 	 * @tutorial 	compile-ejs
 	 * @see 		{@link module:tasks/ejs}
+	 * @see			[Project docs / Туториалы / Исходные файлы сборки / директория hidden](../html/tutorial-folder-hidden.html)
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -238,7 +240,34 @@
 			locals: _ejsLocals,
 			notify: isNotify
 		});
-	// endcode gulp:ejs:hidden
+	// endcode gulp:ejs:hidden:php
+
+
+
+	/**
+	 * Трансфер дополнительных, статических, файлов.
+	 * ```git
+	 * gulp ejs:hidden:static
+	 * ```
+	 *
+	 * @name 		ejs:hidden:static
+	 * @sourcecode 	gulp:ejs:hidden:static
+	 * @tutorial 	compile-transfer
+	 * @see 		{@link module:tasks/transfer}
+	 * @see			[Project docs / Туториалы / Исходные файлы сборки / директория hidden](../html/tutorial-folder-hidden.html)
+	 * @memberof 	gulp
+	 * @newscope 	gulp
+	 */
+		lazyRequireTask('ejs:hidden:static', './tasks/transfer', {
+			src: './src/markup/hidden/**/*.!(ejs)',
+			dest: './dist/hidden',
+			watch: [
+				'./src/markup/hidden/**/*.!(ejs)'
+			],
+			filter: globalFilterMethod,
+			notify: isNotify
+		});
+	// endcode gulp:ejs:hidden:static
 
 
 
@@ -273,13 +302,15 @@
 	 * @name 		ejs
 	 * @sourcecode 	gulp:ejs:series
 	 * @tutorial 	compile-ejs
+	 * @see			[Project docs / Туториалы / Исходные файлы сборки](../html/tutorial-folder.html)
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
 		gulp.task('ejs',
 			gulp.series(
 				'ejs:markup',
-				'ejs:hidden'
+				'ejs:hidden',
+				'ejs:hidden:static'
 			)
 		);
 	// endcode gulp:ejs:series

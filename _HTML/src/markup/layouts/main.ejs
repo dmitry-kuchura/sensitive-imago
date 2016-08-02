@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html <%- Utils.setAttrs(_globalData.htmlAttrs) %>>
+<html lang="ru-RU" dir="ltr" class="no-js">
 	<head>
 		<%- partial('../views/widgets/head') %>
 		<%- partial('../views/widgets/criticals') %>
 	</head>
 	<body>
 		<div class="pageWrapper">
-			<% if (_activeFile.hasSeoText) { %>
+			<% if (_activeFileData.hasSeoText) { %>
 				<main id="seoText" class="pageSeoText">
-					<div class="pageSize"><%- partial(_activeFile.seoTextContent, {}) %></div>
+					<div class="pageSize"><%- partial(_activeFileData.seoTextContent, {}) %></div>
 				</main>
 				<!-- end pageSeoText -->
 			<% } %>
@@ -24,7 +24,9 @@
 			</div>
 			<!-- end pageContainer -->
 
-			<div id="seoClone"></div>
+			<% if (_activeFileData.hasSeoText) { %>
+				<div id="seoClone"></div>
+			<% } %>
 
 
 			<footer class="pageFooter">
@@ -36,13 +38,9 @@
 		<!-- end pageWrapper -->
 
 
-
-
 		<!-- внешние css файлы -->
 		<link rel="stylesheet" property="stylesheet" href="css/style.css">
 		<link rel="stylesheet" property="stylesheet" href="css/vendor/plugins.css">
-
-
 
 
 		<!-- внешние js файлы -->
@@ -52,9 +50,6 @@
 		<!-- <script src="js/messages_ru.js"></script> -->
 		<script src="js/init.js"></script>
 		<!-- <script src="js/prog.js"></script> -->
-
-
-
 
 	</body>
 </html>

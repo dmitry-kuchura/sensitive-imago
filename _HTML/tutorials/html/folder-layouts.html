@@ -1,0 +1,66 @@
+<p>Расположение <samp>./markup/layouts</samp></p>
+
+<blockquote>
+	Директрия в которой находяться основные файлы лейоутов на основе которых будут составленны итоговые <em>*.html</em> файлы.
+</blockquote>
+<br>
+<p>Лейауты содержат основную стркутуру разметки.</p>
+<br>
+<p>Основные <code>*.ejs</code> файлы  из {@tutorial folder-views} используйт лейауты для расширения при помощи метода <code><% layout('../layouts/main') %></code></p>
+
+<p>Пример лейаута из <samp>./markup/layouts/main.ejs</samp></p>
+<pre><code class="language-markup">
+&lt;!DOCTYPE html>
+&lt;html lang="ru-RU" dir="ltr" class="no-js">
+	&lt;head>
+		&lt;%- partial('../views/widgets/head') %>
+		&lt;%- partial('../views/widgets/criticals') %>
+	&lt;/head>
+	&lt;body>
+		&lt;div class="pageWrapper">
+			&lt;% if (_activeFileData.hasSeoText) { %>
+				&lt;main id="seoText" class="pageSeoText">
+					&lt;div class="pageSize">&lt;%- partial(_activeFileData.seoTextContent, {}) %>&lt;/div>
+				&lt;/main>
+				&lt;!-- end pageSeoText -->
+			&lt;% } %>
+
+			&lt;header class="pageHeader">
+				&lt;%- partial('../views/widgets/header', {}) %>
+			&lt;/header>
+			&lt;!-- end pageHeader -->
+
+
+			&lt;div class="pageContainer">
+				&lt;%- body %>
+			&lt;/div>
+			&lt;!-- end pageContainer -->
+
+			&lt;% if (_activeFileData.hasSeoText) { %>
+				&lt;div id="seoClone">&lt;/div>
+			&lt;% } %>
+
+
+			&lt;footer class="pageFooter">
+				&lt;%- partial('../views/widgets/footer', {}) %>
+			&lt;/footer>
+			&lt;!-- end pageFooter -->
+
+		&lt;/div>
+		&lt;!-- end pageWrapper -->
+
+
+		&lt;!-- внешние css файлы -->
+		&lt;link rel="stylesheet" property="stylesheet" href="css/style.css">
+		&lt;link rel="stylesheet" property="stylesheet" href="css/vendor/plugins.css">
+
+
+		&lt;!-- внешние js файлы -->
+		&lt;script src="js/vendor/modernizr.js">&lt;/script>
+		&lt;script src="js/vendor/jquery-2.2.4.min.js">&lt;/script>
+		&lt;script src="js/vendor/plugins.js">&lt;/script>
+		&lt;script src="js/init.js">&lt;/script>
+
+	&lt;/body>
+&lt;/html>
+</code></pre>
