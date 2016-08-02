@@ -122,6 +122,8 @@
  * @moduleLocal
  * @sourcecode	code:tasks:sass
  *
+ * @tutorial 	compile-sass
+ *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
  * @requires   	{@link https://www.npmjs.com/package/multipipe}
  * @requires   	{@link https://www.npmjs.com/package/through2}

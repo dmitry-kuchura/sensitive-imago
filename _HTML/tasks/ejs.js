@@ -35,6 +35,8 @@
  * @moduleLocal
  * @sourcecode	code:tasks:ejs
  *
+ * @tutorial 	compile-ejs
+ *
  * @see			{@link http://ejs.co/}
  * @see			{@link https://github.com/RandomEtc/ejs-locals/}
  *

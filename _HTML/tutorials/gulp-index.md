@@ -29,6 +29,14 @@
 
 -----
 
+## Компиляция файлов
+
+- {@tutorial compile-ejs}
+- {@tutorial compile-js}
+- {@tutorial compile-sass}
+
+-----
+
 ## Используемые nodejs модули
 
 Каждый модуль можно найти на сайте [npmjs.com](https://www.npmjs.com/).

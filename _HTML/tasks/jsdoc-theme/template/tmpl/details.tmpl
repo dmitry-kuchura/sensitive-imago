@@ -22,6 +22,15 @@ data._header = data._header || 'p';
 ?>
 <dl class="details">
 
+	<?js if (data.tutorials && tutorials.length && data.kind === 'member') {?>
+	<dt class="tag-tutorials method-doc-label method-doc-details-label"><?js= (_lang('Tutorials', 'Туториалы'))?>:</dt>
+	<dd class="tag-tutorials">
+		<ul><?js tutorials.forEach(function(s) { ?>
+			<li><?js= self.tutoriallink(s) ?></li>
+			<?js }); ?></ul>
+	</dd>
+	<?js } ?>
+
 	<?js if (data.see && see.length && data.kind === 'member') {?>
 	<dt class="tag-see method-doc-label method-doc-details-label"><?js= (_lang('See', 'Смотри также'))?>:</dt>
 	<dd class="tag-see">

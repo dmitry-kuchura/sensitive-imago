@@ -2,6 +2,18 @@
 	"all-tasks": {
 		"title": "Список основных gulp задач"
 	},
+	"compile-ejs": {
+		"title": "Компиляция разметки"
+	},
+	"compile-js": {
+		"title": "Компиляция скриптов"
+	},
+	"compile-sass": {
+		"title": "Компиляция стилей"
+	},
+	"compile-transfer": {
+		"title": "Трансфер файлов"
+	},
 	"docs-gulp": {
 		"title": "Документация GULP сборки"
 	},

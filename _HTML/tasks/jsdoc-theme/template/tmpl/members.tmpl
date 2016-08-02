@@ -28,7 +28,7 @@ if (data.newScope) {
     <?js } ?>
 
     <?js if (data && data.type && data.type.names) {?>
-        <h5>Type:</h5>
+        <h5><?js= (_lang('Type', 'Тип данных'))?>:</h5>
         <ul>
             <li>
                 <?js= self.partial('type.tmpl', data.type.names) ?>

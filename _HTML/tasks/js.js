@@ -36,6 +36,8 @@
  * @moduleLocal
  * @sourcecode	code:tasks:ejs
  *
+ * @tutorial 	compile-js
+ *
  * @requires   	{@link https://github.com/gulpjs/gulp/tree/4.0|gulpjs/gulp#4.0}
  * @requires   	{@link https://www.npmjs.com/package/multipipe}
  * @requires   	{@link https://www.npmjs.com/package/gulp-load-plugins}

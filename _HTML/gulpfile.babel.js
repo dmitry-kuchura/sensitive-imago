@@ -120,6 +120,14 @@
 
 /**
  * Метод "ленивой" загрузки и подключения задач из внутрених модулей.
+ * Кроме передаваемых значений из каждой задачи, метод добавляет автоматически параметры:
+ * - `taskOptions.taskName` - имя задчи
+ * - `taskOptions.isProduction` - флаг продакшн версии
+ * - `taskOptions.isDevelop` - флаг dev версии
+ * - `taskOptions.package` - объект данных из package.json
+ * - `taskOptions.browserSyncReload` - флаг авторелоада `browser-sync`
+ *
+ * Также если в параметрах задачи указать свойство `watch` - автоматически добавит в глобальный объект `watchSources` ключ (имя задачи) - и значение указанное в свойстве. Для использования модулем `gulp-autowatch` в задаче `gulp watch`
  *
  *
  *
@@ -130,10 +138,9 @@
  * @param		{String}		taskName - имя задачи
  * @param		{String}		taskFile - путь к файлу, без учета родительской директории задач - `./tasks/`
  * @param		{Object}		[taskOptions={}] - передавемые параметры
- * @param		{Function}		[onBefore] - функция которая должна выполниться перед задачей
  *
 */
-	function lazyRequireTask(taskName, taskFile, taskOptions={}, onBefore) {
+	function lazyRequireTask(taskName, taskFile, taskOptions={}) {
 		taskOptions.taskName = taskName;
 		taskOptions.isProduction = isProduction;
 		taskOptions.isDevelop = isDevelop;
@@ -185,6 +192,7 @@
 	 *
 	 * @name 		ejs:markup
 	 * @sourcecode 	gulp:ejs:markup
+	 * @tutorial 	compile-ejs
 	 * @see 		{@link module:tasks/ejs}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -214,6 +222,7 @@
 	 *
 	 * @name 		ejs:hidden
 	 * @sourcecode 	gulp:ejs:hidden
+	 * @tutorial 	compile-ejs
 	 * @see 		{@link module:tasks/ejs}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -263,6 +272,7 @@
 	 *
 	 * @name 		ejs
 	 * @sourcecode 	gulp:ejs:series
+	 * @tutorial 	compile-ejs
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -285,6 +295,7 @@
 	 *
 	 * @name 		ejs:rebuild
 	 * @sourcecode 	gulp:ejs:rebuild
+	 * @tutorial 	compile-ejs
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -318,6 +329,7 @@
 	 *
 	 * @name 		js:dynamics
 	 * @sourcecode 	gulp:js:dynamics
+	 * @tutorial 	compile-js
 	 * @see 		{@link module:tasks/js}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -349,6 +361,7 @@
 	 *
 	 * @name 		js:criticals
 	 * @sourcecode 	gulp:js:criticals
+	 * @tutorial 	compile-js
 	 * @see 		{@link module:tasks/js}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -380,6 +393,7 @@
 	 *
 	 * @name 		js:statics
 	 * @sourcecode 	gulp:js:statics
+	 * @tutorial 	compile-transfer
 	 * @see 		{@link module:tasks/transfer}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -405,6 +419,7 @@
 	 *
 	 * @name 		modernizr:scan
 	 * @sourcecode 	gulp:modernizr:scan
+	 * @tutorial 	compile-js
 	 * @see			[JSDoc / Туториалы / Работа с Modernizr.js](../js/tutorial-workwith-modernizr.html#scan)
 	 * @see 		{@link module:tasks/js}
 	 * @memberof 	gulp
@@ -445,6 +460,7 @@
 	 *
 	 * @name 		modernizr:addtests
 	 * @sourcecode 	gulp:modernizr:addtests
+	 * @tutorial 	compile-transfer
 	 * @see			[JSDoc / Туториалы / Работа с Modernizr.js](../js/tutorial-workwith-modernizr.html#addtests)
 	 * @see 		{@link module:tasks/transfer}
 	 * @memberof 	gulp
@@ -494,6 +510,7 @@
 	 *
 	 * @name 		js
 	 * @sourcecode 	gulp:js:series
+	 * @tutorial 	compile-js
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -517,6 +534,7 @@
 	 *
 	 * @name 		js:rebuild
 	 * @sourcecode 	gulp:js:rebuild
+	 * @tutorial 	compile-js
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -550,6 +568,7 @@
 	 *
 	 * @name 		sass:dynamics
 	 * @sourcecode 	gulp:sass:dynamics
+	 * @tutorial 	compile-sass
 	 * @see 		{@link module:tasks/sass}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -581,6 +600,7 @@
 	 *
 	 * @name 		sass:criticals
 	 * @sourcecode 	gulp:sass:criticals
+	 * @tutorial 	compile-sass
 	 * @see 		{@link module:tasks/sass}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -612,6 +632,7 @@
 	 *
 	 * @name 		sass:statics
 	 * @sourcecode 	gulp:sass:statics
+	 * @tutorial 	compile-transfer
 	 * @see 		{@link module:tasks/transfer}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
@@ -660,6 +681,7 @@
 	 *
 	 * @name 		sass
 	 * @sourcecode 	gulp:sass:series
+	 * @tutorial 	compile-sass
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -683,6 +705,7 @@
 	 *
 	 * @name 		sass:rebuild
 	 * @sourcecode 	gulp:sass:rebuild
+	 * @tutorial 	compile-sass
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -717,6 +740,7 @@
 		 *
 		 * @name 		images
 		 * @sourcecode 	gulp:images:series
+	 	 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -763,6 +787,7 @@
 		 *
 		 * @name 		images:rebuild
 		 * @sourcecode 	gulp:images:rebuild
+	 	 * @tutorial 	compile-transfer
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -788,6 +813,7 @@
 		 *
 		 * @name 		favicons
 		 * @sourcecode 	gulp:favicons:series
+	 	 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -839,6 +865,7 @@
 		 *
 		 * @name 		favicons:rebuild
 		 * @sourcecode 	gulp:favicons:rebuild
+	 	 * @tutorial 	compile-transfer
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -909,7 +936,7 @@
 		 *
 		 * @name 		docs:sass:doc
 		 * @sourcecode 	gulp:docs:sass:doc
-		 * @see 		{@tutorial docs-sass}
+		 * @tutorial 	docs-sass
 		 * @see 		{@link module:tasks/sassdoc}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -964,6 +991,7 @@
 		 *
 		 * @name 		docs:sass:assets
 		 * @sourcecode 	gulp:docs:sass:assets
+	 	 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -987,6 +1015,7 @@
 		 *
 		 * @name 		docs:sass
 		 * @sourcecode 	gulp:docs:sass:series
+		 * @tutorial 	docs-sass
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -1032,7 +1061,7 @@
 		 *
 		 * @name 		docs:jsdoc:gulp
 		 * @sourcecode 	gulp:docs:jsdoc:gulp
-		 * @see 		{@tutorial docs-gulp}
+		 * @tutorial 	docs-gulp
 		 * @see 		{@link module:tasks/jsdoc}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1060,6 +1089,7 @@
 		 *
 		 * @name 		docs:jsdoc:gulp:assets
 		 * @sourcecode 	gulp:docs:gulp:assets
+	 	 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1083,6 +1113,7 @@
 		 *
 		 * @name 		docs:gulp
 		 * @sourcecode 	gulp:docs:gulp:series
+		 * @tutorial 	docs-gulp
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -1128,7 +1159,7 @@
 		 *
 		 * @name 		docs:jsdoc:js
 		 * @sourcecode 	gulp:docs:jsdoc:js
-		 * @see 		{@tutorial docs-js}
+		 * @tutorial 	docs-js
 		 * @see 		{@link module:tasks/jsdoc}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1157,6 +1188,7 @@
 		 *
 		 * @name 		docs:jsdoc:js:assets
 		 * @sourcecode 	gulp:docs:js:assets
+	 	 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1180,6 +1212,7 @@
 		 *
 		 * @name 		docs:js
 		 * @sourcecode 	gulp:docs:js:series
+		 * @tutorial 	docs-js
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -1228,7 +1261,7 @@
 		 *
 		 * @name 		docs:html:doc
 		 * @sourcecode 	gulp:docs:html:doc
-		 * @see 		{@tutorial docs-htmldoc}
+		 * @tutorial 	docs-htmldoc
 		 * @see 		{@link module:tasks/htmldoc}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1256,6 +1289,7 @@
 		 *
 		 * @name 		docs:html:assets
 		 * @sourcecode 	gulp:docs:html:assets
+	 	 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1279,6 +1313,7 @@
 		 *
 		 * @name 		docs:html
 		 * @sourcecode 	gulp:docs:html:series
+		 * @tutorial 	docs-htmldoc
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -1325,6 +1360,7 @@
 		 *
 		 * @name 		docs:assets
 		 * @sourcecode 	gulp:docs:assets
+	 	 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
