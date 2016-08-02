@@ -281,24 +281,29 @@ function searchData(html) {
 
 function generate(docType, title, docs, filename, resolveLinks) {
 	resolveLinks = resolveLinks === false ? false : true;
+	/*if (!!docs[0].meta && docs[0].meta.filename == '_modules-params.js') {
+		console.log(docs);
+	}*/
 	if (docs[0].sourcefile !== undefined) {
 		let sourcefile = docs[0].sourcefile;
 		_docsData.sourcefiles[sourcefile.name] = sourcefile.source;
 	}
-	if (docs[0].modules !== undefined && docs[0].modules[0].sourcecode !== undefined) {
+	/*if (docs[0].modules !== undefined && docs[0].modules[0].sourcecode !== undefined) {
 		let sourcecode = docs[0].modules[0].sourcecode;
 		_docsData.sourcecodes[sourcecode.name] = [sourcecode.source, sourcecode.lineno];
 	}
 	if (docs[0].sourcecode !== undefined) {
 		let sourcecode = docs[0].sourcecode;
 		_docsData.sourcecodes[sourcecode.name] = [sourcecode.source, sourcecode.lineno];
-	}
+	}*/
 
 	var docData = {
 		title: title,
 		docs: docs,
 		docType: docType
 	};
+
+	//console.log(doc);
 
 	var outpath = path.join(outdir, filename),
 		html = view.render('container.tmpl', docData);
@@ -579,6 +584,17 @@ exports.publish = function(taffyData, opts, tutorials) {
 	var sourceFilePaths = [];
 	data().each(function(doclet) {
 		doclet.attribs = '';
+
+		if (doclet.sourcecode) {
+			var _name_ = doclet.sourcecode.name;
+			if (!!_name_) {
+				_docsData.sourcecodes[_name_] = [
+					doclet.sourcecode.source,
+					doclet.sourcecode.lineno
+				]
+				var source = doclet.sourcecode.name
+			}
+		}
 
 		if (doclet.examples) {
 			doclet.examples = doclet.examples.map(function(example) {

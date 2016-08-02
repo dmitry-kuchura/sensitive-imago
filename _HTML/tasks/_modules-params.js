@@ -177,7 +177,7 @@ class modulesParams {
 	 * - {@link https://github.com/adametry/gulp-eslint}
 	 * - список правил {@link http://eslint.org/docs/rules/}
 	 *
-	 * @sourcecode
+	 * @sourcecode 	_modulesParams:gulpEsLintConfig
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
 	 * @return		{Array}		Список конфигурцаии.
 	 */
@@ -229,7 +229,7 @@ class modulesParams {
 	 * Настройка параметров для модуля `gulp-sass-lint`.
 	 * - офф документация {@link https://github.com/sasstools/sass-lint/tree/develop/docs}
 	 *
-	 * @sourcecode
+	 * @sourcecode 	_modulesParams:gulpSassLintConfig
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
 	 * @return		{Array}		Список конфигурцаии.
 	 */
@@ -278,7 +278,7 @@ class modulesParams {
 	 * Настройка параметров для модуля `gulp-csslint`.
 	 * - офф документация {@link https://github.com/CSSLint/csslint/wiki/Rules}
 	 *
-	 * @sourcecode
+	 * @sourcecode 	_modulesParams:gulpCssLintConfig
 	 * @param 		{Object}	[customConfig={}] - пользовательские параметры
 	 * @return		{Array}		Список конфигурцаии.
 	 */
@@ -451,7 +451,7 @@ class modulesParams {
 	/**
 	 * Расширение системной конфигурация модуля `gulp-jsdoc` на основе пользовательских параметров.
 	 *
-	 * @sourcecode 	code:tasks:_modulesParams:jsdoc3Config
+	 * @sourcecode 	_modulesParams:jsdoc3Config
 	 *
 	 * @see			{@link module:tasks/jsdoc}
 	 * @see			{@link module:tasks/htmldoc}

@@ -472,7 +472,7 @@
 			watch: [
 				'./src/js/addons/libs/modernizr-tests/**/*.js'
 			],
-			imagemin: isProduction,
+			imagemin: false,
 			filter: globalFilterMethod,
 			notify: isNotify
 		});

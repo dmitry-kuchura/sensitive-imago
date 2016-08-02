@@ -1,1 +1,59 @@
+<p>Модуль компиляции <code>scss</code> файлов - {@link module:tasks/sass}.</p>
+<h3>Основные параметры</h3>
+<p>Модуль имеет метод фильтровки, основанный на модуле <code>gulp-changed</code>. В отличие от <code>gulp-newer</code> - он умеет делать проверку изменений в стриме. Воспринимаемые значения - <code>true/false</code>.</p>
+<p>Модуль предоставляет полное управление компиляцией, минификацией и записью sourcemaps - смотри соответствующие свойтва в таблице параметров модуля {@link module:tasks/sass}</p>
+
+<hr>
+<h3>Оболочка задачи</h3>
+<p><em>Пример</em></p>
+<pre><code class="language-javascript">
+lazyRequireTask('sass:dynamics', './tasks/sass', {
+	src: './src/sass/dynamics/**/*.scss',
+	dest: './dist/css',
+	maps: isDevelop,
+	min: isProduction,
+	watch: [
+		'./src/sass/config.scss',
+		'./src/sass/addons/**/*.scss',
+		'./src/sass/dynamics/**/*.scss'
+	],
+	notify: isNotify,
+	sasslint: isLinting,
+	csslint: isLinting
+});
+</code></pre>
+
+<hr>
+<h3>Lint</h3>
+<p>Также модуль умеет проводить линтинг в процессе задачи, как входяших <code>sass</code>, так и итоговых <code>css</code> файлов - смотри соответствующие свойтва в таблице параметров модуля {@link module:tasks/sass}.<br>Для линтинга используюься параметры по умолчанию</p>
+<h4><strong>Sass Lint</strong></h4>
+<?sourcecode= _modulesParams:gulpSassLintConfig?>
+<h4><strong>Css Lint</strong></h4>
+<?sourcecode= _modulesParams:gulpCssLintConfig?>
+
+<h3>Пользовательские параметры линтинга</h3>
+<p>Если нужно переопределить или добавить некоторые правила - используйте параметры для конфигурации каждого из линтингов.<br><em>Пример:</em></p>
+<p><em>Пример</em></p>
+<pre><code class="language-javascript">
 ...
+csslint: true,
+csslinrConfig: {
+    'box-sizing': 0, // игнорировать
+    'ids': 1, // предупреждать
+    'empty-rules': 2 // ошибка
+}
+</code></pre>
+<p><em><strong>Важно</strong> - пользовательские конфиги - не заменяют, те что по умолчанию, а расширяют</em></p>
+<blockquote>
+	<p>Проводить линтинг файлов - обязательно.<br>Когда? - решать вам:</p>
+	<ul>
+		<li>в ручную - поэтапно (рекоммендуется)</li>
+		<li>постоянно (увеличит время компиляции)</li>
+		<li>перед сдачей (не рекоммендуется)</li>
+	</ul>
+</blockquote>
+
+
+<hr>
+<h2>Структура файлов</h2>
+<p>Подробную информацию о структуре директорий и файлов - читай в туториалах раздела <a href="../sass/tutorial-folder.html">SASSdoc / Туториалы / Исходные файлы сборки</a></p>

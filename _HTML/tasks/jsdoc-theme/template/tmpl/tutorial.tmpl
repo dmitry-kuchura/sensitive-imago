@@ -3,6 +3,13 @@
 	var sourcefiles = obj.sources.sourcefiles || {};
 	var sourcecodes = obj.sources.sourcecodes || {};
 
+	// console.log(sourcecodes);
+
+	/*for (var innerKey in sourcecodes) {
+		console.log(innerKey);
+	}
+	console.log('----------------');*/
+
 
 	function _ripFile(_key) {
 		_key = _key.replace(/<\?sourcefile=(\s)*/, '');
@@ -41,11 +48,12 @@
 
     <?js if (children.length > 0) { ?>
     <p><?js= (_lang('Children tutorials', 'Дочерние разделы'))?>:</p>
-    <ul class="columns"><?js
+    <ul class="columns" style="font-size: 17px"><?js
         var self = this;
         children.forEach(function(t) { ?>
-        <li><?js= self.tutoriallink(t.name) ?></li>
+        <li>- <?js= self.tutoriallink(t.name) ?></li>
     <?js }); ?></ul>
+    <hr>
     <?js } ?>
 </header>
 <article class="tutorial-article"><?js= _content ?></article>
