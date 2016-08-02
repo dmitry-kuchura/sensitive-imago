@@ -7,5 +7,22 @@
 	},
 	"workwith-jquery-validate": {
 		"title": "Работа с jquery validate"
+	},
+	"folder": {
+		"title": "Исходные файлы сборки",
+		"children": {
+			"folder-addons": {
+				"title": "директория addons"
+			},
+			"folder-criticals": {
+				"title": "директория criticals"
+			},
+			"folder-dynamics": {
+				"title": "директория dynamics"
+			},
+			"folder-statics": {
+				"title": "директория statics"
+			}
+		}
 	}
  }
