@@ -81,7 +81,7 @@
 	const isBsAutoReload = !(!!argv.n || !!argv.noreload);
 	// конфигурация browser-sync
 	const bsConfig = {
-		proxy: `http://${projectName}/_HTML/dist/`,
+		proxy: `http://${projectName}.loc/`,
 		open: isBsOpenOnInit,
 		port: 4000
 	};
