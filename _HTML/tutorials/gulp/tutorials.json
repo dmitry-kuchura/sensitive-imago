@@ -17,9 +17,6 @@
 	"workwith-gulp-jsdoc3": {
 		"title": "Работа с JSDoc3"
 	},
-	"workwith-gulp-modernizr": {
-		"title": "Работа с gulp-modernizr"
-	},
 	"_tutorial-example": {
 		"title": "Заготовка для создания туториала"
 	}
