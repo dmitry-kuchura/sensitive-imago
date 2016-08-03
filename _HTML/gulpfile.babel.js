@@ -617,7 +617,32 @@
 
 // Компиляция стилей
 // ===========================================
-
+/**
+ * Задача компиляции Стилей
+ * ```git
+ * gulp sass:base
+ * ```
+ *
+ * @name 		sass:dynamics
+ * @sourcecode 	gulp:sass:dynamics
+ * @tutorial 	compile-sass
+ * @see 		{@link module:tasks/sass}
+ * @memberof 	gulp
+ * @newscope 	gulp
+ */
+lazyRequireTask('sass:base', './tasks/sass', {
+	src: './src/sass/*.scss',
+	dest: './dist/css',
+	maps: isDevelop,
+	min: isProduction,
+	watch: [
+		'./src/sass/**/*.scss'
+	],
+	notify: isNotify,
+	sasslint: isLinting,
+	csslint: isLinting
+});
+// endcode gulp:sass:dynamics
 	/**
 	 * Задача компиляции основных, ***внешних***, `*.css` файлов из `*.scss`.
 	 * Как правило используется для файлов разроботки или сторонних библиотек которые, нужно склеить вместе или внести правки.
@@ -743,9 +768,10 @@
 	 */
 		gulp.task('sass',
 			gulp.series(
-				'sass:dynamics',
-				'sass:criticals',
-				'sass:statics'
+				'sass:base'
+				// 'sass:dynamics',
+				// 'sass:criticals',
+				// 'sass:statics'
 			)
 		);
 	// endcode gulp:sass:series

@@ -1,0 +1,14 @@
+{
+	"localFolder": "sensitive-imago.loc",
+
+	"globalFilterMethod": "newer",
+	"isProjectResponsive": true,
+	"isProjectWezom": true,
+
+	"browserSync": {
+		"use": true,
+		"static": false,
+		"port": 4000,
+		"deepPath": "/"
+	}
+}
