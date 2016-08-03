@@ -12,7 +12,6 @@
 
 
 
-
 /**
  * Подключение nodejs модулей
  *
@@ -23,8 +22,10 @@
  */
 	// подключение nodejs модулей
 	import fs from 'fs';
+	import path from 'path';
 	import gulp from 'gulp';
 	import pkg from './package.json';
+	import config from './config.json';
 	import autowatch from 'gulp-autowatch';
 	import browserSyncModule from 'browser-sync';
 	const browserSync = browserSyncModule.create();
@@ -40,10 +41,6 @@
 
 
 
-
-
-
-
 /**
  * Основная конфигурация проекта сборки
  *
@@ -52,8 +49,10 @@
  * @memberof 	gulp
  * @newscope
  */
- 	// имя проекта
-	const projectName = `wtpl`;
+	// имя проекта
+	const projectName = pkg.name;
+	// директория проекта
+	const projectFolder = config.localFolder;
 
 	// объект авто-вотчей
 	const watchSources = {};
@@ -67,36 +66,43 @@
 	// включение нотифаеров -s --nonotify
 	const isNotify = !(!!argv.s || !!argv.nonotify);
 	// глобальный метод фильтровки
-	const globalFilterMethod = 'newer';
+	const globalFilterMethod = config.globalFilterMethod;
 	// проект адаптивный
-	const isProjectResponsive = true;
+	const isProjectResponsive = config.isProjectResponsive;
 	// проект студии wezom
-	const isProjectWezom = true;
+	const isProjectWezom = config.isProjectWezom;
 
 	// использовать browser-sync
-	const isBsUse = true;
+	const isBsUse = config.browserSync.use;
 	// авто открытие ссылки полсе инита browser-sync -o --open
 	const isBsOpenOnInit = (!!argv.o || !!argv.open) ? 'external' : false;
 	// отключение авторелоада browser-sync при изменениях -n --noreload
 	const isBsAutoReload = !(!!argv.n || !!argv.noreload);
-	// конфигурация browser-sync
-	const bsConfig = {
-		proxy: `http://${projectName}/_HTML/dist/`,
-		open: isBsOpenOnInit,
-		port: 4000
-	};
 	// Инициализация browser-sync
 	const BrowserSync = (cb) => {
 		if (isBsUse) {
-			browserSync.init(bsConfig);
+			let open = isBsOpenOnInit;
+			let port = config.browserSync.port;
+			if (config.browserSync.static) {
+				browserSync.init({
+					server: {
+						baseDir: 'dist/'
+					},
+					open: open,
+					port: port
+				});
+			} else {
+				browserSync.init({
+					proxy: `http://${projectFolder}${config.browserSync.deepPath}`,
+					open: open,
+					port: port
+				});
+			}
 		} else {
 			cb();
 		}
-	}
+	};
 // endcode gulp:constants
-
-
-
 
 
 
@@ -113,6 +119,18 @@
 
 
 
+/**
+ * Получение директорий для конката внутренних файлов
+ *
+ * @param      {string|Array}	dirs - путь к директориям
+ * @return     {Path}
+ */
+	let getFolders = (dirs) => {
+		return fs.readdirSync(dirs)
+			.filter((file) => {
+				return fs.statSync(path.join(dirs, file)).isDirectory();
+			});
+	};
 
 
 
@@ -139,14 +157,19 @@
  * @param		{String}		taskFile - путь к файлу, без учета родительской директории задач - `./tasks/`
  * @param		{Object}		[taskOptions={}] - передавемые параметры
  *
+ * @return 		{*}
+ *
 */
-	function lazyRequireTask(taskName, taskFile, taskOptions={}) {
+	let lazyRequireTask = (taskName, taskFile, taskOptions={}) => {
 		taskOptions.taskName = taskName;
 		taskOptions.isProduction = isProduction;
 		taskOptions.isDevelop = isDevelop;
 		taskOptions.package = pkg;
 		taskOptions.browserSyncReload = (isBsUse && isBsAutoReload);
 		taskOptions.browserSync = browserSync;
+		if (taskOptions.concat) {
+			taskOptions.getFolders = getFolders;
+		}
 		if (taskOptions.watch) {
 			watchSources[taskName] = taskOptions.watch;
 		}
@@ -154,11 +177,7 @@
 			let task = require(taskFile).call(this, taskOptions);
 			return task(cb);
 		});
-	}
-
-
-
-
+	};
 
 
 
@@ -179,9 +198,8 @@
 			_projectName: projectName,
 			_projectResponsive: isProjectResponsive,
 			_projectWezom: isProjectWezom
-		}
+		};
 	// endcode gulp:ejslocals
-
 
 
 	/**
@@ -214,7 +232,6 @@
 	// endcode gulp:ejs:markup
 
 
-
 	/**
 	 * Задача компиляции `hidden` файлов и переименование в `.php`.
 	 * ```git
@@ -243,7 +260,6 @@
 	// endcode gulp:ejs:hidden:php
 
 
-
 	/**
 	 * Трансфер дополнительных, статических, файлов.
 	 * ```git
@@ -270,7 +286,6 @@
 	// endcode gulp:ejs:hidden:static
 
 
-
 	/**
 	 * Очистка всех скомпилорованных `.html` файлов и директории `hidden`
 	 * ```git
@@ -290,7 +305,6 @@
 			]
 		});
 	// endcode gulp:ejs:clean
-
 
 
 	/**
@@ -314,7 +328,6 @@
 			)
 		);
 	// endcode gulp:ejs:series
-
 
 
 	/**
@@ -342,16 +355,11 @@
 
 
 
-
-
-
-
 // Компиляция скриптов
 // ===========================================
 
-
 	/**
-	 * Задача компиляции основных, ***внешних***, `*.js` файлов.
+	 * Задача компиляции основных, `*.js` файлов разроботки.
 	 * Как правило используется для файлов разроботки или сторонних библиотек которые, нужно склеить вместе или внести правки.
 	 * Все сторонние файлы должны лежaть в директории `vendor`.
 	 * ```git
@@ -366,21 +374,48 @@
 	 * @newscope 	gulp
 	 */
 		lazyRequireTask('js:dynamics', './tasks/js', {
-			src: './src/js/dynamics/**/*.js',
+			src: './src/js/dynamics/*.js',
 			dest: './dist/js',
 			watch: [
-				'./src/js/dynamics/**/*.js',
-				'./src/js/addons/libs/*.js',
-				'./src/js/addons/partials/**/*.js'
+				'./src/js/dynamics/*.js'
 			],
 			maps: isDevelop,
 			min: isProduction,
-			include: true,
+			filter: false,
 			eslint: isLinting,
 			notify: isNotify,
 		});
 	// endcode gulp:js:dynamics
 
+
+	/**
+	 * Задача компиляции, ***внешних***, `*.js` файлов c конкатом по директориям.
+	 * Как правило используется для сторонних библиотек которые нужно склеить вместе.
+	 * ```git
+	 * gulp js:vendor
+	 * ```
+	 *
+	 * @name 		js:vendor
+	 * @sourcecode 	gulp:js:vendor
+	 * @tutorial 	compile-js
+	 * @see 		{@link module:tasks/js}
+	 * @memberof 	gulp
+	 * @newscope 	gulp
+	 */
+		lazyRequireTask('js:vendor', './tasks/js', {
+			src: './src/js/dynamics/vendor/',
+			dest: './dist/js/vendor',
+			watch: [
+				'./src/js/dynamics/vendor/**/*.js'
+			],
+			concat: true,
+			maps: isDevelop,
+			min: isProduction,
+			filter: false,
+			eslint: false,
+			notify: isNotify,
+		});
+	// endcode gulp:js:vendor
 
 
 	/**
@@ -401,19 +436,15 @@
 			src: './src/js/criticals/**/*.js',
 			dest: './src/markup/views/criticals/js',
 			watch: [
-				'./src/js/criticals/**/*.js',
-				'./src/js/addons/libs/*.js',
-				'./src/js/addons/partials/**/*.js'
+				'./src/js/criticals/**/*.js'
 			],
 			maps: false,
 			min: true,
-			include: true,
 			changeExt: '.ejs',
 			eslint: isLinting,
 			notify: isNotify,
 		});
 	// endcode gulp:js:criticals
-
 
 
 	/**
@@ -439,7 +470,6 @@
 			notify: isNotify
 		});
 	// endcode gulp:js:statics
-
 
 
 	/**
@@ -482,7 +512,6 @@
 	// endcode gulp:modernizr:scan
 
 
-
 	/**
 	 * Добавление пользовательских тестов в модуль `modernizr`.
 	 * ```git
@@ -498,17 +527,16 @@
 	 * @newscope 	gulp
 	 */
 		lazyRequireTask('modernizr:addtests', './tasks/transfer', {
-			src: './src/js/addons/libs/modernizr-tests/**/*.js',
+			src: './src/js/addons/modernizr-tests/**/*.js',
 			dest: './node_modules/modernizr/feature-detects',
 			watch: [
-				'./src/js/addons/libs/modernizr-tests/**/*.js'
+				'./src/js/addons/modernizr-tests/**/*.js'
 			],
 			imagemin: false,
 			filter: globalFilterMethod,
 			notify: isNotify
 		});
 	// endcode gulp:modernizr:addtests
-
 
 
 	/**
@@ -532,7 +560,6 @@
 	// endcode gulp:js:clean
 
 
-
 	/**
 	 * Комплексная задача трансфера дополнительных файлов и компилция `.js` файлов (внешних и инлайновых).
 	 * ```git
@@ -548,12 +575,12 @@
 		gulp.task('js',
 			gulp.series(
 				'js:dynamics',
+				'js:vendor',
 				'js:criticals',
 				'js:statics'
 			)
 		);
 	// endcode gulp:js:series
-
 
 
 	/**
@@ -577,10 +604,6 @@
 			)
 		);
 	// endcode gulp:js:rebuild
-
-
-
-
 
 
 
@@ -614,15 +637,11 @@
 				'./src/sass/addons/**/*.scss',
 				'./src/sass/dynamics/**/*.scss'
 			],
-			autoprefixerConfig: {
-				browsers: ['> 1%']
-			},
 			notify: isNotify,
 			sasslint: isLinting,
 			csslint: isLinting
 		});
 	// endcode gulp:sass:dynamics
-
 
 
 	/**
@@ -657,7 +676,6 @@
 	// endcode gulp:sass:criticals
 
 
-
 	/**
 	 * Трансфер дополнительных, статических, файлов.
 	 * ```git
@@ -684,7 +702,6 @@
 	// endcode gulp:sass:statics
 
 
-
 	/**
 	 * Очистка директорий стилей, внешних и инлайновых.
 	 * ```git
@@ -704,7 +721,6 @@
 			]
 		});
 	// endcode gulp:sass:clean
-
 
 
 	/**
@@ -727,7 +743,6 @@
 			)
 		);
 	// endcode gulp:sass:series
-
 
 
 	/**
@@ -756,11 +771,6 @@
 
 
 
-
-
-
-
-
 // Трансферы
 // ===========================================
 
@@ -774,7 +784,7 @@
 		 *
 		 * @name 		images
 		 * @sourcecode 	gulp:images:series
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -790,7 +800,6 @@
 				notify: isNotify
 			});
 		// endcode gulp:images:series
-
 
 
 		/**
@@ -811,7 +820,6 @@
 		// endcode gulp:images:clean
 
 
-
 		/**
 		 * Комплексная задача пересборки контентовых изображений.
 		 * Сначала очищаем итоговые файлы и собераем заново.
@@ -821,7 +829,7 @@
 		 *
 		 * @name 		images:rebuild
 		 * @sourcecode 	gulp:images:rebuild
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -832,7 +840,6 @@
 				)
 			);
 		// endcode gulp:images:rebuild
-
 
 
 
@@ -847,7 +854,7 @@
 		 *
 		 * @name 		favicons
 		 * @sourcecode 	gulp:favicons:series
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -863,7 +870,6 @@
 				notify: isNotify
 			});
 		// endcode gulp:favicons:series
-
 
 
 		/**
@@ -889,7 +895,6 @@
 		// endcode gulp:favicons:clean
 
 
-
 		/**
 		 * Комплексная задача пересборки всех фавиконок и дополнительных файлов.
 		 * Сначала очищаем итоговые файлы и собераем заново.
@@ -899,7 +904,7 @@
 		 *
 		 * @name 		favicons:rebuild
 		 * @sourcecode 	gulp:favicons:rebuild
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
@@ -910,11 +915,6 @@
 				)
 			);
 		// endcode gulp:favicons:rebuild
-
-
-
-
-
 
 
 
@@ -947,11 +947,6 @@
 			}
 		});
 	// endcode gulp:upload:inkubator
-
-
-
-
-
 
 
 
@@ -993,7 +988,6 @@
 		// endcode gulp:docs:sass:doc
 
 
-
 		/**
 		 * Компиляция главной страницы и туториалов для документации scss файлов
 		 * ```git
@@ -1016,7 +1010,6 @@
 		// endcode gulp:docs:sass:materials
 
 
-
 		/**
 		 * Трансфер дополнительных файлов.
 		 * ```git
@@ -1025,7 +1018,7 @@
 		 *
 		 * @name 		docs:sass:assets
 		 * @sourcecode 	gulp:docs:sass:assets
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1038,7 +1031,6 @@
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:sass:assets
-
 
 
 		/**
@@ -1063,9 +1055,6 @@
 		// endcode gulp:docs:sass:series
 
 
-
-
-
 	// GULP
 	// ====
 		/**
@@ -1084,7 +1073,6 @@
 				src: './docs/gulp'
 			});
 		// endcode gulp:docs:clean:gulp
-
 
 
 		/**
@@ -1114,7 +1102,6 @@
 		// endcode gulp:docs:jsdoc:gulp
 
 
-
 		/**
 		 * Трансфер дополнительных файлов.
 		 * ```git
@@ -1123,7 +1110,7 @@
 		 *
 		 * @name 		docs:jsdoc:gulp:assets
 		 * @sourcecode 	gulp:docs:gulp:assets
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1136,7 +1123,6 @@
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:gulp:assets
-
 
 
 		/**
@@ -1161,9 +1147,6 @@
 		// endcode gulp:docs:gulp:series
 
 
-
-
-
 	// JS client
 	// =========
 		/**
@@ -1182,7 +1165,6 @@
 				src: './docs/js'
 			});
 		// endcode gulp:docs:clean:js
-
 
 
 		/**
@@ -1213,7 +1195,6 @@
 		// endcode gulp:docs:jsdoc:js
 
 
-
 		/**
 		 * Трансфер дополнительных файлов.
 		 * ```git
@@ -1222,7 +1203,7 @@
 		 *
 		 * @name 		docs:jsdoc:js:assets
 		 * @sourcecode 	gulp:docs:js:assets
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1235,7 +1216,6 @@
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:js:assets
-
 
 
 		/**
@@ -1260,9 +1240,6 @@
 		// endcode gulp:docs:js:series
 
 
-
-
-
 	// HTML todo
 	// =========
 		/**
@@ -1284,7 +1261,6 @@
 				]
 			});
 		// endcode gulp:docs:clean:html
-
 
 
 		/**
@@ -1314,7 +1290,6 @@
 		// endcode gulp:docs:html:doc
 
 
-
 		/**
 		 * Трансфер дополнительных файлов.
 		 * ```git
@@ -1323,7 +1298,7 @@
 		 *
 		 * @name 		docs:html:assets
 		 * @sourcecode 	gulp:docs:html:assets
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1336,7 +1311,6 @@
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:html:assets
-
 
 
 		/**
@@ -1361,9 +1335,6 @@
 		// endcode gulp:docs:html:series
 
 
-
-
-
 	// ALL
 	// ===
 
@@ -1385,7 +1356,6 @@
 		// endcode gulp:docs:clean:all
 
 
-
 		/**
 		 * Трансфер статических файлов для оформления документаций
 		 * ```git
@@ -1394,7 +1364,7 @@
 		 *
 		 * @name 		docs:assets
 		 * @sourcecode 	gulp:docs:assets
-	 	 * @tutorial 	compile-transfer
+		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
@@ -1407,7 +1377,6 @@
 				notifyIsShort: true
 			});
 		// endcode gulp:docs:assets
-
 
 
 		/**
@@ -1439,14 +1408,8 @@
 
 
 
-
-
-
-
-
 // Задачи сборки
 // ===========================================
-
 
 	/**
 	 * Очистка директрии `./dist` и инлайновых **js/css** файлов
@@ -1468,7 +1431,6 @@
 			]
 		});
 	// endcode gulp:clean:all
-
 
 
 	/**
@@ -1496,7 +1458,6 @@
 	// endcode gulp:rebuild:all
 
 
-
 	/**
 	 * Задача вотчинга
 	 * ```git
@@ -1513,7 +1474,6 @@
 			autowatch(gulp, watchSources);
 		});
 	// endcode gulp:watch:all
-
 
 
 	/**
@@ -1534,7 +1494,6 @@
 	// endcode gulp:default:all
 
 
-
 	/**
 	 * gulp задача пересборки итоговой верстки и продолжение инкрементальной сборки.
 	 * ```git
@@ -1553,7 +1512,6 @@
 			)
 		);
 	// endcode gulp:build:all
-
 
 
 	/**
