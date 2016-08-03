@@ -53,7 +53,7 @@
  * @newscope
  */
  	// имя проекта
-	const projectName = 'sensetive-imago';
+	const projectName = 'sensitive-imago';
 
 	// объект авто-вотчей
 	const watchSources = {};
@@ -92,7 +92,7 @@
 		} else {
 			cb();
 		}
-	}
+	};
 // endcode gulp:constants
 
 
@@ -179,7 +179,7 @@
 			_projectName: projectName,
 			_projectResponsive: isProjectResponsive,
 			_projectWezom: isProjectWezom
-		}
+		};
 	// endcode gulp:ejslocals
 
 
