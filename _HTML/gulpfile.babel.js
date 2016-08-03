@@ -1186,8 +1186,7 @@
 				dest: './docs/js',
 				src: [
 					'./tutorials/js-index.md',
-					'./src/js/addons/libs/modernizr-tests/**/*.js',
-					'./src/js/addons/partials/**/*.js',
+					'./src/js/addons/modernizr-tests/**/*.js',
 					'./src/js/dynamics/*.js',
 					'./src/js/criticals/**/*.js'
 				]
