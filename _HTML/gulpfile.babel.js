@@ -614,6 +614,9 @@
 				'./src/sass/addons/**/*.scss',
 				'./src/sass/dynamics/**/*.scss'
 			],
+			autoprefixerConfig: {
+				browsers: ['> 1%']
+			},
 			notify: isNotify,
 			sasslint: isLinting,
 			csslint: isLinting

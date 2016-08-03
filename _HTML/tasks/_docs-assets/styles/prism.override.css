@@ -1,4 +1,8 @@
 /* prism */
+
+.line-numbers-rows > span:before {
+	padding-right: 0.4em;
+}
 samp,
 :not(pre) > code,
 :not(pre) > code[class*="language-"] {
