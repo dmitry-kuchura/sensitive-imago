@@ -155,7 +155,7 @@ class modulesParams {
 	 *
 	 * @sourcecode
 	 * @param 		{Object}	[jsLibs=[]] - библиотеки
-	 * @return		{Steam}		Набор pipe'ов.
+	 * @return		{Stream}		Набор pipe'ов.
 	 */
 	gulpJsGetLibs(jsLibs=[]) {
 		let libs = [];
@@ -318,15 +318,7 @@ class modulesParams {
 	gulpAutoprefixerConfig(customConfig={}) {
 		let baseConfig = {
 			browsers: [
-				'ie >= 11',
-				'ie_mob >= 10',
-				'ff >= 25',
-				'chrome >= 30',
-				'safari >= 7',
-				'opera >= 23',
-				'ios >= 7',
-				'android >= 4.4',
-				'bb >= 10'
+				'> 1%'
 			],
 			cascade: false
 		};
