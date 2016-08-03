@@ -11,9 +11,9 @@
 
 // подключение nodejs модулей
 // ==========================
-	import gulp from 'gulp';
-	import path from 'path';
 	import fs from 'fs';
+	import path from 'path';
+	import gulp from 'gulp';
 	import multipipe from 'multipipe';
 	import through2 from 'through2';
 	const throughObj = through2.obj;
@@ -44,7 +44,9 @@
  * @requires   	{@link https://www.npmjs.com/package/gulp-if}
  * @requires   	{@link https://www.npmjs.com/package/gulp-changed}
  * @requires   	{@link https://www.npmjs.com/package/gulp-notify}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-concat}
  * @requires   	{@link https://www.npmjs.com/package/gulp-include}
+ * @requires   	{@link https://www.npmjs.com/package/gulp-wrap}
  * @requires 	module:tasks/_modules-params
  *
  * @param		{Object}		options - передаваемые параметры
@@ -54,6 +56,7 @@
  * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
  * @param		{string}		options.dest - путь к итоговой директории
  * @param		{string}		options.src - путь к исходной директории
+ * @param		{boolean}		[options.concat] - конкат файлов
  * @param		{string}		[options.changeExt] - сменить расширение файла, при указании, должно содержать точку вначале
  * @param		{Array}			[options.watch] - набор путей, для вотчинга
  * @param		{boolean}		[options.filter=true] - флаг исрользования фильтровки файлов
@@ -72,11 +75,10 @@ module.exports = function(options) {
 		// vars
 		// ========
 
-			// список скомпилированных файлов
-			let receivedFilesList = [];
-
 			// флаг фильтровки
 			let isFilter = options.filter !== false;
+			// флаг конката
+			let isConcat = options.concat == true;
 
 
 
@@ -84,26 +86,6 @@ module.exports = function(options) {
 
 		// streams
 		// ========
-
-
-			// составление multipipe компиляции
-			let streamJs = multipipe(
-				$.if(
-					/\.js$/,
-					multipipe(
-						$.if(
-							!!options.libs,
-							multipipe(..._modulesParams.gulpJsGetLibs(options.libs))
-						),
-						$.if(
-							options.include,
-							$.include()
-						)
-					)
-				)
-			).on('error', $.notify.onError(
-				_modulesParams.gulpNotifyOnError(`compile - ${options.taskName}`))
-			);
 
 
 			// составление multipipe компиляции modernizr.js
@@ -123,8 +105,7 @@ module.exports = function(options) {
 
 			// составление multipipe для линтинга css
 			let streamEsLint = multipipe(
-				$.if(
-					(file) => {
+				$.if((file) => {
 						return (file.extname === '.js' && file.relative.split('\\')[0] !== 'vendor');
 					},
 					multipipe(
@@ -132,8 +113,7 @@ module.exports = function(options) {
 						$.eslint.format(),
 						$.eslint.failAfterError(),
 						// если есть ошибки - fail
-						$.if(
-							(file) => {
+						$.if((file) => {
 								return !!file.eslint.errorCount;
 							},
 							multipipe(
@@ -143,8 +123,7 @@ module.exports = function(options) {
 							)
 						),
 						// если есть предупреждения - notify
-						$.if(
-							(file) => {
+						$.if((file) => {
 								return !!file.eslint.warningCount;
 							},
 							$.notify({
@@ -164,64 +143,103 @@ module.exports = function(options) {
 
 		// task
 		// ========
-			return gulp.src(options.src)
-				// modernizr
-				.pipe($.if(
-					options.modernizr,
-					streamModernizr
-				))
-				// компиляция
-				.pipe(streamJs)
-				// если sasslint вкл.
-				.pipe($.if(
-					options.maps,
-					$.sourcemaps.init()
-				))
-				// если min вкл.
-				.pipe($.if(
-					options.min,
-					$.uglify(_modulesParams.gulpUglifyConfig(options.minConfig)).on('error', $.notify.onError(
-						_modulesParams.gulpNotifyOnError(`Error uglify - ${options.taskName}`))
+
+			if (isConcat) {
+				var folders = options.getFolders(options.src);
+				folders.map(function (folder) {
+					let files = [];
+					let source = path.join(options.src, folder, '*.js');
+					gulp.src(source)
+						.pipe(multipipe(
+								$.if(
+									options.maps,
+									$.sourcemaps.init()
+								),
+								$.include(),
+								$.wrap('\n/* <%= file.relative %>\n ================================== */\n<%= contents %>\n'),
+								$.concat(`${folder}.js`),
+								$.if(
+									options.min,
+									$.uglify(_modulesParams.gulpUglifyConfig(options.minConfig))
+								),
+								$.if(
+									options.maps,
+									$.sourcemaps.write('/')
+								)
+							).on('error', $.notify.onError(
+								_modulesParams.gulpNotifyOnError(`Stream - ${options.taskName}`))
+							)
+						)
+						.pipe(gulp.dest(options.dest))
+						.on('data', (file) => {
+							files.push(file.relative);
+						})
+						.pipe($.if(
+							options.notify,
+							$.notify(_modulesParams.gulpNotify(options, files, 'compiled'))
+						))
+						.pipe($.if(
+							options.browserSyncReload,
+							options.browserSync.stream()
+						));
+				});
+				cb();
+
+
+			} else {
+
+
+				// список скомпилированных файлов
+				let receivedFilesList = [];
+				return gulp.src(options.src)
+					.pipe(multipipe(
+							$.if(
+								options.modernizr,
+								streamModernizr
+							),
+							$.if(
+								options.maps,
+								$.sourcemaps.init()
+							),
+							$.if(
+								options.min,
+								$.uglify(_modulesParams.gulpUglifyConfig(options.minConfig))
+							),
+							$.if(
+								options.eslint,
+								streamEsLint
+							),
+							$.if(
+								options.maps,
+								$.sourcemaps.write('/')
+							),
+							$.if((/\.js$/ && !!options.changeExt),
+								$.rename((path) => {
+									path.extname = options.changeExt;
+								})
+							),
+							$.if(isFilter,
+								$.changed(
+									options.dest,
+									{hasChanged: $.changed.compareSha1Digest}
+								)
+							)
+						).on('error', $.notify.onError(
+							_modulesParams.gulpNotifyOnError(`Stream - ${options.taskName}`))
+						)
 					)
-				))
-				// если eslint вкл.
-				.pipe($.if(
-					options.eslint,
-					streamEsLint
-				))
-				// если sourcemaps вкл. - пишем карты
-				.pipe($.if(
-					options.maps,
-					$.sourcemaps.write('/')
-				))
-				// если нужно сменить расширенние файла
-				.pipe($.if(
-					(/\.js$/ && !!options.changeExt),
-					$.rename((path) => {
-						path.extname = options.changeExt;
+					.pipe(gulp.dest(options.dest))
+					.on('data', (file) => {
+						receivedFilesList.push(file.relative);
 					})
-				))
-				// фильтровка изменений в стриме
-				.pipe($.if(
-					isFilter,
-					$.changed(
-						options.dest,
-						{
-							hasChanged: $.changed.compareSha1Digest
-						}
-					)
-				))
-				.pipe(gulp.dest(options.dest))
-				.on('data', (file) => {
-					receivedFilesList.push(file.relative);
-				})
-				.pipe($.if(
-					options.notify,
-					$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
-				))
-				.pipe($.if(
-					options.browserSyncReload,
-					options.browserSync.stream()
-				));
+					.pipe($.if(
+						options.notify,
+						$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
+					))
+					.pipe($.if(
+						options.browserSyncReload,
+						options.browserSync.stream()
+					));
+			}
 	};
 };

@@ -192,11 +192,13 @@
 				let fileSource = fs.readFileSync(filePath).toString();
 				let range = doclet.meta.range;
 				let codeSource = fileSource.slice(range[0], range[1]);
+				let endLine = false;
 				if (tag.hasOwnProperty('value')) {
 					let name = tag.value.replace(/\s\-c$/, '');
 					let endIndex = fileSource.indexOf(`// endcode ${name}`);
 					if (endIndex > range[1]) {
 						codeSource = fileSource.slice(range[1], endIndex);
+						endLine = true;
 					}
 				}
 				if (typeof codeSource == 'string') {
@@ -206,12 +208,19 @@
 						let lineno = doclet.meta.lineno;
 						if (tag.hasOwnProperty('value')) {
 							if (/(\s|\t)*\-c/.test(tag.value) && !!doclet.comment) {
-								let comments = _normalizeComment(doclet.comment);
-								let lines = comments.match(/\n/g);
-								if (lines !== null) {
-									lineno -= (lines.length + 1);
+								let comments;
+								if (endLine) {
+									comments = _normalizeComment(fileSource.slice(range[0], range[1]));
+								} else {
+									comments = _normalizeComment(doclet.comment);
+									let lines = comments.match(/\n/g);
+									if (lines !== null && endLine !== true) {
+										lineno -= (lines.length + 1);
+									}
 								}
 								codeSource = `${comments}\n${codeSource}`;
+							} else if (endLine) {
+								lineno = fileSource.slice(0, range[1]).split('\n').length + 1;
 							}
 							let name = tag.value.replace(/(\s|\t)*\-c/, '');
 							name = name.replace(/(\s|\t)/g, '');
