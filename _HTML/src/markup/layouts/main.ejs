@@ -2,12 +2,11 @@
 <html lang="ru-RU" dir="ltr" class="no-js">
 	<head>
 		<%- partial('../views/widgets/head') %>
-		<%- partial('../views/widgets/criticals') %>
 	</head>
 	<body>
 		<div class="pageWrapper">
 			<% if (_activeFileData.hasSeoText) { %>
-				<main id="seoText" class="pageSeoText">
+				<main class="pageSeoText">
 					<div class="pageSize"><%- partial(_activeFileData.seoTextContent, {}) %></div>
 				</main>
 				<!-- end pageSeoText -->
@@ -46,7 +45,7 @@
 		<!-- внешние js файлы -->
 		<script src="js/vendor/modernizr.js"></script>
 		<script src="js/vendor/jquery-2.2.4.min.js"></script>
-		<script src="js/vendor/plugins.js"></script>
-		<script src="js/init.js"></script>
+		<!--<script src="js/vendor/plugins.js"></script>-->
+		<script src="js/bundle.js"></script>
 	</body>
 </html>

@@ -2,6 +2,7 @@
  * http://dimsemenov.com/plugins/magnific-popup/
  * Copyright (c) 2016 Dmitry Semenov;
  */
+console.log('mag');
 	;(function (factory) {
 	if (typeof define === 'function' && define.amd) {
 	 // AMD. Register as an anonymous module.
