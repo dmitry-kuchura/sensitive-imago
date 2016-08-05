@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html lang="ru-RU" dir="ltr" class="no-js">
-	<head>
-		<%- partial('../widgets/head') %>
-	</head>
-	<body>
+<head>
+	<%- partial('../widgets/head') %>
+</head>
+<body>
+<div class="pageWrapper">
+	<% if (_activeFileData.hasSeoText) { %>
+	<main class="pageSeoText">
+		<div class="pageSize"><%- partial(_activeFileData.seoTextContent, {}) %></div>
+	</main>
+	<!-- end pageSeoText -->
+	<% } %>
+
+	<svg id="sprite_sensitive-imago" xmlns="http://www.w3.org/2000/svg"
+		 style="height:0; width:0; visibility:hidden; position:absolute; top:0; left:0;"
+		 onload="wSpriteSvg.initialize(this, 'hidden/svgsprite.json')">
+	</svg>
+
+	<header class="pageHeader">
+		<%- partial('../widgets/header', {}) %>
+	</header>
+	<!-- end pageHeader -->
+
+
+	<div class="pageContainer">
 		<%- body %>
-	</body>
+	</div>
+	<!-- end pageContainer -->
+
+	<footer class="pageFooter">
+		<%- partial('../widgets/footer', {}) %>
+	</footer>
+	<!-- end pageFooter -->
+	<%- partial('../widgets/wezom_defs', {}) %>
+</div>
+<!-- end pageWrapper -->
+
+
+<!-- внешние css файлы -->
+<link rel="stylesheet" property="stylesheet" href="css/vendor/plugins.css">
+<link rel="stylesheet" property="stylesheet" href="css/style.css">
+
+
+<!-- внешние js файлы -->
+<!--<script src="js/vendor/modernizr.js"></script>-->
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="js/bundle.js"></script>
+</body>
 </html>

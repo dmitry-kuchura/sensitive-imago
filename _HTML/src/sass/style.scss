@@ -1,9 +1,8 @@
 @import 'config';
 
 @include makeGrid();
-
-// @include util-colors;
-// @include util-gutters;
+@include make-colors;
+@include make-gutters;
 /* Text helpers
 ==================================================================================================== */
 //@include util-text;
@@ -11,7 +10,6 @@
 /* Visibility helpers
 ==================================================================================================== */
 //@include util-visibility;
-
 
 @import '_partials/base';
 @import '_partials/layout';

@@ -1,14 +1,14 @@
 {
-  "name": "wtpl",
-  "version": "0.10.4",
-  "description": "startup template",
+  "name": "sensitive-imago",
+  "version": "1.0",
+  "description": "sensitive-imago",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://dutchenkoOleg@bitbucket.org/wezom/wtpl.git"
+    "url": "git+https://bitbucket.org/wezom/sensitive-imago.git"
   },
   "author": "Oleg Dutchenko",
   "license": "MIT",

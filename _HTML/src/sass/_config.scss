@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //* Layout
 //================================================================================================== //
 
@@ -62,7 +61,7 @@ $lg-max: map-get($global-breakpoints, xl)-1;
 $global-palette: (
 	black: #000,
 	white: #fff,
-	primary: blue,
+	primary: #6395c4,
 	secondary: blue,
 	success: green,
 	info: blue,
@@ -79,6 +78,7 @@ $color-danger: map-get($global-palette, danger);
 $color-info: map-get($global-palette, info);
 $color-gray: map-get($global-palette, gray);
 $color-light: map-get($global-palette, light);
+$color-dark-blue: #354f5e;
 
 //* Settings flags
 //================================================================================================== //
@@ -102,20 +102,4 @@ $gridInRems: false;
 @import '_utils/gutters';
 @import '_utils/text';
 @import '_utils/visibility';
-=======
-////
-/// @group config.scss
-////
-
-
-
-
-
-	// Global fonts
-	// =============
-
-/// Глобальное семейство шрифта
-/// @type Map | Keyword
-$globalFontFamily: sans-serif;
->>>>>>> wTPL/master
 

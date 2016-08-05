@@ -1,5 +1,4 @@
-
-@mixin util-colors {
+@mixin make-colors {
 	$palette: $global-palette;
 
 	._color-inherit {

@@ -54,6 +54,9 @@ $columns:12;
 
     .grid {
        @include make-row($gutter);
+		.grid{
+			margin: 0;
+		}
 		&--inline {
 			display: inline-flex;
 		}
