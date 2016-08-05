@@ -1,0 +1,20 @@
+.pageHeader{
+	&__top{
+		background: #fafafa;
+		@include make-row();
+		justify-content: space-between;
+	}
+}
+.languageLinks{
+	display: flex;
+}
+.logo{
+	display: flex;
+	align-items: center;
+	&__image{}
+	&__text{
+		small{
+			color: gray;
+		}
+	}
+}

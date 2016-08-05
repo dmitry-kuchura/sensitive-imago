@@ -1,3 +1,108 @@
+<<<<<<< HEAD
+//* Layout
+//================================================================================================== //
+
+$page-maxWidth: 1200px;
+$page-minWidth: 320px;
+$page-color: #000;
+$page-fontSize: 16px;
+$page-lineHeight: 1.4;
+$page-background: #fff;
+
+$global-borderColor: #ccc;
+$global-radius: 2px;
+$global-shadow: 0px 2px 4px 0px rgba(black, 0.3);
+
+//* Fonts
+//================================================================================================== //
+
+$font-primary: 'Verdana','Arial', sans-serif;
+$font-secondary: 'Arial', sans-serif;
+
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-bold: 700;
+
+//* Grid
+//================================================================================================== //
+
+$global-suffix: '-';
+
+$global-gutter: 20px;
+
+$global-gutterFactor: (
+	//#{$suffix}half: 0.5,
+	'': 1,
+	//#{$suffix}large: 1.5,
+	//#{$suffix}double: 2
+);
+
+$global-breakpoints: (
+	sm: 480px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px
+);
+
+$xs: map-get($global-breakpoints, sm);
+$sm: map-get($global-breakpoints, md);
+$md: map-get($global-breakpoints, lg);
+$lg: map-get($global-breakpoints, xl);
+
+$xs-max: map-get($global-breakpoints, sm)-1;
+$sm-max: map-get($global-breakpoints, md)-1;
+$md-max: map-get($global-breakpoints, lg)-1;
+$lg-max: map-get($global-breakpoints, xl)-1;
+
+
+//* Colors
+//================================================================================================== //
+
+$global-palette: (
+	black: #000,
+	white: #fff,
+	primary: blue,
+	secondary: blue,
+	success: green,
+	info: blue,
+	danger: red,
+	trans: transparent
+);
+
+$color-black: map-get($global-palette, black);
+$color-white: map-get($global-palette, white);
+$color-primary: map-get($global-palette, primary);
+$color-secondary: map-get($global-palette, secondary);
+$color-success: map-get($global-palette, success);
+$color-danger: map-get($global-palette, danger);
+$color-info: map-get($global-palette, info);
+$color-gray: map-get($global-palette, gray);
+$color-light: map-get($global-palette, light);
+
+//* Settings flags
+//================================================================================================== //
+
+$guttersInRems: false;
+$gridInRems: false;
+
+//* Functions
+//================================================================================================== //
+@import '_functions/em';
+@import '_functions/rem';
+@import '_functions/strip-units';
+
+//* Mixins
+//================================================================================================== //
+@import '_mixins/fonts';
+@import '_mixins/hvcenter';
+@import '_mixins/media';
+@import '_utils/grid';
+@import '_utils/colors';
+@import '_utils/gutters';
+@import '_utils/text';
+@import '_utils/visibility';
+=======
 ////
 /// @group config.scss
 ////
@@ -12,4 +117,5 @@
 /// Глобальное семейство шрифта
 /// @type Map | Keyword
 $globalFontFamily: sans-serif;
+>>>>>>> wTPL/master
 
