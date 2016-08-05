@@ -1,7 +1,7 @@
 //* Layout
 //================================================================================================== //
 
-$page-maxWidth: 1860px;
+$page-maxWidth: 1200px;
 $page-minWidth: 320px;
 $page-color: #000;
 $page-fontSize: 16px;
@@ -15,8 +15,8 @@ $global-shadow: 0px 2px 4px 0px rgba(black, 0.3);
 //* Fonts
 //================================================================================================== //
 
-$font-primary: 'Proxima Nova', sans-serif;
-$font-secondary: 'Futuris Cyrillic', sans-serif;
+$font-primary: 'Verdana','Arial', sans-serif;
+$font-secondary: 'Arial', sans-serif;
 
 $font-light: 300;
 $font-normal: 400;
@@ -26,15 +26,15 @@ $font-bold: 700;
 //* Grid
 //================================================================================================== //
 
-$suffix: '-';
+$global-suffix: '-';
 
-$gutter: 20px;
+$global-gutter: 20px;
 
-$gutterFactor: (
-	#{$suffix}half: 0.5,
+$global-gutterFactor: (
+	//#{$suffix}half: 0.5,
 	'': 1,
-	#{$suffix}large: 1.5,
-	#{$suffix}double: 2
+	//#{$suffix}large: 1.5,
+	//#{$suffix}double: 2
 );
 
 $global-breakpoints: (
@@ -61,8 +61,8 @@ $lg-max: map-get($global-breakpoints, xl)-1;
 $global-palette: (
 	black: #000,
 	white: #fff,
-	primary: lightness(blue),
-	secondary: orange,
+	primary: blue,
+	secondary: blue,
 	success: green,
 	info: blue,
 	danger: red,

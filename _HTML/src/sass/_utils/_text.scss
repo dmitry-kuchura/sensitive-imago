@@ -31,13 +31,13 @@
 	@each $name,
 	$v in $global-breakpoints {
 		@include media($name) {
-			._#{$name}#{$suffix}text-center {
+			._#{$name}#{$global-suffix}text-center {
 				text-align: center;
 			}
-			._#{$name}#{$suffix}text-end {
+			._#{$name}#{$global-suffix}text-end {
 				text-align: right;
 			}
-			._#{$name}#{$suffix}text-start {
+			._#{$name}#{$global-suffix}text-start {
 				text-align: left;
 			}
 		}

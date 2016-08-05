@@ -2,10 +2,10 @@
 
 	$sides: ( t: top, r: right, b: bottom, l: left);
 	$property: ( m: margin, p: padding);
-	$gutter: $gutter;
-	$gutterFactor: $gutterFactor;
+	$gutter: $global-gutter;
+	$gutterFactor: $global-gutterFactor;
 	$breakpoints: $global-breakpoints;
-	$suffix: $suffix;
+	$suffix: $global-suffix;
 
 	@if $inRems {
 		$gutter: rem($gutter);

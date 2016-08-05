@@ -1,15 +1,72 @@
 <div class="pageHeader">
 	<div class="pageSize">
-		<p>ТОВ  Альфа-Мед Юкрейн </p>
-		<div class="languageLinks">
-			<pa>asdfljkashdf</pa>
-			<% var Languages = ['SPA','FRA','RU','ENG','DEU'] %>
-			<% for (lang in Languages) {%>
-			<a href="#" class="languageLink">
-				<div class="languageLink__icon"></div>
-				<span class="languageLink__text"><%lang%></span>
-			</a>
-			<%}%>
+		<div class="pageHeader__top">
+			<p>ТОВ Альфа-Мед Юкрейн </p>
+			<div class="languageLinks">
+				<% var Languages = ['SPA', 'FRA', 'RU', 'ENG', 'DEU'] %>
+				<% for (lang in Languages) { %>
+				<a href="#" class="languageLink">
+					<div class="languageLink__icon"></div>
+					<span class="languageLink__text"><%= Languages[lang] %></span>
+				</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="pageHeader__main">
+			<div class="logo">
+				<div class="logo__image">
+					<svg>
+						<use xlink:href="#logo"></use>
+					</svg>
+				</div>
+				<div class="logo__text">
+					Сенситив Имаго
+					<small>Медицинское оборудование</small>
+				</div>
+			</div>
+			<div class="grid contactsBlock">
+				<div class="grid__cell">
+					<div class="contactItem">
+						<div class="contactItem__key">Skype:</div>
+						<div class="contactItem__value">XXXX</div>
+					</div>
+				</div>
+				<div class="grid__cell">
+					<div class="contactItem">
+						<div class="contactItem__key">
+							<svg>
+								<use xlink:href="#phone"></use>
+							</svg>
+						</div>
+						<div class="contactItem__value">+38 (050) 227-XX-XX<br>+38 (050) 227-XX-XX</div>
+					</div>
+				</div>
+				<div class="grid__cell">
+					<div class="contactItem">
+						<div class="contactItem__key">
+							<svg>
+								<use xlink:href="#mail"></use>
+							</svg>
+						</div>
+						<div class="contactItem__value">XXXXXX@gmail.com</div>
+					</div>
+					<button class="button button-primary">Показать контакты</button>
+				</div>
+			</div>
+			<div class="heroText">
+				<small>Лучшее решение</small>
+				Для медицинского бизнеса
+			</div>
+		</div>
+		<div class="pageHeader__menu">
+			<ul>
+				<li><a href="index.html">Главная</a></li>
+				<li><a href="about.html">О компании</a></li>
+				<li><a href="equipment.html">Оборудование</a></li>
+				<li><a href="bussness.html">Бизнес под ключ</a></li>
+				<li><a href="gallery.html">Галерея</a></li>
+				<li><a href="contacts.html">Контакты</a></li>
+			</ul>
 		</div>
 	</div>
 </div>

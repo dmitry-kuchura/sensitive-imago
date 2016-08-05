@@ -1,24 +1,21 @@
 @import 'config';
 
-@import '_partials/base';
-@import '_partials/layout';
-@import '_partials/menu';
-@import '_partials/button';
-//@import '_partials/wtxt';
+@include makeGrid();
 
-
-// @include part-grid;
 // @include util-colors;
 // @include util-gutters;
 /* Text helpers
 ==================================================================================================== */
-@include util-text;
+//@include util-text;
+
 /* Visibility helpers
 ==================================================================================================== */
-@include util-visibility;
+//@include util-visibility;
 
 
-.block {
-	font-size: 20px;
-	margin: em(10,30);
-}
+@import '_partials/base';
+@import '_partials/layout';
+@import '_partials/header';
+@import '_partials/menu';
+@import '_partials/button';
+//@import '_partials/wtxt';
