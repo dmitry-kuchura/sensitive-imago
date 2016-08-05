@@ -89,9 +89,6 @@ module.exports = function(options) {
 			let isFilter = options.filter !== false;
 
 			let ejsLocals = options.locals || {};
-			ejsLocals._isPoduction = options.isProduction;
-			ejsLocals._isDevelop = options.isDevelop;
-			ejsLocals._package = options.package;
 			ejsLocals._getActiveFile = (filepath) => {
 				let _filename = filepath.split('\\').pop().split('.');
 				_filename.pop();

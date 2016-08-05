@@ -1,0 +1,34 @@
+<%
+	locals._fileVersions = {
+		favicons: {
+			append: true,
+			generate: false,
+			key: 'zXdXyg2vAg'
+		},
+		svgsprite: '?v=zXdXyg2vAg'
+	};
+%>
+
+<%
+	class Versions {
+		setKey(groupKey) {
+			let group = _fileVersions[groupKey];
+			if (group.append) {
+				return `?v=${group.key}`;
+			}
+		}
+		generateKeys() {
+			console.log(999);
+			for (let groupKey in _fileVersions) {
+				let group = _fileVersions[groupKey];
+				if (group.append && group.generate) {
+					let newKey = Math.random().toString(36);
+					group.key = newKey.replace(/\W/g, '').substring(1, 11);
+				}
+			}
+		}
+	};
+
+	locals.Versions = new Versions();
+	locals.Versions.generateKeys();
+%>

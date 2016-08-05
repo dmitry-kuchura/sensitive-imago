@@ -1,6 +1,6 @@
 {
   "name": "wtpl",
-  "version": "0.9.5",
+  "version": "0.10.4",
   "description": "startup template",
   "main": "index.js",
   "scripts": {

@@ -1,0 +1,51 @@
+<% if (IS_WEZOM) { %>
+	<!-- (c) студия Wezom | www.wezom.com.ua -->
+	<!-- <%- PKG.name %> | v#<%- PKG.version %> -->
+	<%- (PKG.description.length) ? `<!-- ${PKG.description} -->` : '' %>
+<% } %>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<% if (IS_WEZOM) { %>
+	<title><%= _activeFileData.title %> - Верстка | (c) студия Wezom | www.wezom.com.ua</title>
+	<!-- Open Graph -->
+	<meta property="og:title" content="Заголовок страницы">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="site.com">
+	<meta property="og:url" content="http://site.com/current-page">
+	<meta property="og:description" content="краткий текст (новости, товара и т.д)">
+<% } else { %>
+	<title><%= _activeFileData.title %></title>
+<% } %>
+
+
+<!-- Touch -->
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+
+
+
+<% if (IS_RESPONSIVE) { %>
+	<!-- Responsive -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="target-densitydpi=device-dpi">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<% } else { %>
+	<!-- not Responsive -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=1000">
+<% } %>
+
+
+<%- partial('favicons') %>
+
+
+<%- partial('criticals') %>
+
+
+<% if (IS_DEVELOP) { %>
+	<!-- saved from url=(0014)about:internet -->
+<% } %>
+<!--[if IE]><meta http-equiv="imagetoolbar" content="no"><![endif]-->
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->

@@ -1,45 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru-RU" dir="ltr" class="no-js">
 	<head>
-		<%- partial('../views/widgets/head') %>
+		<%- partial('../widgets/head') %>
 	</head>
 	<body>
-		<div class="pageWrapper">
-			<% if (_activeFileData.hasSeoText) { %>
-				<main class="pageSeoText">
-					<div class="pageSize"><%- partial(_activeFileData.seoTextContent, {}) %></div>
-				</main>
-				<!-- end pageSeoText -->
-			<% } %>
-
-			<header class="pageHeader">
-				<%- partial('../views/widgets/header', {}) %>
-			</header>
-			<!-- end pageHeader -->
-
-
-			<div class="pageContainer">
-				<%- body %>
-			</div>
-			<!-- end pageContainer -->
-
-			<footer class="pageFooter">
-				<%- partial('../views/widgets/footer', {})%>
-			</footer>
-			<!-- end pageFooter -->
-
-		</div>
-		<!-- end pageWrapper -->
-
-
-		<!-- внешние css файлы -->
-		<link rel="stylesheet" property="stylesheet" href="css/vendor/plugins.css">
-		<link rel="stylesheet" property="stylesheet" href="css/style.css">
-
-
-		<!-- внешние js файлы -->
-		<!--<script src="js/vendor/modernizr.js"></script>-->
-		<script src="js/vendor/jquery-2.2.4.min.js"></script>
-		<script src="js/bundle.js"></script>
+		<%- body %>
 	</body>
 </html>

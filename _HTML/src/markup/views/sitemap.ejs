@@ -1,6 +1,12 @@
 <%
-	// конфиг текущего файлы
-	locals._activeFileData = _getActiveFile(filename);
+	// alias текущего файлы
+	locals._activeFile = _getActiveFile(filename);
 %>
-<% include ../config %>
+<% include ../_config %>
 <% layout('../layouts/main') %>
+<!-- @htmldoc
+	Это пример для документации
+	@todo ограничить текст в 300 символов
+	@todo тестовый блок.
+-->
+<p>index</p>

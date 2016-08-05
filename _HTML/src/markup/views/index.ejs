@@ -1,19 +1,12 @@
 <%
-// конфиг текущего файлы
-locals._activeFile = _getActiveFile(filename);
+	// alias текущего файлы
+	locals._activeFile = _getActiveFile(filename);
 %>
-<% include ../config %>
-<% layout('../layouts/main'); %>
-
-<div class="pageSize">
-	<%- partial('widgets/breadcrumbs', {
-		data: [
-			['Главная страница', 'index.html'],
-			['Категория товаров', 'index.html'],
-			['Страница товара']
-		]
-	}) %>
-	<div class="pageSection">
-		Контент главной
-	</div>
-</div>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<!-- @htmldoc
+	Это пример для документации
+	@todo ограничить текст в 300 символов
+	@todo тестовый блок.
+-->
+<p>index</p>

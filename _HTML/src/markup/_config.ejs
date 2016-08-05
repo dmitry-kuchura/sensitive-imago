@@ -1,0 +1,45 @@
+<%
+
+	// файлы
+	// ========
+		// список основных файлов
+		locals._viewsFiles = {
+			index: {
+				title: 'Главная страница',
+				hasSeoText: true,
+				seoTextContent: '../views/contents/seotext-index'
+			},
+			sitemap: {
+				title: 'Карта сайта',
+				parent: 'index',
+				hasSeoText: false
+			}
+		};
+
+		for (let file in _viewsFiles) {
+			_viewsFiles[file].alias = file;
+			_viewsFiles[file].file = `${file}.html`;
+		}
+
+		// текущий файл
+		locals._activeFileData = _viewsFiles[_activeFile];
+
+
+
+
+	// версии файлов
+	// =============
+		locals._fileVersions = {
+			favicons: {
+				append: true,
+				generate: true,
+				default: '?v=zXdXyg2vAg'
+			},
+			svgsprite: '?v=zXdXyg2vAg'
+		};
+
+%>
+
+
+<% include helpers/versions %>
+<% include helpers/attrs %>
