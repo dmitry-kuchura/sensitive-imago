@@ -11,9 +11,11 @@
 	user-select: none;
 	cursor: pointer;
 	touch-action: manipulation;
+	align-items: center;
 	justify-content: space-around;
 	text-align: center;
 	background: transparent;
+	transition: all .2s;
 }
 
 // Default button
@@ -22,13 +24,29 @@
 	@extend %buttonBase;
 	height: rem(34px);
 	font-size:rem(14px);
+	&:active{
+		box-shadow: inset 2px 2px 2px rgba(0,0,0,.5);
+	}
 
 }
 .button--primary{
 	color: #fff;
 	background: $color-primary;
-	border:none;
+	border:2px solid $color-primary;
 	min-width: 200px;
 
+}
+.button--inverse{
+	color: $color-primary;
+	background: transparent;
+	border:2px solid transparentize($color-primary,.25);
+	min-width: 200px;
+	&:hover{
+		color: #fff;
+		background: $color-primary;
+	}
+}
+.button--in-sectionFooter{
+	min-width: 305px;
 }
 

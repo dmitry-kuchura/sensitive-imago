@@ -44,6 +44,14 @@
 	&--bg-gray{
 		background: #fafafa;
 	}
+	&--bg-primary{
+		background: $color-dark-blue;
+	}
+	&__footer{
+		margin-top: 60px;
+		display: flex;
+		justify-content:center;
+	}
 }
 .sectionHeader{
 	padding-bottom: rem(35px);
@@ -64,6 +72,12 @@
 		margin: auto;
 		background: $color-primary;
 		position: absolute;
+	}
+	&--white{
+		color: #fff;
+		&:after{
+			background: #fff;
+		}
 	}
 }
 

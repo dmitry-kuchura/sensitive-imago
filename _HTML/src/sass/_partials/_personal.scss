@@ -1,0 +1,48 @@
+.personal{
+	height: 450px;
+	align-items:flex-start;
+}
+
+.person{
+
+	box-shadow: 0 50px 67px rgba(13, 12, 13, 0.24);
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: rem(60px) 0 rem(70px);
+	&:nth-child(odd){
+		align-self: flex-end;
+	}
+	&__image{
+		background-size:cover;
+		height: 140px;
+		width: 140px;
+		border-radius: 50%;
+		box-shadow: 0 0 0 10px transparentize($color-primary,.8) ;
+		margin-bottom:rem(70px);
+	}
+	&__name{
+		color: #000;
+		text-transform: uppercase;
+		font-size: rem(17px);
+		margin-bottom:rem(25px);
+
+	}
+	&__position{
+		font-size: rem(14px);
+		color: #9a9a9a;
+		font-family:$font-secondary;
+		font-style: italic;
+	}
+	&:hover{
+		@at-root & {
+			background: $color-dark-blue;
+			.person{
+				&__name,&__position{
+					color: #fff;
+				}
+			}
+		}
+	}
+}

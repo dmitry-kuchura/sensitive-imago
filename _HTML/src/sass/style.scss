@@ -16,4 +16,13 @@
 @import '_partials/header';
 @import '_partials/menu';
 @import '_partials/button';
-//@import '_partials/wtxt';
+@import '_partials/wtxt';
+@import '_partials/advantages';
+@import '_partials/personal';
+
+
+.compatibilityImage{
+	position: absolute;
+	right: rem(-20px);
+	bottom: rem(-30px);
+}

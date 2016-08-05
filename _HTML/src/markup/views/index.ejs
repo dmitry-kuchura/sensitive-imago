@@ -6,20 +6,132 @@ locals._activeFile = _getActiveFile(filename);
 <% layout('../layouts/main') %>
 
 <section class="pageSection">
-	<div class="sectionHeader">Основные возможности оборудования</div>
+	<div class="pageSize" style="position: relative;">
+		<div class="sectionHeader">Основные возможности оборудования</div>
+		<div class="grid grid--space">
+			<div class="grid__cell grid__cell--4">
+				<p><b>Диагностика у пациента:</b></p>
+				<ul class="customList">
+					<li>Заболеваний и возможных осложнений</li>
+					<li>Возбудителей заболеваний</li>
+					<li>Слабых систем организма</li>
+					<li>Всех нарушений в органах и их причин</li>
+					<li>Аллергенов, токсинов, вредных продуктов</li>
+					<li>Генетической предрасположенности</li>
+					<li>Прогноза развития заболеваний в будущем</li>
+				</ul>
+			</div>
+			<div class="grid__cell grid__cell--4">
+				<p><b>Лечебные возможности:</b></p>
+				<ul class="customList">
+					<li>Индивидуальная эффективная cхема лечения препаратами</li>
+					<li>Моментальная энергетическая коррекция любой болезни</li>
+					<li>Подбор правильного питания</li>
+					<li>Общее восстановление организма</li>
+				</ul>
+			</div>
+
+		</div>
+		<img class="compatibilityImage" src="css/pic/complex.png" alt="">
+	</div>
 </section>
 <section class="pageSection">
-	<div class="sectionHeader">Наши приемущества</div>
+	<div class="pageSize">
+		<div class="sectionHeader">Наши приемущества</div>
+		<div class="grid grid--4">
+			<%
+			var advantages = [
+				{
+					icon: 'mail',
+					title: 'Точность',
+					text: 'Комплексы Сенситив Имаго имеют подтвержденную точность диагностики до 96 %'
+				},
+				{icon: 'mail', title: 'Эффективность', text: 'Лечение большинства заболеваний человека '},
+				{icon: 'mail', title: 'Гарантия', text: 'На оборудование мы даем до 2 лет гарантии'},
+				{
+					icon: 'mail',
+					title: 'Удобство',
+					text: 'Проведение онлайн презентации возможностей оборудования, а также качественное обучение онлайн по удобному для Вас графику'
+				},
+				{icon: 'mail', title: 'Доставка', text: 'В первую неделю с момента оплаты'},
+				{
+					icon: 'mail',
+					title: 'Сертификаты',
+					text: 'Оборудование сертифицировано в Европейском Союзе и многих странах мира '
+				},
+				{icon: 'mail', title: 'Надежность', text: 'Наши клиенты нам доверяют'},
+				{icon: 'mail', title: 'Экономия', text: 'Возможность покупки в рассрочку'}
+			];
+			%>
+
+			<% for (i in advantages) { %>
+			<div class="grid__cell advantage">
+				<div class="advantage__icon">
+					<img src="css/pic/advantage-icon<%= parseInt(i) + 1 %>.svg" alt="">
+				</div>
+				<div class="advantage__title"><%= advantages[i].title %></div>
+				<div class="advantage__text"><%= advantages[i].text %></div>
+				<a href='#' class="button button--inverse">Подробнее</a>
+			</div>
+			<% } %>
+		</div>
+	</div>
+
 </section>
 <section class="pageSection">
-	<div class="sectionHeader">Наша команда</div>
+	<div class="pageSize">
+		<div class="sectionHeader">Наша команда</div>
+		<div class="grid grid--5 personal">
+			<% var personal = [
+				{name: 'Смирнова Татьяна', position: 'Врач'},
+				{name: 'Павленко Инна', position: 'Администратор'},
+				{name: 'Марченко Галина', position: 'Директор'},
+				{name: 'Шевченко Вита', position: 'Менеджер-переводчик'},
+				{name: 'Недилько Александр', position: 'WEB-мастер'},
+			] %>
+			<% for(i in personal){ %>
+			<div class="grid__cell person">
+				<div class="person__image"
+					 style="background-image: url('images/personal<%= parseInt(i) + 1 %>.jpg');"></div>
+				<div class="person__name"><%= personal[i].name %></div>
+				<div class="person__position"><%= personal[i].position %></div>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ ВСЕХ</a>
+		</div>
+	</div>
+</section>
+<section class="pageSection pageSection--bg-gray">
+	<div class="pageSize">
+		<div class="sectionHeader">Отзывы наших пользователей</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
 </section>
 <section class="pageSection">
-	<div class="sectionHeader">Отзывы наших пользователей</div>
-</section><section class="pageSection">
-	<div class="sectionHeader">Отзывы наших пациентов</div>
-</section><section class="pageSection">
-	<div class="sectionHeader">Модели приборов</div>
-</section><section class="pageSection">
-	<div class="sectionHeader">Свежие новости</div>
+	<div class="pageSize">
+		<div class="sectionHeader">Отзывы наших пациентов</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>
+<section class="pageSection pageSection--bg-primary">
+	<div class="pageSize">
+		<div class="sectionHeader sectionHeader--white">Модели приборов</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>
+<section class="pageSection">
+	<div class="pageSize">
+		<div class="sectionHeader">Свежие новости</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
 </section>
