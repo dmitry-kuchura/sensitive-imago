@@ -41,6 +41,9 @@
 
 .pageSection {
 	padding: rem(60px) 0;
+	&--customSize{
+		padding:rem(35px) 0 0;
+	}
 	&--bg-gray{
 		background: #fafafa;
 	}
@@ -72,6 +75,9 @@
 		margin: auto;
 		background: $color-primary;
 		position: absolute;
+	}
+	&--small{
+		t
 	}
 	&--white{
 		color: #fff;
