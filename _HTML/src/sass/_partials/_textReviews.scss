@@ -3,12 +3,12 @@
 	align-items: flex-start;
 }
 .textReview{
+	position: relative;
 	&:nth-child(odd){
 		align-self: flex-end;
 	}
 	box-shadow: 0 50px 67px rgba(13, 12, 13, 0.24);
 	background: #fff;
-	background-position: right 30px top 30px;
 	transition: background .2s;
 	&__name,
 	&__subtitle,
@@ -35,6 +35,15 @@
 		line-height:rem(22px);
 
 	}
+	&__icon{
+		transition: fill .2s;
+		fill:#fff;
+		position: absolute;
+		top: 35px;
+		right: 30px;
+		width: 50px;
+		height: 40px;
+	}
 	&__divider{
 		height: 2px;
 		width: 80px;
@@ -43,13 +52,15 @@
 	}
 	&:hover{
 		@at-root &{
-			background: $color-secondary url('../css/pic/quotes.svg') no-repeat;
-			background-position: right 30px top 30px;
+			background: $color-secondary ;
 			.textReview{
 				&__name,
 				&__subtitle,
 				&__text{
 					color: #fff;
+				}
+				&__icon{
+					fill:$color-primary;
 				}
 			}
 		}

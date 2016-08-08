@@ -149,6 +149,7 @@ locals._activeFile = _getActiveFile(filename);
 		<div class="grid grid--3 textReviews">
 			<% for (i in reviewBlocks) { %>
 			<div class="grid__cell textReview">
+				<svg class="textReview__icon"><use xlink:href="#quotes"></use></svg>
 				<div class="textReview__name">
 					<%= reviewBlocks[i].name %>
 				</div>
@@ -170,7 +171,7 @@ locals._activeFile = _getActiveFile(filename);
 </section>
 <section class="pageSection pageSection--bg-primary">
 	<div class="pageSize">
-		<div class="sectionTitle sectionHeader--white">Модели приборов</div>
+		<div class="sectionTitle sectionTitle--white">Модели приборов</div>
 		<div class="pageSection__footer">
 			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
 		</div>
