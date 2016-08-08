@@ -33,8 +33,7 @@ $global-gutter: 20px;
 $global-gutterFactor: (
 	//#{$suffix}half: 0.5,
 	'': 1,
-	//#{$suffix}large: 1.5,
-	//#{$suffix}double: 2
+	#{$global-suffix}x2: 2
 );
 
 $global-breakpoints: (

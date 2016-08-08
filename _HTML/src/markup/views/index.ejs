@@ -149,7 +149,9 @@ locals._activeFile = _getActiveFile(filename);
 		<div class="grid grid--3 textReviews">
 			<% for (i in reviewBlocks) { %>
 			<div class="grid__cell textReview">
-				<svg class="textReview__icon"><use xlink:href="#quotes"></use></svg>
+				<svg class="textReview__icon">
+					<use xlink:href="hidden/sprite.svg#quotes"></use>
+				</svg>
 				<div class="textReview__name">
 					<%= reviewBlocks[i].name %>
 				</div>
@@ -172,6 +174,25 @@ locals._activeFile = _getActiveFile(filename);
 <section class="pageSection pageSection--bg-primary">
 	<div class="pageSize">
 		<div class="sectionTitle sectionTitle--white">Модели приборов</div>
+		<div class="grid grid--2 grid--space-x2">
+			<% var devices = ['100/120', '500/520', '130', '530'] %>
+			<% for (i in devices) { %>
+			<div class="grid__cell mediaBlock mediaBlock--inverse <%= i < devices.length - 2 ? '_mb-x2' : '' %>">
+				<div class="mediaBlock__image"
+					 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></div>
+				<div class="mediaBlock__content">
+					<div class="mediaBlock__title">Cенситив Имаго <%= devices[i] %></div>
+					<div class="mediaBlock__text">
+						<div class="mediaBlock__textInner">
+							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
+							комплексного
+						</div>
+					</div>
+					<a href="#" class="button button--inverse-white">Узнать прайс</a>
+				</div>
+			</div>
+			<% } %>
+		</div>
 		<div class="pageSection__footer">
 			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
 		</div>
@@ -180,6 +201,34 @@ locals._activeFile = _getActiveFile(filename);
 <section class="pageSection">
 	<div class="pageSize">
 		<div class="sectionTitle">Свежие новости</div>
+		<div class="grid grid--2 grid--space-x2">
+			<% var news = [
+				'диагностика с помощью Сенситив имаго',
+				'Доступна новая усгула',
+				'Онлайн обучение с прибором сенситив имаго',
+				'Оборудование получило золотую медаль'] %>
+			<% for (i in news) { %>
+			<div class="grid__cell mediaBlock <%= i < news.length - 2 ? '_mb-x2' : '' %>">
+				<div class="mediaBlock__image"
+					 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');">
+					<div class="mediaBlock__date">
+						22
+						<small>фев</small>
+					</div>
+				</div>
+				<div class="mediaBlock__content">
+					<div class="mediaBlock__title">Cенситив Имаго <%= news[i] %></div>
+					<div class="mediaBlock__text">
+						<div class="mediaBlock__textInner">
+							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
+							комплексного
+						</div>
+					</div>
+					<a href="#" class="button button--inverse">Узнать прайс</a>
+				</div>
+			</div>
+			<% } %>
+		</div>
 		<div class="pageSection__footer">
 			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
 		</div>

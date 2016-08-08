@@ -53,15 +53,18 @@
 .logo {
 	display: flex;
 	align-items: center;
+	line-height:rem(20px);
 	&__image {
 		width: 65px;
 		height: 70px;
 		margin-right: 20px;
 	}
 	&__text {
-		color: #ffffff;
-		font-size: rem(24px);
-		text-transform: uppercase;
+		big{
+			color: #ffffff;
+			font-size: rem(24px);
+			text-transform: uppercase;
+		}
 		small {
 			text-transform: none;
 			display: block;
@@ -69,6 +72,32 @@
 			color: #a6a6a6;
 			letter-spacing: .5px;
 		}
+	}
+	&__copyright{
+		font-size: rem(12px);
+		line-height:rem(18px);
+		color: transparentize(#fff,.7);
+	}
+	&--small{
+		width: 50px;
+		height: 50px;
+		margin-right: 15px;
+		@at-root &{
+			.logo{
+				&__text{
+					font-size: rem(18px);
+					line-height:rem(15px);
+				}
+				small{
+					font-size: rem(11px);
+					line-height:rem(15px);
+				}
+
+
+
+			}
+		}
+
 	}
 }
 .contactsBlock{}
