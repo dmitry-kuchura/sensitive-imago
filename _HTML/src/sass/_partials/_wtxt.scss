@@ -201,5 +201,9 @@ $h1: rem(48);
 			margin-right:rem(20px);
 			flex-shrink: 0;
 		}
+		&:last-child{
+			margin-bottom: 0;
+		}
 	}
+
 }

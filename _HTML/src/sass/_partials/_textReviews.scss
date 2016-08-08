@@ -1,0 +1,57 @@
+.textReviews{
+	height: 310px;
+	align-items: flex-start;
+}
+.textReview{
+	&:nth-child(odd){
+		align-self: flex-end;
+	}
+	box-shadow: 0 50px 67px rgba(13, 12, 13, 0.24);
+	background: #fff;
+	background-position: right 30px top 30px;
+	transition: background .2s;
+	&__name,
+	&__subtitle,
+	&__text{
+		transition: color .2s;
+	}
+	&__name{
+		color: #4c4c4c;
+		padding: rem(40px) rem(100px) 0 rem(30px);
+		font-size: rem(16px);
+
+	}
+	&__subtitle{
+		font-size:rem(14px);
+		font-family:$font-secondary;
+		font-style: italic;
+		color: #9b9b9b;
+		padding:0 rem(100px) rem(40px) rem(30px);
+	}
+	&__text{
+		color: #4c4c4c;
+		padding:rem(20px) rem(30px) rem(30px);
+		font-size: rem(13px);
+		line-height:rem(22px);
+
+	}
+	&__divider{
+		height: 2px;
+		width: 80px;
+		margin-right: auto;
+		background: $color-primary;
+	}
+	&:hover{
+		@at-root &{
+			background: $color-secondary url('../css/pic/quotes.svg') no-repeat;
+			background-position: right 30px top 30px;
+			.textReview{
+				&__name,
+				&__subtitle,
+				&__text{
+					color: #fff;
+				}
+			}
+		}
+	}
+}

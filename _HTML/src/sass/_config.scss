@@ -62,7 +62,7 @@ $global-palette: (
 	black: #000,
 	white: #fff,
 	primary: #6395c4,
-	secondary: blue,
+	secondary: #354f5e,
 	success: green,
 	info: blue,
 	danger: red,
@@ -78,7 +78,6 @@ $color-danger: map-get($global-palette, danger);
 $color-info: map-get($global-palette, info);
 $color-gray: map-get($global-palette, gray);
 $color-light: map-get($global-palette, light);
-$color-dark-blue: #354f5e;
 
 //* Settings flags
 //================================================================================================== //

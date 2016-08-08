@@ -29,7 +29,7 @@
 	padding: 0 8px;
 	border-left:1px solid #e1e1e1;
 
-	color:$color-dark-blue;
+	color: $color-secondary;
 	text-decoration: none;
 	font-size:10px;
 	&:last-child{
@@ -127,7 +127,7 @@
 	&>li{
 		display: block;
 		font-size:rem(12px);
-		color: $color-dark-blue;
+		color: $color-secondary;
 		background: #fff;
 		text-transform: uppercase;
 		text-decoration: none;

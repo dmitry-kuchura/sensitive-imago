@@ -6,7 +6,7 @@
 	background-position: 50% 50%;
 	&:before,&:after{
 		content: '';
-		opacity:0;
+		opacity:1;
 		transition: opacity .2s;
 		position: absolute;
 		top: 0;
@@ -28,8 +28,8 @@
 		background-size:contain;
 	}
 	&:hover{
-		&:before,&:after{
-			opacity: 1;
+		&:before{
+			opacity: 0;
 		}
 
 	}

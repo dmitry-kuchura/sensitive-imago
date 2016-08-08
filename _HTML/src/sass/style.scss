@@ -20,10 +20,12 @@
 @import '_partials/advantages';
 @import '_partials/personal';
 @import '_partials/videoLink';
+@import '_partials/textReviews';
 
 
 .compatibilityImage{
 	position: absolute;
 	right: rem(-20px);
-	bottom: rem(-30px);
+	bottom: rem(-90px);
+	z-index:1;
 }

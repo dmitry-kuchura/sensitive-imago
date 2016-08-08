@@ -7,7 +7,7 @@ locals._activeFile = _getActiveFile(filename);
 
 <section class="pageSection">
 	<div class="pageSize" style="position: relative;">
-		<div class="sectionHeader">Основные возможности оборудования</div>
+		<div class="sectionTitle">Основные возможности оборудования</div>
 		<div class="grid grid--space">
 			<div class="grid__cell grid__cell--4">
 				<p><b>Диагностика у пациента:</b></p>
@@ -35,26 +35,26 @@ locals._activeFile = _getActiveFile(filename);
 		<img class="compatibilityImage" src="css/pic/complex.png" alt="">
 	</div>
 </section>
-<section class="pageSection pageSection--customSize">
+<section class="pageSection _p-none pageSection--partialBg">
 	<div class="pageSize">
-		<div class="sectionHeader"></div>
+		<div class="sectionTitle sectionTitle--small _color-white">
+			Смотрите видео о Сенситив Имаго
+		</div>
 		<div class="grid grid--3 grid--space">
+			<% var aboutVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
+			<% for (i in aboutVideos) { %>
 			<div class="grid__cell">
-				<a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink" style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/sddefault.jpg");'></a>
+				<a href="https://www.youtube.com/watch?v=<%= aboutVideos[i] %>" class="videoLink"
+				   style='background-image: url("//img.youtube.com/vi/<%= aboutVideos[i] %>/sddefault.jpg");'></a>
 			</div>
-			<div class="grid__cell">
-				<a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink" style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/sddefault.jpg");'></a>
-			</div>
-			<div class="grid__cell">
-				<a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink" style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/sddefault.jpg");'></a>
-			</div>
+			<% } %>
 		</div>
 	</div>
 
 </section>
 <section class="pageSection">
 	<div class="pageSize">
-		<div class="sectionHeader">Наши приемущества</div>
+		<div class="sectionTitle">Наши приемущества</div>
 		<div class="grid grid--4">
 			<%
 			var advantages = [
@@ -97,7 +97,7 @@ locals._activeFile = _getActiveFile(filename);
 </section>
 <section class="pageSection">
 	<div class="pageSize">
-		<div class="sectionHeader">Наша команда</div>
+		<div class="sectionTitle">Наша команда</div>
 		<div class="grid grid--5 personal">
 			<% var personal = [
 				{name: 'Смирнова Татьяна', position: 'Врач'},
@@ -122,26 +122,47 @@ locals._activeFile = _getActiveFile(filename);
 </section>
 <section class="pageSection pageSection--bg-gray">
 	<div class="pageSize">
-		<div class="sectionHeader">Отзывы наших пользователей</div>
+		<div class="sectionTitle">Отзывы наших пользователей</div>
 		<div class="grid grid--3 grid--space">
+			<% var reviewsVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
+			<% for (i in reviewsVideos) { %>
 			<div class="grid__cell">
-				<a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink" style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/sddefault.jpg");'></a>
+				<a href="https://www.youtube.com/watch?v=<%= reviewsVideos[i] %>"
+				   class="videoLink"
+				   style='background-image: url("//img.youtube.com/vi/<%= reviewsVideos[i] %>/sddefault.jpg");'></a>
 			</div>
-			<div class="grid__cell">
-				<a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink" style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/sddefault.jpg");'></a>
-			</div>
-			<div class="grid__cell">
-				<a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink" style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/sddefault.jpg");'></a>
-			</div>
+			<% } %>
 		</div>
 		<div class="pageSection__footer">
-			<a href="https://www.youtube.com/watch?v=tG7rUKrwQBE" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
 		</div>
 	</div>
 </section>
 <section class="pageSection">
 	<div class="pageSize">
-		<div class="sectionHeader">Отзывы наших пациентов</div>
+		<div class="sectionTitle">Отзывы наших пациентов</div>
+		<% var reviewBlocks = [
+			{name: 'Евгений Николаевич', subtitle: 'пациент, 57 лет'},
+			{name: 'Анна Сергеевна', subtitle: 'пациент, 32 года'},
+			{name: 'Марина Александровна', subtitle: 'пациент, 20 лет'}
+		] %>
+		<div class="grid grid--3 textReviews">
+			<% for (i in reviewBlocks) { %>
+			<div class="grid__cell textReview">
+				<div class="textReview__name">
+					<%= reviewBlocks[i].name %>
+				</div>
+				<div class="textReview__subtitle">
+					<%= reviewBlocks[i].subtitle %>
+				</div>
+				<div class="textReview__divider"></div>
+				<div class="textReview__text">
+					Наконец то удалось выявить причину моих заболеваний: наличие бактерий Streptococcus haemolyticus и
+					Streptococcus bovis. Прибор смог показать, в каком конкретно органе и системе органов
+				</div>
+			</div>
+			<% } %>
+		</div>
 		<div class="pageSection__footer">
 			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
 		</div>
@@ -149,7 +170,7 @@ locals._activeFile = _getActiveFile(filename);
 </section>
 <section class="pageSection pageSection--bg-primary">
 	<div class="pageSize">
-		<div class="sectionHeader sectionHeader--white">Модели приборов</div>
+		<div class="sectionTitle sectionHeader--white">Модели приборов</div>
 		<div class="pageSection__footer">
 			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
 		</div>
@@ -157,7 +178,7 @@ locals._activeFile = _getActiveFile(filename);
 </section>
 <section class="pageSection">
 	<div class="pageSize">
-		<div class="sectionHeader">Свежие новости</div>
+		<div class="sectionTitle">Свежие новости</div>
 		<div class="pageSection__footer">
 			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
 		</div>

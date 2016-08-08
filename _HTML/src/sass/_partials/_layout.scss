@@ -25,8 +25,8 @@
 	max-width: $page-maxWidth + 20;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: rem(10);
-	padding-right: rem(10);
+	//padding-left: rem(10);
+	//padding-right: rem(10);
 }
 
 /* pageFotoer
@@ -41,22 +41,33 @@
 
 .pageSection {
 	padding: rem(60px) 0;
-	&--customSize{
-		padding:rem(35px) 0 0;
-	}
-	&--bg-gray{
-		background: #fafafa;
-	}
-	&--bg-primary{
-		background: $color-dark-blue;
-	}
 	&__footer{
 		margin-top: 60px;
 		display: flex;
 		justify-content:center;
 	}
+	&--bg-gray{
+		background: #fafafa;
+	}
+	&--bg-primary{
+		background: $color-secondary;
+	}
+	&--partialBg{
+		position: relative;
+		&:before{
+			content: '';
+			display: block;
+			background: $color-primary;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			margin: auto;
+			height:calc(100% - 100px);
+		}
+	}
 }
-.sectionHeader{
+.sectionTitle {
 	padding-bottom: rem(35px);
 	margin-bottom:rem(50px);
 	color: #000;
@@ -77,7 +88,14 @@
 		position: absolute;
 	}
 	&--small{
-		t
+		font-size: rem(25px);
+		padding:rem(35px) 0;
+		margin: 0;
+		text-transform: none;
+		letter-spacing:2px;
+		&:after{
+			display: none;
+		}
 	}
 	&--white{
 		color: #fff;
