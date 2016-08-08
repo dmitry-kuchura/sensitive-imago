@@ -1,3 +1,33 @@
 .pageFooter{
 	background: $color-secondary;
+	padding:rem(60px) 0 rem(45px);
+}
+
+.columnCaption {
+	font-size:rem(12px);
+	font-weight: 700;
+	color: #fff;
+	text-transform: uppercase;
+	line-height:rem(15px);
+	height: rem(45px);
+	padding-left:rem(18px);
+	border-left: 2px solid $color-primary;
+	display: flex;
+	align-items:flex-end;
+	margin-bottom:rem(30);
+}
+.columnContent{
+	font-size: rem(12px);
+	line-height:rem(20px);
+	padding-left:rem(20px);
+	color: transparentize(#fff,.4);
+	ul{
+		padding: 0;
+		list-style:none;
+		a{
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
 }
