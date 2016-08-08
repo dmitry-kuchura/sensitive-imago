@@ -31,3 +31,13 @@
 	bottom: rem(-90px);
 	z-index:1;
 }
+.layeredBlock{
+	background: $color-primary;
+	color: #fff;
+	width: 500px;
+	font-size: rem(16px);
+
+	padding:rem(40px) rem(50px);
+	margin-left: auto;
+	margin-top: 50px;
+}

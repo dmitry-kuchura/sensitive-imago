@@ -41,6 +41,11 @@
 
 .pageSection {
 	padding: rem(60px) 0;
+	&__topText{
+		font-size:rem(16px);
+		text-align:center;
+		color: #606060;
+	}
 	&__footer{
 		margin-top: 60px;
 		display: flex;
