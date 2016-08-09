@@ -20,24 +20,65 @@
 @import '_partials/advantages';
 @import '_partials/personal';
 @import '_partials/videoLink';
+@import '_partials/priceBlock';
 @import '_partials/textReviews';
 @import '_partials/mediaBlock';
 @import '_partials/footer';
 
-
-.compatibilityImage{
+.compatibilityImage {
 	position: absolute;
 	right: rem(-20px);
 	bottom: rem(-90px);
-	z-index:1;
+	z-index: 1;
 }
-.layeredBlock{
-	background: $color-primary;
-	color: #fff;
-	width: 500px;
-	font-size: rem(16px);
 
-	padding:rem(40px) rem(50px);
+.bg-doctor {
+	position: relative;
+}
+
+.bg-doctor:before {
+	content: '';
+	display: block;
+	width: 400px;
+	height: 400px;
+	background: url('../css/pic/promo-doctor.png') no-repeat;
+	background-position: left 20px bottom 0;
+	background-clip: content-box;
+	position: absolute;
+	bottom: rem(-60px);
+	left: 60px;
+
+}
+
+.layeredBlock {
 	margin-left: auto;
 	margin-top: 50px;
+	width: 500px;
+	position: relative;
+
+	&__top {
+		position: relative;
+		background: $color-primary;
+		color: #fff;
+		font-size: rem(16px);
+		padding: rem(40px) rem(30px) rem(40px) rem(50px);
+		box-shadow: 0 53px 67px 0 rgba(13, 12, 13, 0.24);
+
+	}
+	&__arrow{
+		fill:#dfdfdf;
+		position: absolute;
+		top: 10px;
+		right:calc(100% - 30px);
+	}
+	&__bottom {
+		display: block;
+		position: absolute;
+		width: calc(100% + 50px);
+		height: calc(100% + 20px);
+		top: 25px;
+		right: 20px;
+		background: #fff;
+		box-shadow: 0 53px 67px 0 rgba(13, 12, 13, 0.24);
+	}
 }

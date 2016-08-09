@@ -1,0 +1,16 @@
+.priceSection{
+	height: 375px;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	background-position: center;
+	background-size:cover;
+	text-align: center;
+	&__text{
+		color: #fff;
+		font-size: rem(25px);
+		line-height:rem(30px);
+		margin-bottom: rem(40px);
+	}
+
+}

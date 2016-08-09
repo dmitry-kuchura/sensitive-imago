@@ -79,9 +79,7 @@
 		color: transparentize(#fff,.7);
 	}
 	&--small{
-
 		padding-top: rem(30px);
-
 		@at-root &{
 			.logo{
 				&__image{
@@ -97,12 +95,8 @@
 					font-size: rem(11px);
 					line-height:rem(15px);
 				}
-
-
-
 			}
 		}
-
 	}
 }
 .contactsBlock{}

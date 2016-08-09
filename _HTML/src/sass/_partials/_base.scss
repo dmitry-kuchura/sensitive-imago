@@ -49,7 +49,14 @@ svg{
 a{
 	text-decoration: none;
 	color: inherit;
+	&.inverseLink{
+		text-decoration: underline;
+		&:hover{
+			text-decoration: none;
+		}
+	}
 }
+
 @include media(sm) {
 	html {
 		font-size: 14px;

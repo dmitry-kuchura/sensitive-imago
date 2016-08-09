@@ -6,15 +6,22 @@ locals._activeFile = _getActiveFile(filename);
 <% layout('../layouts/main') %>
 
 <section class="pageSection pageSection--bg-gray">
-	<div class="pageSize">
+	<div class="pageSize bg-doctor">
 		<div class="pageSection__topText">
 			Наша компания "Альфа-Мед Украина"<br>
 			представляет медицинское оборудование последнего поколения<br>
 			<b>АПК Сенситив Имаго (HSC Sensitiv Imago)</b>
 		</div>
 		<div class="layeredBlock">
-			Медицинское оборудование предназначено для неинвазивного комплексного биорезонансного обследования и лечения
-			организма, а также для подбора лечения лекарственными препаратами
+			<div class="layeredBlock__bottom"></div>
+			<svg class="layeredBlock__arrow">
+				<use xlink:href="hidden/sprite.svg#curve_arrow"></use>
+			</svg>
+			<div class="layeredBlock__top">
+				Медицинское оборудование предназначено для неинвазивного комплексного биорезонансного обследования и
+				лечения
+				организма, а также для подбора лечения лекарственными препаратами
+			</div>
 		</div>
 	</div>
 
@@ -109,6 +116,14 @@ locals._activeFile = _getActiveFile(filename);
 	</div>
 
 </section>
+<section class="priceSection" style="background-image: url('css/pic/price_bg.jpg');">
+	<div class="priceSection__content">
+		<div class="priceSection__text">Медицинские комплексы Сенситив Имаго —<br>
+			диагностика и лечение всего организма человека
+		</div>
+		<a href="#" class="button button--primary button--in-sectionFooter">УЗНАТЬ ПРАЙС</a>
+	</div>
+</section>
 <section class="pageSection">
 	<div class="pageSize">
 		<div class="sectionTitle">Наша команда</div>
@@ -118,7 +133,7 @@ locals._activeFile = _getActiveFile(filename);
 				{name: 'Павленко Инна', position: 'Администратор'},
 				{name: 'Марченко Галина', position: 'Директор'},
 				{name: 'Шевченко Вита', position: 'Менеджер-переводчик'},
-				{name: 'Недилько Александр', position: 'WEB-мастер'},
+				{name: 'Недилько Александр', position: 'WEB-мастер'}
 			] %>
 			<% for(i in personal){ %>
 			<div class="grid__cell person">
