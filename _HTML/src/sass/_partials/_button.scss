@@ -34,7 +34,10 @@
 	background: $color-primary;
 	border:2px solid $color-primary;
 	min-width: 200px;
-
+	&:hover{
+		color: $color-primary;
+		background: #fff;
+	}
 }
 .button--inverse{
 	color: $color-primary;

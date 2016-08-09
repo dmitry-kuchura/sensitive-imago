@@ -1,0 +1,34 @@
+<!-- Начало виджета приборы -->
+<!-- Переданные переменные: color_inverse{boolean}: <%= color_inverse %> -->
+<!-- color_inverse ? 'pageSection--bg-primary' : ''-->
+<section class="pageSection <%= color_inverse ? 'pageSection--bg-primary' : ''%>">
+	<div class="pageSize">
+		<!--color_inverse?'sectionTitle--white':''-->
+		<div class="sectionTitle <%= color_inverse?'sectionTitle--white':'' %>">Модели приборов</div>
+		<div class="grid grid--2 grid--space-x2">
+			<% var devices = ['100/120', '500/520', '130', '530'] %>
+			<% for (i in devices) { %>
+			<!--color_inverse?'mediaBlock--inverse':''-->
+			<div class="grid__cell mediaBlock <%= color_inverse?'mediaBlock--inverse':'' %> <%= i < devices.length - 2 ? '_mb-x2' : '' %>">
+				<div class="mediaBlock__image"
+					 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></div>
+				<div class="mediaBlock__content">
+					<div class="mediaBlock__title">Cенситив Имаго <%= devices[i] %></div>
+					<div class="mediaBlock__text">
+						<div class="mediaBlock__textInner">
+							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
+							комплексного
+						</div>
+					</div>
+					<!--color_inverse?'button--inverse-white':'button--inverse'-->
+					<a href="#" class="button <%= color_inverse?'button--inverse-white':'button--inverse' %>">Узнать прайс</a>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>
+<!-- Конец виджета приборы -->

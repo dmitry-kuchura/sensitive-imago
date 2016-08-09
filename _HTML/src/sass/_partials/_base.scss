@@ -49,6 +49,9 @@ svg{
 a{
 	text-decoration: none;
 	color: inherit;
+	&:hover{
+		text-decoration: underline;
+	}
 	&.inverseLink{
 		text-decoration: underline;
 		&:hover{

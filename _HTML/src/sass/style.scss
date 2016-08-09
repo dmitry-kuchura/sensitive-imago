@@ -34,6 +34,7 @@
 
 .bg-doctor {
 	position: relative;
+	min-height: 340px;
 }
 
 .bg-doctor:before {
@@ -44,6 +45,7 @@
 	background: url('../css/pic/promo-doctor.png') no-repeat;
 	background-position: left 20px bottom 0;
 	background-clip: content-box;
+	background-size:contain;
 	position: absolute;
 	bottom: rem(-60px);
 	left: 60px;

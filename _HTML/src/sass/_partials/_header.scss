@@ -54,10 +54,13 @@
 	display: flex;
 	align-items: center;
 	line-height:rem(20px);
+	text-decoration: none !important;
+
 	&__image {
 		width: 65px;
 		height: 70px;
 		margin-right: 20px;
+		fill:#fff;
 	}
 	&__text {
 		big{
@@ -94,6 +97,15 @@
 				small{
 					font-size: rem(11px);
 					line-height:rem(15px);
+				}
+			}
+		}
+	}
+	&:hover{
+		@at-root &{
+			.logo{
+				&__image{
+					fill:$color-primary;
 				}
 			}
 		}

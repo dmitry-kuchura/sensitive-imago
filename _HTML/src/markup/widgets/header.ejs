@@ -24,15 +24,15 @@
 		<div class="pageSize">
 			<div class="grid grid--justify-between">
 				<div class="grid__cell">
-					<div class="logo">
+					<a href="index.html" class="logo">
 						<div class="logo__image">
-							<img src="css/pic/logo.svg" alt="">
+							<svg><use xlink:href="hidden/sprite.svg#logo"></use></svg>
 						</div>
 						<div class="logo__text">
 							<big>Сенситив Имаго</big>
 							<small>Медицинское оборудование</small>
 						</div>
-					</div>
+					</a>
 				</div>
 				<div class="grid__cell">
 					<div class="grid__box">
@@ -50,7 +50,10 @@
 											<use xlink:href="hidden/sprite.svg#phone"></use>
 										</svg>
 									</div>
-									<div class="contactItem__value">+38 (050) 227-XX-XX<br>+38 (050) 227-XX-XX</div>
+									<div class="contactItem__value">
+										<a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-XX-XX</a>
+										<br>
+										<a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-XX-XX</a></div>
 								</div>
 							</div>
 							<div class="grid__cell">
@@ -60,7 +63,7 @@
 											<use xlink:href="hidden/sprite.svg#mail"></use>
 										</svg>
 									</div>
-									<div class="contactItem__value">XXXXXX@gmail.com</div>
+									<div class="contactItem__value"><a href="mailto:XXXXXX@gmail.com">XXXXXX@gmail.com</a></div>
 								</div>
 								<button class="button button--primary _mt">Показать контакты</button>
 							</div>
