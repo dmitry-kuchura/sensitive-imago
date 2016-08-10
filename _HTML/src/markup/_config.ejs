@@ -46,8 +46,23 @@
 			svgsprite: '?v=zXdXyg2vAg'
 		};
 
+		locals.buildMenu = function(arr) {
+			var html = [];
+			var end = '</li>';
+			for (i in arr) {
+				var item = arr[i];
+				var li = `<li ${item.active?"class='is-active'":""}><a href="${item.url}.html">${item.text}</a>`;
+				if (item.hasOwnProperty('submenu')) {
+					li += `<ul>${BuildMenu(item.submenu)}</ul>`
+				}
+				li += end;
+				html.push(li);
+			}
+			return html.join('\n');
+		}
 %>
 
 
 <% include helpers/versions %>
 <% include helpers/attrs %>
+

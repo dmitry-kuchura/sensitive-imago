@@ -1,0 +1,27 @@
+ul.asideMenu {
+	background: $color-secondary;
+	padding: 0;
+	& > li {
+		position: relative;
+		height: 50px;
+		padding:0 rem(40px);
+		display: flex;
+		align-items: center;
+		color: #fff;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+		text-transform: uppercase;
+		&.is-active{
+			color: $color-primary;
+			&:before{
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 0;
+				right: 100%;
+				border-left:5px solid;
+			}
+		}
+	}
+}

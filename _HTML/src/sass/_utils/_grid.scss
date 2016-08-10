@@ -105,8 +105,8 @@ $columns:12;
         @each $k,
         $v in $gutterFactor {
             &--space#{$k} {
-				margin-left: ($gutter*$v)/2;
-				margin-right: ($gutter*$v)/2;
+				margin-left: ($gutter*$v)/-2;
+				margin-right: ($gutter*$v)/-2;
 				> .grid__cell {
 					padding-left: ($gutter*$v)/2;
 					padding-right: ($gutter*$v)/2;
@@ -215,8 +215,8 @@ $columns:12;
                 @each $k,
                 $v in $gutterFactor {
                     &--#{$name}#{$suffix}space#{$k} {
-						margin-left: ($gutter*$v)/2;
-						margin-right: ($gutter*$v)/2;
+						margin-left: ($gutter*$v)/ -2;
+						margin-right: ($gutter*$v)/ -2;
 						> .grid__cell {
 							padding-left: ($gutter*$v)/2;
 							padding-right: ($gutter*$v)/2;

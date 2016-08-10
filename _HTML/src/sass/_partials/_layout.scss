@@ -13,8 +13,11 @@
 /* pageMain
 ---------------------------------------------------------------------------------------------------- */
 
-.pageMain,.pageContainer {
+.pageContainer {
 	flex-grow: 1;
+	.innerPage &{
+		padding-top:rem(50px);
+	}
 }
 
 /* pageSize
@@ -112,4 +115,9 @@
 
 .pageSeoText{
 	order: 1000;
+}
+
+.pageAside{
+	width: 240px;
+	flex-basis: 240px;
 }

@@ -4,55 +4,28 @@ locals._activeFile = _getActiveFile(filename);
 %>
 <% include ../_config %>
 <% layout('../layouts/main') %>
-<section class="pageAside">
-	<% var Menu = [
-		{
-			text:'Главный торговый офис',
-			url:'#',
-			submenu:[
-				{
-					text:'Украина',
-					url:'#'
-				},{
-					text:'США',
-					url:'#',
-					submenu:[
-						{
-							text:'CСША_меню',
-							url:'#'
-						},{
-							text:'США',
-							url:'#'
-						}
-					]
-				}
-			]
-		},{
-			text:'Региональный представительства',
-			url:'#'
-		}
-	];
-	function BuildMenu(arr){
-		var html = [];
-		var end = '</li>';
-		for (i in arr){
-			var item = arr[i];
-			var li = `<li><a href="${item.url}">${item.text}</a>`;
-			if (item.hasOwnProperty('submenu')) {
-				li += `<ul>${BuildMenu(item.submenu)}</ul>`
+
+<div class="pageSize">
+	<section class="pageAside">
+		<% var Menu = [
+			{
+				text: 'Фото',
+				url: 'gallery_photo',
+				active:true
+			}, {
+				text: 'Видео',
+				url: 'gallery_video'
 			}
-			li += end;
-			html.push(li);
+		];
 
-		}
-		return html.join('\n');
-	}
-	%>
+		%>
 
-	<ul class="asideMenu">
-		<%- BuildMenu(Menu) %>
+		<ul class="asideMenu">
+			<%- buildMenu(Menu) %>
 
 
-	</ul>
-</section>
-<%- partial('../widgets/devices', {'color_inverse':false}) %>
+		</ul>
+	</section>
+</div>
+
+<%- partial('../widgets/devices', {'color_inverse': false}) %>

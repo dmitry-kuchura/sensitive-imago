@@ -3,7 +3,7 @@
 <head>
 	<%- partial('../widgets/head') %>
 </head>
-<body>
+<body class="<%= _activeFile=='index'?'indexPage':'innerPage'%>">
 <div class="pageWrapper">
 	<% if (_activeFileData.hasSeoText) { %>
 	<main class="pageSeoText">

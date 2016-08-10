@@ -215,14 +215,14 @@ locals._activeFile = _getActiveFile(filename);
 			<% for (i in news) { %>
 			<div class="grid__cell mediaBlock <%= i < news.length - 2 ? '_mb-x2' : '' %>">
 				<div class="mediaBlock__image"
-					 style="background-image: url('images/model<%= news[i].replace('/', '-') %>.jpg');">
+					 style="background-image: url('images/index_new<%= ++i%>.jpg');">
 					<div class="mediaBlock__date">
 						22
 						<small>фев</small>
 					</div>
 				</div>
 				<div class="mediaBlock__content">
-					<div class="mediaBlock__title">Cенситив Имаго <%= news[i] %></div>
+					<div class="mediaBlock__title"><%= news[i] %></div>
 					<div class="mediaBlock__text">
 						<div class="mediaBlock__textInner">
 							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
