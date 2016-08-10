@@ -6,26 +6,42 @@ locals._activeFile = _getActiveFile(filename);
 <% layout('../layouts/main') %>
 
 <div class="pageSize">
-	<section class="pageAside">
-		<% var Menu = [
-			{
-				text: 'Фото',
-				url: 'gallery_photo',
-				active:true
-			}, {
-				text: 'Видео',
-				url: 'gallery_video'
-			}
-		];
+	<% var Menu = [
+		{
+			text: 'Фото',
+			url: 'gallery_photo',
+			active: true
+		}, {
+			text: 'Видео',
+			url: 'gallery_video'
+		}
+	];
+	%>
+	<div class="grid">
+		<div class="grid__cell">
+			<%- partial('../widgets/pageAside', {Menu: Menu}) %>
+		</div>
+		<div class="grid__cell grid__cell--grow">
+			<section class=" pageCenter">
+				<%- Build.breadcrumbs() %>
+				<div class="sectionTitle sectionTitle--inner">Фото</div>
+				<div class="grid grid--3 grid--space">
+					<% var albums = ['Бельгия', "Чехия", 'Бельгия1', 'Бельгия2', 'Бельгия3', 'Бельгия4', 'Бельгия5', 'Бельгия6', 'Бельгия'] %>
+					<% albums.forEach(function(el, i){ %>
+					<div class="grid__cell">
+						<a class="albumLink" style="background-image: url('images/album<%= ++i %>.jpg');">
+							<div class="albumLink__content">
+								<div class="albumLink__title"><%= el %></div>
+							</div>
+						</a>
+					</div>
+					<% }) %>
+				</div>
+				<%- Build.pagination(7, true) %>
+			</section>
+		</div>
+	</div>
 
-		%>
-
-		<ul class="asideMenu">
-			<%- buildMenu(Menu) %>
-
-
-		</ul>
-	</section>
 </div>
 
 <%- partial('../widgets/devices', {'color_inverse': false}) %>

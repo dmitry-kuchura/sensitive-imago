@@ -14,6 +14,7 @@
 @import '_partials/base';
 @import '_partials/layout';
 @import '_partials/header';
+@import '_partials/breadcrumbs';
 @import '_partials/menu';
 @import '_partials/button';
 @import '_partials/wtxt';
@@ -25,6 +26,9 @@
 @import '_partials/mediaBlock';
 @import '_partials/footer';
 @import '_partials/asideMenu';
+@import '_partials/pagination';
+@import '_partials/albumLink';
+
 
 .compatibilityImage {
 	position: absolute;

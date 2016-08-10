@@ -111,6 +111,19 @@
 			background: #fff;
 		}
 	}
+	&--inner{
+		text-align: left;
+		padding-bottom: rem(30px);
+		margin-bottom:rem(30px);
+		&:after{
+			margin-left: 0;
+		}
+	}
+	&--in-aside{
+		font-size: rem(16px);
+		padding-bottom: rem(25px);
+		margin-bottom:rem(30px);
+	}
 }
 
 .pageSeoText{
@@ -120,4 +133,5 @@
 .pageAside{
 	width: 240px;
 	flex-basis: 240px;
+	margin-right: 45px;
 }

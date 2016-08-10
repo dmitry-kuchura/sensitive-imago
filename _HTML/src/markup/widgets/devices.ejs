@@ -9,7 +9,7 @@
 			<% var devices = ['100/120', '500/520', '130', '530'] %>
 			<% for (i in devices) { %>
 			<!--color_inverse?'mediaBlock--inverse':''-->
-			<div class="grid__cell mediaBlock <%= color_inverse?'mediaBlock--inverse':'' %> <%= i < devices.length - 2 ? '_mb-x2' : '' %>">
+			<div class="grid__cell mediaBlock <%= color_inverse?'mediaBlock--inverse':'' %>">
 				<div class="mediaBlock__image"
 					 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></div>
 				<div class="mediaBlock__content">

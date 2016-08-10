@@ -1,0 +1,25 @@
+<div class="sectionTitle sectionTitle--in-aside">Последние новости</div>
+<div class="lastNews">
+	<% var news = [
+		'Онлайн обучение с прибором сенситив имаго',
+		'Оборудование получило золотую медаль'] %>
+	<% news.forEach(function(el,i){ %>
+
+
+		<div class="mediaBlock mediaBlock--in-aside">
+			<div class="mediaBlock__image"
+				 style="background-image: url('images/index_new<%= ++i %>.jpg');">
+				<div class="mediaBlock__date">
+					22
+					<small>фев</small>
+				</div>
+			</div>
+			<div class="mediaBlock__content">
+				<a href="#" class="mediaBlock__title"><%= el %></a>
+				<a href="#" class="mediaBlock__link">Подробнее</a>
+			</div>
+		</div>
+	<% }) %>
+
+	<a href="news.html" class="button button--primary button--expand">Смотреть больше</a>
+</div>
