@@ -1,0 +1,25 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+<div class="pageSize">
+	<div class="grid grid--nowrap">
+		<div class="grid__cell">
+			<%- partial('../widgets/pageAside', {Menu: Menus.equipment }) %>
+		</div>
+		<div class="grid__cell grid__cell--grow">
+			<section class=" pageCenter">
+				<%- Build.breadcrumbs() %>
+				<div class="sectionTitle sectionTitle--inner">Возможности оборудования</div>
+
+
+			</section>
+		</div>
+	</div>
+
+</div>
+</div>
+<%- partial('../widgets/devices', {'color_inverse': false}) %>
