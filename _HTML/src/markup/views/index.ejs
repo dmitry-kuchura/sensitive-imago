@@ -5,7 +5,7 @@ locals._activeFile = _getActiveFile(filename);
 <% include ../_config %>
 <% layout('../layouts/main') %>
 
-<section class="pageSection pageSection--bg-gray">
+<section class="pageSection">
 	<div class="pageSize bg-doctor">
 		<div class="pageSection__topText">
 			Наша компания "Альфа-Мед Украина"<br>
@@ -26,7 +26,7 @@ locals._activeFile = _getActiveFile(filename);
 	</div>
 
 </section>
-<section class="pageSection">
+<section class="pageSection _bg-white">
 	<div class="pageSize" style="position: relative;">
 		<div class="sectionTitle">Основные возможности оборудования</div>
 		<div class="grid grid--space">
@@ -73,7 +73,7 @@ locals._activeFile = _getActiveFile(filename);
 	</div>
 
 </section>
-<section class="pageSection">
+<section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Наши приемущества</div>
 		<div class="grid grid--4">
@@ -124,10 +124,10 @@ locals._activeFile = _getActiveFile(filename);
 		<a href="#" class="button button--primary button--in-sectionFooter">УЗНАТЬ ПРАЙС</a>
 	</div>
 </section>
-<section class="pageSection">
+<section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Наша команда</div>
-		<div class="grid grid--5 personal">
+		<div class="grid grid--5 personal personal--graphics">
 			<% var personal = [
 				{name: 'Смирнова Татьяна', position: 'Врач'},
 				{name: 'Павленко Инна', position: 'Администратор'},
@@ -149,7 +149,7 @@ locals._activeFile = _getActiveFile(filename);
 		</div>
 	</div>
 </section>
-<section class="pageSection pageSection--bg-gray">
+<section class="pageSection">
 	<div class="pageSize">
 		<div class="sectionTitle">Отзывы наших пользователей</div>
 		<div class="grid grid--3 grid--space">
@@ -167,7 +167,7 @@ locals._activeFile = _getActiveFile(filename);
 		</div>
 	</div>
 </section>
-<section class="pageSection">
+<section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Отзывы наших пациентов</div>
 		<% var reviewBlocks = [
@@ -203,7 +203,7 @@ locals._activeFile = _getActiveFile(filename);
 
 <%- partial('../widgets/devices', {'color_inverse':true}) %>
 
-<section class="pageSection">
+<section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Свежие новости</div>
 		<div class="grid grid--2 grid--space-x2">

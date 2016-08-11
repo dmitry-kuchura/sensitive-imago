@@ -1,10 +1,12 @@
 .personal{
-	height: 450px;
-	align-items:flex-start;
+	&--graphics{
+		height: 450px;
+		align-items:flex-start;
+	}
 }
 
 .person{
-	box-shadow: 0 50px 67px rgba(13, 12, 13, 0.24);
+	box-shadow: 0 0px 5px rgba(13, 12, 13, 0.24);
 	background: #fff;
 	display: flex;
 	flex-direction: column;

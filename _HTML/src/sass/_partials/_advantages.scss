@@ -48,4 +48,22 @@
 			}
 		}
 	}
+	&--lite{
+		@at-root &{
+			padding: rem(40px) rem(0) rem(50px);
+			border: none;
+			.advantage{
+				&__title{
+					font-weight: 700;
+					font-size:rem(18px);
+					color: #252525;
+					margin-bottom: 0;
+				}
+				&__text{
+					font-size: rem(16px);
+					color: #8c8c8c;
+				}
+			}
+		}
+	}
 }

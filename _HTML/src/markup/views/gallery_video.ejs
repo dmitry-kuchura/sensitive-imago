@@ -5,38 +5,29 @@ locals._activeFile = _getActiveFile(filename);
 <% include ../_config %>
 <% layout('../layouts/main') %>
 
-<div class="pageSize">
-	<div class="grid">
-		<% var Menu = [
-			{
-				text: 'Фото',
-				url: 'gallery_photo'
-			}, {
-				text: 'Видео',
-				url: 'gallery_video',
-				active: true
-			}
-		];
-		%>
-		<div class="grid__cell">
-			<%- partial('../widgets/pageAside', {Menu:Menu}) %>
-		</div>
-		<div class="grid__cell grid__cell--grow">
-			<section class=" pageCenter">
-				<%- Build.breadcrumbs() %>
-				<div class="sectionTitle sectionTitle--inner">Видео</div>
-				<div class="grid grid--3 grid--space">
-					<% var aboutVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
-					<% for (i in aboutVideos) { %>
-					<div class="grid__cell">
-						<a href="https://www.youtube.com/watch?v=<%= aboutVideos[i] %>" class="videoLink"
-						   style='background-image: url("//img.youtube.com/vi/<%= aboutVideos[i] %>/maxresdefault.jpg");'></a>
+<div class="pageSection">
+	<div class="pageSize">
+		<div class="grid">
+			<div class="grid__cell">
+				<%- partial('../widgets/pageAside', {Menu:Menus.gallery}) %>
+			</div>
+			<div class="grid__cell grid__cell--grow">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Видео</div>
+					<div class="grid grid--3 grid--space">
+						<% var aboutVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
+						<% for (i in aboutVideos) { %>
+						<div class="grid__cell">
+							<a href="https://www.youtube.com/watch?v=<%= aboutVideos[i] %>" class="videoLink"
+							   style='background-image: url("//img.youtube.com/vi/<%= aboutVideos[i] %>/maxresdefault.jpg");'></a>
+						</div>
+						<% } %>
 					</div>
-					<% } %>
-				</div>
-				<%- Build.pagination(7, true) %>
+					<%- Build.pagination(7, true) %>
 
-			</section>
+				</section>
+			</div>
 		</div>
 	</div>
 </div>
