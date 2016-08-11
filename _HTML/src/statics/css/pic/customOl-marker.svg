@@ -1,0 +1,21 @@
+<svg id="customOl-marker.svg" xmlns="http://www.w3.org/2000/svg" width="22" height="27" viewBox="0 0 22 27">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6395c4;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 1px;
+      }
+    </style>
+  </defs>
+  <path id="Polygon_1_copy" data-name="Polygon 1 copy" class="cls-1" d="M360.939,1523.33l-11,6.68L339,1523.2l0.067-13.5,11-6.68,10.939,6.81Z" transform="translate(-339 -1503)"/>
+  <path id="Polygon_1" data-name="Polygon 1" class="cls-2" d="M359.632,1522.35l-9.989,5.69-9.929-5.8,0.061-11.5,9.989-5.7,9.929,5.81Z" transform="translate(-339 -1503)"/>
+</svg>

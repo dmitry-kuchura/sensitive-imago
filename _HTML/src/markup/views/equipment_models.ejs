@@ -13,12 +13,12 @@ locals._activeFile = _getActiveFile(filename);
 		<div class="grid__cell grid__cell--grow">
 			<section class=" pageCenter">
 				<%- Build.breadcrumbs() %>
-				<div class="sectionTitle sectionTitle--inner">Оборудование</div>
+				<div class="sectionTitle sectionTitle--inner">Модели приборов</div>
 				<div class="grid grid--3 grid--space">
 
 					<% Menus.equipment.forEach(function(el, i){ %>
 					<div class="grid__cell">
-						<a href="<%= el.url?`${el.url}.html`:'#'%>" class="categoryLink" style="background-image: url('images/equipment<%= ++i %>.jpg');">
+						<a href="<%= el.url?el.url:'#'%>" class="categoryLink" style="background-image: url('images/equipment<%= ++i %>.jpg');">
 							<div class="categoryLink__content categoryLink__content--bigger">
 								<div class="categoryLink__title"><%= el.text %></div>
 							</div>

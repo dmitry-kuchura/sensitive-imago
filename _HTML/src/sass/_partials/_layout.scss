@@ -25,8 +25,7 @@
 	max-width: $page-maxWidth + 20;
 	margin-left: auto;
 	margin-right: auto;
-	//padding-left: rem(10);
-	//padding-right: rem(10);
+	padding:0 rem(10);
 }
 
 /* pageFotoer
@@ -40,7 +39,7 @@
 ---------------------------------------------------------------------------------------------------- */
 
 .pageSection {
-	padding: rem(60px) 0;
+	padding: rem(60px) rem(10px);
 	&__topText{
 		font-size:rem(16px);
 		text-align:center;

@@ -44,6 +44,14 @@ locals._viewsFiles = {
         title: 'Возможности оборудования',
         parent: 'equipment'
     },
+    equipment_models: {
+        title: 'Модели приборов',
+        parent: 'equipment'
+    },
+    equipment_model: {
+        title: 'Модели приборов',
+        parent: 'equipment_models'
+    },
     universal_landing: {
         title: 'Лечение',
         parent: 'equipment_abilities'
@@ -83,9 +91,6 @@ locals.Build = {
             parents.push(page);
             page = cur.parent;
         }
-        if(_activeFileData.alias == 'universal_landing'){
-            console.log(parents);
-        }
 
         for (i in arr) {
             var item = arr[i];
@@ -96,7 +101,7 @@ locals.Build = {
             if (isActive) liClass.push('is-active');
             if (hasSubMenu) liClass.push('has-subMenu');
             liClass = liClass.length ? `class="${liClass.join(' ')}"` : '';
-            var li = `<li ${liClass}><a href="${item.url}.html">${item.text}</a>`;
+            var li = `<li ${liClass}><a href="${item.url?item.url+'.html':'#'}">${item.text}</a>`;
             if (hasSubMenu) {
                 li += `<ul>${Build.menu(item.submenu)}</ul>`
             }
@@ -160,7 +165,16 @@ locals.Menus = {
         {text: 'Отзывы', url: 'reviews'}
     ],
     equipment: [
-        {text: 'Модели приборов', url: "#"},
+        {text: 'Модели приборов',url:"equipment_models",
+            submenu:[
+                {text:'Сенситив Имаго 100 / 120',url:'equipment_model'},
+                {text:'Сенситив Имаго 130',url:'equipment_model'},
+                {text:'Сенситив Имаго 500 / 520',url:'equipment_model'},
+                {text:'Сенситив Имаго 530',url:'equipment_model'},
+                {text:'Сравнение моделей приборов'},
+                {text:'Дополнительная комплектация'}
+            ]
+        },
         {
             text: 'Возможности	оборудования', url: "equipment_abilities",
             submenu: [
@@ -177,14 +191,14 @@ locals.Menus = {
                 {text: 'Антизависимость', url: '#'}
             ]
         },
-        {text: 'Преимущества оборудования Сенситив имаго', url: "#"},
-        {text: 'Технология метода', url: "#"},
-        {text: 'механизм получения информации', url: "#"},
-        {text: 'программное	обеспечение', url: "#"},
-        {text: 'Примеры результатов	тестирования', url: "#"},
-        {text: 'статьи', url: "#"},
-        {text: 'сертификаты', url: "#"},
-        {text: 'гарантия', url: "#"}
+        {text: 'Преимущества оборудования Сенситив имаго'},
+        {text: 'Технология метода'},
+        {text: 'механизм получения информации'},
+        {text: 'программное	обеспечение'},
+        {text: 'Примеры результатов	тестирования'},
+        {text: 'статьи'},
+        {text: 'сертификаты'},
+        {text: 'гарантия'}
     ]
 };
 %>

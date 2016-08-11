@@ -8,65 +8,78 @@ $background: $page-background;
 ==================================================================================================== */
 
 html, body {
-	height:100%;
-	margin:0;
-	padding:0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-	display: block;
-	font-family: $font;
-	font-size: 16px;
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-	box-sizing: border-box;
+  display: block;
+  font-family: $font;
+  font-size: 16px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
 }
 
 body {
-	position: relative;
-	min-width: $minWidth;
-	line-height: $lineHeight;
-	font-size: 100%;
-	color: $color;
-	background: $background;
-	-webkit-font-smoothing: antialiased;
+  position: relative;
+  min-width: $minWidth;
+  line-height: $lineHeight;
+  font-size: 100%;
+  color: $color;
+  background: $background;
+  -webkit-font-smoothing: antialiased;
 }
 
 *,
 *::before,
 *::after {
-	box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 img {
-	max-width: 100%;
-}
-svg{
-	display: inline-block;
-	max-width: 100%;
-	max-height: 100%;
-}
-a{
-	text-decoration: none;
-	color: inherit;
-	&:hover{
-		text-decoration: underline;
-	}
-	&.inverseLink{
-		text-decoration: underline;
-		&:hover{
-			text-decoration: none;
-		}
-	}
+  max-width: 100%;
 }
 
-@include media(sm) {
-	html {
-		font-size: 14px;
-	}
+svg {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+  &.inverseLink {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &[href="#"] {
+    
+    &:hover{
+      cursor: not-allowed;
+      color: pink;
+      text-decoration: line-through;
+    }
+  }
+}
+b{
+  color: #000;
+}
+@include media(sm) {
+  html {
+    font-size: 14px;
+  }
+}
+
 @include media(md) {
-	html {
-		font-size: $fontSize;
-	}
+  html {
+    font-size: $fontSize;
+  }
 }
