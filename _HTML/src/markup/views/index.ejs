@@ -200,8 +200,33 @@ locals._activeFile = _getActiveFile(filename);
 		</div>
 	</div>
 </section>
-
-<%- partial('../widgets/devices', {'color_inverse':true}) %>
+<section class="pageSection _bg-secondary">
+	<div class="pageSize">
+		<div class="sectionTitle sectionTitle--white">Модели приборов</div>
+		<div class="grid grid--2 grid--space-x2">
+			<% var devices = ['100/120', '500/520', '130', '530'] %>
+			<% for (i in devices) { %>
+			<div class="grid__cell mediaBlock mediaBlock--inverse">
+				<div class="mediaBlock__image"
+					 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></div>
+				<div class="mediaBlock__content">
+					<div class="mediaBlock__title">Cенситив Имаго <%= devices[i] %></div>
+					<div class="mediaBlock__text">
+						<div class="mediaBlock__textInner">
+							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
+							комплексного
+						</div>
+					</div>
+					<a href="#" class="button button--inverse-white">Узнать прайс</a>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>
 
 <section class="pageSection _bg-white">
 	<div class="pageSize">

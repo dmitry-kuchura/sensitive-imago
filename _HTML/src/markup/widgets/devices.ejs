@@ -1,15 +1,11 @@
 <!-- Начало виджета приборы -->
-<!-- Переданные переменные: color_inverse{boolean}: <%= color_inverse %> -->
-<!-- color_inverse ? 'pageSection--bg-primary' : ''-->
-<section class="pageSection <%= color_inverse ? '_bg-primary' : '_bg-white'%>">
+<section class="pageSection _bg-white">
 	<div class="pageSize">
-		<!--color_inverse?'sectionTitle--white':''-->
-		<div class="sectionTitle <%= color_inverse?'sectionTitle--white':'' %>">Модели приборов</div>
+		<div class="sectionTitle">Модели приборов</div>
 		<div class="grid grid--2 grid--space-x2">
 			<% var devices = ['100/120', '500/520', '130', '530'] %>
 			<% for (i in devices) { %>
-			<!--color_inverse?'mediaBlock--inverse':''-->
-			<div class="grid__cell mediaBlock <%= color_inverse?'mediaBlock--inverse':'' %>">
+			<div class="grid__cell mediaBlock">
 				<div class="mediaBlock__image"
 					 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></div>
 				<div class="mediaBlock__content">
@@ -20,14 +16,24 @@
 							комплексного
 						</div>
 					</div>
-					<!--color_inverse?'button--inverse-white':'button--inverse'-->
-					<a href="#" class="button <%= color_inverse?'button--inverse-white':'button--inverse' %>">Узнать прайс</a>
+					<a href="#" class="button button--inverse">Узнать прайс</a>
 				</div>
 			</div>
 			<% } %>
 		</div>
-		<div class="pageSection__footer">
-			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		<hr>
+		<div class="grid grid--justify-between grid--items-end">
+			<div class="grid__cell">
+				<div class="shareBlock">
+					<div class="shareBlock__title">Понравилась страница?</div>
+					<div class="shareBlock__text">Расскажите друзьям</div>
+					<svg class="shareBlock__arrow"><use xlink:href="hidden/sprite.svg#share_arrow"></use></svg>
+					<img src="css/pic/share.png" alt="">
+				</div>
+			</div>
+			<div class="grid__cell">
+				<a href="equipment_models.html"  class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+			</div>
 		</div>
 	</div>
 </section>
