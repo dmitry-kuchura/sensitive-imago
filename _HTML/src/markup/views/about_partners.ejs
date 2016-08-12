@@ -1,0 +1,38 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+
+<div class="pageSection">
+	<div class="pageSize">
+		<div class="grid">
+			<div class="grid__cell">
+				<%- partial('../widgets/pageAside', {Menu: Menus.gallery}) %>
+			</div>
+			<div class="grid__cell grid__cell--grow">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Наши партнеры</div>
+					<div class="grid grid--3 grid--space">
+						<% var albums = ['Бельгия', "Чехия", 'Венгрия', 'Греция', 'Турция', 'Канада', 'Австралия', 'Китай', 'Индия'] %>
+						<% albums.forEach(function(el, i){ %>
+						<div class="grid__cell">
+							<a class="categoryLink" style="background-image: url('images/album<%= ++i %>.jpg');">
+								<div class="categoryLink__content">
+									<div class="categoryLink__title"><%= el %></div>
+								</div>
+							</a>
+						</div>
+						<% }) %>
+					</div>
+					<%- Build.pagination(7, true) %>
+				</section>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<%- partial('../widgets/devices', {'color_inverse': false}) %>

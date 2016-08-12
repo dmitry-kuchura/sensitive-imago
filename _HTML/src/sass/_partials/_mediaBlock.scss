@@ -16,6 +16,8 @@
 		margin-right: 30px;
 		position: relative;
 		background-color: gray;
+		box-shadow: 0px 53px 67px 0px rgba(13, 12, 13, 0.24);
+
 	}
 	&__title {
 		color: #3d3d3d;
@@ -127,8 +129,11 @@
 
 			&__image {
 				margin: 0;
+				max-width: 100%;
+
 			}
 			&__content {
+				box-shadow: 0px 53px 67px 0px rgba(13, 12, 13, 0.24);
 				position: absolute;
 				display: block;
 				bottom: 0;

@@ -1,0 +1,68 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+
+<div class="pageSection">
+	<div class="pageSize">
+		<div class="grid grid--nowrap">
+			<div class="grid__cell">
+				<%- partial('../widgets/pageAside', {Menu: Menus.gallery}) %>
+			</div>
+			<div class="grid__cell grid__cell--grow">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Отзывы наших пользователей</div>
+					<div class="grid grid--3 grid--space">
+						<% var aboutVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
+						<% for (i in aboutVideos) { %>
+						<div class="grid__cell">
+							<a href="https://www.youtube.com/watch?v=<%= aboutVideos[i] %>" class="videoLink"
+							   style='background-image: url("//img.youtube.com/vi/<%= aboutVideos[i] %>/maxresdefault.jpg");'></a>
+						</div>
+						<% } %>
+					</div>
+					<%- Build.pagination(7, true) %>
+					<div class="sectionTitle sectionTitle--inner _mt-x3">Отзывы наших пациентов</div>
+					<% var reviewBlocks = [
+						{name: 'Евгений Николаевич', subtitle: 'пациент, 57 лет'},
+						{name: 'Анна Сергеевна', subtitle: 'пациент, 32 года'},
+						{name: 'Марина Александровна', subtitle: 'пациент, 20 лет'}
+					] %>
+					<div class="reviews">
+						<% for (i in reviewBlocks) { %>
+						<div class="textReview">
+							<svg class="textReview__icon">
+								<use xlink:href="hidden/sprite.svg#quotes"></use>
+							</svg>
+							<div class="textReview__name">
+								<%= reviewBlocks[i].name %>
+							</div>
+							<div class="textReview__subtitle">
+								<%= reviewBlocks[i].subtitle %>
+							</div>
+							<div class="textReview__divider"></div>
+							<div class="textReview__text">
+								Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед
+								началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное
+								состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные
+								боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли.
+								Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала
+								способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной
+								заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы
+								тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли.
+								Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс
+								терапии пришелся на пользу!
+							</div>
+						</div>
+						<% } %>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- partial('../widgets/devices', {'color_inverse': false}) %>
