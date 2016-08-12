@@ -72,6 +72,12 @@ a {
 b{
   color: #000;
 }
+hr{
+  margin:rem(40px) 0 rem(40px);
+  border-color: #e1e1e1;
+  border-style:solid;
+  border-width:0 0 1px 0;
+}
 @include media(sm) {
   html {
     font-size: 14px;
