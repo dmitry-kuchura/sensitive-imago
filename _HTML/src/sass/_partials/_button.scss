@@ -16,6 +16,9 @@
 	text-align: center;
 	background: transparent;
 	transition: all .2s;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 // Default button
