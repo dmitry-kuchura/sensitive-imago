@@ -240,9 +240,9 @@
 
 })(window, jQuery);
 
-
+require('')
 jQuery(document).ready(function ($) {
-    // svg4everybody({});
+    svg4everybody({});
 
 
     let $multiLevelMenu = $('.js-multiLevelMenu');
@@ -261,5 +261,16 @@ jQuery(document).ready(function ($) {
     });
     $multiLevelMenu.on('click', 'a', function (e) {
         toggleMenuLevel(this)
-    })
+    });
+
+    let $magnificSelectors = $('.mfi-gallery');
+    if ($magnificSelectors.length) {
+        $('.mfi-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            gallery: {
+                enabled: true
+            }
+        });
+    }
 });
