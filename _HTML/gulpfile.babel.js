@@ -368,18 +368,18 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:files', './tasks/js', {
-			src: './src/js/*.js',
-			dest: './dist/js',
-			watch: [
-				'./src/js/*.js',
-				'./src/js/_partials/**/*.js'
-			],
-			maps: isSourcemaps,
-			min: isMinify,
-			eslint: isLinting,
-			notify: isNotify,
-		});
+		// lazyRequireTask('js:files', './tasks/js', {
+		// 	src: './src/js/*.js',
+		// 	dest: './dist/js',
+		// 	watch: [
+		// 		'./src/js/*.js',
+		// 		'./src/js/_partials/**/*.js'
+		// 	],
+		// 	maps: isSourcemaps,
+		// 	min: isMinify,
+		// 	eslint: isLinting,
+		// 	notify: isNotify,
+		// });
 	// endcode gulp:js:files
 
 	/**
@@ -395,17 +395,17 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:folders', './tasks/js', {
-			src: './src/js/!(_*)**/*.js',
-			dest: './dist/js',
-			watch: [
-				'./src/js/!(_*)**/**/*.js'
-			],
-			maps: isSourcemaps,
-			min: isMinify,
-			eslint: false,
-			notify: isNotify,
-		});
+		// lazyRequireTask('js:folders', './tasks/js', {
+		// 	src: './src/js/!(_*)**/*.js',
+		// 	dest: './dist/js',
+		// 	watch: [
+		// 		'./src/js/!(_*)**/**/*.js'
+		// 	],
+		// 	maps: isSourcemaps,
+		// 	min: isMinify,
+		// 	eslint: false,
+		// 	notify: isNotify,
+		// });
 	// endcode gulp:js:folders
 
 
@@ -422,18 +422,18 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:concat', './tasks/js', {
-			src: './src/js/',
-			dest: './dist/js',
-			watch: [
-				'./src/js/!(_*)**/**/*.js'
-			],
-			concat: true,
-			maps: isSourcemaps,
-			min: isMinify,
-			eslint: false,
-			notify: isNotify,
-		});
+		// lazyRequireTask('js:concat', './tasks/js', {
+		// 	src: './src/js/',
+		// 	dest: './dist/js',
+		// 	watch: [
+		// 		'./src/js/!(_*)**/**/*.js'
+		// 	],
+		// 	concat: true,
+		// 	maps: isSourcemaps,
+		// 	min: isMinify,
+		// 	eslint: false,
+		// 	notify: isNotify,
+		// });
 	// endcode gulp:js:concat
 
 	/**
@@ -450,17 +450,17 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:criticals', './tasks/js', {
-			src: './src/js/_criticals/*.js',
-			dest: './src/markup/partials/criticals-js',
-			watch: [
-				'./src/js/_criticals/*.js'
-			],
-			min: true,
-			changeExt: '.ejs',
-			eslint: isLinting,
-			notify: isNotify,
-		});
+		// lazyRequireTask('js:criticals', './tasks/js', {
+		// 	src: './src/js/_criticals/*.js',
+		// 	dest: './src/markup/partials/criticals-js',
+		// 	watch: [
+		// 		'./src/js/_criticals/*.js'
+		// 	],
+		// 	min: true,
+		// 	changeExt: '.ejs',
+		// 	eslint: isLinting,
+		// 	notify: isNotify,
+		// });
 	// endcode gulp:js:criticals
 
 
@@ -538,11 +538,11 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:clean', './tasks/clean', {
-			src: [
-				'./dist/js'
-			]
-		});
+		// lazyRequireTask('js:clean', './tasks/clean', {
+		// 	src: [
+		// 		'./dist/js'
+		// 	]
+		// });
 	// endcode gulp:js:clean
 
 
@@ -567,7 +567,7 @@
 	 	} else {
 	 		_jsSeries.unshift('js:folders');
 	 	}
-		gulp.task('js', gulp.series(..._jsSeries));
+		// gulp.task('js', gulp.series(..._jsSeries));
 	// endcode gulp:js:series
 
 
@@ -584,13 +584,13 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		gulp.task('js:rebuild',
-			gulp.series(
-				'js:clean',
-				'js',
-				'modernizr:scan'
-			)
-		);
+		// gulp.task('js:rebuild',
+		// 	gulp.series(
+		// 		'js:clean',
+		// 		'js',
+		// 		'modernizr:scan'
+		// 	)
+		// );
 	// endcode gulp:js:rebuild
 
 
@@ -1442,9 +1442,9 @@
 			gulp.series(
 				'clean',
 				'sass',
-				'js',
+				// 'js',
 				'statics',
-				'modernizr:scan',
+				// 'modernizr:scan',
 				'favicons',
 				'ejs'
 			)
