@@ -1,7 +1,13 @@
-.textReviews{
+.textReviews--full{
+	.textReview + .textReview{
+		margin-top: rem(35px);
+	}
+}
+.textReviews--small{
 	height: 310px;
 	align-items: flex-start;
 }
+
 .textReview{
 	position: relative;
 	&:nth-child(odd){
@@ -12,7 +18,9 @@
 	transition: background .2s;
 	&__name,
 	&__subtitle,
-	&__text{
+	&__text,
+	&__moreLink,
+	&__place{
 		transition: color .2s;
 	}
 	&__name{
@@ -33,6 +41,19 @@
 		padding:rem(20px) rem(30px) rem(30px);
 		font-size: rem(13px);
 		line-height:rem(22px);
+		&Inner{
+			max-height: rem(22*4);
+			overflow: hidden;
+			transition: max-height .3s;
+			.is-expand &{
+				max-height: rem(22*200);
+			}
+		}
+	}
+	.textReview__footer{
+		padding: rem(0) rem(40px) rem(15px);
+		display: flex;
+		justify-content: space-between;
 
 	}
 	&__icon{
@@ -50,19 +71,35 @@
 		margin-right: auto;
 		background: $color-primary;
 	}
+	&__moreLink{
+		font-size: rem(12px);
+		text-decoration: underline;
+		color: #797979;
+	}
+	&__place{
+		color: #4c4c4c;
+		font-size:rem(12px);
+	}
 	&:hover{
 		@at-root &{
 			background: $color-secondary ;
 			.textReview{
 				&__name,
 				&__subtitle,
-				&__text{
+				&__text,
+				&__place,
+				&__moreLink{
 					color: #fff;
 				}
 				&__icon{
 					fill:$color-primary;
 				}
+				&__moreLink{
+					cursor: pointer;
+					text-decoration: none;
+				}
 			}
 		}
 	}
 }
+

@@ -30,6 +30,8 @@
 @import '_partials/_categoryLink';
 @import '_partials/_shareBlock';
 @import '_partials/_modelPreviews';
+@import '_partials/forms';
+@import '_partials/rateit';
 
 @mixin brand-shadow(){
 	box-shadow: 0px 53px 67px 0px rgba(13, 12, 13, 0.24);

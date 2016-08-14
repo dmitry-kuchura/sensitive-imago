@@ -1,5 +1,4 @@
-
-(function(factory) {
+console.log('JQuery Validate loading...');(function(factory) {
 	if (typeof define === "function" && define.amd) {
 		define(["jquery"], factory);
 	} else {

@@ -144,5 +144,11 @@
 
 			}
 		}
+		.categoryLink__title{
+			margin-bottom:1em;
+			&:after{
+				margin-left: 0;
+			}
+		}
 	}
 }

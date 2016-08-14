@@ -31,7 +31,7 @@ locals._activeFile = _getActiveFile(filename);
 						{name: 'Анна Сергеевна', subtitle: 'пациент, 32 года'},
 						{name: 'Марина Александровна', subtitle: 'пациент, 20 лет'}
 					] %>
-					<div class="reviews">
+					<div class="textReviews textReviews--full">
 						<% for (i in reviewBlocks) { %>
 						<div class="textReview">
 							<svg class="textReview__icon">
@@ -45,20 +45,58 @@ locals._activeFile = _getActiveFile(filename);
 							</div>
 							<div class="textReview__divider"></div>
 							<div class="textReview__text">
-								Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед
-								началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное
-								состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные
-								боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли.
-								Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала
-								способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной
-								заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы
-								тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли.
-								Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс
-								терапии пришелся на пользу!
+								<div class="textReview__textInner">
+									Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед
+									началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было
+									нервное
+									состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные
+									головные
+									боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли.
+									Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала
+									способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной
+									заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним
+									симптомы
+									тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли.
+									Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности
+									курс
+									терапии пришелся на пользу!
+								</div>
+							</div>
+							<div class="textReview__footer">
+								<div class="textReview__moreLink" data-text="Cкрыть">Читать отзыв полностью</div>
+								<div class="textReview__place">г. Будапешт, Венгрия</div>
 							</div>
 						</div>
 						<% } %>
 					</div>
+					<%- Build.pagination(7, true) %>
+					<div class="sectionTitle sectionTitle--inner _mr-x2">Оставить отзыв</div>
+					<div class="reviewsForm js-form form" data-form="true">
+						<div class="grid grid--space grid--items-center">
+							<div class="grid__cell">
+								<input class="form__input" type="text" name="name"
+									   placeholder="Ваше имя*" required>
+							</div>
+							<div class="grid__cell">
+								<input class="form__input" type="text" name="tel"
+									   placeholder="Ваш телефон">
+							</div>
+							<div class="grid__cell ">
+								<span class="form__label">Оцените предоставляемую услугу</span>
+								<span class="rateit" data-rateit-resetable="false"></span>
+							</div>
+
+							<div class="grid__cell grid__cell--12">
+								<textarea class="form__input form__input--textarea" type="text"
+										  placeholder="Ваш комментарий*" required></textarea>
+							</div>
+							<div class="grid__cell grid__cell--grow"></div>
+							<div class="grid__cell">
+								<button class="js-form-submit button button--primary">Отправить отзыв</button>
+							</div>
+						</div>
+					</div>
+
 				</section>
 			</div>
 		</div>

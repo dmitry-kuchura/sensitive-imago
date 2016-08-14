@@ -25,6 +25,6 @@ module.exports = {
         //  on the global var jQuery
         "jquery": "jQuery"
     },
-    devtool: "cheap-module-source-map",
+    devtool: "cheap-module-inline-source-map",
     watch: true
 };

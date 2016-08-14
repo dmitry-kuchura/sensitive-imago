@@ -1,0 +1,61 @@
+.form{
+	.grid__cell{
+		position: relative;
+	}
+	&__input{
+		font-size:rem(13px);
+		height:rem(34px);
+		border:1px solid #e1e1e1;
+		padding: rem(8px);
+		width: 100%;
+		&--textarea{
+			resize: vertical;
+			min-height: rem(140px);
+		}
+	}
+	&__label{
+		font-size:rem(13px);
+		color: #4c4c4c;
+	}
+	label.error{
+		z-index: 3;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		padding: 2px 8px;
+		max-width: 100%;
+		border: 1px solid #EB4F1F;
+		text-align: center;
+		font-size: 11px;
+		line-height: 13px;
+		background: #fff;
+		-ms-transform: translateY(4px);
+		-webkit-transform: translateY(4px);
+		transform: translateY(4px);
+		cursor: help;
+		font-family: Arial,sans-serif;
+	}
+	label.error:before {
+		border-color: rgba(235,79,31,0);
+		border-bottom-color: #EB4F1F;
+		border-width: 5px;
+		margin-left: -5px;
+	}
+	abel.error:before, label.error:after {
+		content: " ";
+		position: absolute;
+		bottom: 100%;
+		left: 10%;
+		width: 0;
+		height: 0;
+		border: solid transparent;
+		pointer-events: none;
+	}
+}
+
+
+
+.reviewsForm{
+	background: #fff;
+	padding:rem(25) rem(20);
+}
