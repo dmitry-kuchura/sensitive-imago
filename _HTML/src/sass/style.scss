@@ -31,7 +31,9 @@
 @import '_partials/_shareBlock';
 @import '_partials/_modelPreviews';
 
-
+@mixin brand-shadow(){
+	box-shadow: 0px 53px 67px 0px rgba(13, 12, 13, 0.24);
+}
 .compatibilityImage {
 	right: rem(-20px);
 	bottom: rem(-90px);
@@ -70,7 +72,7 @@
 		color: #fff;
 		font-size: rem(16px);
 		padding: rem(40px) rem(30px) rem(40px) rem(50px);
-		box-shadow: 0 53px 67px 0 rgba(13, 12, 13, 0.24);
+		@include brand-shadow;
 
 	}
 	&__arrow{
@@ -87,6 +89,14 @@
 		top: 25px;
 		right: 20px;
 		background: #fff;
-		box-shadow: 0 53px 67px 0 rgba(13, 12, 13, 0.24);
+		@include brand-shadow;
 	}
+}
+.article__image{
+	position: relative;
+	max-width: 50%;
+	float: left;
+	margin-right:2em;
+	margin-bottom: 2em;
+	img{@include brand-shadow;}
 }
