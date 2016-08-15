@@ -16,6 +16,7 @@
 		margin-top: 40px;
 		padding: rem(15px) 0 rem(50px);
 		background: $color-primary url("../css/pic/header-bg.jpg") top right no-repeat;
+		background-size:cover;
 		@include media(md){
 			margin-top:0;
 		}

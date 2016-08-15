@@ -34,13 +34,19 @@
 @import '_partials/rateit';
 @import '_partials/dropdown';
 
-@mixin brand-shadow(){
+@mixin brand-shadow() {
 	box-shadow: 0px 53px 67px 0px rgba(13, 12, 13, 0.24);
 }
+
 .compatibilityImage {
-	right: rem(-20px);
-	bottom: rem(-90px);
-	z-index: 1;
+	margin: auto;
+	display: block;
+	@include media(lg) {
+		right: rem(-20px);
+		bottom: rem(-90px);
+		z-index: 1;
+		position: absolute;
+	}
 }
 
 .bg-doctor {
@@ -50,23 +56,30 @@
 
 .bg-doctor:before {
 	content: '';
-	display: block;
 	width: 400px;
 	height: 400px;
 	background: url('../css/pic/promo-doctor.png') no-repeat;
 	background-position: left 20px bottom 0;
 	background-clip: content-box;
-	background-size:contain;
+	background-size: contain;
 	position: absolute;
 	bottom: rem(-60px);
-	left: 60px;
+	left: 0px;
+	display: none;
+	@include media(lg) {
+		left: 0px;
+		display: block;
+	}
+	@include media(xl) {
+		left: 60px;
+	}
 
 }
 
 .layeredBlock {
-	margin-left: auto;
+	margin: auto;
 	margin-top: 50px;
-	width: 500px;
+	max-width: 500px;
 	position: relative;
 
 	&__top {
@@ -78,11 +91,15 @@
 		@include brand-shadow;
 
 	}
-	&__arrow{
-		fill:#dfdfdf;
+	&__arrow {
+		fill: #dfdfdf;
 		position: absolute;
 		top: 10px;
-		right:calc(100% - 30px);
+		right: calc(100% - 30px);
+		display: none;
+		@include media(xl) {
+			display: block;
+		}
 	}
 	&__bottom {
 		display: block;
@@ -90,71 +107,84 @@
 		width: calc(100% + 50px);
 		height: calc(100% + 20px);
 		top: 25px;
-		right: 20px;
+		right: -25px;
 		background: #fff;
 		@include brand-shadow;
+		@include media(lg) {
+			right: 20px;
+		}
+	}
+	@include media(lg) {
+		margin-right: 0;
 	}
 }
-.article__image{
+
+.article__image {
 	position: relative;
 	max-width: 50%;
 	float: left;
-	margin-right:2em;
+	margin-right: 2em;
 	margin-bottom: 2em;
-	img{@include brand-shadow;}
+	img {
+		@include brand-shadow;
+	}
 }
 
-.map{
+.map {
 	position: relative;
 	height: 420px;
-	max-height:70vh;
+	max-height: 70vh;
 	@include brand-shadow;
 }
 
-.contactColumn__caption{
+.contactColumn__caption {
 	font-weight: 700;
-	font-size:rem(12px);
+	font-size: rem(12px);
 	color: #000;
 	margin-bottom: 1em;
 	text-transform: uppercase;
 }
-.contactColumn__content{
+
+.contactColumn__content {
 	font-size: rem(14px);
-	a{
+	a {
 		color: $color-primary;
 		text-decoration: underline;
-		&:hover{
+		&:hover {
 			text-decoration: none;
 		}
 	}
 }
-.region{
+
+.region {
 	max-width: 800px;
 }
-.region__caption{
+
+.region__caption {
 	width: 200px;
-	padding:rem(15px);
+	padding: rem(15px);
 	background: #fff;
 	box-shadow: 0px 20px 67px 0px rgba(13, 12, 13, 0.24);
 	margin-bottom: 2em;;
 	min-height: 70px;
-	&:after{
+	&:after {
 		margin-left: 0;
 	}
 }
-.region__link{
+
+.region__link {
 	width: 100%;
 	height: rem(44px);
-	font-size:rem(12px);
-	line-height:1.5em;
+	font-size: rem(12px);
+	line-height: 1.5em;
 	color: #4c4c4c;
 	display: inline-flex;
-	justify-content:center;
+	justify-content: center;
 	align-items: center;
 	background: #fff;
 	text-align: center;
-	transition: color,background .2s;
-	&:hover{
+	transition: color, background .2s;
+	&:hover {
 		color: #fff;
 		background: $color-primary;
 	}

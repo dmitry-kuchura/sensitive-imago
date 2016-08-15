@@ -6,22 +6,22 @@ locals._activeFile = _getActiveFile(filename);
 <% layout('../layouts/main') %>
 <div class="pageSection">
 <div class="pageSize">
-	<div class="grid grid--nowrap">
+	<div class="grid grid--md-nowrap">
 		<div class="grid__cell">
 			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
 		</div>
-		<div class="grid__cell grid__cell--grow">
+		<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
 			<section class=" pageCenter">
 				<%- Build.breadcrumbs() %>
 				<div class="sectionTitle sectionTitle--inner">О нас</div>
 
-				<div class="grid grid--4 _mb-x3">
+				<div class="grid grid--2 grid--md-4 _mb-x3">
 					<%
 					var advantages = [
-						{icon: 'mail', title: '12 лет работы', text: 'На рынке'},
-						{icon: 'mail', title: '1000+', text: 'Оздоровительных центров'},
-						{icon: 'mail', title: 'Более 65', text: 'Торговых офисов'},
-						{icon: 'mail', title: '2000+', text: 'Проданных едениц'}
+						{ title: '12 лет работы', text: 'На рынке'},
+						{ title: '1000+', text: 'Оздоровительных центров'},
+						{ title: 'Более 65', text: 'Торговых офисов'},
+						{ title: '2000+', text: 'Проданных едениц'}
 					];
 					%>
 

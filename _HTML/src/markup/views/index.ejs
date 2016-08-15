@@ -29,8 +29,8 @@ locals._activeFile = _getActiveFile(filename);
 <section class="pageSection _bg-white">
 	<div class="pageSize" style="position: relative;">
 		<div class="sectionTitle">Основные возможности оборудования</div>
-		<div class="grid grid--space">
-			<div class="grid__cell grid__cell--4">
+		<div class="grid grid--space grid--1 grid--sm-2 grid--lg-3">
+			<div class="grid__cell">
 				<p><b>Диагностика у пациента:</b></p>
 				<ul class="customList">
 					<li>Заболеваний и возможных осложнений</li>
@@ -42,7 +42,7 @@ locals._activeFile = _getActiveFile(filename);
 					<li>Прогноза развития заболеваний в будущем</li>
 				</ul>
 			</div>
-			<div class="grid__cell grid__cell--4">
+			<div class="grid__cell">
 				<p><b>Лечебные возможности:</b></p>
 				<ul class="customList">
 					<li>Индивидуальная эффективная cхема лечения препаратами</li>
@@ -76,7 +76,7 @@ locals._activeFile = _getActiveFile(filename);
 <section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Наши приемущества</div>
-		<div class="grid grid--4">
+		<div class="grid grid--1 grid--sm-2 grid--md-3 grid--lg-4">
 			<%
 			var advantages = [
 				{
@@ -102,16 +102,18 @@ locals._activeFile = _getActiveFile(filename);
 			];
 			%>
 
-			<% for (i in advantages) { %>
-			<div class="grid__cell advantage">
-				<div class="advantage__icon">
-					<img src="css/pic/advantage-icon<%= parseInt(i) + 1 %>.svg" alt="">
+			<% advantages.forEach(function(el, i) { %>
+			<div class="grid__cell ">
+				<div class="advantage">
+					<div class="advantage__icon">
+						<img src="css/pic/advantage-icon<%= parseInt(i) + 1 %>.svg" alt="">
+					</div>
+					<div class="advantage__title"><%= el.title %></div>
+					<div class="advantage__text"><%= el.text %></div>
+					<a href='#' class="button button--inverse">Подробнее</a>
 				</div>
-				<div class="advantage__title"><%= advantages[i].title %></div>
-				<div class="advantage__text"><%= advantages[i].text %></div>
-				<a href='#' class="button button--inverse">Подробнее</a>
 			</div>
-			<% } %>
+			<% }) %>
 		</div>
 	</div>
 
@@ -127,7 +129,7 @@ locals._activeFile = _getActiveFile(filename);
 <section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Наша команда</div>
-		<div class="grid grid--5 personal personal--graphics">
+		<div class="grid grid--1 personal personal--graphics">
 			<% var personal = [
 				{name: 'Смирнова Татьяна', position: 'Врач'},
 				{name: 'Павленко Инна', position: 'Администратор'},
@@ -242,7 +244,7 @@ locals._activeFile = _getActiveFile(filename);
 			<% for (i in news) { %>
 			<div class="grid__cell mediaBlock">
 				<div class="mediaBlock__image"
-					 style="background-image: url('images/index_new<%= ++i%>.jpg');">
+					 style="background-image: url('images/index_new<%= ++i %>.jpg');">
 					<div class="mediaBlock__date">
 						22
 						<small>фев</small>

@@ -16,7 +16,7 @@ html, body {
 html {
   display: block;
   font-family: $font;
-  font-size: 16px;
+  font-size: 12px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
@@ -61,7 +61,7 @@ a {
     }
   }
   &[href="#"] {
-    
+
     &:hover{
       cursor: not-allowed;
       color: pink;
@@ -86,6 +86,6 @@ hr{
 
 @include media(md) {
   html {
-    font-size: $fontSize;
+    font-size: 16px;
   }
 }
