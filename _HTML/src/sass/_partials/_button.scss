@@ -100,3 +100,17 @@
 		display: flex;
 	}
 }
+.button--in-header{
+	display: block;
+	width: 40px;
+	height: 40px;
+	border:1px solid $color-primary;
+	background: #fff;
+	fill:$color-primary;
+	padding: 5px;
+
+
+	svg{
+
+	}
+}

@@ -1,4 +1,5 @@
 require('wHTML');
+require('wezom_class_toggler');
 jQuery(document).ready(function ($) {
 	svg4everybody({});
 	wHTML.formValidation();
@@ -44,4 +45,9 @@ jQuery(document).ready(function ($) {
 			require('rateit');
 		})
 	}
+
+	$('[data-dropdown]').wzmClassToggle({
+		toggleSelector: '[data-dropdown-toggle]',
+		toggleOnBlur: true
+	});
 });

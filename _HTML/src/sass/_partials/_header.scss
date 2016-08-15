@@ -3,14 +3,39 @@
 	&__top {
 		background: #fafafa;
 		height: rem(35px);
+		display: none;
+		@include media(md){
+			display: block;
+		}
 		.grid, .pageSize {
 			position: relative;
 			height: 100%;
 		}
 	}
 	&__main {
+		margin-top: 40px;
 		padding: rem(15px) 0 rem(50px);
-		background: $color-primary url("../css/pic/header-bg.jpg") top no-repeat;
+		background: $color-primary url("../css/pic/header-bg.jpg") top right no-repeat;
+		@include media(md){
+			margin-top:0;
+		}
+		@include media(lg){
+			background-position: top;
+		}
+	}
+	&__mobile{
+		z-index:10;
+		display: flex;
+		justify-content: space-between;
+		background: $color-secondary;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		@include  media(md){
+			display: none;
+		}
 	}
 }
 
@@ -111,7 +136,12 @@
 		}
 	}
 }
-.contactsBlock{}
+.contactsBlock{
+	display: none;
+	@include media(md){
+		display: flex;
+	}
+}
 .contactItem{
 	font-size:rem(16px);
 	display: flex;
@@ -130,19 +160,28 @@
 }
 .heroBlock {
 	display: flex;
-	margin-top: 30px;
-	margin-left: 30px;
+	margin-top: rem(30px);
+	margin-left: rem(10px);
 	&__text {
 		padding: rem(15px) 0 0 rem(25px);
 		border-left: 2px solid $color-primary;
 		text-transform: uppercase;
-		font-size: rem(50px);
-		line-height: rem(50px);
+		font-size: rem(26px);
+		line-height: 1em;
 		color: $color-primary;
 		font-weight: 700;
 		small {
-			font-size: rem(24px);
+			font-size: .5em;
 			color: #fff;
+		}
+
+	}
+	@include media(sm){
+		margin-left:rem(30px);
+		.heroBlock{
+			&__text{
+				font-size:rem(50px);
+			}
 		}
 	}
 }
@@ -156,13 +195,14 @@
 .topMenu{
 	background: #fff;
 	height: 50px;
-
 	margin: auto;
-
 	border-bottom:3px solid	$color-primary;
-	display: flex;
 	justify-content:center;
 	padding: 0;
+	display: none;
+	@include media(md){
+		display: flex;
+	}
 
 	&>li{
 		display: block;

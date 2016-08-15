@@ -1,4 +1,58 @@
 <div class="pageHeader">
+	<div class="pageHeader__mobile">
+		<div data-dropdown class="dropdown">
+			<div class="dropdown-header">
+				<button data-dropdown-toggle class="button button--in-header">
+					<svg>
+						<use xlink:href="hidden/sprite.svg#icon_burger"></use>
+					</svg>
+				</button>
+			</div>
+			<div class="dropdown__content dropdown__content--wide">
+				<ul class="asideMenu">
+					<%- Build.menu(Menus.top) %>
+				</ul>
+			</div>
+
+		</div>
+		<div data-dropdown class="dropdown">
+			<div class="dropdown-header">
+				<button data-dropdown-toggle class="button button--in-header">
+					<svg>
+						<use xlink:href="hidden/sprite.svg#phone"></use>
+					</svg>
+				</button>
+			</div>
+			<div class="dropdown__content dropdown__content--wide dropdown__content--right">
+				<div class="contactItem">
+					<div class="contactItem__key">Skype:</div>
+					<div class="contactItem__value">XXXX</div>
+				</div>
+				<div class="contactItem">
+					<div class="contactItem__key">
+						<svg>
+							<use xlink:href="hidden/sprite.svg#phone"></use>
+						</svg>
+					</div>
+					<div class="contactItem__value">
+						<a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-XX-XX</a>
+						<br>
+						<a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-XX-XX</a></div>
+				</div>
+				<div class="contactItem">
+					<div class="contactItem__key">
+						<svg>
+							<use xlink:href="hidden/sprite.svg#mail"></use>
+						</svg>
+					</div>
+					<div class="contactItem__value"><a
+							href="mailto:XXXXXX@gmail.com">XXXXXX@gmail.com</a></div>
+				</div>
+			</div>
+
+
+		</div>
+</div>
 	<div class="pageHeader__top">
 		<div class="pageSize">
 			<div class="grid grid--justify-between grid--items-center">
@@ -22,11 +76,13 @@
 	</div>
 	<div class="pageHeader__main">
 		<div class="pageSize">
-			<div class="grid grid--justify-between">
+			<div class="grid grid--justify-around grid--lg-justify-between">
 				<div class="grid__cell">
 					<a href="index.html" class="logo">
 						<div class="logo__image">
-							<svg><use xlink:href="hidden/sprite.svg#logo"></use></svg>
+							<svg>
+								<use xlink:href="hidden/sprite.svg#logo"></use>
+							</svg>
 						</div>
 						<div class="logo__text">
 							<big>Сенситив Имаго</big>
@@ -63,7 +119,8 @@
 											<use xlink:href="hidden/sprite.svg#mail"></use>
 										</svg>
 									</div>
-									<div class="contactItem__value"><a href="mailto:XXXXXX@gmail.com">XXXXXX@gmail.com</a></div>
+									<div class="contactItem__value"><a
+											href="mailto:XXXXXX@gmail.com">XXXXXX@gmail.com</a></div>
 								</div>
 								<button class="button button--primary _mt">Показать контакты</button>
 							</div>
@@ -71,12 +128,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="grid grid--justify-end heroBlock">
-				<div class="grid__cell grid__cell--7">
+			<div class="grid grid--justify-around grid--lg-justify-end heroBlock">
+				<div class="grid__cell grid__cell--12 grid__cell--lg-7">
 					<div class="heroBlock__text">
 						<small>Лучшее решение</small>
-						<br>
-						Для<br> медицинского<br> бизнеса
+						<br class="_hide _lg-show">
+						Для<br class="_hide _lg-show"> медицинского<br class="_hide _lg-show"> бизнеса
 					</div>
 				</div>
 			</div>

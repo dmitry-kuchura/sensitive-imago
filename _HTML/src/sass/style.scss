@@ -32,6 +32,7 @@
 @import '_partials/_modelPreviews';
 @import '_partials/forms';
 @import '_partials/rateit';
+@import '_partials/dropdown';
 
 @mixin brand-shadow(){
 	box-shadow: 0px 53px 67px 0px rgba(13, 12, 13, 0.24);
@@ -151,4 +152,10 @@
 	justify-content:center;
 	align-items: center;
 	background: #fff;
+	text-align: center;
+	transition: color,background .2s;
+	&:hover{
+		color: #fff;
+		background: $color-primary;
+	}
 }
