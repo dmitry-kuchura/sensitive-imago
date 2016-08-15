@@ -70,7 +70,8 @@ locals._activeFile = _getActiveFile(filename);
 						<% } %>
 					</div>
 					<%- Build.pagination(7, true) %>
-					<div class="sectionTitle sectionTitle--inner _mr-x2">Оставить отзыв</div>
+					<div class="sectionTitle sectionTitle--inner _mt-x2">Оставить отзыв
+					<svg class="reviewsForm__decor"><use xlink:href="hidden/sprite.svg#quotes"></use></svg></div>
 					<div class="reviewsForm js-form form" data-form="true">
 						<div class="grid grid--space grid--items-center">
 							<div class="grid__cell">
@@ -81,6 +82,7 @@ locals._activeFile = _getActiveFile(filename);
 								<input class="form__input" type="text" name="tel"
 									   placeholder="Ваш телефон">
 							</div>
+							<div class="grid__cell grid__cell--grow"></div>
 							<div class="grid__cell ">
 								<span class="form__label">Оцените предоставляемую услугу</span>
 								<span class="rateit" data-rateit-resetable="false"></span>

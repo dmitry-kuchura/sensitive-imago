@@ -66,4 +66,32 @@
 			}
 		}
 	}
+	&--mini{
+		@at-root &{
+			padding: rem(40px) rem(0) rem(50px);
+			border: none;
+			.advantage{
+				&__icon{
+					background: none;
+					overflow: hidden;
+					background-position: center;
+					background-size:cover;
+					background-repeat:no-repeat;
+					box-shadow: 0 0 0 10px transparentize($color-primary,.8);
+				}
+				&__title{
+					font-weight: 700;
+					font-size:rem(16px);
+					color: #252525;
+					margin-bottom: 0;
+					text-align: center;
+
+				}
+				&__text{
+					font-size: rem(14px);
+					color: #8c8c8c;
+				}
+			}
+		}
+	}
 }
