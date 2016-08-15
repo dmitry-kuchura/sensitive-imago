@@ -102,3 +102,53 @@
 	margin-bottom: 2em;
 	img{@include brand-shadow;}
 }
+
+.map{
+	position: relative;
+	height: 420px;
+	max-height:70vh;
+	@include brand-shadow;
+}
+
+.contactColumn__caption{
+	font-weight: 700;
+	font-size:rem(12px);
+	color: #000;
+	margin-bottom: 1em;
+	text-transform: uppercase;
+}
+.contactColumn__content{
+	font-size: rem(14px);
+	a{
+		color: $color-primary;
+		text-decoration: underline;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+}
+.region{
+	max-width: 800px;
+}
+.region__caption{
+	width: 200px;
+	padding:rem(15px);
+	background: #fff;
+	box-shadow: 0px 20px 67px 0px rgba(13, 12, 13, 0.24);
+	margin-bottom: 2em;;
+	min-height: 70px;
+	&:after{
+		margin-left: 0;
+	}
+}
+.region__link{
+	width: 100%;
+	height: rem(44px);
+	font-size:rem(12px);
+	line-height:1.5em;
+	color: #4c4c4c;
+	display: inline-flex;
+	justify-content:center;
+	align-items: center;
+	background: #fff;
+}

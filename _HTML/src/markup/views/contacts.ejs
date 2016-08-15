@@ -1,0 +1,77 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+	<div class="pageSize">
+		<div class="grid grid--nowrap">
+			<div class="grid__cell">
+				<%- partial('../widgets/pageAside', {Menu: Menus.contacts}) %>
+			</div>
+			<div class="grid__cell grid__cell--grow">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Контакты</div>
+
+					<div class="grid grid--4 ">
+						<div class="grid__cell">
+							<div class="contactColumn__caption">Адрес</div>
+							<div class="contactColumn__content">
+								02091, Украина, город Киев,<br>
+								улица Харьковское шоссе 164,<br>
+								ООО "Альфа-Мед Юкрейн
+							</div>
+						</div>
+						<div class="grid__cell">
+							<div class="contactColumn__caption">Свяжитесь с нами</div>
+							<div class="contactColumn__content">
+								<a href="mailto:ХХХХХХХ@gmail.com">ХХХХХХХ@gmail.com</a><br>
+								Skype: ХХХХХХ<br>
+								<a href="#">Показать контакты</a>
+							</div>
+						</div>
+						<div class="grid__cell">
+							<div class="contactColumn__caption">Телефоны</div>
+							<div class="contactColumn__content">
+								<a href="tel:+38 (068) 201-ХХ-ХХ">+38 (068) 201-ХХ-ХХ</a><br>
+								<a href="tel:+38 (044) 227-ХХ-ХХ">+38 (044) 227-ХХ-ХХ</a><br>
+								<a href="#">Показать контакты</a>
+
+							</div>
+						</div>
+						<div class="grid__cell">
+							<div class="contactColumn__caption">Время работы</div>
+							<div class="contactColumn__content">
+								ПН - Пт : 10:00 -18:00<br>
+								Сб : 10:00 - 15:00<br>
+								Вс - выходной
+							</div>
+						</div>
+					</div>
+					<hr>
+					<p style="font-size:0.75rem"><b>ГЛАВНЫЙ ТОРГОВЫЙ ОФИС В УКРАИНЕ</b></p>
+					<div class="map">
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1511.7103313148916!2d30.65936346862608!3d50.4153242645287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4c4e3177e8cd7%3A0xb219a5f077683ff0!2z0KXQsNGA0LrRltCy0YHRjNC60LUg0YjQvtGB0LUsIDE2NCwg0JrQuNGX0LI!5e0!3m2!1sru!2sua!4v1471221900746"
+							width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
+					<hr>
+					<div class="grid grid--justify-between">
+						<div class="grid__cell">
+							<div class="shareBlock">
+								<div class="shareBlock__title">Понравилась страница?</div>
+								<div class="shareBlock__text">Расскажите друзьям</div>
+								<svg class="shareBlock__arrow">
+									<use xlink:href="hidden/sprite.svg#share_arrow"></use>
+								</svg>
+								<img src="css/pic/share.png" alt="">
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
