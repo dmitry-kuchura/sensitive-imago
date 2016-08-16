@@ -6,8 +6,8 @@ locals._activeFile = _getActiveFile(filename);
 <% layout('../layouts/main') %>
 <div class="pageSection">
 <div class="pageSize">
-	<div class="grid grid--md-nowrap">
-		<div class="grid__cell">
+	<div class="grid  grid--md-nowrap">
+		<div class="grid__cell grid__cell--grow grid__cell--md-nogrow">
 			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
 		</div>
 		<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
@@ -15,7 +15,7 @@ locals._activeFile = _getActiveFile(filename);
 				<%- Build.breadcrumbs() %>
 				<div class="sectionTitle sectionTitle--inner">О нас</div>
 
-				<div class="grid grid--2 grid--md-4 _mb-x3">
+				<div class="grid grid--2 grid--md-3 grid--lg-4 _mb-x3">
 					<%
 					var advantages = [
 						{ title: '12 лет работы', text: 'На рынке'},

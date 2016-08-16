@@ -1,11 +1,15 @@
 <!-- Начало виджета pageAside -->
 <section class="pageAside js-multiLevelMenu">
-	<ul class="asideMenu">
-		<%- Build.menu(Menu) %>
-	</ul>
-	<a href="#" class="button button--primary button--expand button--in-aside">УЗНАТЬ ПРАЙС</a>
-
-	<%- partial('../widgets/pageAside/lastNews', {}) %>
-
+	<div class="grid grid--justify-around grid--space grid--md-nospace">
+		<div class="grid__cell grid__cell--grow">
+			<ul class="asideMenu">
+				<%- Build.menu(Menu) %>
+			</ul>
+			<a href="#" class="button button--primary button--expand button--in-aside">УЗНАТЬ ПРАЙС</a>
+		</div>
+		<div class="grid__cell">
+			<%- partial('../widgets/pageAside/lastNews', {}) %>
+		</div>
+	</div>
 </section>
 <!-- Конец виджета pageAside -->

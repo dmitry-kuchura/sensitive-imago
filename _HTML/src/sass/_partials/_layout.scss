@@ -37,6 +37,19 @@
 	order: 999999;
 }
 
+
+/* pageFotoer
+---------------------------------------------------------------------------------------------------- */
+
+.pageCenter {
+	margin-bottom:rem(40);
+	@include media(md){
+		margin-bottom: 0;
+	}
+}
+
+
+
 /* pageSection
 ---------------------------------------------------------------------------------------------------- */
 
@@ -130,7 +143,10 @@
 }
 
 .pageAside{
+	margin:0 rem(10);
+	@include media(md){
 	width: 240px;
 	flex-basis: 240px;
 	margin-right: 45px;
+	}
 }
