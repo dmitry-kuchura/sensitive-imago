@@ -1,9 +1,12 @@
 .modelPreviews {
-  width: 510px;
-  max-width: 50%;
-  float: left;
-  margin-right: 1em;
+
   margin-bottom: 1em;
+	@include media(540px){
+		width: 510px;
+		max-width: 40%;
+		float: left;
+		margin-right: 1em;
+	}
 }
 
 .modelPreview {

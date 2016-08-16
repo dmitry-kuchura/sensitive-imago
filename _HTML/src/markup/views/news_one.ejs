@@ -6,11 +6,9 @@ locals._activeFile = _getActiveFile(filename);
 <% layout('../layouts/main') %>
 <div class="pageSection">
 	<div class="pageSize">
-		<div class="grid grid--nowrap">
-			<div class="grid__cell grid__cell--grow grid__cell--md-nogrow">
-				<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
-			</div>
-			<div class="grid__cell grid__cell--grow">
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
 				<section class=" pageCenter">
 					<%- Build.breadcrumbs() %>
 					<div class="sectionTitle sectionTitle--inner">Диагностика с помощью сенситив имаго</div>
@@ -56,13 +54,15 @@ locals._activeFile = _getActiveFile(filename);
 							всю важность данного направления и его актуальность для медицинских учреждений по всему
 							миру,
 							специалисты продолжают совершенствовать современные диагностические приборы.</p>
-						<p><img src="images/index_new1.jpg" style="float: left;" alt="">Диагностические приборы очень востребованы в большинстве медицинских центров, поскольку
+						<p><img src="images/index_new1.jpg" style="float: left;" alt="">Диагностические приборы очень
+							востребованы в большинстве медицинских центров, поскольку
 							способны отображать информацию об изменении органов, а также о перспективах дальнейшего
 							угасания или развития болезни.</p>
 						<p>Развитие технологий компьютерной диагностики не стоит на месте. Учитывая всю важность данного
 							направления и его актуальность для медицинских учреждений по всему миру, специалисты
 							продолжают совершенствовать современные «Сенситив имаго» диагностические приборы.</p>
-						<p><img src="images/index_new2.jpg" style="float: right;" alt=""><b>Прибор Сенситив имаго 530</b> собирается по новым европейским стандартам менеджмента
+						<p><img src="images/index_new2.jpg" style="float: right;" alt=""><b>Прибор Сенситив имаго
+								530</b> собирается по новым европейским стандартам менеджмента
 							качества 9001full принятым в ЕС в 2013 году. Прибор сертифицирован по классу 2 согласно
 							европейской директиве медицинской техники. Управление медицинским заводом, производство и
 							научные разработки прошли полную европейскую сертификацию согласно директиве 13485.</p>
@@ -75,7 +75,8 @@ locals._activeFile = _getActiveFile(filename);
 						</ol>
 					</div>
 					<div class="pageSection__footer ">
-						<a href="news.html" class="button--in-sectionFooter button button--inverse">К списку новостей</a>
+						<a href="news.html" class="button--in-sectionFooter button button--inverse">К списку
+							новостей</a>
 						<a href="#" class="button--in-sectionFooter button button--primary">УЗНАТЬ ПРАЙС</a>
 					</div>
 				</section>

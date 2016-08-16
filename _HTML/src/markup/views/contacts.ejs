@@ -7,9 +7,7 @@ locals._activeFile = _getActiveFile(filename);
 <div class="pageSection">
 	<div class="pageSize">
 		<div class="grid grid--md-nowrap">
-			<div class="grid__cell grid__cell--grow grid__cell--md-nogrow">
-				<%- partial('../widgets/pageAside', {Menu: Menus.contacts}) %>
-			</div>
+			<%- partial('../widgets/pageAside', {Menu: Menus.contacts}) %>
 			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
 				<section class=" pageCenter">
 					<%- Build.breadcrumbs() %>

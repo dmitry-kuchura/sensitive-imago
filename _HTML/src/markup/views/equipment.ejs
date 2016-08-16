@@ -5,32 +5,31 @@ locals._activeFile = _getActiveFile(filename);
 <% include ../_config %>
 <% layout('../layouts/main') %>
 <div class="pageSection">
-<div class="pageSize">
-	<div class="grid grid--nowrap">
-		<div class="grid__cell">
-			<%- partial('../widgets/pageAside', {Menu: Menus.equipment }) %>
-		</div>
-		<div class="grid__cell grid__cell--grow">
-			<section class=" pageCenter">
-				<%- Build.breadcrumbs() %>
-				<div class="sectionTitle sectionTitle--inner">Оборудование</div>
-				<div class="grid grid--3 grid--space">
+	<div class="pageSize">
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.equipment}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Оборудование</div>
+					<div class="grid grid--2 grid--sm-3 grid--md-2 grid--lg-3 grid--space">
 
-					<% Menus.equipment.forEach(function(el, i){ %>
-					<div class="grid__cell">
-						<a href="<%= el.url?`${el.url}.html`:'#'%>" class="categoryLink" style="background-image: url('images/equipment<%= ++i %>.jpg');">
-							<div class="categoryLink__content categoryLink__content--bigger">
-								<div class="categoryLink__title"><%= el.text %></div>
-							</div>
-						</a>
+						<% Menus.equipment.forEach(function(el, i){ %>
+						<div class="grid__cell">
+							<a href="<%= el.url ? `${el.url}.html` : '#' %>" class="categoryLink"
+							   style="background-image: url('images/equipment<%= ++i %>.jpg');">
+								<div class="categoryLink__content categoryLink__content--bigger">
+									<div class="categoryLink__title"><%= el.text %></div>
+								</div>
+							</a>
+						</div>
+						<% }) %>
 					</div>
-					<% }) %>
-				</div>
 
-			</section>
+				</section>
+			</div>
 		</div>
-	</div>
 
-</div>
+	</div>
 </div>
 <%- partial('../widgets/devices', {'color_inverse': false}) %>

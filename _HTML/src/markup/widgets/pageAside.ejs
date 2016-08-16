@@ -1,15 +1,18 @@
 <!-- Начало виджета pageAside -->
-<section class="pageAside js-multiLevelMenu">
-	<div class="grid grid--justify-around grid--space grid--md-nospace">
-		<div class="grid__cell grid__cell--grow">
-			<ul class="asideMenu">
-				<%- Build.menu(Menu) %>
-			</ul>
-			<a href="#" class="button button--primary button--expand button--in-aside">УЗНАТЬ ПРАЙС</a>
+<div class="grid__cell grid__cell grid__cell--grow grid__cell--md-nogrow">
+	<section class="pageAside js-multiLevelMenu">
+		<div class="grid grid--justify-around grid--space grid--md-nospace">
+			<div class="asideMenu__cell grid__cell grid__cell--grow">
+				<ul class="asideMenu">
+					<%- Build.menu(Menu) %>
+				</ul>
+				<a href="#" class="button button--primary button--expand button--in-aside">УЗНАТЬ ПРАЙС</a>
+			</div>
+			<div class="grid__cell">
+				<%- partial('../widgets/pageAside/lastNews', {}) %>
+			</div>
 		</div>
-		<div class="grid__cell">
-			<%- partial('../widgets/pageAside/lastNews', {}) %>
-		</div>
-	</div>
-</section>
+	</section>
+</div>
 <!-- Конец виджета pageAside -->
+

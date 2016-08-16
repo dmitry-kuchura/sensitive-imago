@@ -5,21 +5,16 @@ locals._activeFile = _getActiveFile(filename);
 <% include ../_config %>
 <% layout('../layouts/main') %>
 <div class="pageSection">
-<div class="pageSize">
-	<div class="grid grid--nowrap">
-		<div class="grid__cell">
-			<%- partial('../widgets/pageAside', {Menu: Menus.equipment }) %>
-		</div>
-		<div class="grid__cell grid__cell--grow">
-			<section class=" pageCenter">
-				<%- Build.breadcrumbs() %>
-				<div class="sectionTitle sectionTitle--inner">Возможности оборудования</div>
-
-
-			</section>
+	<div class="pageSize">
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.equipment}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Возможности оборудования</div>
+				</section>
+			</div>
 		</div>
 	</div>
-
-</div>
 </div>
 <%- partial('../widgets/devices', {'color_inverse': false}) %>

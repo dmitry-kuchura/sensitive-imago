@@ -7,15 +7,13 @@ locals._activeFile = _getActiveFile(filename);
 
 <div class="pageSection">
 	<div class="pageSize">
-		<div class="grid grid--nowrap">
-			<div class="grid__cell grid__cell--grow grid__cell--md-nogrow">
-				<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
-			</div>
-			<div class="grid__cell grid__cell--grow">
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
 				<section class=" pageCenter">
 					<%- Build.breadcrumbs() %>
 					<div class="sectionTitle sectionTitle--inner">Отзывы наших пользователей</div>
-					<div class="grid grid--3 grid--space">
+					<div class="grid grid--2 grid--sm-3 grid--md-2 grid--lg-3 grid--space grid--justify-center	">
 						<% var aboutVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
 						<% for (i in aboutVideos) { %>
 						<div class="grid__cell">
@@ -71,7 +69,10 @@ locals._activeFile = _getActiveFile(filename);
 					</div>
 					<%- Build.pagination(7, true) %>
 					<div class="sectionTitle sectionTitle--inner _mt-x2">Оставить отзыв
-					<svg class="reviewsForm__decor"><use xlink:href="hidden/sprite.svg#quotes"></use></svg></div>
+						<svg class="reviewsForm__decor">
+							<use xlink:href="hidden/sprite.svg#quotes"></use>
+						</svg>
+					</div>
 					<div class="reviewsForm js-form form" data-form="true">
 						<div class="grid grid--space grid--items-center">
 							<div class="grid__cell">

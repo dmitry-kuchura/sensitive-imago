@@ -121,12 +121,15 @@
 
 .article__image {
 	position: relative;
-	max-width: 50%;
-	float: left;
-	margin-right: 2em;
+
 	margin-bottom: 2em;
 	img {
 		@include brand-shadow;
+	}
+	@include media(sm){
+		max-width: 50%;
+		float: left;
+		margin-right: 2em;
 	}
 }
 

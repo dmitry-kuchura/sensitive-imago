@@ -17,15 +17,13 @@ locals._activeFile = _getActiveFile(filename);
 			}
 		];
 		%>
-		<div class="grid grid--nowrap">
-			<div class="grid__cell grid__cell--grow grid__cell--md-nogrow">
-				<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
-			</div>
-			<div class="grid__cell grid__cell--grow">
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
 				<section class=" pageCenter">
 					<%- Build.breadcrumbs() %>
 					<div class="sectionTitle sectionTitle--inner">Новости</div>
-					<div class="grid grid--2 grid--space-x2">
+					<div class="grid grid--1 grid--lg-2 grid--space-x2">
 						<% var news = [
 							'диагностика с помощью Сенситив имаго',
 							'Доступна новая усгула',
@@ -35,7 +33,7 @@ locals._activeFile = _getActiveFile(filename);
 							'Оборудование получило золотую медаль'
 						]
 						%>
-						<% news.forEach(function(el,i){  %>
+						<% news.forEach(function(el, i){ %>
 						<div class="grid__cell">
 							<div class="mediaBlock mediaBlock--air">
 								<div class="mediaBlock__image"
