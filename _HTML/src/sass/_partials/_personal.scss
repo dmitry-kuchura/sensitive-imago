@@ -16,7 +16,7 @@
 	padding:rem(30px) 10px;
 	//padding: rem(60px) 0 rem(70px);
 	transition: background .2s;
-	&:nth-child(odd) {
+	.personal--graphics &:nth-child(odd) {
 		@include media(lg) {
 			align-self: flex-end;
 		}
