@@ -5,5 +5,26 @@
 <% include ../_config %>
 <% layout('../layouts/main') %>
 <div class="pageSection">
-
+<% for (var i=1;i<=100000;i++){%>
+	<p class="someClass" data-init="asd"><%= i%></p>
+	<%}%>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) {
+			console.time('selectByTag')
+				console.log($('p').length);
+			console.timeEnd('selectByTag')
+			console.time('selectByClass')
+				console.log($('.someClass').length);
+			console.timeEnd('selectByClass')
+			console.time('selectByData')
+				console.log($('[data-init]').length);
+			console.timeEnd('selectByData')
+			console.time('selectByData withVal')
+				console.log($('[data-init="asd"]').length);
+			console.timeEnd('selectByData withVal')
+			console.time('selectByClass and data')
+			console.log($('.someClass[data-init="asd"]').length);
+			console.timeEnd('selectByClass and data')
+		});
+	</script>
 </div>
