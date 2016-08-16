@@ -7,15 +7,15 @@ locals._activeFile = _getActiveFile(filename);
 
 <div class="pageSection">
 	<div class="pageSize">
-		<div class="grid">
-			<div class="grid__cell">
+		<div class="grid grid--md-nowrap">
+			<div class="grid__cell grid__cell--grow grid__cell--md-nogrow">
 				<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
 			</div>
-			<div class="grid__cell grid__cell--grow">
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
 				<section class=" pageCenter">
 					<%- Build.breadcrumbs() %>
 					<div class="sectionTitle sectionTitle--inner">Наши партнеры</div>
-					<div class="grid grid--3 grid--space">
+					<div class="grid grid--2 grid--sm-3 grid--md-2 grid--lg-3 grid--space">
 						<% var albums = ['Бельгия', "Чехия", 'Венгрия', 'Греция', 'Турция', 'Канада', 'Австралия', 'Китай', 'Индия'] %>
 						<% albums.forEach(function(el, i){ %>
 						<div class="grid__cell">
