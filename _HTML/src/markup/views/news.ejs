@@ -36,15 +36,14 @@ locals._activeFile = _getActiveFile(filename);
 						<% news.forEach(function(el, i){ %>
 						<div class="grid__cell">
 							<div class="mediaBlock mediaBlock--air">
-								<div class="mediaBlock__image"
-									 style="background-image: url('images/news<%= ++i %>.jpg');">
+								<a href="#" class="mediaBlock__image" style="background-image: url('images/news<%= ++i %>.jpg');"></a>
 									<div class="mediaBlock__date">
 										22
 										<small>фев</small>
 									</div>
-								</div>
+								</a>
 								<div class="mediaBlock__content">
-									<div class="mediaBlock__title"><%= el %></div>
+									<div class="mediaBlock__title"><a href="#"><%= el %></a></div>
 									<div class="mediaBlock__text">
 										<div class="mediaBlock__textInner">
 											Медицинское лечебно-диагностическое оборудование предназначено для

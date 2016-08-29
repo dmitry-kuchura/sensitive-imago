@@ -59,6 +59,8 @@
 		font-size:rem(16px);
 		text-align:center;
 		color: #606060;
+		max-height:5em;
+		overflow: hidden;
 	}
 	&__footer{
 		margin-top: 60px;
@@ -74,6 +76,7 @@
 	}
 	&--partialBg{
 		position: relative;
+		padding-bottom:60px !important;
 		&:before{
 			content: '';
 			display: block;
@@ -83,7 +86,7 @@
 			right: 0;
 			left: 0;
 			margin: auto;
-			height:calc(100% - 100px);
+			height:calc(100% - 265px);
 		}
 	}
 }

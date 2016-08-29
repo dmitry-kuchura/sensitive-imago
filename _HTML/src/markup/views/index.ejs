@@ -18,9 +18,11 @@ locals._activeFile = _getActiveFile(filename);
 				<use xlink:href="hidden/sprite.svg#curve_arrow"></use>
 			</svg>
 			<div class="layeredBlock__top">
+				<p class="layeredBlock__description">
 				Медицинское оборудование предназначено для неинвазивного комплексного биорезонансного обследования и
 				лечения
 				организма, а также для подбора лечения лекарственными препаратами
+				</p>
 			</div>
 		</div>
 	</div>
@@ -42,7 +44,7 @@ locals._activeFile = _getActiveFile(filename);
 					<li>Прогноза развития заболеваний в будущем</li>
 				</ul>
 			</div>
-			<div class="grid__cell">
+			<div class="grid__cell _pr-x3">
 				<p><b>Лечебные возможности:</b></p>
 				<ul class="customList">
 					<li>Индивидуальная эффективная cхема лечения препаратами</li>
@@ -70,13 +72,16 @@ locals._activeFile = _getActiveFile(filename);
 			</div>
 			<% } %>
 		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
 	</div>
 
 </section>
 <section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Наши приемущества</div>
-		<div class="grid grid--1 grid--sm-2 grid--md-3 grid--lg-4 grid--justify-center">
+		<div class="grid grid--1 grid--sm-2 grid--md-3 grid--lg-4 grid--justify-center grid--items-stretch">
 			<%
 			var advantages = [
 				{
@@ -123,7 +128,7 @@ locals._activeFile = _getActiveFile(filename);
 		<div class="priceSection__text">Медицинские комплексы Сенситив Имаго —<br>
 			диагностика и лечение всего организма человека
 		</div>
-		<a href="#" class="button button--primary button--in-sectionFooter">УЗНАТЬ ПРАЙС</a>
+		<span data-url="./hidden/callback.php" class="button button--primary button--in-sectionFooter js-mfp-ajax">УЗНАТЬ ПРАЙС</span>
 	</div>
 </section>
 <section class="pageSection _bg-white">
@@ -191,8 +196,10 @@ locals._activeFile = _getActiveFile(filename);
 				</div>
 				<div class="textReview__divider"></div>
 				<div class="textReview__text">
+					<p class="textReview__overflow">
 					Наконец то удалось выявить причину моих заболеваний: наличие бактерий Streptococcus haemolyticus и
 					Streptococcus bovis. Прибор смог показать, в каком конкретно органе и системе органов
+					</p>
 				</div>
 			</div>
 			<% } %>
@@ -209,17 +216,16 @@ locals._activeFile = _getActiveFile(filename);
 			<% var devices = ['100/120', '500/520', '130', '530'] %>
 			<% for (i in devices) { %>
 			<div class="grid__cell mediaBlock mediaBlock--inverse">
-				<div class="mediaBlock__image"
-					 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></div>
+				<a href="#" class="mediaBlock__image" style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></a>
 				<div class="mediaBlock__content">
-					<div class="mediaBlock__title">Cенситив Имаго <%= devices[i] %></div>
+					<div class="mediaBlock__title"><a href="" class="mediaBlock__overflow">Cенситив Имаго <%= devices[i] %></a></div>
 					<div class="mediaBlock__text">
 						<div class="mediaBlock__textInner">
 							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
 							комплексного
 						</div>
 					</div>
-					<a href="#" class="button button--inverse-white">Узнать прайс</a>
+					<span data-url="./hidden/callback.php" class="button button--inverse-white js-mfp-ajax">Узнать прайс</span>
 				</div>
 			</div>
 			<% } %>
@@ -233,7 +239,7 @@ locals._activeFile = _getActiveFile(filename);
 <section class="pageSection _bg-white">
 	<div class="pageSize">
 		<div class="sectionTitle">Свежие новости</div>
-		<div class="grid grid--1 grid--sm-2 grid--space-x2">
+		<div class="grid grid--1 grid--sm-2 grid--space-x2 grid--items-start">
 			<% var news = [
 				'диагностика с помощью Сенситив имаго',
 				'Доступна новая усгула',
@@ -243,15 +249,14 @@ locals._activeFile = _getActiveFile(filename);
 			%>
 			<% for (i in news) { %>
 			<div class="grid__cell mediaBlock">
-				<div class="mediaBlock__image"
-					 style="background-image: url('images/index_new<%= ++i %>.jpg');">
+				<a href="#" class="mediaBlock__image" style="background-image: url('images/index_new<%= ++i %>.jpg');">
 					<div class="mediaBlock__date">
 						22
 						<small>фев</small>
 					</div>
-				</div>
+				</a>
 				<div class="mediaBlock__content">
-					<div class="mediaBlock__title"><%= news[i] %></div>
+					<div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow"><%= news[i] %></a></div>
 					<div class="mediaBlock__text">
 						<div class="mediaBlock__textInner">
 							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного

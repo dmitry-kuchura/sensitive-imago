@@ -71,8 +71,11 @@
 		}
 	}
 	&--lite{
+		&:hover{
+			background:#fff;
+		}
 		@at-root &{
-			padding: rem(10px) rem(0) ;
+			padding: rem(32px) rem(20px) ;
 			//padding: rem(40px) rem(0) rem(50px);
 			border: none;
 			.advantage{
@@ -81,17 +84,22 @@
 					font-size:rem(18px);
 					color: #252525;
 					margin-bottom: 0;
+					text-transform: none !important;
 				}
 				&__text{
 					font-size: rem(16px);
 					color: #8c8c8c;
+					margin-bottom:0;
 				}
 			}
 		}
 	}
 	&--mini{
+		&:hover{
+			background:#fff;
+		}
 		@at-root &{
-			padding: rem(40px) rem(0) rem(50px);
+			padding: rem(40px) rem(20px) rem(50px);
 			border: none;
 			.advantage{
 				&__icon{
@@ -104,14 +112,15 @@
 				}
 				&__title{
 					font-weight: 700;
-					font-size:rem(16px);
+					font-size:rem(14px);
 					color: #252525;
 					margin-bottom: 0;
-
+					text-transform: none !important;
 				}
 				&__text{
 					font-size: rem(14px);
 					color: #8c8c8c;
+					margin-bottom:0;
 				}
 			}
 		}

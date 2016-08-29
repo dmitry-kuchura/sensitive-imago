@@ -6,6 +6,9 @@
 	background-position: center;
 	background-size:cover;
 	text-align: center;
+	@media only screen and (max-width:1316px){
+		background-image: url('pic/price_bg_2.jpg') !important;
+	}
 	&__text{
 		color: #fff;
 		font-size: rem(25px);

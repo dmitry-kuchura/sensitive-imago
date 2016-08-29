@@ -1,12 +1,12 @@
 <!-- Начало виджета pageAside -->
-<div class="grid__cell grid__cell grid__cell--grow grid__cell--md-nogrow">
+<div class="grid__cell grid__cell grid__cell--12 grid__cell--md-auto grid__cell--grow grid__cell--md-nogrow">
 	<section class="pageAside js-multiLevelMenu">
 		<div class="grid grid--justify-around grid--space grid--md-nospace">
 			<div class="asideMenu__cell grid__cell grid__cell--grow">
 				<ul class="asideMenu">
 					<%- Build.menu(Menu) %>
 				</ul>
-				<a href="#" class="button button--primary button--expand button--in-aside">УЗНАТЬ ПРАЙС</a>
+				<span data-url="./hidden/callback.php" class="button button--primary button--expand button--in-aside js-mfp-ajax">УЗНАТЬ ПРАЙС</span>
 			</div>
 			<div class="grid__cell">
 				<%- partial('../widgets/pageAside/lastNews', {}) %>

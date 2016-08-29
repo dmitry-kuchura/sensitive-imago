@@ -1,5 +1,7 @@
 (function(window, $) {
-	require('jquery-validate')
+	require('jquery');
+	require('jquery-validate');
+	require('magnific-popup');
 	/**
 	 * @namespace wHTML
 	 */
@@ -71,9 +73,6 @@
 		}
 	};
 
-
-
-
 	/**
 	 * Базовые параметры для инициализации `wHTML.mfpInline`
 	 *
@@ -109,43 +108,6 @@
 			$el.magnificPopup(currentConfig);
 		});
 	};
-
-
-
-	/**
-	 * Инициализация `ajax` метода плагина `magnific-popup`
-	 *
-	 * @sourcecode
-	 * @memberof 	wHTML
-	 * @tutorial 	workwith-magnific-popup
-	 * @see 		{@link http://dimsemenov.com/plugins/magnific-popup/documentation.html#ajax-type}
-	 *
-	 * @param 		{string} 		[selector='.js-mfp-ajax'] пользовательский css селектор для поиска и инита
-	 * @return 		{undefined}
-	 */
-	wHTML.prototype.mfpAjax = function(selector) {
-		selector = selector || '.js-mfp-ajax';
-		$('body').magnificPopup({
-			type: 'ajax',
-			delegate: selector,
-			removalDelay: 300,
-			mainClass: 'zoom-in',
-			callbacks: {
-				elementParse: function(item) {
-					this.st.ajax.settings = {
-						url: item.el.data('url'),
-						type: 'POST',
-						data: item.el.data('param') || {}
-					};
-				},
-				ajaxContentAdded: function(el) {
-					//wHTML.validation();
-				}
-			}
-		});
-	};
-
-
 
 	/**
 	 * Инициализация плагина `jquery-validate`
@@ -245,6 +207,57 @@
 
 
 
-	window.wHTML = new wHTML();
+	/**
+	 * Инициализация `ajax` метода плагина `magnific-popup`
+	 *
+	 * @sourcecode
+	 * @memberof 	wHTML
+	 * @tutorial 	workwith-magnific-popup
+	 * @see 		{@link http://dimsemenov.com/plugins/magnific-popup/documentation.html#ajax-type}
+	 *
+	 * @param 		{string} 		[selector='.js-mfp-ajax'] пользовательский css селектор для поиска и инита
+	 * @return 		{undefined}
+	 */
+	wHTML.prototype.mfpAjax = function(selector) {
+		selector = selector || '.js-mfp-ajax';
+		$('body').magnificPopup({
+			type: 'ajax',
+			delegate: selector,
+			removalDelay: 300,
+			mainClass: 'zoom-in',
+			callbacks: {
+				elementParse: function(item) {
+					this.st.ajax.settings = {
+						url: item.el.data('url'),
+						type: 'POST',
+						data: item.el.data('param') || {}
+					};
+				},
+				ajaxContentAdded: function(el) {
+					_self.formValidation();
 
+					var connectSlider = document.getElementById('slider-connect');
+
+					noUiSlider.create(connectSlider, {
+						start: 40,
+						connect: 'lower',
+						range: {
+							'min': 0,
+							'max': 100
+						}
+					});
+
+					connectSlider.noUiSlider.on('set', function(){
+						$('.range-slider').addClass('valid');
+					});
+				}
+			}
+		});
+	};
+
+
+
+
+
+	window.wHTML = new wHTML();
 })(window, jQuery);

@@ -35,7 +35,7 @@
 	&__name {
 		color: #000;
 		text-transform: uppercase;
-		font-size: rem(17px);
+		font-size: rem(15px);
 		margin-bottom: rem(25px);
 		transition: color .2s;
 		text-align: center;
@@ -52,6 +52,7 @@
 		@at-root & {
 			background: $color-secondary;
 			.person {
+				text-decoration: none !important;
 				&__name, &__position {
 					color: #fff;
 				}

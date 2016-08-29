@@ -15,11 +15,10 @@ locals._activeFile = _getActiveFile(filename);
 					<div class="grid grid--1 grid--sm-2  grid--lg-1 grid--xl-2 grid--space-x2">
 						<% var devices = ['100/120', '500/520', '130', '530'] %>
 						<% for (i in devices) { %>
-						<div class="grid__cell mediaBlock">
-							<div class="mediaBlock__image"
-								 style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></div>
+						<div class="grid__cell mediaBlock mediaBlockEquipment">
+							<a href="#" class="mediaBlock__image" style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></a>
 							<div class="mediaBlock__content">
-								<div class="mediaBlock__title">Cенситив Имаго <%= devices[i] %></div>
+								<div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow">Cенситив Имаго <%= devices[i] %></a></div>
 								<div class="mediaBlock__text">
 									<div class="mediaBlock__textInner">
 										Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного

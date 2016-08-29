@@ -30,6 +30,16 @@
       }
     }
   }
+  &__overflow{
+    overflow:hidden;
+    max-height: 4em;
+    margin:0;
+    &--photo{
+      margin:0;
+      max-height:1.4em;
+      overflow: hidden;
+    }
+  }
   &__title {
     color: #000;
     font-size: rem(12px);
@@ -37,6 +47,7 @@
     font-weight: 700;
     text-transform: uppercase;
     transition: color .2s;
+    overflow:hidden;
     &:after {
       content: '';
       display: block;

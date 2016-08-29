@@ -41,6 +41,11 @@
 		color: #9b9b9b;
 		padding: 0 rem(100px) rem(40px) rem(30px);
 	}
+	&__overflow{
+		max-height:10em;
+		overflow:hidden;
+		margin:0;
+	}
 	&__text {
 		color: #4c4c4c;
 		padding: rem(20px) rem(30px) rem(30px);
@@ -54,6 +59,14 @@
 				max-height: rem(22*200);
 			}
 		}
+	}
+	&__arrow{
+		margin-left:5px;
+		display: inline-block;
+		vertical-align: middle;
+		height: 9px;
+		width: 12px;
+		background: url(pic/arrow-reviews-standart.png) no-repeat center center;
 	}
 	.textReview__footer {
 		padding: rem(0) rem(40px) rem(15px);
@@ -95,6 +108,11 @@
 				&__place,
 				&__moreLink {
 					color: #fff;
+				}
+				&__arrow{
+					height: 11px;
+					width: 9px;
+					background: url(pic/arrow-reviews.png) no-repeat center center;
 				}
 				&__icon {
 					fill: $color-primary;

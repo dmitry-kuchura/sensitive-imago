@@ -1,4 +1,7 @@
 .mediaBlock {
+	&:hover{
+		box-shadow: 0px 20px 50px 10px rgba(13, 12, 13, 0.13);
+	}
 	display: flex;
 	flex-wrap: wrap;
 	@include media(lg){
@@ -9,9 +12,10 @@
 		flex-direction: column;
 	}
 	&__image {
-		width: 300px;
+		display: block;
+		width: 100%;
 		height: 200px;
-		flex-basis: 300px;
+		flex-basis: 100%;
 		max-width: 100%;
 
 		margin: auto;
@@ -25,6 +29,9 @@
 		@include media(lg){
 			max-width: 50%;
 			margin-right: 30px;
+			width: 300px;
+			height: 200px;
+			flex-basis: 300px;
 		}
 	}
 	&__title {
@@ -33,6 +40,11 @@
 		font-size: rem(14rem);
 		text-transform: uppercase;
 		overflow: hidden;
+	}
+	&__overflow{
+		display: block;
+		overflow:hidden;
+		max-height:3em;
 	}
 	&__text {
 		color: #636363;
@@ -73,6 +85,9 @@
 		overflow: hidden;
 	}
 	&--inverse {
+		&:hover{
+			box-shadow: 0px 20px 50px 10px rgba(255, 255, 255, 0.13);
+		}
 		@at-root & {
 			.mediaBlock {
 				&__title {
@@ -122,6 +137,17 @@
 	&--air {
 		height: 220px;
 		position: relative;
+		margin:0 auto;
+		max-width: 306px;
+		@include media(md){
+			height:250px;
+			max-width: 450px;
+			margin: 0 auto;
+		}
+		@include media(lg){
+			height:250px;
+			max-width: 450px;
+		}
 		.mediaBlock {
 			&__title, &__text {
 				font-size: rem(12px);
@@ -137,18 +163,38 @@
 			&__image {
 				margin: 0;
 				max-width: 100%;
-
+				width: 250px;
+				flex-basis:250px;
+				height: 155px;
+				@include media(md){
+					width: 300px;
+					height: 200px;
+					flex-basis: 300px;
+				}
+				@include media(lg){
+					width: 300px;
+					height: 200px;
+					flex-basis: 300px;
+				}
 			}
 			&__content {
-
 				position: absolute;
 				display: block;
-				bottom: 0;
-				right: 0;
 				background: #fff;
 				padding: rem(20px);
-				max-width: 250px;
-
+				max-width: 230px;
+				bottom: 25px;
+				left: 75px;
+				@include media(md){
+					bottom: 0;
+					left: 200px;
+					max-width: 240px;
+				}
+				@include media(lg){
+					max-width: 240px;
+					bottom: 0;
+					left: 125px;
+				}
 			}
 		}
 		.categoryLink__title{

@@ -3,28 +3,96 @@
 	locals._activeFile = _getActiveFile(filename);
 %>
 <% include ../_config %>
-<% layout('../layouts/main') %>
+<!--<% layout('../layouts/main') %>-->
 <div class="pageSection">
-<% for (var i=1;i<=100000;i++){%>
-	<p class="someClass" data-init="asd"><%= i%></p>
-	<%}%>
-	<script>
-		document.addEventListener("DOMContentLoaded", function(event) {
-			console.time('selectByTag')
-				console.log($('p').length);
-			console.timeEnd('selectByTag')
-			console.time('selectByClass')
-				console.log($('.someClass').length);
-			console.timeEnd('selectByClass')
-			console.time('selectByData')
-				console.log($('[data-init]').length);
-			console.timeEnd('selectByData')
-			console.time('selectByData withVal')
-				console.log($('[data-init="asd"]').length);
-			console.timeEnd('selectByData withVal')
-			console.time('selectByClass and data')
-			console.log($('.someClass[data-init="asd"]').length);
-			console.timeEnd('selectByClass and data')
-		});
-	</script>
+	<div class="site_map_row">
+		<div class="pageSize">
+			<nav class="wSitemap">
+				<ul>
+					<li><a href="index.html"><span>Главная</span></a>
+					</li>
+					<li class="haveSubMenu"><a href="ui_text.html"><span>UI Раздел</span></a>
+						<ul>
+							<li><a href="ui_text.html"><span>UI Текстовая страница</span></a>
+							</li>
+							<li><a href="ui_elements.html"><span>UI Элементы</span></a>
+							</li>
+							<li><a href="ui_forms.html"><span>UI Формы</span></a>
+							</li>
+							<li><a href="ui_svg.html"><span>UI SVG Sprite</span></a>
+							</li>
+						</ul>
+					</li>
+					<li><a href="sitemap.html"><span>Карта сайта</span></a>
+					</li>
+					<li class="haveSubMenu"><a href="sitemap.html"><span>Раздел 1</span></a>
+						<ul>
+							<li class="haveSubMenu"><a href="sitemap.html"><span>Категория 1</span></a>
+								<ul>
+									<li class="haveSubMenu"><a href="sitemap.html"><span>Подкатегория 1</span></a>
+										<ul>
+											<li class="haveSubMenu"><a href="sitemap.html"><span>Внутрення категория 1</span></a>
+												<ul>
+													<li><a href="sitemap.html"><span>Статья 1</span></a>
+													</li>
+													<li><a href="sitemap.html"><span>Статья 2</span></a>
+													</li>
+													<li><a href="sitemap.html"><span>Статья 3</span></a>
+													</li>
+												</ul>
+											</li>
+											<li class="haveSubMenu"><a href="sitemap.html"><span>Внутрення категория 2</span></a>
+												<ul>
+													<li><a href="sitemap.html"><span>Статья 1</span></a>
+													</li>
+													<li><a href="sitemap.html"><span>Статья 2</span></a>
+													</li>
+													<li><a href="sitemap.html"><span>Статья 3</span></a>
+													</li>
+												</ul>
+											</li>
+											<li><a href="sitemap.html"><span>Внутрення категория 3</span></a>
+											</li>
+										</ul>
+									</li>
+									<li><a href="sitemap.html"><span>Подкатегория 2</span></a>
+									</li>
+									<li><a href="sitemap.html"><span>Подкатегория 3</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="haveSubMenu"><a href="sitemap.html"><span>Категория 2</span></a>
+								<ul>
+									<li><a href="sitemap.html"><span>Статья 1</span></a>
+									</li>
+									<li><a href="sitemap.html"><span>Статья 2</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="haveSubMenu"><a href="sitemap.html"><span>Категория 3</span></a>
+								<ul>
+									<li><a href="sitemap.html"><span>Статья 1</span></a>
+									</li>
+									<li><a href="sitemap.html"><span>Статья 2</span></a>
+									</li>
+									<li><a href="sitemap.html"><span>Статья 3</span></a>
+									</li>
+								</ul>
+							</li>
+							<li class="haveSubMenu"><a href="sitemap.html"><span>Категория 4</span></a>
+								<ul>
+									<li><a href="sitemap.html"><span>Статья 1</span></a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="sitemap.html"><span>Раздел 2</span></a>
+					</li>
+					<li><a href="sitemap.html"><span>Раздел 3</span></a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 </div>

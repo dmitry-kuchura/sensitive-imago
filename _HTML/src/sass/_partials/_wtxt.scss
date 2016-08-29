@@ -270,8 +270,8 @@ ul.customList {
 		&:before {
 			content: '';
 			background: url('../css/pic/customList-marker.svg') center no-repeat;
-			height: 1em;
-			width: rem(13px);
+			height: rem(12px);
+			width: rem(12px);
 			background-size: contain;
 			margin-right: rem(20px);
 			flex-shrink: 0;

@@ -19,7 +19,7 @@ locals._activeFile = _getActiveFile(filename);
 							<a href="<%= el.url ? `${el.url}.html` : '#' %>" class="categoryLink"
 							   style="background-image: url('images/equipment<%= ++i %>.jpg');">
 								<div class="categoryLink__content categoryLink__content--bigger">
-									<div class="categoryLink__title"><%= el.text %></div>
+									<div class="categoryLink__title"><p class="categoryLink__overflow"><%= el.text %></p></div>
 								</div>
 							</a>
 						</div>

@@ -1,8 +1,29 @@
 require('wHTML');
 require('wezom_class_toggler');
+
 jQuery(document).ready(function ($) {
 	svg4everybody({});
 	wHTML.formValidation();
+	wHTML.mfpAjax();
+
+	/*Инициализация карты на странице контакты*/
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 18,
+			center: {lat: 50.415291, lng: 30.660114}
+		});
+
+		var image = {
+			url: 'css/pic/marker_icon.png'
+		};
+
+		var marker = new google.maps.Marker({
+			position: {lat: 50.415291, lng: 30.660114},
+			map: map,
+			icon:image,
+			title: ''
+		});
+	}
 
 	/* Подключение скрипта левого меню */
 	let $multiLevelMenu = $('.js-multiLevelMenu');
@@ -49,5 +70,77 @@ jQuery(document).ready(function ($) {
 	$('[data-dropdown]').wzmClassToggle({
 		toggleSelector: '[data-dropdown-toggle]',
 		toggleOnBlur: true
+	});
+
+	if ($('#slider_else').length) {
+		$('#slider_else').carouFredSel({
+			play: true,
+			auto: true,
+			circular: true,
+			responsive:true,
+			width: '100%',
+			height: 350,
+			items: {
+				visible: {
+					min: 1,
+					max: 4
+				}
+			},
+			swipe: {
+				onTouch: true,
+				onMouse: true
+			},
+			scroll: {
+				items: 1,
+				fx: 'scroll',
+				easing: "swing",
+				duration: 1000,
+				pauseOnHover: false
+			}
+		});
+	}
+
+	if ($('#slider_else_universal').length) {
+		$('#slider_else_universal').carouFredSel({
+			play: true,
+			auto: true,
+			circular: true,
+			responsive:true,
+			width: '100%',
+			height: 350,
+			items: {
+				visible: {
+					min: 1,
+					max: 4
+				}
+			},
+			swipe: {
+				onTouch: true,
+				onMouse: true
+			},
+			scroll: {
+				items: 1,
+				fx: 'scroll',
+				easing: "swing",
+				duration: 1000,
+				pauseOnHover: false
+			}
+		});
+	}
+
+	$(window).load(function() {
+		initMap();
+	});
+
+	$('.js-show-information').on('click', function(){
+		$('.js-hidden-information').each(function (index, element) {
+			var phone = $(element).data('information');
+			$(element).text(phone);
+		});
+	});
+
+	$('.asideMenu > li > a').on('click', function(e){
+		e.preventDefault();
+		$(this).closest('.has-subMenu').toggleClass('is-open').children('ul').toggleClass('is-visible');
 	});
 });

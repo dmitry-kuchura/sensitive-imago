@@ -1,0 +1,107 @@
+@import "../_config";
+
+%mapElement {
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+%mapElementHover {
+  color: #fff;
+  text-shadow: #000;
+}
+
+%mapElementTransition {
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.wSitemap {
+  font-family: Arial;
+  font-size: 14px;
+  margin: 0 0 5px;
+  > ul {
+    padding-left: 10px;
+    overflow: hidden;
+  }
+  ul {
+    counter-reset: sitemap;
+    list-style-type: none;
+    ul {
+      margin-left: 10px;
+    }
+    li {
+      position: relative;
+      margin: 5px 0;
+      &:before {
+        @extend %mapElement;
+        @extend %mapElementTransition;
+        float: left;
+        background-color:#354f5e;
+        color: #fff;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        counter-increment: sitemap;
+        content: counters(sitemap,".") " ";
+      }
+      &:after {
+        @extend %mapElementTransition;
+        content: '|-';
+        position: absolute;
+        right: 100%;
+        margin-right: 10px;
+        top: 0;
+        width: auto;
+        height: 100%;
+        white-space: nowrap;
+        text-align: right;
+        opacity: .3;
+        border-bottom-left-radius: 4px;
+      }
+      a {
+        @extend %mapElement;
+        @extend %mapElementTransition;
+        text-decoration: none;
+        color: #354f5e;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        text-shadow: 0 -1px #fff;
+        background-color: #fff;
+        display: block;
+        overflow: hidden;
+      }
+      &:hover {
+        > a {
+          @extend %mapElementHover;
+          text-decoration: underline;
+          background-color: #40677d;
+        }
+        &:before {@extend %mapElementHover; }
+        &:after {color: #40677d;}
+        &:before, &:after {background-color:#8c8c8c;}
+      }
+      li {
+        &:hover {
+          > a {background-color:#35535e; }
+          &:before, &:after {background-color:#35535e;}
+        }
+        li {
+          &:hover {
+            > a {background-color: #3a4365; }
+            &:before, &:after {background-color: #35635e;}
+          }
+          li {
+            &:hover {
+              > a {background-color: #3a4365; }
+              &:before, &:after {background-color: #3f3f4e; }
+            }
+            li {
+              &:hover {
+                > a {background-color: #35535a; }
+                &:before, &:after {background-color: #37525e; }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

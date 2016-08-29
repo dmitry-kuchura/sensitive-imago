@@ -17,9 +17,9 @@ locals._activeFile = _getActiveFile(filename);
 						<% var albums = ['Бельгия', "Чехия", 'Бельгия1', 'Бельгия2', 'Бельгия3', 'Бельгия4', 'Бельгия5', 'Бельгия6', 'Бельгия'] %>
 						<% albums.forEach(function(el, i){ %>
 						<div class="grid__cell">
-							<a class="categoryLink" style="background-image: url('images/album<%= ++i %>.jpg');">
+							<a href="#" class="categoryLink" style="background-image: url('images/album<%= ++i %>.jpg');">
 								<div class="categoryLink__content">
-									<div class="categoryLink__title"><%= el %></div>
+									<div class="categoryLink__title"><p class="categoryLink__overflow--photo"><%= el %></p></div>
 								</div>
 							</a>
 						</div>

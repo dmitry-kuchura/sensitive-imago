@@ -61,7 +61,7 @@ locals._activeFile = _getActiveFile(filename);
 								</div>
 							</div>
 							<div class="textReview__footer">
-								<div class="textReview__moreLink" data-text="Cкрыть">Читать отзыв полностью</div>
+								<div class="textReview__moreLink" data-text="Cкрыть">Читать отзыв полностью <span class="textReview__arrow"></span></div>
 								<div class="textReview__place">г. Будапешт, Венгрия</div>
 							</div>
 						</div>
@@ -77,16 +77,30 @@ locals._activeFile = _getActiveFile(filename);
 						<div class="grid grid--space grid--items-center">
 							<div class="grid__cell">
 								<input class="form__input" type="text" name="name"
-									   placeholder="Ваше имя*" required>
+									   placeholder="Ваше имя*" data-rule-word="true" data-rule-minlength="2" required>
 							</div>
 							<div class="grid__cell">
 								<input class="form__input" type="text" name="tel"
-									   placeholder="Ваш телефон">
+									   placeholder="Ваш телефон" required data-rule-phone="true">
 							</div>
 							<div class="grid__cell grid__cell--grow"></div>
 							<div class="grid__cell ">
 								<span class="form__label">Оцените предоставляемую услугу</span>
-								<span class="rateit" data-rateit-resetable="false"></span>
+								<div class="rating">
+									<div class="rating-vote">
+										<span class="rating-vote_stars">
+										<input type="radio" name="rating" value="5" required>
+										<i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
+										<input type="radio" name="rating" value="4" required>
+										<i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
+										<input type="radio" name="rating" value="3" required>
+										<i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
+										<input type="radio" name="rating" value="2" required>
+										<i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
+										<input type="radio" name="rating" value="1" required>
+										<i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
+									</div>
+								</div>
 							</div>
 
 							<div class="grid__cell grid__cell--12">

@@ -35,11 +35,13 @@ locals._activeFile = _getActiveFile(filename);
 							{name: 'Медяный Алексей', position: 'Менеджер-переводчик'}
 						] %>
 						<% personal.forEach(function(el, i){ %>
-						<div class="grid__cell person">
-							<div class="person__image"
-								 style="background-image: url('images/personal<%= ++i %>.jpg');"></div>
-							<div class="person__name"><%= el.name %></div>
-							<div class="person__position"><%= el.position %></div>
+						<div class="grid__cell">
+							<a href="#" class="person">
+								<div class="person__image"
+									 style="background-image: url('images/personal<%= ++i %>.jpg');"></div>
+								<div class="person__name"><%= el.name %></div>
+								<div class="person__position"><%= el.position %></div>
+							</a>
 						</div>
 						<% }) %>
 					</div>

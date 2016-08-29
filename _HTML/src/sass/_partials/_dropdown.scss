@@ -7,6 +7,10 @@ $globalShadow:0 0 0 #000;
 $color-light:alabaster;
 .dropdown {
 	position: relative;
+	&--dib{
+		display: inline-block;
+		vertical-align: top;
+	}
 	&__header {
 		position: relative;
 		user-select: none;
@@ -41,6 +45,7 @@ $color-light:alabaster;
 	&__content {
 		position: absolute;
 		top: 100%;
+		right:0;
 		min-width: 100%;
 		padding: 5px;
 		opacity: 0;

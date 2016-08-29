@@ -54,6 +54,9 @@ $columns:12;
 
     .grid {
        @include make-row($gutter);
+        &--flex {
+          display: flex;
+        }
 		&--inline {
 			display: inline-flex;
 		}
@@ -146,6 +149,11 @@ $columns:12;
             &--nobasis {
                 flex-basis: 0;
             }
+            //&--contacts{
+            //  @include media(md){
+            //    flex-basis:225px;
+            //  }
+            //}
         }
         @for $i from 1 through $columns {
             &__cell--#{$i} {
