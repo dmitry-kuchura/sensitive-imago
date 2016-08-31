@@ -104,6 +104,10 @@
 			display: block;
 		}
 	}
+	&__description{
+		max-height: 6em;
+		overflow: hidden;
+	}
 	&__bottom {
 		display: block;
 		position: absolute;
