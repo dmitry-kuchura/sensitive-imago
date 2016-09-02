@@ -7,7 +7,6 @@ design/
 # Programming
 
 Config/database.php
-Media/images/*
 Media/mailfiles/*
 nbproject/*
 nbproject/*
