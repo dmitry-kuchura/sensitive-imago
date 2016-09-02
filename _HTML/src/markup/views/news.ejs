@@ -1,0 +1,67 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+	<div class="pageSize">
+		<% var Menu = [
+			{
+				text: 'Фото',
+				url: 'gallery_photo',
+				active: true
+			}, {
+				text: 'Видео',
+				url: 'gallery_video'
+			}
+		];
+		%>
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Новости</div>
+					<div class="grid grid--1 grid--lg-2 grid--space-x2">
+						<% var news = [
+							'диагностика с помощью Сенситив имаго',
+							'Доступна новая усгула',
+							'Онлайн обучение с прибором сенситив имаго',
+							'Оборудование получило золотую медаль',
+							'Онлайн обучение с прибором сенситив имаго',
+							'Оборудование получило золотую медаль'
+						]
+						%>
+						<% news.forEach(function(el, i){ %>
+						<div class="grid__cell">
+							<div class="mediaBlock mediaBlock--air">
+								<a href="#" class="mediaBlock__image" style="background-image: url('images/news<%= ++i %>.jpg');"></a>
+									<div class="mediaBlock__date">
+										22
+										<small>фев</small>
+									</div>
+								</a>
+								<div class="mediaBlock__content">
+									<div class="mediaBlock__title"><a href="#"><%= el %></a></div>
+									<div class="mediaBlock__text">
+										<div class="mediaBlock__textInner">
+											Медицинское лечебно-диагностическое оборудование предназначено для
+											неинвазивного
+											комплексного
+										</div>
+									</div>
+									<a href="news_one.html" class="button button--inverse">Подробнее</a>
+								</div>
+							</div>
+						</div>
+						<% }) %>
+					</div>
+					<%- Build.pagination(7, true) %>
+				</section>
+			</div>
+		</div>
+
+	</div>
+</div>
+<%- partial('../widgets/devices', {'color_inverse': false}) %>

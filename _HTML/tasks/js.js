@@ -157,7 +157,7 @@ module.exports = function(options) {
 								),
 								$.include(),
 								$.wrap('\n/* <%= file.relative %>\n ================================== */\n<%= contents %>\n'),
-								$.concat(`${folder}.js`),
+								$.concat(`${folder}/${folder}.js`),
 								$.if(
 									options.min,
 									$.uglify(_modulesParams.gulpUglifyConfig(options.minConfig))
@@ -170,6 +170,15 @@ module.exports = function(options) {
 								_modulesParams.gulpNotifyOnError(`Stream - ${options.taskName}`))
 							)
 						)
+						.pipe($.if(
+							isFilter,
+							$.changed(
+								options.dest,
+								{
+									hasChanged: $.changed.compareSha1Digest
+								}
+							)
+						))
 						.pipe(gulp.dest(options.dest))
 						.on('data', (file) => {
 							files.push(file.relative);

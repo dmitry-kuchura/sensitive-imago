@@ -1,0 +1,50 @@
+/*wBreadcrumbs.scss*/
+@import "../_config";
+.breadcrumbs {
+	font-size: rem(12px);
+	margin-bottom: rem(25px);
+	> span {
+		color: #000;
+		&:after {
+			content: '-';
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 .5em;
+		}
+		&:last-child:after {
+			display: none;
+		}
+		> a {
+			color: #919191;
+			text-decoration: none;
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+}
+@media only screen and (max-width:620px) {
+	.breadcrumbs {
+		display: block;
+		> span {
+			display: none;
+			&:before {
+				display: none;
+			}
+			&:nth-last-child(2) {
+				display: block;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				max-width: 100%;
+				background: none;
+				margin: 0;
+				&:before {
+					content: '<';
+					display: inline-block;
+					margin: 0 5px 0 3px;
+				}
+			}
+		}
+	}
+}

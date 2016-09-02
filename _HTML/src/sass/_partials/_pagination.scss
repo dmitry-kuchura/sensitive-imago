@@ -1,0 +1,23 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+	margin-top: rem(50px);
+	&__link {
+		padding: 0 10px;
+		height: 25px;
+		display: inline-flex;
+		align-items: center;
+		transition: background, color .2s;
+		&--next {
+			margin-left: 10px;
+		}
+		&--prev {
+			margin-right: 10px;
+		}
+	}
+	a:hover, .is-active {
+		background: $color-primary;
+		color: #fff;
+	}
+
+}

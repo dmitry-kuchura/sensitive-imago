@@ -1,0 +1,254 @@
+<%
+// файлы
+// ========
+// список основных файлов
+locals._viewsFiles = {
+    index: {
+        title: 'Главная',
+        hasSeoText: false,
+        seoTextContent: '../widgets/seo-text'
+    },
+    gallery_photo: {
+        title: 'Галерея | Фото',
+        parent: 'index'
+    },
+    gallery_video: {
+        title: 'Галерея | Фото',
+        parent: 'index'
+    },
+    sitemap: {
+        title: 'Карта сайта',
+        parent: 'index'
+    },
+    about: {
+        title: 'О компании',
+        parent: 'index'
+    },
+    about_team: {
+        title: 'Наша команда',
+        parent: 'about'
+    },
+	about_partners: {
+        title: 'Наши партнеры',
+        parent: 'about'
+    },
+	reviews:{
+		title: 'Отзывы',
+		parent: 'about'
+	},
+    news: {
+        title: 'Новости',
+        parent: 'about'
+    },
+	news_one: {
+        title: 'Страница новости',
+        parent: 'news'
+    },
+    equipment: {
+        title: 'Оборудование',
+        parent: 'index'
+    },
+    equipment_abilities: {
+        title: 'Возможности оборудования',
+        parent: 'equipment'
+    },
+    equipment_models: {
+        title: 'Модели приборов',
+        parent: 'equipment'
+    },
+    equipment_model: {
+        title: 'Модели приборов',
+        parent: 'equipment_models'
+    },
+    universal_landing: {
+        title: 'Лечение',
+        parent: 'equipment_abilities'
+    },
+	contacts_regions: {
+        title: 'Региональные представительства',
+        parent: 'contacts'
+    },
+	contacts: {
+        title: 'Контакты',
+        parent: 'index'
+    }
+};
+
+for (let file in _viewsFiles) {
+    _viewsFiles[file].alias = file;
+    _viewsFiles[file].file = `${file}.html`;
+}
+
+// текущий файл
+locals._activeFileData = _viewsFiles[_activeFile];
+
+
+
+
+// версии файлов
+// =============
+locals._fileVersions = {
+    favicons: {
+        append: true,
+        generate: true,
+        default: '?v=zXdXyg2vAg'
+    },
+    svgsprite: '?v=zXdXyg2vAg'
+};
+
+locals.Build = {
+    menu: function (arr) {
+        var html = [];
+        var end = '</li>';
+        var parents = [];
+        var page = _activeFileData.parent || _activeFileData.alias;
+        while (page != 'index') {
+            var cur = _viewsFiles[page];
+            parents.push(page);
+            page = cur.parent;
+        }
+
+        for (i in arr) {
+            var item = arr[i];
+            var isActive = item.url == _activeFileData.alias || parents.indexOf(item.url)!=-1;
+
+            var hasSubMenu = item.hasOwnProperty('submenu');
+            var liClass = [];
+            if (isActive) liClass.push('is-active');
+            if (hasSubMenu) liClass.push('has-subMenu');
+            liClass = liClass.length ? `class="${liClass.join(' ')}"` : '';
+            var li = `<li ${liClass}><a href="${item.url?item.url+'.html':'#'}">${item.text}</a>`;
+            if (hasSubMenu) {
+                li += `<ul>${Build.menu(item.submenu)}</ul>`
+            }
+            li += end;
+            html.push(li);
+        }
+        return html.join('\n');
+    },
+    breadcrumbs: function () {
+        var html = [];
+        html.push('</div>');
+        html.push(`<span>${_activeFileData.title}</span>`);
+        var page = _activeFileData.parent;
+        while (page) {
+            var cur = _viewsFiles[page];
+            html.push(`<span><a  href="${page}.html">${cur.title}</a></span>`);
+            page = cur.parent;
+        }
+        html.push(`<div class="breadcrumbs">`);
+        html = html.reverse();
+        return html.join('\n');
+    },
+    pagination: function (count, arrows) {
+        var html = [];
+        html.push('<div class="pagination">');
+        if (arrows) html.push('<a class="pagination__link pagination__link--prev" href="#">&lt;</a>');
+        html.push('<span class="pagination__link is-active">1</span>');
+        for (var i = 2; i <= count; i++) {
+            html.push(`<a class="pagination__link" href="#">${i}</a>`);
+        }
+        if (arrows) html.push('<a class="pagination__link pagination__link--next" href="#">&gt;</a>');
+        html.push('</div>');
+        return html.join('\n');
+    }
+}
+
+locals.Menus = {
+    top: [
+        {url: 'index', text: 'Главная'},
+        {url: 'about', text: 'О компании'},
+        {url: 'equipment', text: 'Оборудование'},
+        {url: 'business', text: 'Бизнес под ключ'},
+        {url: 'gallery_photo', text: 'Галерея'},
+        {url: 'contacts', text: 'Контакты'}
+    ],
+    gallery: [
+        {
+            text: 'Фото',
+            url: 'gallery_photo'
+        }, {
+            text: 'Видео',
+            url: 'gallery_video'
+        }
+    ],
+    about: [
+        {text: 'О нас', url: 'about'},
+        {text: 'Наша команда', url: 'about_team'},
+        {text: 'Наши партнеры',url:'about_partners'},
+        {text: 'Новости', url: 'news'},
+        {text: 'Фотогалерея', url: 'gallery_photo'},
+        {text: 'Отзывы', url: 'reviews'}
+    ],
+    equipment: [
+        {text: 'Модели приборов',url:"equipment_models",
+            submenu:[
+                {text:'Сенситив Имаго 100 / 120'},
+                {text:'Сенситив Имаго 130'},
+                {text:'Сенситив Имаго 500 / 520'},
+                {text:'Сенситив Имаго 530',url:'equipment_model'},
+                {text:'Сравнение моделей приборов'},
+                {text:'Дополнительная комплектация'}
+            ]
+        },
+        {
+            text: 'Возможности	оборудования', url: "equipment_abilities",
+            submenu: [
+                {text: 'Диагностика', url: '#'},
+                {
+                    text: 'Лечение', url: 'universal_landing',
+                    submenu: [
+                        {text: 'Частотная компенсация'},
+                        {text: 'БРТ'},
+                        {text: 'Подбор препаратов'},
+                        {text: 'Спектронозоды'}
+                    ]
+                },
+                {text: 'Антизависимость', url: '#'}
+            ]
+        },
+        {text: 'Преимущества оборудования Сенситив имаго'},
+        {text: 'Технология метода'},
+        {text: 'механизм получения информации'},
+        {text: 'программное	обеспечение'},
+        {text: 'Примеры результатов	тестирования'},
+        {text: 'статьи'},
+        {text: 'сертификаты'},
+        {text: 'гарантия'}
+    ],
+	contacts:[
+		{text:'Главный торговый офис',url:"contacts"},
+		{text:'региональные представительства',url:"contacts_regions",
+		submenu:[
+			{text:"Австралия"},
+			{text:"Барбадос"},
+			{text:"Бразилия"},
+			{text:"Венгрия"},
+			{text:"Германия"},
+			{text:"Греция"},
+			{text:"Доминиканская Республика"},
+			{text:"Египет"},
+			{text:"Канада"},
+			{text:"Китай"},
+			{text:"Кувейт"},
+			{text:"Мексика"},
+			{text:"Норвегия"},
+			{text:"ОАЭ"},
+			{text:"Панама"},
+			{text:"Перу"},
+			{text:"Саудовская Аравия"},
+			{text:"США"},
+			{text:"Тринидад и Тобаго"},
+			{text:"Турция"},
+			{text:"Уругвай"},
+			{text:"Чили"},
+			{text:"Швеция"},
+			{text:"И прочие представители"}
+		]}
+
+	]
+};
+%>
+<% include helpers/versions %>
+<% include helpers/attrs %>
+

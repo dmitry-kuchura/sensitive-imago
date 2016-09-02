@@ -1,0 +1,35 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+	<div class="pageSize">
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.equipment}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Оборудование</div>
+					<div class="grid grid--2 grid--sm-3 grid--md-2 grid--lg-3 grid--space">
+
+						<% Menus.equipment.forEach(function(el, i){ %>
+						<div class="grid__cell">
+							<a href="<%= el.url ? `${el.url}.html` : '#' %>" class="categoryLink"
+							   style="background-image: url('images/equipment<%= ++i %>.jpg');">
+								<div class="categoryLink__content categoryLink__content--bigger">
+									<div class="categoryLink__title"><p class="categoryLink__overflow"><%= el.text %></p></div>
+								</div>
+							</a>
+						</div>
+						<% }) %>
+					</div>
+
+				</section>
+			</div>
+		</div>
+
+	</div>
+</div>
+<%- partial('../widgets/devices', {'color_inverse': false}) %>

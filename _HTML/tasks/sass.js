@@ -11,6 +11,7 @@
 
 // подключение nodejs модулей
 // ==========================
+	import path from 'path';
 	import gulp from 'gulp';
 	import chalk from 'chalk';
 	import multipipe from 'multipipe';
@@ -131,11 +132,10 @@ module.exports = function(options) {
 		// vars
 		// ========
 
-			// список скомпилированных файлов
-			let receivedFilesList = [];
-
 			// флаг фильтровки
 			let isFilter = options.filter !== false;
+			// флаг конката
+			let isConcat = options.concat == true;
 
 
 
@@ -238,59 +238,108 @@ module.exports = function(options) {
 
 		// task
 		// ========
-			return gulp.src(options.src)
-				// если sasslint вкл.
-				.pipe($.if(
-					options.sasslint,
-					streamSassLint
-				))
-				// если sourcemaps вкл. - начинаем запись
-				.pipe($.if(
-					options.maps,
-					$.sourcemaps.init()
-				))
-				// компиляция
-				.pipe(streamSass)
-				// если csslint вкл.
-				.pipe($.if(
-					options.csslint,
-					streamCssLint
-				))
-				// если sourcemaps вкл. - пишем карты
-				.pipe($.if(
-					options.maps,
-					$.sourcemaps.write('/')
-				))
-				// если нужно сменить расширенние файла
-				.pipe($.if(
-					(/\.css$/ && !!options.changeExt),
-					$.rename((path) => {
-						path.extname = options.changeExt;
+			if (isConcat) {
+				var folders = options.getFolders(options.src);
+				folders.map(function (folder) {
+					let files = [];
+					console.log(folder);
+					let source = path.join(options.src, folder, '*.scss');
+					gulp.src(source)
+						.pipe(multipipe(
+								$.if(
+									options.maps,
+									$.sourcemaps.init()
+								),
+								streamSass,
+								$.wrap('\n/* <%= file.relative %>\n ================================== */\n<%= contents %>\n'),
+								$.concat(`${folder}.css`),
+								$.if(
+									options.maps,
+									$.sourcemaps.write('/')
+								)
+							).on('error', $.notify.onError(
+								_modulesParams.gulpNotifyOnError(`Stream - ${options.taskName}`))
+							)
+						)
+						.pipe($.if(
+							isFilter,
+							$.changed(
+								options.dest,
+								{
+									hasChanged: $.changed.compareSha1Digest
+								}
+							)
+						))
+						.pipe(gulp.dest(options.dest))
+						.on('data', (file) => {
+							files.push(file.relative);
+						})
+						.pipe($.if(
+							options.notify,
+							$.notify(_modulesParams.gulpNotify(options, files, 'compiled'))
+						))
+						.pipe($.if(
+							options.browserSyncReload,
+							options.browserSync.stream({
+								match: "**/*.css"
+							})
+						));
+				});
+				cb();
+
+
+
+			} else {
+
+
+				let receivedFilesList = [];
+				return gulp.src(options.src)
+					.pipe($.if(
+						options.sasslint,
+						streamSassLint
+					))
+					.pipe($.if(
+						options.maps,
+						$.sourcemaps.init()
+					))
+					.pipe(streamSass)
+					.pipe($.if(
+						options.csslint,
+						streamCssLint
+					))
+					.pipe($.if(
+						options.maps,
+						$.sourcemaps.write('/')
+					))
+					.pipe($.if(
+						(/\.css$/ && !!options.changeExt),
+						$.rename((path) => {
+							path.extname = options.changeExt;
+						})
+					))
+					.pipe($.if(
+						isFilter,
+						$.changed(
+							options.dest,
+							{
+								hasChanged: $.changed.compareSha1Digest
+							}
+						)
+					))
+					.pipe(gulp.dest(options.dest))
+					.on('data', (file) => {
+						receivedFilesList.push(file.relative);
 					})
-				))
-				// фильтровка изменений в стриме
-				.pipe($.if(
-					isFilter,
-					$.changed(
-						options.dest,
-						{
-							hasChanged: $.changed.compareSha1Digest
-						}
-					)
-				))
-				.pipe(gulp.dest(options.dest))
-				.on('data', (file) => {
-					receivedFilesList.push(file.relative);
-				})
-				.pipe($.if(
-					options.notify,
-					$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
-				))
-				.pipe($.if(
-					options.browserSyncReload,
-					options.browserSync.stream({
-						match: "**/*.css"
-					})
-				));
+					.pipe($.if(
+						options.notify,
+						$.notify(_modulesParams.gulpNotify(options, receivedFilesList, 'compiled'))
+					))
+					.pipe($.if(
+						options.browserSyncReload,
+						options.browserSync.stream({
+							match: "**/*.css"
+						})
+					));
+			}
 	};
 };

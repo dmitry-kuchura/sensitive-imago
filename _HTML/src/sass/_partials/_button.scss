@@ -1,0 +1,116 @@
+/* Button
+==================================================================================================== */
+
+// Button base
+//-------------------------------------------------------------------------------------------------- //
+
+%buttonBase {
+	display: inline-flex;
+	outline: 0;
+	text-decoration: none;
+	user-select: none;
+	cursor: pointer;
+	touch-action: manipulation;
+	align-items: center;
+	justify-content: space-around;
+	text-align: center;
+	background: transparent;
+	transition: all .2s;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// Default button
+//-------------------------------------------------------------------------------------------------- //
+.button {
+	@extend %buttonBase;
+	height: rem(34px);
+	font-size:rem(14px);
+	&:hover{
+		text-decoration: none;
+	}
+	&:active{
+		box-shadow: inset 2px 2px 2px rgba(0,0,0,.5);
+	}
+
+}
+.button--primary{
+	color: #fff;
+	background: $color-primary;
+	border:2px solid $color-primary;
+	min-width: 200px;
+	&:hover{
+		color: $color-primary;
+		background: #fff;
+	}
+}
+.button--inverse{
+	color: $color-primary;
+	background: transparent;
+	border:2px solid transparentize($color-primary,.75);
+	min-width: 200px;
+	&:hover{
+		color: #fff;
+		background: $color-primary;
+	}
+}
+.button--inverse-white{
+	color: $color-white;
+	background: transparent;
+	border:2px solid transparentize($color-white,.75);
+	min-width: 200px;
+	&:hover{
+		color: $color-primary;
+		background: $color-white;
+		border:2px solid $color-primary;
+	}
+}
+.button--expand{
+	min-width: 0px;
+	width: 100%;
+}
+.button--in-sectionFooter{
+	font-size: rem(16px);
+	height: 45px;
+	min-width: 305px;
+}
+.button--in-aside{
+	margin:rem(50px) 0 rem(60px);
+}
+.button--link{
+	background: none;
+	border: none;
+	color: $color-primary;
+	position: relative;
+	&:after{
+		content: '';
+		display: block;
+		width: 100%;
+		border-bottom:1px dashed;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(.7em);
+	}
+}
+
+.buttonsArray{
+	.button{
+		display: flex;
+	}
+}
+.button--in-header{
+	display: block;
+	width: 40px;
+	height: 40px;
+	border:1px solid $color-primary;
+	background: $color-secondary;
+	fill:#fff;
+	padding: 5px;
+
+
+	svg{
+
+	}
+}

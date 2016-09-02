@@ -1,0 +1,133 @@
+.advantage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border:1px solid #fafafa;
+	padding:rem(30px) 0;
+	transition: box-shadow .2s;
+	//height: 100%;
+
+	&__icon {
+		height: 120px;
+		width: 120px;
+		border-radius: 50%;
+		background: $color-secondary;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: rem(10px);
+		transition: box-shadow .3s;
+		margin-bottom: rem(30px);
+		svg {
+			width: 80%;
+			height: 80%;
+		}
+	}
+	&__title {
+		font-size: rem(18px);
+		text-transform: uppercase;
+		text-align: center;
+		margin-bottom: 10px;
+
+	}
+	&__text{
+		font-size: rem(12px);
+		line-height:1.5em;
+		text-align: center;
+		margin-bottom: 10px;
+		flex-grow:1;
+		color: #9a9a9a;
+		max-height: 5.8em;
+		overflow: hidden;
+	}
+	@include media(sm){
+		padding:rem(30px);
+	}
+	@include media(md){
+		.advantage{
+				&__title{
+						margin-bottom: rem(30px);
+
+					}
+				&__text{
+						margin-bottom:1.5em;
+					}
+			}
+		}
+	@include media(xl){
+		padding: 60px 50px 50px;
+
+	}
+
+	&:hover {
+		@at-root & {
+				box-shadow: 0px 20px 50px 10px rgba(13, 12, 13, 0.13);
+
+			.advantage {
+				&__icon {
+					box-shadow: 0 0 0 10px transparentize($color-primary,.8),0 0 0 3px $color-primary ;
+				}
+			}
+		}
+	}
+	&--lite{
+		&:hover{
+			background:#fff;
+		}
+		@at-root &{
+			padding: rem(32px) rem(20px) ;
+			//padding: rem(40px) rem(0) rem(50px);
+			border: none;
+			.advantage{
+				&__title{
+					font-weight: 700;
+					font-size:rem(18px);
+					color: #252525;
+					margin-bottom: 0;
+					text-transform: none !important;
+				}
+				&__text{
+					max-height: 2.8em !important;
+					overflow: hidden !important;
+					font-size: rem(16px);
+					color: #8c8c8c;
+					margin-bottom:0;
+				}
+			}
+		}
+	}
+	&--mini{
+		&:hover{
+			background:#fff;
+		}
+		@at-root &{
+			padding: rem(40px) rem(20px) rem(50px);
+			border: none;
+			.advantage{
+				&__icon{
+					background: none;
+					overflow: hidden;
+					background-position: center;
+					background-size:cover;
+					background-repeat:no-repeat;
+					box-shadow: 0 0 0 10px transparentize($color-primary,.8);
+				}
+				&__title{
+					font-weight: 700;
+					font-size:rem(14px);
+					color: #252525;
+					margin-bottom: 0;
+					text-transform: none !important;
+				}
+				&__text{
+					max-height: 2.8em !important;
+					overflow: hidden !important;
+					font-size: rem(14px);
+					color: #8c8c8c;
+					margin-bottom:0;
+				}
+			}
+		}
+	}
+}

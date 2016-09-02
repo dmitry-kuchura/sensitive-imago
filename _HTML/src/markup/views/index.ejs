@@ -1,21 +1,273 @@
 <%
-	// конфиг текущего файлы
-	locals._activeFile = _getActiveFile(filename);
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
 %>
-<% include ../config %>
+<% include ../_config %>
 <% layout('../layouts/main') %>
 
-<!-- @htmldoc
-	Это пример для документации
+<section class="pageSection">
+	<div class="pageSize bg-doctor">
+		<div class="pageSection__topText">
+			Наша компания "Альфа-Мед Украина"<br>
+			представляет медицинское оборудование последнего поколения<br>
+			<b>АПК Сенситив Имаго (HSC Sensitiv Imago)</b>
+		</div>
+		<div class="layeredBlock">
+			<div class="layeredBlock__bottom"></div>
+			<svg class="layeredBlock__arrow">
+				<use xlink:href="hidden/sprite.svg#curve_arrow"></use>
+			</svg>
+			<div class="layeredBlock__top">
+				<p class="layeredBlock__description">
+				Медицинское оборудование предназначено для неинвазивного комплексного биорезонансного обследования и
+				лечения
+				организма, а также для подбора лечения лекарственными препаратами
+				</p>
+			</div>
+		</div>
+	</div>
 
--->
-<div class="pageSize">
-	<%- partial('widgets/breadcrumbs', {
-		data: [
-			['Главная страница', 'index.html'],
-			['Категория товаров', 'index.html'],
-			['Страница товара']
-		]
-	}) %>
-	<div class="testBlock">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi facere atque provident tempore vitae cupiditate fugit explicabo delectus amet, beatae placeat porro saepe nostrum quidem. Numquam, ab? Dolor rem, nisi quibusdam veritatis nam distinctio. Impedit aspernatur ducimus soluta ad, odit nesciunt tempore adipisci quod dolorem consequatur corporis facilis placeat omnis, quis tenetur velit unde aperiam porro vero reiciendis vitae laudantium! Odit deserunt praesentium consectetur nesciunt iure. Officia nobis accusamus laborum excepturi ipsam ad, commodi officiis necessitatibus placeat voluptatem incidunt quam ipsa magni a at consequatur ullam minus nam. Alias blanditiis quaerat, perspiciatis dolorem nesciunt beatae quas distinctio nobis minima, voluptatibus esse. Incidunt libero, dicta laboriosam rerum nobis, doloribus quae placeat aperiam aliquam nam iste voluptates, cumque vitae nisi saepe mollitia sed commodi nesciunt blanditiis reprehenderit. Nisi aperiam pariatur accusamus suscipit obcaecati illo reiciendis nemo dolorem in, id, explicabo velit? Minima fugit, tempora obcaecati alias sit sunt rem inventore magni. Cumque est animi hic necessitatibus labore voluptates. Officiis quam soluta, error cumque cum perferendis. Laudantium, accusantium, nihil! Reprehenderit, ipsam culpa assumenda velit quo est quaerat enim aut natus dignissimos beatae quam, quos repellendus molestias excepturi odit omnis repudiandae provident earum dicta rem in. Quam labore, ipsum earum odit porro voluptates quas. Incidunt sequi a id quidem culpa sed. Cupiditate aliquid suscipit veritatis laboriosam quos accusamus neque porro esse voluptate adipisci deleniti cumque sapiente soluta at, modi minima velit saepe quisquam nesciunt temporibus impedit voluptatem. Laborum et similique minima quas illo quam dolore sequi rerum, cumque libero sed unde! At officiis earum, cumque adipisci libero sapiente. Quia, doloremque libero consectetur sequi quae molestiae enim assumenda vitae quaerat veritatis voluptatem earum obcaecati tempore maiores, iste eius deleniti placeat aspernatur vel quas. Deserunt incidunt deleniti consectetur nemo, vero delectus obcaecati doloribus numquam explicabo impedit sunt non quibusdam amet fugit minus mollitia libero ex inventore quidem quam fuga reprehenderit eius dolorum. Error dolore beatae itaque facilis, voluptates, voluptatem praesentium porro, delectus quam numquam dolorum ratione nulla molestias reprehenderit ut nobis, enim eveniet! Quos corrupti, tempore natus nostrum! Tenetur labore similique cupiditate dolorem quibusdam, odit doloribus illo nulla necessitatibus ducimus consequuntur unde obcaecati exercitationem alias itaque earum at eligendi suscipit perspiciatis. Sint sequi, cumque ipsa omnis earum adipisci ullam, provident eos autem sit unde reprehenderit, quia officiis beatae. Id eaque earum possimus placeat aliquid blanditiis aliquam quis, vel repellat minima neque molestias tempore adipisci architecto quasi culpa, nulla ut sapiente deserunt. Expedita mollitia fuga eaque sunt minus a quisquam, recusandae quam aut! Vitae voluptatem nesciunt tempora officia, assumenda accusamus expedita? Provident molestias, earum asperiores. Molestias adipisci dignissimos velit consequatur. Similique commodi autem corporis libero quis dignissimos, et, quo, quibusdam suscipit voluptates laboriosam vitae harum illum pariatur. Hic numquam et, corporis, in unde modi harum amet nostrum illum illo mollitia nemo aperiam accusamus eaque dolor rerum, nisi voluptatibus voluptatum sunt quisquam quo a iusto. Necessitatibus atque error qui optio voluptatem quisquam beatae, ea deleniti. Repellendus maxime nam qui atque delectus tempore commodi laudantium, facere, laboriosam dolore, harum autem sunt possimus ducimus dicta vel aut dolorem explicabo optio.</div>
-</div>
+</section>
+<section class="pageSection _bg-white">
+	<div class="pageSize" style="position: relative;">
+		<div class="sectionTitle">Основные возможности оборудования</div>
+		<div class="grid grid--space grid--1 grid--sm-2 grid--lg-3">
+			<div class="grid__cell">
+				<p><b>Диагностика у пациента:</b></p>
+				<ul class="customList">
+					<li>Заболеваний и возможных осложнений</li>
+					<li>Возбудителей заболеваний</li>
+					<li>Слабых систем организма</li>
+					<li>Всех нарушений в органах и их причин</li>
+					<li>Аллергенов, токсинов, вредных продуктов</li>
+					<li>Генетической предрасположенности</li>
+					<li>Прогноза развития заболеваний в будущем</li>
+				</ul>
+			</div>
+			<div class="grid__cell _pr-x3">
+				<p><b>Лечебные возможности:</b></p>
+				<ul class="customList">
+					<li>Индивидуальная эффективная cхема лечения препаратами</li>
+					<li>Моментальная энергетическая коррекция любой болезни</li>
+					<li>Подбор правильного питания</li>
+					<li>Общее восстановление организма</li>
+				</ul>
+			</div>
+
+		</div>
+		<img class="compatibilityImage" src="css/pic/complex.png" alt="">
+	</div>
+</section>
+<section class="pageSection _p-none pageSection--partialBg">
+	<div class="pageSize">
+		<div class="sectionTitle sectionTitle--small _color-white">
+			Смотрите видео о Сенситив Имаго
+		</div>
+		<div class="grid grid--2 grid--md-3 grid--space grid--justify-center">
+			<% var aboutVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
+			<% for (i in aboutVideos) { %>
+			<div class="grid__cell">
+				<a href="https://www.youtube.com/watch?v=<%= aboutVideos[i] %>" class="videoLink"
+				   style='background-image: url("//img.youtube.com/vi/<%= aboutVideos[i] %>/maxresdefault.jpg");'></a>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+
+</section>
+<section class="pageSection _bg-white">
+	<div class="pageSize">
+		<div class="sectionTitle">Наши приемущества</div>
+		<div class="grid grid--1 grid--sm-2 grid--md-3 grid--lg-4 grid--justify-center grid--items-stretch">
+			<%
+			var advantages = [
+				{
+					icon: 'mail',
+					title: 'Точность',
+					text: 'Комплексы Сенситив Имаго имеют подтвержденную точность диагностики до 96 %'
+				},
+				{icon: 'mail', title: 'Эффективность', text: 'Лечение большинства заболеваний человека '},
+				{icon: 'mail', title: 'Гарантия', text: 'На оборудование мы даем до 2 лет гарантии'},
+				{
+					icon: 'mail',
+					title: 'Удобство',
+					text: 'Проведение онлайн презентации возможностей оборудования, а также качественное обучение онлайн по удобному для Вас графику'
+				},
+				{icon: 'mail', title: 'Доставка', text: 'В первую неделю с момента оплаты'},
+				{
+					icon: 'mail',
+					title: 'Сертификаты',
+					text: 'Оборудование сертифицировано в Европейском Союзе и многих странах мира '
+				},
+				{icon: 'mail', title: 'Надежность', text: 'Наши клиенты нам доверяют'},
+				{icon: 'mail', title: 'Экономия', text: 'Возможность покупки в рассрочку'}
+			];
+			%>
+
+			<% advantages.forEach(function(el, i) { %>
+			<div class="grid__cell advantage">
+				<div class="advantage__icon">
+					<img src="css/pic/advantage-icon<%= parseInt(i) + 1 %>.svg" alt="">
+				</div>
+				<div class="advantage__title"><%= el.title %></div>
+				<div class="advantage__text"><%= el.text %></div>
+				<a href='#' class="button button--inverse">Подробнее</a>
+			</div>
+			<% }) %>
+		</div>
+	</div>
+
+</section>
+<section class="priceSection" style="background-image: url('css/pic/price_bg.jpg');">
+	<div class="priceSection__content">
+		<div class="priceSection__text">Медицинские комплексы Сенситив Имаго —<br>
+			диагностика и лечение всего организма человека
+		</div>
+		<span data-url="./hidden/callback.php" class="button button--primary button--in-sectionFooter js-mfp-ajax">УЗНАТЬ ПРАЙС</span>
+	</div>
+</section>
+<section class="pageSection _bg-white">
+	<div class="pageSize">
+		<div class="sectionTitle">Наша команда</div>
+		<div class="grid grid--2 grid--sm-3 grid--lg-5 grid--justify-center personal personal--graphics">
+			<% var personal = [
+				{name: 'Смирнова Татьяна', position: 'Врач'},
+				{name: 'Павленко Инна', position: 'Администратор'},
+				{name: 'Марченко Галина', position: 'Директор'},
+				{name: 'Шевченко Вита', position: 'Менеджер-переводчик'},
+				{name: 'Недилько Александр', position: 'WEB-мастер'}
+			] %>
+			<% for(i in personal){ %>
+			<div class="grid__cell person">
+				<div class="person__image"
+					 style="background-image: url('images/personal<%= parseInt(i) + 1 %>.jpg');"></div>
+				<div class="person__name"><%= personal[i].name %></div>
+				<div class="person__position"><%= personal[i].position %></div>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ ВСЕХ</a>
+		</div>
+	</div>
+</section>
+<section class="pageSection">
+	<div class="pageSize">
+		<div class="sectionTitle">Отзывы наших пользователей</div>
+		<div class="grid grid--2 grid--md-3 grid--space grid--justify-center">
+			<% var reviewsVideos = ['Im4qbR70hVY', 'Im4qbR70hVY', 'Im4qbR70hVY'] %>
+			<% for (i in reviewsVideos) { %>
+			<div class="grid__cell">
+				<a href="https://www.youtube.com/watch?v=<%= reviewsVideos[i] %>"
+				   class="videoLink"
+				   style='background-image: url("//img.youtube.com/vi/<%= reviewsVideos[i] %>/maxresdefault.jpg");'></a>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>
+<section class="pageSection _bg-white">
+	<div class="pageSize">
+		<div class="sectionTitle">Отзывы наших пациентов</div>
+		<% var reviewBlocks = [
+			{name: 'Евгений Николаевич', subtitle: 'пациент, 57 лет'},
+			{name: 'Анна Сергеевна', subtitle: 'пациент, 32 года'},
+			{name: 'Марина Александровна', subtitle: 'пациент, 20 лет'}
+		] %>
+		<div class="grid grid--1 grid--sm-2 grid--md-3 grid--justify-center textReviews textReviews--small">
+			<% for (i in reviewBlocks) { %>
+			<div class="grid__cell textReview">
+				<svg class="textReview__icon">
+					<use xlink:href="hidden/sprite.svg#quotes"></use>
+				</svg>
+				<div class="textReview__name">
+					<%= reviewBlocks[i].name %>
+				</div>
+				<div class="textReview__subtitle">
+					<%= reviewBlocks[i].subtitle %>
+				</div>
+				<div class="textReview__divider"></div>
+				<div class="textReview__text">
+					<p class="textReview__overflow">
+					Наконец то удалось выявить причину моих заболеваний: наличие бактерий Streptococcus haemolyticus и
+					Streptococcus bovis. Прибор смог показать, в каком конкретно органе и системе органов
+					</p>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>
+<section class="pageSection _bg-secondary">
+	<div class="pageSize">
+		<div class="sectionTitle sectionTitle--white">Модели приборов</div>
+		<div class="grid grid--1 grid--sm-2 grid--space-x2">
+			<% var devices = ['100/120', '500/520', '130', '530'] %>
+			<% for (i in devices) { %>
+			<div class="grid__cell mediaBlock mediaBlock--inverse">
+				<a href="#" class="mediaBlock__image" style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></a>
+				<div class="mediaBlock__content">
+					<div class="mediaBlock__title"><a href="" class="mediaBlock__overflow">Cенситив Имаго <%= devices[i] %></a></div>
+					<div class="mediaBlock__text">
+						<div class="mediaBlock__textInner">
+							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
+							комплексного
+						</div>
+					</div>
+					<span data-url="./hidden/callback.php" class="button button--inverse-white js-mfp-ajax">Узнать прайс</span>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>
+
+<section class="pageSection _bg-white">
+	<div class="pageSize">
+		<div class="sectionTitle">Свежие новости</div>
+		<div class="grid grid--1 grid--sm-2 grid--space-x2 grid--items-start">
+			<% var news = [
+				'диагностика с помощью Сенситив имаго',
+				'Доступна новая усгула',
+				'Онлайн обучение с прибором сенситив имаго',
+				'Оборудование получило золотую медаль'
+			]
+			%>
+			<% for (i in news) { %>
+			<div class="grid__cell mediaBlock">
+				<a href="#" class="mediaBlock__image" style="background-image: url('images/index_new<%= ++i %>.jpg');">
+					<div class="mediaBlock__date">
+						22
+						<small>фев</small>
+					</div>
+				</a>
+				<div class="mediaBlock__content">
+					<div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow"><%= news[i] %></a></div>
+					<div class="mediaBlock__text">
+						<div class="mediaBlock__textInner">
+							Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
+							комплексного
+						</div>
+					</div>
+					<a href="news_one.html" class="button button--inverse">Подробнее</a>
+				</div>
+			</div>
+			<% } %>
+		</div>
+		<div class="pageSection__footer">
+			<a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+		</div>
+	</div>
+</section>

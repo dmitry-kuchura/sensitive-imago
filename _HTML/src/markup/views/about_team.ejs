@@ -1,0 +1,55 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+	<div class="pageSize">
+		<% var Menu = [
+			{
+				text: 'Фото',
+				url: 'gallery_photo',
+				active: true
+			}, {
+				text: 'Видео',
+				url: 'gallery_video'
+			}
+		];
+		%>
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">наша команда - главный торговый офис</div>
+					<div class="grid grid--justify-center grid--2 grid--sm-3 grid--lg-4">
+						<% var personal = [
+							{name: 'Смирнова Татьяна', position: 'Врач'},
+							{name: 'Павленко Инна', position: 'Администратор'},
+							{name: 'Марченко Галина', position: 'Директор'},
+							{name: 'Шевченко Вита', position: 'Менеджер-переводчик'},
+							{name: 'Серая Анна', position: 'Врач'},
+							{name: 'Недилько Александр', position: 'WEB-мастер'},
+							{name: 'Волуйко Игорь', position: 'WEB-мастер'},
+							{name: 'Медяный Алексей', position: 'Менеджер-переводчик'}
+						] %>
+						<% personal.forEach(function(el, i){ %>
+						<div class="grid__cell">
+							<a href="#" class="person">
+								<div class="person__image"
+									 style="background-image: url('images/personal<%= ++i %>.jpg');"></div>
+								<div class="person__name"><%= el.name %></div>
+								<div class="person__position"><%= el.position %></div>
+							</a>
+						</div>
+						<% }) %>
+					</div>
+					<%- Build.pagination(7, true) %>
+				</section>
+			</div>
+		</div>
+
+	</div>
+</div>
+<%- partial('../widgets/devices', {'color_inverse': false}) %>

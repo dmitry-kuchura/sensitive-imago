@@ -1,0 +1,66 @@
+.personal {
+	&--graphics {
+		@include media(lg) {
+			height: 450px;
+			align-items: flex-start;
+		}
+	}
+}
+
+.person {
+	box-shadow: 0 0px 5px rgba(13, 12, 13, 0.24);
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding:rem(30px) 10px;
+	//padding: rem(60px) 0 rem(70px);
+	transition: background .2s;
+	.personal--graphics &:nth-child(odd) {
+		@include media(lg) {
+			align-self: flex-end;
+		}
+	}
+	&__image {
+		background-size: cover;
+		height: rem(140px);
+		width: rem(140px);
+		border-radius: 50%;
+		box-shadow: 0 0 0 10px transparentize($color-primary, .8);
+		margin-bottom: rem(70px);
+		transition: box-shadow .2s;
+		@include media(sm){
+		}
+	}
+	&__name {
+		color: #000;
+		text-transform: uppercase;
+		font-size: rem(15px);
+		margin-bottom: rem(25px);
+		transition: color .2s;
+		text-align: center;
+
+	}
+	&__position {
+		font-size: rem(14px);
+		color: #9a9a9a;
+		font-family: $font-secondary;
+		font-style: italic;
+		transition: color .2s;
+	}
+	&:hover {
+		@at-root & {
+			background: $color-secondary;
+			.person {
+				text-decoration: none !important;
+				&__name, &__position {
+					color: #fff;
+				}
+				&__image {
+					box-shadow: 0 0 0 10px transparentize($color-primary, .8), 0 0 0 3px $color-primary;
+				}
+			}
+		}
+
+	}
+}

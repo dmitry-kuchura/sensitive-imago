@@ -1,0 +1,91 @@
+$fontSize: $page-fontSize;
+$font: $font-primary;
+$minWidth: $page-minWidth;
+$lineHeight: $page-lineHeight;
+$color: $page-color;
+$background: $page-background;
+/* Base
+==================================================================================================== */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  display: block;
+  font-family: $font;
+  font-size: 12px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  min-width: $minWidth;
+  line-height: $lineHeight;
+  font-size: 100%;
+  color: $color;
+  background: $background;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+svg {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+  &.inverseLink {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &[href="#"] {
+
+    &:hover{
+      cursor: not-allowed;
+      color: pink;
+      text-decoration: line-through;
+    }
+  }
+}
+b{
+  color: #000;
+}
+hr{
+  margin:rem(40px) 0 rem(40px);
+  border-color: #e1e1e1;
+  border-style:solid;
+  border-width:0 0 1px 0;
+}
+@include media(sm) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@include media(md) {
+  html {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,128 @@
+.textReviews--full {
+	.textReview + .textReview {
+		margin-top: rem(35px);
+	}
+}
+
+.textReviews--small {
+	@include media(lg) {
+		height: 310px;
+		align-items: flex-start;
+	}
+}
+
+.textReview {
+	position: relative;
+	&:nth-child(odd) {
+		@include media(lg) {
+			align-self: flex-end;
+		}
+	}
+	box-shadow: 0 50px 67px rgba(13, 12, 13, 0.24);
+	background: #fff;
+	transition: background .2s;
+	&__name,
+	&__subtitle,
+	&__text,
+	&__moreLink,
+	&__place {
+		transition: color .2s;
+	}
+	&__name {
+		color: #4c4c4c;
+		padding: rem(40px) rem(100px) 0 rem(30px);
+		font-size: rem(16px);
+
+	}
+	&__subtitle {
+		font-size: rem(14px);
+		font-family: $font-secondary;
+		font-style: italic;
+		color: #9b9b9b;
+		padding: 0 rem(100px) rem(40px) rem(30px);
+	}
+	&__overflow{
+		max-height:10em;
+		overflow:hidden;
+		margin:0;
+	}
+	&__text {
+		color: #4c4c4c;
+		padding: rem(20px) rem(30px) rem(30px);
+		font-size: rem(13px);
+		line-height: rem(22px);
+		&Inner {
+			max-height: rem(22*4);
+			overflow: hidden;
+			transition: max-height .3s;
+			.is-expand & {
+				max-height: rem(22*200);
+			}
+		}
+	}
+	&__arrow{
+		margin-left:5px;
+		display: inline-block;
+		vertical-align: middle;
+		height: 9px;
+		width: 12px;
+		background: url(pic/arrow-reviews-standart.png) no-repeat center center;
+	}
+	.textReview__footer {
+		padding: rem(0) rem(40px) rem(15px);
+		display: flex;
+		justify-content: space-between;
+
+	}
+	&__icon {
+		transition: fill .2s;
+		fill: #fff;
+		position: absolute;
+		top: 35px;
+		right: 30px;
+		width: 50px;
+		height: 40px;
+	}
+	&__divider {
+		height: 2px;
+		width: 80px;
+		margin-right: auto;
+		background: $color-primary;
+	}
+	&__moreLink {
+		font-size: rem(12px);
+		text-decoration: underline;
+		color: #797979;
+	}
+	&__place {
+		color: #4c4c4c;
+		font-size: rem(12px);
+	}
+	&:hover {
+		@at-root & {
+			background: $color-secondary ;
+			.textReview {
+				&__name,
+				&__subtitle,
+				&__text,
+				&__place,
+				&__moreLink {
+					color: #fff;
+				}
+				&__arrow{
+					height: 11px;
+					width: 9px;
+					background: url(pic/arrow-reviews.png) no-repeat center center;
+				}
+				&__icon {
+					fill: $color-primary;
+				}
+				&__moreLink {
+					cursor: pointer;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+

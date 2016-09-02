@@ -1,0 +1,75 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+	<div class="pageSize">
+		<div class="grid  grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.about}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">О нас</div>
+
+					<div id="slider_else" class="slider_about">
+						<%
+						var advantages = [
+							{title: '12 лет работы', text: 'На рынке'},
+							{title: '1000+', text: 'Оздоровительных центров'},
+							{title: 'Более 65', text: 'Торговых офисов'},
+							{title: '2000+', text: 'Проданных едениц'},
+							{title: '2020+', text: 'Проданных едениц'}
+						];
+						%>
+
+						<% advantages.forEach(function(el, i){ %>
+						<div class="items_about">
+							<div class="advantage advantage--lite">
+								<div class="advantage__icon">
+									<img src="css/pic/about_<%= ++i %>.png" alt="">
+								</div>
+								<div class="advantage__title"><%= el.title %></div>
+								<div class="advantage__text"><%= el.text %></div>
+							</div>
+						</div>
+						<% }) %>
+					</div>
+					<div class="wTxt">
+						<p>Компания <b style="color:#000;">"Альфа-Мед Украина"</b> представлена на рынке уже более 12
+							лет!</p>
+						<p>В настоящее время основное поле деятельности компании – предоставление бизнес услуг – поиск
+							новых
+							партнеров в направленииоткрытия новых медицинских диагностических центров, использующих
+							передовое
+							диагностическое оборудование – аппаратно-программные комплексы Синтенсив имаго
+							аппаратно-программные
+							комплексы Синтенсив имаго сертифицированы в Украине, России, Европе, а также проходят
+							сертификацию в
+							США, Корее, Китае, Малайзии, Мексике, Бразилии аппаратно-программные комплексы Синтенсив
+							имаго
+							могут
+							применяться для решения широкого круга задач, круг областей их практического применения
+							довольно
+							широк.</p>
+						<p>Мы заинтересованы в поиске новых партнеров по всему миру. Всех заинтересованных приглашаем к
+							нам
+							в офис в Киеве на демонстрацию возможностей оборудования.</p>
+						<p>Вам будет проведена презентация работы оборудования, а также даны подробные рекомендации,
+							вручен
+							пакет информации по планированию и организации подобного медицинского диагностического
+							кабинета.Кроме того, нами открыто более 65 офисов во многих странах мира, на всех
+							континентах.</p>
+						<p><i style="color:#000;">Желаем Вам с пользой провести время!</i></p>
+					</div>
+					<div class="pageSection__footer">
+						<a href="#" class="button--in-sectionFooter button button--primary">УЗНАТЬ ПРАЙС</a>
+					</div>
+				</section>
+			</div>
+		</div>
+
+	</div>
+</div>
+<%- partial('../widgets/devices', {'color_inverse': false}) %>

@@ -1,0 +1,112 @@
+/* prism */
+
+.line-numbers-rows > span:before {
+	padding-right: 0.4em;
+}
+samp,
+:not(pre) > code,
+:not(pre) > code[class*="language-"] {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: normal;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    padding: 0 6px;
+    display: inline-block;
+	background-color: #e5dfea !important;
+    color: #000 !important;
+    text-shadow: 0 1px rgba(255,255,255,.75) !important;
+}
+:not(pre) > code *,
+:not(pre) > code[class*="language-"] * {
+	color: #000 !important;
+	background-color: #e5dfea !important;
+	/* font-weight: normal !important;
+	font-style: normal !important; */
+}
+samp {
+	background-color: #e3eadf !important;
+}
+pre[class*="language-"],
+:not(pre) > code[class*="language-"] {
+	border-radius: 0;
+	border-width: 0;
+}
+.language-hidename .prism-show-language-label {
+	display: none !important;
+}
+.language-named-git .prism-show-language-label {
+	text-transform: lowercase;
+}
+.language-named-git .prism-show-language-label:before {
+	content: 'cmd / ';
+}
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable {
+    color: #f92672;
+}
+
+.token.comment {
+	font-style: italic;
+}
+
+
+
+/* language-json */
+	.language-scss .token.variable {
+		color: #eaf926;
+	}
+
+
+
+/* language-json */
+	.language-json .token.property {
+		color: #b19eb1;
+	}
+
+
+
+/* language-javascript */
+	.language-javascript .token.interpolation,
+	.language-javascript .token.interpolation .token {
+		color: #2b98f9;
+	}
+	.language-javascript .token.keyword {
+		color: #f92672;
+	}
+	.language-javascript .token.keyword.keyword-this,
+	.language-javascript .token.keyword.keyword-const,
+	.language-javascript .token.keyword.keyword-var,
+	.language-javascript .token.keyword.keyword-let,
+	.language-javascript .token.keyword.keyword-window,
+	.language-javascript .token.keyword.keyword-document,
+	.language-javascript .token.keyword.keyword-function {
+		color: #66d9ef;
+		font-style: italic;
+	}
+	.language-javascript .token.boolean,
+	.language-javascript .token.number,
+	.language-javascript .token.keyword.keyword-undefined,
+	.language-javascript .token.keyword.keyword-null {
+		color: #ae81ff;
+	}
+
+/* language-git */
+	.language-git .token.command {
+		color: #e6db74;
+	}
+	.language-git .token.parameter {
+		color: #fff;
+	}
+	.language-git .token.command:before {
+		content: '$ ';
+		opacity: .5;
+	}

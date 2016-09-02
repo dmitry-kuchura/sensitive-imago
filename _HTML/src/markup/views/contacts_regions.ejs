@@ -1,0 +1,67 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+	<div class="pageSize ">
+		<div class="grid grid--md-nowrap">
+			<%- partial('../widgets/pageAside', {Menu: Menus.contacts}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Региональные представительства</div>
+					<div class="region">
+						<div class="region__caption categoryLink__title">Северная Америка</div>
+						<div class="region__list grid grid--3 grid--lg-4 grid--space">
+							<div class="grid__cell">
+								<a href="#" class="region__link">Канада</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Москва</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">США</a>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="region">
+						<div class="region__caption categoryLink__title">Южная Америка и Карибы</div>
+						<div class="region__list grid grid--3 grid--lg-4 grid--space">
+							<div class="grid__cell">
+								<a href="#" class="region__link">Австралия</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Барбадос</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Бразилия</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Венгрия</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Германия</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Греция</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Доминиканская Республика</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Египет</a>
+							</div>
+							<div class="grid__cell">
+								<a href="#" class="region__link">Канада</a>
+							</div>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

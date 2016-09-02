@@ -1,0 +1,30 @@
+<%
+	class Attrs {
+		// setAttrs(attrs) {
+		// 	let array = [];
+		// 	Object.keys(attrs).forEach((entry) => {
+		// 		array.push(`${entry}=${attrs[entry]}`)
+		// 	});
+		// 	return array.join(' ');
+		// }
+
+		setFaviconsVersions(markup) {
+			let links = ['<!-- Favicons -->'];
+			markup.split('\n').forEach((link) => {
+				if (!/\w+/.test(link) || /\.ico\"/.test(link)) {
+					return false;
+				}
+				if (/browserconfig\.xml\"/.test(link) || /manifest\.json\"/.test(link)) {
+					link = link.replace(/favicons\//,'');
+				}
+				/*link = link.replace(/\.(png|xml|json|svg)\"/, (str) => {
+					return `${str.slice(0,-1)}${Versions.setKey('favicons')}"`;
+				});*/
+				links.push(link);
+			});
+			return links.join('\n');
+		}
+	};
+
+	locals.Attrs = new Attrs();
+%>

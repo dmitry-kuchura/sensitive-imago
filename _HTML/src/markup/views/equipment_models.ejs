@@ -1,0 +1,84 @@
+<%
+// alias текущего файлы
+locals._activeFile = _getActiveFile(filename);
+%>
+<% include ../_config %>
+<% layout('../layouts/main') %>
+<div class="pageSection">
+	<div class="pageSize">
+		<div class="grid grid--md-nowrap">
+				<%- partial('../widgets/pageAside', {Menu: Menus.equipment}) %>
+			<div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
+				<section class=" pageCenter">
+					<%- Build.breadcrumbs() %>
+					<div class="sectionTitle sectionTitle--inner">Модели приборов</div>
+					<div class="grid grid--1 grid--sm-2  grid--lg-1 grid--xl-2 grid--space-x2">
+						<% var devices = ['100/120', '500/520', '130', '530'] %>
+						<% for (i in devices) { %>
+						<div class="grid__cell mediaBlock mediaBlockEquipment">
+							<a href="#" class="mediaBlock__image" style="background-image: url('images/model<%= devices[i].replace('/', '-') %>.jpg');"></a>
+							<div class="mediaBlock__content">
+								<div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow">Cенситив Имаго <%= devices[i] %></a></div>
+								<div class="mediaBlock__text">
+									<div class="mediaBlock__textInner">
+										Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
+										комплексного
+									</div>
+								</div>
+								<a href="<%= devices[i]=='530'?"equipment_model.html":"#" %>" class="button button--primary">Подробнее</a>
+							</div>
+						</div>
+						<% } %>
+					</div>
+
+					<hr>
+					<div class="grid grid--1 grid--sm-2 grid--space-x2">
+						<% var addBlocks = [
+							['Сравнение моделей приборов','compare'],
+							['Дополнительная комплектация','complectation']
+						]
+						%>
+						<% addBlocks.forEach(function(el,i){  %>
+						<div class="grid__cell">
+							<div class="mediaBlock mediaBlock--air">
+								<div class="mediaBlock__image"
+									 style="background-image: url('images/<%= el[1] %>.jpg');">
+
+								</div>
+								<div class="mediaBlock__content ">
+									<div class="categoryLink__title"><%= el[0] %></div>
+
+									<a href="news_one.html" class="button button--inverse">Подробнее</a>
+								</div>
+							</div>
+						</div>
+						<% }) %>
+					</div>
+					<div class="sectionTitle sectionTitle--inner _mt-x3">Медицинское оборудование сенситив имаго</div>
+					<div class="wTxt">
+						<p>Использует совершенно новую технологию при своей работе, которая основана на том факте, что
+							каждый процесс, который происходит в организме человека, каждое заболевание, каждый
+							возбудитель заболевания - все они имеют свой определенный энергетический спектр, который
+							обязательно необходим для их существования. Можно этот энергетический спектр называть
+							многими синонимами – «энергетическая шкала», «электромагнитные колебания», «электромагнитный
+							фон» и т.д.</p>
+						<p>При изучении это явления было установлено, что одинаковые процессы у различных людей имеют
+							схожие показатели электромагнитного фона, и достаточно измерить у одного человека показатель
+							какого-то заболевания, чтобы с уверенностью говорить, что этот показатель, в общем,
+							свойственен этому заболеванию.</p>
+						<p>При снятии информации с организма наше медицинское оборудование сравнивает показатели,
+							полученные с обследуемого организма, с показателями в базе данных. При совпадении двух
+							показателей (частот) происходит явление биорезонанса – увеличение амплитуды и частоты этих
+							колебаний.</p>
+						<p>При снятии информации с организма наше медицинское оборудование сравнивает показатели,
+							полученные с обследуемого организма, с показателями в базе данных. При совпадении двух
+							показателей (частот) происходит явление биорезонанса – увеличение амплитуды и частоты этих
+							колебаний.</p>
+					</div>
+				</section>
+			</div>
+		</div>
+
+	</div>
+</div>
+<%- partial('../widgets/devices', {'color_inverse': false}) %>

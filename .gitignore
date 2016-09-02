@@ -1,10 +1,5 @@
+_HTML/config.json
 *node_modules/
 *tmp/
 design/
 .idea/
-
-
-# ВРЕМЕННЫЙ ИГНОР
-# удалить по завершению этапа верстки - перед передачей на программирование
-_HTML/dist/
-_HTML/docs/

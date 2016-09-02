@@ -1,0 +1,73 @@
+@import "../_config";
+
+.mfiModal{
+  position: relative;
+  p{
+    margin:0;
+  }
+  &--md{
+    max-width:590px;
+    margin:0 auto;
+  }
+  &__header{
+    padding:36px 36px 33px;
+    background: #6395c4;
+  }
+  &__title{
+    position: relative;
+    text-align: center;
+    color: white;
+    font-family: Verdana;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 24px;
+    max-width:80%;
+    margin:0 auto 10px;
+    padding-bottom:18px;
+    &:after{
+      content:'';
+      position: absolute;
+      left:50%;
+      bottom:0;
+      margin-left:-16px;
+      width:32px;
+      height: 2px;
+      background:#fff;
+    }
+  }
+  &__subtitle{
+    color: white;
+    font-family: Arial;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 18px;
+  }
+  &__body{
+    padding:25px 36px 36px;
+    background: #fff;
+    box-shadow: inset 0 39px 48px rgba(0,0,0,0.12);
+  }
+  .button{
+    &--primary{
+      max-width:100%;
+      width: 100%;
+      height: 44px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+  label{
+    span{
+      color:#6395c4;
+    }
+  }
+  .notate_mfi{
+    font-style:italic;
+    span{
+      color:#6395c4;
+      display: inline-block;
+      vertical-align: middle;
+      padding-top: 5px;
+    }
+  }
+}

@@ -1,8 +1,9 @@
 'use strict';
 
 /**
- * ***gulpfile.babel.js*** - Основной файл описания системы сборки для менеджера задач - *Gulp 4*.
+ * ***gulpfile.babel.js*** - Основной файл описания системы сборкидля менеджера задач - *Gulp 4*.
  * Ниже представленны все данные и задачи для работы.
+ *
  *
  * @namespace 	gulp
  * @sourcefile 	file:gulpfile
@@ -14,6 +15,7 @@
 
 /**
  * Подключение nodejs модулей
+ *
  *
  * @name       	_node_modules
  * @sourcecode 	gulp:modules
@@ -44,15 +46,16 @@
 /**
  * Основная конфигурация проекта сборки
  *
+ *
  * @name       	_constants
  * @sourcecode 	gulp:constants
  * @memberof 	gulp
  * @newscope
  */
+	// имя проекта
+	const projectName = pkg.name;
 	// директория проекта
 	const projectFolder = config.localFolder;
- 	// имя проекта
-	const projectName = 'sensitive-imago';
 
 	// объект авто-вотчей
 	const watchSources = {};
@@ -63,27 +66,34 @@
 	const isProduction = !!argv.p || !!argv.prod;
 	// версия dev сборки
 	const isDevelop = !isProduction;
-	// включение нотифаеров -s --nonotify
-	const isNotify = !(!!argv.s || !!argv.nonotify);
-	// глобальный метод фильтровки
-	const globalFilterMethod = config.globalFilterMethod;
+
 	// проект адаптивный
 	const isProjectResponsive = config.isProjectResponsive;
 	// проект студии wezom
 	const isProjectWezom = config.isProjectWezom;
 
+	// минифицировать файлы при продакшн версии сборки
+	const isMinify = isProduction && config.minifyJsCssOnProduction;
+	// конкат js папок при продакшн версии сборки
+	const isConcatJs = isProduction && config.cancatJsFoldersOnProduction;
+	// конкат css папок при продакшн версии сборки
+	const isConcatCss = isProduction && config.cancatCssFoldersOnProduction;
+	// оптимизировать изображения при продакшн версии сборки
+	const isSourcemaps = isDevelop && config.sourcemapsJsCssOnDevelop;
+	// включение нотифаеров -n --notify
+	const isNotify = config.notifyAfterTaskDone || (!!argv.n || !!argv.notify);
+
+	// глобальный метод фильтровки при трансфере файлов
+	const transferFilterMethod = config.transferFilterMethod;
+	// оптимизировать изображения при продакшн версии сборки
+	const isOptimize = isProduction && config.optimizeImagesOnProduction;
+
 	// использовать browser-sync
 	const isBsUse = config.browserSync.use;
 	// авто открытие ссылки полсе инита browser-sync -o --open
 	const isBsOpenOnInit = (!!argv.o || !!argv.open) ? 'external' : false;
-	// отключение авторелоада browser-sync при изменениях -n --noreload
-	const isBsAutoReload = !(!!argv.n || !!argv.noreload);
-	// конфигурация browser-sync
-	const bsConfig = {
-		proxy: `http://${projectName}.loc/`,
-		open: isBsOpenOnInit,
-		port: 4000
-	};
+	// отключение авторелоада browser-sync при изменениях -r --noreload
+	const isBsAutoReload = !(!!argv.r || !!argv.noreload);
 	// Инициализация browser-sync
 	const BrowserSync = (cb) => {
 		if (isBsUse) {
@@ -132,10 +142,17 @@
  * @return     {Path}
  */
 	let getFolders = (dirs) => {
-		return fs.readdirSync(dirs)
+		let allFolders = fs.readdirSync(dirs)
 			.filter((file) => {
 				return fs.statSync(path.join(dirs, file)).isDirectory();
 			});
+		let folders = [];
+		allFolders.forEach((entry) => {
+			if (!/^_/.test(entry)) {
+				folders.push(entry);
+			}
+		});
+		return folders;
 	};
 
 
@@ -144,15 +161,17 @@
 
 /**
  * Метод "ленивой" загрузки и подключения задач из внутрених модулей.
- * Кроме передаваемых значений из каждой задачи, метод добавляет автоматически параметры:
+ * Кроме передаваемых значений из каждой задачи,
+ * метод добавляет автоматически параметры:
  * - `taskOptions.taskName` - имя задчи
  * - `taskOptions.isProduction` - флаг продакшн версии
  * - `taskOptions.isDevelop` - флаг dev версии
  * - `taskOptions.package` - объект данных из package.json
  * - `taskOptions.browserSyncReload` - флаг авторелоада `browser-sync`
  *
- * Также если в параметрах задачи указать свойство `watch` - автоматически добавит в глобальный объект `watchSources` ключ (имя задачи) - и значение указанное в свойстве. Для использования модулем `gulp-autowatch` в задаче `gulp watch`
- *
+ * Также если в параметрах задачи указать свойство `watch`
+ * - автоматически добавит в глобальный объект `watchSources` ключ (имя задачи) - и значение указанное в свойстве.
+ * Для использования модулем `gulp-autowatch` в задаче `gulp watch`
  *
  *
  * @sourcecode 	file:gulpfile:lazyRequireTask
@@ -193,7 +212,8 @@
 // ===========================================
 
 	/**
-	 * Объект параметров, который передаеться в `pipe` модуля `gulp-ejs-locals`, при компиляции основных файлов разметки и `hidden` файлов.
+	 * Объект параметров, который передаеться в `pipe` модуля `gulp-ejs-locals`,
+	 * при компиляции основных файлов разметки и `hidden` файлов.
 	 *
 	 * @name       	_ejsLocals
 	 * @sourcecode 	gulp:ejslocals
@@ -201,12 +221,15 @@
 	 * @newscope
 	 */
 		let _ejsLocals = {
-			_projectName: projectName,
-			_projectResponsive: isProjectResponsive,
-			_projectWezom: isProjectWezom
+			PKG: pkg,
+			IS_RESPONSIVE: isProjectResponsive,
+			IS_WEZOM: isProjectWezom,
+			IS_PRODUCTION: isProduction,
+			IS_DEVELOP: isDevelop,
+			IS_CONCAT_JS: isConcatJs,
+			IS_CONCAT_CSS: isConcatCss
 		};
 	// endcode gulp:ejslocals
-
 
 	/**
 	 * Задача компиляции основных файлов разметки.
@@ -218,7 +241,6 @@
 	 * @sourcecode 	gulp:ejs:markup
 	 * @tutorial 	compile-ejs
 	 * @see 		{@link module:tasks/ejs}
-	 * @see			[Project docs / Туториалы / Исходные файлы сборки](../html/tutorial-folder.html)
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -226,17 +248,17 @@
 			src: './src/markup/views/*.ejs',
 			dest: './dist',
 			watch: [
-				'./src/markup/addons/**/*.ejs',
-				'./src/markup/layouts/**/*.ejs',
-				'./src/markup/views/**/*.ejs',
-				'./src/markup/config.ejs'
+				'./src/markup/helpers/*.ejs',
+				'./src/markup/layouts/*.ejs',
+				'./src/markup/views/*.ejs',
+				'./src/markup/widgets/*.ejs',
+				'./src/markup/_config.ejs'
 			],
 			beautify: isProduction,
 			locals: _ejsLocals,
 			notify: isNotify
 		});
 	// endcode gulp:ejs:markup
-
 
 	/**
 	 * Задача компиляции `hidden` файлов и переименование в `.php`.
@@ -248,7 +270,6 @@
 	 * @sourcecode 	gulp:ejs:hidden:php
 	 * @tutorial 	compile-ejs
 	 * @see 		{@link module:tasks/ejs}
-	 * @see			[Project docs / Туториалы / Исходные файлы сборки / директория hidden](../html/tutorial-folder-hidden.html)
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
@@ -264,33 +285,6 @@
 			notify: isNotify
 		});
 	// endcode gulp:ejs:hidden:php
-
-
-	/**
-	 * Трансфер дополнительных, статических, файлов.
-	 * ```git
-	 * gulp ejs:hidden:static
-	 * ```
-	 *
-	 * @name 		ejs:hidden:static
-	 * @sourcecode 	gulp:ejs:hidden:static
-	 * @tutorial 	compile-transfer
-	 * @see 		{@link module:tasks/transfer}
-	 * @see			[Project docs / Туториалы / Исходные файлы сборки / директория hidden](../html/tutorial-folder-hidden.html)
-	 * @memberof 	gulp
-	 * @newscope 	gulp
-	 */
-		lazyRequireTask('ejs:hidden:static', './tasks/transfer', {
-			src: './src/markup/hidden/**/*.!(ejs)',
-			dest: './dist/hidden',
-			watch: [
-				'./src/markup/hidden/**/*.!(ejs)'
-			],
-			filter: globalFilterMethod,
-			notify: isNotify
-		});
-	// endcode gulp:ejs:hidden:static
-
 
 	/**
 	 * Очистка всех скомпилорованных `.html` файлов и директории `hidden`
@@ -312,7 +306,6 @@
 		});
 	// endcode gulp:ejs:clean
 
-
 	/**
 	 * Комплексная задача для компиляции `ejs`
 	 * ```git
@@ -329,12 +322,10 @@
 		gulp.task('ejs',
 			gulp.series(
 				'ejs:markup',
-				'ejs:hidden',
-				'ejs:hidden:static'
+				'ejs:hidden'
 			)
 		);
 	// endcode gulp:ejs:series
-
 
 	/**
 	 * Комплексная задача пересборки `ejs`.
@@ -365,64 +356,85 @@
 // ===========================================
 
 	/**
-	 * Задача компиляции основных, `*.js` файлов разроботки.
-	 * Как правило используется для файлов разроботки или сторонних библиотек которые, нужно склеить вместе или внести правки.
-	 * Все сторонние файлы должны лежaть в директории `vendor`.
+	 * Задача составления основных `*.js` файлов.
 	 * ```git
-	 * gulp js:dynamics
+	 * gulp js:files
 	 * ```
 	 *
-	 * @name 		js:dynamics
-	 * @sourcecode 	gulp:js:dynamics
+	 * @name 		js:files
+	 * @sourcecode 	gulp:js:files
 	 * @tutorial 	compile-js
 	 * @see 		{@link module:tasks/js}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:dynamics', './tasks/js', {
-			src: './src/js/dynamics/*.js',
-			dest: './dist/js',
-			watch: [
-				'./src/js/dynamics/*.js'
-			],
-			maps: isDevelop,
-			min: isProduction,
-			filter: false,
-			eslint: isLinting,
-			notify: isNotify,
-		});
-	// endcode gulp:js:dynamics
+		// lazyRequireTask('js:files', './tasks/js', {
+		// 	src: './src/js/*.js',
+		// 	dest: './dist/js',
+		// 	watch: [
+		// 		'./src/js/*.js',
+		// 		'./src/js/_partials/**/*.js'
+		// 	],
+		// 	maps: isSourcemaps,
+		// 	min: isMinify,
+		// 	eslint: isLinting,
+		// 	notify: isNotify,
+		// });
+	// endcode gulp:js:files
+
+	/**
+	 * Задача составления `*.js` файлов из директорий.
+	 * ```git
+	 * gulp js:folders
+	 * ```
+	 *
+	 * @name 		js:folders
+	 * @sourcecode 	gulp:js:folders
+	 * @tutorial 	compile-js
+	 * @see 		{@link module:tasks/js}
+	 * @memberof 	gulp
+	 * @newscope 	gulp
+	 */
+		// lazyRequireTask('js:folders', './tasks/js', {
+		// 	src: './src/js/!(_*)**/*.js',
+		// 	dest: './dist/js',
+		// 	watch: [
+		// 		'./src/js/!(_*)**/**/*.js'
+		// 	],
+		// 	maps: isSourcemaps,
+		// 	min: isMinify,
+		// 	eslint: false,
+		// 	notify: isNotify,
+		// });
+	// endcode gulp:js:folders
 
 
 	/**
-	 * Задача компиляции, ***внешних***, `*.js` файлов c конкатом по директориям.
-	 * Как правило используется для сторонних библиотек которые нужно склеить вместе.
+	 * Задача конката `*.js` файлов в директориях.
 	 * ```git
-	 * gulp js:vendor
+	 * gulp js:concat
 	 * ```
 	 *
-	 * @name 		js:vendor
-	 * @sourcecode 	gulp:js:vendor
+	 * @name 		js:concat
+	 * @sourcecode 	gulp:js:concat
 	 * @tutorial 	compile-js
 	 * @see 		{@link module:tasks/js}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:vendor', './tasks/js', {
-			src: './src/js/dynamics/vendor/',
-			dest: './dist/js/vendor',
-			watch: [
-				'./src/js/dynamics/vendor/**/*.js'
-			],
-			concat: true,
-			maps: isDevelop,
-			min: isProduction,
-			filter: false,
-			eslint: false,
-			notify: isNotify,
-		});
-	// endcode gulp:js:vendor
-
+		// lazyRequireTask('js:concat', './tasks/js', {
+		// 	src: './src/js/',
+		// 	dest: './dist/js',
+		// 	watch: [
+		// 		'./src/js/!(_*)**/**/*.js'
+		// 	],
+		// 	concat: true,
+		// 	maps: isSourcemaps,
+		// 	min: isMinify,
+		// 	eslint: false,
+		// 	notify: isNotify,
+		// });
+	// endcode gulp:js:concat
 
 	/**
 	 * Задача компиляции инлайновых (critical) скриптов.
@@ -438,44 +450,18 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:criticals', './tasks/js', {
-			src: './src/js/criticals/**/*.js',
-			dest: './src/markup/views/criticals/js',
-			watch: [
-				'./src/js/criticals/**/*.js'
-			],
-			maps: false,
-			min: true,
-			changeExt: '.ejs',
-			eslint: isLinting,
-			notify: isNotify,
-		});
+		// lazyRequireTask('js:criticals', './tasks/js', {
+		// 	src: './src/js/_criticals/*.js',
+		// 	dest: './src/markup/partials/criticals-js',
+		// 	watch: [
+		// 		'./src/js/_criticals/*.js'
+		// 	],
+		// 	min: true,
+		// 	changeExt: '.ejs',
+		// 	eslint: isLinting,
+		// 	notify: isNotify,
+		// });
 	// endcode gulp:js:criticals
-
-
-	/**
-	 * Трансфер дополнительных, статических, файлов.
-	 * ```git
-	 * gulp js:statics
-	 * ```
-	 *
-	 * @name 		js:statics
-	 * @sourcecode 	gulp:js:statics
-	 * @tutorial 	compile-transfer
-	 * @see 		{@link module:tasks/transfer}
-	 * @memberof 	gulp
-	 * @newscope 	gulp
-	 */
-		lazyRequireTask('js:statics', './tasks/transfer', {
-			src: './src/js/statics/**/*.*',
-			dest: './dist/js',
-			filter: globalFilterMethod,
-			watch: [
-				'./src/js/statics/**/*.*'
-			],
-			notify: isNotify
-		});
-	// endcode gulp:js:statics
 
 
 	/**
@@ -494,14 +480,14 @@
 	 */
 		lazyRequireTask('modernizr:scan', './tasks/js', {
 			src: [
-				'./dist/js/*.js',
-				'./dist/css/*.css',
-				'./src/markup/views/criticals/css/*.ejs',
-				'./src/markup/views/criticals/js/*.ej'
+				'./dist/js/init.js',
+				'./dist/css/style.css',
+				'./src/markup/_partials/criticals-css/*.ejs',
+				'./src/markup/_partials/criticals-js/*.ejs'
 			],
-			dest: './dist/js/vendor',
+			dest: './dist/js/',
 			maps: false,
-			min: isProduction,
+			min: isMinify,
 			modernizr: true,
 			modernizrConfig: {
 				options: [
@@ -512,7 +498,6 @@
 					'checked'
 				]
 			},
-			filter: false,
 			notify: isNotify
 		});
 	// endcode gulp:modernizr:scan
@@ -533,13 +518,9 @@
 	 * @newscope 	gulp
 	 */
 		lazyRequireTask('modernizr:addtests', './tasks/transfer', {
-			src: './src/js/addons/modernizr-tests/**/*.js',
+			src: './tasks/modernizr-tests/**/*.js',
 			dest: './node_modules/modernizr/feature-detects',
-			watch: [
-				'./src/js/addons/modernizr-tests/**/*.js'
-			],
-			imagemin: false,
-			filter: globalFilterMethod,
+			filter: transferFilterMethod,
 			notify: isNotify
 		});
 	// endcode gulp:modernizr:addtests
@@ -557,17 +538,16 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('js:clean', './tasks/clean', {
-			src: [
-				'./dist',
-				'./src/markup/views/criticals/js'
-			]
-		});
+		// lazyRequireTask('js:clean', './tasks/clean', {
+		// 	src: [
+		// 		'./dist/js'
+		// 	]
+		// });
 	// endcode gulp:js:clean
 
 
 	/**
-	 * Комплексная задача трансфера дополнительных файлов и компилция `.js` файлов (внешних и инлайновых).
+	 * Комплексная задача компиляции `.js` файлов (внешних и инлайновых).
 	 * ```git
 	 * gulp js
 	 * ```
@@ -578,14 +558,16 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		gulp.task('js',
-			gulp.series(
-				'js:dynamics',
-				'js:vendor',
-				'js:criticals',
-				'js:statics'
-			)
-		);
+	 	let _jsSeries = [
+			'js:files',
+			'js:criticals'
+	 	];
+	 	if (isConcatJs) {
+	 		_jsSeries.unshift('js:concat');
+	 	} else {
+	 		_jsSeries.unshift('js:folders');
+	 	}
+		// gulp.task('js', gulp.series(..._jsSeries));
 	// endcode gulp:js:series
 
 
@@ -602,13 +584,13 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		gulp.task('js:rebuild',
-			gulp.series(
-				'js:clean',
-				'js',
-				'modernizr:scan'
-			)
-		);
+		// gulp.task('js:rebuild',
+		// 	gulp.series(
+		// 		'js:clean',
+		// 		'js',
+		// 		'modernizr:scan'
+		// 	)
+		// );
 	// endcode gulp:js:rebuild
 
 
@@ -619,35 +601,88 @@
 // ===========================================
 
 	/**
-	 * Задача компиляции основных, ***внешних***, `*.css` файлов из `*.scss`.
-	 * Как правило используется для файлов разроботки или сторонних библиотек которые, нужно склеить вместе или внести правки.
-	 * Все сторонние файлы должны лежaть в директории `vendor`.
+	 * Задача компиляции основных `*.css` файлов из `*.scss`.
 	 * ```git
-	 * gulp sass:dynamics
+	 * gulp sass:files
 	 * ```
 	 *
-	 * @name 		sass:dynamics
-	 * @sourcecode 	gulp:sass:dynamics
+	 * @name 		sass:files
+	 * @sourcecode 	gulp:sass:files
 	 * @tutorial 	compile-sass
 	 * @see 		{@link module:tasks/sass}
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		lazyRequireTask('sass:dynamics', './tasks/sass', {
-			src: './src/sass/dynamics/**/*.scss',
+		lazyRequireTask('sass:files', './tasks/sass', {
+			src: './src/sass/*.scss',
 			dest: './dist/css',
-			maps: isDevelop,
-			min: isProduction,
 			watch: [
-				'./src/sass/config.scss',
-				'./src/sass/addons/**/*.scss',
-				'./src/sass/dynamics/**/*.scss'
+				'./src/sass/*.scss',
+				'./src/sass/_mixins/**/*.scss',
+				'./src/sass/_partials/**/*.scss'
 			],
+			maps: isSourcemaps,
+			min: isMinify,
 			notify: isNotify,
 			sasslint: isLinting,
 			csslint: isLinting
 		});
-	// endcode gulp:sass:dynamics
+	// endcode gulp:sass:files
+
+	/**
+	 * Задача Задача составления `*.css` файлов из директорий.
+	 * ```git
+	 * gulp sass:folders
+	 * ```
+	 *
+	 * @name 		sass:folders
+	 * @sourcecode 	gulp:sass:folders
+	 * @tutorial 	compile-sass
+	 * @see 		{@link module:tasks/sass}
+	 * @memberof 	gulp
+	 * @newscope 	gulp
+	 */
+		lazyRequireTask('sass:folders', './tasks/sass', {
+			src: './src/sass/!(_*)**/*.scss',
+			dest: './dist/css',
+			watch: [
+				'./src/sass/!(_*)**/**/*.scss'
+			],
+			maps: isSourcemaps,
+			min: isMinify,
+			notify: isNotify,
+			sasslint: false,
+			csslint: false
+		});
+	// endcode gulp:sass:folders
+
+	/**
+	 * Задача конката `*.css` файлов в директориях.
+	 * ```git
+	 * gulp sass:concat
+	 * ```
+	 *
+	 * @name 		sass:concat
+	 * @sourcecode 	gulp:sass:concat
+	 * @tutorial 	compile-sass
+	 * @see 		{@link module:tasks/sass}
+	 * @memberof 	gulp
+	 * @newscope 	gulp
+	 */
+		lazyRequireTask('sass:concat', './tasks/sass', {
+			src: './src/sass/',
+			dest: './dist/css',
+			watch: [
+				'./src/sass/!(_*)**/**/*.scss'
+			],
+			concat: true,
+			maps: isSourcemaps,
+			min: isMinify,
+			notify: isNotify,
+			sasslint: false,
+			csslint: false
+		});
+	// endcode gulp:sass:concat
 
 
 	/**
@@ -665,47 +700,19 @@
 	 * @newscope 	gulp
 	 */
 		lazyRequireTask('sass:criticals', './tasks/sass', {
-			src: './src/sass/criticals/**/*.scss',
-			dest: './src/markup/views/criticals/css',
+			src: './src/sass/_criticals/*.scss',
+			dest: './src/markup/partials/criticals-css',
+			watch: [
+				'./src/sass/_criticals/*.scss'
+			],
+			changeExt: '.ejs',
 			maps: false,
 			min: true,
-			changeExt: '.ejs',
-			watch: [
-				'./src/sass/config.scss',
-				'./src/sass/addons/**/*.scss',
-				'./src/sass/criticals/**/*.scss'
-			],
 			notify: isNotify,
 			sasslint: isLinting,
 			csslint: isLinting
 		});
 	// endcode gulp:sass:criticals
-
-
-	/**
-	 * Трансфер дополнительных, статических, файлов.
-	 * ```git
-	 * gulp sass:statics
-	 * ```
-	 *
-	 * @name 		sass:statics
-	 * @sourcecode 	gulp:sass:statics
-	 * @tutorial 	compile-transfer
-	 * @see 		{@link module:tasks/transfer}
-	 * @memberof 	gulp
-	 * @newscope 	gulp
-	 */
-		lazyRequireTask('sass:statics', './tasks/transfer', {
-			src: './src/sass/statics/**/*.*',
-			dest: './dist/css',
-			watch: [
-				'./src/sass/statics/**/*.*'
-			],
-			imagemin: isProduction,
-			filter: globalFilterMethod,
-			notify: isNotify
-		});
-	// endcode gulp:sass:statics
 
 
 	/**
@@ -722,15 +729,14 @@
 	 */
 		lazyRequireTask('sass:clean', './tasks/clean', {
 			src: [
-				'./dist/css',
-				'./src/markup/views/criticals/css'
+				'./dist/css'
 			]
 		});
 	// endcode gulp:sass:clean
 
 
 	/**
-	 * Комплексная задача трансфера дополнительных файлов и компилция `.sass` файлов (внешних и инлайновых).
+	 * Комплексная задача компилция `.sass` файлов (внешних и инлайновых).
 	 * ```git
 	 * gulp sass
 	 * ```
@@ -741,13 +747,16 @@
 	 * @memberof 	gulp
 	 * @newscope 	gulp
 	 */
-		gulp.task('sass',
-			gulp.series(
-				'sass:dynamics',
-				'sass:criticals',
-				'sass:statics'
-			)
-		);
+	 	let _cssSeries = [
+			'sass:files',
+			'sass:criticals'
+	 	];
+	 	if (isConcatCss) {
+	 		_cssSeries.unshift('sass:concat');
+	 	} else {
+	 		_cssSeries.unshift('sass:folders');
+	 	}
+		gulp.task('sass', gulp.series(..._cssSeries));
 	// endcode gulp:sass:series
 
 
@@ -767,8 +776,8 @@
 		gulp.task('sass:rebuild',
 			gulp.series(
 				'sass:clean',
-				'sass',
-				'modernizr:scan'
+				'sass'
+				//'modernizr:scan'
 			)
 		);
 	// endcode gulp:sass:rebuild
@@ -777,150 +786,131 @@
 
 
 
-// Трансферы
+// Statics
 // ===========================================
 
-	// images
-	// ============
 		/**
-		 * Трансфер контентовых изображений. Оптимизациия изображений - при `production` сборке
+		 * Трансфер статических файлов
 		 * ```git
-		 * gulp images
+		 * gulp statics
 		 * ```
 		 *
-		 * @name 		images
-		 * @sourcecode 	gulp:images:series
+		 * @name 		statics
+		 * @sourcecode 	gulp:statics:series
 		 * @tutorial 	compile-transfer
 		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
-			lazyRequireTask('images', './tasks/transfer', {
-				src: './src/images/**/*.*',
-				dest: './dist/images',
-				filter: globalFilterMethod,
-				imagemin: isProduction,
+			lazyRequireTask('statics', './tasks/transfer', {
+				src: './src/statics/**/*.*',
+				dest: './dist',
+				filter: transferFilterMethod,
+				imagemin: isOptimize,
 				watch: [
-					'./src/images/**/*.*'
+					'./src/statics/**/*.*'
 				],
 				notify: isNotify
 			});
-		// endcode gulp:images:series
-
-
-		/**
-		 * Очистка директории контентовых изображений.
-		 * ```git
-		 * gulp images:clean
-		 * ```
-		 *
-		 * @name 		images:clean
-		 * @sourcecode 	gulp:images:clean
-		 * @see 		{@link module:tasks/clean}
-		 * @memberof 	gulp
-		 * @newscope 	gulp
-		 */
-			lazyRequireTask('images:clean', './tasks/clean', {
-				src: './dist/images'
-			});
-		// endcode gulp:images:clean
-
+		// endcode gulp:statics:series
 
 		/**
-		 * Комплексная задача пересборки контентовых изображений.
-		 * Сначала очищаем итоговые файлы и собераем заново.
+		 * Трансфер Favicons системных
 		 * ```git
-		 * gulp images:rebuild
+		 * gulp favicons:files
 		 * ```
 		 *
-		 * @name 		images:rebuild
-		 * @sourcecode 	gulp:images:rebuild
+		 * @name 		favicons:files
+		 * @sourcecode 	gulp:favicons:files
 		 * @tutorial 	compile-transfer
+		 * @see 		{@link module:tasks/transfer}
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
-			gulp.task('images:rebuild',
-				gulp.series(
-					'images:clean',
-					'images'
-				)
-			);
-		// endcode gulp:images:rebuild
-
-
-
-	// favicons
-	// ============
+			lazyRequireTask('favicons:files', './tasks/transfer', {
+				src: './src/favicons/*.{ico,xml,json}',
+				dest: './dist',
+				filter: transferFilterMethod,
+				watch: [
+					'./src/favicons/*.{ico,xml,json}'
+				],
+				notify: isNotify
+			});
+		// endcode gulp:favicons:files
 
 		/**
-		 * Трансфер всех фавиконок и дополнительных файлов
+		 * Трансфер Favicons изображений
+		 * ```git
+		 * gulp favicons:icons
+		 * ```
+		 *
+		 * @name 		favicons:icons
+		 * @sourcecode 	gulp:favicons:icons
+		 * @tutorial 	compile-transfer
+		 * @see 		{@link module:tasks/transfer}
+		 * @memberof 	gulp
+		 * @newscope 	gulp
+		 */
+			lazyRequireTask('favicons:icons', './tasks/transfer', {
+				src: './src/favicons/*.{png,svg}',
+				dest: './dist/favicons',
+				filter: transferFilterMethod,
+				watch: [
+					'./src/favicons/*.{png,svg}'
+				],
+				notify: isNotify
+			});
+		// endcode gulp:favicons:icons
+
+
+		/**
+		 * Комплексная переброски трансфера favicons.
 		 * ```git
 		 * gulp favicons
 		 * ```
 		 *
 		 * @name 		favicons
 		 * @sourcecode 	gulp:favicons:series
-		 * @tutorial 	compile-transfer
-		 * @see 		{@link module:tasks/transfer}
+		 * @tutorial 	compile-favicons
 		 * @memberof 	gulp
 		 * @newscope 	gulp
 		 */
-			lazyRequireTask('favicons', './tasks/transfer', {
-				src: './src/favicons/**/*.*',
-				dest: './dist',
-				watch: [
-					'./src/favicons/**/*.*'
-				],
-				imagemin: false,
-				filter: globalFilterMethod,
-				notify: isNotify
-			});
-		// endcode gulp:favicons:series
-
-
-		/**
-		 * Очистка всех фавиконок и дополнительных файлов
-		 * ```git
-		 * gulp favicons:clean
-		 * ```
-		 *
-		 * @name 		favicons:clean
-		 * @sourcecode 	gulp:favicons:clean
-		 * @see 		{@link module:tasks/clean}
-		 * @memberof 	gulp
-		 * @newscope 	gulp
-		 */
-			lazyRequireTask('favicons:clean', './tasks/clean', {
-				src: [
-					'./dist/favicons',
-					'./dist/favicon.ico',
-					'./dist/manifest.json',
-					'./dist/browserconfig.xml'
-				]
-			});
-		// endcode gulp:favicons:clean
-
-
-		/**
-		 * Комплексная задача пересборки всех фавиконок и дополнительных файлов.
-		 * Сначала очищаем итоговые файлы и собераем заново.
-		 * ```git
-		 * gulp favicons:rebuild
-		 * ```
-		 *
-		 * @name 		favicons:rebuild
-		 * @sourcecode 	gulp:favicons:rebuild
-		 * @tutorial 	compile-transfer
-		 * @memberof 	gulp
-		 * @newscope 	gulp
-		 */
-			gulp.task('favicons:rebuild',
+			gulp.task('favicons',
 				gulp.series(
-					'favicons:clean',
-					'favicons'
+					'favicons:icons',
+					'favicons:files'
 				)
 			);
-		// endcode gulp:favicons:rebuild
+		// endcode gulp:sass:series
+
+
+
+
+
+// SvgSprite
+// ===========================================
+
+		/**
+		 * Трансфер статических файлов
+		 * ```git
+		 * gulp svg:jsons
+		 * ```
+		 *
+		 * @name 		svg:jsons
+		 * @sourcecode 	gulp:svg:jsons
+		 * @see 		{@link module:tasks/svgsprite}
+		 * @memberof 	gulp
+		 * @newscope 	gulp
+		 */
+			lazyRequireTask('svg:jsons', './tasks/svgsprite', {
+				src: './src/svgsprite/jsons/*.json',
+				dest: './dist/hidden',
+				watch: [
+					'./src/svgsprite/jsons/*.json'
+				],
+				notify: isNotify
+			});
+		// endcode gulp:svg:jsons
 
 
 
@@ -958,6 +948,7 @@
 
 
 
+
 // Задачи документации
 // ===========================================
 
@@ -983,12 +974,9 @@
 					'undefined': 'Без группы'
 				},
 				src: [
-					'./src/sass/config.scss',
-					'./src/sass/addons/functions/**/*.scss',
-					'./src/sass/addons/mixins/**/*.scss',
-					'./src/sass/addons/partials/**/*.scss',
-					'./src/sass/dynamics/**/*.scss',
-					'./src/sass/criticals/**/*.scss'
+					'./src/sass/*.scss',
+					'./src/sass/_**/*.scss',
+					'!./src/sass/_libs/*.scss'
 				]
 			});
 		// endcode gulp:docs:sass:doc
@@ -1032,7 +1020,7 @@
 			lazyRequireTask('docs:sass:assets', './tasks/transfer', {
 				src: './tutorials/sass/assets/**/*.*',
 				dest: './docs/sass/assets',
-				filter: globalFilterMethod,
+				filter: 'newer',
 				notify: isNotify,
 				notifyIsShort: true
 			});
@@ -1102,6 +1090,7 @@
 					'./tutorials/gulp-index.md',
 					'./tasks/*.js',
 					'./tasks/jsdoc-theme/plugins/*.js',
+					'./tasks/modernizr-tests/*.js',
 					'./gulpfile.babel.js'
 				]
 			});
@@ -1124,7 +1113,7 @@
 			lazyRequireTask('docs:jsdoc:gulp:assets', './tasks/transfer', {
 				src: './tutorials/gulp/assets/**/*.*',
 				dest: './docs/gulp/assets',
-				filter: globalFilterMethod,
+				filter: 'newer',
 				notify: isNotify,
 				notifyIsShort: true
 			});
@@ -1192,9 +1181,9 @@
 				dest: './docs/js',
 				src: [
 					'./tutorials/js-index.md',
-					'./src/js/addons/modernizr-tests/**/*.js',
-					'./src/js/dynamics/*.js',
-					'./src/js/criticals/**/*.js'
+					'./src/js/*.js',
+					'./src/js/_**/*.js',
+					'!./src/js/_libs/*.js'
 				]
 			});
 		// endcode gulp:docs:jsdoc:js
@@ -1216,7 +1205,7 @@
 			lazyRequireTask('docs:jsdoc:js:assets', './tasks/transfer', {
 				src: './tutorials/js/assets/**/*.*',
 				dest: './docs/js/assets',
-				filter: globalFilterMethod,
+				filter: 'newer',
 				notify: isNotify,
 				notifyIsShort: true
 			});
@@ -1311,7 +1300,7 @@
 			lazyRequireTask('docs:html:assets', './tasks/transfer', {
 				src: './tutorials/html/assets/**/*.*',
 				dest: './docs/html/assets',
-				filter: globalFilterMethod,
+				filter: 'newer',
 				notify: isNotify,
 				notifyIsShort: true
 			});
@@ -1377,7 +1366,7 @@
 			lazyRequireTask('docs:assets', './tasks/transfer', {
 				src: './tasks/_docs-assets/**/*.*',
 				dest: './docs/_assets',
-				filter: globalFilterMethod,
+				filter: 'newer',
 				notify: isNotify,
 				notifyIsShort: true
 			});
@@ -1431,8 +1420,8 @@
 		lazyRequireTask('clean', './tasks/clean', {
 			src: [
 				'./dist',
-				'./src/markup/views/criticals/js',
-				'./src/markup/views/criticals/css'
+				'./src/markup/partials/criticals-js',
+				'./src/markup/partials/criticals-css'
 			]
 		});
 	// endcode gulp:clean:all
@@ -1453,10 +1442,10 @@
 			gulp.series(
 				'clean',
 				'sass',
-				'js',
-				'images',
+				// 'js',
+				'statics',
+				// 'modernizr:scan',
 				'favicons',
-				'modernizr:scan',
 				'ejs'
 			)
 		);
