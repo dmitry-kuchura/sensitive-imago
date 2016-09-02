@@ -1,0 +1,64 @@
+.enterReg_top.no_bg::after {
+    background: #fff none repeat scroll 0 0!important;
+}
+button.eIns {
+    background-position: -118px 0!important;
+}
+#uLogin button {
+    background: rgba(0, 0, 0, 0) url("../../pic/social-sprite.png") no-repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 6px;
+    display: inline-block;
+    height: 24px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 24px;
+    margin-right: 3px;
+}
+
+#uLogin button.vkontakte, .socLinkEnter button.vkontakte {
+    background-position: 0 0;
+}
+#uLogin button.odnoklassniki, .socLinkEnter button.odnoklassniki {
+    background-position: -59px 0;
+}
+#uLogin button.instagram, .socLinkEnter button.instagram {
+    background-position: -118px 0 !important;
+}
+#uLogin button.facebook, .socLinkEnter button.facebook {
+    background-position: -177px 0;
+}
+a.products-filter__x-btn {
+    text-decoration: none;
+}
+.product__table-data a {
+    color: #ed0677;
+    font-weight: bold;
+}
+.pagination .curr {
+    box-shadow: none;
+    background-color: #ed0677;
+    color: #fff;
+    text-decoration: none;
+}
+
+.basket__sum.simple {
+    color: #000;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.searchQuery {
+    font-size: 32px;
+    line-height: 32px;
+    font-weight: bold;
+    color: #ed0677;
+}
+.searchCount {
+    color: #000;
+    font-size: 16px;
+    line-height: 32px;
+    border-bottom: 1px solid #ed0677;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}

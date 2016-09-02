@@ -3,3 +3,11 @@ _HTML/config.json
 *tmp/
 design/
 .idea/
+
+# Programming
+
+Config/database.php
+Media/images/*
+Media/mailfiles/*
+nbproject/*
+nbproject/*

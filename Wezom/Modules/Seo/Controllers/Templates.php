@@ -1,0 +1,66 @@
+<?php
+    namespace Wezom\Modules\Seo\Controllers;
+
+    use Core\Route;
+    use Core\Widgets;
+    use Core\View;
+    use Core\Message;
+    use Core\HTTP;
+    use Core\Arr;
+
+    use Wezom\Modules\Seo\Models\Templates AS Model;
+
+    class Templates extends \Wezom\Modules\Base {
+        
+        public $tpl_folder = 'Seo/Templates';
+
+        function before() {
+            parent::before();
+            $this->_seo['h1'] = __('СЕО шаблоны');
+            $this->_seo['title'] = __('СЕО шаблоны');
+            $this->setBreadcrumbs(__('СЕО шаблоны'), 'wezom/seo_templates/index');
+        }
+
+        function indexAction () {
+            $result = Model::getRows(NULL, 'id', 'DESC');
+            $this->_filter = Widgets::get( 'Filter_Pages' );
+            $this->_toolbar = Widgets::get( 'Toolbar_List', array( 'delete' => 1 ) );
+            $this->_content = View::tpl(
+                array(
+                    'result'        => $result,
+                    'tpl_folder'    => $this->tpl_folder,
+                    'tablename'     => Model::$table,
+                ), $this->tpl_folder.'/Index');
+        }
+
+        function editAction () {
+            if ($_POST) {
+                $post = $_POST['FORM'];
+                $res = Model::update($post, Route::param('id'));
+                if($res) {
+                    Message::GetMessage(1, __('Вы успешно изменили данные!'));
+                    if(Arr::get($_POST, 'button', 'save') == 'save-close') {
+                        HTTP::redirect('wezom/seo_templates/index');
+                    } else {
+                        HTTP::redirect('wezom/seo_templates/edit/'.Route::param('id'));
+                    }
+                } else {
+                    Message::GetMessage(0, __('Не удалось изменить данные!'));
+                }
+                $result     = Arr::to_object($post);
+            } else {
+                $result = Model::getRow(Route::param('id'));
+            }
+            $this->_toolbar = Widgets::get( 'Toolbar_Edit', array('list_link' => '/wezom/seo_templates/index', 'noAdd' => true) );
+            $this->_seo['h1'] = __('Редактирование');
+            $this->_seo['title'] = __('Редактирование');
+            $this->setBreadcrumbs(__('Редактирование'), 'wezom/seo_templates/edit/'.Route::param('id'));
+            $this->_content = View::tpl(
+                array(
+                    'obj' => $result,
+                    'tpl_folder' => $this->tpl_folder,
+                    'languages' => $this->_languages,
+                ), $this->tpl_folder.'/Form');
+        }
+        
+    } 

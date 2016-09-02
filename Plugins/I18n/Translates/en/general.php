@@ -1,0 +1,23 @@
+<?php
+	return array(
+		'Подробнее' => 'More',
+		'Связаться' => 'Connect with us',
+		'О компании' => 'About company',
+		'Все права защищены' => 'All rights reserved',
+		'Студия Wezom' => 'Studio Wezom',
+		'Меня зовут' => 'My name is',
+		'связаться с нами' => 'connect with us',
+		'Отдел по работе с клиентами' => 'Customer service department',
+		'Телефоны' => 'Phones',
+		'Поделиться' => 'Share',
+		'Новости' => 'News',
+		'Актуально' => 'Actual',
+		'Предыдущая новость' => 'Previous news',
+		'Следующая новость' => 'Next news',
+		'Наши работы' => 'Our projects',
+		'Реализованные проекты' => 'Completed projects',
+		'Услуги' => 'Services',
+		'Наши компетенции' => 'Our competence',
+		'Предыдущий проект' => 'Previous project',
+		'Следующий проект' => 'Next project',
+	);
