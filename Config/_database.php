@@ -1,4 +1,3 @@
-
 <?php
 
 return [
@@ -17,10 +16,10 @@ return [
              *
              * Ports and sockets may be appended to the hostname.
              */
-            'hostname' => '91.206.30.13',
-            'database' => 'beatus_db',
-            'username' => 'beatus_db',
-            'password' => '6D3k0N3w',
+            'hostname' => 'localhost',
+            'database' => 'sensitive',
+            'username' => 'root',
+            'password' => '',
             'persistent' => false,
         ],
         'table_prefix' => '',

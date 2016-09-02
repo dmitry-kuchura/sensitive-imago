@@ -24,29 +24,24 @@
                     </div>
                     <div class="dropdown__content dropdown__content--wide dropdown__content--right">
                         <div class="languageLinks">
-                            <a href="#" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-spa.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-spa.jpg');"></div>
                                 <span class="languageLink__text">spa</span>
                             </a>
-                            <a href="#" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-fra.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>" class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-fra.jpg');"></div>
                                 <span class="languageLink__text">fra</span>
                             </a>
-                            <a href="#" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-ru.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-ru.jpg');"></div>
                                 <span class="languageLink__text">ru</span>
                             </a>
-                            <a href="#" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-eng.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('en'); ?>" class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-eng.jpg');"></div>
                                 <span class="languageLink__text">eng</span>
                             </a>
-                            <a href="#" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-deu.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('de'); ?>" class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-deu.jpg');"></div>
                                 <span class="languageLink__text">deu</span>
                             </a>
                         </div>
@@ -82,8 +77,9 @@
                                 <use xlink:href="hidden/sprite.svg#mail"></use>
                                 </svg>
                             </div>
-                            <div class="contactItem__value"><a
-                                    href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information" data-information="elsead">XXXXXX</span>@gmail.com</a></div>
+                            <div class="contactItem__value">
+                                <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information" data-information="elsead">XXXXXX</span>@gmail.com</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,29 +112,24 @@
                     </div>
                     <div class="grid__cell">
                         <div class="languageLinks">
-                            <a href="#" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-spa.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink">
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-spa.jpg'); ?>');"></div>
                                 <span class="languageLink__text">spa</span>
                             </a>
-                            <a href="#" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-fra.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('fr'); ?>" class="languageLink">
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-fra.jpg'); ?>');"></div>
                                 <span class="languageLink__text">fra</span>
                             </a>
-                            <a href="#" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-ru.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>" class="languageLink">
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-ru.jpg'); ?>');"></div>
                                 <span class="languageLink__text">ru</span>
                             </a>
-                            <a href="#" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-eng.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('en'); ?>" class="languageLink">
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-eng.jpg'); ?>');"></div>
                                 <span class="languageLink__text">eng</span>
                             </a>
-                            <a href="#" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('css/pic/flag-deu.jpg');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('de'); ?>" class="languageLink">
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-deu.jpg'); ?>');"></div>
                                 <span class="languageLink__text">deu</span>
                             </a>
                         </div>
@@ -181,7 +172,8 @@
                                         <div class="contactItem__value">
                                             <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information" data-information="12-34">XX-XX</span></a>
                                             <br>
-                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information" data-information="12-34">XX-XX</span></a></div>
+                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information" data-information="12-34">XX-XX</span></a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="grid__cell">
