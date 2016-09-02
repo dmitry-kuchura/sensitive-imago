@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Gulp docs Туториал: Работа с JSDoc3</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<link type="text/css" rel="stylesheet" href="../_assets/styles/jsdoc.theme.wezom-ru.css">
+	<link type="text/css" rel="stylesheet" href="../_assets/styles/prism.css">
+	<link type="text/css" rel="stylesheet" href="../_assets/styles/roboto-fonts.css">
+	<link type="text/css" rel="stylesheet" href="../_assets/styles/jsdoc.theme.override.css">
+	<link type="text/css" rel="stylesheet" href="../_assets/styles/prism.override.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Gulp docs</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			
+				<li class="dropdown">
+					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Пространства имен <b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li><a href="gulp.html">gulp</a></li><li><a href="modernizrTests.html">modernizrTests</a></li>
+					</ul>
+				</li>
+			
+				<li class="dropdown">
+					<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Модули <b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li><a href="module-tasks__extract-media-mq.html">tasks/_extract-media-mq</a></li><li><a href="module-tasks__helpers.html">tasks/_helpers</a></li><li><a href="module-tasks__modules-params.html">tasks/_modules-params</a></li><li><a href="module-tasks_clean.html">tasks/clean</a></li><li><a href="module-tasks_ejs.html">tasks/ejs</a></li><li><a href="module-tasks_htmldoc.html">tasks/htmldoc</a></li><li><a href="module-tasks_js.html">tasks/js</a></li><li><a href="module-tasks_jsdoc.html">tasks/jsdoc</a></li><li><a href="module-tasks_jsdoc-theme_plugins_defineTags.html">tasks/jsdoc-theme/plugins/defineTags</a></li><li><a href="module-tasks_sass.html">tasks/sass</a></li><li><a href="module-tasks_sassdoc.html">tasks/sassdoc</a></li><li><a href="module-tasks_sassdoc-materials.html">tasks/sassdoc-materials</a></li><li><a href="module-tasks_svgsprite.html">tasks/svgsprite</a></li><li><a href="module-tasks_transfer.html">tasks/transfer</a></li><li><a href="module-tasks_upload.html">tasks/upload</a></li>
+					</ul>
+				</li>
+			
+				<li class="dropdown">
+					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Классы <b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li><a href="module-tasks__helpers-Helpers.html">tasks/_helpers~Helpers</a></li><li><a href="module-tasks__modules-params-modulesParams.html">tasks/_modules-params~modulesParams</a></li>
+					</ul>
+				</li>
+			
+				<li class="dropdown">
+					<a href="tutorials.list.html" class="dropdown-toggle" data-toggle="dropdown">Туториалы <b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li><a href="tutorial-all-folders.html">Структура директорий</a></li><li><a href="tutorial-all-tasks.html">Список основных gulp задач</a></li><li><a href="tutorial-compile-ejs.html">Компиляция разметки</a></li><li><a href="tutorial-compile-js.html">Компиляция скриптов</a></li><li><a href="tutorial-compile-sass.html">Компиляция стилей</a></li><li><a href="tutorial-compile-transfer.html">Трансфер файлов</a></li><li><a href="tutorial-docs-gulp.html">Документация GULP сборки</a></li><li><a href="tutorial-docs-htmldoc.html">Документация HTML файлов</a></li><li><a href="tutorial-docs-js.html">Документация JS файлов</a></li><li><a href="tutorial-docs-sass.html">Документация SASS файлов</a></li><li><a href="tutorial-workwith-gulp-jsdoc3.html">Работа с JSDoc3</a></li><li><a href="tutorial--_tutorial-example.html">Заготовка для создания туториала</a></li>
+					</ul>
+				</li>
+			
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+					<ul class="dropdown-menu ">
+						<li><a href="global.html#getFolders">getFolders</a></li>
+					</ul>
+				</li>
+			
+		</ul>
+		<div class="col-sm-3 col-md-3">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+	</div>
+
+</div>
+</div>
+
+
+<div class="container">
+<div class="row">
+
+
+	<div id="toc"></div>
+	<div class="page-wrapper">
+		<div class="page-nav">&nbsp;</div>
+		<div id="toc-content" class="page-content">
+			<div id="main">
+				<section class="tutorial-section">
+
+<header>
+
+    <h2>Работа с JSDoc3</h2>
+
+	<!-- <div class="breadcrumbs">
+		<span><a href="index.html"><?//js= (_lang('Home', 'Главная'))?></a></span>
+		<span><?//js= header ?></span>
+	</div> -->
+
+    
+</header>
+<article class="tutorial-article"><h3>Основная документация</h2>
+
+<p><a href="http://usejsdoc.org" target="_blank">http://usejsdoc.org</a></p>
+
+
+<h3>Локализация с поснениями</h2>
+
+<p><a href="http://verstka.vps.kherson.ua/tpls/jsdoc3.html" target="_blank">http://verstka.vps.kherson.ua/tpls/jsdoc3.html</a></p>
+
+<h3 id="tag-addons">Дополнительные теги в JSDoc3</h2>
+<p>Общему набору тегов <code>jsdoc</code> можно добавлять собственные теги (смотри <a href="http://usejsdoc.org/about-plugins.html" target="_blank">usejsdoc.org/about-plugins.html</a>).</p>
+<p>Далее описаны дополнительные теги для использования, которые были добавлены (смотри <a href="module-tasks_jsdoc-theme_plugins_defineTags.html">tasks/jsdoc-theme/plugins/defineTags</a>)</p>
+
+
+
+
+<br>
+<h4 id="tag-modulelocal">@moduleLocal</h4>
+<p>Доклет который указывает, что данный модуль написан разработчиком, используеться для модулей, которые экспорттируют задачи. Результатом применения будет отфорамтированный блок с описанием вариантов подключения данного модуля</p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * @moduleLocal
+*/
+module.exports = function(options) {
+	...
+}
+</code></pre>
+<em>Результат:</em>
+<div class="name" id="module:tasks/transfer"><span class="type-signature"></span><div class="moduleName"><small>require</small><br><b>const</b> {moduleName} = require("./tasks/transfer")(options);<br><small>es6 import</small><br><b>import</b> {moduleImportName} <b>from</b> "./tasks/transfer";<br><b>const</b> {moduleName} = {moduleImportName}(options);</div></div>
+
+
+
+
+
+<br>
+<br>
+<h4 id="tag-modulenoes6import">@moduleNoES6Import</h4>
+<p>Если ваш не модуль не поддерживайт import по стандарту es6 - вместе с тегом <code>@moduleLocal</code> укажите <code>@moduleNoES6Import</code></p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * @moduleLocal
+ * @moduleNoES6Import
+*/
+module.exports = function(options) {
+	...
+}
+</code></pre>
+<em>Результат:</em>
+<div class="name" id="module:tasks/sassdoc"><span class="type-signature"></span><div class="moduleName"><small>require</small><br><b>const</b> {moduleName} = require("./tasks/sassdoc")(options);</div></div>
+
+
+<br>
+<br>
+<h4 id="tag-lineno">@lineno</h4>
+<p>Прунудительное определение и вывод номера строки на которой начинаеться документируемый код (не комментарий). <br>Удобно использовать вместе c тегом <code>@todo</code>, чтобы сразу указать на какой строке искать нужный код</p>
+
+<em>Пример:</em>
+<pre class="line-numbers" data-start="137"><code class="language-javascript">
+/**
+ * @lineno
+ * @todo	Write the documentation.
+ * @todo	Implement this function.
+*/
+function foo() {
+    // write me
+}
+</code></pre>
+<br>
+<em>Результат:</em>
+<br>
+<br>
+<div class="font-bold">Строка - <samp>&nbsp;142&nbsp;</samp></div>
+<div class="font-bold">To Do:</div>
+<ul>
+	<li>Write the documentation.</li>
+	<li>Implement this function.</li>
+</ul>
+
+
+
+
+<br>
+<br>
+<br>
+<h4 id="tag-sourcefile">@sourcefile</h4>
+<p>Запоминание полного контента документируемого файла. Можно использовать при написании туториалов, когда нужно показать исходный код всего файла. Вместо того чтобы копировать в туториал код и каждый раз менять его при внесении правок в файл оригинала.</p>
+<p>Необходимо указать значение для тега по схеме <samp>сущностьДоклета:имяПапки:имяФайла</samp>, после чего можна использовать в туториалах при помощи записи шаблонизатора <br><code>&lt;?sourcefile= file:tasks:jsdoc ?&gt;</code>.</p>
+<p>Результатом будет элемент <code>&lt;pre></code> внутри которого будет весь код вашего файла и при внесении правок в основном файле они будут показаны и в описании</p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+'use strict';
+
+
+/**
+ * @module tasks/clean
+ * @sourcefile file:tasks:clean
+*/
+
+...
+</code></pre>
+<pre class="line-numbers"><code class="language-markup">
+&lt;p>... Ниже рассмотрим исходный код файла:&lt;/p>
+&lt;?sourcefile= file:tasks:clean ?&gt;
+&lt;p>Дальше другое описание ...&lt;/p>
+</code></pre>
+<br>
+<em>Результат:</em>
+<p>... Ниже рассмотрим исходный код файла:</p>
+
+<p>Дальше другое описание ...</p>
+
+
+
+<br>
+<br>
+<h4 id="tag-sourcecode">@sourcecode</h4>
+<p>Запоминание блока контента документируемого js кода. Суть приминения схожа с тегом <code>@sourcefile</code>, за исключением того что при указании данного тега, даже без значения, выведет исходный код на странице документации на ряду с таблицами параметров и других характеристик.</p>
+<p>Если вы хотите чтобы при демонстрации кода также билы отображены комментарии, которые использовались, - в значении нужно указать флаг <code>-c</code>. В качестве значение можно еще указать привязку к файлу по схеме <samp>сущностьДоклета:имяПапки:имяФайла</samp>. Это позволит в дальнейшем использовать данный блок в туториалах.</p>
+
+<em>Пример:</em>
+<pre class="line-numbers"><code class="language-javascript">
+/**
+ * @sourcecode	code:tasks:clean -c
+*/
+module.exports = function(options) {
+	...
+}
+</code></pre>
+<pre class="line-numbers"><code class="language-markup">
+&lt;p>... Ниже рассмотрим исходный код модуля:&lt;/p>
+&lt;?sourcefile= code:tasks:clean ?&gt;
+&lt;p>Дальше другое описание ...&lt;/p>
+</code></pre>
+<br>
+<em>Результат:</em>
+<p>... Ниже рассмотрим исходный код модуля:</p>
+<pre data-start="25"><code class="language-javascript">/**
+ * Модуль очистки (удаления) указанной директории или файлов.
+ * Для экспорта модуля в задачу используеться метод lazyRequireTask.
+ * В параметрах задачи ( `src` ) необходимо указать путь к директории или файлам которые нужно удалить.
+ * - При успешном выполнении вы получите лог уведомление в терминале (если не выключен флаг `log`). Если указанный источник не будет обнаружен - вы получите сообщение `[URL] - not exist`
+ * - При ошибке удаления - в терминале будет уведомление, с описанием ошибки. Такой результат будет считаться критическим поэтому node процесс будет остановлен.
+ *
+ *
+ *
+ * @sourcecode	code:tasks:clean -c
+ *
+ * @requires   	<a href="https://www.npmjs.com/package/del">https://www.npmjs.com/package/del</a>
+ * @requires   	<a href="https://www.npmjs.com/package/path">https://www.npmjs.com/package/path</a>
+ * @requires   	module:tasks/_helpers
+ *
+ * @param		{Object}		options - передаваемые параметры
+ * @param		{string}		options.taskName - имя вызывающей задачи, *задаеться автоматически*
+ * @param		{boolean}		options.isDevelop - флаг dev версии сборки, *задаеться автоматически*
+ * @param		{boolean}		options.isProduction - флаг production версии сборки, *задаеться автоматически*
+ * @param		{Object}		options.package - данные из `package.json`, *задаеться автоматически*
+ * @param		{string|Array}	options.src - путь к директории или файлам которые нужно удалить
+ * @param		{boolean}		[options.log=true] - флаг вывода лог уведомления при успешном действии
+ *
+ * @return 		{Promise}
+*/
+module.exports = function(options) {
+
+	// возврашаем функцию для задачи
+	return function(cb) {
+
+		// возвращаем Promise
+		return del(options.src)
+			// после выполнения
+			.then(
+				paths => {
+					// если log не отключен
+					if (options.log !== false) {
+						// если источник не найден заменяем текст
+						if (paths && paths.length === 0) {
+							paths = `${options.src} - not exist`;
+						}
+						// выводим уведомление
+						_helpers.logMsg(paths, 'del');
+					}
+				},
+
+				error => {
+					// выводим ошибку (критическую)
+					_helpers.logError(error, true);
+				}
+			);
+	};
+}</code></pre>
+<p>Дальше другое описание ...</p>
+</article>
+
+</section>
+
+				<br>
+				<br>
+				<hr>
+				<h2>Предложения и баги</h2>
+				<blockquote>
+					<p>Все обнаруженные баги, проблемы, фиксы, а также предложения по <strong><em>Стартовому шаблону</em></strong> - отписывать в трекере основного репозитория шаблона. Четко, аргументировано и развернуто.</p>
+					<p><a href="https://bitbucket.org/wezom/wtpl/issues" target="_blank">https://bitbucket.org/wezom/wtpl/issues</a></p>
+				</blockquote>
+			</div>
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+</div>
+</div>
+
+<div class="modal fade" id="searchResults">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+        	Результат поиска
+        </h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+        	Закрыть
+        </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Документация сгенерирована модулем
+	<a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	 
+		September 2nd 2016 -
+	
+	на основе
+	<a href="https://github.com/docstrap/docstrap">DocStrap template</a>
+	и пользовательских дополнений v1.0.0
+</span>
+</footer>
+
+<script src="../_assets/scripts/jsdoc.theme.docstrap.lib.js"></script>
+<script src="../_assets/scripts/jsdoc.theme.toc.js"></script>
+<script src="../_assets/scripts/jsdoc.theme.fulltext-search-ui.js"></script>
+<script src="../_assets/scripts/clipboard.min.js"></script>
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	var $tutorialAnchors = $(".tutorial-section [id]");
+	if ($tutorialAnchors.length) {
+		$tutorialAnchors.each(function(index, el) {
+			var $el = $(el);
+			console.log($el);
+		});
+	}
+
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+		var $this = $(this);
+		var example = $this.find( "code" );
+
+		if (!example.hasClass('language-git')) {
+			$this.addClass('line-numbers');
+		}
+
+		if (example.hasClass('language-hide')) {
+			$this.wrap('<div class="language-hidename"></div>');
+		}
+		else if (example.hasClass('language-git')) {
+			$this.wrap('<div class="language-named-git"></div>');
+		}
+	} );
+
+	$("article pre").each( function () {
+		var $this = $(this);
+		$this.wrap('<div class="prism-block"></div>');
+		$this.before($('<div class="js-clipboard clipboard"></div>'));
+	});
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+
+	$( "#tut-nav" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+		},
+		selectors   : "#tut-content h1,#tut-content h2,#tut-content h3,#tut-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+	$( "#toc" ).prepend('<span class="list-group-item toggle-nav-button js-toggle-nav" style="text-align: right; cursor: pointer;"><span class="toc-h1">nav</span></span>')
+
+	$('.list-group .list-group-item').each(function(index, el) {
+		var $el = $(el);
+		$el.attr('title', $el.text());
+	});
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+    $('.js-clipboard').each(function(index, el) {
+		var code = $(el).siblings('pre').children('code');
+		if (code.length) {
+			new Clipboard(el, {
+				target: function() {
+					return code[0];
+				}
+			});
+		}
+	});
+
+	$(document).on('click', '.js-toggle-nav', function(event) {
+		event.preventDefault();
+		var $thisToggle = $(this);
+		var $navToggle = $thisToggle.next();
+		$navToggle.stop().slideToggle(200, function() {
+			var classDo = 'addClass';
+			if ($navToggle.is(':visible')) {
+				classDo ='removeClass';
+			}
+			$thisToggle[classDo]('is-hidden-nav');
+		});
+	});
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+<script>
+	$( function () {
+		$( '#main' ).localScroll( {
+			offset : { top : 60 } //offset by the height of your header (give or take a few px, see what works for you)
+		} );
+		$( "dt.name" ).each( function () {
+			var $this = $( this ).find("h4");
+			var icon = $( "<i/>" ).addClass( "icon-plus-sign" ).addClass( "pull-right" ).addClass( "icon-white" );
+			var dt = $(this);
+			var children = dt.next( "dd" );
+
+			dt.prepend( icon ).css( {cursor : "pointer"} );
+			dt.addClass( "member-collapsed" ).addClass( "member" );
+
+
+			children.hide();
+
+			dt.children().on( "click", function () {
+				children = dt.next( "dd" );
+				children.stop().slideToggle( "fast", function () {
+
+					if ( children.is( ":visible" ) ) {
+						icon.addClass( "icon-minus-sign" ).removeClass( "icon-plus-sign" ).removeClass( "icon-white" );
+						dt.addClass( "member-open" ).animate( "member-collapsed" );
+					} else {
+						icon.addClass( "icon-plus-sign" ).removeClass( "icon-minus-sign" ).addClass( "icon-white" );
+						dt.addClass( "member-collapsed" ).removeClass( "member-open" );
+					}
+				} );
+			} );
+
+		} );
+	} );
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		SearcherDisplay.init();
+	});
+</script>
+<script src="../_assets/scripts/prism.js"></script>
+
+</body>
+</html>

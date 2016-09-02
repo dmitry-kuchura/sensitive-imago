@@ -1,0 +1,34 @@
+<svg id="advantage-icon4.svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="79" height="67" viewBox="0 0 79 67">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #6395c4;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="1368" y="2007" width="79" height="67" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dx="-2.868" dy="4.096" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="2.828"/>
+      <feFlood result="flood" flood-color="#0d0c0d"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path class="cls-1" d="M1392.05,2025.16h19.3a6.084,6.084,0,0,1,10.67,0h4.93a2.083,2.083,0,0,1,2.05,2.1v10.53a2.077,2.077,0,0,1-2.05,2.1h-34.9a2.077,2.077,0,0,1-2.05-2.1v-10.53A2.083,2.083,0,0,1,1392.05,2025.16Zm18.78,1.05h-18.78a1.037,1.037,0,0,0-1.02,1.05v10.53a1.037,1.037,0,0,0,1.02,1.05h34.9a1.037,1.037,0,0,0,1.02-1.05v-10.53a1.037,1.037,0,0,0-1.02-1.05h-4.47a7.075,7.075,0,0,1,.36,2.11,6.157,6.157,0,1,1-12.31,0A7.371,7.371,0,0,1,1410.83,2026.21Zm-15.19,14.74a0.525,0.525,0,0,1,0,1.05h-3.07a0.525,0.525,0,0,1,0-1.05h3.07Zm-1.53-12.11h9.75a0.525,0.525,0,0,1,0,1.05h-9.75A0.525,0.525,0,0,1,1394.11,2028.84Zm0,3.16h9.75a0.525,0.525,0,0,1,0,1.05h-9.75A0.525,0.525,0,0,1,1394.11,2032Zm0,3.16h9.75a0.525,0.525,0,0,1,0,1.05h-9.75A0.525,0.525,0,0,1,1394.11,2035.16Zm22.57-1.58a5.267,5.267,0,1,0-5.13-5.26A5.216,5.216,0,0,0,1416.68,2033.58Zm0-8.42a3.156,3.156,0,1,1-3.07,3.16A3.125,3.125,0,0,1,1416.68,2025.16Zm0,5.26a2.106,2.106,0,1,0-2.05-2.1A2.092,2.092,0,0,0,1416.68,2030.42Zm9.75,10.53a0.525,0.525,0,0,1,0,1.05h-3.07a0.525,0.525,0,0,1,0-1.05h3.07Zm-1.02-12.63a0.525,0.525,0,0,1,0,1.05A0.525,0.525,0,0,1,1425.41,2028.32Z" transform="translate(-1368 -2007)"/>
+  <g style="fill: none; filter: url(#filter)">
+    <path id="path" class="cls-2" d="M1378,2010h64v41.96h-64V2010Zm41.07,42.17,0.79-.43,5.41,9.82-0.79.43Zm-18.05-.38,0.84,0.28-4.43,9.29-0.98-.41Z" transform="translate(-1368 -2007)" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+  <use xlink:href="#path" style="stroke: #fff; filter: none; fill: none"/>
+  <circle class="cls-3" cx="49" cy="21" r="7"/>
+</svg>

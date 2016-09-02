@@ -1,0 +1,34 @@
+<svg id="advantage-icon1.svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74" height="57" viewBox="0 0 74 57">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #6395c4;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: even;
+		stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke: #fff;
+        stroke-width: 1px;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="494" y="2024" width="52" height="48" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dx="-2.868" dy="4.096" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="2.828"/>
+      <feFlood result="flood" flood-color="#0d0c0d"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path class="cls-1" d="M508.522,2038.54c-2.047,3.55-4.109,7.12-6.164,10.68l-6.3,10.91a0.546,0.546,0,0,1-.449.22,0.347,0.347,0,0,1-.1-0.01,0.411,0.411,0,0,1-.388-0.37v-42.63q-2.5,4.8-5,9.59-2.965,5.67-5.923,11.37a0.521,0.521,0,0,1-.457.24H472.488a0.4,0.4,0,1,1,0-.77h10.923c1.931-3.72,3.869-7.42,5.8-11.13q2.978-5.685,5.946-11.4a0.52,0.52,0,0,1,.551-0.23,0.412,0.412,0,0,1,.395.37v42.8c1.783-3.08,3.566-6.18,5.357-9.27,2.1-3.64,4.21-7.28,6.3-10.91m-0.076.31,0.576-.5,5.357,6.14-0.576.51Zm5.935,6.15-0.581-.5,4.592-5.38,0.581,0.5Zm4.056-5.34,0.49-.59,4.592,3.84-0.49.6Zm5.143,3.78-0.612-.46,2.295-3.07,0.613,0.46Z" transform="translate(-472 -2015)"/>
+  <g style="fill: #fff; filter: url(#filter)">
+    <path id="Forma_1" data-name="Forma 1" class="cls-2" d="M540.733,2058.82l-11.274-9.09a13.916,13.916,0,0,0,2.917-10.36,14.142,14.142,0,1,0-3.8,11.38l11.3,9.11a0.688,0.688,0,0,0,.51.15,0.716,0.716,0,0,0,.444-0.24A0.673,0.673,0,0,0,540.733,2058.82Zm-20.94-5.11a12.746,12.746,0,1,1,11.236-14.18A12.879,12.879,0,0,1,519.793,2053.71Z" transform="translate(-472 -2015)" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+  <use xlink:href="#Forma_1" style="stroke: #fff; filter: none; fill: #fff"/>
+  <circle id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-3" cx="46.015" cy="26" r="7.015"/>
+</svg>

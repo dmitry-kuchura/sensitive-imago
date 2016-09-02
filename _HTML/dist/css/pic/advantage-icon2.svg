@@ -1,0 +1,27 @@
+<svg id="advantage-image2.svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="73" height="71" viewBox="0 0 73 71">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        filter: url(#filter);
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #6395c4;
+      }
+    </style>
+    <filter id="filter" x="775" y="2006" width="73" height="71" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dx="-2.868" dy="4.096" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="2.828"/>
+      <feFlood result="flood" flood-color="#0d0c0d"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path id="Rectangle_13_copy" data-name="Rectangle 13 copy" class="cls-1" d="M784.993,2009h1.978v54.99h-1.978V2009ZM843,2063v2.01H785.006V2063H843Z" transform="translate(-775 -2006)"/>
+  <path class="cls-2" d="M835.99,2015a7.985,7.985,0,1,1-8.01,7.98A7.993,7.993,0,0,1,835.99,2015ZM821.5,2029a3.5,3.5,0,1,1-3.5,3.5A3.5,3.5,0,0,1,821.5,2029Zm-23,2a3.5,3.5,0,1,1-3.5,3.5A3.5,3.5,0,0,1,798.5,2031Zm0,15a3.5,3.5,0,1,1-3.5,3.5A3.5,3.5,0,0,1,798.5,2046Zm9-9a3.5,3.5,0,1,1-3.5,3.5A3.5,3.5,0,0,1,807.5,2037Zm14,7a3.5,3.5,0,1,1-3.5,3.5A3.5,3.5,0,0,1,821.5,2044Zm12-9a3.5,3.5,0,1,1-3.5,3.5A3.5,3.5,0,0,1,833.5,2035Zm-25-13a3.5,3.5,0,1,1-3.5,3.5A3.5,3.5,0,0,1,808.5,2022Zm-10.19,12.39-0.624-.78,10-8,0.624,0.78Zm11.436-7.96,0.5-.86,12,7-0.5.86Zm12.552,5.97-0.6-.8,8-6,0.6,0.8Zm-24.947,18.95-0.707-.7,10-10,0.707,0.7Zm11.37-10.93,0.554-.84,12,8-0.554.84Zm13.582,7.98-0.61-.8,13-10,0.61,0.8Z" transform="translate(-775 -2006)"/>
+</svg>

@@ -1,0 +1,355 @@
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+body {
+	min-width: 980px;
+}
+dt {
+	font-weight: normal;
+	font-style: italic;
+}
+blockquote {
+	position: relative;
+    font-size: 17px;
+	padding: 12px 20px;
+    background: #f9f9f9;
+	box-sizing: content-box;
+    border-left: 5px solid #ddd;
+}
+._align-center {
+	text-align: center;
+}
+._align-left {
+	text-align: left;
+}
+._align-right {
+	text-align: right;
+}
+._align-justify {
+	text-align: justify;
+}
+img.alpha {
+	border: 1px solid #444;
+	background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwP/wAALCAAQABABAREA/8QAFgABAQEAAAAAAAAAAAAAAAAACQAK/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQAAPwDfwGdGYf/Z)
+}
+/* .tutorial-article {
+	min-height: 700px;
+} */
+.tutorial-article hr {
+	margin-top: 2.4em;
+	margin-bottom: 3.2em;
+}
+.tutorial-article h1,
+.tutorial-article .h1,
+.tutorial-article h2,
+.tutorial-article .h2,
+.tutorial-article h3,
+.tutorial-article .h3 {
+    margin-top: 1.7em;
+}
+.font-bold {
+	font-weight: bold;
+}
+h4.font-bold,
+h5.font-bold {
+	margin: 1.5em 0 6px;
+}
+dt > .name {
+	margin-bottom: 1em;
+}
+dt > .name:not(div) {
+	background-color: #eee;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+h4.font-bold + table,
+h5.font-bold + table {
+	margin-top: 1em;
+}
+.moduleName {
+	padding: 10px 15px 10px 25px;
+	font-style: normal !important;
+	font-size: 16px;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	background-color: #e5dfea;
+    color: #000;
+    text-shadow: 0 1px rgba(255,255,255,.75);
+    margin-bottom: 1.2em;
+}
+.moduleName small {
+	opacity: .8;
+	margin-left: -8px;
+	font-size: inherit;
+	color: inherit;
+	font-style: italic;
+}
+h1, .h1 {
+	font-weight: 700;
+}
+h2, .h2 {
+	font-weight: 300;
+}
+h4, .h4 {
+	font-size: 18px;
+}
+table, .table {
+	box-shadow: 0 3px 10px #bbb;
+    margin: 0 0 14px;
+}
+table table,
+.table .table {
+	margin: 0;
+	box-shadow: 0 2px 6px #bbb;
+}
+table > thead > tr > th {
+	padding-top: 10px !important;
+}
+.member {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.member.member-open {
+	background-color: #eee;
+}
+.member h4 {
+	margin: 5px 0;
+}
+.member dl {
+	margin-bottom: 14px;
+}
+.member + dd {
+	border-bottom: 1px solid transparent;
+}
+.method-subparams-label {
+	font-style: italic;
+}
+:not(pre) > code[class*="language-"] {
+	padding: 0 6px;
+    display: inline-block;
+}
+.page-nav {
+	float: right;
+	width: 300px;
+}
+
+.page-content {
+	margin-right: 420px;
+}
+
+#toc {
+	right: auto;
+	max-height: calc(100% - 142px);
+	left: 50%;
+	width: 400px;
+}
+
+@media (max-width: 980px) {
+	#toc {
+		margin-left: 0px;
+		left: 580px;
+	}
+	.container {
+		width: auto !important;
+		margin-left: 12px;
+		margin-right: 12px;
+	}
+}
+
+@media (min-width: 980px) {
+	#toc {
+		margin-left: 90px;
+	}
+}
+
+@media (min-width: 1200px) {
+	#toc {
+		margin-left: 190px;
+	}
+}
+
+@media (min-width: 1300px) {
+	.container {
+	    width: 1280px;
+	}
+	#toc {
+		margin-left: 245px;
+	}
+}
+
+@media (min-width: 1450px) {
+	.container {
+	    width: 1430px;
+	}
+	#toc {
+		margin-left: 320px;
+	}
+}
+
+@media (min-width: 1600px) {
+	.container {
+	    width: 1580px;
+	}
+	#toc {
+		margin-left: 395px;
+	}
+}
+
+
+.faq dt {
+	font-weight: bold;
+	font-size: 16px;
+}
+.faq dd {
+	padding-left: 26px;
+	position: relative;
+}
+
+.breadcrumbs {
+	width: 100%;
+	display: table;
+	font-size: 0;
+	line-height: 0;
+	margin-bottom: 30px;
+}
+
+.breadcrumbs > span {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 14px;
+	line-height: 18px;
+	margin-right: 7px;
+	color: #000;
+}
+
+.breadcrumbs > span:before {
+	content: '/';
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 7px;
+}
+
+.breadcrumbs > span:first-child:before {
+	display: none;
+}
+
+.breadcrumbs > span > a {
+	text-decoration: underline;
+}
+
+.list-group-item span {
+    display: block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+h5,
+.mt20 {
+	margin-top: 20px;
+}
+
+h4,
+.mt35 {
+	margin-top: 35px;
+}
+.mb5 {
+	margin-bottom: 5px;
+}
+
+.params thead th,
+td.type code {
+	white-space: nowrap !important;
+}
+
+
+.description li,
+.tutorial-article li {
+	margin-top: .5em;
+}
+
+
+.prism-block {
+	position: relative;
+}
+.clipboard {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 10;
+}
+.clipboard:before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	content: 'Copy';
+	width: 60px;
+    text-align: center;
+    line-height: 19px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #6262ff;
+}
+.clipboard:hover:before {
+	background-color: #7c7cfa;
+}
+
+.clipboard ~ .prism-show-language > div {
+	right: 60px !important;
+}
+
+.toggle-nav-button:hover {
+	background-color: #eee;
+}
+
+.toggle-nav-button span:before {
+	content: 'Close ';
+}
+
+.toggle-nav-button span:after {
+	content: ' \21d1';
+}
+
+.toggle-nav-button.is-hidden-nav span:before {
+	content: 'Open ';
+}
+
+.toggle-nav-button.is-hidden-nav span:after {
+	content: ' \21d3';
+}
+
+
+
+.sassdoc-page {
+
+}
+
+.columns {
+	columns: 3;
+}
+ul.columns {
+	padding-left: 0;
+	list-style: none;
+}
+
+pre mark {
+    background-color: #090909;
+    padding: 0 .2em;
+    color: inherit;
+}
+.list-none ul,
+.list-none ol,
+.list-none {
+	list-style: none;
+	padding-left: 32px;
+}
+.list-none li {
+	margin-top: .2em !important;
+}
