@@ -151,6 +151,10 @@ class HTML {
         return static::media($file);
     }
 
+    public static function svg($file) {
+        return file_get_contents('./'.$file);
+    }
+
     /**
      * Create path to media in wezom
      * @param  string $filename - path to file

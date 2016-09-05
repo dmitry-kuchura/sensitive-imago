@@ -3,7 +3,7 @@
         <div class="pageSection__topText">
             Наша компания "Альфа-Мед Украина"<br>
             представляет медицинское оборудование последнего поколения<br>
-            <b>АПК Сенситив Имаго (HSC Sensitiv Imago)</b>
+            <b><?php echo Core\Config::get('main.title_' . I18n::$lang); ?></b>
         </div>
         <div class="layeredBlock">
             <div class="layeredBlock__bottom"></div>
@@ -11,11 +11,7 @@
             <use xlink:href="hidden/sprite.svg#curve_arrow"></use>
             </svg>
             <div class="layeredBlock__top">
-                <p class="layeredBlock__description">
-                    Медицинское оборудование предназначено для неинвазивного комплексного биорезонансного обследования и
-                    лечения
-                    организма, а также для подбора лечения лекарственными препаратами
-                </p>
+                <p class="layeredBlock__description"><?php echo Core\Config::get('main.description_' . I18n::$lang); ?></p>
             </div>
         </div>
     </div>

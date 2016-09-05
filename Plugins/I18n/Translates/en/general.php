@@ -1,4 +1,4 @@
 <?php
-
-return array(
-);
+	return array(
+		'Наши приемущества' => 'Our advantages',
+	);
