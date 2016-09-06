@@ -5,7 +5,7 @@
                 <a href="index.html" class="logo">
                     <div class="logo__image logo__image--phone">
                         <svg>
-                        <use xlink:href="hidden/sprite.svg#logo"></use>
+                        <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
                         </svg>
                     </div>
                 </a>
@@ -18,30 +18,30 @@
                     <div class="dropdown-header">
                         <button data-dropdown-toggle class="button button--in-header">
                             <svg>
-                            <use xlink:href="hidden/sprite.svg#language"></use>
+                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#language'); ?>"></use>
                             </svg>
                         </button>
                     </div>
                     <div class="dropdown__content dropdown__content--wide dropdown__content--right">
                         <div class="languageLinks">
                             <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-spa.jpg');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-spa.jpg'); ?>');"></div>
                                 <span class="languageLink__text">spa</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-fra.jpg');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-fra.jpg'); ?>');"></div>
                                 <span class="languageLink__text">fra</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-ru.jpg');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-ru.jpg'); ?>');"></div>
                                 <span class="languageLink__text">ru</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('en'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-eng.jpg');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-eng.jpg'); ?>');"></div>
                                 <span class="languageLink__text">eng</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('de'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('css/pic/flag-deu.jpg');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-deu.jpg'); ?>');"></div>
                                 <span class="languageLink__text">deu</span>
                             </a>
                         </div>
@@ -51,7 +51,8 @@
                     <div class="dropdown-header">
                         <button data-dropdown-toggle class="button button--in-header">
                             <svg>
-                            <use xlink:href="hidden/sprite.svg#phone"></use>
+                            <?php echo Core\HTML::media('sprite.svg#phone'); ?>
+                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
                             </svg>
                         </button>
                     </div>
@@ -63,7 +64,7 @@
                         <div class="contactItem">
                             <div class="contactItem__key">
                                 <svg>
-                                <use xlink:href="hidden/sprite.svg#phone"></use>
+                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
                                 </svg>
                             </div>
                             <div class="contactItem__value">
@@ -74,7 +75,7 @@
                         <div class="contactItem">
                             <div class="contactItem__key">
                                 <svg>
-                                <use xlink:href="hidden/sprite.svg#mail"></use>
+                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
                                 </svg>
                             </div>
                             <div class="contactItem__value">
@@ -87,7 +88,7 @@
                     <div class="dropdown-header">
                         <button data-dropdown-toggle class="button button--in-header">
                             <svg>
-                            <use xlink:href="hidden/sprite.svg#icon_burger"></use>
+                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#icon_burger'); ?>"></use>
                             </svg>
                         </button>
                     </div>
@@ -113,23 +114,23 @@
                     <div class="grid__cell">
                         <div class="languageLinks">
                             <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-spa.jpg'); ?>');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-spa.jpg'); ?>');"></div>
                                 <span class="languageLink__text">spa</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('fr'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-fra.jpg'); ?>');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-fra.jpg'); ?>');"></div>
                                 <span class="languageLink__text">fra</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-ru.jpg'); ?>');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-ru.jpg'); ?>');"></div>
                                 <span class="languageLink__text">ru</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('en'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-eng.jpg'); ?>');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-eng.jpg'); ?>');"></div>
                                 <span class="languageLink__text">eng</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('de'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('css/pic/flag-deu.jpg'); ?>');"></div>
+                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-deu.jpg'); ?>');"></div>
                                 <span class="languageLink__text">deu</span>
                             </a>
                         </div>
@@ -144,7 +145,7 @@
                         <a href="index.html" class="logo">
                             <div class="logo__image">
                                 <svg>
-                                <use xlink:href="hidden/sprite.svg#logo"></use>
+                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
                                 </svg>
                             </div>
                             <div class="logo__text">
@@ -166,7 +167,7 @@
                                     <div class="contactItem">
                                         <div class="contactItem__key">
                                             <svg>
-                                            <use xlink:href="hidden/sprite.svg#phone"></use>
+                                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
                                             </svg>
                                         </div>
                                         <div class="contactItem__value">
@@ -180,7 +181,7 @@
                                     <div class="contactItem">
                                         <div class="contactItem__key">
                                             <svg>
-                                            <use xlink:href="hidden/sprite.svg#mail"></use>
+                                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
                                             </svg>
                                         </div>
                                         <div class="contactItem__value">

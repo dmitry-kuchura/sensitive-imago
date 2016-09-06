@@ -61,8 +61,10 @@
                 <div class="shareBlock">
                     <div class="shareBlock__title">Понравилась страница?</div>
                     <div class="shareBlock__text">Расскажите друзьям</div>
-                    <svg class="shareBlock__arrow"><use xlink:href="hidden/sprite.svg#share_arrow"></use></svg>
-                    <img src="css/pic/share.png" alt="">
+                    <svg class="shareBlock__arrow">
+                        <use xlink:href="<?php echo Core\HTML::media('sprite.svg#share_arrow'); ?>"></use>
+                    </svg>
+                    <img src="<?php echo Core\HTML::media('pic/share.png'); ?>" alt="">
                 </div>
             </div>
             <div class="grid__cell">

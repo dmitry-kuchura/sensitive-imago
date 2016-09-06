@@ -62,6 +62,6 @@
     </ol>
 </div>
 <div class="pageSection__footer ">
-    <a href="news.html" class="button--in-sectionFooter button button--inverse">К списку новостей</a>
+    <a href="<?php echo Core\HTML::link('news'); ?>" class="button--in-sectionFooter button button--inverse">К списку новостей</a>
     <a href="#" class="button--in-sectionFooter button button--primary">Узнать прайс</a>
 </div>

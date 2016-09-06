@@ -12,7 +12,7 @@
     <div class="form-actions" style="display: none;">
         <input class="submit btn btn-primary pull-right" type="submit" value="<?php echo __('Отправить'); ?>">
     </div>
-    <div class="col-md-6">s
+    <div class="col-md-6">
         <div class="widget box">
             <div class="widgetHeader">
                 <div class="widgetTitle">
@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="f_name"><?php echo __('Название'); ?></label>
                                     <div class="">
-                                        <input id="f_name" class="form-control valid" name="FORM[<?php echo $key; ?>][name]" type="text" value="<?php echo $public->name; ?>" />
+                                        <input id="f_name" class="form-control <?php echo $lang['default'] == 1 ? 'translitSource' : ''; ?> valid" name="FORM[<?php echo $key; ?>][name]" type="text" value="<?php echo $public->name; ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -74,6 +74,19 @@
                         <label class="control-label" for="f_date"><?php echo __('Дата'); ?></label>
                         <div class="">
                             <input id="f_date" type="text" name="FORM[date]" value="<?php echo $obj->date ? date('d.m.Y', $obj->date) : date('d.m.Y'); ?>" class="myPicker valid form-control input-width-medium" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="f_alias">
+                            <?php echo __('Алиас'); ?>
+                        </label>
+                        <div class="">
+                            <div class="input-group">
+                                <input id="f_alias" class="form-control translitConteiner valid" name="FORM[alias]" type="text" value="<?php echo $obj->alias; ?>" />
+                                <span class="input-group-btn">
+                                    <button class="btn translitAction" type="button"><?php echo __('Заполнить автоматически'); ?></button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

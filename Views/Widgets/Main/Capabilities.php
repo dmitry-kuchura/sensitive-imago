@@ -25,6 +25,6 @@
             </div>
 
         </div>
-        <img class="compatibilityImage" src="css/pic/complex.png" alt="">
+        <img class="compatibilityImage" src="pic/complex.png" alt="">
     </div>
 </section>

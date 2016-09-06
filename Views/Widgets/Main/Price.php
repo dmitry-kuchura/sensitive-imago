@@ -1,4 +1,4 @@
-<section class="priceSection" style="background-image: url('css/pic/price_bg.jpg');">
+<section class="priceSection" style="background-image: url('pic/price_bg.jpg');">
     <div class="priceSection__content">
         <div class="priceSection__text">Медицинские комплексы Сенситив Имаго —<br>
             диагностика и лечение всего организма человека

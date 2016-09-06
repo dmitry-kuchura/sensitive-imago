@@ -5,7 +5,7 @@
                 <a href="index.html" class="logo__link">
                     <div class="logo logo--small">
                         <div class="logo__image">
-                            <svg><use xlink:href="hidden/sprite.svg#logo"></use></svg>
+                            <svg><use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use></svg>
                         </div>
                         <div class="logo__text">
                             <big>Сенситив Имаго</big>
