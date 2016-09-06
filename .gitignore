@@ -8,5 +8,6 @@ design/
 
 Config/database.php
 Media/mailfiles/*
+Media/images/*
 nbproject/*
 nbproject/*
