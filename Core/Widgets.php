@@ -147,5 +147,22 @@ class Widgets {
 
         return compact('result');
     }
+    
+    public function Page_Aside() {
+
+        $lang = \I18n::$lang;
+
+        $result = DB::select('news.*', 'news_i18n.*')
+                ->from('news')
+                ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
+                ->where('news_i18n.language', '=', $lang)
+                ->where('news.status', '=', 1)
+                ->where('news.date', '<=', time())
+                ->order_by('news.date', 'DESC')
+                ->limit(2)
+                ->find_all();
+
+        return compact('result');
+    }
 
 }

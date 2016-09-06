@@ -1,5 +1,5 @@
 <?php
     
     return array(
-        'Ajax', 'Team', 'Catalog', 'Reviews', 'Search', 'Content',
+        'Ajax', 'Team', 'News', 'Catalog', 'Reviews', 'Search', 'Content',
     );
