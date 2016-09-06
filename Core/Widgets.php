@@ -106,19 +106,6 @@ class Widgets {
         return array('scripts' => $scripts, 'styles' => $styles);
     }
 
-//    public function Header() {
-//        $menu = [];
-//        $sitemenu = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
-//        foreach ($sitemenu AS $key => $value) {
-//            $menu[] = $value;
-//        }
-//        $lang = \I18n::$lang;
-//
-//        $phone = DB::select()->from('contacts_phones')->where('group', '=', '0')->where('lang', 'LIKE', $lang)->find();
-//
-//        return compact('phone', 'menu');
-//    }
-    
     public function HiddenData() {
         $styles = array(
             HTML::media('css/vendor/normalize.css'),
@@ -142,6 +129,23 @@ class Widgets {
             HTML::media('js/programmer/my.js'),
         );
         return ['scripts' => $scripts, 'styles' => $styles];
+    }
+
+    public function Main_News() {
+
+        $lang = \I18n::$lang;
+
+        $result = DB::select('news.*', 'news_i18n.*')
+                ->from('news')
+                ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
+                ->where('news_i18n.language', '=', $lang)
+                ->where('news.status', '=', 1)
+                ->where('news.date', '<=', time())
+                ->order_by('news.date', 'DESC')
+                ->limit(4)
+                ->find_all();
+
+        return compact('result');
     }
 
 }

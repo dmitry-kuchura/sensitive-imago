@@ -139,9 +139,9 @@ class News extends \Wezom\Modules\Base {
         $this->setBreadcrumbs(__('Добавление'), 'wezom/' . Route::controller() . '/add');
         $this->_content = View::tpl(
                         [
-                            'obj' => $result,
-                            'tpl_folder' => $this->tpl_folder,
-                            'languages' => $this->_languages,
+                    'obj' => $result,
+                    'tpl_folder' => $this->tpl_folder,
+                    'languages' => $this->_languages,
                         ], $this->tpl_folder . '/Form');
     }
 

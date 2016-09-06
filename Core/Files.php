@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use \Core\Image\Image;
+use Core\Image\Image as ImageClass;
 
 class Files {
 
@@ -26,23 +26,24 @@ class Files {
             $path = HOST . HTML::media('/images/' . $mainFolder . '/' . Arr::get($one, 'path'));
             Files::createFolder($path, 0777);
             $file = $path . '/' . $filename;
-            $image = Image::factory($_FILES[$name]['tmp_name']);
+            $image = ImageClass::factory($_FILES[$name]['tmp_name']);
             if ($size[0] > Arr::get($one, 'width') && $size[1] > Arr::get($one, 'height')) {
                 if (Arr::get($one, 'resize')) {
-                    $image->resize(Arr::get($one, 'width'), Arr::get($one, 'height'), Image::INVERSE);
+                    $image->resize(Arr::get($one, 'width'), Arr::get($one, 'height'), ImageClass::INVERSE);
                 }
                 if (Arr::get($one, 'crop')) {
                     $image->crop(Arr::get($one, 'width'), Arr::get($one, 'height'));
                 }
             }
             if (Arr::get($one, 'watermark') && is_file(HOST . Config::get('images.watermark'))) {
-                $watermark = Image::factory(HOST . Config::get('images.watermark'));
+                $watermark = ImageClass::factory(HOST . Config::get('images.watermark'));
 //                    $watermark->resize(ceil($image->width * 0.5), NULL, Image::INVERSE);
 //                    $image->watermark($watermark, $image->width - ceil($image->width * 0.5) - 20, $image->height - $watermark->height - 20);
                 $image->watermark($watermark, 0, 0);
             }
             $image->save($file, Arr::get($one, 'quality', 100));
         }
+        
         // Save original photo
         $path = HOST . HTML::media('/images/' . $mainFolder . '/original');
         Files::createFolder($path, 0777);

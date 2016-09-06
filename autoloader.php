@@ -22,13 +22,18 @@
         }
         // else
         $className = ltrim($className, '\\');
+//        echo '<br/><br/>';
+//        var_dump($className);
         $fileName  = '';
         if ($lastNsPos = strrpos($className, '\\')) {
             $namespace = substr($className, 0, $lastNsPos);
             $className = substr($className, $lastNsPos + 1);
             $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
+//        var_dump($className);
+//        var_dump($fileName);
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className).'.php';
+//        var_dump($fileName);
         require $fileName;
     }
     spl_autoload_register('autoload');

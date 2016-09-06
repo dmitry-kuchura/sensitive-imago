@@ -1,82 +1,26 @@
 <section class="pageSection _bg-white">
     <div class="pageSize">
-        <div class="sectionTitle">Свежие новости</div>
+        <div class="sectionTitle"><?php echo __('Свежие новости'); ?></div>
         <div class="grid grid--1 grid--sm-2 grid--space-x2 grid--items-start">
-            <div class="grid__cell mediaBlock">
-                <a href="#" class="mediaBlock__image" style="background-image: url('images/index_new1.jpg');">
-                    <div class="mediaBlock__date">
-                        22
-                        <small>фев</small>
-                    </div>
-                </a>
-                <div class="mediaBlock__content">
-                    <div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow">Доступна новая усгула</a></div>
-                    <div class="mediaBlock__text">
-                        <div class="mediaBlock__textInner">
-                            Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
-                            комплексного
+            <?php foreach ($result as $news): ?>
+                <div class="grid__cell mediaBlock">
+                    <a href="<?php echo Core\HTML::link('news/' . $news->alias); ?>" class="mediaBlock__image" style="background-image: url('<?php echo Core\HTML::media('images/news/main/' . $news->image); ?>');">
+                        <div class="mediaBlock__date"><?php echo date('d', $news->date); ?><small><?php echo Core\Text::russianDate($news->date)?></small></div>
+                    </a>
+                    <div class="mediaBlock__content">
+                        <div class="mediaBlock__title">
+                            <a href="<?php echo Core\HTML::link('news/' . $news->alias); ?>" class="mediaBlock__overflow"><?php echo $news->name; ?></a>
                         </div>
-                    </div>
-                    <a href="news_one.html" class="button button--inverse">Подробнее</a>
-                </div>
-            </div>
-            <div class="grid__cell mediaBlock">
-                <a href="#" class="mediaBlock__image" style="background-image: url('images/index_new2.jpg');">
-                    <div class="mediaBlock__date">
-                        22
-                        <small>фев</small>
-                    </div>
-                </a>
-                <div class="mediaBlock__content">
-                    <div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow">Онлайн обучение с прибором сенситив имаго</a></div>
-                    <div class="mediaBlock__text">
-                        <div class="mediaBlock__textInner">
-                            Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
-                            комплексного
+                        <div class="mediaBlock__text">
+                            <div class="mediaBlock__textInner"><?php echo Core\Text::limit_words($news->text, 150); ?></div>
                         </div>
+                        <a href="<?php echo Core\HTML::link('news/' . $news->alias); ?>" class="button button--inverse"><?php echo __('Подробнее'); ?></a>
                     </div>
-                    <a href="news_one.html" class="button button--inverse">Подробнее</a>
                 </div>
-            </div>
-            <div class="grid__cell mediaBlock">
-                <a href="#" class="mediaBlock__image" style="background-image: url('images/index_new3.jpg');">
-                    <div class="mediaBlock__date">
-                        22
-                        <small>фев</small>
-                    </div>
-                </a>
-                <div class="mediaBlock__content">
-                    <div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow">Оборудование получило золотую медаль</a></div>
-                    <div class="mediaBlock__text">
-                        <div class="mediaBlock__textInner">
-                            Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
-                            комплексного
-                        </div>
-                    </div>
-                    <a href="news_one.html" class="button button--inverse">Подробнее</a>
-                </div>
-            </div>
-            <div class="grid__cell mediaBlock">
-                <a href="#" class="mediaBlock__image" style="background-image: url('images/index_new4.jpg');">
-                    <div class="mediaBlock__date">
-                        22
-                        <small>фев</small>
-                    </div>
-                </a>
-                <div class="mediaBlock__content">
-                    <div class="mediaBlock__title"><a href="#" class="mediaBlock__overflow">undefined</a></div>
-                    <div class="mediaBlock__text">
-                        <div class="mediaBlock__textInner">
-                            Медицинское лечебно-диагностическое оборудование предназначено для неинвазивного
-                            комплексного
-                        </div>
-                    </div>
-                    <a href="news_one.html" class="button button--inverse">Подробнее</a>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
         <div class="pageSection__footer">
-            <a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+            <a href="<?php echo Core\HTML::link('news'); ?>" class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?></a>
         </div>
     </div>
 </section>

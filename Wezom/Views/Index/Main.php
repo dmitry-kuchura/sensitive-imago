@@ -80,7 +80,6 @@
             </div>
         </div>
     </div>
-    <?php echo \Core\Widgets::get('Index_Readme'); ?>
 <?php else: ?>
     <div class="rowSection clearFix">
         <div class="col-md-6">
