@@ -1,13 +1,12 @@
+#Frontend
 _HTML/config.json
 *node_modules/
 *tmp/
 design/
 .idea/
 
-# Programming
+#Programming
 
 Config/database.php
-Media/mailfiles/*
 Media/images/
-nbproject/*
-nbproject/*
+nbproject/
