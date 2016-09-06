@@ -14,7 +14,13 @@
                 <div class="pageSection">
                     <div class="pageSize">
                         <div class="grid grid--md-nowrap">
-                            <?php echo Core\Widgets::get('Page_Aside'); ?>
+                            <?php
+                            if (Core\Route::controller() != 'contact') {
+                                echo Core\Widgets::get('Page_Aside');
+                            } else {
+                                echo Core\Widgets::get('Page_AsideContacts');
+                            }
+                            ?>
                             <div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
                                 <section class="pageCenter">
                                     <?php echo $_breadcrumbs; ?>
@@ -24,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-            <?php echo Core\Widgets::get('Page_Devices'); ?>
+                <?php echo Core\Widgets::get('Page_Devices'); ?>
             </div>
             <?php echo Core\Widgets::get('Footer'); ?>
         </div>

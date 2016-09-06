@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 02 2016 г., 15:46
+-- Время создания: Сен 06 2016 г., 16:53
 -- Версия сервера: 5.5.48-log
 -- Версия PHP: 5.6.19
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `brands_i18n` (
   `keywords` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `brands_i18n`
@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `carts_items` (
   `count` int(6) DEFAULT NULL,
   `size_alias` varchar(255) DEFAULT NULL,
   `color_alias` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `catalog` (
   `brand_alias` varchar(255) DEFAULT NULL,
   `image` varchar(128) DEFAULT NULL,
   `video` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `catalog_colors` (
   `id` int(10) unsigned NOT NULL,
   `color_alias` varchar(255) DEFAULT NULL,
   `catalog_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `catalog_i18n` (
   `consists` varchar(255) DEFAULT NULL,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `catalog_images` (
   `catalog_id` int(10) NOT NULL DEFAULT '0',
   `main` tinyint(1) NOT NULL DEFAULT '0',
   `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=692 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -266,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `catalog_related` (
   `id` int(10) NOT NULL,
   `who_id` int(10) NOT NULL,
   `with_id` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -307,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `catalog_sizes` (
   `id` int(10) unsigned NOT NULL,
   `size_alias` varchar(255) DEFAULT NULL,
   `catalog_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -359,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `catalog_tree_i18n` (
   `text` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `catalog_tree_i18n`
@@ -384,6 +384,78 @@ INSERT INTO `catalog_tree_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `descr
 (59, 'level2', '', '', '', '', '', 44, 'en'),
 (61, 'уровень3', '', '', '', '', '', 45, 'ru'),
 (62, 'level3', '', '', '', '', '', 45, 'en');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `alias` varchar(255) DEFAULT NULL,
+  `date` int(10) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `views` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `created_at`, `updated_at`, `status`, `alias`, `date`, `image`, `views`) VALUES
+(1, 1470904205, 1470945135, 1, NULL, NULL, NULL, 0),
+(2, 1470904243, 1470904245, 1, NULL, NULL, NULL, 0),
+(3, 1470904264, NULL, 1, NULL, NULL, NULL, 0),
+(4, 1470904278, NULL, 1, NULL, NULL, NULL, 0),
+(6, 1470991670, NULL, 1, NULL, NULL, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `category_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `text` text,
+  `h1` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text,
+  `keywords` text,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `category_i18n`
+--
+
+INSERT INTO `category_i18n` (`id`, `name`, `text`, `h1`, `title`, `description`, `keywords`, `row_id`, `language`) VALUES
+(1, 'Креативный дизайн', NULL, NULL, NULL, NULL, NULL, 1, 'ru'),
+(2, 'Creative Design', NULL, NULL, NULL, NULL, NULL, 1, 'en'),
+(3, 'Стратегия & Консалтинг', NULL, NULL, NULL, NULL, NULL, 2, 'ru'),
+(4, 'Strategy & Consulting', NULL, NULL, NULL, NULL, NULL, 2, 'en'),
+(5, 'Веб-разработка', NULL, NULL, NULL, NULL, NULL, 3, 'ru'),
+(6, 'Web Development', NULL, NULL, NULL, NULL, NULL, 3, 'en'),
+(7, 'Онлайн маркетинг', NULL, NULL, NULL, NULL, NULL, 4, 'ru'),
+(8, 'Online Marketing', NULL, NULL, NULL, NULL, NULL, 4, 'en'),
+(9, 'Категория', NULL, NULL, NULL, NULL, NULL, 5, 'ru'),
+(10, 'Category', NULL, NULL, NULL, NULL, NULL, 5, 'en'),
+(11, 'тест', NULL, NULL, NULL, NULL, NULL, 6, 'ru'),
+(12, 'test', NULL, NULL, NULL, NULL, NULL, 6, 'en'),
+(13, '555555555555555', NULL, NULL, NULL, NULL, NULL, 7, 'ru'),
+(14, '5555555555', NULL, NULL, NULL, NULL, NULL, 7, 'en'),
+(15, 'йцукен', NULL, NULL, NULL, NULL, NULL, 8, 'ru'),
+(16, 'qwerty', NULL, NULL, NULL, NULL, NULL, 8, 'en'),
+(17, 'qwerty', NULL, NULL, NULL, NULL, NULL, 9, 'ru'),
+(18, 'qwertry', NULL, NULL, NULL, NULL, NULL, 9, 'en'),
+(19, '789', NULL, NULL, NULL, NULL, NULL, 10, 'ru'),
+(20, '78989', NULL, NULL, NULL, NULL, NULL, 10, 'en');
 
 -- --------------------------------------------------------
 
@@ -428,7 +500,7 @@ CREATE TABLE IF NOT EXISTS `certificates_i18n` (
   `title` varchar(255) DEFAULT NULL,
   `description` text,
   `keywords` text
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `certificates_i18n`
@@ -475,7 +547,7 @@ CREATE TABLE IF NOT EXISTS `colors_i18n` (
   `name` varchar(255) DEFAULT NULL,
   `row_id` int(10) unsigned DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `colors_i18n`
@@ -507,22 +579,22 @@ CREATE TABLE IF NOT EXISTS `config` (
   `type` varchar(32) DEFAULT NULL,
   `values` text COMMENT 'Возможные значения в json массиве ключ => значение. Для селекта и радио',
   `group` varchar(128) DEFAULT NULL COMMENT 'Группа настроек'
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `config`
 --
 
 INSERT INTO `config` (`id`, `name`, `zna`, `updated_at`, `status`, `sort`, `key`, `valid`, `type`, `values`, `group`) VALUES
-(1, 'E-Mail администратора сайта (отправитель по умолчанию)', 'kuchura.d.wezom@gmail.com', 1434885560, 1, 1, 'admin_email', 1, 'input', NULL, 'mail'),
+(1, 'E-Mail администратора сайта (отправитель по умолчанию)', 'wezom.studio@yandex.ru', 1434885560, 1, 1, 'admin_email', 1, 'input', NULL, 'mail'),
 (2, 'Email отдела по работе с клиентами', 'info@beatus.ua', 1434885560, 1, 2, 'email', 1, 'input', NULL, 'basic'),
 (9, 'Количество строк в админ-панели', '30', 1434885560, 1, 9, 'limit_backend', 1, 'input', NULL, 'basic'),
 (19, 'Использовать СМТП', '0', 1434885560, 1, 3, 'smtp', 1, 'radio', '[{"key":"Да","value":1},{"key":"Нет","value":0}]', 'mail'),
-(20, 'SMTP server', '', 1434885560, 1, 4, 'host', 0, 'input', NULL, 'mail'),
-(22, 'Логин', '1111', 1434885560, 1, 5, 'username', 0, 'input', NULL, 'mail'),
-(23, 'Пароль', '1111', 1434885560, 1, 6, 'password', 0, 'password', NULL, 'mail'),
-(24, 'Тип подключения', 'tls', 1434885560, 1, 7, 'secure', 0, 'select', '[{"key":"TLS","value":"tls"},{"key":"SSL","value":"ssl"}]', 'mail'),
-(25, 'Порт. Например 465 или 587. (587 по умолчанию)', '587', 1434885560, 1, 8, 'port', 0, 'input', NULL, 'mail'),
+(20, 'SMTP server', 'smtp.yandex.ru', 1434885560, 1, 4, 'host', 0, 'input', NULL, 'mail'),
+(22, 'Логин', 'wezom.studio@yandex.ru', 1434885560, 1, 5, 'username', 0, 'input', NULL, 'mail'),
+(23, 'Пароль', 'IOPiop22!', 1434885560, 1, 6, 'password', 0, 'password', NULL, 'mail'),
+(24, 'Тип подключения', 'ssl', 1434885560, 1, 7, 'secure', 0, 'select', '[{"key":"TLS","value":"tls"},{"key":"SSL","value":"ssl"}]', 'mail'),
+(25, 'Порт. Например 465 или 587. (587 по умолчанию)', '465', 1434885560, 1, 8, 'port', 0, 'input', NULL, 'mail'),
 (26, 'Имя латинницей (отображается в заголовке письма)', 'Info', 1434885560, 1, 2, 'name', 1, 'input', NULL, 'mail'),
 (27, 'Запаролить сайт', '1', 1434885560, 1, 0, 'auth', 1, 'radio', '[{"key":"Да","value":"1"},{"key":"Нет","value":"0"}]', 'security'),
 (28, 'Логин', '1', 1434885560, 1, 2, 'username', 0, 'input', NULL, 'security'),
@@ -534,7 +606,23 @@ INSERT INTO `config` (`id`, `name`, `zna`, `updated_at`, `status`, `sort`, `key`
 (34, 'Twitter.com', 'https://twitter.com/', 1434885561, 1, 2, 'twitter', 0, 'input', NULL, 'socials'),
 (35, 'Youtube.com', 'https://www.youtube.com/', 1434885561, 1, 3, 'youtube', 0, 'input', NULL, 'socials'),
 (36, 'Google Plus', 'https://plus.google.com/', 1434885561, 1, 4, 'google', 0, 'input', NULL, 'socials'),
-(51, 'Копирайт сайта', '© 2016 Beatus.ua The digital marketing and advertising company.', NULL, 1, 8, 'copyright', 0, 'input', NULL, 'basic');
+(51, 'Копирайт сайта', '© 2016 Beatus.ua The digital marketing and advertising company.', NULL, 1, 8, 'copyright', 0, 'input', NULL, 'basic'),
+(72, 'Город (RU)', 'г. Киев', NULL, 1, 88, 'city-ru', 1, 'input', NULL, 'basic'),
+(73, 'Город (ENG)', 'Kiev', NULL, 1, 89, 'city-en', 1, 'input', NULL, 'basic'),
+(74, 'Улица (RU)', 'ул. Лятошинского, 21', NULL, 1, 90, 'street-ru', 1, 'input', NULL, 'basic'),
+(75, 'Улица (ENG)', 'Str. Liatoshynsky, 21', NULL, 1, 91, 'street-en', 1, 'input', NULL, 'basic'),
+(76, 'Второй Email отдела по работе с клиентами', '', 1434885560, 1, 3, 'email_2', 0, 'input', NULL, 'basic'),
+(77, 'Текст на главной (RU)', '<p>Медицинское оборудование предназначено для неинвазивного комплексного биорезонансного обследования и лечения организма, а также для подбора лечения лекарственными препаратами</p>', 1434885560, 1, -1, 'description_ru', 1, 'tiny', NULL, 'index'),
+(78, 'Текст на главной (SP)', '<p>Equipo m&eacute;dico est&aacute; dise&ntilde;ado para biorezonante no invasiva examen y el tratamiento del cuerpo integral, as&iacute; como para la selecci&oacute;n de medicamentos para el tratamiento</p>', 1434885560, 1, 1, 'description_sp', 1, 'tiny', NULL, 'index'),
+(79, 'Текст на главной (FR)', '<p>L''&eacute;quipement m&eacute;dical est con&ccedil;u pour bior&eacute;sonnante non invasive d''examen et de traitement du corps global, ainsi que pour la s&eacute;lection de m&eacute;dicaments pour le traitement</p>', 1434885560, 1, 1, 'description_fr', 1, 'tiny', NULL, 'index'),
+(80, 'Текст на главной (DE)', '<p>Medizinische Ger&auml;te ist f&uuml;r die nichtinvasive Bioresonanz umfassende Untersuchung und Behandlung des K&ouml;rpers entwickelt, sowie f&uuml;r die Auswahl der Behandlung Drogen</p>', 1434885560, 1, 1, 'description_de', 1, 'tiny', NULL, 'index'),
+(81, 'Текст на главной (EN)', '<p>Medical equipment is designed for non-invasive bioresonance comprehensive examination and treatment of the body, as well as for the selection of treatment drugs</p>', 1434885560, 1, 1, 'description_en', 1, 'tiny', NULL, 'index'),
+(82, 'Заголовок на главной (RU)', 'АПК Сенситив Имаго (HSC Sensitiv Imago)', 1434885560, 1, -3, 'title_ru', 1, 'input', NULL, 'index'),
+(83, 'Заголовок на главной (EN)', 'APK Sensitive Imago (HSC Sensitiv Imago)', 1434885560, 1, -2, 'title_en', 1, 'input', NULL, 'index'),
+(84, 'Заголовок на главной (SP)', 'APK Sensitive Imago (HSC Sensitiv Imago)', 1434885560, 1, -2, 'title_sp', 1, 'input', NULL, 'index'),
+(85, 'Заголовок на главной (FR)', 'APK Sensitive Imago (HSC Sensitiv Imago)', 1434885560, 1, -2, 'title_fr', 1, 'input', NULL, 'index'),
+(86, 'Заголовок на главной (DE)', 'APK Sensitive Imago (HSC Sensitiv Imago)', 1434885560, 1, -2, 'title_de', 1, 'input', NULL, 'index'),
+(87, 'Верхний текст (RU)', 'Наша компания "Альфа-Мед Украина"<br>\r\nпредставляет медицинское оборудование последнего поколения<br>', 1434885560, 1, 0, 'top_ru', 1, 'tiny', NULL, 'index');
 
 -- --------------------------------------------------------
 
@@ -562,7 +650,7 @@ INSERT INTO `config_groups` (`id`, `name`, `alias`, `side`, `status`, `sort`) VA
 (4, 'Соц. сети', 'socials', 'left', 1, 3),
 (5, 'Безопасность', 'security', 'right', 1, 2),
 (6, 'Быстродействие', 'speed', 'right', 1, 3),
-(9, 'Контакты', 'contacts', 'left', 1, 3);
+(9, 'Главная', 'index', 'left', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -603,26 +691,20 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `name` varchar(64) DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
-  `text` text,
-  `ip` varchar(16) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `theme` text,
+  `ip` varchar(16) DEFAULT NULL,
+  `phone` varchar(150) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `created_at`, `updated_at`, `status`, `name`, `email`, `text`, `ip`) VALUES
-(1, 1448794034, NULL, 0, 'adg', 'sdfa@sdf.gfh', 'fgh dg ', '127.0.0.1'),
-(2, 1448913538, NULL, 0, 'dffdgdf', 'dfg@sdf.fgh', 'dssdfsd', '127.0.0.1'),
-(3, 1448913669, NULL, 0, 'dsdf', 'sdfsdf@sdf.asd', 'sadsa sa sa sad', '127.0.0.1'),
-(4, 1448913731, NULL, 0, 'asasdsad', 'dsf@zsdf.fgh', 'dfg df gdf dfg', '127.0.0.1'),
-(7, 1450178901, NULL, 0, 'проверим форму', 'form@contact.cc', 'asdasdasd asd', '178.136.229.251'),
-(8, 1450253403, NULL, 0, 'asasdas', 'asdas@asf.fgh', 'fghfgh', '178.136.229.251'),
-(9, 1450264954, NULL, 0, 'asdasd', 'sdfsf@asd.ddd', 'alert(&amp;quot;bang! script injection\\n&amp;quot;+document.cookie):', '178.136.229.251'),
-(10, 1450959839, NULL, 0, 'gfhgfhfg', 'ghgfh@mail.uu', 'hghgjghjghjghj', '178.136.229.251'),
-(11, 1451031114, NULL, 0, 'retfgsdfgsdf', 'gdsfgsdf@dfsgsdfg.rt', 'dsfgdsfgdsfgsd dfgs gsdf g', '178.136.229.251'),
-(12, 1451031191, NULL, 0, 'sdfgsdfg', 'dsfgdsfgsd@sdfasdfasd.re', 'asdfasdf ads fasd asd fads', '178.136.229.251'),
-(13, 1451045446, NULL, 0, 'фвыафывафыва', 'fdfsgdfsg@adsfasdf.er', 'sdfasdfasdfasdfasdfadsf sadf asfdg asda sdfasdf', '178.136.229.251');
+INSERT INTO `contacts` (`id`, `created_at`, `updated_at`, `status`, `name`, `email`, `theme`, `ip`, `phone`) VALUES
+(1, 1471331835, NULL, 1, 'Имя', 'Mail@mail.ru', 'тест', '178.136.229.251', '+38(011)111-11-11'),
+(2, 1471333736, 1471333943, 1, 'Тест', 'test@tt.tt', 'Тест', '178.136.229.251', '+38(213)217-38-28'),
+(3, 1471336833, 1471336901, 1, 'Samsung', 'fffff@ffff.ff', 'Design', '178.136.229.251', '+38(095)773-19-61'),
+(4, 1471337458, NULL, 1, 'Ipad', 'ipad@test.ipad', 'iPad', '178.136.229.251', '+38(095)773-19-61');
 
 -- --------------------------------------------------------
 
@@ -664,18 +746,20 @@ CREATE TABLE IF NOT EXISTS `contacts_phones` (
   `status` tinyint(1) unsigned DEFAULT '0',
   `group` enum('0','1','2') DEFAULT '1',
   `name` varchar(128) DEFAULT NULL,
-  `sort` int(10) unsigned DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `sort` int(10) unsigned DEFAULT '0',
+  `lang` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `contacts_phones`
 --
 
-INSERT INTO `contacts_phones` (`id`, `created_at`, `updated_at`, `status`, `group`, `name`, `sort`) VALUES
-(9, 1470769265, 1470769446, 1, '1', '(044) 287-87-11', 0),
-(10, 1470769275, 1470769451, 1, '1', '(097) 287-87-11', 0),
-(11, 1470769286, 1470769439, 1, '1', '(050) 287-87-11', 0),
-(12, 1470769464, NULL, 1, '0', '(044) 287-87-11', 0);
+INSERT INTO `contacts_phones` (`id`, `created_at`, `updated_at`, `status`, `group`, `name`, `sort`, `lang`) VALUES
+(9, 1470769265, 1471352982, 1, '1', '(044) 287-87-11', 2, NULL),
+(10, 1470769275, 1471334135, 1, '1', '(097) 287-87-11', 3, NULL),
+(11, 1470769286, 1471334135, 1, '1', '(050) 287-87-11', 4, ''),
+(12, 1470769464, 1471353980, 1, '0', '(044) 555-55-55', 1, 'ru'),
+(15, 1471245176, 1471353229, 1, '0', '(044) 777-77-77', 0, 'en');
 
 -- --------------------------------------------------------
 
@@ -691,15 +775,24 @@ CREATE TABLE IF NOT EXISTS `content` (
   `updated_at` int(10) DEFAULT NULL,
   `sort` int(11) DEFAULT '0',
   `parent_id` int(10) NOT NULL DEFAULT '0',
-  `views` int(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `views` int(10) NOT NULL DEFAULT '0',
+  `image_first` varchar(250) DEFAULT NULL,
+  `image_second` varchar(250) DEFAULT NULL,
+  `image_third` varchar(250) DEFAULT NULL,
+  `image_four` varchar(250) DEFAULT NULL,
+  `slider_first` varchar(150) DEFAULT NULL,
+  `slider_second` varchar(150) DEFAULT NULL,
+  `slider_third` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `content`
 --
 
-INSERT INTO `content` (`id`, `alias`, `status`, `created_at`, `updated_at`, `sort`, `parent_id`, `views`) VALUES
-(7, '', 1, 1470748118, 1470749542, 0, 0, 0);
+INSERT INTO `content` (`id`, `alias`, `status`, `created_at`, `updated_at`, `sort`, `parent_id`, `views`, `image_first`, `image_second`, `image_third`, `image_four`, `slider_first`, `slider_second`, `slider_third`) VALUES
+(7, '', 0, 1470748118, 1471335766, 0, 0, 0, '44054a1ca161d3f4f62fe6ae1cd26ba5.jpg', '2eb8e31efd818abcac8b6cfcbdbbc7a7.jpg', 'c9d407036bccad07c2a6cb2344225a56.jpg', NULL, '5aeb8c24a0ff39e38cc94df4956bc966.jpg', 'fe3ceb295d2fb8c0633bb535274d0548.jpg', 'c6816c599ca2feaa024fac169d512d7d.jpg'),
+(8, '5057', 1, 1470892598, 1471335896, 0, 0, 0, '0adca82feca8cfdfb1d06e1770f8b196.jpg', 'a9ef7e82404c101fdb593c572f1b9206.jpg', '542e71f293941ee4f63a3f3040aa0984.jpg', '128f274b1c960d868431eb8187d4fe8d.jpg', NULL, NULL, NULL),
+(9, NULL, 0, 1471328063, 1471329607, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -727,16 +820,39 @@ CREATE TABLE IF NOT EXISTS `content_i18n` (
   `beuseful_link` varchar(250) DEFAULT NULL,
   `beuseful_slider` text,
   `mission_title` varchar(250) DEFAULT NULL,
-  `mission_text` text
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  `mission_text` text,
+  `service_name_first` varchar(150) DEFAULT NULL,
+  `service_name_second` varchar(150) DEFAULT NULL,
+  `service_name_third` varchar(150) DEFAULT NULL,
+  `service_name_four` varchar(150) DEFAULT NULL,
+  `service_text_first` text,
+  `service_text_second` text,
+  `service_text_third` text,
+  `service_text_four` text,
+  `title_virtual` varchar(150) DEFAULT NULL,
+  `text_virtual` text,
+  `algoritm_title` varchar(150) DEFAULT NULL,
+  `algoritm_first` varchar(150) DEFAULT NULL,
+  `algoritm_second` varchar(150) DEFAULT NULL,
+  `algoritm_third` varchar(150) DEFAULT NULL,
+  `algoritm_four` varchar(150) DEFAULT NULL,
+  `algoritm_five` varchar(150) DEFAULT NULL,
+  `beuseful_text1` varchar(250) DEFAULT NULL,
+  `beuseful_text2` varchar(250) DEFAULT NULL,
+  `beuseful_text3` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `content_i18n`
 --
 
-INSERT INTO `content_i18n` (`id`, `name`, `title`, `description`, `keywords`, `text`, `h1`, `row_id`, `language`, `title_big`, `slogan`, `about_title`, `now_title`, `now_list`, `beuseful_title`, `beuseful_text`, `beuseful_link`, `beuseful_slider`, `mission_title`, `mission_text`) VALUES
-(16, 'О компании', NULL, NULL, NULL, '<p>Все началось с необходимости. Мы работали в компании, которая должна была стать лидером своего рынка в течении 2-х лет, в период сложных экономических и политических условий. Перед нами стояла задача обеспечения активных продаж в жатые сроки с довольно небольшим бюджетом на это и довольно ограниченным количеством специалистов. И как мы убедились, в таких условиях решающим моментом выступает внутренние истинное стремление человека к чему-то.</p>\r\n<p>Мы задали себе вопрос &laquo;Что делать?&raquo;. За которым последовали следующие &laquo;Что мы знаем о ситуации?&raquo;, &laquo;Как ее понять максимально быстро и четко?&raquo;, &laquo;Что нам в этом может помочь?&raquo;. По мере того, как мы находили ответы на одни вопросы и задавали новые, у нас рождались идеи как с наибольшей эффективностью можно решать поставленные задачи.</p>\r\n<p>Обороты компании росли. Она стала лидером своего рынка. Объемы работ становились все больше и больше. Специалистам, которые в одном лице выступали как генераторы идей, исполнители и аналитики не хватало 24 часов в сутках для реализации появляющихся идей. Мы начали искать людей, которые могли бы помочь нам в их реализации.</p>\r\n<p>Главным критерием являлось желание и стремление человека работать, создавать определенные вещи в соответствии с нашим отношением к работе и миру в целом. С ростом количества специалистов появлялись все новые и новые идеи. Не все подходили для нашей компании, но для других компаний в других ситуациях они бы были очень полезны и результативны. Так и появилась идея о создании the digital marketing and advertising company.</p>', NULL, 7, 'ru', 'Цифровой маркетинг и рекламная компания', 'Компания, объединяющая в себе творческих личностей, которым нравится заниматься своим делом. Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 'История компании', 'Сейчас, Beatus это:', '<ul class="now_list">\r\n<li>мыслители</li>\r\n<li>визуализаторы</li>\r\n<li>исследователи</li>\r\n<li>слушатели</li>\r\n<li>производители</li>\r\n<li>исполнители</li>\r\n</ul>\r\n<p>находящиеся в постоянном движении в перед.</p>', 'Чем мы можем быть полезны?', 'Beatus меняет на 180 градусов сложные, вялотекущие ситуации своих клиентов уверенно, быстро и эффективно, делая клиентов счастливыми.', 'Подробнее о наших услугах', '<ul>\r\n<li>\r\n<div class="beuseful_text_slide beuseful_text1">Меняем спад на рост</div>\r\n<img class="js-anchor" src="/Media/pic/beuseful2.jpg" alt="" data-anchor="services" /></li>\r\n<li>\r\n<div class="beuseful_text_slide beuseful_text2">Подтолкнем вялотекущий тренд к активному росту</div>\r\n<img class="js-anchor" src="/Media/pic/beuseful1.jpg" alt="" data-anchor="services" /></li>\r\n<li>\r\n<div class="beuseful_text_slide beuseful_text3">Вдохновим и побудим к действию\r\n<div class="w_clear">&nbsp;</div>\r\n(если не знаете с чего начать)</div>\r\n<img class="js-anchor" src="/Media/pic/beuseful3.jpg" alt="" data-anchor="services" /></li>\r\n</ul>', 'В чем мы видим свою миссию?', '<p>Выступая связующим звеном между бизнесом, обществом и индивидуумом мы способствуем пониманию друг друга и реализации каждого используя новейшие современные технологии и креативные подходы.</p>\r\n<p>Ведь именно взаимопонимание делает нашу жизнь более легкой, приятной и гармоничной.</p>'),
-(17, 'About company', NULL, NULL, NULL, '<p>It all started with the need. We have worked for a company that was to become the leader in its market for 2 years, during the period of difficult economic and political conditions. Our task was to ensure active sales in zhatye timeline with a fairly small budget for this and quite a limited number of specialists. And as we have seen, in such circumstances, the decisive factor in favor domestic real human desire for something.</p>\r\n<p>We asked ourselves the question, "What should I do?". Followed by the following "What do we know about the situation?", "How to understand it quickly and clearly?", "What we can help with?". As soon as we find the answers to some questions and asking new, we have born the idea of ??how you can most effectively solve tasks.</p>\r\n<p>The company''s turnover grew. She became the leader of its market. The volume of work is becoming more and more. Professionals who in one person acted as generators of ideas, artists and analysts do not have enough hours in the day 24 for the implementation of emerging ideas. We began to look for people who could help us in implementing them.</p>\r\n<p>The main criterion was the desire and the desire of man to work, to create certain things in accordance with our attitude towards work and the world in general. With the growing number of specialists appear more and more new ideas. Not all are suitable for our company, but for other companies in other circumstances they would have been very useful and effective. So the idea to the creation of the digital marketing and advertising company.</p>', NULL, 7, 'en', 'Digital marketing  and advertising company', 'The company combines creative people who like to do their work. We are convinced that the creative power of the movement is to understand the situation and the corresponding desire.', 'history of the company', 'Now, Beatus this:', '<ul class="now_list">\r\n<li>thinkers</li>\r\n<li>visualizers</li>\r\n<li>researchers</li>\r\n<li>audience</li>\r\n<li>producers</li>\r\n<li>artists</li>\r\n</ul>\r\n<p>Are in constant movement forward.</p>', 'How can we be helpful?', 'Beatus changes 180 degrees complicated, sluggish situation of their customers confidently, quickly and efficiently, making customers happy.', 'Learn more about our services', '<ul>\r\n<li>\r\n<div class="beuseful_text_slide beuseful_text1">Change the decline in growth</div>\r\n<img class="js-anchor" src="/Media/pic/beuseful2.jpg" alt="" data-anchor="services" /></li>\r\n<li>\r\n<div class="beuseful_text_slide beuseful_text2">Push the sluggish trend of active growth</div>\r\n<img class="js-anchor" src="/Media/pic/beuseful1.jpg" alt="" data-anchor="services" /></li>\r\n<li>\r\n<div class="beuseful_text_slide beuseful_text3">Inspire and motivate to action\r\n<div class="w_clear">&nbsp;</div>\r\n(if you do not know where to start)</div>\r\n<img class="js-anchor" src="/Media/pic/beuseful3.jpg" alt="" data-anchor="services" /></li>\r\n</ul>', 'What we see our mission?', '<p>Acting as a link between business, society and the individual we contribute to the understanding of each other and each implementation using the latest modern technology and creative approaches.</p>\r\n<p>After all, understanding makes our life easier, more pleasant and harmonious.</p>');
+INSERT INTO `content_i18n` (`id`, `name`, `title`, `description`, `keywords`, `text`, `h1`, `row_id`, `language`, `title_big`, `slogan`, `about_title`, `now_title`, `now_list`, `beuseful_title`, `beuseful_text`, `beuseful_link`, `beuseful_slider`, `mission_title`, `mission_text`, `service_name_first`, `service_name_second`, `service_name_third`, `service_name_four`, `service_text_first`, `service_text_second`, `service_text_third`, `service_text_four`, `title_virtual`, `text_virtual`, `algoritm_title`, `algoritm_first`, `algoritm_second`, `algoritm_third`, `algoritm_four`, `algoritm_five`, `beuseful_text1`, `beuseful_text2`, `beuseful_text3`) VALUES
+(16, 'О компании ', NULL, NULL, NULL, '<p>Все началось с необходимости. Мы работали в компании, которая должна была стать лидером своего рынка в течении 2-х лет, в период сложных экономических и политических условий. Перед нами стояла задача обеспечения активных продаж в жатые сроки с довольно небольшим бюджетом на это и довольно ограниченным количеством специалистов. И как мы убедились, в таких условиях решающим моментом выступает внутренние истинное стремление человека к чему-то.</p>\r\n<p>Мы задали себе вопрос &laquo;Что делать?&raquo;. За которым последовали следующие &laquo;Что мы знаем о ситуации?&raquo;, &laquo;Как ее понять максимально быстро и четко?&raquo;, &laquo;Что нам в этом может помочь?&raquo;. По мере того, как мы находили ответы на одни вопросы и задавали новые, у нас рождались идеи как с наибольшей эффективностью можно решать поставленные задачи.</p>\r\n<p>Обороты компании росли. Она стала лидером своего рынка. Объемы работ становились все больше и больше. Специалистам, которые в одном лице выступали как генераторы идей, исполнители и аналитики не хватало 24 часов в сутках для реализации появляющихся идей. Мы начали искать людей, которые могли бы помочь нам в их реализации.</p>\r\n<p>Главным критерием являлось желание и стремление человека работать, создавать определенные вещи в соответствии с нашим отношением к работе и миру в целом. С ростом количества специалистов появлялись все новые и новые идеи. Не все подходили для нашей компании, но для других компаний в других ситуациях они бы были очень полезны и результативны. Так и появилась идея о создании the digital marketing and advertising company.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', NULL, 7, 'ru', 'Цифровой маркетинг <br/> и рекламная компания.', 'Компания, объединяющая в себе творческих личностей, которым нравится заниматься своим делом. Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 'История компании', 'Сейчас Beatus это:', '<ul class="now_list">\r\n<li>мыслители</li>\r\n<li>визуализаторы</li>\r\n<li>исследователи</li>\r\n<li>слушатели</li>\r\n<li>производители</li>\r\n<li>исполнители</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<p style="padding-left: 30px;">находящиеся в постоянном движении вперед.</p>', 'Чем мы можем быть полезны?', 'Beatus меняет на 180 градусов сложные, вялотекущие ситуации своих клиентов уверенно, быстро и эффективно, делая клиентов счастливыми. ', 'Подробнее о наших услугах', '(если не знаете с чего начать)', 'В чем мы видим свою миссию?', '<p>Выступая связующим звеном между бизнесом, обществом и индивидуумом, мы способствуем пониманию друг друга и реализации каждого используя новейшие современные технологии и креативные подходы.</p>\r\n<p>Ведь именно взаимопонимание делает нашу жизнь легкой, приятной и гармоничной.</p>\r\n<p>&nbsp;</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Меняем спад на рост', 'Подтолкнем вялотекущий тренд к активному росту', 'Вдохновим и побудим к действию'),
+(17, 'About company ', NULL, NULL, NULL, '<p>It all started with the need. We have worked for a company that was to become the leader in its market for 2 years, during the period of difficult economic and political conditions. Our task was to ensure active sales in short&nbsp;timeline with a fairly small budget for this and quite a limited number of specialists. And as we have seen, in such circumstances, the decisive factor in favor domestic real human desire for something.</p>\r\n<p>We asked ourselves the question, "What should I do?". Followed by the following "What do we know about the situation?", "How to understand it quickly and clearly?", "What we can help with?". As soon as we find the answers to some questions and asking new, we have born the idea of ??how you can most effectively solve tasks.</p>\r\n<p>The company''s turnover grew. She became the leader of its market. The volume of work is becoming more and more. Professionals who in one person acted as generators of ideas, artists and analysts do not have enough hours in the day 24 for the implementation of emerging ideas. We began to look for people who could help us in implementing them.</p>\r\n<p>The main criterion was the desire and the desire of man to work, to create certain things in accordance with our attitude towards work and the world in general. With the growing number of specialists appear more and more new ideas. Not all are suitable for our company, but for other companies in other circumstances they would have been very useful and effective. So the idea to the creation of the digital marketing and advertising company.</p>', NULL, 7, 'en', 'Digital marketing <br/> and advertising company', 'The company combines creative people who like to do their work. We are convinced that the creative power of the movement is to understand the situation and the corresponding desire. ', 'history of the company', 'Now, Beatus this:', '<ul class="now_list">\r\n<li>thinkers</li>\r\n<li>visualizers</li>\r\n<li>researchers</li>\r\n<li>audience</li>\r\n<li>producers</li>\r\n<li>artists</li>\r\n</ul>\r\n<p>Are in constant movement forward.</p>', 'How can we be helpful?', 'Beatus changes 180 degrees complicated, sluggish situation of their customers confidently, quickly and efficiently, making customers happy.', 'Learn more about our services', '(If you do not know where to start)', 'What we see our mission?', '<p>Acting as a link between business, society and the individual we contribute to the understanding of each other and each implementation using the latest modern technology and creative approaches.</p>\r\n<p>After all, understanding makes our life easier, more pleasant and harmonious.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Change the decline in growth', 'Push the sluggish trend of active growth', 'Inspire and motivate to action'),
+(18, 'Наши услуги', NULL, NULL, NULL, '<p>Нам нравится делиться с Вами нашими идеями и видеть, как они помогают воплощению в жизнь ваших задач. Мы не ждем каких-либо условий. Мы обладаем созидательной силой, находясь в постоянном творческом процессе используя новейшие технологии.</p>', NULL, 8, 'ru', 'Наши компетенции', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Стратегия & Консалтинг', 'Креативный дизайн', 'Веб-разработка', 'Интернет-маркетинг', '<p><strong>1. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', '<p><strong>2. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому, мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', '<p><strong>3. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому, мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', '<p><strong>4. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому, мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', 'Виртуализация в сфере строительства', '<p>При помощи новейших технологий мы даем полное ощущение присутствия в местах, которые находятся далеко или просто пока не существуют. Наша цель дать полное ощущение контакта человека и обьекта. Начиная от виртуализации помещений, в которых Вы легко сможете изменять интерьер, заканчивая дополнительной реальностью, когда на участке&nbsp;участка под застройку Вы сможете наблюдать уже готовый дом со всей его инфраструктурой.</p>\r\n<p>Вы будете&nbsp;свободно перемещаться по окружающей территории&nbsp;и Сами изучить ее. Это позволяет получить ответы на все интересующие вопросы, возникающие при принятии решения. И все это можно узнать и прочувствовать, не выходя из дома или офиса.</p>', 'Алгоритм нашей работы', '<span>Мы слушатели:</span> Вы рассказываете о том, чего хотите или не хотите', '<span>Мы исследователи:</span> изучаем рынок и компанию', '<span>Мы креативные мыслители:</span> находим не стандартные лучшие решения', '<span>Мы визуализаторы:</span> создаем пространство, перемещаем во времени', '<span>Мы производители и исполнители:</span> воплощаем разработанную концепцию, сопровождаем ее поддержку', '', '', ''),
+(19, 'Services', NULL, NULL, NULL, '<p>We like to share with you our ideas and see how they help translate into reality your needs. We do not expect any conditions. We have a creative force in constant creative process using the latest technology.</p>', NULL, 8, 'en', 'Our competence', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Strategy & Consulting', 'Creative Design', 'Web Development', 'Online Marketing', '<p><strong>awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', '<p><strong>2awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', '<p><strong>3awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', '<p><strong>4awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', 'Virtualization in the construction industry', '<p>We give a full sense of presence in places that are far away or simply do not exist using the latest technologies. Our goal is to give a complete feeling of being in the right places. Starting from the virtualization space, where you can easily change the interior, finishing with more reality, when in place building plot you will be able to watch the finished house with all its infrastructure.</p>\r\n<p>Also, you will be able to move freely around the surrounding area and explore it for yourself. This allows you to get answers to all the questions that arise when making a decision. And all this you can learn and feel the comfort of home or office.</p>', 'The algorithm of our work', '<span>We listeners</span> you talk about what you want or do not want', '<span>We are researchers</span> are studying the market and company', '<span>We are creative thinkers</span> to find creative solutions best', '<span>We are visualizers</span> are creating space, moving in time', '<span>We are the producers and performers</span> embody the concept developed, accompanied by its support', '', '', ''),
+(20, 'Тест', NULL, NULL, NULL, '<p>QWERTY</p>', NULL, 9, 'ru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 'TEst', NULL, NULL, NULL, '<p>QWERTY</p>', NULL, 9, 'en', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -751,14 +867,16 @@ CREATE TABLE IF NOT EXISTS `control` (
   `other` text,
   `sort` int(10) unsigned NOT NULL DEFAULT '0',
   `sitemap` tinyint(1) unsigned DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `control`
 --
 
 INSERT INTO `control` (`id`, `alias`, `status`, `other`, `sort`, `sitemap`) VALUES
-(1, 'index', 1, NULL, 1, 1);
+(1, 'index', 1, NULL, 1, 1),
+(2, 'news', 1, NULL, 2, 1),
+(3, 'contacts', 1, '{"longitude":"","latitude":"","text":""}', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -776,15 +894,28 @@ CREATE TABLE IF NOT EXISTS `control_i18n` (
   `text` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `control_i18n`
 --
 
 INSERT INTO `control_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `description`, `text`, `row_id`, `language`) VALUES
-(1, 'Beatus - Главная страница', 'Beatus - Главная страница', 'Beatus - Главная страница', 'Beatus - Главная страница', 'Beatus - Главная страница', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', 1, 'ru'),
-(17, 'Main page', 'Main page', 'Main page', 'Main page', 'Main page', '', 1, 'en');
+(1, 'Sensitive - Imago - Главная страница', 'Sensitive - Imago - Главная страница h1', 'Sensitive - Imago - Главная страница title', 'Sensitive - Imago - Главная страница keywords', 'Sensitive - Imago - Главная страница description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', 1, 'ru'),
+(17, 'Sensitive - Imago - Main page', 'Sensitive - Imago - Main page h1', 'Sensitive - Imago - Main page title', 'Sensitive - Imago - Main page keywords', 'Sensitive - Imago - Main page description', '<p><strong>Использовать все виды списков</strong></p>\r\n<ul>\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.</li>\r\n</ul>\r\n<ol>\r\n<li>Curabitur vehicula arcu elementum ultrices convallis.</li>\r\n<li>Curabitur at massa ultrices, sollicitudin ipsum eu, tincidunt sem.</li>\r\n<li>Praesent iaculis nibh quis lectus egestas porta.</li>\r\n<li>Sed condimentum felis tristique elit ultrices, vel pulvinar nisl mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ul>\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: circle;">\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: square;">\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ul>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>левому</strong> <strong>краю</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed maximus lorem. Vivamus sed metus aliquet, tempor turpis sit amet, volutpat risus. Fusce magna neque, pellentesque vitae purus vel, pellentesque maximus ante. Vivamus diam lectus, lobortis nec ipsum quis, laoreet semper odio. Nam consectetur nisi turpis, ut pulvinar justo aliquam vitae. Fusce egestas eros sodales, aliquam erat sed, vulputate massa. Mauris eu dolor vitae dui tempus semper. Cras elementum, nibh vel scelerisque dignissim, metus orci malesuada tellus, maximus eleifend urna libero quis ipsum. Ut ex lectus, scelerisque sed cursus nec, ullamcorper ut elit.</p>\r\n<p><strong>Выравнивание по левому правому краю</strong></p>\r\n<p style="text-align: right;">Cras imperdiet dolor eu vestibulum congue. Proin suscipit fermentum ex, quis tempor est cursus non. Nullam suscipit augue dui. Ut molestie interdum tortor maximus commodo. Vestibulum non est volutpat, molestie mauris in, feugiat est. Donec consequat ligula sed egestas pretium. Nam ac mauris rhoncus, lobortis dui non, molestie leo. Quisque pretium sed metus sed tristique. Fusce a nibh eu justo pharetra blandit. Nullam id risus erat. Aenean malesuada quam ut est auctor, vitae ullamcorper velit congue. In in placerat tellus. Duis sit amet dui id purus porta ornare non ac erat. Aenean dapibus arcu elit, tempor gravida arcu blandit eu.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>центру</strong></p>\r\n<p style="text-align: center;">Sed tempor, ante vitae faucibus feugiat, felis magna pretium nisl, ac pellentesque mi mi id augue. Aliquam a mauris lobortis, congue odio ac, dictum quam. Suspendisse tempus orci ut molestie cursus. Etiam consectetur vehicula ipsum, et sodales nisl. Vestibulum id aliquam libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo in neque pharetra iaculis.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>ширине</strong></p>\r\n<p style="text-align: justify;">Donec quis fermentum risus. Aliquam efficitur aliquam urna, vitae ornare purus feugiat non. Nam laoreet, velit at porta aliquam, dolor sem pretium nulla, vel sagittis sapien ante eget sapien. Sed est elit, lacinia et urna vel, venenatis vestibulum tortor. Duis ac tincidunt dolor. Pellentesque lacinia hendrerit urna sit amet lobortis. Suspendisse potenti. Vivamus eu sapien sollicitudin, elementum turpis efficitur, feugiat sapien. Nulla congue rutrum nisl. Quisque pretium facilisis ligula eu tincidunt. Donec posuere lorem eu est mattis commodo. Suspendisse pretium nibh nec convallis vehicula. Cras ac suscipit mi, vitae laoreet mauris. Aliquam erat volutpat. Quisque scelerisque nunc ut congue scelerisque.</p>\r\n<p><strong>Добавить ссылку &ndash; одна открывается в текущем окне, одна в соседнем </strong></p>\r\n<p><a href="http://uk.lipsum.com/">Proin justo nisl, faucibus</a> nec dignissim a, tincidunt at lorem. Vivamus ligula arcu, faucibus a ex et, viverra molestie velit. Donec ut justo arcu. Integer a lorem ut massa mattis vestibulum. Fusce in lacus eget dolor finibus vestibulum. Vestibulum lobortis placerat felis non feugiat. Sed eu risus non nisi iaculis elementum. <a href="https://google.com/">Etiam eu eros eget</a> ante cursus laoreet in ut nisi. Phasellus porta, est vitae accumsan dictum, erat nibh bibendum tellus, id suscipit elit mauris nec felis. Nunc in sodales erat, in scelerisque sapien. Aenean rutrum ligula leo, nec fringilla mi consectetur a. Quisque molestie nulla sit amet nibh dictum maximus.</p>\r\n<p><a href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p>&nbsp;</p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><strong>Изменить форматирование &ndash; размер, цвет, фон, формат, начертание шрифта (все возможные варианты редактора)</strong></p>\r\n<p><strong>Nunc ac massa sit amet erat dignissim tristique. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent lorem justo, vestibulum quis posuere blandit, </strong>volutpat <em>vitae tellus. Sed blandit tortor vitae libero porttitor, eu vehicula odio dapibus. Quisque rhoncus facilisis vulputate. Etiam mi sem, placerat ut erat non, accumsan dignissim magna. Nullam tempor eleifend erat eu placerat. Nulla suscipit nunc sed</em> tortor sodales sodales. Suspendisse porta placerat tellus, eget luctus arcu blandit at. Suspendisse imperdiet, sapien ac hendrerit laoreet, mauris tortor porttitor augue, pellentesque mattis nisi nulla eu urna. Donec dictum sed velit id tristique. Vivamus sit amet eleifend ex. Quisque ullamcorper rhoncus congue.</p>\r\n<p>Duis imperdiet neque velit, vel tempor dui volutpat sit amet. Sed laoreet quam vitae sem vulputate vulputate sed et metus. Phasellus nec eros rhoncus, semper tortor nec, rutrum justo. Donec in lectus ullamcorper, aliquam nibh vitae, commodo augue. Duis eget lorem ac purus venenatis eleifend. Phasellus finibus magna at ante volutpat, vel porttitor ante gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<table width="717">\r\n<tbody>\r\n<tr>\r\n<td width="33">\r\n<p>№</p>\r\n</td>\r\n<td width="110">\r\n<p>1</p>\r\n</td>\r\n<td width="58">\r\n<p>2</p>\r\n</td>\r\n<td width="60">\r\n<p>3</p>\r\n</td>\r\n<td width="80">\r\n<p>4</p>\r\n</td>\r\n<td width="86">\r\n<p>5</p>\r\n</td>\r\n<td width="67">\r\n<p>6</p>\r\n</td>\r\n<td width="80">\r\n<p>7</p>\r\n</td>\r\n<td width="72">\r\n<p>8</p>\r\n</td>\r\n<td width="72">\r\n<p>9</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>1</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>2.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>3.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>', 1, 'en'),
+(18, 'Sensitive - Imago - Hauptseite', 'Sensitive - Imago - Hauptseite - h1', 'Sensitive - Imago - Hauptseite - title', 'Sensitive - Imago - Hauptseite - keywords', 'Sensitive - Imago - Hauptseite - description', NULL, 1, 'de'),
+(19, 'Sensitive - Imago - Casa', 'Sensitive - Imago - Casa - h1', 'Sensitive - Imago - Casa - title', 'Sensitive - Imago - Casa - keywords', 'Sensitive - Imago - Casa - description', NULL, 1, 'sp'),
+(20, 'Sensitive - Imago - Maison', 'Sensitive - Imago - Maison h1', 'Sensitive - Imago - Maison title', 'Sensitive - Imago - Maison keywords', 'Sensitive - Imago - Maison description', NULL, 1, 'fr'),
+(21, 'Новости', 'Новости - h1', 'Новости - title', 'Новости - keywords', 'Новости - description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', 2, 'ru'),
+(22, 'News', 'News - h1', 'News - title', 'News - keywords', 'News - description', NULL, 2, 'en'),
+(23, 'Nachrichten', 'Nachrichten - h1', 'Nachrichten - title', 'Nachrichten - keywords', 'Nachrichten - description', NULL, 2, 'de'),
+(24, 'Noticias', 'Noticias - h1', 'Noticias - title', 'Noticias - keywords', 'Noticias - description', NULL, 2, 'sp'),
+(25, 'Nouvelles', 'Nouvelles - h1', 'Nouvelles - title', 'Nouvelles - keywords', 'Nouvelles - description', NULL, 2, 'fr'),
+(26, 'Контакты', 'Контакты - h1', 'Контакты - title', 'Контакты - keywords', 'Контакты - description', NULL, 3, 'ru'),
+(27, 'Сontacts', 'Сontacts - h1', 'Сontacts - title', 'Сontacts - keywords', 'Сontacts - keywords', NULL, 3, 'en'),
+(28, 'Kontakte', 'Kontakte - h1', 'Kontakte - title', 'Kontakte - keywords', 'Kontakte - description', NULL, 3, 'de'),
+(29, 'Сontactos', 'Сontactos - h1', 'Сontactos - title', 'Сontactos - keywords', 'Сontactos - description', NULL, 3, 'sp'),
+(30, 'Сontacts', 'Сontacts - h1', 'Сontacts - title', 'Сontacts - keywords', 'Сontacts - keywords', NULL, 3, 'fr');
 
 -- --------------------------------------------------------
 
@@ -1378,7 +1509,7 @@ CREATE TABLE IF NOT EXISTS `i18n` (
   `short_name` varchar(16) NOT NULL,
   `locale` varchar(8) NOT NULL,
   `default` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `i18n`
@@ -1386,7 +1517,10 @@ CREATE TABLE IF NOT EXISTS `i18n` (
 
 INSERT INTO `i18n` (`id`, `alias`, `name`, `short_name`, `locale`, `default`) VALUES
 (1, 'ru', 'Русский', 'РУС', 'ru-ru', 1),
-(2, 'en', 'English', 'ENG', 'en-us', 0);
+(2, 'en', 'English', 'ENG', 'en-us', 0),
+(3, 'de', 'Deutsch', 'DEU', 'de-de', 0),
+(4, 'sp', 'Español', 'ESP', 'sp-sp', 0),
+(5, 'fr', 'Francais', 'FRA', 'fr-fr', 0);
 
 -- --------------------------------------------------------
 
@@ -1404,7 +1538,26 @@ CREATE TABLE IF NOT EXISTS `log` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   `type` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `log`
+--
+
+INSERT INTO `log` (`id`, `created_at`, `updated_at`, `name`, `link`, `ip`, `deleted`, `type`, `status`) VALUES
+(1, 1471330867, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/46', '178.136.229.251', 0, 6, 0),
+(2, 1471331562, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/47', '178.136.229.251', 0, 6, 0),
+(3, 1471331593, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/48', '178.136.229.251', 0, 6, 0),
+(4, 1471331762, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/49', '178.136.229.251', 0, 6, 0),
+(5, 1471331836, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/1', '178.136.229.251', 0, 2, 0),
+(6, 1471331966, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/50', '178.136.229.251', 0, 6, 0),
+(7, 1471333032, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/51', '178.136.229.251', 0, 6, 0),
+(8, 1471333056, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/52', '178.136.229.251', 0, 6, 0),
+(9, 1471333736, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/2', '178.136.229.251', 0, 2, 0),
+(10, 1471336013, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/53', '178.136.229.251', 0, 6, 0),
+(11, 1471336835, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/3', '178.136.229.251', 0, 2, 0),
+(12, 1471337458, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/4', '178.136.229.251', 0, 2, 0),
+(13, 1471337571, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/54', '178.136.229.251', 0, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -1418,35 +1571,17 @@ CREATE TABLE IF NOT EXISTS `mail_templates` (
   `updated_at` int(10) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `sort` int(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `mail_templates`
 --
 
 INSERT INTO `mail_templates` (`id`, `name`, `updated_at`, `status`, `sort`) VALUES
-(1, 'Контактная форма ( Администратору )', 1450254141, 1, 0),
-(4, 'Подтверждение регистрации ( Пользователю )', 1450254141, 1, 1),
-(5, 'Восстановление пароля ( Пользователю )', 1450254144, 1, 3),
-(6, 'Изменение пароля ( Пользователю )', 1450254142, 1, 2),
-(7, 'Новый отзыв ( Администратору )', 1450254146, 1, 13),
-(8, 'Новый заказ сертификата ( Администратору )', 1450254234, 1, 6),
-(9, 'Заказ сертификата - через админ панель ( Пользователю )', 1450254146, 1, 7),
-(11, 'Новый заказ ( Администратору )', 1450254146, 1, 19),
-(12, 'Новый заказ - Наложенный платеж ( Пользователю )', 1450254146, 1, 20),
-(13, 'Письмо после регистрации (Пользователю)', 1450254145, 1, 4),
-(15, 'Заказ изменен (Заказчику)', 1450254146, 1, 10),
-(20, 'Смена статуса заказа на "Отменен"', 1450254146, 1, 11),
-(21, 'Смена статуса заказа на "Выполнен"', 1450254146, 1, 12),
-(26, 'Отправка нового пароля пользователю через админ-панель', 1450254145, 1, 5),
-(27, 'Сообщить, когда товар появится в наличии', 1450254146, 1, 14),
-(28, 'Быстрый заказ', 1450254146, 1, 15),
-(29, 'Под заказ (Пользователю)', 1450254146, 1, 16),
-(30, 'Под заказ (Администратору)', 1450254146, 1, 17),
-(31, 'Персональный купон', 1450254146, 1, 18),
-(32, 'Новый заказ - PrivatBank (Пользователю)', NULL, 1, 21),
-(34, 'Новый заказ - Western Union (Пользователю)', 1452521966, 1, 23),
-(35, 'Новый заказ - PayPal (Пользователю)', NULL, 1, 24);
+(1, 'Контактная форма (Администратору)', 1470918887, 1, 0),
+(36, 'Контактная форма (Пользователю)', 1470942932, 1, 0),
+(37, 'Заказ подробного отчета (Администратору)', 1470943455, 1, 0),
+(38, 'Заказ подробного отчета (Пользователю)', 1470943790, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1460,46 +1595,21 @@ CREATE TABLE IF NOT EXISTS `mail_templates_i18n` (
   `text` text NOT NULL,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `mail_templates_i18n`
 --
 
 INSERT INTO `mail_templates_i18n` (`id`, `subject`, `text`, `row_id`, `language`) VALUES
-(1, 'Новое сообщение из контактной формы - сайт {{site}}', '<p>Вам пришло новое письмо из контактной формы с сайта {{site}}!</p>\r\n<p>Имя отправителя: {{name}} ( {{ip}} ).</p>\r\n<p>E-Mail отправителя: {{email}}.</p>\r\n<p>IP отправителя: {{ip}}.</p>\r\n<p>Дата сообщения: {{date}}.</p>\r\n<p>Текст сообщения: {{text}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Письмо сгенерировано автоматически. Пожалуйста не отвечайте на него!</p>', 1, 'ru'),
-(4, 'Пожалуйста, подтвердите свой почтовый адрес, сайт {{site}}', '<p>Для подтверждения регистрации на сайте {{site}}, перейдите по ссылке:</p>\r\n<p>{{link}}</p>', 4, 'ru'),
-(5, 'Восстановление пароля', '<p>Уважаемый, пользователь. Вы воспользовались услугой восстановления пароля на сайте {{site}}.</p>\r\n<p>Ваш новый пароль для входа теперь:</p>\r\n<p>{{password}}</p>', 5, 'ru'),
-(6, 'Изменение пароля - {{site}}', '<p>Ув., пользователь! Вы только что изменили пароль на сайте {{site}} на {{password}}!</p>', 6, 'ru'),
-(7, 'Новый отзыв', '<p>Оставлен новый отзыв на сайте {{site}}!</p>\r\n<p>Информация об отзыве: </p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>IP:</td>\r\n<td>{{ip}}</td>\r\n</tr>\r\n<tr>\r\n<td>Имя:</td>\r\n<td>{{name}}</td>\r\n</tr>\r\n<tr>\r\n<td>Город:</td>\r\n<td>{{city}}</td>\r\n</tr>\r\n<tr>\r\n<td>E-Mail:</td>\r\n<td>\r\n<p>{{email}}</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>Оценка:</td>\r\n<td>\r\n<p>{{mark}}</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>Отзыв:</td>\r\n<td>{{text}}</td>\r\n</tr>\r\n</tbody>\r\n</table>', 7, 'ru'),
-(8, 'Заказ сертификата', '<p>Только что был совершен быстрый заказ на сайте {{site}}!</p>\r\n<p>Товар: <a href="{{link}}">{{item_name}}</a></p>\r\n<p>Заказчик:{{name}}</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>Номер телефона:</td>\r\n<td>{{phone}}</td>\r\n</tr>\r\n<tr>\r\n<td>IP:</td>\r\n<td>{{ip}}</td>\r\n</tr>\r\n</tbody>\r\n</table>', 8, 'ru'),
-(9, 'Заказ сертификата', '<p>Заказ сертификата</p>', 9, 'ru'),
-(11, 'Новый заказ', '<p>Только что был совершен заказ на сайте {{site}}!</p>\r\n<p>Информация о заказчике и способе доставки:</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>IP:</td>\r\n<td>{{ip}}</td>\r\n</tr>\r\n<tr>\r\n<td>Имя:</td>\r\n<td>{{name}}</td>\r\n</tr>\r\n<tr>\r\n<td>Номер телефона:</td>\r\n<td>{{phone}}</td>\r\n</tr>\r\n<tr>\r\n<td>Способ оплаты</td>\r\n<td>{{payment}}</td>\r\n</tr>\r\n<tr>\r\n<td>Способ доставки</td>\r\n<td>{{delivery}}</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>Информация о заказе:</p>\r\n<p>{{items}}</p>\r\n<p>Для уточнения деталей перейдите по ссылке {{link_admin}}</p>\r\n<p>&nbsp;</p>', 11, 'ru'),
-(12, 'Новый заказ', '<p>Вы только что оформили&nbsp; заказ на сайте {{site}}!</p>\r\n<p>Информация о заказчике и способе доставки:</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>IP:</td>\r\n<td>{{ip}}</td>\r\n</tr>\r\n<tr>\r\n<td>Имя:</td>\r\n<td>{{name}}</td>\r\n</tr>\r\n<tr>\r\n<td>Номер телефона:</td>\r\n<td>{{phone}}</td>\r\n</tr>\r\n<tr>\r\n<td>Способ оплаты</td>\r\n<td>{{payment}}</td>\r\n</tr>\r\n<tr>\r\n<td>Способ доставки</td>\r\n<td>{{delivery}}</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>Информация о заказе:</p>\r\n<p>{{items}}</p>\r\n<p>Для уточнения деталей перейдите по ссылке {{link_user}}</p>\r\n<p>&nbsp;</p>', 12, 'ru'),
-(13, 'Регистрация', '<p>Спасибо за регистрацию!</p>\r\n<p>Ваши данные для входа:</p>\r\n<p>Логин - {{email}}</p>\r\n<p>Пароль - {{password}}</p>', 13, 'ru'),
-(15, 'Ваш заказ {{id}} был откорректирован!', '<p><span style="text-align: left; font-size: 14px; color: #333333; font-family: Arial;">{{name}}, нам очень жаль.</span></p>\r\n<p><span style="text-align: left; font-size: 14px; color: #333333; font-family: Arial;">Мы вынуждены были изменить состав <span class="il">ваш</span>его <span class="il">заказ</span>а № {{id}}<br /></span></p>\r\n<p><span style="text-align: left; font-size: 14px; color: #333333; font-family: Arial;">Вот как выглядит <span class="il">ваш</span> <span class="il">заказ</span> № {{id}} сейчас:</span></p>\r\n<p>{{items}}</p>\r\n<p><span style="text-align: left; font-size: 14px; color: #333333; font-family: Arial;">Текущая стоимость <span class="il">ваш</span>его <span class="il">заказ</span>а <strong>{{amount}} грн</strong></span></p>\r\n<p><span style="text-align: left; font-size: 14px; color: #333333; font-family: Arial;"><span style="text-align: left; font-size: 14px; color: #333333; font-family: Arial;">Еще раз извините.</span></span></p>\r\n<p>&nbsp;</p>\r\n<p><span style="text-align: left; font-size: 9px; color: #999999; font-family: Arial;">Сообщение создано автоматически. Пожалуйста не отвечайте на него.</span></p>\r\n<p><span style="text-align: right; font-size: 9px; color: #333333; font-family: Arial;"><span style="color: #999999;">Служба поддержки клиентов {{site}}<br /></span></span></p>\r\n<p>&nbsp;</p>', 15, 'ru'),
-(20, 'Ваш заказ отменен!', '<p>Здравствуйте, {{name}}!</p>\r\n<p>Ваш заказ №{{id}} отменен!</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #808080;">Спасибо, что Вы есть у нас!</span></p>\r\n<p><span style="color: #808080;">Письмо отправлено автоматически, пожалуйста не отвечайте на него!</span></p>', 20, 'ru'),
-(21, 'Ваш заказ выполнен!', '<p>Здравствуйте, {{name}}!</p>\r\n<p>Ваш заказ №{{id}} на сумму {{amount}} успешно выполнен!</p>\r\n<p>&nbsp;</p>\r\n<p><span style="color: #808080;">Спасибо, что Вы есть у нас!</span></p>\r\n<p><span style="color: #808080;">Письмо отправлено автоматически, пожалуйста не отвечайте на него!</span></p>', 21, 'ru'),
-(26, 'Изменение пароля - {{site}}', '<p>Ув., пользователь!</p>\r\n<p>Ваш пароль на сайте {{site}} был изменен администрацией на {{password}}!</p>', 26, 'ru'),
-(27, 'Новое сообщение из контактной формы - сайт {{site}}', '', 1, 'en'),
-(29, 'Новый отзыв', '', 7, 'en'),
-(31, 'Пожалуйста, подтвердите свой почтовый адрес, сайт {{site}}', '', 4, 'en'),
-(33, 'Изменение пароля - {{site}}', '', 6, 'en'),
-(35, 'Восстановление пароля', '', 5, 'en'),
-(37, 'Сообщить, когда товар появится в наличии', '<p>{{item_name}} появился в наличии!</p>\r\n<p>RUS</p>', 27, 'ru'),
-(38, 'Быстрый заказ', ' ', 28, 'ru'),
-(39, 'Под заказ', '<p>Ув. {{name}} {{last_name}}!</p>\r\n<p>Спасибо за заказ на нашем сайте. Вот список заказанніх Вами товаров:</p>\r\n<p>{{items}}</p>\r\n<p>Наш менеджер свяжется с Вами по номеру {{phone}}!</p>', 29, 'ru'),
-(40, 'Под заказ, {{site}}', '<p>Был создан новый быстрый заказ.</p>\r\n<p>Информация заказчика:</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>Имя</td>\r\n<td>{{name}}</td>\r\n</tr>\r\n<tr>\r\n<td>Фамилия</td>\r\n<td>{{last_name}}</td>\r\n</tr>\r\n<tr>\r\n<td>Адрес доставки</td>\r\n<td>{{address}}</td>\r\n</tr>\r\n<tr>\r\n<td>E-Mail</td>\r\n<td>{{email}}</td>\r\n</tr>\r\n<tr>\r\n<td>Номер телефона</td>\r\n<td>{{phone}}</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>Заказанный товар представлен ниже:</p>\r\n<p>{{items}}</p>', 30, 'ru'),
-(41, 'Под заказ', '<p>Ув. {{name}} {{last_name}}!</p>\r\n<p>Спасибо за заказ на нашем сайте. Вот список заказанніх Вами товаров:</p>\r\n<p>{{items}}</p>\r\n<p>Наш менеджер свяжется с Вами по номеру {{phone}}!</p>', 29, 'en'),
-(43, 'Под заказ, {{site}}', '<p>Был создан новый быстрый заказ.</p>\r\n<p>Информация заказчика:</p>\r\n<table>\r\n<tbody>\r\n<tr>\r\n<td>Имя</td>\r\n<td>{{name}}</td>\r\n</tr>\r\n<tr>\r\n<td>Фамилия</td>\r\n<td>{{last_name}}</td>\r\n</tr>\r\n<tr>\r\n<td>Адрес доставки</td>\r\n<td>{{address}}</td>\r\n</tr>\r\n<tr>\r\n<td>E-Mail</td>\r\n<td>{{email}}</td>\r\n</tr>\r\n<tr>\r\n<td>Номер телефона</td>\r\n<td>{{phone}}</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>Заказанный товар представлен ниже:</p>\r\n<p>{{items}}</p>', 30, 'en'),
-(45, 'Сообщить, когда товар появится в наличии', '<p>{{item_name}} появился в наличии!</p>\r\n<p>ENG</p>', 27, 'en'),
-(48, 'Персональный купон', '<p>Вы получили купон на скидку в размере {{discount}}!</p>\r\n<p>Ваш код {{code}}.</p>\r\n<p>СПЕШИТЕ!</p>\r\n<p>Акция действует с {{date_from}} до {{date_to}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Минимальная сумма покупки всего {{amount}}!</p>', 31, 'ru'),
-(49, 'Персональный купон', '<p>Вы получили купон на скидку в размере {{discount}}!</p>\r\n<p>Ваш код {{code}}.</p>\r\n<p>СПЕШИТЕ!</p>\r\n<p>Акция действует с {{date_from}} до {{date_to}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Минимальная сумма покупки всего {{amount}}!</p>', 31, 'en'),
-(51, 'Sertificate', '', 8, 'en'),
-(53, '', '', 32, 'ru'),
-(55, 'Western Union ru', '<p>Western Union</p>', 34, 'ru'),
-(56, '', '', 35, 'ru'),
-(57, 'Western Union en', '<p>Western Union</p>', 34, 'en');
+(1, 'Новое сообщение из контактной формы - сайт {{site}}', '<p>Вам пришло новое письмо из контактной формы с сайта {{site}}!</p>\r\n<p>Имя отправителя: {{name}} ( {{ip}} ).</p>\r\n<p>E-Mail отправителя: {{email}}.</p>\r\n<p>Телефон отправителя: {{phone}}.</p>\r\n<p>IP отправителя: {{ip}}.</p>\r\n<p>Тема обращения: {{theme}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Письмо сгенерировано автоматически. Пожалуйста не отвечайте на него!</p>', 1, 'ru'),
+(27, 'Новое сообщение из контактной формы - сайт {{site}}', '<p>You have received a new message from a contact form from the website {{site}}!</p>\r\n<p>Sender Name: {{name}} ({{ip}}).</p>\r\n<p>E-Mail Sender: {{email}}.</p>\r\n<p>Sender Phone: {{phone}}.</p>\r\n<p>IP Sender: {{ip}}.</p>\r\n<p>Subject Treatment: {{theme}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Letter generated automatically. Please do not reply to it!</p>', 1, 'en'),
+(58, 'Сообщение контактной формы', '<p>Добрый день {{name}} , Вы оставили сообщение через форму обратной свзяи на сайте {{site}} .</p>\r\n<p>&nbsp;</p>\r\n<p>Наш менеджер свяжется с Вами в ближайшее время, спасибо!</p>', 36, 'ru'),
+(59, 'Message contact form', '<p>Hello {{name}}, you leave a message through the feedback form on the site svzya {{site}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Our manager will contact you shortly, thank you!</p>', 36, 'en'),
+(60, 'Новый подробный отчет', '<p>Поступил новый заказ подробного отчета с сайта {{site}}!</p>\r\n<p>Имя отправителя: {{name}} ( {{ip}} ).</p>\r\n<p>E-Mail отправителя: {{email}}.</p>\r\n<p>Телефон отправителя: {{phone}}.</p>\r\n<p>Наименование проекта: {{project}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Письмо сгенерировано автоматически. Пожалуйста не отвечайте на него!</p>', 37, 'ru'),
+(61, 'New detailed report', '<p>Entered a new order a detailed report from the site {{site}}!</p>\r\n<p>Sender Name: {{name}} ({{ip}}).</p>\r\n<p>E-Mail Sender: {{email}}.</p>\r\n<p>Sender Phone: {{phone}}.</p>\r\n<p>Project name: {{project}}.</p>\r\n<p>&nbsp;</p>\r\n<p>Letter generated automatically. Please do not reply to it!</p>', 37, 'en'),
+(62, 'Заказ подробного отчета', '<p>Уважаемый,&nbsp;{{name}}. Мыполучили заказ подробного отчета по проекту: {{project}} на сайте {{site}}.</p>\r\n<p>Ответим Вам в ближайшее время, Спасибо!</p>\r\n<p>&nbsp;</p>\r\n<p>Письмо сгенерировано автоматически. Пожалуйста не отвечайте на него!</p>', 38, 'ru'),
+(63, 'Order a detailed report', '<p>Dear, {{name}}. Mypoluchili order a detailed project report: {{project}} online {{site}}.</p>\r\n<p>We will answer to you soon, Thank you!</p>\r\n<p>&nbsp;</p>\r\n<p>Letter generated automatically. Please do not reply to it!</p>', 38, 'en');
 
 -- --------------------------------------------------------
 
@@ -1517,7 +1627,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `updated_at` int(10) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `count` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `menu`
@@ -1525,27 +1635,21 @@ CREATE TABLE IF NOT EXISTS `menu` (
 
 INSERT INTO `menu` (`id`, `id_parent`, `name`, `link`, `sort`, `status`, `updated_at`, `icon`, `count`) VALUES
 (1, 0, 'Панель управления', 'index/index', 0, 1, NULL, 'fa-dashboard', NULL),
-(2, 0, 'SEO', NULL, 16, 0, NULL, 'fa-tags', NULL),
-(3, 0, 'Пользователи', 'users/index', 10, 0, NULL, 'fa-users', 'all_users'),
-(4, 0, 'Настройки сайта', NULL, 15, 1, NULL, 'fa-cogs', NULL),
-(5, 0, 'Системная страница', 'control/edit/1', 1, 1, NULL, 'fa-folder-open-o', NULL),
-(6, 155, 'Список текстовых страниц', 'content/index', 1, 1, NULL, NULL, NULL),
+(4, 0, 'Настройки сайта', NULL, 98, 1, NULL, 'fa-cogs', NULL),
+(5, 0, 'Системные страницы', 'control/index', 1, 1, NULL, 'fa-folder-open-o', NULL),
+(6, 155, 'Блок "О компании"', 'content/edit/7', 1, 1, NULL, NULL, NULL),
 (8, 2, 'Метрика и счетчики', 'seo_scripts/index', 1, 1, NULL, NULL, NULL),
 (10, 2, 'Добавить метрику или счетчик', 'seo_scripts/add', 2, 1, NULL, NULL, NULL),
 (12, 2, 'Теги для конкретных ссылок', 'seo_links/index', 0, 1, NULL, NULL, NULL),
 (13, 2, 'Добавить теги для ссылки', 'seo_links/add', 0, 1, NULL, NULL, NULL),
-(14, 0, 'Шаблоны писем', 'mailTemplates/index', 14, 1, NULL, 'fa-file-image-o', NULL),
+(14, 0, 'Шаблоны писем', 'mailTemplates/index', 97, 1, NULL, 'fa-file-image-o', NULL),
 (15, 0, 'Меню', 'menu/index', 4, 1, NULL, 'fa-list-ul', NULL),
 (19, 156, 'Список новостей', 'news/index', 4, 1, NULL, NULL, NULL),
 (20, 156, 'Добавить новость', 'news/add', 5, 1, NULL, NULL, NULL),
 (25, 64, 'Список слайдов', 'slider/index', 1, 1, NULL, NULL, NULL),
 (26, 64, 'Добавть слайд', 'slider/add', 2, 1, NULL, NULL, NULL),
-(35, 0, 'Обратная связь', 'contacts/index', 12, 0, NULL, 'fa-envelope-o', 'contacts'),
-(38, 0, 'Каталог', NULL, 7, 0, NULL, 'fa-inbox', NULL),
-(50, 0, 'Заказы', NULL, 9, 0, NULL, 'fa-shopping-cart', 'all_orders'),
+(35, 0, 'Обратная связь', 'contacts/index', 12, 1, NULL, 'fa-envelope-o', 'contacts'),
 (54, 0, 'Лента событий', 'log/index', 13, 1, NULL, 'fa-tasks', NULL),
-(59, 156, 'Системная страница', 'control/edit/1', 3, 1, NULL, NULL, NULL),
-(64, 0, 'Слайдер', NULL, 6, 1, NULL, 'fa-picture-o', NULL),
 (65, 3, 'Список пользователей', 'users/index', 1, 1, NULL, NULL, 'users'),
 (66, 3, 'Список администраторов', 'admins/index', 3, 1, NULL, NULL, 'admins'),
 (67, 3, 'Добавить администратора', 'admins/add', 4, 1, NULL, NULL, NULL),
@@ -1554,44 +1658,43 @@ INSERT INTO `menu` (`id`, `id_parent`, `name`, `link`, `sort`, `status`, `update
 (70, 3, 'Добавить пользователя', 'users/add', 2, 1, NULL, NULL, NULL),
 (71, 2, 'Перенаправления', 'seo_redirects/index', 6, 1, NULL, NULL, NULL),
 (72, 2, 'Добавить перенаправление', 'seo_redirects/add', 6, 1, NULL, NULL, NULL),
-(108, 0, 'Статистика', '', 999, 1, NULL, 'fa-signal', NULL),
 (109, 108, 'Посетители сайта', 'visitors/index', 1, 1, NULL, '', NULL),
 (110, 108, 'Переходы по сайту', 'hits/index', 2, 1, NULL, '', NULL),
 (111, 108, 'Рефереры', 'referers/index', 3, 1, NULL, '', NULL),
 (112, 108, 'Статистика по пользователям', 'statistic/users', 4, 1, NULL, NULL, NULL),
 (113, 108, 'Статистика по товарам', 'statistic/items', 5, 1, NULL, NULL, NULL),
-(121, 0, 'Черный список', NULL, 10, 0, NULL, 'fa-file', NULL),
 (122, 121, 'Заблокированные адреса', 'blacklist/index', 1, 1, NULL, NULL, NULL),
 (123, 121, 'Заблокировать адрес', 'blacklist/add', 2, 1, NULL, NULL, NULL),
-(124, 0, 'Отзывы', NULL, 10, 0, NULL, 'fa-weixin', 'reviews'),
 (125, 124, 'Список отзывов', 'reviews/index', 1, 1, NULL, NULL, NULL),
 (126, 124, 'Добавить отзыв', 'reviews/add', 2, 1, NULL, NULL, NULL),
 (127, 4, 'Основные', 'config/edit', 1, 1, NULL, NULL, NULL),
 (128, 4, 'Номера телефонов', 'phones/index', 2, 1, NULL, NULL, NULL),
-(132, 0, 'Переводы', 'translates/general', 15, 1, NULL, 'fa-language', NULL),
+(132, 0, 'Переводы', 'translates/general', 99, 1, NULL, 'fa-language', NULL),
 (133, 38, 'Сертификаты', 'cert/index', 1, 1, NULL, NULL, NULL),
 (134, 38, 'Добавить сертификат', 'cert/add', 2, 1, NULL, NULL, NULL),
 (135, 139, 'Цвета', 'colors/index', 1, 1, NULL, NULL, NULL),
 (136, 139, 'Добавить цвет', 'colors/add', 2, 1, NULL, NULL, NULL),
 (137, 139, 'Размеры', 'sizes/index', 5, 1, NULL, NULL, NULL),
 (138, 139, 'Добавить размер', 'sizes/add', 6, 1, NULL, NULL, NULL),
-(139, 0, 'Справочники', NULL, 6, 0, NULL, 'fa-book', NULL),
 (140, 139, 'Группы размеров', 'sizesGroups/index', 3, 1, NULL, NULL, NULL),
 (141, 139, 'Добавить группу размеров', 'sizesGroups/add', 4, 1, NULL, NULL, NULL),
 (142, 38, 'Теги', 'tags/index', 9, 1, NULL, NULL, NULL),
 (143, 38, 'Добавить тег', 'tags/add', 10, 1, NULL, NULL, NULL),
 (144, 50, 'Быстрые заказы', 'simple/index', 3, 1, NULL, NULL, 'simple'),
 (145, 50, 'Под заказ', 'ordersOnly/index', 4, 1, NULL, NULL, 'only'),
-(146, 0, 'Скидки', NULL, 9, 0, NULL, 'fa-thumbs-up', NULL),
 (147, 146, 'Купоны', 'promo/index', 1, 1, NULL, NULL, NULL),
 (148, 146, 'Добавить купон', 'promo/add', 2, 1, NULL, NULL, NULL),
 (149, 146, 'Персональные купоны', 'coupons/index', 3, 1, NULL, NULL, NULL),
 (150, 146, 'Добавить персональный купон', 'coupons/add', 4, 1, NULL, NULL, NULL),
 (151, 146, 'Накопительная программа', 'prog/index', 5, 1, NULL, NULL, NULL),
 (152, 139, 'Страны', 'country/index', 10, 1, NULL, NULL, NULL),
-(155, 0, 'Инфо блоки', NULL, 1, 1, NULL, 'fa-cubes', NULL),
 (156, 0, 'Новости', NULL, 1, 1, NULL, 'fa-comments-o', NULL),
-(157, 0, 'Проекты', NULL, 1, 1, NULL, 'fa-briefcase', NULL);
+(158, 157, 'Список проектов', 'projects/index', 5, 1, NULL, NULL, NULL),
+(159, 157, 'Добавить проект', 'projects/add', 5, 1, NULL, NULL, NULL),
+(160, 155, 'Блок "Услуги"', 'content/edit/8', 1, 1, NULL, NULL, NULL),
+(161, 157, 'Категории проектов', 'category/index', 9, 1, NULL, NULL, NULL),
+(162, 157, 'Добавить категорию', 'category/add', 10, 1, NULL, NULL, NULL),
+(163, 157, 'Подробные отчеты', 'feedback/index', 10, 1, NULL, NULL, 'projects');
 
 -- --------------------------------------------------------
 
@@ -1608,17 +1711,20 @@ CREATE TABLE IF NOT EXISTS `news` (
   `date` int(10) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `views` int(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `news`
 --
 
 INSERT INTO `news` (`id`, `created_at`, `updated_at`, `status`, `alias`, `date`, `image`, `views`) VALUES
-(27, 1470809645, 1470814695, 1, '', 1470776400, 'bc0d1181f0ac24a1ccb912d864ecadc4.jpg', 0),
 (28, 1470812541, NULL, 1, '1058', 1470776400, '7af57b9c70c425583d95b06c0a08f498.jpg', 0),
-(29, 1470812656, NULL, 1, '4815', 1470776400, 'f638c7182173836727fba0e550047285.jpg', 0),
-(30, 1470812853, NULL, 1, '9439', 1470603600, '413797e737fe8176e506118bc694a1a5.jpg', 0);
+(29, 1470812656, 1473169837, 1, '4815', 1470776400, 'f638c7182173836727fba0e550047285.jpg', 4),
+(30, 1470812853, NULL, 1, '9439', 1470603600, '413797e737fe8176e506118bc694a1a5.jpg', 0),
+(31, 1470826479, 1470826514, 1, '8549', 1470776400, '30df492da2ad96518c502069204d574b.jpg', 0),
+(32, 1470830022, 1473166114, 1, 'kamp-nou', 1470776400, 'c4b6acba160575e5205ff41474436492.jpg', 9),
+(33, 1470830192, 1473169653, 1, 'slavutich-arena', 1469998800, '9b3f285064515811a57e7db75f66df49.jpg', 1),
+(48, 1473153590, 1473169594, 1, 'stadion-metallist', 1473109200, '1c5f4b8b44bf60923879271cb1226721.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -1636,36 +1742,39 @@ CREATE TABLE IF NOT EXISTS `news_i18n` (
   `keywords` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `news_i18n`
 --
 
 INSERT INTO `news_i18n` (`id`, `name`, `text`, `h1`, `title`, `description`, `keywords`, `row_id`, `language`) VALUES
-(33, 'Sitecore Experience Platform для ряда клиентов', '<p>Берри будет стимулировать рост ключевых счетов, контроль за интеграцию и оптимизацию корпоративных платформ CMS, которая позволит организациям разработать целостный взгляд. Франк Digital основатель и креативный директор Мэтт Barbelli сказал, что агентство успешно совершил свой переход в пространство предприятия, с Берри, чтобы играть важную роль в контроле за осуществлением Sitecore Experience Platform для ряда клиентов.</p>', NULL, NULL, NULL, NULL, 27, 'ru'),
-(34, 'Sitecore Experience Platform for a number of clients', '<p>Berry will drive growth of key accounts, overseeing the integration and optimisation of enterprise CMS platforms that will enable organisations to develop a holistic view. Frank Digital founder &amp; creative director Matt Barbelli said the agency had successfully made its transition into the enterprise space, with Berry to play a crucial role in overseeing the implementation of the Sitecore Experience Platform for a number of clients.</p>', NULL, NULL, NULL, NULL, 27, 'en'),
 (35, 'Ваш шедевр готов!', '<p class="text-justify">Повседневная практика показывает, что сложившаяся структура организации представляет собой интересный эксперимент проверки дальнейших направлений развития. Товарищи! постоянный количественный рост и сфера нашей активности влечет за собой процесс внедрения и модернизации модели развития.</p>\r\n<p class="text-justify">Товарищи! сложившаяся структура организации позволяет выполнять важные задания по разработке дальнейших направлений развития. Не следует, однако забывать, что сложившаяся структура организации требуют от нас анализа модели развития. Равным образом реализация намеченных плановых заданий способствует подготовки и реализации направлений прогрессивного развития.</p>\r\n<p class="text-justify">Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании направлений прогрессивного развития. Не следует, однако забывать, что консультация с широким активом позволяет выполнять важные задания по разработке системы обучения кадров, соответствует насущным потребностям. Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности требуют от нас анализа существенных финансовых и административных условий. Повседневная практика показывает, что сложившаяся структура организации требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Не следует, однако забывать, что консультация с широким активом влечет за собой процесс внедрения и модернизации направлений прогрессивного развития.</p>', NULL, NULL, NULL, NULL, 28, 'ru'),
 (36, 'Your masterpiece is ready!', '<p>Daily experience shows that the current structure of the organization is an interesting experiment testing the future direction of development. Comrades! continuous quantitative growth and scope of our activity entails the process of implementing and modernizing development model.</p>\r\n<p>Comrades! developed organizational structure allows you to perform important tasks for the development of the future direction of development. It should not be forgotten that the current organization structure require us to analyze the development of the model. Similarly, implementation of the planned routine tasks contributes to the preparation and implementation of the directions of progressive development.</p>\r\n<p>Ideological considerations of a higher order, as well as the further development of various forms of activity provides a wide range of (specialist) participated in the formation of areas of progressive development. It should not be forgotten that a consultation with a broad asset allows you to perform important tasks for the development of personnel training system, and meets urgent needs. Ideological considerations of a higher order, as well as constant quantitative growth and the scope of our activities require us to analyze the substantial financial and administrative conditions. Daily experience shows that the current organization structure require us to analyze personnel training system, and meets urgent needs. It should not be forgotten that a consultation with a broad asset entails the process of implementing and upgrading areas of progressive development.</p>', NULL, NULL, NULL, NULL, 28, 'en'),
-(37, 'Очередной шедевр готов!', '<p class="text-justify">Разнообразный и богатый опыт начало повседневной работы по формированию позиции способствует подготовки и реализации существенных финансовых и административных условий. Равным образом сложившаяся структура организации требуют от нас анализа новых предложений.</p>\r\n<p class="text-justify">Задача организации, в особенности же дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Таким образом новая модель организационной деятельности требуют от нас анализа позиций, занимаемых участниками в отношении поставленных задач. Равным образом укрепление и развитие структуры способствует подготовки и реализации новых предложений. Не следует, однако забывать, что сложившаяся структура организации в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров играет важную роль в формировании систем массового участия. Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p class="text-justify">Разнообразный и богатый опыт новая модель организационной деятельности играет важную роль в формировании направлений прогрессивного развития. Идейные соображения высшего порядка, а также новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же сложившаяся структура организации требуют определения и уточнения соответствующий условий активизации.</p>\r\n<p class="text-justify">Задача организации, в особенности же постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки модели развития. Разнообразный и богатый опыт новая модель организационной деятельности требуют от нас анализа новых предложений. С другой стороны начало повседневной работы по формированию позиции способствует подготовки и реализации модели развития. Товарищи! постоянное информационно-пропагандистское обеспечение нашей деятельности требуют определения и уточнения соответствующий условий активизации.</p>', NULL, NULL, NULL, NULL, 29, 'ru'),
+(37, 'Очередной шедевр готов!', '<p>Разнообразный и богатый опыт начало повседневной работы по формированию позиции способствует подготовки и реализации существенных финансовых и административных условий. Равным образом сложившаяся структура организации требуют от нас анализа новых предложений.</p>\r\n<p>Задача организации, в особенности же дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Таким образом новая модель организационной деятельности требуют от нас анализа позиций, занимаемых участниками в отношении поставленных задач. Равным образом укрепление и развитие структуры способствует подготовки и реализации новых предложений. Не следует, однако забывать, что сложившаяся структура организации в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. Значимость этих проблем настолько очевидна, что рамки и место обучения кадров играет важную роль в формировании систем массового участия. Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Разнообразный и богатый опыт новая модель организационной деятельности играет важную роль в формировании направлений прогрессивного развития. Идейные соображения высшего порядка, а также новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же сложившаяся структура организации требуют определения и уточнения соответствующий условий активизации.</p>\r\n<p>Задача организации, в особенности же постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки модели развития. Разнообразный и богатый опыт новая модель организационной деятельности требуют от нас анализа новых предложений. С другой стороны начало повседневной работы по формированию позиции способствует подготовки и реализации модели развития. Товарищи! постоянное информационно-пропагандистское обеспечение нашей деятельности требуют определения и уточнения соответствующий условий активизации.</p>', NULL, NULL, NULL, NULL, 29, 'ru'),
 (38, 'Another masterpiece is ready!', '<p>A varied and rich experience in the beginning of the day to day work on the formation position contributes to the preparation and implementation of substantial financial and administrative conditions. Similarly, established the organization structure require us to analyze new proposals.</p>\r\n<p>The task of organizing, in particular the further development of various forms of activity provides a wide range of (specialist) participated in the formation of personnel training system, and meets urgent needs. Thus, a new model of organizational activities require us to analyze the positions taken by participants in relation to the assigned tasks. Similarly, strengthening and development of the structure contributes to the preparation and implementation of the new proposals. It should not be forgotten that the current structure of the organization to a large extent determines the creation of personnel training system, and meets urgent needs. The significance of these problems are so obvious that the scope and location of staff training plays an important role in the formation of participatory systems. The significance of these problems are so obvious that the constant quantitative growth and scope of our activity contributes to the preparation and implementation of personnel training system, and meets urgent needs.</p>\r\n<p>A varied and rich experience of the new model of organizational activity plays an important role in shaping the direction of progressive development. Ideological considerations of a higher order, as well as a new model of organizational activity provides a wide range of (specialist) part in shaping the future direction of development. The task of organizing, especially the prevailing structure of the organization require the determination and specification of the appropriate activation conditions.</p>\r\n<p>The task of organizing, especially the constant quantitative growth and scope of our activity is the development of an interesting experiment model verification. A varied and rich experience of the new model of organizational activities require us to analyze new proposals. On the other hand the beginning of the day to day work on the formation position contributes to the preparation and implementation of the development model. Comrades! continuous information and propaganda support of our activities require the definition and specification of the appropriate activation conditions.</p>', NULL, NULL, NULL, NULL, 29, 'en'),
-(39, 'Еще один шедевр готов!', '<p class="text-justify">Идейные соображения высшего порядка, а также сложившаяся структура организации способствует подготовки и реализации форм развития. Таким образом консультация с широким активом способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что постоянное информационно-пропагандистское обеспечение нашей деятельности способствует подготовки и реализации модели развития. Значимость этих проблем настолько очевидна, что консультация с широким активом способствует подготовки и реализации новых предложений. Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности играет важную роль в формировании новых предложений. Не следует, однако забывать, что сложившаяся структура организации требуют от нас анализа форм развития.</p>\r\n<p class="text-justify">Повседневная практика показывает, что начало повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p class="text-justify">Значимость этих проблем настолько очевидна, что рамки и место обучения кадров позволяет выполнять важные задания по разработке дальнейших направлений развития. Таким образом начало повседневной работы по формированию позиции требуют определения и уточнения форм развития. Разнообразный и богатый опыт постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании существенных финансовых и административных условий. Таким образом сложившаяся структура организации играет важную роль в формировании существенных финансовых и административных условий. Равным образом рамки и место обучения кадров требуют определения и уточнения новых предложений. Не следует, однако забывать, что новая модель организационной деятельности позволяет оценить значение модели развития.</p>', NULL, NULL, NULL, NULL, 30, 'ru'),
-(40, 'Another masterpiece is ready!', '<p>Ideological considerations of a higher order, as well as the prevailing structure of the organization contributes to the preparation and implementation of the forms of development. So consultation with a broad asset contributes to the preparation and implementation of personnel training system, and meets urgent needs. Everyday experience shows that permanent information and propaganda support of our activity contributes to the preparation and implementation of the development model. The significance of these problems are so obvious, that consultation with a broad asset contributes to the preparation and implementation of the new proposals. Ideological considerations of a higher order, as well as constant quantitative growth and scope of our activity plays an important role in the formation of the new proposals. It should not be forgotten that the current organization structure require us to analyze the development of forms.</p>\r\n<p>Daily experience shows that the beginning of the day to day work on the formation position provides a wide range of (specialist) part in shaping the future direction of development. The task of organizing, especially the constant information and propaganda support of our activities is an interesting experiment personnel training system test corresponds to pressing needs.</p>\r\n<p>The significance of these problems are so obvious that the scope and location of staff training enables important tasks for the development of the future direction of development. Thus the beginning of the day to day work on the formation positions require determination and refinement of forms of development. A varied and rich experience of constant information and propaganda support of our business provides a wide range of (specialist) participated in the formation of substantial financial and administrative conditions. Thus the prevailing structure of the organization plays an important role in the formation of substantial financial and administrative conditions. Similarly, the frame and the frame of training place require the determination and specification of the new proposals. It should not be forgotten that the new model of organizational activity allows us to estimate the value of the model.</p>', NULL, NULL, NULL, NULL, 30, 'en');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `news_images`
---
-
-CREATE TABLE IF NOT EXISTS `news_images` (
-  `id` int(10) NOT NULL,
-  `created_at` int(10) DEFAULT NULL,
-  `updated_at` int(10) DEFAULT NULL,
-  `sort` int(10) NOT NULL DEFAULT '0',
-  `news_id` int(10) NOT NULL DEFAULT '0',
-  `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=696 DEFAULT CHARSET=utf8;
+(39, 'Еще один шедевр готов!', '<p>Идейные соображения высшего порядка, а также сложившаяся структура организации способствует подготовки и реализации форм развития. Таким образом консультация с широким активом способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что постоянное информационно-пропагандистское обеспечение нашей деятельности способствует подготовки и реализации модели развития. Значимость этих проблем настолько очевидна, что консультация с широким активом способствует подготовки и реализации новых предложений. Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности играет важную роль в формировании новых предложений. Не следует, однако забывать, что сложившаяся структура организации требуют от нас анализа форм развития.</p><p>Повседневная практика показывает, что начало повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития. Задача организации, в особенности же постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям.</p><p>Значимость этих проблем настолько очевидна, что рамки и место обучения кадров позволяет выполнять важные задания по разработке дальнейших направлений развития. Таким образом начало повседневной работы по формированию позиции требуют определения и уточнения форм развития. Разнообразный и богатый опыт постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании существенных финансовых и административных условий. Таким образом сложившаяся структура организации играет важную роль в формировании существенных финансовых и административных условий. Равным образом рамки и место обучения кадров требуют определения и уточнения новых предложений. Не следует, однако забывать, что новая модель организационной деятельности позволяет оценить значение модели развития.</p>', NULL, NULL, NULL, NULL, 30, 'ru'),
+(40, 'Another masterpiece is ready!', '<p>Ideological considerations of a higher order, as well as the prevailing structure of the organization contributes to the preparation and implementation of the forms of development. So consultation with a broad asset contributes to the preparation and implementation of personnel training system, and meets urgent needs. Everyday experience shows that permanent information and propaganda support of our activity contributes to the preparation and implementation of the development model. The significance of these problems are so obvious, that consultation with a broad asset contributes to the preparation and implementation of the new proposals. Ideological considerations of a higher order, as well as constant quantitative growth and scope of our activity plays an important role in the formation of the new proposals. It should not be forgotten that the current organization structure require us to analyze the development of forms.</p><p>Daily experience shows that the beginning of the day to day work on the formation position provides a wide range of (specialist) part in shaping the future direction of development. The task of organizing, especially the constant information and propaganda support of our activities is an interesting experiment personnel training system test corresponds to pressing needs.</p>\r\n<p>The significance of these problems are so obvious that the scope and location of staff training enables important tasks for the development of the future direction of development. Thus the beginning of the day to day work on the formation positions require determination and refinement of forms of development. A varied and rich experience of constant information and propaganda support of our business provides a wide range of (specialist) participated in the formation of substantial financial and administrative conditions. Thus the prevailing structure of the organization plays an important role in the formation of substantial financial and administrative conditions. Similarly, the frame and the frame of training place require the determination and specification of the new proposals. It should not be forgotten that the new model of organizational activity allows us to estimate the value of the model.</p>', NULL, NULL, NULL, NULL, 30, 'en'),
+(41, 'Снова шедевр готов', '<p>Таким образом новая модель организационной деятельности позволяет выполнять важные задания по разработке существенных финансовых и административных условий. Не следует, однако забывать, что начало повседневной работы по формированию позиции играет важную роль в формировании новых предложений. Товарищи! новая модель организационной деятельности позволяет выполнять важные задания по разработке дальнейших направлений развития.</p>\r\n<p>Задача организации, в особенности же постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Задача организации, в особенности же сложившаяся структура организации позволяет выполнять важные задания по разработке дальнейших направлений развития. Равным образом дальнейшее развитие различных форм деятельности требуют от нас анализа существенных финансовых и административных условий. Равным образом дальнейшее развитие различных форм деятельности играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач. Не следует, однако забывать, что новая модель организационной деятельности требуют определения и уточнения существенных финансовых и административных условий.</p>\r\n<p>Значимость этих проблем настолько очевидна, что укрепление и развитие структуры требуют от нас анализа направлений прогрессивного развития. Повседневная практика показывает, что консультация с широким активом позволяет выполнять важные задания по разработке существенных финансовых и административных условий.</p>', NULL, NULL, NULL, NULL, 31, 'ru'),
+(42, 'Again masterpiece is ready', '<p>Thus, a new model of organizational activity allows for important tasks for the development of substantial financial and administrative conditions. It should not be forgotten that the beginning of the day to day work on the formation position plays an important role in the formation of the new proposals. Comrades! a new model of organizational activity allows for important tasks for the development of the future direction of development.</p>\r\n<p>The task of organizing, especially the constant information and propaganda support of our business provides a wide range of (specialist) participated in the formation of personnel training system, and meets urgent needs. The task of organizing, especially the prevailing structure of the organization allows for important tasks for the development of the future direction of development. Similarly, the further development of various forms of activities require us to analyze the substantial financial and administrative conditions. Similarly, the further development of various forms of activity plays an important role in shaping the positions taken by participants in relation to the assigned tasks. It should not be forgotten that the new model of organizational performance requires the definition and specification of the substantial financial and administrative conditions.</p>\r\n<p>The significance of these problems are so obvious that the strengthening and development of the structure require us to analyze trends progressive development. Everyday experience shows that consultation with a broad asset allows you to perform important tasks for the development of substantial financial and administrative conditions.</p>', NULL, NULL, NULL, NULL, 31, 'en'),
+(43, 'Камп Ноу', '<p class="text-justify">Значимость этих проблем настолько очевидна, что консультация с широким активом представляет собой интересный эксперимент проверки дальнейших направлений развития. Не следует, однако забывать, что новая модель организационной деятельности представляет собой интересный эксперимент проверки систем массового участия. С другой стороны постоянный количественный рост и сфера нашей активности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. Таким образом сложившаяся структура организации требуют от нас анализа системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p class="text-justify">Таким образом начало повседневной работы по формированию позиции в значительной степени обуславливает создание позиций, занимаемых участниками в отношении поставленных задач. Значимость этих проблем настолько очевидна, что укрепление и развитие структуры позволяет выполнять важные задания по разработке системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет оценить значение дальнейших направлений развития. Таким образом начало повседневной работы по формированию позиции играет важную роль в формировании модели развития.</p>', NULL, NULL, NULL, NULL, 32, 'ru'),
+(44, 'Camp Nou', '<p>The significance of these problems are so obvious, that consultation with a broad asset is an interesting experiment testing the future direction of development. It should not be forgotten that the new model of organizational performance is an interesting experiment testing participatory systems. On the other hand the constant quantitative growth and scope of our activity allows us to estimate the value of personnel training system, and meets urgent needs. Thus the prevailing organizational structure require us to analyze personnel training system, and meets urgent needs.</p>\r\n<p>Thus the beginning of the day to day work on the formation position largely determines the creation of the positions taken by participants in relation to the assigned tasks. The significance of these problems are so obvious that the strengthening and development of the structure allows you to perform important tasks for the development of personnel training system, and meets urgent needs. Daily experience shows that the further development of various forms of activity allows us to estimate the value of the future direction of development. Thus the beginning of the day to day work on the formation position plays an important role in shaping the development of the model.</p>', NULL, NULL, NULL, NULL, 32, 'en'),
+(45, 'Славутич Арена', '<p class="text-justify">Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности влечет за собой процесс внедрения и модернизации дальнейших направлений развития. Идейные соображения высшего порядка, а также постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки новых предложений. Повседневная практика показывает, что укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.</p>\r\n<p class="text-justify">Повседневная практика показывает, что укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Задача организации, в особенности же сложившаяся структура организации представляет собой интересный эксперимент проверки дальнейших направлений развития. Идейные соображения высшего порядка, а также рамки и место обучения кадров обеспечивает широкому кругу (специалистов) участие в формировании модели развития. Идейные соображения высшего порядка, а также реализация намеченных плановых заданий влечет за собой процесс внедрения и модернизации форм развития. Не следует, однако забывать, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений. Задача организации, в особенности же реализация намеченных плановых заданий играет важную роль в формировании модели развития.</p>', NULL, NULL, NULL, NULL, 33, 'ru'),
+(46, 'Slavutich Arena', '<p>Thus the constant information and propaganda support of our activity entails the process of implementation and upgrading of the future direction of development. Ideological considerations of a higher order, as well as constant quantitative growth and scope of our activity is an interesting experiment to test new proposals. Daily experience shows that the strengthening and development of the framework provides a wide range of (specialist) participated in the formation of the new proposals.</p>\r\n<p>Daily experience shows that the strengthening and development of the framework provides a wide range of (specialist) participated in the formation of the new proposals. The task of organizing, especially the prevailing structure of the organization is an interesting experiment testing the future direction of development. Ideological considerations of a higher order, as well as the scope and location of training staff provides a wide range of (specialist) participated in the formation of the development model. Ideological considerations of a higher order, as well as the implementation of the planned routine tasks entails the process of implementation and modernization of forms. It should not be forgotten that the beginning of the daily work on the formation of the position allows you to perform important tasks for the development of new proposals. The task of organizing, in particular the implementation of the intended plan assignments plays an important role in shaping the development of the model.</p>', NULL, NULL, NULL, NULL, 33, 'en'),
+(75, 'Another masterpiece is ready!', '<p>A varied and rich experience in the beginning of the day to day work on the formation position contributes to the preparation and implementation of substantial financial and administrative conditions. Similarly, established the organization structure require us to analyze new proposals.</p>\r\n<p>The task of organizing, in particular the further development of various forms of activity provides a wide range of (specialist) participated in the formation of personnel training system, and meets urgent needs. Thus, a new model of organizational activities require us to analyze the positions taken by participants in relation to the assigned tasks. Similarly, strengthening and development of the structure contributes to the preparation and implementation of the new proposals. It should not be forgotten that the current structure of the organization to a large extent determines the creation of personnel training system, and meets urgent needs. The significance of these problems are so obvious that the scope and location of staff training plays an important role in the formation of participatory systems. The significance of these problems are so obvious that the constant quantitative growth and scope of our activity contributes to the preparation and implementation of personnel training system, and meets urgent needs.</p>\r\n<p>A varied and rich experience of the new model of organizational activity plays an important role in shaping the direction of progressive development. Ideological considerations of a higher order, as well as a new model of organizational activity provides a wide range of (specialist) part in shaping the future direction of development. The task of organizing, especially the prevailing structure of the organization require the determination and specification of the appropriate activation conditions.</p>\r\n<p>The task of organizing, especially the constant quantitative growth and scope of our activity is the development of an interesting experiment model verification. A varied and rich experience of the new model of organizational activities require us to analyze new proposals. On the other hand the beginning of the day to day work on the formation position contributes to the preparation and implementation of the development model. Comrades! continuous information and propaganda support of our activities require the definition and specification of the appropriate activation conditions.</p>', NULL, NULL, NULL, NULL, 29, 'de'),
+(76, 'Another masterpiece is ready!', '<p>A varied and rich experience in the beginning of the day to day work on the formation position contributes to the preparation and implementation of substantial financial and administrative conditions. Similarly, established the organization structure require us to analyze new proposals.</p>\r\n<p>The task of organizing, in particular the further development of various forms of activity provides a wide range of (specialist) participated in the formation of personnel training system, and meets urgent needs. Thus, a new model of organizational activities require us to analyze the positions taken by participants in relation to the assigned tasks. Similarly, strengthening and development of the structure contributes to the preparation and implementation of the new proposals. It should not be forgotten that the current structure of the organization to a large extent determines the creation of personnel training system, and meets urgent needs. The significance of these problems are so obvious that the scope and location of staff training plays an important role in the formation of participatory systems. The significance of these problems are so obvious that the constant quantitative growth and scope of our activity contributes to the preparation and implementation of personnel training system, and meets urgent needs.</p>\r\n<p>A varied and rich experience of the new model of organizational activity plays an important role in shaping the direction of progressive development. Ideological considerations of a higher order, as well as a new model of organizational activity provides a wide range of (specialist) part in shaping the future direction of development. The task of organizing, especially the prevailing structure of the organization require the determination and specification of the appropriate activation conditions.</p>\r\n<p>The task of organizing, especially the constant quantitative growth and scope of our activity is the development of an interesting experiment model verification. A varied and rich experience of the new model of organizational activities require us to analyze new proposals. On the other hand the beginning of the day to day work on the formation position contributes to the preparation and implementation of the development model. Comrades! continuous information and propaganda support of our activities require the definition and specification of the appropriate activation conditions.</p>', NULL, NULL, NULL, NULL, 29, 'sp'),
+(77, 'Another masterpiece is ready!', '<p>A varied and rich experience in the beginning of the day to day work on the formation position contributes to the preparation and implementation of substantial financial and administrative conditions. Similarly, established the organization structure require us to analyze new proposals.</p>\r\n<p>The task of organizing, in particular the further development of various forms of activity provides a wide range of (specialist) participated in the formation of personnel training system, and meets urgent needs. Thus, a new model of organizational activities require us to analyze the positions taken by participants in relation to the assigned tasks. Similarly, strengthening and development of the structure contributes to the preparation and implementation of the new proposals. It should not be forgotten that the current structure of the organization to a large extent determines the creation of personnel training system, and meets urgent needs. The significance of these problems are so obvious that the scope and location of staff training plays an important role in the formation of participatory systems. The significance of these problems are so obvious that the constant quantitative growth and scope of our activity contributes to the preparation and implementation of personnel training system, and meets urgent needs.</p>\r\n<p>A varied and rich experience of the new model of organizational activity plays an important role in shaping the direction of progressive development. Ideological considerations of a higher order, as well as a new model of organizational activity provides a wide range of (specialist) part in shaping the future direction of development. The task of organizing, especially the prevailing structure of the organization require the determination and specification of the appropriate activation conditions.</p>\r\n<p>The task of organizing, especially the constant quantitative growth and scope of our activity is the development of an interesting experiment model verification. A varied and rich experience of the new model of organizational activities require us to analyze new proposals. On the other hand the beginning of the day to day work on the formation position contributes to the preparation and implementation of the development model. Comrades! continuous information and propaganda support of our activities require the definition and specification of the appropriate activation conditions.</p>', NULL, NULL, NULL, NULL, 29, 'fr'),
+(78, 'стадион Металлист', '<p class="para"><span class="function">strtr()</span>&nbsp;может вызываться с двумя аргументами. В этом случае&nbsp;<code class="parameter">from</code>&nbsp;должен быть массивом (<span class="type"><a class="type array" href="http://php.net/manual/ru/language.types.array.php">array</a></span>), в форме&nbsp;<em>array(''from'' =&gt; ''to'', ...)</em>. Функция возвратит строку, в которой все ключи массива будут заменены их элементами.&nbsp;<span class="function">strtr()</span>&nbsp;в первую очередь заменяет более длинные ключи, причем одна и та же строка поиска используется только один раз.</p>\r\n<p class="para">В этом случае, ключи и значения могут иметь любую длину, за исключением того, что ключи не должны быть пустыми. Кроме того, длина возвращаемого значения может отличаться от&nbsp;<code class="parameter">str</code>. Однако, стоит учесть тот факт, что эта функция максимально эффективна в том случае, если все ключи имеют одинаковый размер.</p>', NULL, NULL, NULL, NULL, 48, 'ru'),
+(79, 'Metallist Stadium', '<p>Don''t support recursive expansion unless you need it and know it will be safe.&nbsp; When you do support it, do so explicitly by repeating strtr calls until no more expansions are occurring or a sane iteration limit is reached, so that the results never implicitly depend on order of your replacement keys.&nbsp; Also make certain that any user input will expanded in an isolated step after any sensitive data is already expanded into the output and no longer available as input.<br /><br />Note: using some character(s) around your keys to designate them also reduces the possibility of unintended mangling of output, whether maliciously triggered or otherwise.&nbsp; Thus the use of a colon prefix in these examples, which you can easily enforce when accepting replacement input to your templating/translation system.</p>', NULL, NULL, NULL, NULL, 48, 'en'),
+(80, 'Metallist Stadium', '<p>Don''t support recursive expansion unless you need it and know it will be safe.&nbsp; When you do support it, do so explicitly by repeating strtr calls until no more expansions are occurring or a sane iteration limit is reached, so that the results never implicitly depend on order of your replacement keys.&nbsp; Also make certain that any user input will expanded in an isolated step after any sensitive data is already expanded into the output and no longer available as input.<br /><br />Note: using some character(s) around your keys to designate them also reduces the possibility of unintended mangling of output, whether maliciously triggered or otherwise.&nbsp; Thus the use of a colon prefix in these examples, which you can easily enforce when accepting replacement input to your templating/translation system.</p>', NULL, NULL, NULL, NULL, 48, 'de'),
+(81, 'Metallist Stadium', '<p>Don''t support recursive expansion unless you need it and know it will be safe.&nbsp; When you do support it, do so explicitly by repeating strtr calls until no more expansions are occurring or a sane iteration limit is reached, so that the results never implicitly depend on order of your replacement keys.&nbsp; Also make certain that any user input will expanded in an isolated step after any sensitive data is already expanded into the output and no longer available as input.<br /><br />Note: using some character(s) around your keys to designate them also reduces the possibility of unintended mangling of output, whether maliciously triggered or otherwise.&nbsp; Thus the use of a colon prefix in these examples, which you can easily enforce when accepting replacement input to your templating/translation system.</p>', NULL, NULL, NULL, NULL, 48, 'sp'),
+(82, 'Metallist Stadium', '<p>Don''t support recursive expansion unless you need it and know it will be safe.&nbsp; When you do support it, do so explicitly by repeating strtr calls until no more expansions are occurring or a sane iteration limit is reached, so that the results never implicitly depend on order of your replacement keys.&nbsp; Also make certain that any user input will expanded in an isolated step after any sensitive data is already expanded into the output and no longer available as input.<br /><br />Note: using some character(s) around your keys to designate them also reduces the possibility of unintended mangling of output, whether maliciously triggered or otherwise.&nbsp; Thus the use of a colon prefix in these examples, which you can easily enforce when accepting replacement input to your templating/translation system.</p>', NULL, NULL, NULL, NULL, 48, 'fr'),
+(83, 'Camp Nou', '', NULL, NULL, NULL, NULL, 32, 'de'),
+(84, 'Camp Nou', '', NULL, NULL, NULL, NULL, 32, 'sp'),
+(85, 'Camp Nou', '', NULL, NULL, NULL, NULL, 32, 'fr'),
+(86, 'Slavutich Arena', '', NULL, NULL, NULL, NULL, 33, 'de'),
+(87, 'Slavutich Arena', '', NULL, NULL, NULL, NULL, 33, 'sp'),
+(88, 'Slavutich Arena', '', NULL, NULL, NULL, NULL, 33, 'fr');
 
 -- --------------------------------------------------------
 
@@ -1677,7 +1786,7 @@ CREATE TABLE IF NOT EXISTS `news_items` (
   `id` int(10) unsigned NOT NULL,
   `news_id` int(10) DEFAULT NULL,
   `catalog_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1709,7 +1818,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `country` varchar(64) DEFAULT NULL,
   `region` varchar(128) DEFAULT NULL,
   `deliveryPrice` double(12,2) DEFAULT '0.00'
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1889,6 +1998,173 @@ INSERT INTO `prog` (`id`, `created_at`, `updated_at`, `amount`, `percent`) VALUE
 (45, 1449950515, NULL, 2000.00, 2.0000),
 (46, 1449950515, NULL, 5000.00, 5.0000),
 (47, 1449950515, NULL, 10000.00, 10.0000);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `projects`
+--
+
+CREATE TABLE IF NOT EXISTS `projects` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `category_id` int(10) DEFAULT NULL,
+  `date` int(10) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `views` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `projects`
+--
+
+INSERT INTO `projects` (`id`, `created_at`, `updated_at`, `status`, `category_id`, `date`, `image`, `views`) VALUES
+(1, 1470834964, 1470945148, 1, 4, 0, '3a44b0b3c2eb85ed5840a01c597209df.jpg', 0),
+(2, 1470946284, 1471269381, 1, 1, 0, '7f710b29dd91c58d8a4540daadea25b2.jpg', 0),
+(3, 1470946367, NULL, 1, 3, NULL, 'cf7f4262d2d573645f1234faaa242d31.jpg', 0),
+(4, 1470946476, NULL, 1, 2, NULL, '5ced5f299acbed0cf6381a46a99cdfb6.jpg', 0),
+(5, 1470946626, 1470987676, 1, 2, 0, '21f6c6c636b3f3e9fbff092fe164fce3.png', 0),
+(16, 1471330566, 1471332574, 1, 4, 0, 'cee4df95508da0140f6a0d3d8a2ea9d5.jpg', 0),
+(17, 1471332298, 1471332477, 1, 3, 0, NULL, 0),
+(18, 1471332603, NULL, 1, 2, NULL, NULL, 0),
+(19, 1471332720, 1473065958, 1, 1, 0, 'c21f989490adfec6af5eaa528cb66938.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `projects_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `projects_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `text` text,
+  `h1` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text,
+  `keywords` text,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `projects_i18n`
+--
+
+INSERT INTO `projects_i18n` (`id`, `name`, `text`, `h1`, `title`, `description`, `keywords`, `row_id`, `language`) VALUES
+(1, 'Название проекта №1', '<p class="text-justify">Не следует, однако забывать, что постоянный количественный рост и сфера нашей активности позволяет оценить значение существенных финансовых и административных условий. С другой стороны консультация с широким активом требуют от нас анализа системы обучения кадров, соответствует насущным потребностям. Значимость этих проблем настолько очевидна, что новая модель организационной деятельности представляет собой интересный эксперимент проверки дальнейших направлений развития.</p>\r\n<p class="text-justify">Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции требуют определения и уточнения систем массового участия. Товарищи! сложившаяся структура организации в значительной степени обуславливает создание систем массового участия. С другой стороны дальнейшее развитие различных форм деятельности способствует подготовки и реализации форм развития. Равным образом новая модель организационной деятельности способствует подготовки и реализации направлений прогрессивного развития.</p>', NULL, NULL, NULL, NULL, 1, 'ru'),
+(2, 'Project title №1', '<p>It should not be forgotten that the constant quantitative growth and scope of our activity allows us to estimate the value of the substantial financial and administrative conditions. On the other hand a consultation with a broad asset requires us to analyze personnel training system, and meets urgent needs. The significance of these problems are so obvious that the new model of organizational performance is an interesting experiment testing the future direction of development.</p>\r\n<p>Ideological considerations of a higher order, as well as the beginning of the day to day work on the formation positions require determination and refinement of participatory systems. Comrades! developed organizational structure largely determines the establishment of participatory systems. On the other hand the further development of various forms of activities contributes to the preparation and implementation of the forms of development. Likewise, a new model of organizational activity contributes to the preparation and implementation of the directions of progressive development.</p>', NULL, NULL, NULL, NULL, 1, 'en'),
+(3, 'Идейные соображения высшего порядка', '<p>Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки соответствующий условий активизации. Значимость этих проблем настолько очевидна, что сложившаяся структура организации влечет за собой процесс внедрения и модернизации новых предложений. С другой стороны дальнейшее развитие различных форм деятельности играет важную роль в формировании форм развития. Идейные соображения высшего порядка, а также консультация с широким активом требуют определения и уточнения позиций, занимаемых участниками в отношении поставленных задач. С другой стороны консультация с широким активом требуют от нас анализа системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Идейные соображения высшего порядка, а также постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки дальнейших направлений развития. Таким образом новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.</p>\r\n<p>&nbsp;</p>', NULL, NULL, NULL, NULL, 2, 'ru'),
+(4, 'Ideological considerations of a higher order', '<p>The significance of these problems are so obvious that continuous information and propaganda support of our activities is an interesting experiment checking the appropriate activation conditions. The significance of these problems are so obvious that the current structure of the organization entails the process of implementation and upgrading of new proposals. On the other hand the further development of different forms of activity plays an important role in the formation of shapes. Ideological considerations of a higher order, as well as consultation with a broad asset requires the definition and specification of the positions taken by participants in relation to the assigned tasks. On the other hand a consultation with a broad asset requires us to analyze personnel training system, and meets urgent needs.</p>\r\n<p>Ideological considerations of a higher order, as well as permanent information and propaganda support of our activities is an interesting experiment testing the future direction of development. Thus, a new model of organizational activity provides a wide range of (specialist) participated in the formation of the positions taken by participants in relation to the assigned tasks.</p>', NULL, NULL, NULL, NULL, 2, 'en'),
+(5, 'Значимость этих проблем настолько очевидна', '<p>Значимость этих проблем настолько очевидна, что постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки соответствующий условий активизации. Значимость этих проблем настолько очевидна, что сложившаяся структура организации влечет за собой процесс внедрения и модернизации новых предложений. С другой стороны дальнейшее развитие различных форм деятельности играет важную роль в формировании форм развития. Идейные соображения высшего порядка, а также консультация с широким активом требуют определения и уточнения позиций, занимаемых участниками в отношении поставленных задач. С другой стороны консультация с широким активом требуют от нас анализа системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Идейные соображения высшего порядка, а также постоянное информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный эксперимент проверки дальнейших направлений развития. Таким образом новая модель организационной деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.</p>', NULL, NULL, NULL, NULL, 3, 'ru'),
+(6, ' The significance of these problems are so obvious ', '<p>The significance of these problems are so obvious that continuous information and propaganda support of our activities is an interesting experiment checking the appropriate activation conditions. The significance of these problems are so obvious that the current structure of the organization entails the process of implementation and upgrading of new proposals. On the other hand the further development of different forms of activity plays an important role in the formation of shapes. Ideological considerations of a higher order, as well as consultation with a broad asset requires the definition and specification of the positions taken by participants in relation to the assigned tasks. On the other hand a consultation with a broad asset requires us to analyze personnel training system, and meets urgent needs.</p>\r\n<p>Ideological considerations of a higher order, as well as permanent information and propaganda support of our activities is an interesting experiment testing the future direction of development. Thus, a new model of organizational activity provides a wide range of (specialist) participated in the formation of the positions taken by participants in relation to the assigned tasks.</p>', NULL, NULL, NULL, NULL, 3, 'en'),
+(7, 'Задача организации, в особенности же дальнейшее развитие', '<p>Разнообразный и богатый опыт начало повседневной работы по формированию позиции в значительной степени обуславливает создание направлений прогрессивного развития. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Товарищи! консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании соответствующий условий активизации. Таким образом дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение модели развития. Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Задача организации, в особенности же дальнейшее развитие различных форм деятельности способствует подготовки и реализации соответствующий условий активизации. Разнообразный и богатый опыт консультация с широким активом представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции играет важную роль в формировании модели развития.</p>', NULL, NULL, NULL, NULL, 4, 'ru'),
+(8, 'The task of organizing, in particular the further development', '<p>A varied and rich experience in the beginning of the day to day work on the formation position largely determines the creation of areas of progressive development. Similarly, established the organization structure provides a wide range of (specialist) participated in the formation of personnel training system, and meets urgent needs. Comrades! Consultation with a wide range of asset provides a broad (specialist) participated in the formation of the corresponding activation conditions. Thus, the further development of various forms of activity is an interesting experiment test areas of progressive development. Thus the constant information and propaganda support of our business allows us to estimate the value of the model. Everyday experience shows that permanent quantitative growth and scope of our activity contributes to the preparation and implementation of personnel training system, and meets urgent needs.</p>\r\n<p>The task of organizing, in particular the further development of various forms of activities contributes to the preparation and implementation of the appropriate activation conditions. A varied and rich experience in consulting with a broad asset is an interesting experiment testing personnel training system, and meets urgent needs. Daily experience shows that the further development of various forms of activity allows us to estimate the value of personnel training system, and meets urgent needs. Thus the beginning of the day to day work on the formation position plays an important role in shaping the development of the model.</p>', NULL, NULL, NULL, NULL, 4, 'en'),
+(9, 'Повседневная практика показывает', '<p>Разнообразный и богатый опыт начало повседневной работы по формированию позиции в значительной степени обуславливает создание направлений прогрессивного развития. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Товарищи! консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании соответствующий условий активизации. Таким образом дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение модели развития. Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Задача организации, в особенности же дальнейшее развитие различных форм деятельности способствует подготовки и реализации соответствующий условий активизации. Разнообразный и богатый опыт консультация с широким активом представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции играет важную роль в формировании модели развития.</p>', NULL, NULL, NULL, NULL, 5, 'ru'),
+(10, 'Daily experience shows that the further', '<p>A varied and rich experience in the beginning of the day to day work on the formation position largely determines the creation of areas of progressive development. Similarly, established the organization structure provides a wide range of (specialist) participated in the formation of personnel training system, and meets urgent needs. Comrades! Consultation with a wide range of asset provides a broad (specialist) participated in the formation of the corresponding activation conditions. Thus, the further development of various forms of activity is an interesting experiment test areas of progressive development. Thus the constant information and propaganda support of our business allows us to estimate the value of the model. Everyday experience shows that permanent quantitative growth and scope of our activity contributes to the preparation and implementation of personnel training system, and meets urgent needs.</p>\r\n<p>The task of organizing, in particular the further development of various forms of activities contributes to the preparation and implementation of the appropriate activation conditions. A varied and rich experience in consulting with a broad asset is an interesting experiment testing personnel training system, and meets urgent needs. Daily experience shows that the further development of various forms of activity allows us to estimate the value of personnel training system, and meets urgent needs. Thus the beginning of the day to day work on the formation position plays an important role in shaping the development of the model.</p>', NULL, NULL, NULL, NULL, 5, 'en'),
+(11, 'Тестовый проект111.', '<p>Разнообразный и богатый опыт начало повседневной работы по формированию позиции в значительной степени обуславливает создание направлений прогрессивного развития. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Товарищи! консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании соответствующий условий активизации. Таким образом дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение модели развития. Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Задача организации, в особенности же дальнейшее развитие различных форм деятельности способствует подготовки и реализации соответствующий условий активизации. Разнообразный и богатый опыт консультация с широким активом представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции играет важную роль в формировании модели развития.</p>\r\n<p>Разнообразный и богатый опыт начало повседневной работы по формированию позиции в значительной степени обуславливает создание направлений прогрессивного развития. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Товарищи! консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании соответствующий условий активизации. Таким образом дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение модели развития. Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Задача организации, в особенности же дальнейшее развитие различных форм деятельности способствует подготовки и реализации соответствующий условий активизации. Разнообразный и богатый опыт консультация с широким активом представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции играет важную роль в формировании модели развития.</p>\r\n<p>Разнообразный и богатый опыт начало повседневной работы по формированию позиции в значительной степени обуславливает создание направлений прогрессивного развития. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Товарищи! консультация с широким активом обеспечивает широкому кругу (специалистов) участие в формировании соответствующий условий активизации. Таким образом дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки направлений прогрессивного развития. Таким образом постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение модели развития. Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности способствует подготовки и реализации системы обучения кадров, соответствует насущным потребностям.</p>\r\n<p>Задача организации, в особенности же дальнейшее развитие различных форм деятельности способствует подготовки и реализации соответствующий условий активизации. Разнообразный и богатый опыт консультация с широким активом представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. Таким образом начало повседневной работы по формированию позиции играет важную роль в формировании модели развития.</p>', NULL, NULL, NULL, NULL, 6, 'ru'),
+(12, 'Test project111.', '', NULL, NULL, NULL, NULL, 6, 'en'),
+(13, 'Тестовый проект222', '<p><strong>Использовать все виды списков</strong></p>\r\n<ul>\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.&nbsp;</li>\r\n</ul>\r\n<ul style="list-style-type: circle;">\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.&nbsp;</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: square;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ol>\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: lower-alpha;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>&nbsp;Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: lower-greek;">\r\n<li>&nbsp;Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>&nbsp;Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>&nbsp;Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>&nbsp;Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>&nbsp;Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>&nbsp;Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: lower-roman;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>.Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>.Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: upper-alpha;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: upper-roman;">\r\n<li>.Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed maximus lorem. Vivamus sed metus aliquet, tempor turpis sit amet, volutpat risus. Fusce magna neque, pellentesque vitae purus vel, pellentesque maximus ante. Vivamus diam lectus, lobortis nec ipsum quis, laoreet semper odio. Nam consectetur nisi turpis, ut pulvinar justo aliquam vitae. Fusce egestas eros sodales, aliquam erat sed, vulputate massa. Mauris eu dolor vitae dui tempus semper. Cras elementum, nibh vel scelerisque dignissim, metus orci malesuada tellus, maximus eleifend urna libero quis ipsum. Ut ex lectus, scelerisque sed cursus nec, ullamcorper ut elit.</p>\r\n<p style="text-align: right;"><strong>Выравнивание</strong>&nbsp;<strong>по</strong>&nbsp;<strong>правому</strong>&nbsp;<strong>краю</strong></p>\r\n<p style="text-align: right;">Cras imperdiet dolor eu vestibulum congue. Proin suscipit fermentum ex, quis tempor est cursus non. Nullam suscipit augue dui. Ut molestie interdum tortor maximus commodo. Vestibulum non est volutpat, molestie mauris in, feugiat est. Donec consequat ligula sed egestas pretium. Nam ac mauris rhoncus, lobortis dui non, molestie leo. Quisque pretium sed metus sed tristique. Fusce a nibh eu justo pharetra blandit. Nullam id risus erat. Aenean malesuada quam ut est auctor, vitae ullamcorper velit congue. In in placerat tellus. Duis sit amet dui id purus porta ornare non ac erat. Aenean dapibus arcu elit, tempor gravida arcu blandit eu.</p>\r\n<p style="text-align: center;"><strong>Выравнивание</strong>&nbsp;<strong>по</strong>&nbsp;<strong>центру</strong></p>\r\n<p style="text-align: center;">Sed tempor, ante vitae faucibus feugiat, felis magna pretium nisl, ac pellentesque mi mi id augue. Aliquam a mauris lobortis, congue odio ac, dictum quam. Suspendisse tempus orci ut molestie cursus. Etiam consectetur vehicula ipsum, et sodales nisl. Vestibulum id aliquam libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo in neque pharetra iaculis.</p>\r\n<p style="text-align: justify;"><strong>Выравнивание</strong>&nbsp;<strong>по</strong>&nbsp;<strong>ширине</strong></p>\r\n<p style="text-align: justify;">Donec quis fermentum risus. Aliquam efficitur aliquam urna, vitae ornare purus feugiat non. Nam laoreet, velit at porta aliquam, dolor sem pretium nulla, vel sagittis sapien ante eget sapien. Sed est elit, lacinia et urna vel, venenatis vestibulum tortor. Duis ac tincidunt dolor. Pellentesque lacinia hendrerit urna sit amet lobortis. Suspendisse potenti. Vivamus eu sapien sollicitudin, elementum turpis efficitur, feugiat sapien. Nulla congue rutrum nisl. Quisque pretium facilisis ligula eu tincidunt. Donec posuere lorem eu est mattis commodo. Suspendisse pretium nibh nec convallis vehicula. Cras ac suscipit mi, vitae laoreet mauris. Aliquam erat volutpat. Quisque scelerisque nunc ut congue scelerisque.</p>\r\n<p><strong>Добавить ссылку &ndash; одна открывается в текущем окне, одна в соседнем</strong></p>\r\n<p><a href="http://uk.lipsum.com/">Proin justo nisl, faucibus</a>&nbsp;nec dignissim a, tincidunt at lorem. Vivamus ligula arcu, faucibus a ex et, viverra molestie velit. Donec ut justo arcu. Integer a lorem ut massa mattis vestibulum. Fusce in lacus eget dolor finibus vestibulum. Vestibulum lobortis placerat felis non feugiat. Sed eu risus non nisi iaculis elementum.&nbsp;<a href="https://google.com/">Etiam eu eros eget</a>&nbsp;ante cursus laoreet in ut nisi. Phasellus porta, est vitae accumsan dictum, erat nibh bibendum tellus, id suscipit elit mauris nec felis. Nunc in sodales erat, in scelerisque sapien. Aenean rutrum ligula leo, nec fringilla mi consectetur a. Quisque molestie nulla sit amet nibh dictum maximus.</p>\r\n<h3><span style="text-decoration: underline; color: #99cc00; background-color: #ffcc00;"><em>Изменить форматирование &ndash; размер, цвет, фон, формат, начертание шрифта (все возможные варианты редактора)</em></span></h3>\r\n<p><strong>Nunc ac massa sit amet erat dignissim tristique. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent lorem justo, vestibulum quis posuere blandit,&nbsp;</strong>volutpat&nbsp;<em>vitae tellus. Sed blandit tortor vitae libero porttitor, eu vehicula odio dapibus. Quisque rhoncus facilisis vulputate. Etiam mi sem, placerat ut erat non, accumsan dignissim magna. Nullam tempor eleifend erat eu placerat. Nulla suscipit nunc sed</em>&nbsp;tortor sodales sodales. Suspendisse porta placerat tellus, eget luctus arcu blandit at. Suspendisse imperdiet, sapien ac hendrerit laoreet, mauris tortor porttitor augue, pellentesque mattis nisi nulla eu urna. Donec dictum sed velit id tristique. Vivamus sit amet eleifend ex. Quisque ullamcorper rhoncus congue.</p>\r\n<p>Duis imperdiet neque velit, vel tempor dui volutpat sit amet. Sed laoreet quam vitae sem vulputate vulputate sed et metus. Phasellus nec eros rhoncus, semper tortor nec, rutrum justo. Donec in lectus ullamcorper, aliquam nibh vitae, commodo augue. Duis eget lorem ac purus venenatis eleifend. Phasellus finibus magna at ante volutpat, vel porttitor ante gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<table width="640">\r\n<tbody>\r\n<tr>\r\n<td>\r\n<p>№</p>\r\n</td>\r\n<td>\r\n<p>1</p>\r\n</td>\r\n<td>\r\n<p>2</p>\r\n</td>\r\n<td>\r\n<p>3</p>\r\n</td>\r\n<td>\r\n<p>4</p>\r\n</td>\r\n<td>\r\n<p>5</p>\r\n</td>\r\n<td>\r\n<p>6</p>\r\n</td>\r\n<td>\r\n<p>7</p>\r\n</td>\r\n<td>\r\n<p>8</p>\r\n</td>\r\n<td>\r\n<p>9</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>\r\n<p>1</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td>\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td>\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td>\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td>\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td>\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td>\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td>\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td>\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td>\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td>\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td>\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td>\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td>\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td>\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td>\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>&nbsp;</p>\r\n<p><strong>Вставить изображение с описанием</strong></p>\r\n<p>&nbsp;</p>\r\n<p><strong>Вставить видео с изображением</strong></p>\r\n<p>&nbsp;</p>\r\n<p><strong>Вставить видео без изображения</strong></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', NULL, NULL, NULL, NULL, 7, 'ru');
+INSERT INTO `projects_i18n` (`id`, `name`, `text`, `h1`, `title`, `description`, `keywords`, `row_id`, `language`) VALUES
+(14, 'Test project222', '<p><strong>Использовать все виды списков</strong></p>\r\n<ul>\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.&nbsp;</li>\r\n</ul>\r\n<ul style="list-style-type: circle;">\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.&nbsp;</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: square;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ol>\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: lower-alpha;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>&nbsp;Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: lower-greek;">\r\n<li>&nbsp;Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>&nbsp;Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>&nbsp;Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>&nbsp;Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>&nbsp;Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>&nbsp;Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: lower-roman;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>.Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>.Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: upper-alpha;">\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ol style="list-style-type: upper-roman;">\r\n<li>.Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed maximus lorem. Vivamus sed metus aliquet, tempor turpis sit amet, volutpat risus. Fusce magna neque, pellentesque vitae purus vel, pellentesque maximus ante. Vivamus diam lectus, lobortis nec ipsum quis, laoreet semper odio. Nam consectetur nisi turpis, ut pulvinar justo aliquam vitae. Fusce egestas eros sodales, aliquam erat sed, vulputate massa. Mauris eu dolor vitae dui tempus semper. Cras elementum, nibh vel scelerisque dignissim, metus orci malesuada tellus, maximus eleifend urna libero quis ipsum. Ut ex lectus, scelerisque sed cursus nec, ullamcorper ut elit.</p>\r\n<p style="text-align: right;"><strong>Выравнивание</strong>&nbsp;<strong>по</strong>&nbsp;<strong>правому</strong>&nbsp;<strong>краю</strong></p>\r\n<p style="text-align: right;">Cras imperdiet dolor eu vestibulum congue. Proin suscipit fermentum ex, quis tempor est cursus non. Nullam suscipit augue dui. Ut molestie interdum tortor maximus commodo. Vestibulum non est volutpat, molestie mauris in, feugiat est. Donec consequat ligula sed egestas pretium. Nam ac mauris rhoncus, lobortis dui non, molestie leo. Quisque pretium sed metus sed tristique. Fusce a nibh eu justo pharetra blandit. Nullam id risus erat. Aenean malesuada quam ut est auctor, vitae ullamcorper velit congue. In in placerat tellus. Duis sit amet dui id purus porta ornare non ac erat. Aenean dapibus arcu elit, tempor gravida arcu blandit eu.</p>\r\n<p style="text-align: center;"><strong>Выравнивание</strong>&nbsp;<strong>по</strong>&nbsp;<strong>центру</strong></p>\r\n<p style="text-align: center;">Sed tempor, ante vitae faucibus feugiat, felis magna pretium nisl, ac pellentesque mi mi id augue. Aliquam a mauris lobortis, congue odio ac, dictum quam. Suspendisse tempus orci ut molestie cursus. Etiam consectetur vehicula ipsum, et sodales nisl. Vestibulum id aliquam libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo in neque pharetra iaculis.</p>\r\n<p style="text-align: justify;"><strong>Выравнивание</strong>&nbsp;<strong>по</strong>&nbsp;<strong>ширине</strong></p>\r\n<p style="text-align: justify;">Donec quis fermentum risus. Aliquam efficitur aliquam urna, vitae ornare purus feugiat non. Nam laoreet, velit at porta aliquam, dolor sem pretium nulla, vel sagittis sapien ante eget sapien. Sed est elit, lacinia et urna vel, venenatis vestibulum tortor. Duis ac tincidunt dolor. Pellentesque lacinia hendrerit urna sit amet lobortis. Suspendisse potenti. Vivamus eu sapien sollicitudin, elementum turpis efficitur, feugiat sapien. Nulla congue rutrum nisl. Quisque pretium facilisis ligula eu tincidunt. Donec posuere lorem eu est mattis commodo. Suspendisse pretium nibh nec convallis vehicula. Cras ac suscipit mi, vitae laoreet mauris. Aliquam erat volutpat. Quisque scelerisque nunc ut congue scelerisque.</p>\r\n<p><strong>Добавить ссылку &ndash; одна открывается в текущем окне, одна в соседнем</strong></p>\r\n<p><a href="http://uk.lipsum.com/">Proin justo nisl, faucibus</a>&nbsp;nec dignissim a, tincidunt at lorem. Vivamus ligula arcu, faucibus a ex et, viverra molestie velit. Donec ut justo arcu. Integer a lorem ut massa mattis vestibulum. Fusce in lacus eget dolor finibus vestibulum. Vestibulum lobortis placerat felis non feugiat. Sed eu risus non nisi iaculis elementum.&nbsp;<a href="https://google.com/">Etiam eu eros eget</a>&nbsp;ante cursus laoreet in ut nisi. Phasellus porta, est vitae accumsan dictum, erat nibh bibendum tellus, id suscipit elit mauris nec felis. Nunc in sodales erat, in scelerisque sapien. Aenean rutrum ligula leo, nec fringilla mi consectetur a. Quisque molestie nulla sit amet nibh dictum maximus.</p>\r\n<h3><span style="text-decoration: underline; color: #99cc00; background-color: #ffcc00;"><em>Изменить форматирование &ndash; размер, цвет, фон, формат, начертание шрифта (все возможные варианты редактора)</em></span></h3>\r\n<p><strong>Nunc ac massa sit amet erat dignissim tristique. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent lorem justo, vestibulum quis posuere blandit,&nbsp;</strong>volutpat&nbsp;<em>vitae tellus. Sed blandit tortor vitae libero porttitor, eu vehicula odio dapibus. Quisque rhoncus facilisis vulputate. Etiam mi sem, placerat ut erat non, accumsan dignissim magna. Nullam tempor eleifend erat eu placerat. Nulla suscipit nunc sed</em>&nbsp;tortor sodales sodales. Suspendisse porta placerat tellus, eget luctus arcu blandit at. Suspendisse imperdiet, sapien ac hendrerit laoreet, mauris tortor porttitor augue, pellentesque mattis nisi nulla eu urna. Donec dictum sed velit id tristique. Vivamus sit amet eleifend ex. Quisque ullamcorper rhoncus congue.</p>\r\n<p>Duis imperdiet neque velit, vel tempor dui volutpat sit amet. Sed laoreet quam vitae sem vulputate vulputate sed et metus. Phasellus nec eros rhoncus, semper tortor nec, rutrum justo. Donec in lectus ullamcorper, aliquam nibh vitae, commodo augue. Duis eget lorem ac purus venenatis eleifend. Phasellus finibus magna at ante volutpat, vel porttitor ante gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<table width="640">\r\n<tbody>\r\n<tr>\r\n<td>\r\n<p>№</p>\r\n</td>\r\n<td>\r\n<p>1</p>\r\n</td>\r\n<td>\r\n<p>2</p>\r\n</td>\r\n<td>\r\n<p>3</p>\r\n</td>\r\n<td>\r\n<p>4</p>\r\n</td>\r\n<td>\r\n<p>5</p>\r\n</td>\r\n<td>\r\n<p>6</p>\r\n</td>\r\n<td>\r\n<p>7</p>\r\n</td>\r\n<td>\r\n<p>8</p>\r\n</td>\r\n<td>\r\n<p>9</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>\r\n<p>1</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td>\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td>\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td>\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td>\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td>\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td>\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td>\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td>\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td>\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td>\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td>\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td>\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td>\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td>\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td>\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td>\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>&nbsp;</p>\r\n<p><strong>Вставить изображение с описанием</strong></p>\r\n<p>&nbsp;</p>\r\n<p><strong>Вставить видео с изображением</strong></p>\r\n<p>&nbsp;</p>\r\n<p><strong>Вставить видео без изображения</strong></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', NULL, NULL, NULL, NULL, 7, 'en'),
+(15, 'Тестовый проект111', '<p>тест</p>', NULL, NULL, NULL, NULL, 8, 'ru'),
+(16, 'Test project111', '<p>Test</p>', NULL, NULL, NULL, NULL, 8, 'en'),
+(17, 'Тестовый проект111', '<p>цццццццц</p>', NULL, NULL, NULL, NULL, 9, 'ru'),
+(18, 'Test project111', '<p>wwwwwww</p>', NULL, NULL, NULL, NULL, 9, 'en'),
+(19, 'Тестовый проект222', '<p>ццц</p>', NULL, NULL, NULL, NULL, 10, 'ru'),
+(20, 'Test projec222', '<p>www</p>', NULL, NULL, NULL, NULL, 10, 'en'),
+(21, 'тестовый проект333', '<p>ццццццц</p>', NULL, NULL, NULL, NULL, 11, 'ru'),
+(22, 'Test projec333', '<p>wwwwwwwwwwww</p>', NULL, NULL, NULL, NULL, 11, 'en'),
+(23, 'тест1', '<p>ццц</p>', NULL, NULL, NULL, NULL, 12, 'ru'),
+(24, 'test1', '<p>www</p>', NULL, NULL, NULL, NULL, 12, 'en'),
+(25, 'тест2', '<p>цццццццццццццццццццццццц</p>', NULL, NULL, NULL, NULL, 13, 'ru'),
+(26, 'test2', '<p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>', NULL, NULL, NULL, NULL, 13, 'en'),
+(27, 'тест3', '<p>Разрастаясь до крупных размеров, компании, как правило, становятся очень традиционными и даже консервативными, медлительными и забюрократизированными. Они теряют способность быть инновационными и постепенно теряют рынок. Для инноваций необходимо пробудить в сотрудниках дух предпринимательства &ndash; свободу предлагать новое, брать инициативу на себя. Именно такие компании принято называть предпринимательскими. Следующий быстрый тест позволяет грубо, но быстро оценить уровень развития предпринимательства в вашей компании.</p>', NULL, NULL, NULL, NULL, 14, 'ru'),
+(28, 'test3', '<p>Grow to large sizes, the company, as a rule, are very traditional and even conservative, slow and bureaucratic. They lose their ability to be innovative and gradually lose the market. For innovation is necessary to awaken the spirit of enterprise employees - the freedom to offer new, to take the initiative. Such companies are called entrepreneurial. The following rapid test enables rough, but quickly assess the level of development of business in your company.</p>', NULL, NULL, NULL, NULL, 14, 'en'),
+(29, 'тест4', '<p>ццццццццц</p>\r\n<p><video controls="controls" width="300" height="150">\r\n<source src="http://beatus.wezom.ks.ua/Media/files/filemanager/test.mp4" type="video/mp4" />\r\n</video></p>', NULL, NULL, NULL, NULL, 15, 'ru'),
+(30, 'test4', '<p>wwwwww</p>', NULL, NULL, NULL, NULL, 15, 'en'),
+(31, 'Тестовый проект.', '<p>Тестовый проект.</p>', NULL, NULL, NULL, NULL, 16, 'ru'),
+(32, 'Test project.', '<p>Test project.</p>', NULL, NULL, NULL, NULL, 16, 'en'),
+(33, 'Тест проект', '<p>Веб-разработка</p>', NULL, NULL, NULL, NULL, 17, 'ru'),
+(34, 'Test project', '<p>Web-Development</p>', NULL, NULL, NULL, NULL, 17, 'en'),
+(35, 'Стратегия', '', NULL, NULL, NULL, NULL, 18, 'ru'),
+(36, 'Strategy', '', NULL, NULL, NULL, NULL, 18, 'en'),
+(37, 'Дизайн', '<p>Дизайн</p>', NULL, NULL, NULL, NULL, 19, 'ru'),
+(38, 'Design', '<p>Design</p>', NULL, NULL, NULL, NULL, 19, 'en'),
+(39, 'asdfsd', '', NULL, NULL, NULL, NULL, 19, 'de'),
+(40, 'asdfsadf', '', NULL, NULL, NULL, NULL, 19, 'sp'),
+(41, 'asdfasdfsadf', '', NULL, NULL, NULL, NULL, 19, 'fr');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `projects_images`
+--
+
+CREATE TABLE IF NOT EXISTS `projects_images` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `sort` int(10) NOT NULL DEFAULT '0',
+  `projects_id` int(10) NOT NULL DEFAULT '0',
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `projects_images`
+--
+
+INSERT INTO `projects_images` (`id`, `created_at`, `updated_at`, `sort`, `projects_id`, `image`) VALUES
+(15, 1470916757, NULL, 1, 1, 'b02bbdf9b9791b545638cb08f1df0e25.jpg'),
+(16, 1470916757, NULL, 2, 1, 'bcd75e7041312ef52703183cf7a66388.jpg'),
+(17, 1470916758, NULL, 3, 1, 'aa3e8e072bf3a891272aedc1b180c234.jpg'),
+(18, 1470986519, NULL, 1, 5, 'e6166e9c2abbd4c4bda85f410a58e531.png'),
+(19, 1470986565, NULL, 2, 5, '7b8606edb9b0c5bcd7c80bbe7d9dcc92.jpg'),
+(20, 1470986629, NULL, 3, 5, 'e9a0890712891eaaa8cec4ecb4f3ad6f.jpg'),
+(22, 1470988273, NULL, 1, 6, 'beab2a62dd32831c304eeba542c22417.jpg'),
+(26, 1471248126, NULL, 1, 15, '04f003ea3362ab5b3f9abfc04d848444.jpg'),
+(27, 1471254471, NULL, 1, 14, '5c6a22372cb25b10c00256a059bc518f.jpg'),
+(28, 1471254471, NULL, 2, 14, 'a53f3b9f70bdbc1b5e4b4bdd312919da.jpg'),
+(29, 1471254472, NULL, 3, 14, 'fd0325bdcbff8c07990b762f7e894f2a.png'),
+(30, 1471330587, NULL, 1, 16, 'd210c377346ef4bb37b3cfd1c07d7b8d.jpg'),
+(31, 1471330588, NULL, 2, 16, '2569f3d7740bad125ba4319e30c009a8.png'),
+(32, 1471332473, NULL, 1, 17, '2f478c1c8937bd889e7152859a3bb904.jpg'),
+(35, 1471332858, 1471332904, 3, 19, '9b9ab7eca6a356ab7615750e3c053c92.jpg'),
+(36, 1471332858, 1471332904, 4, 19, '7ddc6beb71fb7c156f5767a6b8e690e9.jpg'),
+(37, 1471332956, NULL, 5, 19, '32a4e56f1ea48a323924da79d4f568cf.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `projects_info`
+--
+
+CREATE TABLE IF NOT EXISTS `projects_info` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(64) DEFAULT NULL,
+  `email` varchar(64) DEFAULT NULL,
+  `theme` text,
+  `ip` varchar(16) DEFAULT NULL,
+  `phone` varchar(150) NOT NULL,
+  `project` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `projects_info`
+--
+
+INSERT INTO `projects_info` (`id`, `created_at`, `updated_at`, `status`, `name`, `email`, `theme`, `ip`, `phone`, `project`) VALUES
+(48, 1471331593, NULL, 1, 'test', 'test@test.test', NULL, '178.136.229.251', '', 1),
+(49, 1471331762, NULL, 1, 'тест', 'Mail@mail.ru', NULL, '178.136.229.251', '', 1),
+(51, 1471333032, NULL, 1, 'design', 'creative@design.com', NULL, '178.136.229.251', '', 19),
+(52, 1471333055, 1471333087, 1, 'Viacheslav', 'ivanov.via4eslav@gmail.com', NULL, '178.136.229.251', '', 18),
+(53, 1471336013, NULL, 1, 'Samsung', 'samsung@sss.ss', NULL, '178.136.229.251', '', 5),
+(54, 1471337569, NULL, 1, 'Ipad', 'ipad@ipad.ipad', NULL, '178.136.229.251', '', 18);
 
 -- --------------------------------------------------------
 
@@ -2129,18 +2405,18 @@ CREATE TABLE IF NOT EXISTS `sitemenu` (
   `url` varchar(255) DEFAULT NULL,
   `nofollow` tinyint(1) unsigned DEFAULT '0',
   `group` tinyint(1) unsigned DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `sitemenu`
 --
 
 INSERT INTO `sitemenu` (`id`, `created_at`, `updated_at`, `status`, `sort`, `url`, `nofollow`, `group`) VALUES
-(11, 1448200602, 1470732978, 1, 0, 'about', 0, 0),
-(12, 1448200726, 1470732978, 1, 2, 'works', 0, 0),
-(13, 1448200745, 1470732994, 1, 1, 'services', 0, 0),
-(14, 1448200821, 1470733014, 1, 3, 'news', 0, 0),
-(15, 1448200875, 1470733038, 1, 4, 'contacts', 0, 0);
+(11, 1448200602, 1471332067, 1, 0, 'about', 0, 0),
+(12, 1448200726, 1471332067, 1, 2, 'works', 0, 0),
+(13, 1448200745, 1471332067, 1, 1, 'services', 0, 0),
+(14, 1448200821, 1471332067, 1, 3, 'news', 0, 0),
+(15, 1448200875, 1471332067, 1, 4, 'contacts', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2153,7 +2429,7 @@ CREATE TABLE IF NOT EXISTS `sitemenu_i18n` (
   `name` varchar(64) DEFAULT NULL,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `sitemenu_i18n`
@@ -2259,7 +2535,7 @@ CREATE TABLE IF NOT EXISTS `sizes_groups_i18n` (
   `name` varchar(255) DEFAULT NULL,
   `row_id` int(10) unsigned DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `sizes_groups_i18n`
@@ -2287,16 +2563,16 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `sort` int(10) NOT NULL DEFAULT '0',
   `url` varchar(255) DEFAULT NULL,
   `image` varchar(128) DEFAULT NULL,
-  `emblem` varchar(128) DEFAULT NULL
+  `bg` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `slider`
 --
 
-INSERT INTO `slider` (`id`, `created_at`, `updated_at`, `status`, `sort`, `url`, `image`, `emblem`) VALUES
-(13, 1470731390, 1470731470, 1, 0, '', 'e56a5e6439c4c7244da93756c1f949fd.jpg', NULL),
-(14, 1470731764, 1470732521, 1, 0, NULL, 'ca81ee1e47298ff6a4a77f6515aeee2a.jpg', NULL);
+INSERT INTO `slider` (`id`, `created_at`, `updated_at`, `status`, `sort`, `url`, `image`, `bg`) VALUES
+(13, 1470731390, 1471239114, 1, 0, '', 'd5f4eecb2394be405905ab0428065a65.jpg', 'd48798bbb0e64a9e3b7475d15b283d06.jpg'),
+(14, 1470731764, 1471333621, 1, 0, NULL, '0107c1985851437bd81661111f8bb2c8.jpg', '64dc9ea27ecfee34cae9db631e7d7735.jpg');
 
 -- --------------------------------------------------------
 
@@ -2320,8 +2596,8 @@ CREATE TABLE IF NOT EXISTS `slider_i18n` (
 INSERT INTO `slider_i18n` (`id`, `name`, `text`, `row_id`, `language`, `text_bottom`) VALUES
 (1, 'Вместе расширим Ваши возможности', 'Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 13, 'ru', NULL),
 (2, 'Together increases your chances', 'We are convinced that the creative power of the movement is to understand the situation and the corresponding desire.', 13, 'en', NULL),
-(3, 'Bместе расширим Ваши возможности', 'Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 14, 'ru', NULL),
-(4, 'Together increases your chances', 'We are convinced that the creative power of the movement is to understand the situation and the corresponding desire.', 14, 'en', NULL);
+(3, 'Вместе расширим Ваши возможности', 'Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 14, 'ru', NULL),
+(4, 'Together2 increases1 your chances', 'We are convinced that the creative power of the movement is to understand the situation and the corresponding desire.', 14, 'en', NULL);
 
 -- --------------------------------------------------------
 
@@ -2402,7 +2678,7 @@ CREATE TABLE IF NOT EXISTS `tags_i18n` (
   `keywords` text,
   `description` text,
   `text` text
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tags_i18n`
@@ -2544,7 +2820,7 @@ CREATE TABLE IF NOT EXISTS `users_wishlist` (
   `id` int(10) unsigned NOT NULL,
   `catalog_id` int(10) DEFAULT NULL,
   `user_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -5893,6 +6169,20 @@ ALTER TABLE `catalog_tree_i18n`
   ADD KEY `cat_lang` (`language`);
 
 --
+-- Индексы таблицы `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `category_i18n`
+--
+ALTER TABLE `category_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `news_row_id` (`row_id`),
+  ADD KEY `news_lang` (`language`);
+
+--
 -- Индексы таблицы `certificates`
 --
 ALTER TABLE `certificates`
@@ -6072,14 +6362,6 @@ ALTER TABLE `news_i18n`
   ADD KEY `news_lang` (`language`);
 
 --
--- Индексы таблицы `news_images`
---
-ALTER TABLE `news_images`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `catalog_id` (`news_id`) USING BTREE,
-  ADD KEY `image` (`image`) USING BTREE;
-
---
 -- Индексы таблицы `news_items`
 --
 ALTER TABLE `news_items`
@@ -6142,6 +6424,34 @@ ALTER TABLE `orders_simple`
 -- Индексы таблицы `prog`
 --
 ALTER TABLE `prog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `projects_i18n`
+--
+ALTER TABLE `projects_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `news_row_id` (`row_id`),
+  ADD KEY `news_lang` (`language`);
+
+--
+-- Индексы таблицы `projects_images`
+--
+ALTER TABLE `projects_images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catalog_id` (`projects_id`) USING BTREE,
+  ADD KEY `image` (`image`) USING BTREE;
+
+--
+-- Индексы таблицы `projects_info`
+--
+ALTER TABLE `projects_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -6369,7 +6679,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT для таблицы `brands_i18n`
 --
 ALTER TABLE `brands_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT для таблицы `carts`
 --
@@ -6379,32 +6689,32 @@ ALTER TABLE `carts`
 -- AUTO_INCREMENT для таблицы `carts_items`
 --
 ALTER TABLE `carts_items`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=129;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `catalog`
 --
 ALTER TABLE `catalog`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=65;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `catalog_colors`
 --
 ALTER TABLE `catalog_colors`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=117;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `catalog_i18n`
 --
 ALTER TABLE `catalog_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=83;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `catalog_images`
 --
 ALTER TABLE `catalog_images`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=692;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `catalog_related`
 --
 ALTER TABLE `catalog_related`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `catalog_returns`
 --
@@ -6414,7 +6724,7 @@ ALTER TABLE `catalog_returns`
 -- AUTO_INCREMENT для таблицы `catalog_sizes`
 --
 ALTER TABLE `catalog_sizes`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=199;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `catalog_tree`
 --
@@ -6424,7 +6734,17 @@ ALTER TABLE `catalog_tree`
 -- AUTO_INCREMENT для таблицы `catalog_tree_i18n`
 --
 ALTER TABLE `catalog_tree_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+--
+-- AUTO_INCREMENT для таблицы `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT для таблицы `category_i18n`
+--
+ALTER TABLE `category_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT для таблицы `certificates`
 --
@@ -6434,7 +6754,7 @@ ALTER TABLE `certificates`
 -- AUTO_INCREMENT для таблицы `certificates_i18n`
 --
 ALTER TABLE `certificates_i18n`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `colors`
 --
@@ -6444,12 +6764,12 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT для таблицы `colors_i18n`
 --
 ALTER TABLE `colors_i18n`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `config`
 --
 ALTER TABLE `config`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=88;
 --
 -- AUTO_INCREMENT для таблицы `config_groups`
 --
@@ -6464,7 +6784,7 @@ ALTER TABLE `config_types`
 -- AUTO_INCREMENT для таблицы `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `contacts_emails`
 --
@@ -6474,27 +6794,27 @@ ALTER TABLE `contacts_emails`
 -- AUTO_INCREMENT для таблицы `contacts_phones`
 --
 ALTER TABLE `contacts_phones`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT для таблицы `content_i18n`
 --
 ALTER TABLE `content_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT для таблицы `control`
 --
 ALTER TABLE `control`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `control_i18n`
 --
 ALTER TABLE `control_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=68;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT для таблицы `country_ems`
 --
@@ -6524,52 +6844,47 @@ ALTER TABLE `cron`
 -- AUTO_INCREMENT для таблицы `i18n`
 --
 ALTER TABLE `i18n`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT для таблицы `mail_templates`
 --
 ALTER TABLE `mail_templates`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT для таблицы `mail_templates_i18n`
 --
 ALTER TABLE `mail_templates_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=158;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=164;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT для таблицы `news_i18n`
 --
 ALTER TABLE `news_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
---
--- AUTO_INCREMENT для таблицы `news_images`
---
-ALTER TABLE `news_images`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=696;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=89;
 --
 -- AUTO_INCREMENT для таблицы `news_items`
 --
 ALTER TABLE `news_items`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=96;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `orders_certificates`
 --
@@ -6600,6 +6915,26 @@ ALTER TABLE `orders_simple`
 --
 ALTER TABLE `prog`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+--
+-- AUTO_INCREMENT для таблицы `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT для таблицы `projects_i18n`
+--
+ALTER TABLE `projects_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+--
+-- AUTO_INCREMENT для таблицы `projects_images`
+--
+ALTER TABLE `projects_images`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT для таблицы `projects_info`
+--
+ALTER TABLE `projects_info`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT для таблицы `promo`
 --
@@ -6649,12 +6984,12 @@ ALTER TABLE `seo_templates_i18n`
 -- AUTO_INCREMENT для таблицы `sitemenu`
 --
 ALTER TABLE `sitemenu`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `sitemenu_i18n`
 --
 ALTER TABLE `sitemenu_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT для таблицы `sizes`
 --
@@ -6669,7 +7004,7 @@ ALTER TABLE `sizes_groups`
 -- AUTO_INCREMENT для таблицы `sizes_groups_i18n`
 --
 ALTER TABLE `sizes_groups_i18n`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `slider`
 --
@@ -6699,7 +7034,7 @@ ALTER TABLE `tags_groups`
 -- AUTO_INCREMENT для таблицы `tags_i18n`
 --
 ALTER TABLE `tags_i18n`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
@@ -6724,7 +7059,7 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT для таблицы `users_wishlist`
 --
 ALTER TABLE `users_wishlist`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `visitors`
 --
@@ -6885,12 +7220,6 @@ ALTER TABLE `mail_templates_i18n`
 ALTER TABLE `news_i18n`
   ADD CONSTRAINT `news_lang` FOREIGN KEY (`language`) REFERENCES `i18n` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `news_row_id` FOREIGN KEY (`row_id`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `news_images`
---
-ALTER TABLE `news_images`
-  ADD CONSTRAINT `news_images_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `news_items`
