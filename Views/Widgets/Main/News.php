@@ -3,9 +3,16 @@
         <div class="sectionTitle"><?php echo __('Свежие новости'); ?></div>
         <div class="grid grid--1 grid--sm-2 grid--space-x2 grid--items-start">
             <?php foreach ($result as $news): ?>
+                <?php
+                if (is_file(HOST . Core\HTML::media('images/news/main/' . $news->image))) {
+                    $image = Core\HTML::media('images/news/main/' . $news->image);
+                } else {
+                    $image = Core\HTML::media('pic/no-image.png');
+                }
+                ?>
                 <div class="grid__cell mediaBlock">
-                    <a href="<?php echo Core\HTML::link('news/' . $news->alias); ?>" class="mediaBlock__image" style="background-image: url('<?php echo Core\HTML::media('images/news/main/' . $news->image); ?>');">
-                        <div class="mediaBlock__date"><?php echo date('d', $news->date); ?><small><?php echo Core\Text::russianDate($news->date)?></small></div>
+                    <a href="<?php echo Core\HTML::link('news/' . $news->alias); ?>" class="mediaBlock__image" style="background-image: url('<?php echo $image; ?>');">
+                        <div class="mediaBlock__date"><?php echo date('d', $news->date); ?><small><?php echo Core\Text::russianDate($news->date) ?></small></div>
                     </a>
                     <div class="mediaBlock__content">
                         <div class="mediaBlock__title">

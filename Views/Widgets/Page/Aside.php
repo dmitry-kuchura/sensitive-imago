@@ -16,9 +16,16 @@
                 <div class="sectionTitle sectionTitle--in-aside"><?php echo __('Последние новости'); ?></div>
                 <div class="lastNews">
                     <?php foreach ($result as $news): ?>
+                        <?php
+                        if (is_file(HOST . Core\HTML::media('images/news/main/' . $news->image))) {
+                            $image = Core\HTML::media('images/news/main/' . $news->image);
+                        } else {
+                            $image = Core\HTML::media('pic/no-image.png');
+                        }
+                        ?>
                         <div class="mediaBlock mediaBlock--in-aside">
                             <a href="<?php echo Core\HTML::link('news/' . $news->alias); ?>">
-                                <div class="mediaBlock__image" style="background-image: url('<?php echo Core\HTML::media('images/news/main/' . $news->image); ?>');">
+                                <div class="mediaBlock__image" style="background-image: url('<?php echo $image; ?>');">
                                     <div class="mediaBlock__date">
                                         <?php echo date('d', $news->date); ?>
                                         <small><?php echo Core\Text::russianDate($news->date) ?></small>

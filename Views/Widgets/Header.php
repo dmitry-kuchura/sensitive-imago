@@ -2,7 +2,7 @@
     <div class="pageHeader">
         <div class="pageHeader__mobile">
             <div class="grid">
-                <a href="index.html" class="logo">
+                <a href="<?php echo Core\HTML::link(); ?>" class="logo">
                     <div class="logo__image logo__image--phone">
                         <svg>
                         <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
@@ -142,7 +142,7 @@
             <div class="pageSize">
                 <div class="grid grid--justify-around grid--lg-justify-between">
                     <div class="grid__cell">
-                        <a href="index.html" class="logo">
+                        <a href="<?php echo Core\HTML::link(); ?>" class="logo">
                             <div class="logo__image">
                                 <svg>
                                 <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>

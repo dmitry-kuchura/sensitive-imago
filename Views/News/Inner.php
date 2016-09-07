@@ -2,9 +2,13 @@
 <div class="article__image">
     <div class="mediaBlock__date">
         <?php echo date('d', $news->date); ?>
-        <small>фев</small>
+        <small><?php echo Core\Text::russianDate($news->date)?></small>
     </div>
-    <img src="<?php echo Core\HTML::media('images/news/popup/' . $news->image); ?>" alt="">
+    <?php if (is_file(HOST . Core\HTML::media('images/news/popup/' . $news->image))): ?>
+        <img src="<?php echo Core\HTML::media('images/news/popup/' . $news->image); ?>" alt="">
+    <?php else: ?>
+        <img src="<?php echo Core\HTML::media('pic/no-image.png'); ?>" alt="">
+    <?php endif; ?>
 </div>
 <div class="wTxt"><?php echo $news->text; ?></div>
 <div class="pageSection__footer ">
