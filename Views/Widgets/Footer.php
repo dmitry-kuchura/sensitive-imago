@@ -10,7 +10,7 @@
                         <div class="logo__text">
                             <big>Сенситив Имаго</big>
                             <small>Медицинское оборудование</small>
-                            <span class="logo__copyright">© 2016 Альфа-Мед Украина</span>
+                            <span class="logo__copyright"><?php echo Core\Config::get('basic.copy-'.\I18n::$lang);?></span>
                         </div>
                     </div>
                 </a>
@@ -18,7 +18,7 @@
             <div class="grid__cell grid__cell--grow">
                 <div class="grid grid--2 grid--md-4 grid--space">
                     <div class="grid__cell">
-                        <div class="columnCaption">Меню</div>
+                        <div class="columnCaption"><?php echo __('Меню'); ?></div>
                         <div class="columnContent">
                             <ul>
                                 <li><a href="#">Главная</a></li>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="grid__cell">
-                        <div class="columnCaption">Адрес</div>
+                        <div class="columnCaption"><?php echo __('Адрес'); ?></div>
                         <div class="columnContent">
                             02091, Украина, город Киев,<br>
                             улица Харьковское шоссе 164,<br>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="grid__cell">
-                        <div class="columnCaption">Время работы</div>
+                        <div class="columnCaption"><?php echo __('Время работы'); ?></div>
                         <div class="columnContent">
                             ПН - Пт : 10:00 -18:00<br>
                             Сб : 10:00 - 15:00<br>
@@ -46,14 +46,14 @@
                         </div>
                     </div>
                     <div class="grid__cell">
-                        <div class="columnCaption">Наши контакты</div>
+                        <div class="columnCaption"><?php echo __('Наши контакты'); ?></div>
                         <div class="columnContent">
                             <a href="tel:+38 (068) 201-ХХ-ХХ">+38 (068) 201-ХХ-ХХ</a><br>
                             <a href="tel:+38 (044) 227-ХХ-ХХ">+38 (044) 227-ХХ-ХХ</a><br>
                             <a href="mailto:ХХХХХХХ@gmail.com">ХХХХХХХ@gmail.com</a><br>
                             Skype: ХХХХХХ<br>
-                            <a class="inverseLink showContacts__link _color-white" href="#">Показать контакты</a>
-                            <button class="button button--inverse-white button--expand _mt">Обратная связь</button>
+                            <a class="inverseLink showContacts__link _color-white" href="#"><?php echo __('Показать контакты'); ?></a>
+                            <button class="button button--inverse-white button--expand _mt"><?php echo __('Обратная связь'); ?></button>
                         </div>
                     </div>
                 </div>

@@ -7,4 +7,10 @@
 		'К списку новостей' => 'Volver a Noticias',
 		'Узнать прайс' => 'Comprobar el precio',
 		'Подробнее' => 'Más',
+		'Меню' => 'Menu',
+		'Адрес' => 'Dirección',
+		'Время работы' => 'Horas',
+		'Наши контакты' => 'Nuestros contactos',
+		'Показать контакты' => 'Mostrar contactos',
+		'Обратная связь' => 'Realimentación',
 	);

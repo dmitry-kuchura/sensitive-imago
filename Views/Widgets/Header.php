@@ -188,7 +188,7 @@
                                             <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information" data-information="qqqqqq">XXXXXX</span>@gmail.com</a>
                                         </div>
                                     </div>
-                                    <button class="button button--primary _mt js-show-information">Показать контакты</button>
+                                    <button class="button button--primary _mt js-show-information"><?php echo __('Показать контакты'); ?></button>
                                 </div>
                             </div>
                         </div>

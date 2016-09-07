@@ -29,8 +29,7 @@ class News extends \Modules\Base {
         
         $this->setBreadcrumbs($this->current->name, $this->current->alias);
         $this->page = !(int) Route::param('page') ? 1 : (int) Route::param('page');
-        $this->limit = 4;
-//        $this->limit = (int) Config::get('basic.limit-news');
+        $this->limit = (int) Config::get('basic.limit_news');
         $this->offset = ($this->page - 1) * $this->limit;
         $this->_template = 'Text';
     }
