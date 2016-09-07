@@ -7,7 +7,6 @@ use Core\QB\DB;
 class Widgets {
 
     static $_instance; // Constant that consists self class
-    public static $_brands = array();
     public static $_menu = array();
     public static $_emails = array();
     public static $_phones = array();
@@ -143,6 +142,21 @@ class Widgets {
                 ->where('news.date', '<=', time())
                 ->order_by('news.date', 'DESC')
                 ->limit(4)
+                ->find_all();
+
+        return compact('result');
+    }
+    
+    public function Main_Team() {
+
+        $lang = \I18n::$lang;
+
+        $result = DB::select('team.*', 'team_i18n.*')
+                ->from('team')
+                ->join('team_i18n', 'LEFT')->on('team_i18n.row_id', '=', 'team.id')
+                ->where('team_i18n.language', '=', $lang)
+                ->where('team.status', '=', 1)
+                ->limit(5)
                 ->find_all();
 
         return compact('result');

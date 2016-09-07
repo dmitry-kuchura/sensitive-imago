@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\News\Controllers;
+namespace Modules\Team\Controllers;
 
 use Core\HTML;
 use Core\QB\DB;
@@ -9,10 +9,10 @@ use Core\View;
 use Core\Config;
 use Core\Pager\Pager;
 use Core\Widgets;
-use Modules\News\Models\News AS Model;
+use Modules\Team\Models\Team AS Model;
 use Modules\Content\Models\Control;
 
-class News extends \Modules\Base {
+class Team extends \Modules\Base {
 
     public $current;
     public $page = 1;
@@ -30,7 +30,7 @@ class News extends \Modules\Base {
         $this->setBreadcrumbs($this->current->name, $this->current->alias);
         $this->page = !(int) Route::param('page') ? 1 : (int) Route::param('page');
         $this->limit = 4;
-//        $this->limit = (int) Config::get('basic.limit-news');
+//        $this->limit = (int) Config::get('basic.limit-team');
         $this->offset = ($this->page - 1) * $this->limit;
         $this->_template = 'Text';
     }
@@ -46,13 +46,13 @@ class News extends \Modules\Base {
         $this->_seo['description'] = $this->current->description;
         $this->_seo['seo_text'] = $this->current->text;
         // Get Rows
-        $result = Model::getRows(1, 'date', 'DESC', $this->limit, $this->offset);
+        $result = Model::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
         // Get full count of rows
         $count = Model::countRows(1);
         // Generate pagination
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'pager' => $pager, 'h1' => $this->current->h1], 'News/List');
+        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Team/List');
     }
 
     public function innerAction() {
@@ -73,7 +73,7 @@ class News extends \Modules\Base {
         // Add plus one to views
         Model::addView($news);
         // Render
-        $this->_content = View::tpl(['news' => $news, 'h1' => $h1], 'News/Inner');
+        $this->_content = View::tpl(['news' => $news, 'h1' => $h1], 'Team/Inner');
     }
 
 }

@@ -24,6 +24,7 @@
                             <div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
                                 <section class="pageCenter">
                                     <?php echo $_breadcrumbs; ?>
+                                    <div class="sectionTitle sectionTitle--inner"><?php echo Core\Arr::get($_seo, 'h1'); ?></div>
                                     <?php echo $_content; ?>
                                 </section>
                             </div>

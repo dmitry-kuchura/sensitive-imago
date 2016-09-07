@@ -21,6 +21,15 @@ return [
             'crop' => 1,
         ],
     ],
+    'team' => [
+        [
+            'path' => 'main',
+            'width' => 138,
+            'height' => 137,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
     'advantage' => [
         [
             'path' => 'main',

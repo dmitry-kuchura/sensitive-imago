@@ -52,7 +52,7 @@ class News extends \Modules\Base {
         // Generate pagination
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'pager' => $pager, 'h1' => $this->current->h1], 'News/List');
+        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'News/List');
     }
 
     public function innerAction() {
