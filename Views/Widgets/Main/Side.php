@@ -8,7 +8,7 @@
         <div class="layeredBlock">
             <div class="layeredBlock__bottom"></div>
             <svg class="layeredBlock__arrow">
-            <use xlink:href="hidden/sprite.svg#curve_arrow"></use>
+            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#curve_arrow'); ?>"></use>
             </svg>
             <div class="layeredBlock__top">
                 <p class="layeredBlock__description"><?php echo Core\Config::get('main.description_' . I18n::$lang); ?></p>

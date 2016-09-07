@@ -3350,7 +3350,7 @@ ul.customList > li {
 
 ul.customList > li:before {
   content: '';
-  background: url("../css/pic/customList-marker.svg") center no-repeat;
+  background: url("../pic/customList-marker.svg") center no-repeat;
   height: 0.75rem;
   width: 0.75rem;
   background-size: contain;
@@ -3647,7 +3647,7 @@ ol.customList > li:before {
 .videoLink:after {
   height: 35px;
   width: 40px;
-  background: url("../css/pic/play.svg") center no-repeat;
+  background: url("../pic/play.svg") center no-repeat;
   background-size: contain;
 }
 
@@ -4891,7 +4891,7 @@ ul.asideMenu > li > ul > li > ul > li:before {
   content: '';
   width: 400px;
   height: 400px;
-  background: url("../css/pic/promo-doctor.png") no-repeat;
+  background: url("../pic/promo-doctor.png") no-repeat;
   background-position: left 20px bottom 0;
   background-clip: content-box;
   background-size: contain;

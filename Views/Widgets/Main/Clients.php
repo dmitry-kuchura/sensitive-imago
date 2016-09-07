@@ -4,7 +4,7 @@
         <div class="grid grid--1 grid--sm-2 grid--md-3 grid--justify-center textReviews textReviews--small">
             <div class="grid__cell textReview">
                 <svg class="textReview__icon">
-                <use xlink:href="hidden/sprite.svg#quotes"></use>
+                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"></use>
                 </svg>
                 <div class="textReview__name">
                     Евгений Николаевич
@@ -22,7 +22,7 @@
             </div>
             <div class="grid__cell textReview">
                 <svg class="textReview__icon">
-                <use xlink:href="hidden/sprite.svg#quotes"></use>
+                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"></use>
                 </svg>
                 <div class="textReview__name">
                     Анна Сергеевна
@@ -40,7 +40,7 @@
             </div>
             <div class="grid__cell textReview">
                 <svg class="textReview__icon">
-                <use xlink:href="hidden/sprite.svg#quotes"></use>
+                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"></use>
                 </svg>
                 <div class="textReview__name">
                     Марина Александровна
