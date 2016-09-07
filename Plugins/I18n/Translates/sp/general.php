@@ -13,4 +13,5 @@
 		'Наши контакты' => 'Nuestros contactos',
 		'Показать контакты' => 'Mostrar contactos',
 		'Обратная связь' => 'Realimentación',
+		'Отзывы наших пациентов' => 'Los comentarios de nuestros pacientes',
 	);

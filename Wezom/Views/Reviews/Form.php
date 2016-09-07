@@ -20,15 +20,21 @@
                                 <?php echo __('Нет'); ?>
                             </label>
                             <label class="checkerWrap-inline">
-                                <input name="status" value="1" type="radio" <?php echo ($obj->status OR !$obj) ? 'checked' : ''; ?>>
+                                <input name="status" value="1" type="radio" <?php echo ($obj->status OR ! $obj) ? 'checked' : ''; ?>>
                                 <?php echo __('Да'); ?>
                             </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="f_name">E-Mail</label>
+                        <label class="control-label" for="f_name"><?php echo __('Имя'); ?></label>
                         <div class="">
-                            <input id="f_name" class="form-control" name="FORM[email]" type="text" value="<?php echo $obj->email; ?>" />
+                            <input id="f_name" class="form-control valid" name="FORM[name]" type="text" value="<?php echo $obj->name; ?>" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="f_title"><?php echo __('Заголовок'); ?></label>
+                        <div class="">
+                            <input id="f_title" class="form-control" name="FORM[title]" type="text" value="<?php echo $obj->title; ?>" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -50,33 +56,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="f_name"><?php echo __('Имя'); ?></label>
-                        <div class="">
-                            <input id="f_name" class="form-control valid" name="FORM[name]" type="text" value="<?php echo $obj->name; ?>" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="f_date"><?php echo __('Дата'); ?></label>
-                        <div class="">
-                            <input id="f_date" type="text" name="FORM[date]" value="<?php echo strtotime($obj->date) ? $obj->date : ($obj->date ? date('d.m.Y', $obj->date) : date('d.m.Y')); ?>" class="myPicker valid form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label"><?php echo __('Отзыв'); ?></label>
                         <div class="">
                             <textarea class="form-control valid" rows="10" name="FORM[text]"><?php echo $obj->text; ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="f_date_answer"><?php echo __('Дата ответа администратора'); ?></label>
+                        <label class="control-label" for="f_language"><?php echo __('Язык'); ?></label>
                         <div class="">
-                            <input class="form-control myPicker2" id="f_date_answer" type="text" name="FORM[date_answer]" value="<?php echo $obj->date_answer ? date('d.m.Y', $obj->date_answer) : NULL; ?>" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="f_text"><?php echo __('Ответ администратора'); ?></label>
-                        <div class="">
-                            <textarea name="FORM[answer]" id="f_text" rows="10" class="form-control"><?php echo $obj->answer; ?></textarea>
+                            <select id="f_language" class="form-control valid" name="FORM[language]">
+                                <option value="ru" <?php echo $obj->language == 'ru' ? 'selected' : NULL; ?>>Русский</option>
+                                <option value="en" <?php echo $obj->language == 'en' ? 'selected' : NULL; ?>>Английский</option>
+                                <option value="es" <?php echo $obj->language == 'es' ? 'selected' : NULL; ?>>Испанский</option>
+                                <option value="de" <?php echo $obj->language == 'de' ? 'selected' : NULL; ?>>Немецкий</option>
+                                <option value="fr" <?php echo $obj->language == 'fr' ? 'selected' : NULL; ?>>Французкий</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -84,21 +78,3 @@
         </div>
     </div>
 </form>
-
-<script>
-    $(function(){
-        var pickerInit = function( selector ) {
-            var date = $(selector).val();
-            $(selector).datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: false
-            });
-            $(selector).datepicker('option', $.datepicker.regional['ru']);
-            var dateFormat = $(selector).datepicker( "option", "dateFormat" );
-            $(selector).datepicker( "option", "dateFormat", 'dd.mm.yy' );
-            $(selector).val(date);
-        };
-        pickerInit('.myPicker');
-        pickerInit('.myPicker2');
-    });
-</script>
