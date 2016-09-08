@@ -1,62 +1,58 @@
 jQuery(document).ready(function ($) {
-    $('.moreNews').on('click', function () {
-        var container = $('.news_list');
-
-        var lang = $('.lang').val();
-        var page = parseInt($('.pageNews').val());
-
-        $.ajax({
-            url: '/ajax/getMoreNews',
-            type: 'POST',
-            dataType: 'JSON',
-            data: {
-                page: page,
-                lang: lang
-            },
-            success: function (data) {
-                console.log(data.html);
-                if (data.success == true) {
-                    if (data.html.length) {
-                        $('.pageNews').val(page + 1);
-                        container.append(data.html);
-                        if (data.more < 4) {
-                            $('.moreNews').hide();
-                        }
-                    } else {
-                        $('.moreNews').hide();
-                    }
-                }
-            }
-        });
+    $('.pager_ajax').on('click', function () {
+        var current = $(this);
+        var container = $('#video.content');
+        loaderReviews(container, current);
     });
 
-    $('.moreProjects').on('click', function () {
-        var container = $('.works_list');
 
-        var lang = $('.lang').val();
-        var page = parseInt($('.pageProjects').val());
+    function loaderReviews(container, current) {
+        if (current.hasClass('is-active')) {
+            return false;
+        }
 
-        $.ajax({
-            url: '/ajax/getMoreProjects',
-            type: 'POST',
-            dataType: 'JSON',
-            data: {
-                page: page,
-                lang: lang
-            },
-            success: function (data) {
-                if (data.success == true) {
-                    if (data.html.length) {
-                        $('.pageProjects').val(page + 1);
-                        container.append(data.html);
-                        if (data.more < 3) {
-                            $('.moreProjects').hide();
+        var paginator = current.parent();
+        var active = paginator.children('.is-active');
+        var page = parseInt(current.data('page'));
+
+        if (isNaN(page)) {
+            if (current.data('page') == 'next') {
+                page = active.data('page') + 1;
+                current = active.next();
+            } else if (current.data('page') == 'prev') {
+                page = active.data('page') - 1;
+                current = active.prev();
+            }
+        }
+
+        var currentReviews = container.children('[data-page="' + page + '"]');
+
+        if (currentReviews.length) {
+            container.children().slideUp();
+            currentReviews.slideDown();
+        } else {
+            var lang = $('.lang').val();
+            $.ajax({
+                url: '/ajax/getMoreVideoReviews',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                    page: page,
+                    lang: lang
+                },
+                success: function (data) {
+                    console.log(data.html);
+                    if (data.success == true) {
+                        if (data.html.length) {
+                            container.children().slideUp();
+                            var markup = $(data.html);
+                            markup.hide().appendTo(container).slideDown();
+
                         }
-                    } else {
-                        $('.moreProjects').hide();
                     }
                 }
-            }
-        });
-    });
+            });
+        }
+        current.addClass('is-active').siblings().removeClass('is-active');
+    }
 });

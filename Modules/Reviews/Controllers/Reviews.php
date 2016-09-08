@@ -14,7 +14,7 @@ class Reviews extends \Modules\Base {
 
     public $current;
     public $page = 1;
-    public $limit;
+    public $limit_videolimit;
     public $offset;
     public $model;
 
@@ -27,7 +27,8 @@ class Reviews extends \Modules\Base {
 
         $this->setBreadcrumbs($this->current->name, $this->current->alias);
         $this->page = !(int) Route::param('page') ? 1 : (int) Route::param('page');
-        $this->limit = (int) Config::get('basic.limit_news');
+        $this->limit_reviews = (int) Config::get('basic.limit_reviews');
+        $this->limit_video = (int) Config::get('basic.limit_video');
         $this->offset = ($this->page - 1) * $this->limit;
         $this->_template = 'Text';
     }
@@ -43,14 +44,16 @@ class Reviews extends \Modules\Base {
         $this->_seo['description'] = $this->current->description;
         $this->_seo['seo_text'] = $this->current->text;
         // Get Rows
-        $result = Model::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
-        $video = Video::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
+        $result = Model::getRows(1, 'id', 'DESC', $this->limit_reviews, $this->offset);
+        $video = Video::getRows(1, 'id', 'DESC', $this->limit_video, $this->offset);
         // Get full count of rows
-        $count = Model::countRows(1);
+        $count_reviews = Model::countRows(1);
+        $count_video = Video::countRows(1);
         // Generate pagination
-        $pager = Pager::factory($this->page, $count, $this->limit)->create();
+        $pager_reviews = Pager::factory($this->page, $count_reviews, $this->limit_reviews, 'reviews')->create();
+        $pager_video = Pager::factory($this->page, $count_video, $this->limit_video, 'video')->create();
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'video' => $video, 'pager' => $pager], 'Reviews/List');
+        $this->_content = View::tpl(['result' => $result, 'video' => $video, '$pager_reviews' => $pager_reviews, 'pager_video' => $pager_video], 'Reviews/List');
     }
 
 }

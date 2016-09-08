@@ -1,58 +1,43 @@
-<div class="sectionTitle sectionTitle--inner"><?php echo __('Отзывы наших пользователей'); ?></div>
-<div class="grid grid--2 grid--sm-3 grid--md-2 grid--lg-3 grid--space grid--justify-center	">
-    <?php foreach ($video as $review): ?>
-        <?php $link = explode('?v=', $review->youtube); ?>
-        <div class="grid__cell">
-            <a href="<?php echo $review->youtube; ?>" class="videoLink"
-               style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg");'></a>
-        </div>
-    <?php endforeach; ?>
-</div>
-<div class="pagination">
-    <a class="pagination__link pagination__link--prev" href="#">&lt;</a>
-    <span class="pagination__link is-active">1</span>
-    <a class="pagination__link" href="#">2</a>
-    <a class="pagination__link" href="#">3</a>
-    <a class="pagination__link" href="#">4</a>
-    <a class="pagination__link" href="#">5</a>
-    <a class="pagination__link" href="#">6</a>
-    <a class="pagination__link" href="#">7</a>
-    <a class="pagination__link pagination__link--next" href="#">&gt;</a>
-</div>
-<div class="sectionTitle sectionTitle--inner _mt-x3"><?php echo __('Отзывы наших пациентов'); ?></div>
+<?php if (count($video)): ?>
+    <div class="sectionTitle sectionTitle--inner"><?php echo __('Отзывы наших пользователей'); ?></div>
+    <div class="grid grid--2 grid--sm-3 grid--md-2 grid--lg-3 grid--space grid--justify-center content" id="video">
+        <?php foreach ($video as $review): ?>
+            <?php $link = explode('?v=', $review->youtube); ?>
+            <div class="grid__cell" data-page="1">
+                <a href="<?php echo $review->youtube; ?>" class="videoLink"
+                   style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg");'></a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php echo $pager_video; ?>
+<?php endif; ?>
 
-<div class="textReviews textReviews--full">
-    <?php foreach ($result as $obj): ?>
-        <div class="textReview">
-            <svg class="textReview__icon">
-            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
-            </svg>
-            <div class="textReview__name"><?php echo $obj->name; ?></div>
-            <div class="textReview__subtitle"><?php echo $obj->title; ?></div>
-            <div class="textReview__divider"></div>
-            <div class="textReview__text">
-                <div class="textReview__textInner"><?php echo $obj->text; ?></div>
+<?php if (count($result)): ?>
+    <div class="sectionTitle sectionTitle--inner _mt-x3"><?php echo __('Отзывы наших пациентов'); ?></div>
+    <div class="textReviews textReviews--full content" id="reviews">
+        <?php foreach ($result as $obj): ?>
+            <div class="textReview">
+                <svg class="textReview__icon">
+                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
+                </svg>
+                <div class="textReview__name"><?php echo $obj->name; ?></div>
+                <div class="textReview__subtitle"><?php echo $obj->title; ?></div>
+                <div class="textReview__divider"></div>
+                <div class="textReview__text">
+                    <div class="textReview__textInner"><?php echo $obj->text; ?></div>
+                </div>
+                <div class="textReview__footer">
+                    <div class="textReview__moreLink"
+                         data-text="<?php echo __('Скрыть'); ?>"><?php echo __('Читать отзыв полностью'); ?> <span
+                            class="textReview__arrow"></span></div>
+                    <div class="textReview__place"><?php echo $obj->city; ?></div>
+                </div>
             </div>
-            <div class="textReview__footer">
-                <div class="textReview__moreLink"
-                     data-text="<?php echo __('Скрыть'); ?>"><?php echo __('Читать отзыв полностью'); ?> <span
-                        class="textReview__arrow"></span></div>
-                <div class="textReview__place"><?php echo $obj->city; ?></div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
-<div class="pagination">
-    <a class="pagination__link pagination__link--prev" href="#">&lt;</a>
-    <span class="pagination__link is-active">1</span>
-    <a class="pagination__link" href="#">2</a>
-    <a class="pagination__link" href="#">3</a>
-    <a class="pagination__link" href="#">4</a>
-    <a class="pagination__link" href="#">5</a>
-    <a class="pagination__link" href="#">6</a>
-    <a class="pagination__link" href="#">7</a>
-    <a class="pagination__link pagination__link--next" href="#">&gt;</a>
-</div>
+        <?php endforeach; ?>
+    </div>
+    <?php echo $pager_reviews; ?>
+<?php endif; ?>
+
 <div class="sectionTitle sectionTitle--inner _mt-x2"><?php echo __('Оставить отзыв'); ?>
     <svg class="reviewsForm__decor">
     <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"></use>

@@ -72,7 +72,6 @@ class Widgets {
                 return $w->_data[$name] = NULL;
             }
         }
-//            Profiler::stop($token);
         return $w->_data[$name] = $w->common($viewpath, $array);
     }
 
@@ -81,28 +80,6 @@ class Widgets {
             return View::widget($array, $viewpath);
         }
         return NULL;
-    }
-
-    public function Head() {
-        $styles = array(
-            HTML::media('css/components.css'),
-            HTML::media('css/style.css'),
-            HTML::media('css/responsive.css'),
-            HTML::media('css/wnoty/jquery.wnoty-2.0.css'),
-            HTML::media('css/wnoty/jquery.wnoty-theme-default.css'),
-            HTML::media('css/programmer/fpopup.css'),
-        );
-        $scripts = array(
-            HTML::media('js/libs.js'),
-            HTML::media('js/inputmask.js'),
-            HTML::media('js/jquery.inputmask.js'),
-            HTML::media('js/components.js'),
-            HTML::media('js/wnoty/jquery.wnoty-2.0.js'),
-            HTML::media('js/inits.js'),
-            HTML::media('js/validation.js'),
-            HTML::media('js/programmer/my.js'),
-        );
-        return array('scripts' => $scripts, 'styles' => $styles);
     }
 
     public function HiddenData() {
@@ -123,8 +100,8 @@ class Widgets {
             HTML::media('js/vendor/jquery.transit.min.js'),
             HTML::media('js/vendor/svgeverybody.min.js'),
             HTML::media('js/vendor/jquery-validate.js'),
-            HTML::media('js/wnoty/jquery.wnoty-2.0.js'),
-            HTML::media('js/validation.js'),
+            'http://maps.google.com/maps/api/js?key=AIzaSyD1ZFkcClQJYuZVq_y84oiqtNnpxeX2ieg',
+            HTML::media('js/bundle.js'),
             HTML::media('js/programmer/my.js'),
         );
         return ['scripts' => $scripts, 'styles' => $styles];
@@ -146,7 +123,7 @@ class Widgets {
 
         return compact('result');
     }
-    
+
     public function Main_Clients() {
 
         $lang = \I18n::$lang;
@@ -160,7 +137,7 @@ class Widgets {
 
         return compact('result');
     }
-    
+
     public function Main_Team() {
 
         $lang = \I18n::$lang;
@@ -175,7 +152,7 @@ class Widgets {
 
         return compact('result');
     }
-    
+
     public function Page_Aside() {
 
         $lang = \I18n::$lang;
@@ -192,7 +169,7 @@ class Widgets {
 
         return compact('result');
     }
-    
+
     public function Page_AsideContacts() {
 
         $lang = \I18n::$lang;

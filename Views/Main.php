@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php echo \I18n::$lang; ?>" dir="ltr" class="no-js">
+<html lang="<?php echo Core\HTML::langHead(\I18n::$lang); ?>" dir="ltr" class="no-js">
     <head>
         <?php echo Core\Widgets::get('Head'); ?>
         <?php foreach ($_seo['scripts']['head'] as $script): ?>

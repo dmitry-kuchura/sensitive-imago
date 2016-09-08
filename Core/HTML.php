@@ -152,7 +152,7 @@ class HTML {
     }
 
     public static function svg($file) {
-        return file_get_contents('./'.$file);
+        return file_get_contents('./' . $file);
     }
 
     /**
@@ -325,6 +325,29 @@ class HTML {
             $html = preg_replace("/\<!--[^\[*?\]].*?--\>/", "", $html);
         }
         return $html;
+    }
+
+    public static function langHead($lang) {
+        switch ($lang) {
+            case 'ru':
+                echo 'ru-RU';
+                break;
+            case 'en':
+                echo 'en-US';
+                break;
+            case 'es':
+                echo 'es-ES';
+                break;
+            case 'fr':
+                echo 'fr-FR';
+                break;
+            case 'de':
+                echo 'de-DE';
+                break;
+            default :
+                echo 'de-DE';
+                break;
+        }
     }
 
 }
