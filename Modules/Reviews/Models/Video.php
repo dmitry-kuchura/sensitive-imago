@@ -4,9 +4,9 @@ namespace Modules\Reviews\Models;
 
 use Core\QB\DB;
 
-class Reviews extends \Core\Common {
+class Video extends \Core\Common {
 
-    public static $table = 'reviews';
+    public static $table = 'video_reviews';
 
     public static function getRows($status = NULL, $sort = NULL, $type = NULL, $limit = NULL, $offset = NULL) {
 

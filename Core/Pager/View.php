@@ -40,22 +40,39 @@ for ($i = $n7; $i <= $n8; $i++) {
     $links[$i] = $i;
 }
 ?>
-<div class="pagination">
-    <?php if ($_navigation): ?>
-        <?php if ($_previous !== FALSE): ?>
-            <a class="pagination__link pagination__link--prev" href="<?php echo Core\HTML::chars($page->url($_previous)) ?>">&lt;</a>
+
+<?php if ($_ajax != null): ?>
+    <input type="hidden" class="lang" value="<?php echo \I18n::$lang; ?>">
+
+    <div class="pagination <?php echo $_ajax ?>" data-pager="<?php echo $_ajax ?>">
+        <button class="pagination__link pagination__link--prev pager_ajax" data-page="prev">&lt;</button>
+        <?php foreach ($links as $number => $content): ?>
+            <?php if ($number === $_current): ?>
+                <button class="pagination__link pager_ajax is-active" data-page="<?php echo $content ?>"><?php echo $content ?></button>
+            <?php else: ?>
+                <button class="pagination__link pager_ajax" data-page="<?php echo $content ?>"><?php echo $content ?></button>
+            <?php endif ?>
+        <?php endforeach ?>
+        <button class="pagination__link pagination__link--next pager_ajax" data-page="next">&gt;</button>
+    </div>
+<?php else: ?>
+    <div class="pagination">
+        <?php if ($_navigation): ?>
+            <?php if ($_previous !== FALSE): ?>
+                <a class="pagination__link pagination__link--prev" href="<?php echo Core\HTML::chars($page->url($_previous)) ?>">&lt;</a>
+            <?php endif ?>
         <?php endif ?>
-    <?php endif ?>
-    <?php foreach ($links as $number => $content): ?>
-        <?php if ($number === $_current): ?>
-            <span class="pagination__link is-active"><?php echo $content ?></span>
-        <?php else: ?>
-            <a class="pagination__link" href="<?php echo Core\HTML::chars($page->url($number)) ?>"><?php echo $content ?></a>
+        <?php foreach ($links as $number => $content): ?>
+            <?php if ($number === $_current): ?>
+                <span class="pagination__link is-active"><?php echo $content ?></span>
+            <?php else: ?>
+                <a class="pagination__link" href="<?php echo Core\HTML::chars($page->url($number)) ?>"><?php echo $content ?></a>
+            <?php endif ?>
+        <?php endforeach ?>
+        <?php if ($_navigation): ?>
+            <?php if ($_next !== FALSE): ?>
+                <a class="pagination__link pagination__link--next" href="<?php echo Core\HTML::chars($page->url($_next)) ?>">&gt;</a>
+            <?php endif ?>
         <?php endif ?>
-    <?php endforeach ?>
-    <?php if ($_navigation): ?>
-        <?php if ($_next !== FALSE): ?>
-            <a class="pagination__link pagination__link--next" href="<?php echo Core\HTML::chars($page->url($_next)) ?>">&gt;</a>
-        <?php endif ?>
-    <?php endif ?>
-</div>
+    </div>
+<?php endif; ?>
