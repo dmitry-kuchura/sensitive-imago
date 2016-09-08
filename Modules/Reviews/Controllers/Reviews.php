@@ -7,6 +7,7 @@ use Core\View;
 use Core\Config;
 use Core\Pager\Pager;
 use Modules\Reviews\Models\Reviews AS Model;
+use Modules\Reviews\Models\Video;
 use Modules\Content\Models\Control;
 
 class Reviews extends \Modules\Base {
@@ -23,7 +24,7 @@ class Reviews extends \Modules\Base {
         if (!$this->current) {
             return Config::error();
         }
-        
+
         $this->setBreadcrumbs($this->current->name, $this->current->alias);
         $this->page = !(int) Route::param('page') ? 1 : (int) Route::param('page');
         $this->limit = (int) Config::get('basic.limit_news');
@@ -43,12 +44,13 @@ class Reviews extends \Modules\Base {
         $this->_seo['seo_text'] = $this->current->text;
         // Get Rows
         $result = Model::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
+        $video = Video::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
         // Get full count of rows
         $count = Model::countRows(1);
         // Generate pagination
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Reviews/List');
+        $this->_content = View::tpl(['result' => $result, 'video' => $video, 'pager' => $pager], 'Reviews/List');
     }
 
 }

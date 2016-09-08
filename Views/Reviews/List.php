@@ -1,20 +1,12 @@
-<div class="sectionTitle sectionTitle--inner">Отзывы наших пользователей</div>
+<div class="sectionTitle sectionTitle--inner"><?php echo __('Отзывы наших пользователей'); ?></div>
 <div class="grid grid--2 grid--sm-3 grid--md-2 grid--lg-3 grid--space grid--justify-center	">
-    <div class="grid__cell">
-        <a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink"
-           style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/maxresdefault.jpg");'></a>
-    </div>
-
-    <div class="grid__cell">
-        <a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink"
-           style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/maxresdefault.jpg");'></a>
-    </div>
-
-    <div class="grid__cell">
-        <a href="https://www.youtube.com/watch?v=Im4qbR70hVY" class="videoLink"
-           style='background-image: url("//img.youtube.com/vi/Im4qbR70hVY/maxresdefault.jpg");'></a>
-    </div>
-
+    <?php foreach ($video as $review): ?>
+        <?php $link = explode('?v=', $review->youtube); ?>
+        <div class="grid__cell">
+            <a href="<?php echo $review->youtube; ?>" class="videoLink"
+               style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg");'></a>
+        </div>
+    <?php endforeach; ?>
 </div>
 <div class="pagination">
     <a class="pagination__link pagination__link--prev" href="#">&lt;</a>
@@ -33,7 +25,7 @@
     <?php foreach ($result as $obj): ?>
         <div class="textReview">
             <svg class="textReview__icon">
-                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
+            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
             </svg>
             <div class="textReview__name"><?php echo $obj->name; ?></div>
             <div class="textReview__subtitle"><?php echo $obj->title; ?></div>
@@ -63,7 +55,7 @@
 </div>
 <div class="sectionTitle sectionTitle--inner _mt-x2"><?php echo __('Оставить отзыв'); ?>
     <svg class="reviewsForm__decor">
-        <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
+    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"></use>
     </svg>
 </div>
 <div class="reviewsForm js-form form" data-form="true" data-ajax="review">
@@ -82,16 +74,16 @@
             <div class="rating">
                 <div class="rating-vote">
                     <span class="rating-vote_stars">
-                        <input type="radio" name="rating" value="5" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
-                        <input type="radio" name="rating" value="4" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
-                        <input type="radio" name="rating" value="3" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
-                        <input type="radio" name="rating" value="2" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
-                        <input type="radio" name="rating" value="1" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star"/></svg></i>
+                        <input type="radio" name="rating" data-name="rating" value="5" required>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <input type="radio" name="rating" data-name="rating" value="4" required>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <input type="radio" name="rating" data-name="rating" value="3" required>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <input type="radio" name="rating" data-name="rating" value="2" required>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <input type="radio" name="rating" data-name="rating" value="1" required>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
                 </div>
             </div>
         </div>
