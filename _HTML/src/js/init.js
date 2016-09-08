@@ -6,9 +6,9 @@ jQuery(document).ready(function ($) {
 	wHTML.formValidation();
 	wHTML.mfpAjax();
 
-	jQuery.fn.ForceNumericOnly = function() {
-		return this.each(function() {
-			$(this).keydown(function(e) {
+	jQuery.fn.ForceNumericOnly = function () {
+		return this.each(function () {
+			$(this).keydown(function (e) {
 				var key = e.charCode || e.keyCode || 0;
 				return (key == 8 || key == 9 || key == 46 || (key >= 37 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 			});
@@ -16,22 +16,20 @@ jQuery(document).ready(function ($) {
 	};
 
 	/*Инициализация карты на странице контакты*/
-	function initMap() {
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 18,
-			center: {lat: 50.415291, lng: 30.660114}
-		});
 
-		var image = {
-			url: 'css/pic/marker_icon.png'
-		};
 
-		var marker = new google.maps.Marker({
-			position: {lat: 50.415291, lng: 30.660114},
-			map: map,
-			icon:image,
-			title: ''
-		});
+	let $googleMaps = $('.googlemap');
+	if ($googleMaps.length){
+		require.ensure([], function () {
+			let initGoogleMaps = require('gmap');
+			$('.googlemap').each(function (index, el) {
+				var lat = $(el).data('lat');
+				var lng = $(el).data('lng');
+				var zoom = $(el).data('zoom') || 18;
+				var marker = $(el).data('marker');
+				initGoogleMaps(el, lat, lng, zoom, marker);
+			});
+		})
 	}
 
 	/* Подключение скрипта левого меню */
@@ -57,7 +55,7 @@ jQuery(document).ready(function ($) {
 			$('a.videoLink').magnificPopup({
 				type: 'iframe'
 			});
-	})
+		})
 	}
 
 	$('.textReview').on('click', '.textReview__moreLink', function (e) {
@@ -70,8 +68,8 @@ jQuery(document).ready(function ($) {
 		$block.toggleClass('is-expand');
 	})
 
-	if($('.rateit').length){
-		require.ensure([],function(){
+	if ($('.rateit').length) {
+		require.ensure([], function () {
 			require('rateit');
 		})
 	}
@@ -86,7 +84,7 @@ jQuery(document).ready(function ($) {
 			play: true,
 			auto: true,
 			circular: true,
-			responsive:true,
+			responsive: true,
 			width: '100%',
 			height: 350,
 			items: {
@@ -114,7 +112,7 @@ jQuery(document).ready(function ($) {
 			play: true,
 			auto: true,
 			circular: true,
-			responsive:true,
+			responsive: true,
 			width: '100%',
 			height: 350,
 			items: {
@@ -137,11 +135,10 @@ jQuery(document).ready(function ($) {
 		});
 	}
 
-	$(window).load(function() {
-		initMap();
+	$(window).load(function () {
 	});
 
-	$('.js-show-information').on('click', function(){
+	$('.js-show-information').on('click', function () {
 		$('.js-hidden-information').each(function (index, element) {
 			var phone = $(element).data('information');
 			$(element).text(phone);

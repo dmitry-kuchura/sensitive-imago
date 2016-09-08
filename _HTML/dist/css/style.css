@@ -4990,7 +4990,7 @@ ul.asideMenu > li > ul > li > ul > li:before {
   }
 }
 
-.map {
+.googlemap {
   position: relative;
   height: 420px;
   max-height: 70vh;

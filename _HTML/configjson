@@ -1,0 +1,36 @@
+{
+	"localFolder": "wtpl",
+
+	"isProjectResponsive": true,
+	"isProjectWezom": true,
+
+	"minifyJsCssOnProduction": true,
+	"cancatJsFoldersOnProduction": false,
+	"cancatCssFoldersOnProduction": false,
+	"writeSourcemaps": false,
+	"notifyAfterTaskDone": false,
+
+	"transferFilterMethod": "newer",
+	"optimizeImagesOnProduction": true,
+
+	"browserSync": {
+		"use": true,
+		"static": false,
+		"port": 4000,
+		"deepPath": "/"
+	},
+
+	"itemPreviewer": {
+		"use": true,
+		"side": "right",
+		"order": [
+			"index"
+		],
+		"exclude": [
+			"ui",
+			"ui-svg",
+			"ui-forms",
+			"ui-text"
+		]
+	}
+}
