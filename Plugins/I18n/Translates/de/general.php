@@ -14,4 +14,5 @@
 		'Показать контакты' => 'Karte Kontakte',
 		'Обратная связь' => 'Rückkopplung',
 		'Отзывы наших пациентов' => 'Das Feedback unserer Patienten',
+		'Оставить отзыв' => 'Give feedback',
 	);

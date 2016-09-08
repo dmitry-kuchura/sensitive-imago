@@ -16,7 +16,6 @@
                 <?php echo Core\Widgets::get('Main_Video'); ?>
                 <?php echo Core\Widgets::get('Main_Advantage'); ?>
                 <?php echo Core\Widgets::get('Main_Price'); ?>
-                
                 <?php echo Core\Widgets::get('Main_Team'); ?>
                 <?php echo Core\Widgets::get('Main_Review'); ?>
                 <?php echo Core\Widgets::get('Main_Clients'); ?>

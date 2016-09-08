@@ -56,7 +56,7 @@ class Form extends \Modules\Ajax {
         return $ip;
     }
 
-    public function contactsAction() {
+    public function reviewsAction() {
 
         $name = Arr::get($this->post, 'name');
         $theme = Arr::get($this->post, 'theme');
@@ -131,68 +131,6 @@ class Form extends \Modules\Ajax {
         }
 
         $this->success(__('Спасибо за сообщение!'));
-    }
-
-    public function projectsAction() {
-        $name = Arr::get($this->post, 'name');
-        $email = Arr::get($this->post, 'email');
-        $project = Arr::get($this->post, 'project');
-        
-        
-        if (!$name) {
-            $this->error(__('Введенное имя слишком короткое!'));
-        }
-        if (!$project) {
-            $this->error(__('Не указан проект!'));
-        }
-        if (!$email) {
-            $this->error(__('E-Mail введен неверно!'));
-        }
-        
-        $data = array();
-        $data['name'] = $name;
-        $data['project'] = $project;
-        $data['email'] = $email;
-        $data['ip'] = System::getRealIP();
-        $data['created_at'] = time();
-
-        $keys = array();
-        $values = array();
-        foreach ($data as $key => $value) {
-            $keys[] = $key;
-            $values[] = $value;
-        }
-        $lastID = DB::insert('projects_info', $keys)->values($values)->execute();
-        $lastID = Arr::get($lastID, 0);
-
-        $qName = 'Заказ подробного отчета';
-        $url = '/wezom/feedback/edit/' . $lastID;
-        Log::add($qName, $url, 6);
-        
-        $lang = \I18n::$lang;
-        $get_project = DB::select()->from('projects_i18n')->where('row_id', '=', $project)->where('language', '=', $lang)->find();
-        
-        // Администратору
-        $mail = CommonI18n::factory('mail_templates')->getRowSimple(37, 'id', 1);
-        if ($mail) {
-            $from = array('{{site}}', '{{name}}', '{{email}}', '{{project}}', '{{ip}}');
-            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name, $email, $get_project->name, System::getRealIP());
-            $subject = str_replace($from, $to, $mail->subject);
-            $text = str_replace($from, $to, $mail->text);
-            Email::send($subject, $text);
-        }
-        
-        // Юзеру
-        $mail = CommonI18n::factory('mail_templates')->getRowSimple(38, 'id', 1);
-        if ($mail) {
-            $from = array('{{site}}', '{{name}}', '{{project}}');
-            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name, $get_project->name);
-            $subject = str_replace($from, $to, $mail->subject);
-            $text = str_replace($from, $to, $mail->text);
-            Email::send($subject, $text, $email);
-        }
-
-        $this->success(__('Менеджер свяжется в ближайшее время!'));
     }
 
 }

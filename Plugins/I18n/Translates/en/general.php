@@ -14,4 +14,5 @@
 		'Показать контакты' => 'Show contacts',
 		'Обратная связь' => 'Callback',
 		'Отзывы наших пациентов' => 'Feedback from our patients',
+		'Оставить отзыв' => 'Give feedback',
 	);
