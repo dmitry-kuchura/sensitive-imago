@@ -16,8 +16,7 @@ jQuery(document).ready(function ($) {
 	};
 
 	/*Инициализация карты на странице контакты*/
-
-
+        
 	let $googleMaps = $('.googlemap');
 	if ($googleMaps.length){
 		require.ensure([], function () {
