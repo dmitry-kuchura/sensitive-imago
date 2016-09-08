@@ -16,7 +16,7 @@
     <div class="sectionTitle sectionTitle--inner _mt-x3"><?php echo __('Отзывы наших пациентов'); ?></div>
     <div class="textReviews textReviews--full content" id="reviews">
         <?php foreach ($result as $obj): ?>
-            <div class="textReview">
+            <div class="textReview" data-page="1">
                 <svg class="textReview__icon">
                 <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
                 </svg>

@@ -53,7 +53,7 @@ class Reviews extends \Modules\Base {
         $pager_reviews = Pager::factory($this->page, $count_reviews, $this->limit_reviews, 'reviews')->create();
         $pager_video = Pager::factory($this->page, $count_video, $this->limit_video, 'video')->create();
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'video' => $video, '$pager_reviews' => $pager_reviews, 'pager_video' => $pager_video], 'Reviews/List');
+        $this->_content = View::tpl(['result' => $result, 'video' => $video, 'pager_reviews' => $pager_reviews, 'pager_video' => $pager_video], 'Reviews/List');
     }
 
 }

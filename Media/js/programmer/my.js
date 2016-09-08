@@ -1,12 +1,17 @@
 jQuery(document).ready(function ($) {
     $('.pager_ajax').on('click', function () {
         var current = $(this);
-        var container = $('#video.content');
-        loaderReviews(container, current);
+        var pager = current.data('pager');
+        var container;
+        if (pager == 'reviews') {
+            container = $('#reviews.content');
+        } else {
+            container = $('#video.content');
+        }
+        loaderReviews(container, current, pager);
     });
 
-
-    function loaderReviews(container, current) {
+    function loaderReviews(container, current, pager) {
         if (current.hasClass('is-active')) {
             return false;
         }
@@ -32,8 +37,15 @@ jQuery(document).ready(function ($) {
             currentReviews.slideDown();
         } else {
             var lang = $('.lang').val();
+            var url;
+            if (pager == 'reviews') {
+                url = '/ajax/getMoreReviews';
+            } else {
+                url = '/ajax/getMoreVideoReviews';
+            }
+
             $.ajax({
-                url: '/ajax/getMoreVideoReviews',
+                url: url,
                 type: 'POST',
                 dataType: 'JSON',
                 data: {
@@ -41,7 +53,6 @@ jQuery(document).ready(function ($) {
                     lang: lang
                 },
                 success: function (data) {
-                    console.log(data.html);
                     if (data.success == true) {
                         if (data.html.length) {
                             container.children().slideUp();

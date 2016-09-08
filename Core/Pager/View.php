@@ -48,9 +48,9 @@ for ($i = $n7; $i <= $n8; $i++) {
         <button class="pagination__link pagination__link--prev pager_ajax" data-page="prev">&lt;</button>
         <?php foreach ($links as $number => $content): ?>
             <?php if ($number === $_current): ?>
-                <button class="pagination__link pager_ajax is-active" data-page="<?php echo $content ?>"><?php echo $content ?></button>
+                <button class="pagination__link pager_ajax is-active" data-pager="<?php echo $_ajax ?>" data-page="<?php echo $content ?>"><?php echo $content ?></button>
             <?php else: ?>
-                <button class="pagination__link pager_ajax" data-page="<?php echo $content ?>"><?php echo $content ?></button>
+                <button class="pagination__link pager_ajax" data-pager="<?php echo $_ajax ?>" data-page="<?php echo $content ?>"><?php echo $content ?></button>
             <?php endif ?>
         <?php endforeach ?>
         <button class="pagination__link pagination__link--next pager_ajax" data-page="next">&gt;</button>
