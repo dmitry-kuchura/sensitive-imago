@@ -37,6 +37,8 @@
 </div>
 <hr>
 <p style="font-size:0.75rem"><b>ГЛАВНЫЙ ТОРГОВЫЙ ОФИС В УКРАИНЕ</b></p>
+<input type="hidden" class="lat" value="50.415291">
+<input type="hidden" class="lng" value="30.660114">
 <div class="map" id="map">
 </div>
 <hr>
