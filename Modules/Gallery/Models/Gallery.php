@@ -4,10 +4,10 @@ namespace Modules\Gallery\Models;
 
 use Core\QB\DB;
 
-class Video extends \Core\CommonI18n {
+class Gallery extends \Core\CommonI18n {
 
-    public static $table = 'video';
-    public static $table_image = 'video_images';
+    public static $table = 'gallery';
+    public static $table_image = 'gallery_images';
 
     /**
      * @param mixed $value - value
@@ -43,7 +43,13 @@ class Video extends \Core\CommonI18n {
         if ($status <> NULL) {
             $result->where(static::$table . '.status', '=', $status);
         }
-
+        if ($sort <> NULL) {
+            if ($type <> NULL) {
+                $result->order_by($sort, $type);
+            } else {
+                $result->order_by($sort);
+            }
+        }
         $result->order_by(static::$table . '.id', 'DESC');
         if ($limit <> NULL) {
             $result->limit($limit);
@@ -77,12 +83,12 @@ class Video extends \Core\CommonI18n {
     public static function countImages($gallery_id = NULL, $type = NULL) {
         $result = DB::select(array(DB::expr('COUNT(' . static::$table_image . '.id)'), 'count'))
                 ->from(static::$table_image)
-                ->where('video_id', '=', $gallery_id);
+                ->where('gallery_id', '=', $gallery_id);
 
         return $result->count_all();
     }
 
-    public static function getVideo($value = NULL, $field = NULL, $status = NULL) {
+    public static function getGallery($value = NULL, $field = NULL, $status = NULL) {
         static::$tableI18n = static::$table . '_i18n';
         $result = DB::select(static::$tableI18n . '.*', static::$table . '.*')
                 ->from(static::$table)
@@ -99,7 +105,7 @@ class Video extends \Core\CommonI18n {
     public static function getImage($gallery_id = NULL, $sort = NULL, $type = NULL, $limit = NULL, $offset = NULL) {
         $result = DB::select()
                 ->from(static::$table_image)
-                ->where('video_id', '=', $gallery_id);
+                ->where('gallery_id', '=', $gallery_id);
 
         if ($sort <> NULL) {
             if ($type <> NULL) {

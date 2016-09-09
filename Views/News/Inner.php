@@ -1,4 +1,3 @@
-<div class="sectionTitle sectionTitle--inner"><?php echo $h1; ?></div>
 <div class="article__image">
     <div class="mediaBlock__date">
         <?php echo date('d', $news->date); ?>

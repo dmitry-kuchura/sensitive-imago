@@ -14,7 +14,8 @@ class Reviews extends \Modules\Base {
 
     public $current;
     public $page = 1;
-    public $limit_videolimit;
+    public $limit_video;
+    public $limit_reviews;
     public $offset;
     public $model;
 
