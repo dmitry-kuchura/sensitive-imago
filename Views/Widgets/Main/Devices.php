@@ -1,6 +1,6 @@
 <section class="pageSection _bg-secondary">
     <div class="pageSize">
-        <div class="sectionTitle sectionTitle--white">Модели приборов</div>
+        <div class="sectionTitle sectionTitle--white"><?php echo __('Модели приборов'); ?></div>
         <div class="grid grid--1 grid--sm-2 grid--space-x2">
             <div class="grid__cell mediaBlock mediaBlock--inverse">
                 <a href="#" class="mediaBlock__image" style="background-image: url('images/model100-120.jpg');"></a>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="pageSection__footer">
-            <a href="#" class="button button--primary button--in-sectionFooter">СМОТРЕТЬ БОЛЬШЕ</a>
+            <a href="#" class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?></a>
         </div>
     </div>
 </section>

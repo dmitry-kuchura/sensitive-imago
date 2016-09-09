@@ -64,6 +64,8 @@ jQuery(document).ready(function ($) {
                 }
             });
         }
-        current.addClass('is-active').siblings().removeClass('is-active');
+        if (current.data('page') != 'next' && current.data('page') != 'prev') {
+            current.addClass('is-active').siblings().removeClass('is-active');
+        }
     }
 });

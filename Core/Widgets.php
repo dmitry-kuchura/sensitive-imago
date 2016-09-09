@@ -138,6 +138,20 @@ class Widgets {
         return compact('result');
     }
 
+    public function Main_Review() {
+
+        $lang = \I18n::$lang;
+
+        $result = DB::select()
+            ->from('video_reviews')
+            ->where('language', '=', $lang)
+            ->where('status', '=', 1)
+            ->limit(3)
+            ->find_all();
+
+        return compact('result');
+    }
+
     public function Main_Team() {
 
         $lang = \I18n::$lang;

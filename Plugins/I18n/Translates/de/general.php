@@ -15,4 +15,9 @@
 		'Обратная связь' => 'Rückkopplung',
 		'Отзывы наших пациентов' => 'Das Feedback unserer Patienten',
 		'Оставить отзыв' => 'Give feedback',
+		'Отзывы наших пользователей' => 'Das Feedback unserer Kunden',
+		'Наша команда' => 'Unser Team',
+		'Смотреть всех' => 'alle',
+		'Свежие новости' => 'Neueste',
+		'Модели приборов' => 'Zubehör Alle Modelle',
 	);
