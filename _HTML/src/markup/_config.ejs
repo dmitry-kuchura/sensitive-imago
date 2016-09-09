@@ -143,12 +143,12 @@ locals.Build = {
     pagination: function (count, arrows) {
         var html = [];
         html.push('<div class="pagination">');
-        if (arrows) html.push('<a class="pagination__link pagination__link--prev" href="#">&lt;</a>');
-        html.push('<span class="pagination__link is-active">1</span>');
+        if (arrows) html.push('<button class="pagination__link pagination__link--prev">&lt;</button>');
+        html.push('<button class="pagination__link is-active">1</button>');
         for (var i = 2; i <= count; i++) {
-            html.push(`<a class="pagination__link" href="#">${i}</a>`);
+            html.push(`<button class="pagination__link">${i}</button>`);
         }
-        if (arrows) html.push('<a class="pagination__link pagination__link--next" href="#">&gt;</a>');
+        if (arrows) html.push('<button class="pagination__link pagination__link--next">&gt;</button>');
         html.push('</div>');
         return html.join('\n');
     }
@@ -218,34 +218,7 @@ locals.Menus = {
     ],
 	contacts:[
 		{text:'Главный торговый офис',url:"contacts"},
-		{text:'региональные представительства',url:"contacts_regions",
-		submenu:[
-			{text:"Австралия"},
-			{text:"Барбадос"},
-			{text:"Бразилия"},
-			{text:"Венгрия"},
-			{text:"Германия"},
-			{text:"Греция"},
-			{text:"Доминиканская Республика"},
-			{text:"Египет"},
-			{text:"Канада"},
-			{text:"Китай"},
-			{text:"Кувейт"},
-			{text:"Мексика"},
-			{text:"Норвегия"},
-			{text:"ОАЭ"},
-			{text:"Панама"},
-			{text:"Перу"},
-			{text:"Саудовская Аравия"},
-			{text:"США"},
-			{text:"Тринидад и Тобаго"},
-			{text:"Турция"},
-			{text:"Уругвай"},
-			{text:"Чили"},
-			{text:"Швеция"},
-			{text:"И прочие представители"}
-		]}
-
+		{text:'региональные представительства',url:"contacts_regions"}
 	]
 };
 %>
