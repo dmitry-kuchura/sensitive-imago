@@ -5,7 +5,7 @@
                 <a href="<?php echo Core\HTML::link(); ?>" class="logo">
                     <div class="logo__image logo__image--phone">
                         <svg>
-                        <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
+                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
                         </svg>
                     </div>
                 </a>
@@ -18,30 +18,40 @@
                     <div class="dropdown-header">
                         <button data-dropdown-toggle class="button button--in-header">
                             <svg>
-                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#language'); ?>"></use>
+                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#language'); ?>"></use>
                             </svg>
                         </button>
                     </div>
                     <div class="dropdown__content dropdown__content--wide dropdown__content--right">
                         <div class="languageLinks">
-                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-spa.jpg'); ?>');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>"
+                               class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-spa.jpg'); ?>');"></div>
                                 <span class="languageLink__text">spa</span>
                             </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-fra.jpg'); ?>');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>"
+                               class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-fra.jpg'); ?>');"></div>
                                 <span class="languageLink__text">fra</span>
                             </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-ru.jpg'); ?>');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>"
+                               class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-ru.jpg'); ?>');"></div>
                                 <span class="languageLink__text">ru</span>
                             </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('en'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-eng.jpg'); ?>');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('en'); ?>"
+                               class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-eng.jpg'); ?>');"></div>
                                 <span class="languageLink__text">eng</span>
                             </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('de'); ?>" class="languageLink languageLink--adaptive">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-deu.jpg'); ?>');"></div>
+                            <a href="<?php echo Core\HTML::changeLanguage('de'); ?>"
+                               class="languageLink languageLink--adaptive">
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-deu.jpg'); ?>');"></div>
                                 <span class="languageLink__text">deu</span>
                             </a>
                         </div>
@@ -51,8 +61,8 @@
                     <div class="dropdown-header">
                         <button data-dropdown-toggle class="button button--in-header">
                             <svg>
-                            <?php echo Core\HTML::media('sprite.svg#phone'); ?>
-                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
+                                <?php echo Core\HTML::media('sprite.svg#phone'); ?>
+                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
                             </svg>
                         </button>
                     </div>
@@ -64,22 +74,26 @@
                         <div class="contactItem">
                             <div class="contactItem__key">
                                 <svg>
-                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
+                                    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
                                 </svg>
                             </div>
                             <div class="contactItem__value">
-                                <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information" data-information="12-34">XX-XX</span></a>
+                                <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information"
+                                                                                      data-information="12-34">XX-XX</span></a>
                                 <br>
-                                <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information" data-information="12-34">XX-XX</span></a></div>
+                                <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information"
+                                                                                      data-information="12-34">XX-XX</span></a>
+                            </div>
                         </div>
                         <div class="contactItem">
                             <div class="contactItem__key">
                                 <svg>
-                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
+                                    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
                                 </svg>
                             </div>
                             <div class="contactItem__value">
-                                <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information" data-information="elsead">XXXXXX</span>@gmail.com</a>
+                                <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information"
+                                                                        data-information="elsead">XXXXXX</span>@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -88,20 +102,20 @@
                     <div class="dropdown-header">
                         <button data-dropdown-toggle class="button button--in-header">
                             <svg>
-                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#icon_burger'); ?>"></use>
+                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#icon_burger'); ?>"></use>
                             </svg>
                         </button>
                     </div>
-                    <div class="dropdown__content dropdown__content--wide">
-                        <ul class="asideMenu">
-                            <li class="is-active"><a href="index.html">Главная</a></li>
-                            <li ><a href="about.html">О компании</a></li>
-                            <li ><a href="equipment.html">Оборудование</a></li>
-                            <li ><a href="business.html">Бизнес под ключ</a></li>
-                            <li ><a href="gallery_photo.html">Галерея</a></li>
-                            <li ><a href="contacts.html">Контакты</a></li>
-                        </ul>
-                    </div>
+                    <?php if (Core\Arr::get($menu, 0, [])): ?>
+                        <div class="dropdown__content dropdown__content--wide">
+                            <ul class="asideMenu">
+                                <li class="is-active"><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo __('Главная'); ?></a></li>
+                                <?php foreach ($menu[0] AS $key => $value): ?>
+                                    <li><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -114,23 +128,28 @@
                     <div class="grid__cell">
                         <div class="languageLinks">
                             <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-spa.jpg'); ?>');"></div>
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-spa.jpg'); ?>');"></div>
                                 <span class="languageLink__text">spa</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('fr'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-fra.jpg'); ?>');"></div>
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-fra.jpg'); ?>');"></div>
                                 <span class="languageLink__text">fra</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-ru.jpg'); ?>');"></div>
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-ru.jpg'); ?>');"></div>
                                 <span class="languageLink__text">ru</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('en'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-eng.jpg'); ?>');"></div>
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-eng.jpg'); ?>');"></div>
                                 <span class="languageLink__text">eng</span>
                             </a>
                             <a href="<?php echo Core\HTML::changeLanguage('de'); ?>" class="languageLink">
-                                <div class="languageLink__icon" style="background-image: url('<?php echo Core\HTML::media('pic/flag-deu.jpg'); ?>');"></div>
+                                <div class="languageLink__icon"
+                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-deu.jpg'); ?>');"></div>
                                 <span class="languageLink__text">deu</span>
                             </a>
                         </div>
@@ -145,7 +164,7 @@
                         <a href="<?php echo Core\HTML::link(); ?>" class="logo">
                             <div class="logo__image">
                                 <svg>
-                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
+                                    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
                                 </svg>
                             </div>
                             <div class="logo__text">
@@ -160,20 +179,24 @@
                                 <div class="grid__cell">
                                     <div class="contactItem">
                                         <div class="contactItem__key">Skype:</div>
-                                        <div class="contactItem__value"><span class="js-hidden-information" data-information="qwee">XXXX</span></div>
+                                        <div class="contactItem__value"><span class="js-hidden-information"
+                                                                              data-information="qwee">XXXX</span></div>
                                     </div>
                                 </div>
                                 <div class="grid__cell">
                                     <div class="contactItem">
                                         <div class="contactItem__key">
                                             <svg>
-                                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
+                                                <use
+                                                    xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
                                             </svg>
                                         </div>
                                         <div class="contactItem__value">
-                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information" data-information="12-34">XX-XX</span></a>
+                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span
+                                                    class="js-hidden-information" data-information="12-34">XX-XX</span></a>
                                             <br>
-                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information" data-information="12-34">XX-XX</span></a>
+                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span
+                                                    class="js-hidden-information" data-information="12-34">XX-XX</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -181,14 +204,17 @@
                                     <div class="contactItem">
                                         <div class="contactItem__key">
                                             <svg>
-                                            <use xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
+                                                <use
+                                                    xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
                                             </svg>
                                         </div>
                                         <div class="contactItem__value">
-                                            <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information" data-information="qqqqqq">XXXXXX</span>@gmail.com</a>
+                                            <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information"
+                                                                                    data-information="qqqqqq">XXXXXX</span>@gmail.com</a>
                                         </div>
                                     </div>
-                                    <button class="button button--primary _mt js-show-information"><?php echo __('Показать контакты'); ?></button>
+                                    <button
+                                        class="button button--primary _mt js-show-information"><?php echo __('Показать контакты'); ?></button>
                                 </div>
                             </div>
                         </div>
@@ -205,17 +231,17 @@
                 </div>
             </div>
         </div>
-        <div class="pageHeader__menu">
-            <div class="pageSize">
-                <ul class="topMenu">
-                    <li class="is-active"><a href="index.html">Главная</a></li>
-                    <li ><a href="about.html">О компании</a></li>
-                    <li ><a href="equipment.html">Оборудование</a></li>
-                    <li ><a href="business.html">Бизнес под ключ</a></li>
-                    <li ><a href="gallery_photo.html">Галерея</a></li>
-                    <li ><a href="contacts.html">Контакты</a></li>
-                </ul>
+        <?php if (Core\Arr::get($menu, 0, array())): ?>
+            <div class="pageHeader__menu">
+                <div class="pageSize">
+                    <ul class="topMenu">
+                        <li class="is-active"><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo __('Главная'); ?></a></li>
+                        <?php foreach ($menu[0] AS $key => $value): ?>
+                            <li><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 </header>

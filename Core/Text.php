@@ -2,19 +2,21 @@
 
 namespace Core;
 
-class Text {
+class Text
+{
 
     /**
      *  Generate array with RU and EN alphabet and with filtered items from $result object
-     *  @param object $result - array with objects from query result 
+     * @param object $result - array with objects from query result
      */
-    static function get_alphabet($result) {
+    static function get_alphabet($result)
+    {
         $en = array('1-9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
         $ru = array('А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я');
         $_en = $_ru = array();
         foreach ($result AS $obj) {
             $letter = Text::get_first_upper_letter($obj->name);
-            if (in_array((int) $letter, array(1, 2, 3, 4, 5, 6, 7, 8, 9))) {
+            if (in_array((int)$letter, array(1, 2, 3, 4, 5, 6, 7, 8, 9))) {
                 $_en['1-9'][] = $obj;
             } else if (in_array($letter, $en)) {
                 $_en[$letter][] = $obj;
@@ -27,12 +29,13 @@ class Text {
 
     /**
      *  Get first letter and set uppercase to it
-     *  @param  string $word - Some string
-     *  @return string       - first letter of $word in uppercase
+     * @param  string $word - Some string
+     * @return string       - first letter of $word in uppercase
      */
-    static function get_first_upper_letter($word) {
+    static function get_first_upper_letter($word)
+    {
         $length = static::strlen($word);
-        $letter = mb_substr($word, 0, - $length + 1, 'UTF-8');
+        $letter = mb_substr($word, 0, -$length + 1, 'UTF-8');
         $letter = strtoupper($letter);
         return $letter;
     }
@@ -45,7 +48,8 @@ class Text {
      * @param   string $text - phrase to change
      * @return  string
      */
-    public static function br2nl($text) {
+    public static function br2nl($text)
+    {
         return preg_replace('#<br(\s+)?\/?>#i', "\n", $text);
     }
 
@@ -57,7 +61,8 @@ class Text {
      * @param   string $phrase - phrase to translit
      * @return  string
      */
-    public static function translit($phrase) {
+    public static function translit($phrase)
+    {
         $ru = array('а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'і', 'є', 'ї', 'ґ', ' ', '"', "'", "`", ':', '«', '»', '.', ',', '’', '„', '”', '(', ')', '[', ']', '*', '@', '#', '“', '№', '%');
         $en = array('a', 'b', 'v', 'g', 'd', 'e', 'e', 'zh', 'z', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'ts', 'ch', 'sh', 'sch', '', 'y', '', 'e', 'ju', 'ja', 'i', 'je', 'ji', 'g', '-', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'N', '');
         $phrase = mb_strtolower($phrase, "UTF-8");
@@ -71,12 +76,13 @@ class Text {
      *
      *     $text = Text::limit_words($text);
      *
-     * @param   string  $str        phrase to limit words of
-     * @param   integer $limit      number of words to limit to
-     * @param   string  $end_char   end character or entity
+     * @param   string $str phrase to limit words of
+     * @param   integer $limit number of words to limit to
+     * @param   string $end_char end character or entity
      * @return  string
      */
-    public static function limit_words($str, $limit = 100, $end_char = NULL) {
+    public static function limit_words($str, $limit = 100, $end_char = NULL)
+    {
         $string = strip_tags($str);
 
         $string = substr($string, 0, $limit);
@@ -87,21 +93,46 @@ class Text {
         return $string . '...';
     }
 
-    public static function russianDate($date) {
-        $translate = [
-            '01' => 'Янв',
-            '02' => 'Фев',
-            '03' => 'Мар',
-            '04' => 'Апр',
-            '05' => 'Мая',
-            '06' => 'Июн',
-            '07' => 'Июл',
-            '08' => 'Авг',
-            '09' => 'Сен',
-            '10' => 'Окт',
-            '11' => 'Ноя',
-            '12' => 'Дек',
-        ];
+    public static function russianDate($date)
+    {
+
+        $lang = \I18n::$lang;
+
+        switch ($lang) {
+
+            case 'ru':
+                $translate = [
+                    '01' => 'Янв',
+                    '02' => 'Фев',
+                    '03' => 'Мар',
+                    '04' => 'Апр',
+                    '05' => 'Мая',
+                    '06' => 'Июн',
+                    '07' => 'Июл',
+                    '08' => 'Авг',
+                    '09' => 'Сен',
+                    '10' => 'Окт',
+                    '11' => 'Ноя',
+                    '12' => 'Дек',
+                ];
+                break;
+            default:
+                $translate = [
+                    '01' => 'Jan',
+                    '02' => 'Feb',
+                    '03' => 'Mar',
+                    '04' => 'Apr',
+                    '05' => 'May',
+                    '06' => 'Jun',
+                    '07' => 'Jul',
+                    '08' => 'Aug',
+                    '09' => 'Sep',
+                    '10' => 'Oct',
+                    '11' => 'Nov',
+                    '12' => 'Dec',
+                ];
+                break;
+        }
 
         return strtr(date('m', $date), $translate);
     }
@@ -111,17 +142,18 @@ class Text {
      *
      *     $text = Text::limit_chars($text);
      *
-     * @param   string  $str            phrase to limit characters of
-     * @param   integer $limit          number of characters to limit to
-     * @param   string  $end_char       end character or entity
+     * @param   string $str phrase to limit characters of
+     * @param   integer $limit number of characters to limit to
+     * @param   string $end_char end character or entity
      * @param   boolean $preserve_words enable or disable the preservation of words while limiting
      * @return  string
      * @uses    UTF8::strlen
      */
-    public static function limit_chars($str, $limit = 100, $end_char = NULL, $preserve_words = FALSE) {
+    public static function limit_chars($str, $limit = 100, $end_char = NULL, $preserve_words = FALSE)
+    {
         $end_char = ($end_char === NULL) ? '…' : $end_char;
 
-        $limit = (int) $limit;
+        $limit = (int)$limit;
 
         if (trim($str) === '' OR static::strlen($str) <= $limit)
             return $str;
@@ -145,10 +177,11 @@ class Text {
      *
      *     $match = Text::similar(array('fred', 'fran', 'free'); // "fr"
      *
-     * @param   array   $words  words to find similar text of
+     * @param   array $words words to find similar text of
      * @return  string
      */
-    public static function similar(array $words) {
+    public static function similar(array $words)
+    {
         // First word is the word to match against
         $word = current($words);
 
@@ -187,12 +220,13 @@ class Text {
      * You can also create a custom type by providing the "pool" of characters
      * as the type.
      *
-     * @param   string  $type   a type of pool, or a string of characters to use as the pool
+     * @param   string $type a type of pool, or a string of characters to use as the pool
      * @param   integer $length length of string to return
      * @return  string
      * @uses    UTF8::split
      */
-    public static function random($type = NULL, $length = 8) {
+    public static function random($type = NULL, $length = 8)
+    {
         if ($type === NULL) {
             // Default is to generate an alphanumeric string
             $type = 'alnum';
@@ -220,7 +254,7 @@ class Text {
                 $pool = '2345679ACDEFHJKLMNPRSTUVWXYZ';
                 break;
             default:
-                $pool = (string) $type;
+                $pool = (string)$type;
                 $utf8 = !static::is_ascii($pool);
                 break;
         }
@@ -257,10 +291,11 @@ class Text {
      *
      *     $ascii = UTF8::is_ascii($str);
      *
-     * @param   mixed   $str    string or array of strings to check
+     * @param   mixed $str string or array of strings to check
      * @return  boolean
      */
-    public static function is_ascii($str) {
+    public static function is_ascii($str)
+    {
         if (is_array($str)) {
             $str = implode($str);
         }
@@ -274,12 +309,13 @@ class Text {
      *
      *     $length = UTF8::strlen($str);
      *
-     * @param   string  $str    string being measured for length
+     * @param   string $str string being measured for length
      * @return  integer
      * @uses    UTF8::$server_utf8
      * @uses    Kohana::$charset
      */
-    public static function strlen($str) {
+    public static function strlen($str)
+    {
         return mb_strlen($str, 'UTF-8');
     }
 
@@ -290,14 +326,15 @@ class Text {
      *     $sub = UTF8::substr($str, $offset);
      *
      * @author  Chris Smith <chris@jalakai.co.uk>
-     * @param   string  $str    input string
+     * @param   string $str input string
      * @param   integer $offset offset
      * @param   integer $length length limit
      * @return  string
      * @uses    UTF8::$server_utf8
      * @uses    Kohana::$charset
      */
-    public static function substr($str, $offset, $length = NULL) {
+    public static function substr($str, $offset, $length = NULL)
+    {
         return ($length === NULL) ? mb_substr($str, $offset, mb_strlen($str), 'UTF-8') : mb_substr($str, $offset, $length, 'UTF-8');
     }
 
@@ -306,7 +343,8 @@ class Text {
      * @param int $split_length
      * @return array
      */
-    public static function str_split($string, $split_length = 1) {
+    public static function str_split($string, $split_length = 1)
+    {
         $array = array();
         $strlen = static::strlen($string);
         while ($strlen) {

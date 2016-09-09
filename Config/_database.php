@@ -16,10 +16,10 @@ return [
              *
              * Ports and sockets may be appended to the hostname.
              */
-            'hostname' => 'localhost',
-            'database' => 'sensitive',
-            'username' => 'root',
-            'password' => '',
+            'hostname' => '91.206.30.13',
+            'database' => 'sensitive_db',
+            'username' => 'sensitive_db',
+            'password' => 'H4c3O5h5',
             'persistent' => false,
         ],
         'table_prefix' => '',
