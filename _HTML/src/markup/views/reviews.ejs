@@ -32,9 +32,11 @@ locals._activeFile = _getActiveFile(filename);
 					<div class="textReviews textReviews--full">
 						<% for (i in reviewBlocks) { %>
 						<div class="textReview">
+							<div class="rateit"></div>
 							<svg class="textReview__icon">
 								<use xlink:href="hidden/sprite.svg#quotes"></use>
 							</svg>
+							<div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
 							<div class="textReview__name">
 								<%= reviewBlocks[i].name %>
 							</div>
