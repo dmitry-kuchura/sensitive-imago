@@ -126,11 +126,6 @@ class Widgets
             HTML::media('js/vendor/jquery-validate.js'),
             'http://maps.google.com/maps/api/js?key=AIzaSyD1ZFkcClQJYuZVq_y84oiqtNnpxeX2ieg',
             HTML::media('js/bundle.js'),
-            HTML::media('js/1.bundle.js'),
-            HTML::media('js/2.bundle.js'),
-            HTML::media('js/3.bundle.js'),
-            HTML::media('js/4.bundle.js'),
-            HTML::media('js/5.bundle.js'),
             HTML::media('js/programmer/my.js'),
         );
         return ['scripts' => $scripts, 'styles' => $styles];
