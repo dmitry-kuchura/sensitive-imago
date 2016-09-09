@@ -20,4 +20,9 @@
 		'Смотреть всех' => 'Voir tous',
 		'Свежие новости' => 'Dernières nouvelles',
 		'Модели приборов' => 'Modèles d\'équipement',
+		'Главная' => 'principal',
+		'Телефоны' => 'Téléphones',
+		'Свяжитесь с нами' => 'Contactez-nous',
+		'Понравилась страница' => 'Like Home',
+		'Расскажите друзьям' => 'Faire connaître à un ami',
 	);

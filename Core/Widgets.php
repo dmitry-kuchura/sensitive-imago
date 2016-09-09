@@ -7,9 +7,9 @@ use Core\QB\DB;
 class Widgets {
 
     static $_instance; // Constant that consists self class
-    public static $_menu = array();
-    public static $_emails = array();
-    public static $_phones = array();
+    public static $_menu = [];
+    public static $_emails = [];
+    public static $_phones = [];
 
     static function factory() {
         if (self::$_instance == NULL) {
@@ -18,7 +18,7 @@ class Widgets {
         return self::$_instance;
     }
 
-    public static function get($name, $array = array(), $save = true, $cache = false) {
+    public static function get($name, $array = [], $save = true, $cache = false) {
         $arr = explode('_', $name);
         $viewpath = implode('/', $arr);
 
@@ -82,6 +82,29 @@ class Widgets {
         return NULL;
     }
 
+    public function Header() {
+
+        if(!static::$_menu) {
+            $result = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
+            foreach($result AS $key => $value) {
+                static::$_menu[$value->group][] = $value;
+            }
+        }
+//        if(!static::$_emails) {
+//            $result = Common::factory('contacts_emails')->getRows(1, 'sort', 'ASC');
+//            foreach($result AS $key => $value) {
+//                static::$_emails[$value->group][] = $value;
+//            }
+//        }
+//        if(!static::$_phones) {
+//            $result = Common::factory('contacts_phones')->getRows(1, 'sort', 'ASC');
+//            foreach($result AS $key => $value) {
+//                static::$_phones[$value->group][] = $value;
+//            }
+//        }
+        return ['menu' => static::$_menu, 'emails' => static::$_emails, 'phones' => static::$_phones];
+    }
+
     public function HiddenData() {
         $styles = array(
             HTML::media('css/vendor/normalize.css'),
@@ -102,6 +125,11 @@ class Widgets {
             HTML::media('js/vendor/jquery-validate.js'),
             'http://maps.google.com/maps/api/js?key=AIzaSyD1ZFkcClQJYuZVq_y84oiqtNnpxeX2ieg',
             HTML::media('js/bundle.js'),
+            HTML::media('js/1.bundle.js'),
+            HTML::media('js/2.bundle.js'),
+            HTML::media('js/3.bundle.js'),
+            HTML::media('js/4.bundle.js'),
+            HTML::media('js/5.bundle.js'),
             HTML::media('js/programmer/my.js'),
         );
         return ['scripts' => $scripts, 'styles' => $styles];
