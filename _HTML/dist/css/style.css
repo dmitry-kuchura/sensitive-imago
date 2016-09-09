@@ -4243,6 +4243,8 @@ ul.asideMenu > li > ul > li > ul > li:before {
   align-items: center;
   -webkit-transition: background, color .2s;
   transition: background, color .2s;
+  background: transparent;
+  border: none;
 }
 
 .pagination__link--next {
@@ -5051,6 +5053,8 @@ ul.asideMenu > li > ul > li > ul > li:before {
   text-align: center;
   -webkit-transition: color, background .2s;
   transition: color, background .2s;
+  border: none;
+  cursor: pointer;
 }
 
 .region__link:hover {

@@ -194,6 +194,8 @@
 	background: #fff;
 	text-align: center;
 	transition: color, background .2s;
+	border:none;
+	cursor: pointer;
 	&:hover {
 		color: #fff;
 		background: $color-primary;
