@@ -31,7 +31,7 @@ class Contact extends \Modules\Base {
         $this->_seo['keywords'] = $this->current->keywords;
         $this->_seo['description'] = $this->current->description;
         // Render template
-        $this->_content = View::tpl(array('obj' => json_decode($this->current->other)), 'Contact/Index');
+        $this->_content = View::tpl(array('obj' => $this->current), 'Contact/Index');
 
         $this->_page_name = $this->current->name;
     }

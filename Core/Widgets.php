@@ -4,7 +4,8 @@ namespace Core;
 
 use Core\QB\DB;
 
-class Widgets {
+class Widgets
+{
 
     static $_instance; // Constant that consists self class
     public static $_menu = [];
@@ -84,9 +85,9 @@ class Widgets {
 
     public function Header() {
 
-        if(!static::$_menu) {
+        if (!static::$_menu) {
             $result = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
-            foreach($result AS $key => $value) {
+            foreach ($result AS $key => $value) {
                 static::$_menu[$value->group][] = $value;
             }
         }
@@ -140,14 +141,14 @@ class Widgets {
         $lang = \I18n::$lang;
 
         $result = DB::select('news.*', 'news_i18n.*')
-                ->from('news')
-                ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
-                ->where('news_i18n.language', '=', $lang)
-                ->where('news.status', '=', 1)
-                ->where('news.date', '<=', time())
-                ->order_by('news.date', 'DESC')
-                ->limit(4)
-                ->find_all();
+            ->from('news')
+            ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
+            ->where('news_i18n.language', '=', $lang)
+            ->where('news.status', '=', 1)
+            ->where('news.date', '<=', time())
+            ->order_by('news.date', 'DESC')
+            ->limit(4)
+            ->find_all();
 
         return compact('result');
     }
@@ -157,11 +158,11 @@ class Widgets {
         $lang = \I18n::$lang;
 
         $result = DB::select()
-                ->from('reviews')
-                ->where('language', '=', $lang)
-                ->where('status', '=', 1)
-                ->limit(3)
-                ->find_all();
+            ->from('reviews')
+            ->where('language', '=', $lang)
+            ->where('status', '=', 1)
+            ->limit(3)
+            ->find_all();
 
         return compact('result');
     }
@@ -180,36 +181,44 @@ class Widgets {
         return compact('result');
     }
 
-    public function Main_Team() {
+    public function Main_Team()
+    {
 
         $lang = \I18n::$lang;
 
         $result = DB::select('team.*', 'team_i18n.*')
-                ->from('team')
-                ->join('team_i18n', 'LEFT')->on('team_i18n.row_id', '=', 'team.id')
-                ->where('team_i18n.language', '=', $lang)
-                ->where('team.status', '=', 1)
-                ->limit(5)
-                ->find_all();
+            ->from('team')
+            ->join('team_i18n', 'LEFT')->on('team_i18n.row_id', '=', 'team.id')
+            ->where('team_i18n.language', '=', $lang)
+            ->where('team.status', '=', 1)
+            ->limit(5)
+            ->find_all();
 
         return compact('result');
     }
 
     public function Page_Aside() {
 
+        if (!static::$_menu) {
+            $result = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
+            foreach ($result AS $key => $value) {
+                static::$_menu[$value->group][] = $value;
+            }
+        }
+
         $lang = \I18n::$lang;
 
         $result = DB::select('news.*', 'news_i18n.*')
-                ->from('news')
-                ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
-                ->where('news_i18n.language', '=', $lang)
-                ->where('news.status', '=', 1)
-                ->where('news.date', '<=', time())
-                ->order_by('news.date', 'DESC')
-                ->limit(2)
-                ->find_all();
+            ->from('news')
+            ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
+            ->where('news_i18n.language', '=', $lang)
+            ->where('news.status', '=', 1)
+            ->where('news.date', '<=', time())
+            ->order_by('news.date', 'DESC')
+            ->limit(2)
+            ->find_all();
 
-        return compact('result');
+        return ['result' => $result, 'menu' => static::$_menu];
     }
 
     public function Page_AsideContacts() {
@@ -217,14 +226,14 @@ class Widgets {
         $lang = \I18n::$lang;
 
         $result = DB::select('news.*', 'news_i18n.*')
-                ->from('news')
-                ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
-                ->where('news_i18n.language', '=', $lang)
-                ->where('news.status', '=', 1)
-                ->where('news.date', '<=', time())
-                ->order_by('news.date', 'DESC')
-                ->limit(2)
-                ->find_all();
+            ->from('news')
+            ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
+            ->where('news_i18n.language', '=', $lang)
+            ->where('news.status', '=', 1)
+            ->where('news.date', '<=', time())
+            ->order_by('news.date', 'DESC')
+            ->limit(2)
+            ->find_all();
 
         return compact('result');
     }
