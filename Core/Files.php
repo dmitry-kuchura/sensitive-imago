@@ -13,14 +13,10 @@ class Files {
      */
     public static function uploadImage($mainFolder, $name = 'file') {
         if (!Arr::get($_FILES[$name], 'name')) {
-            var_dump('1');
-            die;
             return false;
         }
         $need = Config::get('images.' . $mainFolder);
         if (!$need) {
-            var_dump('2');
-            die;
             return false;
         }
         $ext = end(explode('.', $_FILES[$name]['name']));
@@ -56,10 +52,6 @@ class Files {
         return $filename;
     }
 
-    /**
-     * @param $folder - папка, в которую будет происходить сохранение файла
-     * @param string $name - имя файла в глобальной переменной FILES
-     */
     public static function uploadFile($folder, $name = "file") {
         if (!Arr::get($_FILES[$name], 'name')) {
             return false;

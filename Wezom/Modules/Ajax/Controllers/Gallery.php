@@ -24,9 +24,6 @@
             $ext = strtolower(end($name));
             if (!in_array($ext, Config::get('images.types'))) die('Not image!');
             $filename = Files::uploadImage(GalleryImages::$image);
-
-            var_dump($filename);
-            die;
             GalleryImages::insert(array(
                 'gallery_id' => $parent_id,
                 'image' => $filename,

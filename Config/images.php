@@ -57,4 +57,13 @@ return [
             'crop' => 1,
         ],
     ],
+    'gallery_images' => [
+        [
+            'path' => 'main',
+            'width' => 289,
+            'height' => 201,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
 ];

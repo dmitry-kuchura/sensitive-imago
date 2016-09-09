@@ -60,15 +60,16 @@
                 <div class="rating-vote">
                     <span class="rating-vote_stars">
                         <input type="radio" name="rating" data-name="rating" value="5" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
                         <input type="radio" name="rating" data-name="rating" value="4" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
                         <input type="radio" name="rating" data-name="rating" value="3" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
                         <input type="radio" name="rating" data-name="rating" value="2" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
                         <input type="radio" name="rating" data-name="rating" value="1" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"/></svg></i>
+                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
+                    </span>
                 </div>
             </div>
         </div>
