@@ -109,9 +109,13 @@
                     <?php if (Core\Arr::get($menu, 0, [])): ?>
                         <div class="dropdown__content dropdown__content--wide">
                             <ul class="asideMenu">
-                                <li class="is-active"><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo __('Главная'); ?></a></li>
+                                <li class="is-active"><a
+                                        href="<?php echo Core\HTML::link($value->url); ?>"><?php echo __('Главная'); ?></a>
+                                </li>
                                 <?php foreach ($menu[0] AS $key => $value): ?>
-                                    <li><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a></li>
+                                    <li>
+                                        <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
+                                    </li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -158,6 +162,17 @@
             </div>
         </div>
         <div class="pageHeader__main">
+            <?php if (Core\Route::controller() == 'index'): ?>
+                <div id="headerSlider" class="headerSlider">
+                    <div class="headerSlider__slide"
+                         style="background-image: url('http://www.cruzo.net/user/images/k/ecc3ecf42c75db1ffce5d06cbe95b1e6_644.jpg');"></div>
+                    <div class="headerSlider__slide"
+                         style="background-image: url('http://kartinki-risunki.ru/sites/kartinki-risunki.ru/files/images/66/24199.jpg');"></div>
+                    <div class="headerSlider__slide"
+                         style="background-image: url('http://wallspaper.ru/uploads/gallery/main/3/129987158.jpg');"></div>
+                </div>
+            <?php endif; ?>
+
             <div class="pageSize">
                 <div class="grid grid--justify-around grid--lg-justify-between">
                     <div class="grid__cell">
@@ -235,9 +250,11 @@
             <div class="pageHeader__menu">
                 <div class="pageSize">
                     <ul class="topMenu">
-                        <li class="is-active"><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo __('Главная'); ?></a></li>
+                        <li class="is-active"><a
+                                href="<?php echo Core\HTML::link($value->url); ?>"><?php echo __('Главная'); ?></a></li>
                         <?php foreach ($menu[0] AS $key => $value): ?>
-                            <li><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a></li>
+                            <li><a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

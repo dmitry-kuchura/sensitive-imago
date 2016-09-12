@@ -60,9 +60,11 @@ class Advantage extends \Wezom\Modules\Base
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
+            $post['svg'] = Arr::get($_POST, 'svg', 0);
+//            var_dump($post);
+//            die;
 
             if (Model::valid($post)) {
-                $post['date'] = strtotime($post['date']);
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
                     Message::GetMessage(1, __('Вы успешно изменили данные!'));

@@ -99,12 +99,11 @@
             <div class="widgetContent">
                 <div class="form-vertical row-border">
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Несколько radio контролов</label>
                         <div class="col-md-10">
                             <?php foreach ($svg as $pic): ?>
                                 <label class="checkerWrap radioWrap">
-                                    <input name="optionsRadios1" value="option1" type="radio">
-                                    <span class="">Option 1</span>
+                                    <input name="svg" value="<?php echo $pic->row_id; ?>" type="radio" <?php echo ($obj->svg == $pic->row_id) ? 'checked' : ''; ?>>
+                                    <span style="display: inline-flex;"><?php echo $pic->svg; ?></span>
                                 </label>
                             <?php endforeach; ?>
                         </div>
