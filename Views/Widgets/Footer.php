@@ -20,13 +20,15 @@
                     <div class="grid__cell">
                         <div class="columnCaption"><?php echo __('Меню'); ?></div>
                         <div class="columnContent">
-                            <ul>
-                                <li><a href="#">Главная</a></li>
-                                <li><a href="#">Оборудование</a></li>
-                                <li><a href="#">Бизнес под ключ</a></li>
-                                <li><a href="#">Новости</a></li>
-                                <li><a href="#">Контакты</a></li>
-                            </ul>
+                            <?php if (Core\Arr::get($menu, 1, [])): ?>
+                                <ul>
+                                    <?php foreach ($menu[2] AS $key => $value): ?>
+                                        <li>
+                                            <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="grid__cell">

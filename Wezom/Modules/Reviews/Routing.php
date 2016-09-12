@@ -8,9 +8,9 @@ return [
     'wezom/reviews/delete/<id:[0-9]*>' => 'reviews/reviews/delete',
     'wezom/reviews/add' => 'reviews/reviews/add',
     // Video
-    'wezom/video/index' => 'reviews/video/index',
-    'wezom/video/index/page/<page:[0-9]*>' => 'reviews/video/index',
-    'wezom/video/edit/<id:[0-9]*>' => 'reviews/video/edit',
-    'wezom/video/delete/<id:[0-9]*>' => 'reviews/video/delete',
-    'wezom/video/add' => 'reviews/video/add',
+    'wezom/video_review/index' => 'reviews/video/index',
+    'wezom/video_review/index/page/<page:[0-9]*>' => 'reviews/video/index',
+    'wezom/video_review/edit/<id:[0-9]*>' => 'reviews/video/edit',
+    'wezom/video_review/delete/<id:[0-9]*>' => 'reviews/video/delete',
+    'wezom/video_review/add' => 'reviews/video/add',
 ];

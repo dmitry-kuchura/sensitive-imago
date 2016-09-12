@@ -12,14 +12,16 @@ class Widgets
     public static $_emails = [];
     public static $_phones = [];
 
-    static function factory() {
+    static function factory()
+    {
         if (self::$_instance == NULL) {
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    public static function get($name, $array = [], $save = true, $cache = false) {
+    public static function get($name, $array = [], $save = true, $cache = false)
+    {
         $arr = explode('_', $name);
         $viewpath = implode('/', $arr);
 
@@ -76,14 +78,16 @@ class Widgets
         return $w->_data[$name] = $w->common($viewpath, $array);
     }
 
-    public function common($viewpath, $array) {
+    public function common($viewpath, $array)
+    {
         if (file_exists(HOST . '/Views/Widgets/' . $viewpath . '.php')) {
             return View::widget($array, $viewpath);
         }
         return NULL;
     }
 
-    public function Header() {
+    public function Header()
+    {
 
         if (!static::$_menu) {
             $result = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
@@ -106,72 +110,63 @@ class Widgets
         return ['menu' => static::$_menu, 'emails' => static::$_emails, 'phones' => static::$_phones];
     }
 
-    public function HiddenData() {
-        $styles = array(
-            HTML::media('css/vendor/normalize.css'),
-            HTML::media('css/vendor/magnific-popup.css'),
-            HTML::media('css/style.css'),
-            HTML::media('css/wnoty/jquery.wnoty-2.0.css'),
-            HTML::media('css/wnoty/jquery.wnoty-theme-default.css'),
-            HTML::media('css/programmer/my.css'),
-        );
-        $scripts = array(
-            HTML::media('js/vendor/jquery.js'),
-            HTML::media('js/vendor/jquery.carouFredSel-6.2.1.js'),
-            HTML::media('js/vendor/jquery.mousewheel.min.js'),
-            HTML::media('js/vendor/jquery.touchSwipe.min.js'),
-            HTML::media('js/vendor/nouislider.min.js'),
-            HTML::media('js/vendor/jquery.transit.min.js'),
-            HTML::media('js/vendor/svgeverybody.min.js'),
-            HTML::media('js/vendor/jquery-validate.js'),
-            'http://maps.google.com/maps/api/js?key=AIzaSyD1ZFkcClQJYuZVq_y84oiqtNnpxeX2ieg',
-            HTML::media('js/bundle.js'),
-            HTML::media('js/programmer/my.js'),
-        );
+    public function Footer()
+    {
+
+        if (!static::$_menu) {
+            $result = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
+            foreach ($result AS $key => $value) {
+                static::$_menu[$value->group][] = $value;
+            }
+        }
+//        if(!static::$_emails) {
+//            $result = Common::factory('contacts_emails')->getRows(1, 'sort', 'ASC');
+//            foreach($result AS $key => $value) {
+//                static::$_emails[$value->group][] = $value;
+//            }
+//        }
+//        if(!static::$_phones) {
+//            $result = Common::factory('contacts_phones')->getRows(1, 'sort', 'ASC');
+//            foreach($result AS $key => $value) {
+//                static::$_phones[$value->group][] = $value;
+//            }
+//        }
+        return ['menu' => static::$_menu, 'emails' => static::$_emails, 'phones' => static::$_phones];
+    }
+
+    public function HiddenData()
+    {
+        $styles = array(HTML::media('css/vendor/normalize.css'), HTML::media('css/vendor/magnific-popup.css'), HTML::media('css/style.css'), HTML::media('css/wnoty/jquery.wnoty-2.0.css'), HTML::media('css/wnoty/jquery.wnoty-theme-default.css'), HTML::media('css/programmer/my.css'),);
+        $scripts = array(HTML::media('js/vendor/jquery.js'), HTML::media('js/vendor/jquery.carouFredSel-6.2.1.js'), HTML::media('js/vendor/jquery.mousewheel.min.js'), HTML::media('js/vendor/jquery.touchSwipe.min.js'), HTML::media('js/vendor/nouislider.min.js'), HTML::media('js/vendor/jquery.transit.min.js'), HTML::media('js/vendor/svgeverybody.min.js'), HTML::media('js/vendor/jquery-validate.js'), 'http://maps.google.com/maps/api/js?key=AIzaSyD1ZFkcClQJYuZVq_y84oiqtNnpxeX2ieg', HTML::media('js/bundle.js'), HTML::media('js/programmer/my.js'),);
         return ['scripts' => $scripts, 'styles' => $styles];
     }
 
-    public function Main_News() {
+    public function Main_News()
+    {
 
         $lang = \I18n::$lang;
 
-        $result = DB::select('news.*', 'news_i18n.*')
-            ->from('news')
-            ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
-            ->where('news_i18n.language', '=', $lang)
-            ->where('news.status', '=', 1)
-            ->where('news.date', '<=', time())
-            ->order_by('news.date', 'DESC')
-            ->limit(4)
-            ->find_all();
+        $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(4)->find_all();
 
         return compact('result');
     }
 
-    public function Main_Clients() {
+    public function Main_Clients()
+    {
 
         $lang = \I18n::$lang;
 
-        $result = DB::select()
-            ->from('reviews')
-            ->where('language', '=', $lang)
-            ->where('status', '=', 1)
-            ->limit(3)
-            ->find_all();
+        $result = DB::select()->from('reviews')->where('language', '=', $lang)->where('status', '=', 1)->limit(3)->find_all();
 
         return compact('result');
     }
 
-    public function Main_Review() {
+    public function Main_Review()
+    {
 
         $lang = \I18n::$lang;
 
-        $result = DB::select()
-            ->from('video_reviews')
-            ->where('language', '=', $lang)
-            ->where('status', '=', 1)
-            ->limit(3)
-            ->find_all();
+        $result = DB::select()->from('video_reviews')->where('language', '=', $lang)->where('status', '=', 1)->limit(3)->find_all();
 
         return compact('result');
     }
@@ -181,18 +176,13 @@ class Widgets
 
         $lang = \I18n::$lang;
 
-        $result = DB::select('team.*', 'team_i18n.*')
-            ->from('team')
-            ->join('team_i18n', 'LEFT')->on('team_i18n.row_id', '=', 'team.id')
-            ->where('team_i18n.language', '=', $lang)
-            ->where('team.status', '=', 1)
-            ->limit(5)
-            ->find_all();
+        $result = DB::select('team.*', 'team_i18n.*')->from('team')->join('team_i18n', 'LEFT')->on('team_i18n.row_id', '=', 'team.id')->where('team_i18n.language', '=', $lang)->where('team.status', '=', 1)->limit(5)->find_all();
 
         return compact('result');
     }
 
-    public function Page_Aside() {
+    public function Page_Aside()
+    {
 
         if (!static::$_menu) {
             $result = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
@@ -203,32 +193,27 @@ class Widgets
 
         $lang = \I18n::$lang;
 
-        $result = DB::select('news.*', 'news_i18n.*')
-            ->from('news')
-            ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
-            ->where('news_i18n.language', '=', $lang)
-            ->where('news.status', '=', 1)
-            ->where('news.date', '<=', time())
-            ->order_by('news.date', 'DESC')
-            ->limit(2)
-            ->find_all();
+        $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(2)->find_all();
 
         return ['result' => $result, 'menu' => static::$_menu];
     }
 
-    public function Page_AsideContacts() {
+    public function Page_AsideContacts()
+    {
 
         $lang = \I18n::$lang;
 
-        $result = DB::select('news.*', 'news_i18n.*')
-            ->from('news')
-            ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
-            ->where('news_i18n.language', '=', $lang)
-            ->where('news.status', '=', 1)
-            ->where('news.date', '<=', time())
-            ->order_by('news.date', 'DESC')
-            ->limit(2)
-            ->find_all();
+        $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(2)->find_all();
+
+        return compact('result');
+    }
+
+    public function Page_AsideGallery()
+    {
+
+        $lang = \I18n::$lang;
+
+        $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(2)->find_all();
 
         return compact('result');
     }

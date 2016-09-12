@@ -46,11 +46,9 @@ class Video extends \Wezom\Modules\Base {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
-            $post['on_main'] = Arr::get($_POST, 'on_main', 0);
             if (Model::valid($post)) {
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
-                    Model::uploadImage(Route::param('id'));
                     Message::GetMessage(1, 'Вы успешно изменили данные!');
                     if (Arr::get($_POST, 'button', 'save') == 'save-close') {
                         HTTP::redirect('wezom/' . Route::controller() . '/index');
@@ -76,7 +74,6 @@ class Video extends \Wezom\Modules\Base {
                     'obj' => $result,
                     'tpl_folder' => $this->tpl_folder,
                     'languages' => $this->_languages,
-                    'video' => Model::getVideoRows(Route::param('id')),
                         ), $this->tpl_folder . '/Form');
     }
 
@@ -84,11 +81,9 @@ class Video extends \Wezom\Modules\Base {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
-            $post['on_main'] = Arr::get($_POST, 'on_main', 0);
             if (Model::valid($post)) {
                 $res = Model::insert($post);
                 if ($res) {
-                    Model::uploadImage($res);
                     Message::GetMessage(1, 'Вы успешно добавили данные!');
                     if (Arr::get($_POST, 'button', 'save') == 'save-close') {
                         HTTP::redirect('wezom/' . Route::controller() . '/index');
@@ -124,8 +119,6 @@ class Video extends \Wezom\Modules\Base {
             Message::GetMessage(0, 'Данные не существуют!');
             HTTP::redirect('wezom/' . Route::controller() . '/index');
         }
-        Model::deleteImage($page->image);
-        Model::delete($id);
         Message::GetMessage(1, 'Данные удалены!');
         HTTP::redirect('wezom/' . Route::controller() . '/index');
     }
