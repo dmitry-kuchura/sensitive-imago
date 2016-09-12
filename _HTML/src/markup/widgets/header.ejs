@@ -109,7 +109,15 @@
 			</div>
 		</div>
 	</div>
-	<div class="pageHeader__main">
+	<div class="pageHeader__main" style="background-image: url('css/pic/header-bg.jpg');">
+		<% if(_activeFile=='index'){ %>
+		<div id="headerSlider" class="headerSlider">
+			<div class="headerSlider__slide" style="background-image: url('http://www.cruzo.net/user/images/k/ecc3ecf42c75db1ffce5d06cbe95b1e6_644.jpg');"></div>
+			<div class="headerSlider__slide" style="background-image: url('http://kartinki-risunki.ru/sites/kartinki-risunki.ru/files/images/66/24199.jpg');"></div>
+			<div class="headerSlider__slide" style="background-image: url('http://wallspaper.ru/uploads/gallery/main/3/129987158.jpg');"></div>
+		</div>
+		<% } %>
+
 		<div class="pageSize">
 			<div class="grid grid--justify-around grid--lg-justify-between">
 				<div class="grid__cell">

@@ -2485,8 +2485,11 @@ hr {
 .pageHeader__main {
   margin-top: 55px;
   padding: 0.9375rem 0 3.125rem;
-  background: #6395c4 url("../css/pic/header-bg.jpg") top right no-repeat;
+  background-color: #354f5e;
   background-size: cover;
+  background-position: top right;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 @media only screen and (min-width: 769px) {
@@ -2499,6 +2502,13 @@ hr {
   .pageHeader__main {
     background-position: top;
   }
+  .indexPage .pageHeader__main {
+    background-image: none !important;
+  }
+}
+
+.pageHeader__main .pageSize {
+  position: relative;
 }
 
 .pageHeader__mobile {
@@ -2731,6 +2741,12 @@ hr {
   }
 }
 
+@media only screen and (min-width: 1025px) {
+  .indexPage .heroBlock {
+    visibility: hidden;
+  }
+}
+
 .pageHeader__menu {
   position: absolute;
   bottom: -25px;
@@ -2780,6 +2796,40 @@ hr {
 .topMenu > li.is-active, .topMenu > li:hover {
   color: #fff;
   background: #6395c4;
+}
+
+.headerSlider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+}
+
+@media only screen and (min-width: 1025px) {
+  .headerSlider {
+    display: block;
+  }
+}
+
+.headerSlider__slide {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  -webkit-transition: opacity 1.5s;
+  transition: opacity 1.5s;
+}
+
+.headerSlider__slide.is-active {
+  opacity: 1;
 }
 
 /*wBreadcrumbs.scss*/
@@ -4261,9 +4311,10 @@ ul.asideMenu > li > ul > li > ul > li:before {
   margin-right: 10px;
 }
 
-.pagination a:hover, .pagination .is-active {
+.pagination__link:hover, .pagination__link .is-active {
   background: #6395c4;
   color: #fff;
+  cursor: pointer;
 }
 
 .categoryLink {
