@@ -3,6 +3,7 @@
 namespace Core;
 
 use Core\QB\DB;
+use Modules\Content\Models\Control;
 
 class Widgets
 {
@@ -119,19 +120,10 @@ class Widgets
                 static::$_menu[$value->group][] = $value;
             }
         }
-//        if(!static::$_emails) {
-//            $result = Common::factory('contacts_emails')->getRows(1, 'sort', 'ASC');
-//            foreach($result AS $key => $value) {
-//                static::$_emails[$value->group][] = $value;
-//            }
-//        }
-//        if(!static::$_phones) {
-//            $result = Common::factory('contacts_phones')->getRows(1, 'sort', 'ASC');
-//            foreach($result AS $key => $value) {
-//                static::$_phones[$value->group][] = $value;
-//            }
-//        }
-        return ['menu' => static::$_menu, 'emails' => static::$_emails, 'phones' => static::$_phones];
+
+        $contacts = Control::getRowSimple('contacts', 'alias', 1);
+
+        return ['menu' => static::$_menu, 'contacts' => $contacts];
     }
 
     public function HiddenData()

@@ -33,19 +33,11 @@
                     </div>
                     <div class="grid__cell">
                         <div class="columnCaption"><?php echo __('Адрес'); ?></div>
-                        <div class="columnContent">
-                            02091, Украина, город Киев,<br>
-                            улица Харьковское шоссе 164,<br>
-                            ООО "Альфа-Мед Юкрейн
-                        </div>
+                        <div class="columnContent"><?php echo str_replace(['<p>', '</p>'], '', $contacts->location); ?></div>
                     </div>
                     <div class="grid__cell">
                         <div class="columnCaption"><?php echo __('Время работы'); ?></div>
-                        <div class="columnContent">
-                            ПН - Пт : 10:00 -18:00<br>
-                            Сб : 10:00 - 15:00<br>
-                            Вс - выходной
-                        </div>
+                        <div class="columnContent"><?php echo str_replace(['<p>', '</p>'], '', $contacts->time); ?></div>
                     </div>
                     <div class="grid__cell">
                         <div class="columnCaption"><?php echo __('Наши контакты'); ?></div>

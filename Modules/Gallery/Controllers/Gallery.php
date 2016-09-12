@@ -21,7 +21,8 @@ class Gallery extends \Modules\Base
     public $offset;
     public $model;
 
-    public function before() {
+    public function before()
+    {
         parent::before();
         $this->current = Control::getRowSimple(Route::controller(), 'alias', 1);
         if (!$this->current) {
@@ -35,7 +36,8 @@ class Gallery extends \Modules\Base
         $this->_template = 'Text';
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if (Config::get('error')) {
             return false;
         }
@@ -53,10 +55,11 @@ class Gallery extends \Modules\Base
         // Generate pagination
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         // Render template
-        $this->_content = View::tpl(['_seo' => $this->_seo, 'result' => $result, 'pager' => $pager], 'Gallery/Photo');
+        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Gallery/Photo');
     }
 
-    public function innerAction() {
+    public function innerAction()
+    {
         if (Config::get('error')) {
             return false;
         }
@@ -76,7 +79,7 @@ class Gallery extends \Modules\Base
         $this->_seo['seo_text'] = $gallery->seo_text;
         $this->setBreadcrumbs($gallery->name);
         // Render template
-        $this->_content = View::tpl(array('_seo' => $this->_seo, 'result' => $result, 'pager' => $pager), 'Gallery/Inner');
+        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Gallery/Inner');
     }
 
 }
