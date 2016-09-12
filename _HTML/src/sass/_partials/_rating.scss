@@ -1,0 +1,108 @@
+//============================
+// rating
+//============================
+
+$main-color: #E0B33B;
+.rating {
+	margin-bottom: 1em;
+	padding: 1em 0;
+	text-decoration: none;
+	color: inherit;
+	display: inline-block;
+	&__stars {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 0;
+		line-height: 0;
+		overflow: hidden;
+		input,
+		i {
+			font-size: 12px;
+			float: right;
+			width: 1.9em;
+			height: 1.7em;
+		}
+		input {
+			position: relative;
+			z-index: 10;
+			margin: 0;
+			opacity: 0;
+			cursor: pointer;
+			&:hover {
+				& ~ i {
+					svg {
+						fill: lighten($main-color,20%) !important;
+					}
+				}
+			}
+			&:checked {
+				& ~ i {
+					svg {
+						fill: $main-color;
+					}
+				}
+			}
+			& + i {
+				margin-right: -1.9em;
+			}
+		}
+		i {
+			position: relative;
+			svg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				left: 0;
+				max-width: 1.7em;
+				max-height: 1.5em;
+				stroke: $main-color;
+				stroke-width: 1px;
+				fill: transparent;
+			}
+		}
+		&[data-rating="1"] i:nth-last-of-type(1),
+		&[data-rating="2"] i:nth-last-of-type(-n+2),
+		&[data-rating="3"] i:nth-last-of-type(-n+3),
+		&[data-rating="4"] i:nth-last-of-type(-n+4),
+		&[data-rating="5"] i:nth-last-of-type(-n+5) {
+			svg {
+				fill: $main-color;
+			}
+		}
+	}
+	&__count {
+		display: inline-block;
+		vertical-align: bottom;
+		line-height: 1em;
+		color: $main-color;
+		ins {
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: -0.2em;
+			text-decoration: none;
+			max-width: 3em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+	&--large {
+		input,
+		i {
+			width: 2.9em;
+			height: 2.6em;
+			svg {
+				max-width: 2.7em;
+				max-height: 2.4em;
+			}
+		}
+		input {
+			& ~ i {
+				margin-right: -2.7em;
+			}
+		}
+		.rating__count {
+			font-size: 1.6em;
+		}
+	}
+}

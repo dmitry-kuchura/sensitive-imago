@@ -31,7 +31,7 @@
 @import '_partials/_shareBlock';
 @import '_partials/_modelPreviews';
 @import '_partials/forms';
-@import '_partials/rateit';
+@import '_partials/rating';
 @import '_partials/dropdown';
 @import '_partials/sitemap';
 @import '_partials/mfiStyles';
@@ -293,113 +293,6 @@
 	}
 }
 
-.rating {
-	display: inline-block;
-	vertical-align: top;
-	margin: 0 0 0 10px;
-}
-
-.rating_star {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-}
-
-.rating_star svg {
-	width: 16px;
-	height: 16px;
-	fill: #ffffff;
-	stroke: #0095d9;
-	stroke-width: 1px;
-}
-
-.rating[data-rate="1"] .rating_star:nth-child(-n+1) svg {
-	background-image: url(pic/star-system.png);
-}
-
-.rating[data-rate="2"] .rating_star:nth-child(-n+2) svg {
-	background-image: url(pic/star-system.png);
-}
-
-.rating[data-rate="3"] .rating_star:nth-child(-n+3) svg {
-	background-image: url(pic/star-system.png);
-}
-
-.rating[data-rate="4"] .rating_star:nth-child(-n+4) svg {
-	background-image: url(pic/star-system.png);
-}
-
-.rating[data-rate="5"] .rating_star:nth-child(-n+5) svg {
-	background-image: url(pic/star-system.png);
-}
-
-.rating-vote {
-	text-align: right;
-	margin: 8px 0;
-	color: #535353;
-}
-
-@media only screen and (max-width: 860px) {
-	.rating-vote {
-		text-align: left;
-	}
-}
-
-.rating-vote_stars {
-	display: inline-block;
-	vertical-align: top;
-	font-size: 0;
-	line-height: 0;
-	position: relative;
-	margin: 0 0 0 10px;
-}
-
-.rating-vote_stars input {
-	position: relative;
-	z-index: 10;
-	margin: 0 2px 0 -16px;
-	opacity: 0;
-	cursor: pointer;
-	float: right;
-	width: 16px;
-	height: 16px;
-}
-
-.rating-vote_stars i {
-	position: relative;
-	float: right;
-	width: 16px;
-	height: 16px;
-}
-
-.rating-vote_stars i svg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	max-width: 100%;
-	max-height: 100%;
-	fill: transparent;
-	stroke: #0095d9;
-	stroke-width: 1px;
-	-webkit-transition: all 0.2s ease 0.1s;
-	transition: all 0.2s ease 0.1s;
-}
-
-.rating-vote_stars input ~ i {
-	background-image: url(pic/star-system.png);
-	background-position:0 -33px;
-}
-
-.rating-vote_stars input:hover ~ i{
-	background-image: url(pic/star-system.png);
-	background-position:0 -16px;
-}
-
-.rating-vote_stars input:checked ~ i svg {
-	background-image: url(pic/star-system.png);
-	background-position:0 0;
-}
 
 .form{
 	&__dib{
