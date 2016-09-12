@@ -15,10 +15,19 @@
                     <div class="pageSize">
                         <div class="grid grid--md-nowrap">
                             <?php
-                            if (Core\Route::controller() != 'contact') {
-                                echo Core\Widgets::get('Page_Aside');
-                            } else {
-                                echo Core\Widgets::get('Page_AsideContacts');
+                            switch (Core\Route::controller()) {
+                                case 'contact':
+                                    echo Core\Widgets::get('Page_AsideContacts');
+                                    break;
+                                case 'gallery':
+                                    echo Core\Widgets::get('Page_AsideGallery');
+                                    break;
+                                case 'video':
+                                    echo Core\Widgets::get('Page_AsideGallery');
+                                    break;
+                                default:
+                                    echo Core\Widgets::get('Page_Aside');
+                                    break;
                             }
                             ?>
                             <div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
