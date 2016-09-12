@@ -27,7 +27,7 @@ class Gallery extends \Modules\Base
         if (!$this->current) {
             return Config::error();
         }
-        $this->setBreadcrumbs(__('Фотогалерея'), 'gallery/gallery');
+        $this->setBreadcrumbs($this->current->name, 'gallery');
 
         $this->page = !(int)Route::param('page') ? 1 : (int)Route::param('page');
         $this->limit = (int)Config::get('basic.limit_photo');
