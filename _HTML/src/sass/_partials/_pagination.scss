@@ -16,10 +16,13 @@
 		&--prev {
 			margin-right: 10px;
 		}
+		&:hover, .is-active {
+			background: $color-primary;
+			color: #fff;
+			cursor: pointer;
+
+		}
 	}
-	a:hover, .is-active {
-		background: $color-primary;
-		color: #fff;
-	}
+
 
 }

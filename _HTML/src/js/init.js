@@ -16,7 +16,6 @@ jQuery(document).ready(function ($) {
 	};
 
 	/*Инициализация карты на странице контакты*/
-        
 	let $googleMaps = $('.googlemap');
 	if ($googleMaps.length){
 		require.ensure([], function () {
@@ -104,6 +103,34 @@ jQuery(document).ready(function ($) {
 				pauseOnHover: false
 			}
 		});
+	}
+
+	if ($('#headerSlider').length) {
+		heroSlider()
+	}
+	function heroSlider() {
+		$('#headerSlider').each(function () {
+			var $this = $(this);
+			var $slides = $this.children();
+			var playSpeed = $this.data('speed') || 3000;
+			function _changeSlide() {
+				var currentIndex = $slides.filter('.is-active').index();
+				var nextIndex;
+				if(currentIndex + 1 > $slides.length - 1) {
+					nextIndex = 0;
+				} else {
+					nextIndex = currentIndex + 1;
+				}
+				$slides
+					.eq(currentIndex).removeClass('is-active')
+					.end()
+					.eq(nextIndex).addClass('is-active');
+				setTimeout(function () {
+					_changeSlide();
+				}, playSpeed);
+			}
+			_changeSlide();
+		})
 	}
 
 	if ($('#slider_else_universal').length) {

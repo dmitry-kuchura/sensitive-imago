@@ -98,6 +98,11 @@
 		color: #4c4c4c;
 		font-size: rem(12px);
 	}
+	&__rating{
+		position: absolute;
+		right: rem(40px);
+		top: rem(115px);
+	}
 	&:hover {
 		@at-root & {
 			background: $color-secondary ;
