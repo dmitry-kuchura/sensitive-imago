@@ -1,5 +1,3 @@
 <?php
-    
-    return array(
-        'Ajax', 'Team', 'News', 'Gallery', 'Catalog', 'Reviews', 'Search', 'Content',
-    );
+
+return ['Ajax', 'Team', 'News', 'Gallery', 'Advantage', 'Catalog', 'Reviews', 'Search', 'Content',];

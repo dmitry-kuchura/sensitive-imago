@@ -43,6 +43,7 @@ class Advantage extends \Wezom\Modules\Base
         $page = (int)Route::param('page') ? (int)Route::param('page') : 1;
         $count = Model::countRows($status, $name);
         $result = Model::getRows($status, $name, 'id', 'DESC', $this->limit, ($page - 1) * $this->limit);
+
         $pager = Pager::factory($page, $count, $this->limit)->create();
         $this->_toolbar = Widgets::get('Toolbar/List', ['add' => 1, 'delete' => 1]);
         $this->_content = View::tpl([
@@ -61,9 +62,6 @@ class Advantage extends \Wezom\Modules\Base
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
             $post['svg'] = Arr::get($_POST, 'svg', 0);
-//            var_dump($post);
-//            die;
-
             if (Model::valid($post)) {
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
@@ -109,7 +107,7 @@ class Advantage extends \Wezom\Modules\Base
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
-
+            $post['svg'] = Arr::get($_POST, 'svg', 0);
             if (Model::valid($post)) {
                 $res = Model::insert($post);
                 if ($res) {
@@ -137,9 +135,11 @@ class Advantage extends \Wezom\Modules\Base
         $this->_seo['h1'] = __('Добавление');
         $this->_seo['title'] = __('Добавление');
         $this->setBreadcrumbs(__('Добавление'), 'wezom/' . Route::controller() . '/add');
+        $svg = Model::getSvg(1);
         $this->_content = View::tpl([
             'obj' => $result,
             'tpl_folder' => $this->tpl_folder,
+            'svg' => $svg,
             'languages' => $this->_languages
         ], $this->tpl_folder . '/Form');
     }

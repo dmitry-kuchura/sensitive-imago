@@ -14,7 +14,7 @@
                                     <label><input type="checkbox"/></label>
                                 </td>
                                 <td>
-                                    <div class="clearFix">
+                                    <div class="svgPlace">
                                         <?php echo $obj->svg; ?>
                                     </div>
                                 </td>

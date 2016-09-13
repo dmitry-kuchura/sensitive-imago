@@ -12,22 +12,6 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <label class="control-label"><?php echo __('Дата от'); ?></label>
-                        <div class="">
-                            <div class="controls">
-                                <input name="date_s" class="form-control fPicker" value="<?php echo Core\Arr::get($_GET, 'date_s', NULL); ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="control-label"><?php echo __('Дата до'); ?></label>
-                        <div class="">
-                            <div class="controls">
-                                <input name="date_po" class="form-control fPicker" value="<?php echo Core\Arr::get($_GET, 'date_po', NULL); ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
                         <label class="control-label"><?php echo __('Статус'); ?></label>
                         <div class="">
                             <div class="controls">
@@ -78,55 +62,49 @@
                 <div class="widgetContent">
                     <table class="table table-striped table-hover checkbox-wrap ">
                         <thead>
-                            <tr>
-                                <th class="checkbox-head">
-                                    <label><input type="checkbox"></label>
-                                </th>
-                                <th><?php echo __('Название'); ?></th>
-                                <th><?php echo __('Изображение'); ?></th>
-                                <th><?php echo __('Дата'); ?></th>
-                                <th><?php echo __('Статус'); ?></th>
-                                <th class="nav-column textcenter">&nbsp;</th>
-                            </tr>
+                        <tr>
+                            <th class="checkbox-head">
+                                <label><input type="checkbox"></label>
+                            </th>
+                            <th><?php echo __('Название'); ?></th>
+                            <th><?php echo __('Изображение'); ?></th>
+                            <th><?php echo __('Статус'); ?></th>
+                            <th class="nav-column textcenter">&nbsp;</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($result as $obj): ?>
-                                <tr data-id="<?php echo $obj->id; ?>">
-                                    <td class="checkbox-column">
-                                        <label><input type="checkbox"></label>
-                                    </td>
-                                    <td><a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"><?php echo $obj->name; ?></a></td>
-                                    <?php if (is_file(HOST . Core\HTML::media('images/news/original/' . $obj->image))): ?>
-                                        <td>
-                                            <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>">
-                                                <img src="<?php echo Core\HTML::media('images/news/main/' . $obj->image); ?>" style="max-width: 50px;">
-                                            </a>
-                                        </td>
-                                    <?php else: ?>
-                                        <td>----</td>
-                                    <?php endif; ?>    
-                                    <td><?php echo $obj->date ? date('d.m.Y', $obj->date) : '----'; ?></td>
-                                    <td width="45" valign="top" class="icon-column status-column">
-                                        <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
-                                    </td>
-                                    <td class="nav-column">
-                                        <ul class="table-controls">
-                                            <li>
-                                                <a class="bs-tooltip dropdownToggle" href="javascript:void(0);" title="<?php echo __('Управление'); ?>"><i class="fa-cog size14"></i></a>
-                                                <ul class="dropdownMenu pull-right">
-                                                    <li>
-                                                        <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>" title="<?php echo __('Редактировать'); ?>"><i class="fa-pencil"></i> <?php echo __('Редактировать'); ?></a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a onclick="return confirm('<?php echo __('Это действие необратимо. Продолжить?'); ?>');" href="/wezom/<?php echo Core\Route::controller(); ?>/delete/<?php echo $obj->id; ?>" title="<?php echo __('Удалить'); ?>"><i class="fa-trash-o text-danger"></i> <?php echo __('Удалить'); ?></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
+                        <?php foreach ($result as $obj): ?>
+                            <tr data-id="<?php echo $obj->id; ?>">
+                                <td class="checkbox-column">
+                                    <label><input type="checkbox"></label>
+                                </td>
+                                <td><a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"><?php echo $obj->name; ?></a></td>
+                                <?php if ($obj->svg): ?>
+                                    <td><?php echo $obj->svg; ?></td>
+                                <?php else: ?>
+                                    <td>----</td>
+                                <?php endif; ?>
+                                <td width="45" valign="top" class="icon-column status-column">
+                                    <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
+                                </td>
+                                <td class="nav-column">
+                                    <ul class="table-controls">
+                                        <li>
+                                            <a class="bs-tooltip dropdownToggle" href="javascript:void(0);" title="<?php echo __('Управление'); ?>"><i class="fa-cog size14"></i></a>
+                                            <ul class="dropdownMenu pull-right">
+                                                <li>
+                                                    <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>" title="<?php echo __('Редактировать'); ?>"><i class="fa-pencil"></i> <?php echo __('Редактировать'); ?></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a onclick="return confirm('<?php echo __('Это действие необратимо. Продолжить?'); ?>');" href="/wezom/<?php echo Core\Route::controller(); ?>/delete/<?php echo $obj->id; ?>" title="<?php echo __('Удалить'); ?>"><i class="fa-trash-o text-danger"></i> <?php echo __('Удалить'); ?></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
                         </tbody>
                     </table>
                     <?php echo $pager; ?>

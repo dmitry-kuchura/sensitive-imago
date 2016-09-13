@@ -3996,3 +3996,14 @@ body.refShow:after {
     transition: box-shadow .3s;
     margin-bottom: 1.875rem;
 }
+
+.svgPlace {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: black;
+}
+.svgPlace svg {
+    max-height: 100%;
+    max-width: 100%;
+}

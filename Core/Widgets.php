@@ -207,4 +207,25 @@ class Widgets
         return compact('result');
     }
 
+    public function Main_Advantage()
+    {
+
+        $lang = \I18n::$lang;
+
+        $result = DB::select('advantages.*', 'advantages_i18n.*', 'svg.svg')->from('advantages')->join('advantages_i18n', 'LEFT')->on('advantages_i18n.row_id', '=', 'advantages.id')->join('svg', 'LEFT')->on('advantages.svg', '=', 'svg.id')->where('advantages_i18n.language', '=', $lang)->find_all();
+
+        return compact('result');
+    }
+
+    public function Main_Video()
+    {
+        $result = DB::select('video_i18n.*', 'video.*')
+            ->from('video')
+            ->join('video_i18n', 'LEFT')->on('video_i18n.row_id', '=', 'video.id')
+            ->where('video_i18n.language', '=', \I18n::$lang)
+            ->where('video.status', '=', 1)
+            ->order_by('video.id', 'DESC');
+        return $result->find_all();
+    }
+
 }

@@ -1,17 +1,19 @@
-<section class="pageSection _bg-white">
-    <div class="pageSize">
-        <div class="sectionTitle"><?php echo __('Наши приемущества'); ?></div>
-        <div class="grid grid--1 grid--sm-2 grid--md-3 grid--lg-4 grid--justify-center grid--items-stretch">
-            <?php foreach ($result as $obj): ?>
-                <div class="grid__cell advantage">
-                    <div class="advantage__icon">
-                        <img src="pic/advantage-icon8.svg" alt="">
+<?php if (count($result)): ?>
+    <section class="pageSection _bg-white">
+        <div class="pageSize">
+            <div class="sectionTitle"><?php echo __('Наши приемущества'); ?></div>
+            <div class="grid grid--1 grid--sm-2 grid--md-3 grid--lg-4 grid--justify-center grid--items-stretch">
+                <?php foreach ($result as $obj): ?>
+                    <div class="grid__cell advantage">
+                        <div class="advantage__icon">
+                            <?php echo $obj->svg; ?>
+                        </div>
+                        <div class="advantage__title"><?php echo $obj->name; ?></div>
+                        <div class="advantage__text"><?php echo $obj->text; ?></div>
+                        <a href="<?php echo Core\HTML::link('advantages/' . $obj->alias) ?>" class="button button--inverse"><?php echo __('Подробнее'); ?></a>
                     </div>
-                    <div class="advantage__title"><?php echo $obj->name; ?></div>
-                    <div class="advantage__text">Возможность покупки в рассрочку</div>
-                    <a href='#' class="button button--inverse">Подробнее</a>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>

@@ -1,5 +1,4 @@
 <?php
-
 namespace Wezom\Modules\Content\Controllers;
 
 use Core\HTML;
@@ -10,6 +9,7 @@ use Core\Message;
 use Core\HTTP;
 use Core\Support;
 use Core\Arr;
+
 use Wezom\Modules\Content\Models\Content AS Model;
 
 class Content extends \Wezom\Modules\Base {
@@ -18,50 +18,42 @@ class Content extends \Wezom\Modules\Base {
 
     function before() {
         parent::before();
-        $this->_seo['h1'] = __('Информационные блоки');
-        $this->_seo['title'] = __('Информационные блоки');
-        $this->setBreadcrumbs(__('Информационные блоки'), 'wezom/' . Route::controller() . '/index');
+        $this->_seo['h1'] = __('Страницы');
+        $this->_seo['title'] = __('Страницы');
+        $this->setBreadcrumbs(__('Страницы'), 'wezom/'.Route::controller().'/index');
     }
 
-    function indexAction() {
+    function indexAction () {
         $result = Model::getRows(NULL, 'sort', 'ASC');
         $arr = array();
-        foreach ($result AS $obj) {
+        foreach($result AS $obj) {
             $arr[$obj->parent_id][] = $obj;
         }
+        $this->_filter = Widgets::get( 'Filter/Pages', array( 'open' => 1 ) );
+        $this->_toolbar = Widgets::get( 'Toolbar/List', array( 'add' => 1, 'delete' => 1 ) );
         $this->_content = View::tpl(
-                        array(
-                    'result' => $arr,
-                    'tpl_folder' => $this->tpl_folder,
-                    'tablename' => Model::$table,
-                        ), $this->tpl_folder . '/Index');
+            array(
+                'result'        => $arr,
+                'tpl_folder'    => $this->tpl_folder,
+                'tablename'     => Model::$table,
+            ), $this->tpl_folder.'/Index');
     }
 
-    function editAction() {
+    function editAction () {
         if ($_POST) {
             $post = $_POST['FORM'];
-            if (Model::valid($post)) {
+            $post['status'] = Arr::get( $_POST, 'status', 0 );
+            if( Model::valid($post) ) {
+                $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'), Route::param('id'));
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
-                    Model::uploadImageFirst(Route::param('id'));
-                    Model::uploadImageSecond(Route::param('id'));
-                    Model::uploadImageThird(Route::param('id'));
-                    Model::uploadImageFour(Route::param('id'));
-                    Model::uploadSliderFirst(Route::param('id'));
-                    Model::uploadSliderSecond(Route::param('id'));
-                    Model::uploadSliderThird(Route::param('id'));
                     Message::GetMessage(1, __('Вы успешно изменили данные!'));
-
-                    switch (Arr::get($_POST, 'button', 'save')) {
-                        case 'save-close':
-                            HTTP::redirect('wezom/' . Route::controller() . '/index');
-                            break;
-                        case 'save-add':
-                            HTTP::redirect('wezom/' . Route::controller() . '/add');
-                            break;
-                        default :
-                            HTTP::redirect('wezom/' . Route::controller() . '/edit/' . Route::param('id'));
-                            break;
+                    if(Arr::get($_POST, 'button', 'save') == 'save-close') {
+                        HTTP::redirect('wezom/'.Route::controller().'/index');
+                    } else if(Arr::get($_POST, 'button', 'save') == 'save-add') {
+                        HTTP::redirect('wezom/'.Route::controller().'/add');
+                    } else {
+                        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . Route::param('id'));
                     }
                 } else {
                     Message::GetMessage(0, __('Не удалось изменить данные!'));
@@ -72,45 +64,35 @@ class Content extends \Wezom\Modules\Base {
             $result = Model::getRow((int) Route::param('id'));
         }
 
-        $this->_toolbar = Widgets::get('Toolbar/EditSaveOnly');
+        $this->_toolbar = Widgets::get( 'Toolbar/Edit' );
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
-        $this->setBreadcrumbs('Редактирование', 'wezom/' . Route::controller() . '/' . Route::action() . '/' . Route::param('id'));
+        $this->setBreadcrumbs('Редактирование', 'wezom/'.Route::controller().'/'.Route::action().'/'.Route::param('id'));
 
         $this->_content = View::tpl(
-                        array(
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'tree' => Support::getSelectOptions('Content/Pages/Select', 'content', $result['obj']->parent_id),
-                    'languages' => $this->_languages,
-                        ), $this->tpl_folder . '/Form');
+            array(
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'tree' => Support::getSelectOptions('Content/Pages/Select', 'content', $result['obj']->parent_id),
+                'languages' => $this->_languages,
+            ), $this->tpl_folder.'/Form');
     }
 
-    function addAction() {
+    function addAction () {
         if ($_POST) {
             $post = $_POST['FORM'];
-            if (Model::valid($post)) {
+            $post['status'] = Arr::get( $_POST, 'status', 0 );
+            if( Model::valid($post) ) {
+                $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'));
                 $res = Model::insert($post);
-                if ($res) {
-                    Model::uploadImageFirst($res);
-                    Model::uploadImageSecond($res);
-                    Model::uploadImageThird($res);
-                    Model::uploadImageFour($res);
-                    Model::uploadSliderFirst($res);
-                    Model::uploadSliderSecond($res);
-                    Model::uploadSliderThird($res);
+                if($res) {
                     Message::GetMessage(1, __('Вы успешно добавили данные!'));
-
-                    switch (Arr::get($_POST, 'button', 'save')) {
-                        case 'save-close':
-                            HTTP::redirect('wezom/' . Route::controller() . '/index');
-                            break;
-                        case 'save-add':
-                            HTTP::redirect('wezom/' . Route::controller() . '/add');
-                            break;
-                        default :
-                            HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $res);
-                            break;
+                    if(Arr::get($_POST, 'button', 'save') == 'save-close') {
+                        HTTP::redirect('wezom/'.Route::controller().'/index');
+                    } else if(Arr::get($_POST, 'button', 'save') == 'save-add') {
+                        HTTP::redirect('wezom/'.Route::controller().'/add');
+                    } else {
+                        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $res);
                     }
                 } else {
                     Message::GetMessage(0, __('Не удалось добавить данные!'));
@@ -121,115 +103,30 @@ class Content extends \Wezom\Modules\Base {
             $result = array();
         }
 
-        $this->_toolbar = Widgets::get('Toolbar/EditSaveOnly');
+        $this->_toolbar = Widgets::get( 'Toolbar/Edit' );
         $this->_seo['h1'] = __('Добавление');
         $this->_seo['title'] = __('Добавление');
-        $this->setBreadcrumbs('Добавление', 'wezom/' . Route::controller() . '/' . Route::action());
+        $this->setBreadcrumbs('Добавление', 'wezom/'.Route::controller().'/'.Route::action());
 
         $this->_content = View::tpl(
-                        array(
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'tree' => Support::getSelectOptions('Content/Pages/Select', 'content', $result->parent_id),
-                    'languages' => $this->_languages,
-                        ), $this->tpl_folder . '/Form');
+            array(
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'tree' => Support::getSelectOptions('Content/Pages/Select', 'content', $result->parent_id),
+                'languages' => $this->_languages,
+            ), $this->tpl_folder.'/Form');
     }
 
     function deleteAction() {
         $id = (int) Route::param('id');
         $page = Model::getRowSimple($id);
-        if (!$page) {
+        if(!$page) {
             Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
+            HTTP::redirect('wezom/'.Route::controller().'/index');
         }
-        Model::update(array('parent_id' => $page->parent_id), $id, 'parent_id');
+        Model::update(array( 'parent_id' => $page->parent_id ), $id, 'parent_id');
         Model::delete($id);
         Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/index');
+        HTTP::redirect('wezom/'.Route::controller().'/index');
     }
-
-    function deleteImageFirstAction() {
-        $id = (int) Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        Model::deleteImageFirst($page->image_first, $id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
-    }
-
-    function deleteImageSecondAction() {
-        $id = (int) Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        Model::deleteImageSecond($page->image_second, $id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
-    }
-
-    function deleteImageThirdAction() {
-        $id = (int) Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        Model::deleteImageThird($page->image_third, $id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
-    }
-
-    function deleteImageFourAction() {
-        $id = (int) Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        Model::deleteImageFour($page->image_four, $id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
-    }
-
-    function deleteSliderFirstAction() {
-        $id = (int) Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        Model::deleteSliderFirst($page->slider_first, $id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
-    }
-
-    function deleteSlideSecondAction() {
-        $id = (int) Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        Model::deleteSliderSecond($page->slider_second, $id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
-    }
-
-    function deleteSliderThirdAction() {
-        $id = (int) Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        Model::deleteSliderThird($page->slider_third, $id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
-    }
-
 }
