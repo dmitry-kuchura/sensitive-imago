@@ -66,4 +66,13 @@ return [
             'crop' => 1,
         ],
     ],
+    'slider' => [
+        [
+            'path' => 'main',
+            'width' => 1920,
+            'height' => 430,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
 ];

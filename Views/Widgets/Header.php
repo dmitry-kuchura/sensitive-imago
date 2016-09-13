@@ -164,12 +164,10 @@
         <div class="pageHeader__main">
             <?php if (Core\Route::controller() == 'index'): ?>
                 <div id="headerSlider" class="headerSlider">
-                    <div class="headerSlider__slide"
-                         style="background-image: url('http://www.cruzo.net/user/images/k/ecc3ecf42c75db1ffce5d06cbe95b1e6_644.jpg');"></div>
-                    <div class="headerSlider__slide"
-                         style="background-image: url('http://kartinki-risunki.ru/sites/kartinki-risunki.ru/files/images/66/24199.jpg');"></div>
-                    <div class="headerSlider__slide"
-                         style="background-image: url('http://wallspaper.ru/uploads/gallery/main/3/129987158.jpg');"></div>
+                    <?php foreach ($slider as $slide): ?>
+                        <div class="headerSlider__slide"
+                             style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image) ?>');"></div>
+                    <?php endforeach; ?>
                 </div>
             <?php endif; ?>
 

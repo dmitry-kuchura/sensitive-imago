@@ -65,12 +65,6 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">Ссылка</label>
-                <div class="">
-                    <input  class="form-control valid" name="FORM[url]" value="<?php echo $obj->url; ?>">
-                </div>
-            </div>
             <div class="widgetHeader myWidgetHeader">
                 <div class="widgetTitle">
                     <i class="fa-reorder"></i>
@@ -84,7 +78,7 @@
                         <div class="">
                             <?php if (is_file(HOST . Core\HTML::media('images/slider/original/' . $obj->image))): ?>
                                 <a href="<?php echo Core\HTML::media('images/slider/original/' . $obj->image); ?>" rel="lightbox">
-                                    <img src="<?php echo Core\HTML::media('images/slider/big/' . $obj->image); ?>" style="max-height: 100px;" />
+                                    <img src="<?php echo Core\HTML::media('images/slider/main/' . $obj->image); ?>" style="max-height: 100px;" />
                                 </a>
                                 <br />
                                 <a href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>"><?php echo __('Удалить изображение'); ?></a>

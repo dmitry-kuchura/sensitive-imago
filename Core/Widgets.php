@@ -10,8 +10,6 @@ class Widgets
 
     static $_instance; // Constant that consists self class
     public static $_menu = [];
-    public static $_emails = [];
-    public static $_phones = [];
 
     static function factory()
     {
@@ -96,19 +94,18 @@ class Widgets
                 static::$_menu[$value->group][] = $value;
             }
         }
-//        if(!static::$_emails) {
-//            $result = Common::factory('contacts_emails')->getRows(1, 'sort', 'ASC');
-//            foreach($result AS $key => $value) {
-//                static::$_emails[$value->group][] = $value;
-//            }
-//        }
-//        if(!static::$_phones) {
-//            $result = Common::factory('contacts_phones')->getRows(1, 'sort', 'ASC');
-//            foreach($result AS $key => $value) {
-//                static::$_phones[$value->group][] = $value;
-//            }
-//        }
-        return ['menu' => static::$_menu, 'emails' => static::$_emails, 'phones' => static::$_phones];
+
+        $result = Common::factory('slider')->getRows(1, 'sort', 'ASC');
+        $slider = [];
+        foreach ($result AS $key => $value) {
+            if (is_file(HOST . HTML::media('images/slider/main/' . $value->image))) {
+                $slider[] = $value;
+            }
+        }
+        if (!sizeof($slider)) {
+            return null;
+        }
+        return ['menu' => static::$_menu, 'slider' => $slider];
     }
 
     public function Footer()

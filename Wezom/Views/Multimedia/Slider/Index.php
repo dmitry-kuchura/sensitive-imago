@@ -15,9 +15,9 @@
                                     <div class="pull-left">
                                         <div class="pull-left">
                                             <div>
-                                                <?php if (is_file(HOST.Core\HTML::media('images/slider/big/'.$obj->image))): ?>
+                                                <?php if (is_file(HOST.Core\HTML::media('images/slider/main/'.$obj->image))): ?>
                                                     <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>">
-                                                        <img src="<?php echo Core\HTML::media('images/slider/big/'.$obj->image); ?>" alt="<?php echo $obj->name; ?>" width="50">
+                                                        <img src="<?php echo Core\HTML::media('images/slider/main/'.$obj->image); ?>" alt="<?php echo $obj->name; ?>" width="50">
                                                     </a>
                                                 <?php else: ?>
                                                     ----

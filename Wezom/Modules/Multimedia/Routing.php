@@ -8,13 +8,6 @@ return array(
     'wezom/slider/delete/<id:[0-9]*>' => 'multimedia/slider/delete',
     'wezom/slider/delete_image/<id:[0-9]*>' => 'multimedia/slider/deleteImage',
     'wezom/slider/add' => 'multimedia/slider/add',
-    // Banners
-    'wezom/banners/index' => 'multimedia/banners/index',
-    'wezom/banners/index/page/<page:[0-9]*>' => 'multimedia/banners/index',
-    'wezom/banners/edit/<id:[0-9]*>' => 'multimedia/banners/edit',
-    'wezom/banners/delete/<id:[0-9]*>' => 'multimedia/banners/delete',
-    'wezom/banners/delete_image/<id:[0-9]*>' => 'multimedia/banners/deleteImage',
-    'wezom/banners/add' => 'multimedia/banners/add',
     // Gallery
     'wezom/gallery' => 'multimedia/gallery/index',
     'wezom/gallery/index' => 'multimedia/gallery/index',
