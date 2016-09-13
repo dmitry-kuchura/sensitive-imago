@@ -192,27 +192,35 @@
                                 <div class="grid__cell">
                                     <div class="contactItem">
                                         <div class="contactItem__key">Skype:</div>
-                                        <div class="contactItem__value"><span class="js-hidden-information"
-                                                                              data-information="qwee">XXXX</span></div>
-                                    </div>
-                                </div>
-                                <div class="grid__cell">
-                                    <div class="contactItem">
-                                        <div class="contactItem__key">
-                                            <svg>
-                                                <use
-                                                    xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
-                                            </svg>
-                                        </div>
                                         <div class="contactItem__value">
-                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span
-                                                    class="js-hidden-information" data-information="12-34">XX-XX</span></a>
-                                            <br>
-                                            <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span
-                                                    class="js-hidden-information" data-information="12-34">XX-XX</span></a>
+                                            <span class="js-hidden-information"
+                                                  data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span>
                                         </div>
                                     </div>
                                 </div>
+                                <?php if (\I18n::$lang == 'ru'): ?>
+                                    <div class="grid__cell">
+                                        <div class="contactItem">
+                                            <div class="contactItem__key">
+                                                <svg>
+                                                    <use
+                                                        xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="contactItem__value">
+                                                <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>
+                                                    <span
+                                                        class="js-hidden-information"
+                                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span></a>
+                                                <br>
+                                                <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>
+                                                    <span
+                                                        class="js-hidden-information"
+                                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="grid__cell">
                                     <div class="contactItem">
                                         <div class="contactItem__key">
@@ -221,9 +229,12 @@
                                                     xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
                                             </svg>
                                         </div>
+                                        <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
                                         <div class="contactItem__value">
-                                            <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information"
-                                                                                    data-information="qqqqqq">XXXXXX</span>@gmail.com</a>
+                                            <a href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
+                                                    class="js-hidden-information"
+                                                    data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
+                                            </a>
                                         </div>
                                     </div>
                                     <button

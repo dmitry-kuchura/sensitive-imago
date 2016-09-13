@@ -30,9 +30,13 @@
                                     <a class="t_link" href="#"><?php echo $lang['name']; ?></a>
                                     <div class="t_content">
                                         <div class="form-group">
-                                            <label class="control-label" for="f_name"><?php echo __('Название'); ?></label>
+                                            <label class="control-label"
+                                                   for="f_name"><?php echo __('Название'); ?></label>
                                             <div class="">
-                                                <input id="f_name" class="form-control <?php echo $key == 'ru' ? 'translitSource' : ''; ?> valid" name="FORM[<?php echo $key; ?>][name]" type="text" value="<?php echo $public->name; ?>" />
+                                                <input id="f_name"
+                                                       class="form-control <?php echo $key == 'ru' ? 'translitSource' : ''; ?> valid"
+                                                       name="FORM[<?php echo $key; ?>][name]" type="text"
+                                                       value="<?php echo $public->name; ?>"/>
                                             </div>
                                         </div>
                                     </div>
@@ -56,11 +60,13 @@
                 <label class="control-label"><?php echo __('Опубликовано'); ?></label>
                 <div class="">
                     <label class="checkerWrap-inline">
-                        <input name="status" value="0" type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>
+                        <input name="status" value="0"
+                               type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>
                         <?php echo __('Нет'); ?>
                     </label>
                     <label class="checkerWrap-inline">
-                        <input name="status" value="1" type="radio" <?php echo ($obj->status OR ! $obj) ? 'checked' : ''; ?>>
+                        <input name="status" value="1"
+                               type="radio" <?php echo ($obj->status OR !$obj) ? 'checked' : ''; ?>>
                         <?php echo __('Да'); ?>
                     </label>
                 </div>
@@ -71,19 +77,32 @@
                     <?php echo __('Изображение'); ?>
                 </div>
             </div>
-            <div class="widgetContent" >
+            <div class="widgetContent">
                 <div class="form-vertical row-border">
                     <div class="form-group">
                         <label class="control-label"><?php echo __('Изображение'); ?></label>
                         <div class="">
                             <?php if (is_file(HOST . Core\HTML::media('images/slider/original/' . $obj->image))): ?>
-                                <a href="<?php echo Core\HTML::media('images/slider/original/' . $obj->image); ?>" rel="lightbox">
-                                    <img src="<?php echo Core\HTML::media('images/slider/main/' . $obj->image); ?>" style="max-height: 100px;" />
+                                <a href="<?php echo Core\HTML::media('images/slider/original/' . $obj->image); ?>"
+                                   rel="lightbox">
+                                    <img src="<?php echo Core\HTML::media('images/slider/main/' . $obj->image); ?>"
+                                         style="max-height: 100px;"/>
                                 </a>
-                                <br />
-                                <a href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>"><?php echo __('Удалить изображение'); ?></a>
+                                <br/>
+                                <div class="contentImageControl">
+                                    <a class="btn btn-danger otherBtn"
+                                       href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>">
+                                        <i class="fa-remove"></i>
+                                        <?php echo __('Удалить изображение'); ?>
+                                    </a>
+                                    <a class="btn btn-info otherBtn"
+                                           href="<?php echo \Core\General::crop('slider', 'main', $obj->image); ?>">
+                                        <i class="fa-edit"></i>
+                                        <?php echo __('Редактировать изображение'); ?>
+                                    </a>
+                                </div>
                             <?php else: ?>
-                                <input type="file" name="file" />
+                                <input type="file" name="file"/>
                             <?php endif ?>
                         </div>
                     </div>

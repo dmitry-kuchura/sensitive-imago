@@ -107,9 +107,18 @@
                                     <img src="<?php echo Core\HTML::media('images/news/main/' . $obj->image); ?>" style="max-height: 100px;" />
                                 </a>
                                 <br >
-                                <a href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>"><?php echo __('Удалить изображение'); ?></a>
-                                <br />
-                                <a href="<?php echo \Core\General::crop('news', 'main', $obj->image); ?>"><?php echo __('Редактировать'); ?></a>
+                                <div class="contentImageControl">
+                                    <a class="btn btn-danger otherBtn"
+                                       href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>">
+                                        <i class="fa-remove"></i>
+                                        <?php echo __('Удалить изображение'); ?>
+                                    </a>
+                                    <a class="btn btn-info otherBtn"
+                                       href="<?php echo \Core\General::crop('news', 'main', $obj->image); ?>">
+                                        <i class="fa-edit"></i>
+                                        <?php echo __('Редактировать изображение'); ?>
+                                    </a>
+                                </div>
                             <?php else: ?>
                                 <input type="file" name="file" />
                             <?php endif ?>
