@@ -13,11 +13,7 @@
                                 <td width="1%" class="checkbox-column">
                                     <label><input type="checkbox"/></label>
                                 </td>
-                                <td>
-                                    <div class="svgPlace">
-                                        <?php echo $obj->svg; ?>
-                                    </div>
-                                </td>
+                                <td><?php echo $obj->svg; ?></td>
                                 <td width="45" valign="top" class="icon-column status-column">
                                     <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
                                 </td>

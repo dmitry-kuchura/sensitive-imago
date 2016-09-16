@@ -90,7 +90,7 @@ class Text
         $string = rtrim($string, "!,.-");
 
         $string = substr($string, 0, strrpos($string, ' '));
-        return $string . '...';
+        return $string;
     }
 
     public static function russianDate($date)

@@ -27,4 +27,8 @@
 		'Расскажите друзьям' => 'Faire connaître à un ami',
 		'Фото' => 'Photo',
 		'Видео' => 'Vidéo',
+		'Смотрите видео о Сенситив Имаго' => 'Watch a video about Sensitiv Imago',
+		'Диагностика у пациента' => 'Le diagnostic d\'un patient',
+		'Основные возможности оборудования' => 'Principales caractéristiques de l\'équipement',
+		'Лечебные возможности' => 'possibilités thérapeutiques',
 	);
