@@ -2,42 +2,13 @@
 
 namespace Core;
 
-class HTML {
+class HTML
+{
 
     /**
      * @var  array  preferred order of attributes
      */
-    public static $attribute_order = array
-        (
-        'action',
-        'method',
-        'type',
-        'id',
-        'name',
-        'value',
-        'href',
-        'src',
-        'width',
-        'height',
-        'cols',
-        'rows',
-        'size',
-        'maxlength',
-        'rel',
-        'media',
-        'accept-charset',
-        'accept',
-        'tabindex',
-        'accesskey',
-        'alt',
-        'title',
-        'class',
-        'style',
-        'selected',
-        'checked',
-        'readonly',
-        'disabled',
-    );
+    public static $attribute_order = array('action', 'method', 'type', 'id', 'name', 'value', 'href', 'src', 'width', 'height', 'cols', 'rows', 'size', 'maxlength', 'rel', 'media', 'accept-charset', 'accept', 'tabindex', 'accesskey', 'alt', 'title', 'class', 'style', 'selected', 'checked', 'readonly', 'disabled',);
 
     /**
      * @var  boolean  use strict XHTML mode?
@@ -46,10 +17,11 @@ class HTML {
 
     /**
      *  Generate good link. Usefull in multilang sites
-     *  @param  string $link - link
-     *  @return string       - good link
+     * @param  string $link - link
+     * @return string       - good link
      */
-    public static function link($link = '', $http = false, $lang = NULL) {
+    public static function link($link = '', $http = false, $lang = NULL)
+    {
         $link = trim($link, '/');
         if (strpos($link, 'http://') !== false) {
             return $link;
@@ -75,7 +47,8 @@ class HTML {
         return '/' . trim($link, '/');
     }
 
-    public static function changeLanguage($lang) {
+    public static function changeLanguage($lang)
+    {
         $uri = '/' . trim(htmlspecialchars($_SERVER['REQUEST_URI']), '/') . '/';
         $uri = str_replace('/' . \I18n::$lang . '/', '', $uri);
         return HTML::link($uri, false, $lang);
@@ -83,10 +56,11 @@ class HTML {
 
     /**
      *  Generate breadcrumbs from array
-     *  @param  array  $bread - array with names and links
-     *  @return string        - breadcrumbs HTML
+     * @param  array $bread - array with names and links
+     * @return string        - breadcrumbs HTML
      */
-    public static function breadcrumbs($bread) {
+    public static function breadcrumbs($bread)
+    {
         if (count($bread) <= 1) {
             return '';
         }
@@ -103,10 +77,11 @@ class HTML {
 
     /**
      *  Generate breadcrumbs from array for wezom
-     *  @param  array  $bread - array with names and links
-     *  @return string        - breadcrumbs HTML
+     * @param  array $bread - array with names and links
+     * @return string        - breadcrumbs HTML
      */
-    public static function backendBreadcrumbs($bread) {
+    public static function backendBreadcrumbs($bread)
+    {
         if (count($bread) <= 1) {
             return '';
         }
@@ -132,7 +107,8 @@ class HTML {
      * @param  string $filename - path to file
      * @return string
      */
-    public static function media($file, $http = false) {
+    public static function media($file, $http = false)
+    {
         if ($http) {
             return 'http://' . $_SERVER['HTTP_HOST'] . '/Media/' . trim($file, '/');
         }
@@ -144,14 +120,16 @@ class HTML {
      * @param  string $filename - path to file
      * @return string
      */
-    public static function image($file, $cache = false) {
+    public static function image($file, $cache = false)
+    {
         if ($cache) {
             return ImageCache::factory()->cache(static::media($file));
         }
         return static::media($file);
     }
 
-    public static function svg($file) {
+    public static function svg($file)
+    {
         return file_get_contents('./' . $file);
     }
 
@@ -160,7 +138,8 @@ class HTML {
      * @param  string $filename - path to file
      * @return string
      */
-    public static function bmedia($file) {
+    public static function bmedia($file)
+    {
         return APPLICATION . '/Media/' . trim($file, '/');
     }
 
@@ -168,7 +147,8 @@ class HTML {
      * Put die after <pre>
      * @param mixed $object - what we want to <pre>
      */
-    public static function preDie($object) {
+    public static function preDie($object)
+    {
         echo '<pre>';
         print_r($object);
         echo '</pre>';
@@ -178,10 +158,9 @@ class HTML {
     /**
      * Emulation of php function getallheaders()
      */
-    public static function emu_getallheaders() {
-        foreach ($_SERVER as $h => $v)
-            if (ereg('HTTP_(.+)', $h, $hp))
-                $headers[$hp[1]] = $v;
+    public static function emu_getallheaders()
+    {
+        foreach ($_SERVER as $h => $v) if (ereg('HTTP_(.+)', $h, $hp)) $headers[$hp[1]] = $v;
         return $headers;
     }
 
@@ -191,12 +170,13 @@ class HTML {
      *
      *     echo HTML::chars($username);
      *
-     * @param   string  $value          string to convert
-     * @param   boolean $double_encode  encode existing entities
+     * @param   string $value string to convert
+     * @param   boolean $double_encode encode existing entities
      * @return  string
      */
-    public static function chars($value, $double_encode = TRUE) {
-        return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8', $double_encode);
+    public static function chars($value, $double_encode = TRUE)
+    {
+        return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8', $double_encode);
     }
 
     /**
@@ -204,15 +184,16 @@ class HTML {
      *
      *     echo HTML::style('media/css/screen.css');
      *
-     * @param   string  $file       file name
-     * @param   array   $attributes default attributes
-     * @param   mixed   $protocol   protocol to pass to URL::base()
-     * @param   boolean $index      include the index page
+     * @param   string $file file name
+     * @param   array $attributes default attributes
+     * @param   mixed $protocol protocol to pass to URL::base()
+     * @param   boolean $index include the index page
      * @return  string
      * @uses    URL::base
      * @uses    HTML::attributes
      */
-    public static function style($file, array $attributes = NULL, $protocol = 'http') {
+    public static function style($file, array $attributes = NULL, $protocol = 'http')
+    {
         if (strpos($file, '://') === FALSE) {
             // Add the base URL
             $file = $protocol . '://' . $_SERVER['HTTP_HOST'] . '/' . trim(HTML::link($file), '/');
@@ -235,15 +216,16 @@ class HTML {
      *
      *     echo HTML::script('media/js/jquery.min.js');
      *
-     * @param   string  $file       file name
-     * @param   array   $attributes default attributes
-     * @param   mixed   $protocol   protocol to pass to URL::base()
-     * @param   boolean $index      include the index page
+     * @param   string $file file name
+     * @param   array $attributes default attributes
+     * @param   mixed $protocol protocol to pass to URL::base()
+     * @param   boolean $index include the index page
      * @return  string
      * @uses    URL::base
      * @uses    HTML::attributes
      */
-    public static function script($file, array $attributes = NULL, $protocol = 'http') {
+    public static function script($file, array $attributes = NULL, $protocol = 'http')
+    {
         if (strpos($file, '://') === FALSE) {
             // Add the base URL
             $file = $protocol . '://' . $_SERVER['HTTP_HOST'] . '/' . trim(HTML::link($file), '/');
@@ -264,12 +246,12 @@ class HTML {
      *
      *     echo '<div'.HTML::attributes($attrs).'>'.$content.'</div>';
      *
-     * @param   array   $attributes attribute list
+     * @param   array $attributes attribute list
      * @return  string
      */
-    public static function attributes(array $attributes = NULL) {
-        if (empty($attributes))
-            return '';
+    public static function attributes(array $attributes = NULL)
+    {
+        if (empty($attributes)) return '';
 
         $sorted = array();
         foreach (HTML::$attribute_order as $key) {
@@ -317,8 +299,9 @@ class HTML {
      * @param boolean $insolently
      * @return mixed
      */
-    public static function compress($html, $insolently = false) {
-        if ((int) Config::get('speed.compress') || $insolently) {
+    public static function compress($html, $insolently = false)
+    {
+        if ((int)Config::get('speed.compress') || $insolently) {
             $html = preg_replace('/[\r\n\t]+/', ' ', $html);
             $html = preg_replace('/[\s]+/', ' ', $html);
             $html = preg_replace("/\> \</", "><", $html);
@@ -327,7 +310,8 @@ class HTML {
         return $html;
     }
 
-    public static function langHead($lang) {
+    public static function langHead($lang)
+    {
         switch ($lang) {
             case 'ru':
                 echo 'ru-RU';
@@ -348,6 +332,19 @@ class HTML {
                 echo 'de-DE';
                 break;
         }
+    }
+
+    public static function activeUrl()
+    {
+        $controller = Route::controller();
+        $alias = Route::param('alias');
+        if ($controller == 'content') {
+            $now_alias = $alias;
+        } else {
+            $now_alias = $controller;
+        }
+
+        return $now_alias;
     }
 
 }

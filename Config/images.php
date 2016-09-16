@@ -75,4 +75,13 @@ return [
             'crop' => 1,
         ],
     ],
+    'slider_simple' => [
+        [
+            'path' => 'main',
+            'width' => 65,
+            'height' => 55,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
 ];

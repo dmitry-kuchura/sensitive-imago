@@ -4,8 +4,9 @@
             <div class="asideMenu__cell grid__cell grid__cell--grow">
                 <?php if (Core\Arr::get($menu, 2, [])): ?>
                     <ul class="asideMenu">
+                        <?php $alias = Core\HTML::activeUrl(); ?>
                         <?php foreach ($menu[2] AS $key => $value): ?>
-                            <li>
+                            <li <?php echo $alias == $value->url ? 'class="is-active"' : ''; ?>>
                                 <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
                             </li>
                         <?php endforeach; ?>
