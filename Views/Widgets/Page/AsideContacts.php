@@ -3,38 +3,11 @@
         <div class="grid grid--justify-around grid--space grid--md-nospace">
             <div class="asideMenu__cell grid__cell grid__cell--grow">
                 <ul class="asideMenu">
-                    <li class="is-active"><a href="contacts.html">Главный торговый офис</a></li>
-                    <li class="has-subMenu">
-                        <a href="contacts_regions.html">региональные представительства</a>
-                        <ul>
-                            <li><a href="#">Австралия</a></li>
-                            <li><a href="#">Барбадос</a></li>
-                            <li><a href="#">Бразилия</a></li>
-                            <li><a href="#">Венгрия</a></li>
-                            <li><a href="#">Германия</a></li>
-                            <li><a href="#">Греция</a></li>
-                            <li><a href="#">Доминиканская Республика</a></li>
-                            <li><a href="#">Египет</a></li>
-                            <li><a href="#">Канада</a></li>
-                            <li><a href="#">Китай</a></li>
-                            <li><a href="#">Кувейт</a></li>
-                            <li><a href="#">Мексика</a></li>
-                            <li><a href="#">Норвегия</a></li>
-                            <li><a href="#">ОАЭ</a></li>
-                            <li><a href="#">Панама</a></li>
-                            <li><a href="#">Перу</a></li>
-                            <li><a href="#">Саудовская Аравия</a></li>
-                            <li><a href="#">США</a></li>
-                            <li><a href="#">Тринидад и Тобаго</a></li>
-                            <li><a href="#">Турция</a></li>
-                            <li><a href="#">Уругвай</a></li>
-                            <li><a href="#">Чили</a></li>
-                            <li><a href="#">Швеция</a></li>
-                            <li><a href="#">И прочие представители</a></li>
-                        </ul>
-                    </li>
+                    <li <?php echo Core\Route::param('alias') == 'regions' ? '' : 'class="is-active"'; ?>><a href="<?php echo Core\HTML::link('contact'); ?>"><?php echo __('Главный торговый офис'); ?></a></li>
+                    <li <?php echo Core\Route::param('alias') == 'regions' ? 'class="is-active"' : ''; ?>><a href="<?php echo Core\HTML::link('contact/regions'); ?>"><?php echo __('Региональные предстваительства'); ?></a></li>
+
                 </ul>
-                <span data-url="./hidden/callback.php" class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>
+                <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>" class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>
             </div>
             <div class="grid__cell">
                 <div class="sectionTitle sectionTitle--in-aside"><?php echo __('Последние новости'); ?></div>

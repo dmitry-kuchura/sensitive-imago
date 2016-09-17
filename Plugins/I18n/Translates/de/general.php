@@ -31,4 +31,6 @@
 		'Диагностика у пациента' => 'Die Diagnose eines Patienten',
 		'Основные возможности оборудования' => 'Hauptmerkmale des Gerätes',
 		'Лечебные возможности' => 'Therapeutische Möglichkeiten',
+		'Главный торговый офис' => 'Die Hauptvertriebsbüro',
+		'Региональные предстваительства' => 'Regionalbüros',
 	);

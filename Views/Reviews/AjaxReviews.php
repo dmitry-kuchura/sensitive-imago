@@ -1,7 +1,16 @@
 <div class="textReview" data-page="<?php echo $page; ?>">
     <svg class="textReview__icon">
-    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
+        <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
     </svg>
+    <div class="textReview__rating">
+        <span class="rating__stars" data-rating="<?php echo $review->mark; ?>">
+            <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+            <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+            <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+            <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+            <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+        </span>
+    </div>
     <div class="textReview__name"><?php echo $review->name; ?></div>
     <div class="textReview__subtitle"><?php echo $review->title; ?></div>
     <div class="textReview__divider"></div>

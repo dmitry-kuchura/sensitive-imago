@@ -7,11 +7,13 @@ use Core\Config;
 use Core\Widgets;
 use Modules\Content\Models\Control;
 
-class Contact extends \Modules\Base {
+class Contact extends \Modules\Base
+{
 
     public $current;
 
-    public function before() {
+    public function before()
+    {
         parent::before();
         $this->current = Control::getRowSimple('contacts', 'alias', 1);
         if (!$this->current) {
@@ -21,7 +23,8 @@ class Contact extends \Modules\Base {
         $this->_template = 'Text';
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if (Config::get('error')) {
             return false;
         }
@@ -31,9 +34,21 @@ class Contact extends \Modules\Base {
         $this->_seo['keywords'] = $this->current->keywords;
         $this->_seo['description'] = $this->current->description;
         // Render template
-        $this->_content = View::tpl(array('obj' => $this->current), 'Contact/Index');
+        $this->_content = View::tpl(['obj' => $this->current], 'Contact/Index');
+    }
 
-        $this->_page_name = $this->current->name;
+    public function regionAction()
+    {
+        if (Config::get('error')) {
+            return false;
+        }
+        // Seo
+        $this->_seo['h1'] = __('Региональные представительства');
+        $this->_seo['title'] = __('Региональные представительства');
+        $this->_seo['keywords'] = $this->current->keywords;
+        $this->_seo['description'] = $this->current->description;
+        // Render template
+        $this->_content = View::tpl(['obj' => $this->current], 'Contact/Region');
     }
 
 }

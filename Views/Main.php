@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<?php echo Core\HTML::langHead(\I18n::$lang); ?>" dir="ltr" class="no-js">
     <head>
-        <?php echo Core\Widgets::get('Head'); ?>
+        <?php echo Core\Widgets::get('Head', $_seo); ?>
         <?php foreach ($_seo['scripts']['head'] as $script): ?>
             <?php echo $script; ?>
         <?php endforeach ?>

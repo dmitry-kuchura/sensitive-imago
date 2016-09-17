@@ -18,8 +18,17 @@
         <?php foreach ($result as $obj): ?>
             <div class="textReview" data-page="1">
                 <svg class="textReview__icon">
-                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
+                    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes') ?>"></use>
                 </svg>
+                <div class="textReview__rating">
+                    <span class="rating__stars" data-rating="<?php echo $obj->mark; ?>">
+                        <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                        <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                        <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                        <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                        <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                    </span>
+                </div>
                 <div class="textReview__name"><?php echo $obj->name; ?></div>
                 <div class="textReview__subtitle"><?php echo $obj->title; ?></div>
                 <div class="textReview__divider"></div>
@@ -40,13 +49,14 @@
 
 <div class="sectionTitle sectionTitle--inner _mt-x2"><?php echo __('Оставить отзыв'); ?>
     <svg class="reviewsForm__decor">
-    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"></use>
+        <use xlink:href="<?php echo Core\HTML::media('sprite.svg#quotes'); ?>"></use>
     </svg>
 </div>
 <div class="reviewsForm js-form form" data-form="true" data-ajax="review">
     <div class="grid grid--space grid--items-center">
         <div class="grid__cell">
-            <input class="form__input" type="text" name="name" data-name="name" placeholder="<?php echo __('Ваше имя'); ?>*"
+            <input class="form__input" type="text" name="name" data-name="name"
+                   placeholder="<?php echo __('Ваше имя'); ?>*"
                    data-rule-word="true" data-rule-minlength="2" required>
         </div>
         <div class="grid__cell">
@@ -55,22 +65,20 @@
         </div>
         <div class="grid__cell grid__cell--grow"></div>
         <div class="grid__cell ">
-            <span class="form__label"><?php echo __('Оцените предоставляемую услугу'); ?></span>
+            <span class="form__label">Оцените предоставляемую услугу</span>
             <div class="rating">
-                <div class="rating-vote">
-                    <span class="rating-vote_stars">
-                        <input type="radio" name="rating" data-name="rating" value="5" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
-                        <input type="radio" name="rating" data-name="rating" value="4" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
-                        <input type="radio" name="rating" data-name="rating" value="3" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
-                        <input type="radio" name="rating" data-name="rating" value="2" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
-                        <input type="radio" name="rating" data-name="rating" value="1" required>
-                        <i><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo Core\HTML::media('sprite.svg#star'); ?>"/></svg></i>
-                    </span>
-                </div>
+                <span class="rating__stars">
+                    <input type="radio" name="rating" data-name="rating" value="5" required>
+                    <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                    <input type="radio" name="rating" data-name="rating" value="4" required>
+                    <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                    <input type="radio" name="rating" data-name="rating" value="3" required>
+                    <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                    <input type="radio" name="rating" data-name="rating" value="2" required>
+                    <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                    <input type="radio" name="rating" data-name="rating" value="1" required>
+                    <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
+                </span>
             </div>
         </div>
         <div class="grid__cell grid__cell--12">
@@ -79,6 +87,9 @@
         </div>
         <input type="hidden" name="lang" data-name="lang" value="<?php echo \I18n::$lang; ?>">
         <div class="grid__cell grid__cell--grow"></div>
+        <?php if(array_key_exists('token', $_SESSION)): ?>
+            <input type="hidden" data-name="token" value="<?php echo $_SESSION['token']; ?>" />
+        <?php endif; ?>
         <div class="grid__cell">
             <button class="js-form-submit button button--primary"><?php echo __('Отправить отзыв'); ?></button>
         </div>

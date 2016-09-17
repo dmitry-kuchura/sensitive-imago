@@ -10,12 +10,14 @@ use Core\System;
 use Core\Log;
 use Core\Email;
 
-class Form extends \Modules\Ajax {
+class Form extends \Modules\Ajax
+{
 
     protected $post;
     protected $files;
 
-    function before() {
+    function before()
+    {
         parent::before();
         // Check for bans in blacklist
         $ip = GeoIP::ip();
@@ -32,22 +34,15 @@ class Form extends \Modules\Ajax {
         $ips[] = $this->ip($ip, array(3, 2, 1));
         $ips[] = $this->ip($ip, array(3, 2, 1, 0));
         if (count($ips)) {
-            $bans = DB::select('date')
-                    ->from('blacklist')
-                    ->where('status', '=', 1)
-                    ->where('ip', 'IN', $ips)
-                    ->and_where_open()
-                    ->or_where('date', '>', time())
-                    ->or_where('date', '=', NULL)
-                    ->and_where_close()
-                    ->find_all();
+            $bans = DB::select('date')->from('blacklist')->where('status', '=', 1)->where('ip', 'IN', $ips)->and_where_open()->or_where('date', '>', time())->or_where('date', '=', NULL)->and_where_close()->find_all();
             if (sizeof($bans)) {
                 $this->error(__('Сообщение о блокировке по IP'));
             }
         }
     }
 
-    private function ip($ip, $arr) {
+    private function ip($ip, $arr)
+    {
         $_ip = explode('.', $ip);
         foreach ($arr AS $pos) {
             $_ip[$pos] = 'x';
@@ -56,41 +51,37 @@ class Form extends \Modules\Ajax {
         return $ip;
     }
 
-    public function reviewsAction() {
+    public function reviewAction()
+    {
 
         $name = Arr::get($this->post, 'name');
-        $theme = Arr::get($this->post, 'theme');
-        $email = Arr::get($this->post, 'email');
-        $phone = Arr::get($this->post, 'phone');
+        $tel = Arr::get($this->post, 'tel');
+        $rating = Arr::get($this->post, 'rating');
+        $text = Arr::get($this->post, 'text');
+        $lang = Arr::get($this->post, 'lang');
 
         if (!$name) {
             $this->error(__('Введенное имя слишком короткое!'));
         }
-        if (!$theme) {
-            $this->error(__('Не указана тема!'));
-        }
-        if (!$phone) {
+        if (!$tel) {
             $this->error(__('Не указан номер телефона!'));
         }
-        if (!$email) {
-            $this->error(__('E-Mail введен неверно!'));
+        if (!$rating) {
+            $this->error(__('Необходимо указать рейтинг!'));
+        }
+        if (!$text) {
+            $this->error(__('Нужно ввести отзыв!'));
         }
 
-        // Create data for saving
-        $data = array();
+        $data = [];
         $data['name'] = $name;
-        $data['theme'] = $theme;
-        $data['email'] = $email;
-        $data['phone'] = $phone;
+        $data['tel'] = $tel;
+        $data['rating'] = $rating;
+        $data['text'] = $text;
         $data['ip'] = System::getRealIP();
         $data['created_at'] = time();
 
-        // Chec for bot
-        $check = DB::select(array(DB::expr('COUNT(contacts.id)'), 'count'))
-                        ->from('contacts')
-                        ->where('ip', '=', Arr::get($data, 'ip'))
-                        ->where('created_at', '>', time() - 60)
-                        ->as_object()->execute()->current();
+        $check = DB::select(array(DB::expr('COUNT(contacts.id)'), 'count'))->from('contacts')->where('ip', '=', Arr::get($data, 'ip'))->where('created_at', '>', time() - 60)->as_object()->execute()->current();
         if (is_object($check) AND $check->count) {
             $this->error(__('Частая отправка сообщений'));
         }
@@ -119,7 +110,7 @@ class Form extends \Modules\Ajax {
             $text = str_replace($from, $to, $mail->text);
             Email::send($subject, $text);
         }
-        
+
         // Пользователю
         $mail = CommonI18n::factory('mail_templates')->getRowSimple(36, 'id', 1);
         if ($mail) {
@@ -131,6 +122,38 @@ class Form extends \Modules\Ajax {
         }
 
         $this->success(__('Спасибо за сообщение!'));
+    }
+
+    public function priceAction()
+    {
+        $name = Arr::get($this->post, 'name');
+        $country = Arr::get($this->post, 'country');
+        $city = Arr::get($this->post, 'city');
+        $confirm = Arr::get($this->post, 'confirm');
+        $name = Arr::get($this->post, 'name');
+        $name = Arr::get($this->post, 'name');
+        $name = Arr::get($this->post, 'name');
+        $name = Arr::get($this->post, 'name');
+
+
+        $data = [];
+        $data = [];
+        $data = [];
+        $data = [];
+        $data = [];
+        $data = [];
+        $data = [];
+        $data = [];
+        $data = [];
+
+        $keys = [];
+        $values = [];
+        foreach ($data as $key => $value) {
+            $keys[] = $key;
+            $values[] = $value;
+        }
+
+        $order_id = DB::insert('orders', $keys)->values($values)->execute();
     }
 
 }

@@ -200,6 +200,7 @@
 	 */
 	wHTML.prototype.formOnSubmit = function($form) {
 		// отправка на сервак
+		console.log($form);
 		// ...
 		// в ответе
 		_self.formAfterSubmit($form);
