@@ -69,6 +69,41 @@ jQuery(document).ready(function ($) {
         }
     };
 
+    $.wNoty.configGlobal({
+        theme: 'default',
+        position: 'bottom right',
+        stack: 7
+    });
+    var generate = function( message, type, time ) {
+        if(type == 'success') {
+            type = 'succes';
+        }
+        if(time && time != 'undefined') {
+            $.wNoty.alert({
+                msg: message,
+                status: type,
+                livetime: time
+            });
+        } else {
+            $.wNoty.alert({
+                msg: message,
+                status: type,
+                immortal: true
+            });
+        }
+    };
+    var mark = '<div id="cssload-loader"><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div></div>';
+    var preloader = function() {
+        if($('.wpreloader_wraper').length && $('.wpreloader_wraper').is(':visible')) {
+            wPreloader.hide();
+        } else {
+            wPreloader.show(false, {
+                block: true,
+                markup: mark
+            });
+        }
+    };
+
     wHTML.formOnSubmit = function ($form) {
         var data = new FormData();
         var name;

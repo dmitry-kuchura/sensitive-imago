@@ -75,51 +75,50 @@ class Form extends \Modules\Ajax
 
         $data = [];
         $data['name'] = $name;
-        $data['tel'] = $tel;
-        $data['rating'] = $rating;
+        $data['phone'] = $tel;
+        $data['mark'] = $rating;
+        $data['language'] = $lang;
         $data['text'] = $text;
         $data['ip'] = System::getRealIP();
         $data['created_at'] = time();
 
-        $check = DB::select(array(DB::expr('COUNT(contacts.id)'), 'count'))->from('contacts')->where('ip', '=', Arr::get($data, 'ip'))->where('created_at', '>', time() - 60)->as_object()->execute()->current();
+        $check = DB::select([DB::expr('COUNT(reviews.id)'), 'count'])->from('reviews')->where('ip', '=', Arr::get($data, 'ip'))->where('created_at', '>', time() - 60)->as_object()->execute()->current();
         if (is_object($check) AND $check->count) {
             $this->error(__('Частая отправка сообщений'));
         }
 
-        // Save contact message to database
-        $keys = array();
-        $values = array();
+        $keys = [];
+        $values = [];
         foreach ($data as $key => $value) {
             $keys[] = $key;
             $values[] = $value;
         }
-        $lastID = DB::insert('contacts', $keys)->values($values)->execute();
+        $lastID = DB::insert('reviews', $keys)->values($values)->execute();
         $lastID = Arr::get($lastID, 0);
 
-        // Save log
-        $qName = 'Сообщение из контактной формы';
-        $url = '/wezom/contacts/edit/' . $lastID;
+        $qName = 'Публикация нового отзыва';
+        $url = '/wezom/reviews/edit/' . $lastID;
         Log::add($qName, $url, 2);
 
-        // Send E-Mail to admin
-        $mail = CommonI18n::factory('mail_templates')->getRowSimple(1, 'id', 1);
-        if ($mail) {
-            $from = array('{{site}}', '{{name}}', '{{email}}', '{{theme}}', '{{ip}}', '{{phone}}');
-            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name, $email, $theme, System::getRealIP(), $phone);
-            $subject = str_replace($from, $to, $mail->subject);
-            $text = str_replace($from, $to, $mail->text);
-            Email::send($subject, $text);
-        }
-
-        // Пользователю
-        $mail = CommonI18n::factory('mail_templates')->getRowSimple(36, 'id', 1);
-        if ($mail) {
-            $from = array('{{site}}', '{{name}}');
-            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name);
-            $subject = str_replace($from, $to, $mail->subject);
-            $text = str_replace($from, $to, $mail->text);
-            Email::send($subject, $text, $email);
-        }
+//        // Send E-Mail to admin
+//        $mail = CommonI18n::factory('mail_templates')->getRowSimple(1, 'id', 1);
+//        if ($mail) {
+//            $from = array('{{site}}', '{{name}}', '{{email}}', '{{theme}}', '{{ip}}', '{{phone}}');
+//            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name, $email, $theme, System::getRealIP(), $phone);
+//            $subject = str_replace($from, $to, $mail->subject);
+//            $text = str_replace($from, $to, $mail->text);
+//            Email::send($subject, $text);
+//        }
+//
+//        // Пользователю
+//        $mail = CommonI18n::factory('mail_templates')->getRowSimple(36, 'id', 1);
+//        if ($mail) {
+//            $from = array('{{site}}', '{{name}}');
+//            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name);
+//            $subject = str_replace($from, $to, $mail->subject);
+//            $text = str_replace($from, $to, $mail->text);
+//            Email::send($subject, $text, $email);
+//        }
 
         $this->success(__('Спасибо за сообщение!'));
     }
@@ -130,21 +129,14 @@ class Form extends \Modules\Ajax
         $country = Arr::get($this->post, 'country');
         $city = Arr::get($this->post, 'city');
         $confirm = Arr::get($this->post, 'confirm');
-        $name = Arr::get($this->post, 'name');
-        $name = Arr::get($this->post, 'name');
-        $name = Arr::get($this->post, 'name');
-        $name = Arr::get($this->post, 'name');
-
+        $email = Arr::get($this->post, 'email');
 
         $data = [];
-        $data = [];
-        $data = [];
-        $data = [];
-        $data = [];
-        $data = [];
-        $data = [];
-        $data = [];
-        $data = [];
+        $data = ['name'] = $name;
+        $data = ['country'] = $country;
+        $data = ['city'] = $city;
+        $data = ['email'] = $email;
+        $data = ['confirm'] = $confirm;
 
         $keys = [];
         $values = [];

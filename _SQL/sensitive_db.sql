@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 07 2016 г., 17:06
+-- Время создания: Сен 17 2016 г., 15:37
 -- Версия сервера: 5.5.48-log
 -- Версия PHP: 5.6.19
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `sensitive`
+-- База данных: `sensitive_db`
 --
 
 -- --------------------------------------------------------
@@ -33,6 +33,105 @@ CREATE TABLE IF NOT EXISTS `access` (
   `view` tinyint(1) NOT NULL DEFAULT '0',
   `edit` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `advantages`
+--
+
+CREATE TABLE IF NOT EXISTS `advantages` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `alias` varchar(255) DEFAULT NULL,
+  `views` int(10) NOT NULL DEFAULT '0',
+  `svg` int(5) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `advantages`
+--
+
+INSERT INTO `advantages` (`id`, `created_at`, `updated_at`, `status`, `alias`, `views`, `svg`) VALUES
+(1, 1474004707, 1474012183, 1, 'accuracy', 1, 26),
+(2, 1474004782, NULL, 1, 'efficiency', 0, 25),
+(3, 1474004889, NULL, 1, 'guarantee', 0, 24),
+(4, 1474005001, 1474010041, 1, 'convenience', 1, 22),
+(5, 1474005127, NULL, 1, 'delivery', 0, 21),
+(6, 1474005296, 1474009472, 1, 'certifications', 1, 20),
+(7, 1474005375, NULL, 1, 'reliability', 0, 19),
+(8, 1474005462, NULL, 1, 'saving', 0, 18);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `advantages_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `advantages_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `text` text,
+  `h1` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text,
+  `keywords` text,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `advantages_i18n`
+--
+
+INSERT INTO `advantages_i18n` (`id`, `name`, `text`, `h1`, `title`, `description`, `keywords`, `row_id`, `language`) VALUES
+(1, 'Точность', '<p>Комплексы Сенситив Имаго имеют подтвержденную точность диагностики до 96 %</p>', NULL, NULL, NULL, NULL, 1, 'ru'),
+(2, 'Accuracy', '<p>Complexes Sensitive Imago have confirmed the accuracy of diagnosis and 96%</p>', NULL, NULL, NULL, NULL, 1, 'en'),
+(3, 'Accuracy', '<p>Complexes Sensitive Imago have confirmed the accuracy of diagnosis and 96%</p>', NULL, NULL, NULL, NULL, 1, 'de'),
+(4, 'Accuracy', '<p>Complexes Sensitive Imago have confirmed the accuracy of diagnosis and 96%</p>', NULL, NULL, NULL, NULL, 1, 'sp'),
+(5, 'Accuracy', '<p>Complexes Sensitive Imago have confirmed the accuracy of diagnosis and 96%</p>', NULL, NULL, NULL, NULL, 1, 'fr'),
+(6, 'Эффективность', '<p>Лечение большинства заболеваний человека</p>', NULL, NULL, NULL, NULL, 2, 'ru'),
+(7, 'Efficiency', '<p>Treatment of most human diseases</p>', NULL, NULL, NULL, NULL, 2, 'en'),
+(8, 'Efficiency', '<p>Treatment of most human diseases</p>', NULL, NULL, NULL, NULL, 2, 'de'),
+(9, 'Efficiency', '<p>Treatment of most human diseases</p>', NULL, NULL, NULL, NULL, 2, 'sp'),
+(10, 'Efficiency', '<p>Treatment of most human diseases</p>', NULL, NULL, NULL, NULL, 2, 'fr'),
+(11, 'Гарантия', '<p>На оборудование мы даем до 2 лет гарантии</p>', NULL, NULL, NULL, NULL, 3, 'ru'),
+(12, 'Guarantee', '<p>On the equipment we give up to 2 years of warranty</p>', NULL, NULL, NULL, NULL, 3, 'en'),
+(13, 'Guarantee', '<p>On the equipment we give up to 2 years of warranty</p>', NULL, NULL, NULL, NULL, 3, 'de'),
+(14, 'Guarantee', '<p>On the equipment we give up to 2 years of warranty</p>', NULL, NULL, NULL, NULL, 3, 'sp'),
+(15, 'Guarantee', '<p>On the equipment we give up to 2 years of warranty</p>', NULL, NULL, NULL, NULL, 3, 'fr'),
+(16, 'Удобство', '<p>Проведение онлайн презентации возможностей оборудования, а также качественное обучение онлайн</p>', NULL, NULL, NULL, NULL, 4, 'ru'),
+(17, 'Convenience', '<p>Conduct online presentations of the equipment, as well as high quality training online</p>', NULL, NULL, NULL, NULL, 4, 'en'),
+(18, 'Convenience', '<p>Conduct online presentations of the equipment, as well as high quality training online</p>', NULL, NULL, NULL, NULL, 4, 'de'),
+(19, 'Convenience', '<p>Conduct online presentations of the equipment, as well as high quality training online</p>', NULL, NULL, NULL, NULL, 4, 'sp'),
+(20, 'Convenience', '<p>Conduct online presentations of the equipment, as well as high quality training online</p>', NULL, NULL, NULL, NULL, 4, 'fr'),
+(21, 'Доставка', '<p>В первую неделю с момента оплаты</p>', NULL, NULL, NULL, NULL, 5, 'ru'),
+(22, 'Delivery', '<p>In the first week after the payment</p>', NULL, NULL, NULL, NULL, 5, 'en'),
+(23, 'Delivery', '<p>In the first week after the payment</p>', NULL, NULL, NULL, NULL, 5, 'de'),
+(24, 'Delivery', '<p>In the first week after the payment</p>', NULL, NULL, NULL, NULL, 5, 'sp'),
+(25, 'Delivery', '<p>In the first week after the payment</p>', NULL, NULL, NULL, NULL, 5, 'fr'),
+(26, 'Сертификаты', '<p>Оборудование сертифицировано в Европейском Союзе и многих странах мира</p>', NULL, NULL, NULL, NULL, 6, 'ru'),
+(27, 'Certifications', '<p>The equipment is certified in the European Union and many countries</p>', NULL, NULL, NULL, NULL, 6, 'en'),
+(28, 'Certifications', '<p>The equipment is certified in the European Union and many countries</p>', NULL, NULL, NULL, NULL, 6, 'de'),
+(29, 'Certifications', '<p>The equipment is certified in the European Union and many countries</p>', NULL, NULL, NULL, NULL, 6, 'sp'),
+(30, 'Certifications', '<p>The equipment is certified in the European Union and many countries</p>', NULL, NULL, NULL, NULL, 6, 'fr'),
+(31, 'Надежность', '<p>Наши клиенты нам доверяют</p>', NULL, NULL, NULL, NULL, 7, 'ru'),
+(32, 'Reliability', '<p>Our customers trust us</p>', NULL, NULL, NULL, NULL, 7, 'en'),
+(33, 'Reliability', '<p>Our customers trust us</p>', NULL, NULL, NULL, NULL, 7, 'de'),
+(34, 'Reliability', '<p>Our customers trust us</p>', NULL, NULL, NULL, NULL, 7, 'sp'),
+(35, 'Reliability', '<p>Our customers trust us</p>', NULL, NULL, NULL, NULL, 7, 'fr'),
+(36, 'Экономия', '<p>Возможность покупки в рассрочку</p>', NULL, NULL, NULL, NULL, 8, 'ru'),
+(37, 'Saving', '<p>The possibility of buying in installments</p>', NULL, NULL, NULL, NULL, 8, 'en'),
+(38, 'Saving', '<p>The possibility of buying in installments</p>', NULL, NULL, NULL, NULL, 8, 'de'),
+(39, 'Saving', '<p>The possibility of buying in installments</p>', NULL, NULL, NULL, NULL, 8, 'sp'),
+(40, 'Saving', '<p>The possibility of buying in installments</p>', NULL, NULL, NULL, NULL, 8, 'fr'),
+(41, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'ru'),
+(42, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'en'),
+(43, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'de'),
+(44, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'sp'),
+(45, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'fr');
 
 -- --------------------------------------------------------
 
@@ -579,7 +678,7 @@ CREATE TABLE IF NOT EXISTS `config` (
   `type` varchar(32) DEFAULT NULL,
   `values` text COMMENT 'Возможные значения в json массиве ключ => значение. Для селекта и радио',
   `group` varchar(128) DEFAULT NULL COMMENT 'Группа настроек'
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `config`
@@ -601,10 +700,10 @@ INSERT INTO `config` (`id`, `name`, `zna`, `updated_at`, `status`, `sort`, `key`
 (30, 'Сократить CSS u JavaScript', '0', 1434885561, 0, 1, 'minify', 1, 'radio', '[{"key":"Да","value":"1"},{"key":"Нет","value":"0"}]', 'speed'),
 (31, 'Сократить HTML', '0', 1434885561, 0, 2, 'compress', 1, 'radio', '[{"key":"Да","value":"1"},{"key":"Нет","value":"0"}]', 'speed'),
 (32, 'Кеширование размера изображений', '0', 1434885561, 0, 3, 'cache_images', 1, 'select', '[{"key":"Выключить","value":"0"},{"key":"12 часов","value":"0.5"},{"key":"День","value":"1"},{"key":"3 дня","value":"3"},{"key":"Неделя","value":"7"},{"key":"2 недели","value":"14"},{"key":"Месяц","value":"30"},{"key":"Год","value":"365"}]', 'speed'),
-(33, 'Facebook', 'https://www.facebook.com/', 1434885561, 1, 1, 'facebook', 0, 'input', NULL, 'socials'),
-(34, 'Twitter.com', 'https://twitter.com/', 1434885561, 1, 2, 'twitter', 0, 'input', NULL, 'socials'),
-(35, 'Youtube.com', 'https://www.youtube.com/', 1434885561, 1, 3, 'youtube', 0, 'input', NULL, 'socials'),
-(36, 'Google Plus', 'https://plus.google.com/', 1434885561, 1, 4, 'google', 0, 'input', NULL, 'socials'),
+(33, 'Skype', 'sensitive-imago', 1434885561, 1, 1, 'skype', 0, 'input', NULL, 'contacts'),
+(34, 'Email', 'sensetive@domains.com', 1434885561, 1, 2, 'email', 0, 'input', NULL, 'contacts'),
+(35, 'Телефон №1', '+38 (066) 999-99-99', 1434885561, 1, 3, 'phone_1', 0, 'input', NULL, 'contacts'),
+(36, 'Телефон №2', '+38 (097) 444-44-44', 1434885561, 1, 4, 'phone_2', 0, 'input', NULL, 'contacts'),
 (51, 'Копирайт сайта (RU)', '© 2016 Альфа-Мед Украина', NULL, 1, -1, 'copy-ru', 0, 'input', NULL, 'basic'),
 (77, 'Текст на главной (RU)', '<p>Медицинское оборудование предназначено для неинвазивного комплексного биорезонансного обследования и лечения организма, а также для подбора лечения лекарственными препаратами</p>', 1434885560, 1, -1, 'description_ru', 1, 'tiny', NULL, 'index'),
 (78, 'Текст на главной (SP)', '<p>Equipo m&eacute;dico est&aacute; dise&ntilde;ado para biorezonante no invasiva examen y el tratamiento del cuerpo integral, as&iacute; como para la selecci&oacute;n de medicamentos para el tratamiento</p>', 1434885560, 1, 1, 'description_sp', 1, 'tiny', NULL, 'index'),
@@ -617,8 +716,8 @@ INSERT INTO `config` (`id`, `name`, `zna`, `updated_at`, `status`, `sort`, `key`
 (85, 'Заголовок на главной (FR)', 'APK Sensitive Imago (HSC Sensitiv Imago)', 1434885560, 1, -2, 'title_fr', 1, 'input', NULL, 'index'),
 (86, 'Заголовок на главной (DE)', 'APK Sensitive Imago (HSC Sensitiv Imago)', 1434885560, 1, -2, 'title_de', 1, 'input', NULL, 'index'),
 (87, 'Верхний текст (DE)', '<p>Unsere Firma "Alfa-Med Ukraine"<br />Es ist die neueste Generation von medizinischen Ger&auml;ten</p>', 1434885560, 1, -1, 'top_de', 1, 'tiny', NULL, 'index'),
-(88, 'Количество новостей на страницу', '4', 1434885560, 1, 9, 'limit_news', 1, 'input', NULL, 'basic'),
-(89, 'Количество сотрудников на страницу', '4', 1434885560, 1, 9, 'limit_team', 1, 'input', NULL, 'basic'),
+(88, 'Кол-во новостей на страницу', '4', 1434885560, 1, 9, 'limit_news', 1, 'input', NULL, 'basic'),
+(89, 'Кол-во сотрудников на страницу', '4', 1434885560, 1, 9, 'limit_team', 1, 'input', NULL, 'basic'),
 (90, 'Копирайт сайта (EN)', '© 2016 Alfa-Med Ukraine', NULL, 1, 0, 'copy-en', 0, 'input', NULL, 'basic'),
 (91, 'Копирайт сайта (DE)', '© 2016 Alfa-Med Ukraine', NULL, 1, 0, 'copy-de', 0, 'input', NULL, 'basic'),
 (92, 'Копирайт сайта (FR)', '© 2016 Alfa-Med Ukraine', NULL, 1, 0, 'copy-fr', 0, 'input', NULL, 'basic'),
@@ -626,7 +725,13 @@ INSERT INTO `config` (`id`, `name`, `zna`, `updated_at`, `status`, `sort`, `key`
 (94, 'Верхний текст (EN)', '<p>Our Company "Alfa-Med Ukraine"<br />It is the latest generation of medical equipment</p>', 1434885560, 1, -1, 'top_en', 1, 'tiny', NULL, 'index'),
 (95, 'Верхний текст (SP)', '<p>Nuestra Empresa "Alfa-Med Ucrania"<br />Es la &uacute;ltima generaci&oacute;n de equipos m&eacute;dicos</p>', 1434885560, 1, -1, 'top_sp', 1, 'tiny', NULL, 'index'),
 (96, 'Верхний текст (FR)', '<p>Notre soci&eacute;t&eacute; "Alfa-Med Ukraine"<br />Il est la derni&egrave;re g&eacute;n&eacute;ration de mat&eacute;riel m&eacute;dical</p>', 1434885560, 1, -1, 'top_fr', 1, 'tiny', NULL, 'index'),
-(97, 'Верхний текст (RU)', '<p>Наша компания "Альфа-Мед Украина"<br /> представляет медицинское оборудование последнего поколения</p>', 1434885560, 1, -1, 'top_ru', 1, 'tiny', NULL, 'index');
+(97, 'Верхний текст (RU)', '<p>Наша компания "Альфа-Мед Украина"<br /> представляет медицинское оборудование последнего поколения</p>', 1434885560, 1, -1, 'top_ru', 1, 'tiny', NULL, 'index'),
+(98, 'Кол-во видео отзывов на страницу', '3', 1434885560, 1, 9, 'limit_video', 1, 'input', NULL, 'basic'),
+(99, 'Кол-во отзывов на страницу', '3', 1434885560, 1, 9, 'limit_reviews', 1, 'input', NULL, 'basic'),
+(100, 'Широта', '50.415', 1434885560, 1, 9, 'lat', 1, 'input', NULL, 'maps'),
+(101, 'Долгота', '30.660', 1434885560, 1, 9, 'lng', 1, 'input', NULL, 'maps'),
+(102, 'Кол-во видео на страницу галереи', '3', 1434885560, 1, 9, 'limit_video', 1, 'input', NULL, 'basic'),
+(103, 'Кол-во фото на страницу галереи', '3', 1434885560, 1, 9, 'limit_photo', 1, 'input', NULL, 'basic');
 
 -- --------------------------------------------------------
 
@@ -641,7 +746,7 @@ CREATE TABLE IF NOT EXISTS `config_groups` (
   `side` varchar(16) NOT NULL DEFAULT 'left' COMMENT 'left, right',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `sort` int(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `config_groups`
@@ -654,7 +759,9 @@ INSERT INTO `config_groups` (`id`, `name`, `alias`, `side`, `status`, `sort`) VA
 (4, 'Соц. сети', 'socials', 'left', 1, 3),
 (5, 'Безопасность', 'security', 'right', 1, 2),
 (6, 'Быстродействие', 'speed', 'right', 1, 3),
-(9, 'Главная', 'index', 'left', 1, 3);
+(9, 'Главная', 'index', 'left', 1, 3),
+(10, 'Карты', 'maps', 'left', 1, 5),
+(11, 'Контакты', 'contacts', 'left', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -787,16 +894,14 @@ CREATE TABLE IF NOT EXISTS `content` (
   `slider_first` varchar(150) DEFAULT NULL,
   `slider_second` varchar(150) DEFAULT NULL,
   `slider_third` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `content`
 --
 
 INSERT INTO `content` (`id`, `alias`, `status`, `created_at`, `updated_at`, `sort`, `parent_id`, `views`, `image_first`, `image_second`, `image_third`, `image_four`, `slider_first`, `slider_second`, `slider_third`) VALUES
-(7, '', 0, 1470748118, 1471335766, 0, 0, 0, '44054a1ca161d3f4f62fe6ae1cd26ba5.jpg', '2eb8e31efd818abcac8b6cfcbdbbc7a7.jpg', 'c9d407036bccad07c2a6cb2344225a56.jpg', NULL, '5aeb8c24a0ff39e38cc94df4956bc966.jpg', 'fe3ceb295d2fb8c0633bb535274d0548.jpg', 'c6816c599ca2feaa024fac169d512d7d.jpg'),
-(8, '5057', 1, 1470892598, 1471335896, 0, 0, 0, '0adca82feca8cfdfb1d06e1770f8b196.jpg', 'a9ef7e82404c101fdb593c572f1b9206.jpg', '542e71f293941ee4f63a3f3040aa0984.jpg', '128f274b1c960d868431eb8187d4fe8d.jpg', NULL, NULL, NULL),
-(9, NULL, 0, 1471328063, 1471329607, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(7, 'about', 1, 1470748118, 1474013130, 0, 0, 0, '44054a1ca161d3f4f62fe6ae1cd26ba5.jpg', '2eb8e31efd818abcac8b6cfcbdbbc7a7.jpg', 'c9d407036bccad07c2a6cb2344225a56.jpg', NULL, '5aeb8c24a0ff39e38cc94df4956bc966.jpg', 'fe3ceb295d2fb8c0633bb535274d0548.jpg', 'c6816c599ca2feaa024fac169d512d7d.jpg');
 
 -- --------------------------------------------------------
 
@@ -844,19 +949,18 @@ CREATE TABLE IF NOT EXISTS `content_i18n` (
   `beuseful_text1` varchar(250) DEFAULT NULL,
   `beuseful_text2` varchar(250) DEFAULT NULL,
   `beuseful_text3` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `content_i18n`
 --
 
 INSERT INTO `content_i18n` (`id`, `name`, `title`, `description`, `keywords`, `text`, `h1`, `row_id`, `language`, `title_big`, `slogan`, `about_title`, `now_title`, `now_list`, `beuseful_title`, `beuseful_text`, `beuseful_link`, `beuseful_slider`, `mission_title`, `mission_text`, `service_name_first`, `service_name_second`, `service_name_third`, `service_name_four`, `service_text_first`, `service_text_second`, `service_text_third`, `service_text_four`, `title_virtual`, `text_virtual`, `algoritm_title`, `algoritm_first`, `algoritm_second`, `algoritm_third`, `algoritm_four`, `algoritm_five`, `beuseful_text1`, `beuseful_text2`, `beuseful_text3`) VALUES
-(16, 'О компании ', NULL, NULL, NULL, '<p>Все началось с необходимости. Мы работали в компании, которая должна была стать лидером своего рынка в течении 2-х лет, в период сложных экономических и политических условий. Перед нами стояла задача обеспечения активных продаж в жатые сроки с довольно небольшим бюджетом на это и довольно ограниченным количеством специалистов. И как мы убедились, в таких условиях решающим моментом выступает внутренние истинное стремление человека к чему-то.</p>\r\n<p>Мы задали себе вопрос &laquo;Что делать?&raquo;. За которым последовали следующие &laquo;Что мы знаем о ситуации?&raquo;, &laquo;Как ее понять максимально быстро и четко?&raquo;, &laquo;Что нам в этом может помочь?&raquo;. По мере того, как мы находили ответы на одни вопросы и задавали новые, у нас рождались идеи как с наибольшей эффективностью можно решать поставленные задачи.</p>\r\n<p>Обороты компании росли. Она стала лидером своего рынка. Объемы работ становились все больше и больше. Специалистам, которые в одном лице выступали как генераторы идей, исполнители и аналитики не хватало 24 часов в сутках для реализации появляющихся идей. Мы начали искать людей, которые могли бы помочь нам в их реализации.</p>\r\n<p>Главным критерием являлось желание и стремление человека работать, создавать определенные вещи в соответствии с нашим отношением к работе и миру в целом. С ростом количества специалистов появлялись все новые и новые идеи. Не все подходили для нашей компании, но для других компаний в других ситуациях они бы были очень полезны и результативны. Так и появилась идея о создании the digital marketing and advertising company.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', NULL, 7, 'ru', 'Цифровой маркетинг <br/> и рекламная компания.', 'Компания, объединяющая в себе творческих личностей, которым нравится заниматься своим делом. Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 'История компании', 'Сейчас Beatus это:', '<ul class="now_list">\r\n<li>мыслители</li>\r\n<li>визуализаторы</li>\r\n<li>исследователи</li>\r\n<li>слушатели</li>\r\n<li>производители</li>\r\n<li>исполнители</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<p style="padding-left: 30px;">находящиеся в постоянном движении вперед.</p>', 'Чем мы можем быть полезны?', 'Beatus меняет на 180 градусов сложные, вялотекущие ситуации своих клиентов уверенно, быстро и эффективно, делая клиентов счастливыми. ', 'Подробнее о наших услугах', '(если не знаете с чего начать)', 'В чем мы видим свою миссию?', '<p>Выступая связующим звеном между бизнесом, обществом и индивидуумом, мы способствуем пониманию друг друга и реализации каждого используя новейшие современные технологии и креативные подходы.</p>\r\n<p>Ведь именно взаимопонимание делает нашу жизнь легкой, приятной и гармоничной.</p>\r\n<p>&nbsp;</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Меняем спад на рост', 'Подтолкнем вялотекущий тренд к активному росту', 'Вдохновим и побудим к действию'),
-(17, 'About company ', NULL, NULL, NULL, '<p>It all started with the need. We have worked for a company that was to become the leader in its market for 2 years, during the period of difficult economic and political conditions. Our task was to ensure active sales in short&nbsp;timeline with a fairly small budget for this and quite a limited number of specialists. And as we have seen, in such circumstances, the decisive factor in favor domestic real human desire for something.</p>\r\n<p>We asked ourselves the question, "What should I do?". Followed by the following "What do we know about the situation?", "How to understand it quickly and clearly?", "What we can help with?". As soon as we find the answers to some questions and asking new, we have born the idea of ??how you can most effectively solve tasks.</p>\r\n<p>The company''s turnover grew. She became the leader of its market. The volume of work is becoming more and more. Professionals who in one person acted as generators of ideas, artists and analysts do not have enough hours in the day 24 for the implementation of emerging ideas. We began to look for people who could help us in implementing them.</p>\r\n<p>The main criterion was the desire and the desire of man to work, to create certain things in accordance with our attitude towards work and the world in general. With the growing number of specialists appear more and more new ideas. Not all are suitable for our company, but for other companies in other circumstances they would have been very useful and effective. So the idea to the creation of the digital marketing and advertising company.</p>', NULL, 7, 'en', 'Digital marketing <br/> and advertising company', 'The company combines creative people who like to do their work. We are convinced that the creative power of the movement is to understand the situation and the corresponding desire. ', 'history of the company', 'Now, Beatus this:', '<ul class="now_list">\r\n<li>thinkers</li>\r\n<li>visualizers</li>\r\n<li>researchers</li>\r\n<li>audience</li>\r\n<li>producers</li>\r\n<li>artists</li>\r\n</ul>\r\n<p>Are in constant movement forward.</p>', 'How can we be helpful?', 'Beatus changes 180 degrees complicated, sluggish situation of their customers confidently, quickly and efficiently, making customers happy.', 'Learn more about our services', '(If you do not know where to start)', 'What we see our mission?', '<p>Acting as a link between business, society and the individual we contribute to the understanding of each other and each implementation using the latest modern technology and creative approaches.</p>\r\n<p>After all, understanding makes our life easier, more pleasant and harmonious.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Change the decline in growth', 'Push the sluggish trend of active growth', 'Inspire and motivate to action'),
-(18, 'Наши услуги', NULL, NULL, NULL, '<p>Нам нравится делиться с Вами нашими идеями и видеть, как они помогают воплощению в жизнь ваших задач. Мы не ждем каких-либо условий. Мы обладаем созидательной силой, находясь в постоянном творческом процессе используя новейшие технологии.</p>', NULL, 8, 'ru', 'Наши компетенции', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Стратегия & Консалтинг', 'Креативный дизайн', 'Веб-разработка', 'Интернет-маркетинг', '<p><strong>1. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', '<p><strong>2. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому, мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', '<p><strong>3. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому, мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', '<p><strong>4. Информированность и креативность &ndash; залог успешного движения вперед, которому мы с радостью способствуем.</strong></p>\r\n<p>Именно поэтому, мы представляем комплексные услуги и уделяем должное внимание оценке эффективности каждого этапа деятельности, рекламной компании. Мы показываем какой именно рекламный ход дал наилучший результат, т.е. привел продажу, и наоборот.</p>\r\n<p>Отслеживая всю эту цепочку, используя новейшие технологии, расширяются возможности оценки эффективности работы менеджеров и других коррелирующих процессов. Все удачные рекламные кампании и клиенты, которые появились в результате рекламы, записываются в систему в таком виде, что появляется возможность загрузить ее в Оптимизатор конверсий google adwords. Это позволяет привести еще больше целевой аудитории на сайт или в отдел продаж.</p>', 'Виртуализация в сфере строительства', '<p>При помощи новейших технологий мы даем полное ощущение присутствия в местах, которые находятся далеко или просто пока не существуют. Наша цель дать полное ощущение контакта человека и обьекта. Начиная от виртуализации помещений, в которых Вы легко сможете изменять интерьер, заканчивая дополнительной реальностью, когда на участке&nbsp;участка под застройку Вы сможете наблюдать уже готовый дом со всей его инфраструктурой.</p>\r\n<p>Вы будете&nbsp;свободно перемещаться по окружающей территории&nbsp;и Сами изучить ее. Это позволяет получить ответы на все интересующие вопросы, возникающие при принятии решения. И все это можно узнать и прочувствовать, не выходя из дома или офиса.</p>', 'Алгоритм нашей работы', '<span>Мы слушатели:</span> Вы рассказываете о том, чего хотите или не хотите', '<span>Мы исследователи:</span> изучаем рынок и компанию', '<span>Мы креативные мыслители:</span> находим не стандартные лучшие решения', '<span>Мы визуализаторы:</span> создаем пространство, перемещаем во времени', '<span>Мы производители и исполнители:</span> воплощаем разработанную концепцию, сопровождаем ее поддержку', '', '', ''),
-(19, 'Services', NULL, NULL, NULL, '<p>We like to share with you our ideas and see how they help translate into reality your needs. We do not expect any conditions. We have a creative force in constant creative process using the latest technology.</p>', NULL, 8, 'en', 'Our competence', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Strategy & Consulting', 'Creative Design', 'Web Development', 'Online Marketing', '<p><strong>awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', '<p><strong>2awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', '<p><strong>3awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', '<p><strong>4awareness and creativity - the key to successful progress, which we are pleased to contribute</strong></p>\r\n<p>For this reason, we present a comprehensive service and attention to evaluating the effectiveness of each stage of the activity, the advertising company. We show what kind of publicity stunt gave the best results, ie, led sale, and vice versa.</p>\r\n<p>By tracking this whole chain, using the latest technology, expanding possibilities for evaluating the performance of managers and other correlated processes. Also, all the successful advertising campaigns and clients, which appeared as a result of advertising, are recorded in the system in such a way that it is possible to download it in the Conversion Optimizer google adwords. This allows you to bring more targeted audience to your website or sales.</p>', 'Virtualization in the construction industry', '<p>We give a full sense of presence in places that are far away or simply do not exist using the latest technologies. Our goal is to give a complete feeling of being in the right places. Starting from the virtualization space, where you can easily change the interior, finishing with more reality, when in place building plot you will be able to watch the finished house with all its infrastructure.</p>\r\n<p>Also, you will be able to move freely around the surrounding area and explore it for yourself. This allows you to get answers to all the questions that arise when making a decision. And all this you can learn and feel the comfort of home or office.</p>', 'The algorithm of our work', '<span>We listeners</span> you talk about what you want or do not want', '<span>We are researchers</span> are studying the market and company', '<span>We are creative thinkers</span> to find creative solutions best', '<span>We are visualizers</span> are creating space, moving in time', '<span>We are the producers and performers</span> embody the concept developed, accompanied by its support', '', '', ''),
-(20, 'Тест', NULL, NULL, NULL, '<p>QWERTY</p>', NULL, 9, 'ru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(21, 'TEst', NULL, NULL, NULL, '<p>QWERTY</p>', NULL, 9, 'en', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(16, 'О компании', NULL, NULL, NULL, '<p>Компания&nbsp;"Альфа-Мед Украина"&nbsp;представлена на рынке уже более 12 лет!</p>\r\n<p>В настоящее время основное поле деятельности компании &ndash; предоставление бизнес услуг &ndash; поиск новых партнеров в направленииоткрытия новых медицинских диагностических центров, использующих передовое диагностическое оборудование &ndash; аппаратно-программные комплексы Синтенсив имаго аппаратно-программные комплексы Синтенсив имаго сертифицированы в Украине, России, Европе, а также проходят сертификацию в США, Корее, Китае, Малайзии, Мексике, Бразилии аппаратно-программные комплексы Синтенсив имаго могут применяться для решения широкого круга задач, круг областей их практического применения довольно широк.</p>\r\n<p>Мы заинтересованы в поиске новых партнеров по всему миру. Всех заинтересованных приглашаем к нам в офис в Киеве на демонстрацию возможностей оборудования.</p>\r\n<p>Вам будет проведена презентация работы оборудования, а также даны подробные рекомендации, вручен пакет информации по планированию и организации подобного медицинского диагностического кабинета.Кроме того, нами открыто более 65 офисов во многих странах мира, на всех континентах.</p>\r\n<p><em>Желаем Вам с пользой провести время!</em></p>', NULL, 7, 'ru', 'Цифровой маркетинг <br/> и рекламная компания.', 'Компания, объединяющая в себе творческих личностей, которым нравится заниматься своим делом. Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 'История компании', 'Сейчас Beatus это:', '<ul class="now_list">\r\n<li>мыслители</li>\r\n<li>визуализаторы</li>\r\n<li>исследователи</li>\r\n<li>слушатели</li>\r\n<li>производители</li>\r\n<li>исполнители</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<p style="padding-left: 30px;">находящиеся в постоянном движении вперед.</p>', 'Чем мы можем быть полезны?', 'Beatus меняет на 180 градусов сложные, вялотекущие ситуации своих клиентов уверенно, быстро и эффективно, делая клиентов счастливыми. ', 'Подробнее о наших услугах', '(если не знаете с чего начать)', 'В чем мы видим свою миссию?', '<p>Выступая связующим звеном между бизнесом, обществом и индивидуумом, мы способствуем пониманию друг друга и реализации каждого используя новейшие современные технологии и креативные подходы.</p>\r\n<p>Ведь именно взаимопонимание делает нашу жизнь легкой, приятной и гармоничной.</p>\r\n<p>&nbsp;</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Меняем спад на рост', 'Подтолкнем вялотекущий тренд к активному росту', 'Вдохновим и побудим к действию'),
+(17, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'en', 'Digital marketing <br/> and advertising company', 'The company combines creative people who like to do their work. We are convinced that the creative power of the movement is to understand the situation and the corresponding desire. ', 'history of the company', 'Now, Beatus this:', '<ul class="now_list">\r\n<li>thinkers</li>\r\n<li>visualizers</li>\r\n<li>researchers</li>\r\n<li>audience</li>\r\n<li>producers</li>\r\n<li>artists</li>\r\n</ul>\r\n<p>Are in constant movement forward.</p>', 'How can we be helpful?', 'Beatus changes 180 degrees complicated, sluggish situation of their customers confidently, quickly and efficiently, making customers happy.', 'Learn more about our services', '(If you do not know where to start)', 'What we see our mission?', '<p>Acting as a link between business, society and the individual we contribute to the understanding of each other and each implementation using the latest modern technology and creative approaches.</p>\r\n<p>After all, understanding makes our life easier, more pleasant and harmonious.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Change the decline in growth', 'Push the sluggish trend of active growth', 'Inspire and motivate to action'),
+(22, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'de', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'sp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -871,7 +975,7 @@ CREATE TABLE IF NOT EXISTS `control` (
   `other` text,
   `sort` int(10) unsigned NOT NULL DEFAULT '0',
   `sitemap` tinyint(1) unsigned DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `control`
@@ -882,7 +986,10 @@ INSERT INTO `control` (`id`, `alias`, `status`, `other`, `sort`, `sitemap`) VALU
 (2, 'news', 1, NULL, 2, 1),
 (3, 'contacts', 1, '{"longitude":"","latitude":"","text":""}', 3, 1),
 (4, 'team', 1, NULL, 4, 1),
-(5, 'reviews', 1, NULL, 5, 1);
+(5, 'reviews', 1, NULL, 5, 1),
+(6, 'gallery', 1, NULL, 6, 1),
+(7, 'video', 1, NULL, 7, 1),
+(8, 'advantage', 1, NULL, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -898,36 +1005,57 @@ CREATE TABLE IF NOT EXISTS `control_i18n` (
   `keywords` text,
   `description` text,
   `text` text,
+  `location` text,
+  `time` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `control_i18n`
 --
 
-INSERT INTO `control_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `description`, `text`, `row_id`, `language`) VALUES
-(1, 'Sensitive - Imago - Главная страница', 'Sensitive - Imago - Главная страница h1', 'Sensitive - Imago - Главная страница title', 'Sensitive - Imago - Главная страница keywords', 'Sensitive - Imago - Главная страница description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', 1, 'ru'),
-(17, 'Sensitive - Imago - Main page', 'Sensitive - Imago - Main page h1', 'Sensitive - Imago - Main page title', 'Sensitive - Imago - Main page keywords', 'Sensitive - Imago - Main page description', '<p><strong>Использовать все виды списков</strong></p>\r\n<ul>\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.</li>\r\n</ul>\r\n<ol>\r\n<li>Curabitur vehicula arcu elementum ultrices convallis.</li>\r\n<li>Curabitur at massa ultrices, sollicitudin ipsum eu, tincidunt sem.</li>\r\n<li>Praesent iaculis nibh quis lectus egestas porta.</li>\r\n<li>Sed condimentum felis tristique elit ultrices, vel pulvinar nisl mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ul>\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: circle;">\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: square;">\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ul>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>левому</strong> <strong>краю</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed maximus lorem. Vivamus sed metus aliquet, tempor turpis sit amet, volutpat risus. Fusce magna neque, pellentesque vitae purus vel, pellentesque maximus ante. Vivamus diam lectus, lobortis nec ipsum quis, laoreet semper odio. Nam consectetur nisi turpis, ut pulvinar justo aliquam vitae. Fusce egestas eros sodales, aliquam erat sed, vulputate massa. Mauris eu dolor vitae dui tempus semper. Cras elementum, nibh vel scelerisque dignissim, metus orci malesuada tellus, maximus eleifend urna libero quis ipsum. Ut ex lectus, scelerisque sed cursus nec, ullamcorper ut elit.</p>\r\n<p><strong>Выравнивание по левому правому краю</strong></p>\r\n<p style="text-align: right;">Cras imperdiet dolor eu vestibulum congue. Proin suscipit fermentum ex, quis tempor est cursus non. Nullam suscipit augue dui. Ut molestie interdum tortor maximus commodo. Vestibulum non est volutpat, molestie mauris in, feugiat est. Donec consequat ligula sed egestas pretium. Nam ac mauris rhoncus, lobortis dui non, molestie leo. Quisque pretium sed metus sed tristique. Fusce a nibh eu justo pharetra blandit. Nullam id risus erat. Aenean malesuada quam ut est auctor, vitae ullamcorper velit congue. In in placerat tellus. Duis sit amet dui id purus porta ornare non ac erat. Aenean dapibus arcu elit, tempor gravida arcu blandit eu.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>центру</strong></p>\r\n<p style="text-align: center;">Sed tempor, ante vitae faucibus feugiat, felis magna pretium nisl, ac pellentesque mi mi id augue. Aliquam a mauris lobortis, congue odio ac, dictum quam. Suspendisse tempus orci ut molestie cursus. Etiam consectetur vehicula ipsum, et sodales nisl. Vestibulum id aliquam libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo in neque pharetra iaculis.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>ширине</strong></p>\r\n<p style="text-align: justify;">Donec quis fermentum risus. Aliquam efficitur aliquam urna, vitae ornare purus feugiat non. Nam laoreet, velit at porta aliquam, dolor sem pretium nulla, vel sagittis sapien ante eget sapien. Sed est elit, lacinia et urna vel, venenatis vestibulum tortor. Duis ac tincidunt dolor. Pellentesque lacinia hendrerit urna sit amet lobortis. Suspendisse potenti. Vivamus eu sapien sollicitudin, elementum turpis efficitur, feugiat sapien. Nulla congue rutrum nisl. Quisque pretium facilisis ligula eu tincidunt. Donec posuere lorem eu est mattis commodo. Suspendisse pretium nibh nec convallis vehicula. Cras ac suscipit mi, vitae laoreet mauris. Aliquam erat volutpat. Quisque scelerisque nunc ut congue scelerisque.</p>\r\n<p><strong>Добавить ссылку &ndash; одна открывается в текущем окне, одна в соседнем </strong></p>\r\n<p><a href="http://uk.lipsum.com/">Proin justo nisl, faucibus</a> nec dignissim a, tincidunt at lorem. Vivamus ligula arcu, faucibus a ex et, viverra molestie velit. Donec ut justo arcu. Integer a lorem ut massa mattis vestibulum. Fusce in lacus eget dolor finibus vestibulum. Vestibulum lobortis placerat felis non feugiat. Sed eu risus non nisi iaculis elementum. <a href="https://google.com/">Etiam eu eros eget</a> ante cursus laoreet in ut nisi. Phasellus porta, est vitae accumsan dictum, erat nibh bibendum tellus, id suscipit elit mauris nec felis. Nunc in sodales erat, in scelerisque sapien. Aenean rutrum ligula leo, nec fringilla mi consectetur a. Quisque molestie nulla sit amet nibh dictum maximus.</p>\r\n<p><a href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p>&nbsp;</p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><strong>Изменить форматирование &ndash; размер, цвет, фон, формат, начертание шрифта (все возможные варианты редактора)</strong></p>\r\n<p><strong>Nunc ac massa sit amet erat dignissim tristique. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent lorem justo, vestibulum quis posuere blandit, </strong>volutpat <em>vitae tellus. Sed blandit tortor vitae libero porttitor, eu vehicula odio dapibus. Quisque rhoncus facilisis vulputate. Etiam mi sem, placerat ut erat non, accumsan dignissim magna. Nullam tempor eleifend erat eu placerat. Nulla suscipit nunc sed</em> tortor sodales sodales. Suspendisse porta placerat tellus, eget luctus arcu blandit at. Suspendisse imperdiet, sapien ac hendrerit laoreet, mauris tortor porttitor augue, pellentesque mattis nisi nulla eu urna. Donec dictum sed velit id tristique. Vivamus sit amet eleifend ex. Quisque ullamcorper rhoncus congue.</p>\r\n<p>Duis imperdiet neque velit, vel tempor dui volutpat sit amet. Sed laoreet quam vitae sem vulputate vulputate sed et metus. Phasellus nec eros rhoncus, semper tortor nec, rutrum justo. Donec in lectus ullamcorper, aliquam nibh vitae, commodo augue. Duis eget lorem ac purus venenatis eleifend. Phasellus finibus magna at ante volutpat, vel porttitor ante gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<table width="717">\r\n<tbody>\r\n<tr>\r\n<td width="33">\r\n<p>№</p>\r\n</td>\r\n<td width="110">\r\n<p>1</p>\r\n</td>\r\n<td width="58">\r\n<p>2</p>\r\n</td>\r\n<td width="60">\r\n<p>3</p>\r\n</td>\r\n<td width="80">\r\n<p>4</p>\r\n</td>\r\n<td width="86">\r\n<p>5</p>\r\n</td>\r\n<td width="67">\r\n<p>6</p>\r\n</td>\r\n<td width="80">\r\n<p>7</p>\r\n</td>\r\n<td width="72">\r\n<p>8</p>\r\n</td>\r\n<td width="72">\r\n<p>9</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>1</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>2.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>3.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>', 1, 'en'),
-(18, 'Sensitive - Imago - Hauptseite', 'Sensitive - Imago - Hauptseite - h1', 'Sensitive - Imago - Hauptseite - title', 'Sensitive - Imago - Hauptseite - keywords', 'Sensitive - Imago - Hauptseite - description', NULL, 1, 'de'),
-(19, 'Sensitive - Imago - Casa', 'Sensitive - Imago - Casa - h1', 'Sensitive - Imago - Casa - title', 'Sensitive - Imago - Casa - keywords', 'Sensitive - Imago - Casa - description', NULL, 1, 'sp'),
-(20, 'Sensitive - Imago - Maison', 'Sensitive - Imago - Maison h1', 'Sensitive - Imago - Maison title', 'Sensitive - Imago - Maison keywords', 'Sensitive - Imago - Maison description', NULL, 1, 'fr'),
-(21, 'Новости', 'Новости - h1', 'Новости - title', 'Новости - keywords', 'Новости - description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', 2, 'ru'),
-(22, 'News', 'News - h1', 'News - title', 'News - keywords', 'News - description', NULL, 2, 'en'),
-(23, 'Nachrichten', 'Nachrichten - h1', 'Nachrichten - title', 'Nachrichten - keywords', 'Nachrichten - description', NULL, 2, 'de'),
-(24, 'Noticias', 'Noticias - h1', 'Noticias - title', 'Noticias - keywords', 'Noticias - description', NULL, 2, 'sp'),
-(25, 'Nouvelles', 'Nouvelles - h1', 'Nouvelles - title', 'Nouvelles - keywords', 'Nouvelles - description', NULL, 2, 'fr'),
-(26, 'Контакты', 'Контакты - h1', 'Контакты - title', 'Контакты - keywords', 'Контакты - description', NULL, 3, 'ru'),
-(27, 'Сontacts', 'Сontacts - h1', 'Сontacts - title', 'Сontacts - keywords', 'Сontacts - keywords', NULL, 3, 'en'),
-(28, 'Kontakte', 'Kontakte - h1', 'Kontakte - title', 'Kontakte - keywords', 'Kontakte - description', NULL, 3, 'de'),
-(29, 'Сontactos', 'Сontactos - h1', 'Сontactos - title', 'Сontactos - keywords', 'Сontactos - description', NULL, 3, 'sp'),
-(30, 'Сontacts', 'Сontacts - h1', 'Сontacts - title', 'Сontacts - keywords', 'Сontacts - keywords', NULL, 3, 'fr'),
-(31, 'Наша команда', 'Наша команда - h1', 'Наша команда - title', 'Наша команда - keywords', 'Наша команда - keywords', NULL, 4, 'ru'),
-(32, 'Our team', 'Our team - h1', 'Our team - title', 'Our team - keywords', 'Our team - description', NULL, 4, 'en'),
-(33, 'Unser Team', 'Unser Team - h1', 'Unser Team - title', 'Unser Team - keywords', 'Unser Team - description', NULL, 4, 'de'),
-(34, 'Nuestro equipo', 'Nuestro equipo - h1', 'Nuestro equipo - title', 'Nuestro equipo - keywords', 'Nuestro equipo - description', NULL, 4, 'sp'),
-(35, 'Notre équipe', 'Notre équipe - h1', 'Notre équipe - title', 'Notre équipe - keywords', 'Notre équipe - description', NULL, 4, 'fr'),
-(36, 'Отзывы', 'Отзывы - h1', 'Отзывы - title', 'Отзывы - keywords', 'Отзывы - description', NULL, 5, 'ru');
+INSERT INTO `control_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `description`, `text`, `location`, `time`, `row_id`, `language`) VALUES
+(1, 'Sensitive - Imago - Главная страница', 'Sensitive - Imago - Главная страница h1', 'Sensitive - Imago - Главная страница title', 'Sensitive - Imago - Главная страница keywords', 'Sensitive - Imago - Главная страница description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', NULL, NULL, 1, 'ru'),
+(17, 'Sensitive - Imago - Main page', 'Sensitive - Imago - Main page h1', 'Sensitive - Imago - Main page title', 'Sensitive - Imago - Main page keywords', 'Sensitive - Imago - Main page description', '<p><strong>Использовать все виды списков</strong></p>\r\n<ul>\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.</li>\r\n</ul>\r\n<ol>\r\n<li>Curabitur vehicula arcu elementum ultrices convallis.</li>\r\n<li>Curabitur at massa ultrices, sollicitudin ipsum eu, tincidunt sem.</li>\r\n<li>Praesent iaculis nibh quis lectus egestas porta.</li>\r\n<li>Sed condimentum felis tristique elit ultrices, vel pulvinar nisl mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ul>\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: circle;">\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: square;">\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ul>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>левому</strong> <strong>краю</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed maximus lorem. Vivamus sed metus aliquet, tempor turpis sit amet, volutpat risus. Fusce magna neque, pellentesque vitae purus vel, pellentesque maximus ante. Vivamus diam lectus, lobortis nec ipsum quis, laoreet semper odio. Nam consectetur nisi turpis, ut pulvinar justo aliquam vitae. Fusce egestas eros sodales, aliquam erat sed, vulputate massa. Mauris eu dolor vitae dui tempus semper. Cras elementum, nibh vel scelerisque dignissim, metus orci malesuada tellus, maximus eleifend urna libero quis ipsum. Ut ex lectus, scelerisque sed cursus nec, ullamcorper ut elit.</p>\r\n<p><strong>Выравнивание по левому правому краю</strong></p>\r\n<p style="text-align: right;">Cras imperdiet dolor eu vestibulum congue. Proin suscipit fermentum ex, quis tempor est cursus non. Nullam suscipit augue dui. Ut molestie interdum tortor maximus commodo. Vestibulum non est volutpat, molestie mauris in, feugiat est. Donec consequat ligula sed egestas pretium. Nam ac mauris rhoncus, lobortis dui non, molestie leo. Quisque pretium sed metus sed tristique. Fusce a nibh eu justo pharetra blandit. Nullam id risus erat. Aenean malesuada quam ut est auctor, vitae ullamcorper velit congue. In in placerat tellus. Duis sit amet dui id purus porta ornare non ac erat. Aenean dapibus arcu elit, tempor gravida arcu blandit eu.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>центру</strong></p>\r\n<p style="text-align: center;">Sed tempor, ante vitae faucibus feugiat, felis magna pretium nisl, ac pellentesque mi mi id augue. Aliquam a mauris lobortis, congue odio ac, dictum quam. Suspendisse tempus orci ut molestie cursus. Etiam consectetur vehicula ipsum, et sodales nisl. Vestibulum id aliquam libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo in neque pharetra iaculis.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>ширине</strong></p>\r\n<p style="text-align: justify;">Donec quis fermentum risus. Aliquam efficitur aliquam urna, vitae ornare purus feugiat non. Nam laoreet, velit at porta aliquam, dolor sem pretium nulla, vel sagittis sapien ante eget sapien. Sed est elit, lacinia et urna vel, venenatis vestibulum tortor. Duis ac tincidunt dolor. Pellentesque lacinia hendrerit urna sit amet lobortis. Suspendisse potenti. Vivamus eu sapien sollicitudin, elementum turpis efficitur, feugiat sapien. Nulla congue rutrum nisl. Quisque pretium facilisis ligula eu tincidunt. Donec posuere lorem eu est mattis commodo. Suspendisse pretium nibh nec convallis vehicula. Cras ac suscipit mi, vitae laoreet mauris. Aliquam erat volutpat. Quisque scelerisque nunc ut congue scelerisque.</p>\r\n<p><strong>Добавить ссылку &ndash; одна открывается в текущем окне, одна в соседнем </strong></p>\r\n<p><a href="http://uk.lipsum.com/">Proin justo nisl, faucibus</a> nec dignissim a, tincidunt at lorem. Vivamus ligula arcu, faucibus a ex et, viverra molestie velit. Donec ut justo arcu. Integer a lorem ut massa mattis vestibulum. Fusce in lacus eget dolor finibus vestibulum. Vestibulum lobortis placerat felis non feugiat. Sed eu risus non nisi iaculis elementum. <a href="https://google.com/">Etiam eu eros eget</a> ante cursus laoreet in ut nisi. Phasellus porta, est vitae accumsan dictum, erat nibh bibendum tellus, id suscipit elit mauris nec felis. Nunc in sodales erat, in scelerisque sapien. Aenean rutrum ligula leo, nec fringilla mi consectetur a. Quisque molestie nulla sit amet nibh dictum maximus.</p>\r\n<p><a href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p>&nbsp;</p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><strong>Изменить форматирование &ndash; размер, цвет, фон, формат, начертание шрифта (все возможные варианты редактора)</strong></p>\r\n<p><strong>Nunc ac massa sit amet erat dignissim tristique. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent lorem justo, vestibulum quis posuere blandit, </strong>volutpat <em>vitae tellus. Sed blandit tortor vitae libero porttitor, eu vehicula odio dapibus. Quisque rhoncus facilisis vulputate. Etiam mi sem, placerat ut erat non, accumsan dignissim magna. Nullam tempor eleifend erat eu placerat. Nulla suscipit nunc sed</em> tortor sodales sodales. Suspendisse porta placerat tellus, eget luctus arcu blandit at. Suspendisse imperdiet, sapien ac hendrerit laoreet, mauris tortor porttitor augue, pellentesque mattis nisi nulla eu urna. Donec dictum sed velit id tristique. Vivamus sit amet eleifend ex. Quisque ullamcorper rhoncus congue.</p>\r\n<p>Duis imperdiet neque velit, vel tempor dui volutpat sit amet. Sed laoreet quam vitae sem vulputate vulputate sed et metus. Phasellus nec eros rhoncus, semper tortor nec, rutrum justo. Donec in lectus ullamcorper, aliquam nibh vitae, commodo augue. Duis eget lorem ac purus venenatis eleifend. Phasellus finibus magna at ante volutpat, vel porttitor ante gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<table width="717">\r\n<tbody>\r\n<tr>\r\n<td width="33">\r\n<p>№</p>\r\n</td>\r\n<td width="110">\r\n<p>1</p>\r\n</td>\r\n<td width="58">\r\n<p>2</p>\r\n</td>\r\n<td width="60">\r\n<p>3</p>\r\n</td>\r\n<td width="80">\r\n<p>4</p>\r\n</td>\r\n<td width="86">\r\n<p>5</p>\r\n</td>\r\n<td width="67">\r\n<p>6</p>\r\n</td>\r\n<td width="80">\r\n<p>7</p>\r\n</td>\r\n<td width="72">\r\n<p>8</p>\r\n</td>\r\n<td width="72">\r\n<p>9</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>1</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>2.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>3.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>', NULL, NULL, 1, 'en'),
+(18, 'Sensitive - Imago - Hauptseite', 'Sensitive - Imago - Hauptseite - h1', 'Sensitive - Imago - Hauptseite - title', 'Sensitive - Imago - Hauptseite - keywords', 'Sensitive - Imago - Hauptseite - description', NULL, NULL, NULL, 1, 'de'),
+(19, 'Sensitive - Imago - Casa', 'Sensitive - Imago - Casa - h1', 'Sensitive - Imago - Casa - title', 'Sensitive - Imago - Casa - keywords', 'Sensitive - Imago - Casa - description', NULL, NULL, NULL, 1, 'sp'),
+(20, 'Sensitive - Imago - Maison', 'Sensitive - Imago - Maison h1', 'Sensitive - Imago - Maison title', 'Sensitive - Imago - Maison keywords', 'Sensitive - Imago - Maison description', NULL, NULL, NULL, 1, 'fr'),
+(21, 'Новости', 'Новости - h1', 'Новости - title', 'Новости - keywords', 'Новости - description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', NULL, NULL, 2, 'ru'),
+(22, 'News', 'News - h1', 'News - title', 'News - keywords', 'News - description', NULL, NULL, NULL, 2, 'en'),
+(23, 'Nachrichten', 'Nachrichten - h1', 'Nachrichten - title', 'Nachrichten - keywords', 'Nachrichten - description', NULL, NULL, NULL, 2, 'de'),
+(24, 'Noticias', 'Noticias - h1', 'Noticias - title', 'Noticias - keywords', 'Noticias - description', NULL, NULL, NULL, 2, 'sp'),
+(25, 'Nouvelles', 'Nouvelles - h1', 'Nouvelles - title', 'Nouvelles - keywords', 'Nouvelles - description', NULL, NULL, NULL, 2, 'fr'),
+(26, 'Контакты', 'Контакты - h1', 'Контакты - title', 'Контакты - keywords', 'Контакты - description', NULL, '<p>02091, Украина, город Киев,<br /> улица Харьковское шоссе 164,<br /> ООО "Альфа-Мед Юкрейн</p>', '<p>ПН - Пт : 10:00 -18:00<br /> Сб : 10:00 - 15:00<br /> Вс - выходной</p>', 3, 'ru'),
+(27, 'Сontacts', 'Сontacts - h1', 'Сontacts - title', 'Сontacts - keywords', 'Сontacts - keywords', NULL, '', '', 3, 'en'),
+(28, 'Kontakte', 'Kontakte - h1', 'Kontakte - title', 'Kontakte - keywords', 'Kontakte - description', NULL, '', '', 3, 'de'),
+(29, 'Сontactos', 'Сontactos - h1', 'Сontactos - title', 'Сontactos - keywords', 'Сontactos - description', NULL, '', '', 3, 'sp'),
+(30, 'Сontacts', 'Сontacts - h1', 'Сontacts - title', 'Сontacts - keywords', 'Сontacts - keywords', NULL, '', '', 3, 'fr'),
+(31, 'Наша команда', 'Наша команда - h1', 'Наша команда - title', 'Наша команда - keywords', 'Наша команда - keywords', NULL, NULL, NULL, 4, 'ru'),
+(32, 'Our team', 'Our team - h1', 'Our team - title', 'Our team - keywords', 'Our team - description', NULL, NULL, NULL, 4, 'en'),
+(33, 'Unser Team', 'Unser Team - h1', 'Unser Team - title', 'Unser Team - keywords', 'Unser Team - description', NULL, NULL, NULL, 4, 'de'),
+(34, 'Nuestro equipo', 'Nuestro equipo - h1', 'Nuestro equipo - title', 'Nuestro equipo - keywords', 'Nuestro equipo - description', NULL, NULL, NULL, 4, 'sp'),
+(35, 'Notre équipe', 'Notre équipe - h1', 'Notre équipe - title', 'Notre équipe - keywords', 'Notre équipe - description', NULL, NULL, NULL, 4, 'fr'),
+(36, 'Отзывы', 'Отзывы - h1', 'Отзывы - title', 'Отзывы - keywords', 'Отзывы - description', NULL, NULL, NULL, 5, 'ru'),
+(37, 'Reviews', 'Reviews - description', 'Reviews - title', 'Reviews - keywords', 'Reviews - description', NULL, NULL, NULL, 5, 'en'),
+(38, 'Reviews', 'Reviews - h1', 'Reviews - title', 'Reviews - keywords', 'Reviews - description', NULL, NULL, NULL, 5, 'de'),
+(39, 'Reviews', 'Reviews - h1', 'Reviews - title  ', 'Reviews - keywords', 'Reviews - description', NULL, NULL, NULL, 5, 'sp'),
+(40, 'Reviews', 'Reviews - h1', 'Reviews - title', 'Reviews - keywords', 'Reviews - description', NULL, NULL, NULL, 5, 'fr'),
+(41, 'Галерея', 'Галерея - h1', 'Галерея - title', 'Галерея - keywords', 'Галерея - description', NULL, NULL, NULL, 6, 'ru'),
+(42, 'Gallery', 'Gallery - h1', 'Gallery - title', 'Gallery - keywords', 'Gallery - description', NULL, NULL, NULL, 6, 'en'),
+(43, 'Galerie', 'Galerie - h1', 'Galerie - title', 'Galerie - keywords', 'Galerie - description', NULL, NULL, NULL, 6, 'de'),
+(44, 'Galería', 'Galería - h1', 'Galería - title', 'Galería - keywords', 'Galería - description', NULL, NULL, NULL, 6, 'sp'),
+(45, 'Galerie', 'Galerie - h1', 'Galerie - title', 'Galerie - keywords', 'Galerie - description', NULL, NULL, NULL, 6, 'fr'),
+(46, 'Видеогаллерея', 'Видеогаллерея', 'Видеогаллерея', 'Видеогаллерея', 'Видеогаллерея', 'Видеогаллерея', NULL, NULL, 7, 'ru'),
+(47, 'Video Gallery', 'Video Gallery', 'Video Gallery', 'Video Gallery', 'Video Gallery', NULL, NULL, NULL, 7, 'en'),
+(48, 'Video-Galerie', 'Video-Galerie', 'Video-Galerie', 'Video-Galerie', 'Video-Galerie', NULL, NULL, NULL, 7, 'de'),
+(49, 'Galería de vídeo', 'Galería de vídeo', 'Galería de vídeo', 'Galería de vídeo', 'Galería de vídeo', NULL, NULL, NULL, 7, 'sp'),
+(50, 'Galerie vidéo', 'Galerie vidéo', 'Galerie vidéo', 'Galerie vidéo', 'Galerie vidéo', NULL, NULL, NULL, 7, 'fr'),
+(51, 'Преимущества', 'Преимущества', 'Преимущества', 'Преимущества', 'Преимущества', NULL, NULL, NULL, 8, 'ru'),
+(52, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'en'),
+(53, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'de'),
+(54, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'sp'),
+(55, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'fr');
 
 -- --------------------------------------------------------
 
@@ -1511,6 +1639,83 @@ CREATE TABLE IF NOT EXISTS `cron` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `gallery`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `image` varchar(128) DEFAULT NULL,
+  `alias` varchar(255) NOT NULL,
+  `sort` int(10) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `created_at`, `updated_at`, `status`, `image`, `alias`, `sort`) VALUES
+(3, 1473422432, 1473422881, 1, 'b4b8e063167573ddc441b98399ace054.jpg', 'first', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `gallery_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `description` text CHARACTER SET cp1251,
+  `keywords` text CHARACTER SET cp1251,
+  `text` text CHARACTER SET cp1251,
+  `h1` varchar(250) CHARACTER SET cp1251 DEFAULT NULL,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `gallery_i18n`
+--
+
+INSERT INTO `gallery_i18n` (`id`, `name`, `title`, `description`, `keywords`, `text`, `h1`, `row_id`, `language`) VALUES
+(7, 'Первая', 'Первая title', 'Первая description', 'Первая keywords', NULL, 'Первая h1', 3, 'ru'),
+(8, 'First', 'First title', 'First description', 'First keywords', NULL, 'First h1', 3, 'en'),
+(9, 'First', 'First title', 'First description', 'First keywords', NULL, 'First h1', 3, 'de'),
+(10, 'First', 'First title', 'First description', 'First keywords', NULL, 'First h1', 3, 'sp'),
+(11, 'First', 'First title', 'First description', 'First keywords', NULL, 'First h1', 3, 'fr');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `gallery_images`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_images` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `image` varchar(128) NOT NULL,
+  `main` tinyint(1) NOT NULL DEFAULT '0',
+  `gallery_id` int(10) NOT NULL,
+  `sort` int(10) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `gallery_images`
+--
+
+INSERT INTO `gallery_images` (`id`, `created_at`, `updated_at`, `image`, `main`, `gallery_id`, `sort`) VALUES
+(14, 1473426832, NULL, '581d409d073bf3aefe3fd3076f121d17.jpg', 0, 3, 1),
+(15, 1473426834, NULL, '0360729b400a78de275e1f9846a5f1b1.jpg', 0, 3, 2),
+(16, 1473426836, NULL, '2d078bf9d80de13e131295a1d2e5837a.jpg', 0, 3, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `i18n`
 --
 
@@ -1550,7 +1755,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   `type` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `log`
@@ -1569,7 +1774,9 @@ INSERT INTO `log` (`id`, `created_at`, `updated_at`, `name`, `link`, `ip`, `dele
 (10, 1471336013, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/53', '178.136.229.251', 0, 6, 0),
 (11, 1471336835, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/3', '178.136.229.251', 0, 2, 0),
 (12, 1471337458, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/4', '178.136.229.251', 0, 2, 0),
-(13, 1471337571, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/54', '178.136.229.251', 0, 6, 0);
+(13, 1471337571, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/54', '178.136.229.251', 0, 6, 0),
+(14, 1474113299, NULL, 'Публикация нового отзыва', '/wezom/reviews/edit/29', '127.0.0.1', 0, 2, 0),
+(15, 1474113757, NULL, 'Публикация нового отзыва', '/wezom/reviews/edit/30', '127.0.0.1', 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -1639,7 +1846,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `updated_at` int(10) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `count` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `menu`
@@ -1654,7 +1861,7 @@ INSERT INTO `menu` (`id`, `id_parent`, `name`, `link`, `sort`, `status`, `update
 (12, 2, 'Теги для конкретных ссылок', 'seo_links/index', 0, 1, NULL, NULL, NULL),
 (13, 2, 'Добавить теги для ссылки', 'seo_links/add', 0, 1, NULL, NULL, NULL),
 (14, 0, 'Шаблоны писем', 'mailTemplates/index', 97, 1, NULL, 'fa-file-image-o', NULL),
-(15, 0, 'Меню', 'menu/index', 4, 1, NULL, 'fa-list-ul', NULL),
+(15, 0, 'Меню', 'menu/index', 4, 1, NULL, 'fa-bars', NULL),
 (19, 156, 'Список новостей', 'news/index', 4, 1, NULL, NULL, NULL),
 (20, 156, 'Добавить новость', 'news/add', 5, 1, NULL, NULL, NULL),
 (25, 64, 'Список слайдов', 'slider/index', 1, 1, NULL, NULL, NULL),
@@ -1679,7 +1886,6 @@ INSERT INTO `menu` (`id`, `id_parent`, `name`, `link`, `sort`, `status`, `update
 (125, 124, 'Список отзывов', 'reviews/index', 1, 1, NULL, NULL, NULL),
 (126, 124, 'Добавить отзыв', 'reviews/add', 2, 1, NULL, NULL, NULL),
 (127, 4, 'Основные', 'config/edit', 1, 1, NULL, NULL, NULL),
-(128, 4, 'Номера телефонов', 'phones/index', 2, 1, NULL, NULL, NULL),
 (132, 0, 'Переводы', 'translates/general', 99, 1, NULL, 'fa-language', NULL),
 (142, 38, 'Теги', 'tags/index', 9, 1, NULL, NULL, NULL),
 (143, 38, 'Добавить тег', 'tags/add', 10, 1, NULL, NULL, NULL),
@@ -1687,9 +1893,28 @@ INSERT INTO `menu` (`id`, `id_parent`, `name`, `link`, `sort`, `status`, `update
 (165, 0, 'Наша команда', NULL, 2, 1, NULL, 'fa-group', NULL),
 (166, 165, 'Список', 'team/index', 4, 1, NULL, NULL, NULL),
 (167, 165, 'Добавить', 'team/add', 9, 1, NULL, NULL, NULL),
-(168, 0, 'Отзывы пациентов', NULL, 3, 1, NULL, 'fa-quote-right', NULL),
-(169, 168, 'Список отзывов', 'reviews/index', 1, 1, NULL, NULL, NULL),
-(170, 168, 'Добавить отзыв', 'reviews/add', 2, 1, NULL, NULL, NULL);
+(168, 0, 'Отзывы', NULL, 3, 1, NULL, 'fa-quote-right', NULL),
+(169, 168, 'Список отзывов пациентов', 'reviews/index', 1, 1, NULL, NULL, NULL),
+(170, 168, 'Добавить отзыв пациентов', 'reviews/add', 2, 1, NULL, NULL, NULL),
+(171, 168, 'Список отзывов пользователей', 'video_review/index', 5, 1, NULL, NULL, NULL),
+(172, 168, 'Добавить отзыв пользователей', 'video_review/add', 5, 1, NULL, NULL, NULL),
+(173, 0, 'Мультимедиа', NULL, 4, 1, NULL, 'fa-file-image-o', NULL),
+(174, 173, 'Фотогалерея', 'gallery/index', 5, 1, NULL, NULL, NULL),
+(175, 173, 'Добавить фотогалерею', 'gallery/add', 6, 1, NULL, NULL, NULL),
+(176, 173, 'Видеогалерея', 'video/index', 7, 1, NULL, NULL, NULL),
+(177, 173, 'Добавить видеогаллерею', 'video/add', 7, 1, NULL, NULL, NULL),
+(178, 0, 'Преимущества', NULL, 4, 1, NULL, 'fa-cloud', NULL),
+(179, 178, 'Иконки', 'svg/index', 8, 1, NULL, NULL, NULL),
+(180, 178, 'Добавить иконку', 'svg/add', 9, 1, NULL, NULL, NULL),
+(181, 173, 'Слайдер', 'slider/index', 9, 1, NULL, NULL, NULL),
+(182, 173, 'Добавить слайд', 'slider/add', 10, 1, NULL, NULL, NULL),
+(183, 178, 'Преимущества', 'advantage/index', 0, 1, NULL, NULL, NULL),
+(184, 178, 'Добавить преимущество', 'advantage/add', 1, 1, NULL, NULL, NULL),
+(185, 0, 'Контент', NULL, 6, 1, NULL, 'fa-file-code-o', NULL),
+(186, 185, 'Текстовые страницы', 'content/index', 0, 1, NULL, NULL, NULL),
+(187, 185, 'Добавить страницу', 'content/add', 1, 1, NULL, NULL, NULL),
+(188, 173, 'Слайдер "О нас"', 'simple/index', 11, 1, NULL, NULL, NULL),
+(189, 173, 'Добавить слайд "О нас"', 'simple/add', 12, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1713,13 +1938,13 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 INSERT INTO `news` (`id`, `created_at`, `updated_at`, `status`, `alias`, `date`, `image`, `views`) VALUES
-(28, 1470812541, NULL, 1, '1058', 1470776400, '7af57b9c70c425583d95b06c0a08f498.jpg', 0),
-(29, 1470812656, 1473169837, 1, '4815', 1470776400, 'f638c7182173836727fba0e550047285.jpg', 4),
-(30, 1470812853, NULL, 1, '9439', 1470603600, '413797e737fe8176e506118bc694a1a5.jpg', 0),
-(31, 1470826479, 1470826514, 1, '8549', 1470776400, '30df492da2ad96518c502069204d574b.jpg', 0),
+(28, 1470812541, 1474110097, 1, '1058', 1470776400, '7af57b9c70c425583d95b06c0a08f498.jpg', 2),
+(29, 1470812656, 1473664361, 1, '4815', 1470776400, 'f638c7182173836727fba0e550047285.jpg', 8),
+(30, 1470812853, 1473748618, 1, '9439', 1470603600, '413797e737fe8176e506118bc694a1a5.jpg', 1),
+(31, 1470826479, 1473664353, 1, '8549', 1470776400, '30df492da2ad96518c502069204d574b.jpg', 2),
 (32, 1470830022, 1473166114, 1, 'kamp-nou', 1470776400, 'c4b6acba160575e5205ff41474436492.jpg', 9),
-(33, 1470830192, 1473227185, 1, 'slavutich-arena', 1469998800, '9b3f285064515811a57e7db75f66df49.jpg', 2),
-(48, 1473153590, 1473227173, 1, 'stadion-metallist', 1473109200, '1c5f4b8b44bf60923879271cb1226721.jpg', 10);
+(33, 1470830192, 1473748627, 1, 'slavutich-arena', 1469998800, '9b3f285064515811a57e7db75f66df49.jpg', 3),
+(48, 1473153590, 1473657834, 1, 'stadion-metallist', 1473109200, '1c5f4b8b44bf60923879271cb1226721.jpg', 17);
 
 -- --------------------------------------------------------
 
@@ -1737,7 +1962,7 @@ CREATE TABLE IF NOT EXISTS `news_i18n` (
   `keywords` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `news_i18n`
@@ -1769,7 +1994,16 @@ INSERT INTO `news_i18n` (`id`, `name`, `text`, `h1`, `title`, `description`, `ke
 (85, 'Camp Nou', '', NULL, NULL, NULL, NULL, 32, 'fr'),
 (86, 'Slavutich Arena', '', NULL, NULL, NULL, NULL, 33, 'de'),
 (87, 'Slavutich Arena', '', NULL, NULL, NULL, NULL, 33, 'sp'),
-(88, 'Slavutich Arena', '', NULL, NULL, NULL, NULL, 33, 'fr');
+(88, 'Slavutich Arena', '', NULL, NULL, NULL, NULL, 33, 'fr'),
+(89, NULL, NULL, NULL, NULL, NULL, NULL, 31, 'de'),
+(90, NULL, NULL, NULL, NULL, NULL, NULL, 31, 'sp'),
+(91, NULL, NULL, NULL, NULL, NULL, NULL, 31, 'fr'),
+(92, NULL, NULL, NULL, NULL, NULL, NULL, 30, 'de'),
+(93, NULL, NULL, NULL, NULL, NULL, NULL, 30, 'sp'),
+(94, NULL, NULL, NULL, NULL, NULL, NULL, 30, 'fr'),
+(95, NULL, NULL, NULL, NULL, NULL, NULL, 28, 'de'),
+(96, NULL, NULL, NULL, NULL, NULL, NULL, 28, 'sp'),
+(97, NULL, NULL, NULL, NULL, NULL, NULL, 28, 'fr');
 
 -- --------------------------------------------------------
 
@@ -2229,23 +2463,28 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `id` int(10) NOT NULL,
   `created_at` int(10) DEFAULT NULL,
   `updated_at` int(10) DEFAULT NULL,
+  `ip` varchar(42) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
+  `phone` varchar(150) NOT NULL,
   `name` varchar(255) NOT NULL,
   `text` text NOT NULL,
   `city` varchar(128) DEFAULT NULL,
   `title` varchar(250) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL,
   `mark` enum('1','2','3','4','5') DEFAULT '5'
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `reviews`
 --
 
-INSERT INTO `reviews` (`id`, `created_at`, `updated_at`, `status`, `name`, `text`, `city`, `title`, `language`, `mark`) VALUES
-(25, 1473251407, NULL, 1, 'Евгений Николаевич', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли. Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс терапии пришелся на пользу!', 'г. Будапешт, Венгрия', 'пациент, 57 лет', 'ru', '4'),
-(26, 1473251443, NULL, 1, 'Анна Сергеевна', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли. Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс терапии пришелся на пользу!', 'г. Будапешт, Венгрия', 'пациент, 32 года', 'ru', '5'),
-(27, 1473251480, NULL, 1, 'Марина Александровна', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли. Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс терапии пришелся на пользу!', 'г. Будапешт, Венгрия', 'пациент, 20 лет', 'ru', '5');
+INSERT INTO `reviews` (`id`, `created_at`, `updated_at`, `ip`, `status`, `phone`, `name`, `text`, `city`, `title`, `language`, `mark`) VALUES
+(25, 1473251407, NULL, NULL, 1, '', 'Евгений Николаевич', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли. Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс терапии пришелся на пользу!', 'г. Будапешт, Венгрия', 'пациент, 57 лет', 'ru', '4'),
+(26, 1473251443, NULL, NULL, 1, '', 'Анна Сергеевна', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли. Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс терапии пришелся на пользу!', 'г. Будапешт, Венгрия', 'пациент, 32 года', 'ru', '5'),
+(27, 1473251480, NULL, NULL, 1, '', 'Марина Александровна', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли. Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс терапии пришелся на пользу!', 'г. Будапешт, Венгрия', 'пациент, 20 лет', 'ru', '5'),
+(28, 1473337133, NULL, NULL, 1, '', 'Иванов Иван', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве "SENSITIV IMAGO". У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул нормализировался. Физически стала способной на большее. По дому могу делать больше чем до сих пор. Симптомы сильной заложенности носа уменьшились. Было воспаление горла, и сопровождающиеся с ним симптомы тоже уменьшились. Боли в груди и дрожание губ под... ...воздействием терапии прошли. Сильно выпадали волосы - степень выпадения уменьшилась. То есть в общей сложности курс терапии пришелся на пользу!', 'г. Таллин, Эстония', 'пациент, 25 лет', 'ru', '5'),
+(29, 1474113299, NULL, '127.0.0.1', 1, '+380669610285', 'Дмитрий', 'Коментарий', NULL, NULL, 'ru', '3'),
+(30, 1474113757, NULL, '127.0.0.1', 0, '+380669610285', 'Дмитрий', 'Хочу поделиться с опытом, приобретенным во время прохождения курса лечения. Перед началом менструации я побывала в представительстве &amp;quot;SENSITIV IMAGO&amp;quot;. У меня было нервное состояние, настроение не уравновешенное, наблюдались вздутие живота, сильные головные боли, мерзли конечности, бил озноб - под воздействием терапии эти симптомы прошли. Попеременно приходящие запор и понос прошли, стул', NULL, NULL, 'ru', '2');
 
 -- --------------------------------------------------------
 
@@ -2377,18 +2616,29 @@ CREATE TABLE IF NOT EXISTS `sitemenu` (
   `url` varchar(255) DEFAULT NULL,
   `nofollow` tinyint(1) unsigned DEFAULT '0',
   `group` tinyint(1) unsigned DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `sitemenu`
 --
 
 INSERT INTO `sitemenu` (`id`, `created_at`, `updated_at`, `status`, `sort`, `url`, `nofollow`, `group`) VALUES
-(11, 1448200602, 1471332067, 1, 0, 'about', 0, 0),
-(12, 1448200726, 1471332067, 1, 2, 'works', 0, 0),
-(13, 1448200745, 1471332067, 1, 1, 'services', 0, 0),
-(14, 1448200821, 1471332067, 1, 3, 'news', 0, 0),
-(15, 1448200875, 1471332067, 1, 4, 'contacts', 0, 0);
+(11, 1448200602, 1473412349, 1, 0, 'about', 0, 0),
+(12, 1448200726, 1473412349, 1, 2, 'equipment', 0, 0),
+(13, 1448200745, 1473412349, 1, 1, 'bussines', 0, 0),
+(14, 1448200821, 1473412349, 1, 3, 'gallery', 0, 0),
+(15, 1448200875, 1474017540, 1, 4, 'contact', 0, 0),
+(16, 1448200602, 1473412349, 1, 5, 'about', 0, 1),
+(17, 1448200726, 1473412349, 1, 7, 'equipment', 0, 1),
+(18, 1448200745, 1473412349, 1, 6, 'bussines', 0, 1),
+(19, 1448200821, 1473412349, 1, 8, 'gallery', 0, 1),
+(20, 1448200875, 1474017547, 1, 9, 'contact', 0, 1),
+(21, 1473411883, 1473412349, 1, 10, 'about', 0, 2),
+(22, 1473411949, 1473412349, 1, 11, 'team', 0, 2),
+(23, 1473412061, 1473412349, 1, 12, 'partners', 0, 2),
+(24, 1473412114, 1473412350, 1, 13, 'news', 0, 2),
+(25, 1473412175, 1473412350, 1, 14, 'gallery', 0, 2),
+(26, 1473412323, 1473412350, 1, 15, 'reviews', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -2401,7 +2651,7 @@ CREATE TABLE IF NOT EXISTS `sitemenu_i18n` (
   `name` varchar(64) DEFAULT NULL,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `sitemenu_i18n`
@@ -2410,14 +2660,84 @@ CREATE TABLE IF NOT EXISTS `sitemenu_i18n` (
 INSERT INTO `sitemenu_i18n` (`id`, `name`, `row_id`, `language`) VALUES
 (11, 'О компании', 11, 'ru'),
 (12, 'About', 11, 'en'),
-(14, 'Наши работы', 12, 'ru'),
-(15, 'Our work', 12, 'en'),
-(17, 'Услуги', 13, 'ru'),
-(18, 'Services', 13, 'en'),
-(20, 'Новости', 14, 'ru'),
-(21, 'News', 14, 'en'),
+(14, 'Оборудовние', 12, 'ru'),
+(15, 'Equipment', 12, 'en'),
+(17, 'Бизнес под ключ', 13, 'ru'),
+(18, 'Turnkey Business', 13, 'en'),
+(20, 'Галлерея', 14, 'ru'),
+(21, 'Gallery', 14, 'en'),
 (23, 'Контакты', 15, 'ru'),
-(24, 'Contacts', 15, 'en');
+(24, 'Contacts', 15, 'en'),
+(25, 'Turnkey-Geschäft', 13, 'de'),
+(26, 'Llave en mano de negocios', 13, 'sp'),
+(27, 'Affaires clé en main', 13, 'fr'),
+(28, 'Ausrüstung', 12, 'de'),
+(29, 'Equipo', 12, 'sp'),
+(30, 'équipement', 12, 'fr'),
+(31, 'Galerie', 14, 'de'),
+(32, 'galería', 14, 'sp'),
+(33, 'galerie', 14, 'fr'),
+(34, 'Kontakte', 15, 'de'),
+(35, 'contactos', 15, 'sp'),
+(36, 'contacts', 15, 'fr'),
+(37, 'О компании', 16, 'ru'),
+(38, 'About', 16, 'en'),
+(39, 'Оборудовние', 17, 'ru'),
+(40, 'Equipment', 17, 'en'),
+(41, 'Бизнес под ключ', 18, 'ru'),
+(42, 'Turnkey Business', 18, 'en'),
+(43, 'Галлерея', 19, 'ru'),
+(44, 'Gallery', 19, 'en'),
+(45, 'Контакты', 20, 'ru'),
+(46, 'Contacts', 20, 'en'),
+(47, 'Turnkey-Geschäft', 18, 'de'),
+(48, 'Llave en mano de negocios', 18, 'sp'),
+(49, 'Affaires clé en main', 18, 'fr'),
+(50, 'Ausrüstung', 17, 'de'),
+(51, 'Equipo', 17, 'sp'),
+(52, 'équipement', 17, 'fr'),
+(53, 'Galerie', 19, 'de'),
+(54, 'galería', 19, 'sp'),
+(55, 'galerie', 19, 'fr'),
+(56, 'Kontakte', 20, 'de'),
+(57, 'contactos', 20, 'sp'),
+(58, 'contacts', 20, 'fr'),
+(59, 'wir über uns', 16, 'de'),
+(60, 'Acerca de nosotros', 16, 'sp'),
+(61, 'A propos de nous', 16, 'fr'),
+(62, 'wir über uns', 11, 'de'),
+(63, 'Acerca de nosotros', 11, 'sp'),
+(64, 'A propos de nous', 11, 'fr'),
+(65, 'О нас', 21, 'ru'),
+(66, 'About us', 21, 'en'),
+(67, 'Über uns', 21, 'de'),
+(68, 'Acerca de nosotros', 21, 'sp'),
+(69, 'A propos de nous', 21, 'fr'),
+(70, 'Наша команда', 22, 'ru'),
+(71, 'Our team', 22, 'en'),
+(72, 'Unser Team', 22, 'de'),
+(73, 'nuestro equipo', 22, 'sp'),
+(74, 'Notre équipe', 22, 'fr'),
+(75, 'Наши партнеры', 23, 'ru'),
+(76, 'Our partners', 23, 'en'),
+(77, 'Unsere Partner', 23, 'de'),
+(78, 'nuestros socios', 23, 'sp'),
+(79, 'Nos partenaires', 23, 'fr'),
+(80, 'Новости', 24, 'ru'),
+(81, 'News', 24, 'en'),
+(82, 'Nachrichten', 24, 'de'),
+(83, 'noticias', 24, 'sp'),
+(84, 'nouvelles', 24, 'fr'),
+(85, 'Фотогаллерея', 25, 'ru'),
+(86, 'Gallery', 25, 'en'),
+(87, 'Fotogalerie', 25, 'de'),
+(88, 'Galería de fotos', 25, 'sp'),
+(89, 'Galerie de photos', 25, 'fr'),
+(90, 'Отзывы', 26, 'ru'),
+(91, 'Reviews', 26, 'en'),
+(92, 'Bewertungen', 26, 'de'),
+(93, 'opiniones', 26, 'sp'),
+(94, 'Avis', 26, 'fr');
 
 -- --------------------------------------------------------
 
@@ -2536,15 +2856,17 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `url` varchar(255) DEFAULT NULL,
   `image` varchar(128) DEFAULT NULL,
   `bg` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `slider`
 --
 
 INSERT INTO `slider` (`id`, `created_at`, `updated_at`, `status`, `sort`, `url`, `image`, `bg`) VALUES
-(13, 1470731390, 1471239114, 1, 0, '', 'd5f4eecb2394be405905ab0428065a65.jpg', 'd48798bbb0e64a9e3b7475d15b283d06.jpg'),
-(14, 1470731764, 1471333621, 1, 0, NULL, '0107c1985851437bd81661111f8bb2c8.jpg', '64dc9ea27ecfee34cae9db631e7d7735.jpg');
+(15, 1473688898, NULL, 1, 0, NULL, '0e032912c873de56b5a1fafddeaf3f69.jpg', NULL),
+(18, 1473746363, NULL, 1, 0, NULL, '2fcd22d8ff967b66a309a9b3ee751e06.jpg', NULL),
+(19, 1473746388, NULL, 1, 0, NULL, 'e243c06f0c778610e3361d46c01d3e8a.jpg', NULL),
+(20, 1473746421, NULL, 1, 0, NULL, '6ffdba906fe55b3df8fb719898166ee4.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -2559,17 +2881,287 @@ CREATE TABLE IF NOT EXISTS `slider_i18n` (
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL,
   `text_bottom` text
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `slider_i18n`
 --
 
 INSERT INTO `slider_i18n` (`id`, `name`, `text`, `row_id`, `language`, `text_bottom`) VALUES
-(1, 'Вместе расширим Ваши возможности', 'Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 13, 'ru', NULL),
-(2, 'Together increases your chances', 'We are convinced that the creative power of the movement is to understand the situation and the corresponding desire.', 13, 'en', NULL),
-(3, 'Вместе расширим Ваши возможности', 'Мы убеждены, что созидательная сила движения заключается в понимании ситуации и соответствующем желании.', 14, 'ru', NULL),
-(4, 'Together2 increases1 your chances', 'We are convinced that the creative power of the movement is to understand the situation and the corresponding desire.', 14, 'en', NULL);
+(5, 'First', NULL, 15, 'ru', NULL),
+(6, 'First', NULL, 15, 'en', NULL),
+(7, 'First', NULL, 15, 'de', NULL),
+(8, 'First', NULL, 15, 'sp', NULL),
+(9, 'First', NULL, 15, 'fr', NULL),
+(20, 'Second slide', NULL, 18, 'ru', NULL),
+(21, 'Second slide', NULL, 18, 'en', NULL),
+(22, 'Second slide', NULL, 18, 'de', NULL),
+(23, 'Second slide', NULL, 18, 'sp', NULL),
+(24, 'Second slide', NULL, 18, 'fr', NULL),
+(25, 'Third slide', NULL, 19, 'ru', NULL),
+(26, 'Third slide', NULL, 19, 'en', NULL),
+(27, 'Third slide', NULL, 19, 'de', NULL),
+(28, 'Third slide', NULL, 19, 'sp', NULL),
+(29, 'Third slide', NULL, 19, 'fr', NULL),
+(30, 'Four slide', NULL, 20, 'ru', NULL),
+(31, 'Four slide', NULL, 20, 'en', NULL),
+(32, 'Four slide', NULL, 20, 'de', NULL),
+(33, 'Four slide', NULL, 20, 'sp', NULL),
+(34, 'Four slide', NULL, 20, 'fr', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `slider_simple`
+--
+
+CREATE TABLE IF NOT EXISTS `slider_simple` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `sort` int(10) NOT NULL DEFAULT '0',
+  `url` varchar(255) DEFAULT NULL,
+  `image` varchar(128) DEFAULT NULL,
+  `bg` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `slider_simple`
+--
+
+INSERT INTO `slider_simple` (`id`, `created_at`, `updated_at`, `status`, `sort`, `url`, `image`, `bg`) VALUES
+(1, 1474015680, NULL, 1, 0, NULL, 'a29307d2e5f7557b41cc0de29d16599e.png', NULL),
+(2, 1474015793, 1474015802, 1, 0, NULL, 'bae732e168e8565f9530f031b534d146.png', NULL),
+(3, 1474015914, 1474015923, 1, 0, NULL, '45ae5ddeadc8e9297ff5c2c148c0af9f.png', NULL),
+(4, 1474015969, NULL, 1, 0, NULL, '4ee166daf8e651c54e1d149d4b790d80.png', NULL),
+(5, 1474016615, NULL, 1, 0, NULL, '370640a2f38a0e9a593ad6269bf0f868.png', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `slider_simple_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `slider_simple_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `text` varchar(150) DEFAULT NULL,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL,
+  `title` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `slider_simple_i18n`
+--
+
+INSERT INTO `slider_simple_i18n` (`id`, `name`, `text`, `row_id`, `language`, `title`) VALUES
+(1, '12 лет работы', 'На рынке', 1, 'ru', '12 лет работы'),
+(2, '12 years', 'On the market', 1, 'en', '12 years'),
+(3, '12 years', 'On the market', 1, 'de', '12 years'),
+(4, '12 years', 'On the market', 1, 'sp', '12 years'),
+(5, '12 years', 'On the market', 1, 'fr', '12 years'),
+(6, '1000+', 'Оздоровительных центров', 2, 'ru', '1000+'),
+(7, '1000+', 'Wellness Centre', 2, 'en', '1000+'),
+(8, '1000+', 'Wellness Centre', 2, 'de', '1000+'),
+(9, '1000+', 'Wellness Centre', 2, 'sp', '1000+'),
+(10, '1000+', 'Wellness Centre', 2, 'fr', '1000+'),
+(11, 'Более 65', 'Торговых офисов', 3, 'ru', 'Более 65'),
+(12, 'More than 65', 'trade offices', 3, 'en', 'More than 65'),
+(13, 'More than 65', 'trade offices', 3, 'de', 'More than 65'),
+(14, 'More than 65', 'trade offices', 3, 'sp', 'More than 65'),
+(15, 'More than 65', 'trade offices', 3, 'fr', 'More than 65'),
+(16, '2000+', 'Проданных едениц', 4, 'ru', '2000+'),
+(17, '2000+', 'sold items', 4, 'en', '2000+'),
+(18, '2000+', 'sold items', 4, 'de', '2000+'),
+(19, '2000+', 'sold items', 4, 'sp', '2000+'),
+(20, '2000+', 'sold items', 4, 'fr', '2000+'),
+(21, '2020+', 'Проданных едениц', 5, 'ru', '2020+'),
+(22, '2020+', 'sold items', 5, 'en', '2020+'),
+(23, '2020+', 'sold items', 5, 'de', '2020+'),
+(24, '2020+', 'sold items', 5, 'sp', '2020+'),
+(25, '2020+', 'sold items', 5, 'fr', '2020+');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `svg`
+--
+
+CREATE TABLE IF NOT EXISTS `svg` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `svg` text
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `svg`
+--
+
+INSERT INTO `svg` (`id`, `created_at`, `updated_at`, `status`, `svg`) VALUES
+(18, 1473764580, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="43.149px" height="37.838px" viewBox="0 0 43.149 37.838" enable-background="new 0 0 43.149 37.838" xml:space="preserve">\r\n<g enable-background="new    ">\r\n	<g>\r\n		<defs>\r\n			<rect id="SVGID_1_" width="43.149" height="37.838"/>\r\n		</defs>\r\n		<clipPath id="SVGID_2_">\r\n			<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g opacity="0.2" clip-path="url(#SVGID_2_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_3_" y="2" width="41.149" height="35.838"/>\r\n				</defs>\r\n				<clipPath id="SVGID_4_">\r\n					<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n				</clipPath>\r\n				<path clip-path="url(#SVGID_4_)" d="M36.006,24.398c0,0.353-0.288,0.641-0.644,0.641c-0.354,0-0.643-0.288-0.643-0.641\r\n					c0-0.354,0.288-0.641,0.643-0.641C35.718,23.758,36.006,24.045,36.006,24.398 M33.434,24.398c0,1.061,0.863,1.92,1.929,1.92\r\n					s1.928-0.859,1.928-1.92s-0.862-1.92-1.928-1.92S33.434,23.338,33.434,24.398 M39.863,28.879h-4.501\r\n					c-2.486,0-4.501-2.006-4.501-4.48s2.015-4.479,4.501-4.479h4.501V28.879z M38.576,36.559H5.145\r\n					c-2.131,0-3.858-1.721-3.858-3.841v-22.22c0.943,1.065,2.319,1.74,3.858,1.74h33.432v6.4h-3.214c-3.196,0-5.786,2.58-5.786,5.76\r\n					s2.59,5.76,5.786,5.76h3.214V36.559z M34.72,10.959H5.145v-2.56H34.72V10.959z M5.145,5.839H34.72v1.28H5.145V5.839z\r\n					 M5.145,3.279H37.29v7.68h-1.284v-5.12c0-0.707-0.576-1.28-1.286-1.28H5.145c-0.711,0-1.286,0.573-1.286,1.28v4.896\r\n					C2.36,10.208,1.287,8.791,1.287,7.119C1.287,4.998,3.013,3.279,5.145,3.279 M39.863,18.638v-6.4\r\n					c0-0.707-0.576-1.279-1.287-1.279v-8.32C38.576,2.286,38.289,2,37.935,2H5.145C2.303,2,0,4.292,0,7.119\r\n					C0,7.292,0.009,7.462,0.026,7.63C0.018,7.674,0,7.714,0,7.759v24.958c0,2.827,2.303,5.12,5.144,5.12h33.432\r\n					c0.711,0,1.287-0.572,1.287-1.279v-6.4c0.71,0,1.286-0.573,1.286-1.279v-8.96C41.149,19.211,40.572,18.638,39.863,18.638"/>\r\n			</g>\r\n		</g>\r\n		<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M38.006,22.398c0,0.353-0.288,0.641-0.644,0.641\r\n			c-0.354,0-0.643-0.288-0.643-0.641c0-0.354,0.288-0.641,0.643-0.641C37.718,21.758,38.006,22.045,38.006,22.398 M35.434,22.398\r\n			c0,1.061,0.863,1.92,1.929,1.92s1.928-0.859,1.928-1.92s-0.862-1.92-1.928-1.92S35.434,21.338,35.434,22.398 M41.863,26.879\r\n			h-4.501c-2.486,0-4.501-2.006-4.501-4.48s2.015-4.479,4.501-4.479h4.501V26.879z M40.576,34.559H7.145\r\n			c-2.131,0-3.858-1.721-3.858-3.841V8.498c0.943,1.065,2.319,1.74,3.858,1.74h33.432v6.4h-3.214c-3.196,0-5.786,2.579-5.786,5.76\r\n			c0,3.181,2.59,5.76,5.786,5.76h3.214V34.559z M36.72,8.959H7.145v-2.56H36.72V8.959z M7.145,3.839H36.72v1.28H7.145V3.839z\r\n			 M7.145,1.279H39.29v7.68h-1.284v-5.12c0-0.707-0.576-1.28-1.286-1.28H7.145c-0.711,0-1.286,0.573-1.286,1.28v4.896\r\n			C4.36,8.208,3.287,6.791,3.287,5.119C3.287,2.998,5.013,1.279,7.145,1.279 M41.863,16.638v-6.4c0-0.707-0.576-1.279-1.287-1.279\r\n			v-8.32C40.576,0.286,40.289,0,39.935,0H7.145C4.303,0,2,2.292,2,5.119C2,5.292,2.009,5.462,2.026,5.63\r\n			C2.018,5.674,2,5.714,2,5.759v24.958c0,2.827,2.303,5.12,5.144,5.12h33.432c0.711,0,1.287-0.572,1.287-1.279v-6.4\r\n			c0.71,0,1.286-0.573,1.286-1.279v-8.959C43.149,17.211,42.572,16.638,41.863,16.638"/>\r\n		<path clip-path="url(#SVGID_2_)" fill="#6395C4" d="M18.916,26.688v1.485H17.49v-1.384c-0.976-0.044-1.922-0.305-2.475-0.626\r\n			l0.436-1.703c0.612,0.335,1.471,0.642,2.417,0.642c0.829,0,1.398-0.321,1.398-0.903c0-0.553-0.467-0.903-1.544-1.267\r\n			c-1.557-0.524-2.62-1.254-2.62-2.664c0-1.281,0.902-2.287,2.46-2.59v-1.384h1.427v1.281c0.975,0.043,1.631,0.248,2.111,0.481\r\n			l-0.422,1.644c-0.379-0.159-1.048-0.494-2.097-0.494c-0.946,0-1.252,0.407-1.252,0.815c0,0.48,0.51,0.784,1.747,1.252\r\n			c1.732,0.611,2.431,1.412,2.431,2.723C21.507,25.289,20.59,26.397,18.916,26.688 M18.261,13.937c-4.581,0-8.296,3.714-8.296,8.295\r\n			c0,4.583,3.715,8.296,8.296,8.296s8.296-3.713,8.296-8.296C26.557,17.651,22.842,13.937,18.261,13.937"/>\r\n	</g>\r\n</g>\r\n</svg>\r\n'),
+(19, 1473764607, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="41.005px" height="53.034px" viewBox="0 0 41.005 53.034" enable-background="new 0 0 41.005 53.034" xml:space="preserve">\r\n<g>\r\n	<defs>\r\n		<rect id="SVGID_1_" width="41.005" height="53.034"/>\r\n	</defs>\r\n	<clipPath id="SVGID_2_">\r\n		<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n	</clipPath>\r\n	<g clip-path="url(#SVGID_2_)">\r\n		<defs>\r\n			<rect id="SVGID_3_" y="0" width="41.005" height="53.034"/>\r\n		</defs>\r\n		<clipPath id="SVGID_4_">\r\n			<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n		</clipPath>\r\n		<path clip-path="url(#SVGID_4_)" fill="#6395C4" d="M20.45,31.827c-0.331,0-0.656,0.139-0.888,0.38l-0.843,0.867\r\n			c-0.359,0.377-0.459,0.884-0.266,1.358c0.205,0.5,0.697,0.851,1.199,0.851c0.317,0,0.611-0.132,0.854-0.382\r\n			c0.594-0.612,0.773-0.797,0.833-0.86l0.001,0.001c0.355-0.368,0.459-0.921,0.262-1.411C21.403,32.133,20.963,31.827,20.45,31.827\r\n			 M31.726,18.976c-0.875,0-1.661-0.669-2.39-1.356c-0.146-0.137-0.289-0.276-0.435-0.416c-0.249-0.243-0.499-0.484-0.758-0.713\r\n			l-0.092-0.083c-0.292-0.265-0.691-0.628-1.152-0.628h-6.236c-0.535,0-0.879,0.13-1.191,0.451l-3.125,3.221\r\n			c-0.428,0.44-0.394,0.864-0.336,1.077c0.118,0.428,0.528,0.776,1.068,0.907c0.301,0.072,0.645,0.084,0.976,0.044\r\n			c0.547-0.065,1.105-0.269,1.663-0.605c0.332-0.2,0.667-0.452,0.996-0.747c0.064-0.057,0.129-0.124,0.19-0.189\r\n			c0.186-0.19,0.308-0.306,0.438-0.306h3.891c0.079,0,0.153,0.032,0.21,0.09l6.696,6.899c0.275,0.282,0.451,0.646,0.513,1.051\r\n			l0.048,0.321h2.305v-9.018H31.726z M25.11,20.243h-3.645l-0.106,0.102c-0.684,0.663-2.069,1.775-3.658,1.775\r\n			c-0.228,0-0.452-0.024-0.669-0.07c-0.73-0.157-1.31-0.587-1.55-1.149c-0.311-0.727,0.026-1.448,0.445-1.88l3.146-3.241h-2.967\r\n			c-0.461,0-0.86,0.363-1.153,0.628l-0.091,0.083c-0.26,0.229-0.508,0.47-0.758,0.713c-0.144,0.14-0.288,0.279-0.434,0.416\r\n			c-0.73,0.687-1.516,1.356-2.39,1.356H8v9.018h2.395l0.048-0.319c0.061-0.406,0.238-0.771,0.513-1.053l2.371-2.443\r\n			c0.435-0.449,0.925-0.542,1.258-0.542c0.52,0,1.044,0.232,1.401,0.618c0.238,0.257,0.514,0.7,0.483,1.354l-0.018,0.377\r\n			l0.367,0.017c0.537,0.025,1.036,0.298,1.369,0.749c0.336,0.456,0.458,1.031,0.336,1.579l-0.087,0.382l0.374,0.074\r\n			c0.911,0.18,1.557,1.07,1.471,2.03l-0.033,0.377l0.365,0.031c0.611,0.057,1.135,0.412,1.437,0.979\r\n			c0.3,0.564,0.31,1.235,0.026,1.792l-0.126,0.245l0.64,0.658c0.243,0.25,0.539,0.382,0.855,0.382c0.502,0,0.997-0.352,1.199-0.854\r\n			c0.192-0.475,0.09-0.981-0.272-1.359l-3.434-3.537c-0.089-0.091-0.108-0.184-0.066-0.291c0.08-0.199,0.315-0.313,0.483-0.141\r\n			l4.101,4.225c0.237,0.246,0.555,0.381,0.892,0.381c0.511,0,0.951-0.308,1.151-0.802c0.195-0.491,0.093-1.046-0.265-1.414\r\n			l-4.098-4.224c-0.089-0.091-0.11-0.182-0.066-0.289c0.08-0.2,0.315-0.314,0.483-0.141l4.771,4.914\r\n			c0.242,0.25,0.538,0.383,0.854,0.383c0.504-0.002,0.999-0.354,1.201-0.857c0.191-0.477,0.089-0.984-0.276-1.361l-4.768-4.912\r\n			c-0.088-0.091-0.11-0.183-0.067-0.291c0.08-0.199,0.316-0.314,0.485-0.14l4.189,4.319c0.243,0.248,0.538,0.379,0.854,0.379\r\n			c0.505,0,0.998-0.352,1.202-0.855c0.189-0.477,0.087-0.983-0.277-1.36L25.11,20.243z M19.341,31.568l0.002,0.001\r\n			c0.364-0.375,0.467-0.884,0.275-1.359c-0.202-0.504-0.695-0.855-1.201-0.855c-0.316,0-0.611,0.132-0.854,0.382l-0.019,0.02\r\n			c-0.085,0.087-0.464,0.479-0.841,0.866c-0.544,0.561-0.754,0.777-0.841,0.873l-0.003-0.004c-0.362,0.372-0.462,0.911-0.262,1.408\r\n			c0.199,0.496,0.641,0.806,1.152,0.806c0.336,0,0.652-0.135,0.89-0.38l0.019-0.021c0.074-0.076,0.377-0.389,0.707-0.729\r\n			C19.036,31.884,19.26,31.656,19.341,31.568 M17.894,27.458c-0.202-0.504-0.696-0.856-1.2-0.856c-0.318,0-0.613,0.132-0.856,0.382\r\n			l-2.48,2.554c-0.491,0.505-0.491,1.328,0,1.834c0.238,0.245,0.554,0.38,0.89,0.38s0.653-0.135,0.89-0.38l2.481-2.555\r\n			C17.982,28.444,18.085,27.934,17.894,27.458 M15.526,26.442c0.364-0.375,0.467-0.884,0.276-1.358\r\n			c-0.203-0.505-0.697-0.857-1.201-0.857c-0.317,0-0.613,0.132-0.856,0.381l-2.371,2.443c-0.491,0.507-0.492,1.33-0.001,1.835\r\n			c0.229,0.236,0.554,0.372,0.891,0.372c0.335,0,0.659-0.135,0.887-0.369L15.526,26.442z"/>\r\n		<g opacity="0.2" clip-path="url(#SVGID_4_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_5_" y="2" width="39.005" height="51.034"/>\r\n				</defs>\r\n				<clipPath id="SVGID_6_">\r\n					<use xlink:href="#SVGID_5_"  overflow="visible"/>\r\n				</clipPath>\r\n				<path clip-path="url(#SVGID_6_)" d="M19.502,3.236l18.321,6.897v22.143c0,3.955-2.367,7.35-5.93,10.552\r\n					c-3.472,3.122-8.047,6.003-12.392,8.9c-4.344-2.897-8.919-5.778-12.391-8.9c-3.562-3.202-5.929-6.597-5.929-10.552V10.133\r\n					L19.502,3.236z M19.299,2.048L0.388,9.169C0.163,9.252,0.001,9.485,0,9.725v22.551c0,4.431,2.657,8.136,6.334,11.441\r\n					c3.679,3.307,8.415,6.257,12.836,9.217c0.195,0.132,0.47,0.132,0.665,0c4.421-2.96,9.157-5.91,12.836-9.217\r\n					c3.677-3.306,6.334-7.011,6.334-11.441V9.725c-0.001-0.24-0.163-0.473-0.388-0.556L19.706,2.048\r\n					C19.529,1.958,19.346,2.015,19.299,2.048"/>\r\n			</g>\r\n		</g>\r\n		<path clip-path="url(#SVGID_4_)" fill="#FFFFFF" d="M21.502,1.236l18.321,6.897v22.143c0,3.955-2.367,7.35-5.93,10.552\r\n			c-3.472,3.122-8.047,6.003-12.392,8.9c-4.344-2.897-8.919-5.778-12.391-8.9c-3.562-3.202-5.929-6.597-5.929-10.552V8.133\r\n			L21.502,1.236z M21.299,0.048L2.388,7.169C2.163,7.252,2.001,7.485,2,7.725v22.551c0,4.431,2.657,8.136,6.334,11.441\r\n			c3.679,3.307,8.415,6.257,12.836,9.217c0.195,0.132,0.47,0.132,0.665,0c4.421-2.96,9.157-5.91,12.836-9.217\r\n			c3.677-3.306,6.334-7.011,6.334-11.441V7.725c-0.001-0.24-0.163-0.473-0.388-0.556L21.706,0.048\r\n			C21.529-0.042,21.346,0.015,21.299,0.048"/>\r\n	</g>\r\n</g>\r\n</svg>\r\n'),
+(20, 1473764669, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="37.131px" height="48.006px" viewBox="0 0 37.131 48.006" enable-background="new 0 0 37.131 48.006" xml:space="preserve">\r\n<g enable-background="new    ">\r\n	<g>\r\n		<g opacity="0.2">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_1_" y="1.917" width="35.255" height="45.007"/>\r\n				</defs>\r\n				<clipPath id="SVGID_2_">\r\n					<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n				</clipPath>\r\n				<path clip-path="url(#SVGID_2_)" d="M35.255,46.923H0V1.917h28.191l0.156,0.172l0.011-0.009l0.237,0.281l6.659,7.262V46.923z\r\n					 M33.754,45.423V10.207l-5.43-5.924L27.53,3.417H1.5v42.006H33.754"/>\r\n			</g>\r\n		</g>\r\n		<g opacity="0.2">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_3_" x="9.371" y="13.987" width="15.619" height="5.596"/>\r\n				</defs>\r\n				<clipPath id="SVGID_4_">\r\n					<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n				</clipPath>\r\n				<path clip-path="url(#SVGID_4_)" d="M21.866,14.609h-9.372v-0.621h9.372V14.609z M24.99,17.097H9.371v-0.621H24.99V17.097z\r\n					 M21.866,19.583h-9.372V18.96h9.372V19.583z"/>\r\n			</g>\r\n		</g>\r\n	</g>\r\n	<rect y="0" fill="none" width="37.131" height="48.006"/>\r\n	<path fill="#FFFFFF" d="M3.375,1.5h26.031l0.794,0.865L35.63,8.29v35.217H3.375V1.5z M1.875,0v45.006h35.255V7.706l-6.658-7.262\r\n		l-0.239-0.281l-0.011,0.01L30.066,0H1.875z"/>\r\n	<path fill="#FFFFFF" d="M23.741,12.692h-9.372v-0.621h9.372V12.692z M26.865,15.18H11.246V14.56h15.619V15.18z M23.741,17.667\r\n		h-9.372v-0.623h9.372V17.667z"/>\r\n	<g>\r\n		<defs>\r\n			<rect id="SVGID_5_" y="0" width="37.131" height="48.006"/>\r\n		</defs>\r\n		<clipPath id="SVGID_6_">\r\n			<use xlink:href="#SVGID_5_"  overflow="visible"/>\r\n		</clipPath>\r\n		<path clip-path="url(#SVGID_6_)" fill="#6395C4" d="M27.016,48.006c-0.978-1.318-1.955-2.637-2.979-4.016\r\n			c-1.011,1.314-1.995,2.59-3.078,3.997V36.982c-0.737,0.165-1.395,0.315-2.172,0.491c0.17-0.761,0.298-1.436,0.475-2.099\r\n			c0.107-0.402,0.015-0.573-0.388-0.673c-0.639-0.16-1.262-0.391-1.996-0.622c0.605-0.682,1.171-1.319,1.755-1.978\r\n			c-0.58-0.648-1.14-1.273-1.755-1.962c0.74-0.239,1.392-0.476,2.06-0.651c0.361-0.097,0.418-0.267,0.333-0.603\r\n			c-0.168-0.673-0.31-1.352-0.487-2.146c0.731,0.167,1.379,0.268,1.994,0.47c0.471,0.155,0.624-0.022,0.729-0.443\r\n			c0.162-0.635,0.356-1.262,0.571-2.013c0.66,0.626,1.263,1.198,1.913,1.814c0.631-0.594,1.239-1.167,1.912-1.801\r\n			c0.229,0.763,0.449,1.438,0.63,2.121c0.093,0.356,0.244,0.438,0.584,0.341c0.653-0.181,1.318-0.317,2.084-0.497\r\n			c-0.197,0.903-0.374,1.726-0.567,2.609c0.81,0.26,1.598,0.511,2.496,0.797c-0.611,0.671-1.186,1.302-1.788,1.961\r\n			c0.596,0.658,1.174,1.295,1.787,1.974c-0.882,0.28-1.671,0.531-2.499,0.795c0.19,0.861,0.369,1.673,0.571,2.594\r\n			c-0.723-0.158-1.371-0.298-2.068-0.45v10.995H27.016"/>\r\n	</g>\r\n</g>\r\n</svg>\r\n'),
+(21, 1473764729, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="56.758px" height="24.004px" viewBox="0 0 56.758 24.004" enable-background="new 0 0 56.758 24.004" xml:space="preserve">\r\n<g>\r\n	<defs>\r\n		<rect id="SVGID_1_" width="56.758" height="24.004"/>\r\n	</defs>\r\n	<clipPath id="SVGID_2_">\r\n		<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n	</clipPath>\r\n	<g clip-path="url(#SVGID_2_)">\r\n		<defs>\r\n			<rect id="SVGID_3_" width="56.758" height="24.004"/>\r\n		</defs>\r\n		<clipPath id="SVGID_4_">\r\n			<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g opacity="0.2" clip-path="url(#SVGID_4_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_5_" y="2.75" width="33.005" height="9.001"/>\r\n				</defs>\r\n				<clipPath id="SVGID_6_">\r\n					<use xlink:href="#SVGID_5_"  overflow="visible"/>\r\n				</clipPath>\r\n				<path clip-path="url(#SVGID_6_)" d="M0,10.25h19.504v1.501H0V10.25z M5.251,6.5h19.502v1.501H5.251V6.5z M13.502,2.75h19.502\r\n					v1.5H13.502V2.75z"/>\r\n			</g>\r\n		</g>\r\n	</g>\r\n	<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M2,8.25h19.504v1.501H2V8.25z M7.251,4.5h19.502v1.501H7.251V4.5z M15.502,0.75\r\n		h19.502v1.5H15.502V0.75z"/>\r\n	<g clip-path="url(#SVGID_2_)">\r\n		<defs>\r\n			<rect id="SVGID_7_" width="56.758" height="24.004"/>\r\n		</defs>\r\n		<clipPath id="SVGID_8_">\r\n			<use xlink:href="#SVGID_7_"  overflow="visible"/>\r\n		</clipPath>\r\n		<path clip-path="url(#SVGID_8_)" fill="#6395C4" d="M48.484,6.895c-0.096,0.12-0.246,0.189-0.405,0.189h-9.136\r\n			c-0.149,0-0.291-0.06-0.387-0.167C38.46,6.812,38.42,6.67,38.442,6.534l0.763-4.253c0.041-0.227,0.253-0.395,0.502-0.395h7.025\r\n			c0.226,0,0.425,0.138,0.487,0.339l1.347,4.254C48.611,6.621,48.582,6.775,48.484,6.895 M55.421,10.244\r\n			c-1.008-0.399-2.926-0.81-2.926-0.81c-0.37-0.004-0.697-0.218-0.823-0.541L48.42,0.54C48.294,0.216,47.963,0,47.591,0h-9.069\r\n			c-0.421,0-0.782,0.278-0.861,0.662l-3.605,17.219c-0.049,0.241,0.018,0.488,0.187,0.678c0.165,0.189,0.415,0.298,0.678,0.298\r\n			h5.929c0.141-3.523,3.246-6.356,7.07-6.356s6.929,2.833,7.071,6.356h0.888c0.487,0,0.881-0.367,0.881-0.817v-5.374\r\n			C56.758,12.629,56.108,10.542,55.421,10.244"/>\r\n		<path clip-path="url(#SVGID_8_)" fill="#6395C4" d="M46.874,21.834c-1.186,0-2.143-0.975-2.143-2.168\r\n			c0-1.201,0.957-2.17,2.143-2.17c1.177,0,2.141,0.969,2.141,2.17C49.015,20.859,48.051,21.834,46.874,21.834 M46.874,15.321\r\n			c-2.37,0-4.292,1.945-4.292,4.345c0,2.391,1.922,4.338,4.292,4.338c2.361,0,4.284-1.947,4.284-4.338\r\n			C51.158,17.267,49.235,15.321,46.874,15.321 M56.758,12.11v4.633c0,1.155-0.925,2.093-2.064,2.093h-2.212\r\n			c-0.4-2.776-2.762-4.911-5.613-4.911c-2.845,0-5.207,2.135-5.606,4.911H30.056c-0.398-2.776-2.761-4.911-5.606-4.911\r\n			c-2.844,0-5.207,2.135-5.606,4.911h-2.769c-1.142,0-2.066-0.938-2.066-2.093V12.11H56.758z M24.449,21.834\r\n			c-1.185,0-2.142-0.975-2.142-2.168c0-1.201,0.957-2.17,2.142-2.17c1.184,0,2.141,0.969,2.141,2.17\r\n			C26.59,20.859,25.633,21.834,24.449,21.834 M24.449,15.321c-2.37,0-4.285,1.945-4.285,4.345c0,2.391,1.915,4.338,4.285,4.338\r\n			c2.368,0,4.283-1.947,4.283-4.338C28.731,17.267,26.817,15.321,24.449,15.321"/>\r\n	</g>\r\n</g>\r\n</svg>\r\n'),
+(22, 1473764848, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="50.756px" height="41.748px" viewBox="0 0 50.756 41.748" enable-background="new 0 0 50.756 41.748" xml:space="preserve">\r\n<g enable-background="new    ">\r\n	<g>\r\n		<defs>\r\n			<rect id="SVGID_1_" y="0" width="50.756" height="41.747"/>\r\n		</defs>\r\n		<clipPath id="SVGID_2_">\r\n			<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g opacity="0.2" clip-path="url(#SVGID_2_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_3_" y="2" width="48.756" height="39.748"/>\r\n				</defs>\r\n				<clipPath id="SVGID_4_">\r\n					<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n				</clipPath>\r\n				<path clip-path="url(#SVGID_4_)" d="M13.43,32.723h4.58h13.468h2.969h12.811V3.499H1.5v29.225H13.43 M34.908,41.554\r\n					c0,0-4.003-7.268-4.039-7.332H18.547c-0.117,0.245-3.255,6.844-3.255,6.844c-0.064,0.135-0.199,0.215-0.339,0.215\r\n					c-0.05,0-0.1-0.011-0.147-0.031l-0.737-0.313c-0.096-0.04-0.17-0.118-0.206-0.215c-0.015-0.041-0.022-0.085-0.022-0.128\r\n					c0-0.059,0.013-0.116,0.039-0.17c0,0,2.635-5.285,3.092-6.202H0.375C0.167,34.222,0,34.054,0,33.848V2.375\r\n					C0,2.168,0.167,2,0.375,2h48.007c0.207,0,0.374,0.168,0.374,0.375v31.473c0,0.206-0.167,0.374-0.374,0.374H32.497\r\n					c0.521,0.945,3.662,6.648,3.662,6.648c0.031,0.057,0.046,0.118,0.046,0.182c0,0.034-0.005,0.07-0.014,0.104\r\n					c-0.028,0.097-0.094,0.177-0.182,0.225l-0.595,0.321c-0.057,0.031-0.117,0.045-0.179,0.045\r\n					C35.104,41.748,34.978,41.678,34.908,41.554"/>\r\n			</g>\r\n		</g>\r\n		<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M15.43,30.723h4.58h13.468h2.969h12.811V1.499H3.5v29.225H15.43\r\n			 M36.908,39.554c0,0-4.003-7.268-4.039-7.332H20.547c-0.117,0.245-3.255,6.844-3.255,6.844c-0.064,0.135-0.199,0.215-0.339,0.215\r\n			c-0.05,0-0.1-0.011-0.147-0.031l-0.737-0.313c-0.096-0.04-0.17-0.118-0.206-0.215c-0.015-0.041-0.022-0.085-0.022-0.128\r\n			c0-0.059,0.013-0.116,0.039-0.17c0,0,2.635-5.285,3.092-6.202H2.375C2.167,32.222,2,32.054,2,31.848V0.375\r\n			C2,0.168,2.167,0,2.375,0h48.007c0.207,0,0.374,0.168,0.374,0.375v31.473c0,0.206-0.167,0.374-0.374,0.374H34.497\r\n			c0.521,0.945,3.662,6.648,3.662,6.648c0.031,0.057,0.046,0.118,0.046,0.182c0,0.034-0.005,0.07-0.014,0.104\r\n			c-0.028,0.097-0.094,0.177-0.182,0.225l-0.595,0.321c-0.057,0.031-0.117,0.045-0.179,0.045\r\n			C37.104,39.748,36.978,39.678,36.908,39.554"/>\r\n	</g>\r\n	<g>\r\n		<defs>\r\n			<path id="SVGID_5_" d="M18.723,32.722c-0.801,1.606-2.843,5.702-2.843,5.702c-0.026,0.054-0.038,0.111-0.038,0.169\r\n				c0,0.044,0.007,0.087,0.022,0.128c0.035,0.098,0.11,0.177,0.206,0.216l0.195,0.083c0.932-1.961,2.208-4.644,2.282-4.799h1.049\r\n				c0.287-0.603,0.54-1.135,0.713-1.499H18.723z M34.447,32.722h-1.303c0.199,0.361,0.491,0.893,0.826,1.499h1.628\r\n				c-0.323-0.587-0.614-1.114-0.825-1.499H34.447z M47.256,32.221h1.499v-1.499h-1.499V32.221z M2,3.5h1.499V2H2V3.5z"/>\r\n		</defs>\r\n		<clipPath id="SVGID_6_">\r\n			<use xlink:href="#SVGID_5_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g opacity="0.2" clip-path="url(#SVGID_6_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_7_" y="2" width="48.756" height="39.748"/>\r\n				</defs>\r\n				<clipPath id="SVGID_8_">\r\n					<use xlink:href="#SVGID_7_"  overflow="visible"/>\r\n				</clipPath>\r\n			</g>\r\n		</g>\r\n	</g>\r\n	<g>\r\n		<defs>\r\n			<rect id="SVGID_9_" y="0" width="50.756" height="41.747"/>\r\n		</defs>\r\n		<clipPath id="SVGID_10_">\r\n			<use xlink:href="#SVGID_9_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g opacity="0.2" clip-path="url(#SVGID_10_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_11_" y="2" width="48.756" height="39.748"/>\r\n				</defs>\r\n				<clipPath id="SVGID_12_">\r\n					<use xlink:href="#SVGID_11_"  overflow="visible"/>\r\n				</clipPath>\r\n			</g>\r\n		</g>\r\n		<path clip-path="url(#SVGID_10_)" fill="#6395C4" d="M37.936,14.115c0.231,0,0.385,0.158,0.385,0.394\r\n			c0,0.238-0.153,0.395-0.385,0.395c-0.23,0-0.386-0.157-0.386-0.395C37.55,14.271,37.703,14.115,37.936,14.115 M38.705,23.587\r\n			c0.231,0,0.385,0.159,0.385,0.396c0,0.236-0.153,0.394-0.385,0.394h-2.309c-0.231,0-0.387-0.157-0.387-0.394\r\n			c0-0.237,0.155-0.396,0.387-0.396H38.705z M14.454,19.247h7.315c0.23,0,0.385,0.158,0.385,0.394c0,0.237-0.155,0.395-0.385,0.395\r\n			h-7.315c-0.23,0-0.385-0.158-0.385-0.395C14.069,19.405,14.224,19.247,14.454,19.247 M14.454,16.877h7.315\r\n			c0.23,0,0.385,0.158,0.385,0.395c0,0.236-0.155,0.394-0.385,0.394h-7.315c-0.23,0-0.385-0.158-0.385-0.394\r\n			C14.069,17.036,14.224,16.877,14.454,16.877 M14.454,14.509h7.315c0.23,0,0.385,0.159,0.385,0.395\r\n			c0,0.236-0.155,0.396-0.385,0.396h-7.315c-0.23,0-0.385-0.16-0.385-0.396C14.069,14.667,14.224,14.509,14.454,14.509\r\n			 M15.61,23.587c0.23,0,0.385,0.159,0.385,0.396c0,0.236-0.155,0.394-0.385,0.394H13.3c-0.231,0-0.385-0.157-0.385-0.394\r\n			c0-0.237,0.154-0.396,0.385-0.396H15.61z M27.003,12.535H12.915c-0.423,0-0.77,0.356-0.77,0.789v7.897\r\n			c0,0.434,0.346,0.789,0.77,0.789H39.09c0.423,0,0.771-0.354,0.771-0.789v-7.897c0-0.433-0.348-0.789-0.771-0.789h-3.349\r\n			c0.154,0.514,0.269,1.027,0.269,1.58c0,2.605-2.078,4.736-4.619,4.736c-2.539,0-4.618-2.131-4.618-4.736\r\n			C26.772,13.562,26.849,13.049,27.003,12.535 M12.915,11.746h14.474c0.809-1.421,2.31-2.369,4.002-2.369\r\n			c1.694,0,3.195,0.948,4.004,2.369h3.695c0.847,0,1.54,0.711,1.54,1.578v7.897c0,0.868-0.693,1.577-1.54,1.577H12.915\r\n			c-0.847,0.001-1.539-0.709-1.539-1.577v-7.895C11.376,12.457,12.068,11.746,12.915,11.746"/>\r\n	</g>\r\n</g>\r\n</svg>\r\n');
+INSERT INTO `svg` (`id`, `created_at`, `updated_at`, `status`, `svg`) VALUES
+(23, 1473764864, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="47.257px" height="60.008px" viewBox="0 0 47.257 60.008" enable-background="new 0 0 47.257 60.008" xml:space="preserve">\r\n<g enable-background="new    ">\r\n	<g>\r\n		<defs>\r\n			<rect id="SVGID_1_" y="0" width="47.257" height="60.008"/>\r\n		</defs>\r\n		<clipPath id="SVGID_2_">\r\n			<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g clip-path="url(#SVGID_2_)" enable-background="new    ">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_3_" width="47.257" height="60.008"/>\r\n				</defs>\r\n				<clipPath id="SVGID_4_">\r\n					<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n				</clipPath>\r\n				<g opacity="0.2" clip-path="url(#SVGID_4_)">\r\n					<g>\r\n						<defs>\r\n							<rect id="SVGID_5_" x="5.116" y="3.881" width="36.766" height="49.499"/>\r\n						</defs>\r\n						<clipPath id="SVGID_6_">\r\n							<use xlink:href="#SVGID_5_"  overflow="visible"/>\r\n						</clipPath>\r\n						<path clip-path="url(#SVGID_6_)" d="M26.031,35.966l0.027,0.007h0.001c0.685,0.2,1.468,0.412,2.099,0.412\r\n							c0.225,0,0.422-0.027,0.591-0.078c0.614-0.191,1.104-0.705,1.504-1.183l-0.028,0.038l0.09-0.107l-0.023,0.026l0.464-0.584\r\n							l0.023-0.031c0.002-0.004,0.036-0.046,0.036-0.046c0.505-0.631,1.026-1.284,1.682-1.74c0.666-0.472,1.494-0.747,2.296-1.015\r\n							l0.017-0.005l0.013-0.005c0.994-0.332,1.934-0.646,2.406-1.272c0.459-0.595,0.484-1.519,0.515-2.495l0.002-0.085\r\n							c0.018-0.825,0.035-1.674,0.292-2.453c0.261-0.744,0.754-1.42,1.233-2.073l0.008-0.01l0.071-0.101\r\n							c0.553-0.773,1.125-1.572,1.125-2.347c0-0.812-0.608-1.642-1.196-2.446c-0.483-0.658-0.979-1.335-1.24-2.077\r\n							c-0.258-0.784-0.275-1.634-0.293-2.456c0-0.002-0.002-0.087-0.002-0.087c-0.03-0.978-0.056-1.901-0.513-2.494\r\n							c-0.475-0.628-1.414-0.942-2.408-1.274L34.808,9.98c-0.759-0.248-1.623-0.532-2.313-1.02c-0.65-0.453-1.173-1.104-1.675-1.734\r\n							L30.78,7.177c-0.641-0.822-1.242-1.596-2.031-1.84c-0.176-0.054-0.371-0.081-0.599-0.081c-0.626,0-1.377,0.203-2.091,0.411\r\n							c-0.837,0.242-1.698,0.492-2.565,0.492c-0.871,0-1.73-0.251-2.561-0.492c-0.684-0.199-1.469-0.411-2.096-0.411\r\n							c-0.223,0-0.422,0.027-0.59,0.08c-0.784,0.242-1.388,1.009-2.028,1.821l-0.014,0.018c0,0.001-0.006,0.008-0.006,0.008\r\n							c-0.506,0.646-1.029,1.314-1.698,1.778c-0.667,0.466-1.483,0.74-2.272,1.005L12.187,9.98l-0.027,0.009\r\n							c-0.992,0.333-1.929,0.646-2.401,1.267c-0.464,0.613-0.487,1.569-0.51,2.58c-0.017,0.782-0.034,1.669-0.299,2.456\r\n							c-0.246,0.728-0.729,1.393-1.196,2.035l-0.032,0.045c0,0.001-0.011,0.014-0.011,0.014c-0.585,0.804-1.19,1.635-1.19,2.436\r\n							c0,0.811,0.61,1.643,1.2,2.447c0,0.001,0.024,0.034,0.024,0.034c0.471,0.646,0.958,1.313,1.205,2.05\r\n							c0.256,0.76,0.278,1.591,0.298,2.396l0.001,0.055c0.023,1.012,0.046,1.967,0.51,2.579c0.472,0.622,1.409,0.935,2.401,1.267\r\n							l0.027,0.011c0.764,0.254,1.631,0.542,2.316,1.02c0.67,0.466,1.195,1.136,1.702,1.784c0.001,0.001,0.01,0.013,0.01,0.013\r\n							c0.642,0.815,1.247,1.586,2.032,1.83c0.168,0.052,0.36,0.078,0.584,0.078c0.631,0,1.416-0.212,2.104-0.412l0.015-0.005\r\n							c0.828-0.24,1.682-0.487,2.545-0.487C24.353,35.481,25.206,35.727,26.031,35.966 M27.471,51.074\r\n							c0.564-0.975,2.166-3.733,2.18-3.759c0.112-0.226,0.352-0.37,0.618-0.37c0.076,0,0.148,0.013,0.218,0.035\r\n							c0,0,3.394,1.136,4.497,1.504c-0.477-1.26-4.078-10.742-4.426-11.66c-0.447,0.391-0.896,0.649-1.377,0.801\r\n							c-0.322,0.098-0.676,0.147-1.06,0.147c-0.799,0-1.607-0.229-2.39-0.452l-0.073-0.021c-0.698-0.204-1.488-0.436-2.164-0.436\r\n							c-0.402,0-0.833,0.078-1.332,0.206c0.187,0.492,0.569,1.499,0.569,1.499l0.785,2.07l0.021,0.063l-0.008-0.025\r\n							C23.529,40.676,26.983,49.789,27.471,51.074 M17.707,42.962c0.002,0.004,0.004,0.007,0.006,0.011c0,0,1.608,2.796,2.174,3.781\r\n							c0.435-1.147,2.137-5.63,2.224-5.86c-0.09-0.237-0.908-2.395-0.908-2.395s-0.257-0.68-0.399-1.053\r\n							c-0.63,0.168-1.327,0.314-1.989,0.314c-0.366,0-0.7-0.046-0.996-0.137c-0.972-0.305-1.677-1.021-2.281-1.755\r\n							c-0.376,0.987-2.708,7.124-3.155,8.301c1.104-0.37,4.49-1.505,4.49-1.505c0.002-0.001,0.006-0.001,0.008-0.002\r\n							c0.068-0.021,0.141-0.032,0.215-0.032C17.346,42.631,17.581,42.758,17.707,42.962 M27.318,53.38\r\n							c-0.284,0-0.534-0.171-0.638-0.438c-0.003-0.004-2.816-7.423-3.819-10.069c-0.522,1.374-2.181,5.752-2.181,5.752\r\n							c-0.002,0.003-0.004,0.007-0.005,0.011c-0.107,0.257-0.361,0.43-0.632,0.43H20.02c-0.249,0-0.482-0.127-0.607-0.332\r\n							c-0.003-0.003-0.004-0.006-0.006-0.01c0,0-2.357-4.095-2.631-4.572c-0.524,0.177-5.343,1.799-5.343,1.799l0.012-0.006\r\n							c-0.079,0.03-0.162,0.046-0.245,0.046c-0.189,0-0.366-0.075-0.499-0.214c-0.128-0.137-0.198-0.307-0.198-0.482\r\n							c0-0.085,0.015-0.165,0.046-0.242l-0.004,0.008c0,0,3.822-10.064,3.972-10.462c-0.241-0.282-0.519-0.575-0.829-0.792\r\n							c-0.504-0.351-1.189-0.58-1.913-0.823l-0.043-0.015c-1.163-0.387-2.365-0.787-3.1-1.757c-0.731-0.96-0.761-2.172-0.791-3.343\r\n							v-0.029c-0.015-0.723-0.031-1.469-0.229-2.055c-0.178-0.529-0.575-1.077-0.997-1.656l-0.039-0.053\r\n							c0-0.001-0.006-0.008-0.006-0.008c-0.715-0.982-1.453-1.997-1.453-3.245s0.738-2.262,1.453-3.244l0.008-0.009\r\n							c0-0.001,0.024-0.034,0.024-0.034c0.427-0.587,0.831-1.142,1.01-1.678c0.198-0.583,0.214-1.33,0.229-2.052v-0.032\r\n							c0.03-1.173,0.06-2.385,0.792-3.34c0.733-0.971,1.931-1.371,3.092-1.759l0.007-0.003c0.705-0.231,1.432-0.471,1.955-0.838\r\n							c0.508-0.354,0.963-0.938,1.403-1.502c0.001-0.002,0.013-0.016,0.013-0.016c0.745-0.944,1.515-1.919,2.715-2.296\r\n							c0.298-0.092,0.633-0.138,0.995-0.138c0.811,0,1.691,0.222,2.52,0.463l0.011,0.004c0.733,0.211,1.491,0.43,2.151,0.43\r\n							c0.661,0,1.416-0.219,2.148-0.429l0.015-0.005c0.824-0.24,1.701-0.462,2.52-0.462c0.361,0,0.698,0.046,0.999,0.136\r\n							c1.219,0.384,2.019,1.409,2.724,2.313c0.505,0.648,0.929,1.169,1.41,1.501c0.515,0.368,1.24,0.608,1.941,0.839\r\n							c0.004,0,0.024,0.008,0.024,0.008c1.158,0.387,2.358,0.787,3.08,1.757c0.729,0.94,0.763,2.13,0.795,3.283l0.002,0.086\r\n							c0,0.002,0.001,0.023,0.001,0.023c0.016,0.716,0.032,1.455,0.221,2.031c0.181,0.519,0.571,1.062,0.984,1.635l0.056,0.078\r\n							c0.687,0.93,1.468,1.99,1.468,3.25c0,1.26-0.781,2.32-1.471,3.254c0,0.001-0.065,0.092-0.065,0.092\r\n							c-0.408,0.567-0.792,1.101-0.973,1.619c-0.188,0.574-0.204,1.316-0.22,2.034l-0.001,0.02c0,0.002-0.002,0.089-0.002,0.089\r\n							c-0.032,1.15-0.065,2.337-0.798,3.283c-0.726,0.973-1.934,1.371-3.102,1.755c-0.738,0.25-1.438,0.484-1.938,0.837\r\n							c-0.485,0.339-0.909,0.859-1.413,1.504c0,0-0.16,0.203-0.284,0.36c0.146,0.385,5.203,13.705,5.203,13.705l-0.006-0.015\r\n							c0.033,0.079,0.051,0.166,0.051,0.251c0,0.178-0.074,0.348-0.206,0.48c-0.125,0.135-0.305,0.213-0.497,0.213\r\n							c-0.079,0-0.158-0.013-0.229-0.04c0,0-4.82-1.62-5.345-1.796c-0.272,0.476-2.62,4.57-2.62,4.57\r\n							c-0.007,0.01-0.013,0.02-0.02,0.029c-0.137,0.195-0.364,0.313-0.604,0.313H27.318"/>\r\n					</g>\r\n				</g>\r\n				<path clip-path="url(#SVGID_4_)" fill="#FFFFFF" d="M28.031,33.966l0.027,0.007h0.001c0.685,0.2,1.468,0.412,2.099,0.412\r\n					c0.225,0,0.422-0.027,0.591-0.078c0.614-0.191,1.104-0.705,1.504-1.183l-0.028,0.038l0.09-0.107l-0.023,0.026l0.464-0.584\r\n					l0.023-0.031c0.002-0.004,0.036-0.046,0.036-0.046c0.505-0.631,1.026-1.284,1.682-1.74c0.666-0.472,1.494-0.747,2.296-1.015\r\n					l0.017-0.005l0.013-0.005c0.994-0.332,1.934-0.646,2.406-1.272c0.459-0.595,0.484-1.519,0.515-2.495l0.002-0.085\r\n					c0.018-0.825,0.035-1.674,0.292-2.453c0.261-0.744,0.754-1.42,1.233-2.073l0.008-0.01l0.071-0.101\r\n					c0.553-0.773,1.125-1.572,1.125-2.347c0-0.812-0.608-1.642-1.196-2.446c-0.483-0.658-0.979-1.335-1.24-2.077\r\n					c-0.258-0.784-0.275-1.634-0.293-2.456c0-0.002-0.002-0.087-0.002-0.087c-0.03-0.978-0.056-1.901-0.513-2.494\r\n					c-0.475-0.628-1.414-0.942-2.408-1.274L36.808,7.98c-0.759-0.248-1.623-0.532-2.313-1.02c-0.65-0.453-1.173-1.104-1.675-1.734\r\n					L32.78,5.177c-0.641-0.822-1.242-1.596-2.031-1.84c-0.176-0.054-0.371-0.081-0.599-0.081c-0.626,0-1.377,0.203-2.091,0.411\r\n					c-0.837,0.242-1.698,0.492-2.565,0.492c-0.871,0-1.729-0.251-2.561-0.492c-0.684-0.199-1.469-0.411-2.096-0.411\r\n					c-0.223,0-0.422,0.027-0.59,0.08c-0.784,0.242-1.388,1.009-2.028,1.821l-0.014,0.018c0,0.001-0.006,0.008-0.006,0.008\r\n					c-0.506,0.646-1.029,1.314-1.698,1.778c-0.667,0.466-1.483,0.74-2.272,1.005L14.187,7.98l-0.027,0.009\r\n					c-0.992,0.333-1.929,0.646-2.401,1.267c-0.464,0.613-0.487,1.569-0.51,2.58c-0.017,0.782-0.034,1.669-0.299,2.456\r\n					c-0.246,0.728-0.729,1.393-1.196,2.035l-0.032,0.045c0,0.001-0.011,0.014-0.011,0.014c-0.585,0.804-1.19,1.635-1.19,2.436\r\n					c0,0.811,0.61,1.643,1.2,2.447c0,0.001,0.024,0.034,0.024,0.034c0.471,0.646,0.958,1.313,1.205,2.05\r\n					c0.256,0.76,0.278,1.591,0.298,2.396l0.001,0.055c0.023,1.012,0.046,1.967,0.51,2.579c0.472,0.622,1.409,0.935,2.401,1.267\r\n					l0.027,0.01c0.764,0.254,1.631,0.542,2.316,1.02c0.67,0.466,1.195,1.136,1.702,1.784c0.001,0.001,0.01,0.013,0.01,0.013\r\n					c0.642,0.815,1.247,1.586,2.032,1.83c0.168,0.052,0.36,0.078,0.584,0.078c0.631,0,1.416-0.212,2.104-0.412l0.015-0.005\r\n					c0.828-0.24,1.683-0.487,2.545-0.487C26.353,33.481,27.206,33.727,28.031,33.966 M29.471,49.074\r\n					c0.564-0.975,2.166-3.733,2.18-3.759c0.112-0.226,0.352-0.37,0.618-0.37c0.076,0,0.148,0.013,0.218,0.035\r\n					c0,0,3.394,1.136,4.497,1.504c-0.477-1.26-4.078-10.742-4.426-11.66c-0.447,0.391-0.896,0.649-1.377,0.801\r\n					c-0.322,0.098-0.676,0.147-1.06,0.147c-0.799,0-1.607-0.229-2.39-0.452l-0.073-0.021c-0.698-0.204-1.488-0.436-2.164-0.436\r\n					c-0.402,0-0.833,0.078-1.332,0.206c0.188,0.492,0.569,1.499,0.569,1.499l0.785,2.07l0.021,0.063l-0.008-0.025\r\n					C25.529,38.676,28.983,47.789,29.471,49.074 M19.707,40.962c0.002,0.004,0.004,0.007,0.006,0.011c0,0,1.608,2.796,2.174,3.781\r\n					c0.435-1.147,2.137-5.63,2.224-5.86c-0.09-0.237-0.908-2.395-0.908-2.395s-0.257-0.68-0.399-1.053\r\n					c-0.63,0.168-1.327,0.314-1.989,0.314c-0.366,0-0.7-0.046-0.996-0.137c-0.972-0.305-1.677-1.021-2.281-1.755\r\n					c-0.376,0.987-2.708,7.124-3.155,8.301c1.104-0.37,4.49-1.505,4.49-1.505c0.002-0.001,0.006-0.001,0.008-0.002\r\n					c0.068-0.021,0.141-0.032,0.215-0.032C19.346,40.631,19.581,40.758,19.707,40.962 M29.318,51.38\r\n					c-0.284,0-0.534-0.171-0.638-0.438c-0.003-0.004-2.816-7.423-3.819-10.069c-0.521,1.374-2.181,5.752-2.181,5.752\r\n					c-0.002,0.003-0.004,0.007-0.005,0.011c-0.107,0.257-0.361,0.43-0.632,0.43H22.02c-0.249,0-0.482-0.127-0.607-0.332\r\n					c-0.003-0.003-0.004-0.006-0.006-0.01c0,0-2.357-4.095-2.631-4.572c-0.524,0.177-5.343,1.799-5.343,1.799l0.012-0.006\r\n					c-0.079,0.03-0.162,0.046-0.245,0.046c-0.189,0-0.366-0.075-0.499-0.214c-0.128-0.137-0.198-0.307-0.198-0.482\r\n					c0-0.085,0.015-0.165,0.046-0.242l-0.004,0.008c0,0,3.822-10.064,3.972-10.462c-0.241-0.282-0.519-0.575-0.829-0.792\r\n					c-0.504-0.351-1.189-0.58-1.913-0.823l-0.043-0.015c-1.163-0.387-2.365-0.787-3.1-1.757c-0.731-0.96-0.761-2.172-0.791-3.343\r\n					v-0.029c-0.015-0.723-0.031-1.469-0.229-2.055c-0.178-0.529-0.575-1.077-0.997-1.656l-0.039-0.053\r\n					c0-0.001-0.006-0.008-0.006-0.008c-0.715-0.982-1.453-1.997-1.453-3.245s0.738-2.262,1.453-3.244l0.008-0.009\r\n					c0-0.001,0.024-0.034,0.024-0.034c0.427-0.587,0.831-1.142,1.01-1.678c0.198-0.583,0.214-1.33,0.229-2.052v-0.032\r\n					c0.03-1.173,0.06-2.385,0.792-3.34c0.733-0.971,1.931-1.371,3.092-1.759l0.007-0.003c0.705-0.231,1.432-0.471,1.955-0.838\r\n					c0.508-0.354,0.963-0.938,1.403-1.502c0.001-0.002,0.013-0.016,0.013-0.016c0.745-0.944,1.515-1.919,2.715-2.296\r\n					c0.298-0.092,0.633-0.138,0.995-0.138c0.811,0,1.691,0.222,2.52,0.463l0.012,0.004c0.732,0.211,1.49,0.43,2.15,0.43\r\n					c0.661,0,1.416-0.219,2.148-0.429l0.015-0.005c0.824-0.24,1.701-0.462,2.52-0.462c0.361,0,0.698,0.046,0.999,0.136\r\n					c1.219,0.384,2.019,1.409,2.724,2.313c0.505,0.648,0.929,1.169,1.41,1.501c0.515,0.368,1.24,0.608,1.941,0.839\r\n					c0.004,0,0.024,0.008,0.024,0.008c1.158,0.387,2.358,0.787,3.08,1.757c0.729,0.94,0.763,2.13,0.795,3.283l0.002,0.086\r\n					c0,0.002,0.001,0.023,0.001,0.023c0.016,0.716,0.032,1.455,0.221,2.031c0.181,0.519,0.571,1.062,0.984,1.635l0.056,0.078\r\n					c0.687,0.93,1.468,1.99,1.468,3.25c0,1.26-0.781,2.32-1.471,3.254c0,0.001-0.065,0.092-0.065,0.092\r\n					c-0.408,0.567-0.792,1.101-0.973,1.619c-0.188,0.574-0.204,1.316-0.22,2.034l-0.001,0.02c0,0.002-0.002,0.089-0.002,0.089\r\n					c-0.032,1.15-0.065,2.337-0.798,3.283c-0.726,0.973-1.934,1.371-3.102,1.755c-0.738,0.25-1.438,0.484-1.938,0.837\r\n					c-0.485,0.339-0.909,0.859-1.413,1.504c0,0-0.16,0.203-0.284,0.36c0.146,0.385,5.203,13.705,5.203,13.705l-0.006-0.015\r\n					c0.033,0.079,0.051,0.166,0.051,0.251c0,0.178-0.074,0.348-0.206,0.48c-0.125,0.135-0.305,0.213-0.497,0.213\r\n					c-0.079,0-0.158-0.013-0.229-0.04c0,0-4.82-1.62-5.345-1.796c-0.272,0.476-2.62,4.57-2.62,4.57\r\n					c-0.007,0.01-0.013,0.02-0.02,0.029c-0.137,0.195-0.364,0.313-0.604,0.313H29.318"/>\r\n				<g clip-path="url(#SVGID_4_)">\r\n					<defs>\r\n						<path id="SVGID_7_" d="M29.471,49.074c-0.064-0.169-0.18-0.475-0.332-0.876c-0.265,0.457-0.597,1.029-0.906,1.563\r\n							c0.274,0.725,0.447,1.18,0.447,1.181c0.059,0.149,0.161,0.268,0.29,0.344c0.674-1.175,1.465-2.554,1.617-2.818\r\n							c0.1,0.034,0.36,0.122,0.715,0.241c0.245-0.428,0.489-0.854,0.7-1.222c-0.592-0.197-1.099-0.367-1.349-0.451\r\n							C30.21,47.799,29.73,48.625,29.471,49.074 M34.457,47.097c0.559,0.188,1.167,0.393,1.715,0.576\r\n							c-0.184-0.486-0.399-1.053-0.635-1.672c-0.567-0.19-1.185-0.396-1.713-0.574C34.059,46.047,34.275,46.617,34.457,47.097\r\n							 M16.88,42.664c-0.002,0.001-0.006,0.001-0.008,0.002c0,0-2.458,0.824-3.868,1.297c0.063,0.018,0.128,0.028,0.195,0.028\r\n							c0.083,0,0.166-0.016,0.245-0.044l-0.012,0.004c0,0,2.257-0.76,3.85-1.295c-0.06-0.017-0.123-0.024-0.186-0.024\r\n							C17.021,42.631,16.949,42.642,16.88,42.664 M21.886,44.754c-0.175-0.305-0.451-0.784-0.747-1.3\r\n							c-0.216,0.566-0.44,1.156-0.642,1.689c0.472,0.82,0.866,1.504,0.906,1.574c0.515-1.358,1.166-3.074,1.458-3.845\r\n							c0.166,0.435,0.379,0.999,0.622,1.637c0.241-0.64,0.509-1.342,0.75-1.979c-0.418-1.104-0.703-1.855-0.703-1.855l0.008,0.025\r\n							l-0.021-0.063l-0.033-0.09C22.924,42.019,22.158,44.039,21.886,44.754 M22.834,35.525c0.145,0.385,0.369,0.975,0.369,0.975\r\n							s0.055,0.146,0.139,0.367c0.051-0.002,0.103-0.003,0.153-0.003c0.448,0,0.946,0.102,1.435,0.229l-0.198-0.525\r\n							c0,0-0.203-0.534-0.386-1.015c-0.282-0.045-0.566-0.072-0.851-0.072C23.274,35.481,23.053,35.498,22.834,35.525 M12.545,43.06\r\n							l0.004-0.008c-0.031,0.076-0.047,0.157-0.047,0.242c0,0.116,0.03,0.229,0.087,0.332c0.722-1.902,2.613-6.876,2.949-7.757\r\n							c0.269,0.327,0.559,0.651,0.883,0.937c0.194-0.511,0.379-0.996,0.541-1.424c-0.252-0.276-0.497-0.587-0.748-0.905\r\n							c0,0-0.009-0.012-0.01-0.014c-0.088-0.112-0.177-0.227-0.267-0.339C14.833,37.036,12.545,43.06,12.545,43.06 M37.629,29.375\r\n							c-0.07,0.388-0.189,0.732-0.402,1.009c-0.473,0.624-1.41,0.939-2.404,1.271l-0.015,0.005l-0.016,0.004\r\n							c-0.709,0.237-1.439,0.479-2.059,0.859l-0.442,0.558l0.023-0.026l-0.09,0.107l0.028-0.038\r\n							c-0.349,0.418-0.768,0.862-1.279,1.097c-0.053,0.066-0.105,0.133-0.158,0.199c0,0-0.035,0.042-0.037,0.046l-0.023,0.031\r\n							l-0.464,0.584l0.024-0.026l-0.091,0.107l0.028-0.038c-0.177,0.212-0.371,0.43-0.587,0.625\r\n							c0.152,0.015,0.304,0.022,0.455,0.022c0.383,0,0.737-0.05,1.059-0.147c0.25-0.078,0.491-0.187,0.729-0.326\r\n							c0.5-0.64,0.922-1.155,1.405-1.493c0.113-0.081,0.238-0.156,0.372-0.226c0.107-0.136,0.214-0.271,0.214-0.271\r\n							c0.504-0.645,0.928-1.165,1.412-1.504c0.5-0.353,1.2-0.587,1.94-0.836c0.528-0.174,1.064-0.351,1.56-0.582\r\n							c0.226-0.594,0.291-1.24,0.319-1.889C38.782,28.885,38.243,29.146,37.629,29.375 M41.349,21.167l-0.07,0.101l-0.009,0.01\r\n							c-0.479,0.653-0.973,1.329-1.233,2.073c-0.174,0.529-0.239,1.09-0.268,1.653c0.172-0.271,0.37-0.549,0.576-0.835\r\n							c0,0,0.066-0.091,0.066-0.092c0.688-0.934,1.471-1.994,1.471-3.254c0-0.132-0.009-0.262-0.024-0.39\r\n							C41.698,20.678,41.522,20.923,41.349,21.167 M8.601,15.535c0,0-0.024,0.033-0.024,0.035L8.57,15.578\r\n							c-0.716,0.982-1.454,1.996-1.454,3.244c0,0.129,0.008,0.255,0.023,0.38c0.177-0.274,0.375-0.546,0.571-0.815\r\n							c0,0,0.011-0.014,0.011-0.015l0.032-0.045c0.467-0.641,0.95-1.307,1.197-2.036c0.176-0.525,0.243-1.096,0.272-1.65\r\n							C9.041,14.931,8.824,15.229,8.601,15.535 M17.817,4.02c-0.269,0.085-0.517,0.2-0.747,0.338\r\n							c-0.434,0.555-0.883,1.127-1.383,1.476c-0.119,0.084-0.249,0.161-0.386,0.232c-0.067,0.083-0.132,0.167-0.198,0.25\r\n							c0,0-0.012,0.013-0.014,0.016c-0.439,0.564-0.894,1.148-1.403,1.502c-0.523,0.366-1.25,0.607-1.954,0.838l-0.008,0.003\r\n							c-0.522,0.174-1.052,0.352-1.544,0.582c-0.222,0.59-0.29,1.232-0.319,1.879c0.35-0.382,0.888-0.64,1.498-0.868\r\n							c0.071-0.389,0.19-0.735,0.399-1.011c0.472-0.621,1.41-0.934,2.402-1.266l0.027-0.01l0.042-0.014\r\n							c0.69-0.232,1.401-0.471,2.014-0.838c0.564-0.717,1.102-1.394,1.764-1.7c0.065-0.081,0.129-0.163,0.193-0.244\r\n							c0,0,0.005-0.008,0.005-0.009l0.015-0.017c0.362-0.461,0.713-0.907,1.093-1.251c-0.169-0.017-0.336-0.026-0.5-0.026\r\n							C18.45,3.881,18.115,3.927,17.817,4.02"/>\r\n					</defs>\r\n					<clipPath id="SVGID_8_">\r\n						<use xlink:href="#SVGID_7_"  overflow="visible"/>\r\n					</clipPath>\r\n					<g clip-path="url(#SVGID_8_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_9_" width="47.257" height="60.008"/>\r\n							</defs>\r\n							<clipPath id="SVGID_10_">\r\n								<use xlink:href="#SVGID_9_"  overflow="visible"/>\r\n							</clipPath>\r\n							<rect y="0" clip-path="url(#SVGID_10_)" fill="#FFFFFF" width="47.257" height="60.008"/>\r\n						</g>\r\n					</g>\r\n				</g>\r\n				<g clip-path="url(#SVGID_4_)">\r\n					<defs>\r\n						<path id="SVGID_11_" d="M29.471,49.074c-0.063-0.169-0.181-0.475-0.333-0.876c-0.264,0.457-0.596,1.029-0.906,1.563\r\n							c0.275,0.725,0.447,1.18,0.448,1.181c0.059,0.149,0.161,0.269,0.29,0.344c0.674-1.175,1.465-2.554,1.617-2.818\r\n							c0.1,0.034,0.36,0.122,0.714,0.241c0.246-0.428,0.491-0.854,0.701-1.222c-0.592-0.197-1.099-0.367-1.35-0.451\r\n							C30.209,47.8,29.731,48.625,29.471,49.074 M34.457,47.097c0.559,0.188,1.167,0.393,1.715,0.576\r\n							c-0.185-0.485-0.399-1.053-0.635-1.673c-0.567-0.189-1.185-0.396-1.713-0.573C34.059,46.047,34.275,46.617,34.457,47.097\r\n							 M16.88,42.664c-0.002,0.001-0.006,0.001-0.008,0.002c0,0-2.459,0.824-3.868,1.297c0.062,0.018,0.128,0.028,0.195,0.028\r\n							c0.083,0,0.166-0.016,0.245-0.044l-0.012,0.004c0,0,2.257-0.76,3.85-1.296c-0.061-0.016-0.123-0.023-0.186-0.023\r\n							C17.021,42.631,16.949,42.642,16.88,42.664 M21.886,44.754c-0.175-0.305-0.451-0.784-0.748-1.301\r\n							c-0.215,0.566-0.439,1.157-0.641,1.691c0.472,0.819,0.865,1.503,0.906,1.573c0.515-1.358,1.165-3.074,1.458-3.845\r\n							c0.166,0.435,0.379,0.999,0.622,1.637c0.241-0.64,0.508-1.342,0.75-1.979c-0.418-1.104-0.703-1.855-0.703-1.855l0.008,0.025\r\n							l-0.021-0.063l-0.033-0.09C22.924,42.02,22.158,44.038,21.886,44.754 M22.834,35.525c0.145,0.386,0.369,0.975,0.369,0.975\r\n							s0.056,0.146,0.139,0.367c0.052-0.002,0.103-0.003,0.153-0.003c0.448,0,0.946,0.102,1.435,0.229l-0.198-0.525\r\n							c0,0-0.202-0.533-0.386-1.015c-0.282-0.045-0.566-0.072-0.851-0.072C23.274,35.481,23.053,35.498,22.834,35.525 M12.545,43.06\r\n							l0.004-0.008c-0.031,0.076-0.047,0.157-0.047,0.242c0,0.116,0.031,0.229,0.087,0.332c0.723-1.901,2.613-6.876,2.949-7.757\r\n							c0.269,0.328,0.558,0.651,0.883,0.937c0.194-0.51,0.378-0.996,0.541-1.424c-0.252-0.276-0.497-0.587-0.748-0.905\r\n							c0,0-0.009-0.012-0.01-0.014c-0.088-0.112-0.177-0.227-0.267-0.338C14.833,37.036,12.545,43.06,12.545,43.06 M37.629,29.376\r\n							c-0.07,0.387-0.189,0.731-0.402,1.008c-0.473,0.624-1.41,0.939-2.404,1.271l-0.015,0.005l-0.016,0.004\r\n							c-0.709,0.237-1.439,0.479-2.059,0.859l-0.442,0.558l0.023-0.026l-0.09,0.107l0.028-0.038\r\n							c-0.349,0.418-0.768,0.862-1.279,1.097c-0.053,0.066-0.105,0.133-0.158,0.199c0,0-0.035,0.042-0.037,0.046l-0.023,0.031\r\n							l-0.464,0.584l0.024-0.026l-0.091,0.107l0.028-0.038c-0.177,0.211-0.371,0.43-0.587,0.624\r\n							c0.152,0.016,0.304,0.023,0.455,0.023c0.383,0,0.737-0.05,1.059-0.147c0.25-0.078,0.491-0.187,0.729-0.326\r\n							c0.5-0.639,0.922-1.155,1.405-1.493c0.113-0.081,0.238-0.155,0.372-0.225c0.107-0.137,0.214-0.271,0.214-0.271\r\n							c0.504-0.645,0.928-1.165,1.412-1.504c0.5-0.353,1.2-0.587,1.94-0.836c0.527-0.174,1.064-0.35,1.56-0.582\r\n							c0.227-0.594,0.29-1.24,0.319-1.889C38.782,28.885,38.243,29.146,37.629,29.376 M41.349,21.167l-0.07,0.101l-0.009,0.01\r\n							c-0.479,0.653-0.973,1.329-1.233,2.073c-0.174,0.529-0.239,1.09-0.268,1.653c0.171-0.271,0.37-0.55,0.576-0.835\r\n							c0,0,0.066-0.091,0.066-0.092c0.688-0.934,1.471-1.994,1.471-3.254c0-0.132-0.01-0.262-0.025-0.39\r\n							C41.698,20.678,41.522,20.924,41.349,21.167 M8.601,15.535c0,0-0.024,0.033-0.024,0.035L8.57,15.578\r\n							c-0.716,0.982-1.454,1.996-1.454,3.244c0,0.129,0.008,0.256,0.023,0.379c0.177-0.273,0.375-0.545,0.571-0.814\r\n							c0,0,0.011-0.014,0.011-0.015l0.032-0.045c0.467-0.641,0.95-1.307,1.197-2.036c0.177-0.525,0.243-1.096,0.272-1.65\r\n							C9.04,14.931,8.824,15.229,8.601,15.535 M17.817,4.02c-0.269,0.085-0.517,0.2-0.748,0.337\r\n							c-0.432,0.556-0.882,1.128-1.382,1.477c-0.119,0.084-0.248,0.161-0.386,0.233c-0.067,0.082-0.132,0.166-0.198,0.249\r\n							c0,0-0.012,0.013-0.014,0.016c-0.439,0.564-0.894,1.148-1.403,1.502c-0.523,0.366-1.25,0.607-1.954,0.838l-0.008,0.003\r\n							c-0.522,0.174-1.053,0.352-1.544,0.582c-0.222,0.59-0.29,1.232-0.319,1.878c0.349-0.381,0.888-0.64,1.499-0.867\r\n							c0.07-0.389,0.189-0.735,0.398-1.011c0.472-0.621,1.41-0.934,2.402-1.266l0.027-0.01l0.042-0.014\r\n							c0.69-0.232,1.401-0.471,2.014-0.838c0.564-0.717,1.103-1.394,1.764-1.7c0.065-0.081,0.129-0.163,0.193-0.244\r\n							c0,0,0.005-0.008,0.005-0.009l0.015-0.017c0.362-0.461,0.713-0.907,1.093-1.252c-0.169-0.016-0.336-0.025-0.5-0.025\r\n							C18.45,3.881,18.115,3.927,17.817,4.02"/>\r\n					</defs>\r\n					<clipPath id="SVGID_12_">\r\n						<use xlink:href="#SVGID_11_"  overflow="visible"/>\r\n					</clipPath>\r\n					<g clip-path="url(#SVGID_12_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_13_" width="47.257" height="60.008"/>\r\n							</defs>\r\n							<clipPath id="SVGID_14_">\r\n								<use xlink:href="#SVGID_13_"  overflow="visible"/>\r\n							</clipPath>\r\n						</g>\r\n					</g>\r\n				</g>\r\n				<g clip-path="url(#SVGID_4_)">\r\n					<defs>\r\n						<path id="SVGID_15_" d="M29.471,49.074c-0.064-0.169-0.18-0.475-0.332-0.876c-0.265,0.457-0.597,1.029-0.906,1.563\r\n							c0.274,0.725,0.447,1.18,0.447,1.181c0.059,0.149,0.161,0.268,0.29,0.344c0.674-1.175,1.465-2.554,1.617-2.818\r\n							c0.1,0.034,0.36,0.122,0.715,0.241c0.245-0.428,0.489-0.854,0.7-1.222c-0.592-0.197-1.099-0.367-1.349-0.451\r\n							C30.21,47.799,29.73,48.625,29.471,49.074 M34.457,47.097c0.559,0.188,1.167,0.393,1.715,0.576\r\n							c-0.184-0.486-0.399-1.053-0.635-1.672c-0.567-0.19-1.185-0.396-1.713-0.574C34.059,46.047,34.275,46.617,34.457,47.097\r\n							 M16.88,42.664c-0.002,0.001-0.006,0.001-0.008,0.002c0,0-2.458,0.824-3.868,1.297c0.063,0.018,0.128,0.028,0.195,0.028\r\n							c0.083,0,0.166-0.016,0.245-0.044l-0.012,0.004c0,0,2.257-0.76,3.85-1.295c-0.06-0.017-0.123-0.024-0.186-0.024\r\n							C17.021,42.631,16.949,42.642,16.88,42.664 M21.886,44.754c-0.175-0.305-0.451-0.784-0.747-1.3\r\n							c-0.216,0.566-0.44,1.156-0.642,1.689c0.472,0.82,0.866,1.504,0.906,1.574c0.515-1.358,1.166-3.074,1.458-3.845\r\n							c0.166,0.435,0.379,0.999,0.622,1.637c0.241-0.64,0.509-1.342,0.75-1.979c-0.418-1.104-0.703-1.855-0.703-1.855l0.008,0.025\r\n							l-0.021-0.063l-0.033-0.09C22.924,42.019,22.158,44.039,21.886,44.754 M22.834,35.525c0.145,0.385,0.369,0.975,0.369,0.975\r\n							s0.055,0.146,0.139,0.367c0.051-0.002,0.103-0.003,0.153-0.003c0.448,0,0.946,0.102,1.435,0.229l-0.198-0.525\r\n							c0,0-0.203-0.534-0.386-1.015c-0.282-0.045-0.566-0.072-0.851-0.072C23.274,35.481,23.053,35.498,22.834,35.525 M12.545,43.06\r\n							l0.004-0.008c-0.031,0.076-0.047,0.157-0.047,0.242c0,0.116,0.03,0.229,0.087,0.332c0.722-1.902,2.613-6.876,2.949-7.757\r\n							c0.269,0.327,0.559,0.651,0.883,0.937c0.194-0.511,0.379-0.996,0.541-1.424c-0.252-0.276-0.497-0.587-0.748-0.905\r\n							c0,0-0.009-0.012-0.01-0.014c-0.088-0.112-0.177-0.227-0.267-0.339C14.833,37.036,12.545,43.06,12.545,43.06 M37.629,29.375\r\n							c-0.07,0.388-0.189,0.732-0.402,1.009c-0.473,0.624-1.41,0.939-2.404,1.271l-0.015,0.005l-0.016,0.004\r\n							c-0.709,0.237-1.439,0.479-2.059,0.859l-0.442,0.558l0.023-0.026l-0.09,0.107l0.028-0.038\r\n							c-0.349,0.418-0.768,0.862-1.279,1.097c-0.053,0.066-0.105,0.133-0.158,0.199c0,0-0.035,0.042-0.037,0.046l-0.023,0.031\r\n							l-0.464,0.584l0.024-0.026l-0.091,0.107l0.028-0.038c-0.177,0.212-0.371,0.43-0.587,0.625\r\n							c0.152,0.015,0.304,0.022,0.455,0.022c0.383,0,0.737-0.05,1.059-0.147c0.25-0.078,0.491-0.187,0.729-0.326\r\n							c0.5-0.64,0.922-1.155,1.405-1.493c0.113-0.081,0.238-0.156,0.372-0.226c0.107-0.136,0.214-0.271,0.214-0.271\r\n							c0.504-0.645,0.928-1.165,1.412-1.504c0.5-0.353,1.2-0.587,1.94-0.836c0.528-0.174,1.064-0.351,1.56-0.582\r\n							c0.226-0.594,0.291-1.24,0.319-1.889C38.782,28.885,38.243,29.146,37.629,29.375 M41.349,21.167l-0.07,0.101l-0.009,0.01\r\n							c-0.479,0.653-0.973,1.329-1.233,2.073c-0.174,0.529-0.239,1.09-0.268,1.653c0.172-0.271,0.37-0.549,0.576-0.835\r\n							c0,0,0.066-0.091,0.066-0.092c0.688-0.934,1.471-1.994,1.471-3.254c0-0.132-0.009-0.262-0.024-0.39\r\n							C41.698,20.678,41.522,20.923,41.349,21.167 M8.601,15.535c0,0-0.024,0.033-0.024,0.035L8.57,15.578\r\n							c-0.716,0.982-1.454,1.996-1.454,3.244c0,0.129,0.008,0.255,0.023,0.38c0.177-0.274,0.375-0.546,0.571-0.815\r\n							c0,0,0.011-0.014,0.011-0.015l0.032-0.045c0.467-0.641,0.95-1.307,1.197-2.036c0.176-0.525,0.243-1.096,0.272-1.65\r\n							C9.041,14.931,8.824,15.229,8.601,15.535 M17.817,4.02c-0.269,0.085-0.517,0.2-0.747,0.338\r\n							c-0.434,0.555-0.883,1.127-1.383,1.476c-0.119,0.084-0.249,0.161-0.386,0.232c-0.067,0.083-0.132,0.167-0.198,0.25\r\n							c0,0-0.012,0.013-0.014,0.016c-0.439,0.564-0.894,1.148-1.403,1.502c-0.523,0.366-1.25,0.607-1.954,0.838l-0.008,0.003\r\n							c-0.522,0.174-1.052,0.352-1.544,0.582c-0.222,0.59-0.29,1.232-0.319,1.879c0.35-0.382,0.888-0.64,1.498-0.868\r\n							c0.071-0.389,0.19-0.735,0.399-1.011c0.472-0.621,1.41-0.934,2.402-1.266l0.027-0.01l0.042-0.014\r\n							c0.69-0.232,1.401-0.471,2.014-0.838c0.564-0.717,1.102-1.394,1.764-1.7c0.065-0.081,0.129-0.163,0.193-0.244\r\n							c0,0,0.005-0.008,0.005-0.009l0.015-0.017c0.362-0.461,0.713-0.907,1.093-1.251c-0.169-0.017-0.336-0.026-0.5-0.026\r\n							C18.45,3.881,18.115,3.927,17.817,4.02"/>\r\n					</defs>\r\n					<clipPath id="SVGID_16_">\r\n						<use xlink:href="#SVGID_15_"  overflow="visible"/>\r\n					</clipPath>\r\n					<g clip-path="url(#SVGID_16_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_17_" width="47.257" height="60.008"/>\r\n							</defs>\r\n							<clipPath id="SVGID_18_">\r\n								<use xlink:href="#SVGID_17_"  overflow="visible"/>\r\n							</clipPath>\r\n						</g>\r\n					</g>\r\n					<g opacity="0.2" clip-path="url(#SVGID_16_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_19_" x="5.116" y="3.881" width="36.766" height="49.499"/>\r\n							</defs>\r\n							<clipPath id="SVGID_20_">\r\n								<use xlink:href="#SVGID_19_"  overflow="visible"/>\r\n							</clipPath>\r\n						</g>\r\n					</g>\r\n				</g>\r\n				<g opacity="0.2" clip-path="url(#SVGID_4_)">\r\n					<g>\r\n						<defs>\r\n							<rect id="SVGID_21_" x="5.116" y="3.881" width="36.766" height="49.499"/>\r\n						</defs>\r\n						<clipPath id="SVGID_22_">\r\n							<use xlink:href="#SVGID_21_"  overflow="visible"/>\r\n						</clipPath>\r\n					</g>\r\n				</g>\r\n				<path clip-path="url(#SVGID_4_)" fill="#6395C4" d="M21.163,26.757h-3.91l0.003-7.384h2.395c0.347,0,0.691,0.287,0.763,0.637\r\n					l1.254,6.114C21.74,26.474,21.515,26.762,21.163,26.757 M33.87,21.341c0,0,0.903,1.529-0.684,2.754c0,0,0.737,2.107-2.208,2.752\r\n					c-0.868,0.19-1.958,0.183-2.986,0.098c-2.571,0.055-5.133-0.287-5.133-0.287l-1.656-7.388c0.504-0.313,0.741-0.669,0.853-0.901\r\n					c0.025-0.073,0.053-0.154,0.085-0.238c0.141-0.347,0.363-0.769,0.718-1.152c1.656-1.306,3.387-6.204,3.387-6.204\r\n					S25.974,9,26.784,9c0.81,0,2.735,0.555,1.577,4.148c-1.155,3.594,0,3.041,0,3.041c0.265-0.065,0.513-0.117,0.746-0.158\r\n					c0,0,3.336-0.768,4.565,0.387c0.985,0.923,0.223,2.144,0.223,2.144S35.282,19.829,33.87,21.341"/>\r\n			</g>\r\n		</g>\r\n	</g>\r\n</g>\r\n</svg>\r\n');
+INSERT INTO `svg` (`id`, `created_at`, `updated_at`, `status`, `svg`) VALUES
+(24, 1473765895, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="47.257px" height="60.008px" viewBox="0 0 47.257 60.008" enable-background="new 0 0 47.257 60.008" xml:space="preserve">\r\n<g enable-background="new    ">\r\n	<g>\r\n		<defs>\r\n			<rect id="SVGID_1_" y="0" width="47.257" height="60.008"/>\r\n		</defs>\r\n		<clipPath id="SVGID_2_">\r\n			<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g clip-path="url(#SVGID_2_)" enable-background="new    ">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_3_" width="47.257" height="60.008"/>\r\n				</defs>\r\n				<clipPath id="SVGID_4_">\r\n					<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n				</clipPath>\r\n				<g opacity="0.2" clip-path="url(#SVGID_4_)">\r\n					<g>\r\n						<defs>\r\n							<rect id="SVGID_5_" x="5.116" y="3.881" width="36.766" height="49.499"/>\r\n						</defs>\r\n						<clipPath id="SVGID_6_">\r\n							<use xlink:href="#SVGID_5_"  overflow="visible"/>\r\n						</clipPath>\r\n						<path clip-path="url(#SVGID_6_)" d="M26.031,35.966l0.027,0.007h0.001c0.685,0.2,1.468,0.412,2.099,0.412\r\n							c0.225,0,0.422-0.027,0.591-0.078c0.614-0.191,1.104-0.705,1.504-1.183l-0.028,0.038l0.09-0.107l-0.023,0.026l0.464-0.584\r\n							l0.023-0.031c0.002-0.004,0.036-0.046,0.036-0.046c0.505-0.631,1.026-1.284,1.682-1.74c0.666-0.472,1.494-0.747,2.296-1.015\r\n							l0.017-0.005l0.013-0.005c0.994-0.332,1.934-0.646,2.406-1.272c0.459-0.595,0.484-1.519,0.515-2.495l0.002-0.085\r\n							c0.018-0.825,0.035-1.674,0.292-2.453c0.261-0.744,0.754-1.42,1.233-2.073l0.008-0.01l0.071-0.101\r\n							c0.553-0.773,1.125-1.572,1.125-2.347c0-0.812-0.608-1.642-1.196-2.446c-0.483-0.658-0.979-1.335-1.24-2.077\r\n							c-0.258-0.784-0.275-1.634-0.293-2.456c0-0.002-0.002-0.087-0.002-0.087c-0.03-0.978-0.056-1.901-0.513-2.494\r\n							c-0.475-0.628-1.414-0.942-2.408-1.274L34.808,9.98c-0.759-0.248-1.623-0.532-2.313-1.02c-0.65-0.453-1.173-1.104-1.675-1.734\r\n							L30.78,7.177c-0.641-0.822-1.242-1.596-2.031-1.84c-0.176-0.054-0.371-0.081-0.599-0.081c-0.626,0-1.377,0.203-2.091,0.411\r\n							c-0.837,0.242-1.698,0.492-2.565,0.492c-0.871,0-1.73-0.251-2.561-0.492c-0.684-0.199-1.469-0.411-2.096-0.411\r\n							c-0.223,0-0.422,0.027-0.59,0.08c-0.784,0.242-1.388,1.009-2.028,1.821l-0.014,0.018c0,0.001-0.006,0.008-0.006,0.008\r\n							c-0.506,0.646-1.029,1.314-1.698,1.778c-0.667,0.466-1.483,0.74-2.272,1.005L12.187,9.98l-0.027,0.009\r\n							c-0.992,0.333-1.929,0.646-2.401,1.267c-0.464,0.613-0.487,1.569-0.51,2.58c-0.017,0.782-0.034,1.669-0.299,2.456\r\n							c-0.246,0.728-0.729,1.393-1.196,2.035l-0.032,0.045c0,0.001-0.011,0.014-0.011,0.014c-0.585,0.804-1.19,1.635-1.19,2.436\r\n							c0,0.811,0.61,1.643,1.2,2.447c0,0.001,0.024,0.034,0.024,0.034c0.471,0.646,0.958,1.313,1.205,2.05\r\n							c0.256,0.76,0.278,1.591,0.298,2.396l0.001,0.055c0.023,1.012,0.046,1.967,0.51,2.579c0.472,0.622,1.409,0.935,2.401,1.267\r\n							l0.027,0.011c0.764,0.254,1.631,0.542,2.316,1.02c0.67,0.466,1.195,1.136,1.702,1.784c0.001,0.001,0.01,0.013,0.01,0.013\r\n							c0.642,0.815,1.247,1.586,2.032,1.83c0.168,0.052,0.36,0.078,0.584,0.078c0.631,0,1.416-0.212,2.104-0.412l0.015-0.005\r\n							c0.828-0.24,1.682-0.487,2.545-0.487C24.353,35.481,25.206,35.727,26.031,35.966 M27.471,51.074\r\n							c0.564-0.975,2.166-3.733,2.18-3.759c0.112-0.226,0.352-0.37,0.618-0.37c0.076,0,0.148,0.013,0.218,0.035\r\n							c0,0,3.394,1.136,4.497,1.504c-0.477-1.26-4.078-10.742-4.426-11.66c-0.447,0.391-0.896,0.649-1.377,0.801\r\n							c-0.322,0.098-0.676,0.147-1.06,0.147c-0.799,0-1.607-0.229-2.39-0.452l-0.073-0.021c-0.698-0.204-1.488-0.436-2.164-0.436\r\n							c-0.402,0-0.833,0.078-1.332,0.206c0.187,0.492,0.569,1.499,0.569,1.499l0.785,2.07l0.021,0.063l-0.008-0.025\r\n							C23.529,40.676,26.983,49.789,27.471,51.074 M17.707,42.962c0.002,0.004,0.004,0.007,0.006,0.011c0,0,1.608,2.796,2.174,3.781\r\n							c0.435-1.147,2.137-5.63,2.224-5.86c-0.09-0.237-0.908-2.395-0.908-2.395s-0.257-0.68-0.399-1.053\r\n							c-0.63,0.168-1.327,0.314-1.989,0.314c-0.366,0-0.7-0.046-0.996-0.137c-0.972-0.305-1.677-1.021-2.281-1.755\r\n							c-0.376,0.987-2.708,7.124-3.155,8.301c1.104-0.37,4.49-1.505,4.49-1.505c0.002-0.001,0.006-0.001,0.008-0.002\r\n							c0.068-0.021,0.141-0.032,0.215-0.032C17.346,42.631,17.581,42.758,17.707,42.962 M27.318,53.38\r\n							c-0.284,0-0.534-0.171-0.638-0.438c-0.003-0.004-2.816-7.423-3.819-10.069c-0.522,1.374-2.181,5.752-2.181,5.752\r\n							c-0.002,0.003-0.004,0.007-0.005,0.011c-0.107,0.257-0.361,0.43-0.632,0.43H20.02c-0.249,0-0.482-0.127-0.607-0.332\r\n							c-0.003-0.003-0.004-0.006-0.006-0.01c0,0-2.357-4.095-2.631-4.572c-0.524,0.177-5.343,1.799-5.343,1.799l0.012-0.006\r\n							c-0.079,0.03-0.162,0.046-0.245,0.046c-0.189,0-0.366-0.075-0.499-0.214c-0.128-0.137-0.198-0.307-0.198-0.482\r\n							c0-0.085,0.015-0.165,0.046-0.242l-0.004,0.008c0,0,3.822-10.064,3.972-10.462c-0.241-0.282-0.519-0.575-0.829-0.792\r\n							c-0.504-0.351-1.189-0.58-1.913-0.823l-0.043-0.015c-1.163-0.387-2.365-0.787-3.1-1.757c-0.731-0.96-0.761-2.172-0.791-3.343\r\n							v-0.029c-0.015-0.723-0.031-1.469-0.229-2.055c-0.178-0.529-0.575-1.077-0.997-1.656l-0.039-0.053\r\n							c0-0.001-0.006-0.008-0.006-0.008c-0.715-0.982-1.453-1.997-1.453-3.245s0.738-2.262,1.453-3.244l0.008-0.009\r\n							c0-0.001,0.024-0.034,0.024-0.034c0.427-0.587,0.831-1.142,1.01-1.678c0.198-0.583,0.214-1.33,0.229-2.052v-0.032\r\n							c0.03-1.173,0.06-2.385,0.792-3.34c0.733-0.971,1.931-1.371,3.092-1.759l0.007-0.003c0.705-0.231,1.432-0.471,1.955-0.838\r\n							c0.508-0.354,0.963-0.938,1.403-1.502c0.001-0.002,0.013-0.016,0.013-0.016c0.745-0.944,1.515-1.919,2.715-2.296\r\n							c0.298-0.092,0.633-0.138,0.995-0.138c0.811,0,1.691,0.222,2.52,0.463l0.011,0.004c0.733,0.211,1.491,0.43,2.151,0.43\r\n							c0.661,0,1.416-0.219,2.148-0.429l0.015-0.005c0.824-0.24,1.701-0.462,2.52-0.462c0.361,0,0.698,0.046,0.999,0.136\r\n							c1.219,0.384,2.019,1.409,2.724,2.313c0.505,0.648,0.929,1.169,1.41,1.501c0.515,0.368,1.24,0.608,1.941,0.839\r\n							c0.004,0,0.024,0.008,0.024,0.008c1.158,0.387,2.358,0.787,3.08,1.757c0.729,0.94,0.763,2.13,0.795,3.283l0.002,0.086\r\n							c0,0.002,0.001,0.023,0.001,0.023c0.016,0.716,0.032,1.455,0.221,2.031c0.181,0.519,0.571,1.062,0.984,1.635l0.056,0.078\r\n							c0.687,0.93,1.468,1.99,1.468,3.25c0,1.26-0.781,2.32-1.471,3.254c0,0.001-0.065,0.092-0.065,0.092\r\n							c-0.408,0.567-0.792,1.101-0.973,1.619c-0.188,0.574-0.204,1.316-0.22,2.034l-0.001,0.02c0,0.002-0.002,0.089-0.002,0.089\r\n							c-0.032,1.15-0.065,2.337-0.798,3.283c-0.726,0.973-1.934,1.371-3.102,1.755c-0.738,0.25-1.438,0.484-1.938,0.837\r\n							c-0.485,0.339-0.909,0.859-1.413,1.504c0,0-0.16,0.203-0.284,0.36c0.146,0.385,5.203,13.705,5.203,13.705l-0.006-0.015\r\n							c0.033,0.079,0.051,0.166,0.051,0.251c0,0.178-0.074,0.348-0.206,0.48c-0.125,0.135-0.305,0.213-0.497,0.213\r\n							c-0.079,0-0.158-0.013-0.229-0.04c0,0-4.82-1.62-5.345-1.796c-0.272,0.476-2.62,4.57-2.62,4.57\r\n							c-0.007,0.01-0.013,0.02-0.02,0.029c-0.137,0.195-0.364,0.313-0.604,0.313H27.318"/>\r\n					</g>\r\n				</g>\r\n				<path clip-path="url(#SVGID_4_)" fill="#FFFFFF" d="M28.031,33.966l0.027,0.007h0.001c0.685,0.2,1.468,0.412,2.099,0.412\r\n					c0.225,0,0.422-0.027,0.591-0.078c0.614-0.191,1.104-0.705,1.504-1.183l-0.028,0.038l0.09-0.107l-0.023,0.026l0.464-0.584\r\n					l0.023-0.031c0.002-0.004,0.036-0.046,0.036-0.046c0.505-0.631,1.026-1.284,1.682-1.74c0.666-0.472,1.494-0.747,2.296-1.015\r\n					l0.017-0.005l0.013-0.005c0.994-0.332,1.934-0.646,2.406-1.272c0.459-0.595,0.484-1.519,0.515-2.495l0.002-0.085\r\n					c0.018-0.825,0.035-1.674,0.292-2.453c0.261-0.744,0.754-1.42,1.233-2.073l0.008-0.01l0.071-0.101\r\n					c0.553-0.773,1.125-1.572,1.125-2.347c0-0.812-0.608-1.642-1.196-2.446c-0.483-0.658-0.979-1.335-1.24-2.077\r\n					c-0.258-0.784-0.275-1.634-0.293-2.456c0-0.002-0.002-0.087-0.002-0.087c-0.03-0.978-0.056-1.901-0.513-2.494\r\n					c-0.475-0.628-1.414-0.942-2.408-1.274L36.808,7.98c-0.759-0.248-1.623-0.532-2.313-1.02c-0.65-0.453-1.173-1.104-1.675-1.734\r\n					L32.78,5.177c-0.641-0.822-1.242-1.596-2.031-1.84c-0.176-0.054-0.371-0.081-0.599-0.081c-0.626,0-1.377,0.203-2.091,0.411\r\n					c-0.837,0.242-1.698,0.492-2.565,0.492c-0.871,0-1.729-0.251-2.561-0.492c-0.684-0.199-1.469-0.411-2.096-0.411\r\n					c-0.223,0-0.422,0.027-0.59,0.08c-0.784,0.242-1.388,1.009-2.028,1.821l-0.014,0.018c0,0.001-0.006,0.008-0.006,0.008\r\n					c-0.506,0.646-1.029,1.314-1.698,1.778c-0.667,0.466-1.483,0.74-2.272,1.005L14.187,7.98l-0.027,0.009\r\n					c-0.992,0.333-1.929,0.646-2.401,1.267c-0.464,0.613-0.487,1.569-0.51,2.58c-0.017,0.782-0.034,1.669-0.299,2.456\r\n					c-0.246,0.728-0.729,1.393-1.196,2.035l-0.032,0.045c0,0.001-0.011,0.014-0.011,0.014c-0.585,0.804-1.19,1.635-1.19,2.436\r\n					c0,0.811,0.61,1.643,1.2,2.447c0,0.001,0.024,0.034,0.024,0.034c0.471,0.646,0.958,1.313,1.205,2.05\r\n					c0.256,0.76,0.278,1.591,0.298,2.396l0.001,0.055c0.023,1.012,0.046,1.967,0.51,2.579c0.472,0.622,1.409,0.935,2.401,1.267\r\n					l0.027,0.01c0.764,0.254,1.631,0.542,2.316,1.02c0.67,0.466,1.195,1.136,1.702,1.784c0.001,0.001,0.01,0.013,0.01,0.013\r\n					c0.642,0.815,1.247,1.586,2.032,1.83c0.168,0.052,0.36,0.078,0.584,0.078c0.631,0,1.416-0.212,2.104-0.412l0.015-0.005\r\n					c0.828-0.24,1.683-0.487,2.545-0.487C26.353,33.481,27.206,33.727,28.031,33.966 M29.471,49.074\r\n					c0.564-0.975,2.166-3.733,2.18-3.759c0.112-0.226,0.352-0.37,0.618-0.37c0.076,0,0.148,0.013,0.218,0.035\r\n					c0,0,3.394,1.136,4.497,1.504c-0.477-1.26-4.078-10.742-4.426-11.66c-0.447,0.391-0.896,0.649-1.377,0.801\r\n					c-0.322,0.098-0.676,0.147-1.06,0.147c-0.799,0-1.607-0.229-2.39-0.452l-0.073-0.021c-0.698-0.204-1.488-0.436-2.164-0.436\r\n					c-0.402,0-0.833,0.078-1.332,0.206c0.188,0.492,0.569,1.499,0.569,1.499l0.785,2.07l0.021,0.063l-0.008-0.025\r\n					C25.529,38.676,28.983,47.789,29.471,49.074 M19.707,40.962c0.002,0.004,0.004,0.007,0.006,0.011c0,0,1.608,2.796,2.174,3.781\r\n					c0.435-1.147,2.137-5.63,2.224-5.86c-0.09-0.237-0.908-2.395-0.908-2.395s-0.257-0.68-0.399-1.053\r\n					c-0.63,0.168-1.327,0.314-1.989,0.314c-0.366,0-0.7-0.046-0.996-0.137c-0.972-0.305-1.677-1.021-2.281-1.755\r\n					c-0.376,0.987-2.708,7.124-3.155,8.301c1.104-0.37,4.49-1.505,4.49-1.505c0.002-0.001,0.006-0.001,0.008-0.002\r\n					c0.068-0.021,0.141-0.032,0.215-0.032C19.346,40.631,19.581,40.758,19.707,40.962 M29.318,51.38\r\n					c-0.284,0-0.534-0.171-0.638-0.438c-0.003-0.004-2.816-7.423-3.819-10.069c-0.521,1.374-2.181,5.752-2.181,5.752\r\n					c-0.002,0.003-0.004,0.007-0.005,0.011c-0.107,0.257-0.361,0.43-0.632,0.43H22.02c-0.249,0-0.482-0.127-0.607-0.332\r\n					c-0.003-0.003-0.004-0.006-0.006-0.01c0,0-2.357-4.095-2.631-4.572c-0.524,0.177-5.343,1.799-5.343,1.799l0.012-0.006\r\n					c-0.079,0.03-0.162,0.046-0.245,0.046c-0.189,0-0.366-0.075-0.499-0.214c-0.128-0.137-0.198-0.307-0.198-0.482\r\n					c0-0.085,0.015-0.165,0.046-0.242l-0.004,0.008c0,0,3.822-10.064,3.972-10.462c-0.241-0.282-0.519-0.575-0.829-0.792\r\n					c-0.504-0.351-1.189-0.58-1.913-0.823l-0.043-0.015c-1.163-0.387-2.365-0.787-3.1-1.757c-0.731-0.96-0.761-2.172-0.791-3.343\r\n					v-0.029c-0.015-0.723-0.031-1.469-0.229-2.055c-0.178-0.529-0.575-1.077-0.997-1.656l-0.039-0.053\r\n					c0-0.001-0.006-0.008-0.006-0.008c-0.715-0.982-1.453-1.997-1.453-3.245s0.738-2.262,1.453-3.244l0.008-0.009\r\n					c0-0.001,0.024-0.034,0.024-0.034c0.427-0.587,0.831-1.142,1.01-1.678c0.198-0.583,0.214-1.33,0.229-2.052v-0.032\r\n					c0.03-1.173,0.06-2.385,0.792-3.34c0.733-0.971,1.931-1.371,3.092-1.759l0.007-0.003c0.705-0.231,1.432-0.471,1.955-0.838\r\n					c0.508-0.354,0.963-0.938,1.403-1.502c0.001-0.002,0.013-0.016,0.013-0.016c0.745-0.944,1.515-1.919,2.715-2.296\r\n					c0.298-0.092,0.633-0.138,0.995-0.138c0.811,0,1.691,0.222,2.52,0.463l0.012,0.004c0.732,0.211,1.49,0.43,2.15,0.43\r\n					c0.661,0,1.416-0.219,2.148-0.429l0.015-0.005c0.824-0.24,1.701-0.462,2.52-0.462c0.361,0,0.698,0.046,0.999,0.136\r\n					c1.219,0.384,2.019,1.409,2.724,2.313c0.505,0.648,0.929,1.169,1.41,1.501c0.515,0.368,1.24,0.608,1.941,0.839\r\n					c0.004,0,0.024,0.008,0.024,0.008c1.158,0.387,2.358,0.787,3.08,1.757c0.729,0.94,0.763,2.13,0.795,3.283l0.002,0.086\r\n					c0,0.002,0.001,0.023,0.001,0.023c0.016,0.716,0.032,1.455,0.221,2.031c0.181,0.519,0.571,1.062,0.984,1.635l0.056,0.078\r\n					c0.687,0.93,1.468,1.99,1.468,3.25c0,1.26-0.781,2.32-1.471,3.254c0,0.001-0.065,0.092-0.065,0.092\r\n					c-0.408,0.567-0.792,1.101-0.973,1.619c-0.188,0.574-0.204,1.316-0.22,2.034l-0.001,0.02c0,0.002-0.002,0.089-0.002,0.089\r\n					c-0.032,1.15-0.065,2.337-0.798,3.283c-0.726,0.973-1.934,1.371-3.102,1.755c-0.738,0.25-1.438,0.484-1.938,0.837\r\n					c-0.485,0.339-0.909,0.859-1.413,1.504c0,0-0.16,0.203-0.284,0.36c0.146,0.385,5.203,13.705,5.203,13.705l-0.006-0.015\r\n					c0.033,0.079,0.051,0.166,0.051,0.251c0,0.178-0.074,0.348-0.206,0.48c-0.125,0.135-0.305,0.213-0.497,0.213\r\n					c-0.079,0-0.158-0.013-0.229-0.04c0,0-4.82-1.62-5.345-1.796c-0.272,0.476-2.62,4.57-2.62,4.57\r\n					c-0.007,0.01-0.013,0.02-0.02,0.029c-0.137,0.195-0.364,0.313-0.604,0.313H29.318"/>\r\n				<g clip-path="url(#SVGID_4_)">\r\n					<defs>\r\n						<path id="SVGID_7_" d="M29.471,49.074c-0.064-0.169-0.18-0.475-0.332-0.876c-0.265,0.457-0.597,1.029-0.906,1.563\r\n							c0.274,0.725,0.447,1.18,0.447,1.181c0.059,0.149,0.161,0.268,0.29,0.344c0.674-1.175,1.465-2.554,1.617-2.818\r\n							c0.1,0.034,0.36,0.122,0.715,0.241c0.245-0.428,0.489-0.854,0.7-1.222c-0.592-0.197-1.099-0.367-1.349-0.451\r\n							C30.21,47.799,29.73,48.625,29.471,49.074 M34.457,47.097c0.559,0.188,1.167,0.393,1.715,0.576\r\n							c-0.184-0.486-0.399-1.053-0.635-1.672c-0.567-0.19-1.185-0.396-1.713-0.574C34.059,46.047,34.275,46.617,34.457,47.097\r\n							 M16.88,42.664c-0.002,0.001-0.006,0.001-0.008,0.002c0,0-2.458,0.824-3.868,1.297c0.063,0.018,0.128,0.028,0.195,0.028\r\n							c0.083,0,0.166-0.016,0.245-0.044l-0.012,0.004c0,0,2.257-0.76,3.85-1.295c-0.06-0.017-0.123-0.024-0.186-0.024\r\n							C17.021,42.631,16.949,42.642,16.88,42.664 M21.886,44.754c-0.175-0.305-0.451-0.784-0.747-1.3\r\n							c-0.216,0.566-0.44,1.156-0.642,1.689c0.472,0.82,0.866,1.504,0.906,1.574c0.515-1.358,1.166-3.074,1.458-3.845\r\n							c0.166,0.435,0.379,0.999,0.622,1.637c0.241-0.64,0.509-1.342,0.75-1.979c-0.418-1.104-0.703-1.855-0.703-1.855l0.008,0.025\r\n							l-0.021-0.063l-0.033-0.09C22.924,42.019,22.158,44.039,21.886,44.754 M22.834,35.525c0.145,0.385,0.369,0.975,0.369,0.975\r\n							s0.055,0.146,0.139,0.367c0.051-0.002,0.103-0.003,0.153-0.003c0.448,0,0.946,0.102,1.435,0.229l-0.198-0.525\r\n							c0,0-0.203-0.534-0.386-1.015c-0.282-0.045-0.566-0.072-0.851-0.072C23.274,35.481,23.053,35.498,22.834,35.525 M12.545,43.06\r\n							l0.004-0.008c-0.031,0.076-0.047,0.157-0.047,0.242c0,0.116,0.03,0.229,0.087,0.332c0.722-1.902,2.613-6.876,2.949-7.757\r\n							c0.269,0.327,0.559,0.651,0.883,0.937c0.194-0.511,0.379-0.996,0.541-1.424c-0.252-0.276-0.497-0.587-0.748-0.905\r\n							c0,0-0.009-0.012-0.01-0.014c-0.088-0.112-0.177-0.227-0.267-0.339C14.833,37.036,12.545,43.06,12.545,43.06 M37.629,29.375\r\n							c-0.07,0.388-0.189,0.732-0.402,1.009c-0.473,0.624-1.41,0.939-2.404,1.271l-0.015,0.005l-0.016,0.004\r\n							c-0.709,0.237-1.439,0.479-2.059,0.859l-0.442,0.558l0.023-0.026l-0.09,0.107l0.028-0.038\r\n							c-0.349,0.418-0.768,0.862-1.279,1.097c-0.053,0.066-0.105,0.133-0.158,0.199c0,0-0.035,0.042-0.037,0.046l-0.023,0.031\r\n							l-0.464,0.584l0.024-0.026l-0.091,0.107l0.028-0.038c-0.177,0.212-0.371,0.43-0.587,0.625\r\n							c0.152,0.015,0.304,0.022,0.455,0.022c0.383,0,0.737-0.05,1.059-0.147c0.25-0.078,0.491-0.187,0.729-0.326\r\n							c0.5-0.64,0.922-1.155,1.405-1.493c0.113-0.081,0.238-0.156,0.372-0.226c0.107-0.136,0.214-0.271,0.214-0.271\r\n							c0.504-0.645,0.928-1.165,1.412-1.504c0.5-0.353,1.2-0.587,1.94-0.836c0.528-0.174,1.064-0.351,1.56-0.582\r\n							c0.226-0.594,0.291-1.24,0.319-1.889C38.782,28.885,38.243,29.146,37.629,29.375 M41.349,21.167l-0.07,0.101l-0.009,0.01\r\n							c-0.479,0.653-0.973,1.329-1.233,2.073c-0.174,0.529-0.239,1.09-0.268,1.653c0.172-0.271,0.37-0.549,0.576-0.835\r\n							c0,0,0.066-0.091,0.066-0.092c0.688-0.934,1.471-1.994,1.471-3.254c0-0.132-0.009-0.262-0.024-0.39\r\n							C41.698,20.678,41.522,20.923,41.349,21.167 M8.601,15.535c0,0-0.024,0.033-0.024,0.035L8.57,15.578\r\n							c-0.716,0.982-1.454,1.996-1.454,3.244c0,0.129,0.008,0.255,0.023,0.38c0.177-0.274,0.375-0.546,0.571-0.815\r\n							c0,0,0.011-0.014,0.011-0.015l0.032-0.045c0.467-0.641,0.95-1.307,1.197-2.036c0.176-0.525,0.243-1.096,0.272-1.65\r\n							C9.041,14.931,8.824,15.229,8.601,15.535 M17.817,4.02c-0.269,0.085-0.517,0.2-0.747,0.338\r\n							c-0.434,0.555-0.883,1.127-1.383,1.476c-0.119,0.084-0.249,0.161-0.386,0.232c-0.067,0.083-0.132,0.167-0.198,0.25\r\n							c0,0-0.012,0.013-0.014,0.016c-0.439,0.564-0.894,1.148-1.403,1.502c-0.523,0.366-1.25,0.607-1.954,0.838l-0.008,0.003\r\n							c-0.522,0.174-1.052,0.352-1.544,0.582c-0.222,0.59-0.29,1.232-0.319,1.879c0.35-0.382,0.888-0.64,1.498-0.868\r\n							c0.071-0.389,0.19-0.735,0.399-1.011c0.472-0.621,1.41-0.934,2.402-1.266l0.027-0.01l0.042-0.014\r\n							c0.69-0.232,1.401-0.471,2.014-0.838c0.564-0.717,1.102-1.394,1.764-1.7c0.065-0.081,0.129-0.163,0.193-0.244\r\n							c0,0,0.005-0.008,0.005-0.009l0.015-0.017c0.362-0.461,0.713-0.907,1.093-1.251c-0.169-0.017-0.336-0.026-0.5-0.026\r\n							C18.45,3.881,18.115,3.927,17.817,4.02"/>\r\n					</defs>\r\n					<clipPath id="SVGID_8_">\r\n						<use xlink:href="#SVGID_7_"  overflow="visible"/>\r\n					</clipPath>\r\n					<g clip-path="url(#SVGID_8_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_9_" width="47.257" height="60.008"/>\r\n							</defs>\r\n							<clipPath id="SVGID_10_">\r\n								<use xlink:href="#SVGID_9_"  overflow="visible"/>\r\n							</clipPath>\r\n							<rect y="0" clip-path="url(#SVGID_10_)" fill="#FFFFFF" width="47.257" height="60.008"/>\r\n						</g>\r\n					</g>\r\n				</g>\r\n				<g clip-path="url(#SVGID_4_)">\r\n					<defs>\r\n						<path id="SVGID_11_" d="M29.471,49.074c-0.063-0.169-0.181-0.475-0.333-0.876c-0.264,0.457-0.596,1.029-0.906,1.563\r\n							c0.275,0.725,0.447,1.18,0.448,1.181c0.059,0.149,0.161,0.269,0.29,0.344c0.674-1.175,1.465-2.554,1.617-2.818\r\n							c0.1,0.034,0.36,0.122,0.714,0.241c0.246-0.428,0.491-0.854,0.701-1.222c-0.592-0.197-1.099-0.367-1.35-0.451\r\n							C30.209,47.8,29.731,48.625,29.471,49.074 M34.457,47.097c0.559,0.188,1.167,0.393,1.715,0.576\r\n							c-0.185-0.485-0.399-1.053-0.635-1.673c-0.567-0.189-1.185-0.396-1.713-0.573C34.059,46.047,34.275,46.617,34.457,47.097\r\n							 M16.88,42.664c-0.002,0.001-0.006,0.001-0.008,0.002c0,0-2.459,0.824-3.868,1.297c0.062,0.018,0.128,0.028,0.195,0.028\r\n							c0.083,0,0.166-0.016,0.245-0.044l-0.012,0.004c0,0,2.257-0.76,3.85-1.296c-0.061-0.016-0.123-0.023-0.186-0.023\r\n							C17.021,42.631,16.949,42.642,16.88,42.664 M21.886,44.754c-0.175-0.305-0.451-0.784-0.748-1.301\r\n							c-0.215,0.566-0.439,1.157-0.641,1.691c0.472,0.819,0.865,1.503,0.906,1.573c0.515-1.358,1.165-3.074,1.458-3.845\r\n							c0.166,0.435,0.379,0.999,0.622,1.637c0.241-0.64,0.508-1.342,0.75-1.979c-0.418-1.104-0.703-1.855-0.703-1.855l0.008,0.025\r\n							l-0.021-0.063l-0.033-0.09C22.924,42.02,22.158,44.038,21.886,44.754 M22.834,35.525c0.145,0.386,0.369,0.975,0.369,0.975\r\n							s0.056,0.146,0.139,0.367c0.052-0.002,0.103-0.003,0.153-0.003c0.448,0,0.946,0.102,1.435,0.229l-0.198-0.525\r\n							c0,0-0.202-0.533-0.386-1.015c-0.282-0.045-0.566-0.072-0.851-0.072C23.274,35.481,23.053,35.498,22.834,35.525 M12.545,43.06\r\n							l0.004-0.008c-0.031,0.076-0.047,0.157-0.047,0.242c0,0.116,0.031,0.229,0.087,0.332c0.723-1.901,2.613-6.876,2.949-7.757\r\n							c0.269,0.328,0.558,0.651,0.883,0.937c0.194-0.51,0.378-0.996,0.541-1.424c-0.252-0.276-0.497-0.587-0.748-0.905\r\n							c0,0-0.009-0.012-0.01-0.014c-0.088-0.112-0.177-0.227-0.267-0.338C14.833,37.036,12.545,43.06,12.545,43.06 M37.629,29.376\r\n							c-0.07,0.387-0.189,0.731-0.402,1.008c-0.473,0.624-1.41,0.939-2.404,1.271l-0.015,0.005l-0.016,0.004\r\n							c-0.709,0.237-1.439,0.479-2.059,0.859l-0.442,0.558l0.023-0.026l-0.09,0.107l0.028-0.038\r\n							c-0.349,0.418-0.768,0.862-1.279,1.097c-0.053,0.066-0.105,0.133-0.158,0.199c0,0-0.035,0.042-0.037,0.046l-0.023,0.031\r\n							l-0.464,0.584l0.024-0.026l-0.091,0.107l0.028-0.038c-0.177,0.211-0.371,0.43-0.587,0.624\r\n							c0.152,0.016,0.304,0.023,0.455,0.023c0.383,0,0.737-0.05,1.059-0.147c0.25-0.078,0.491-0.187,0.729-0.326\r\n							c0.5-0.639,0.922-1.155,1.405-1.493c0.113-0.081,0.238-0.155,0.372-0.225c0.107-0.137,0.214-0.271,0.214-0.271\r\n							c0.504-0.645,0.928-1.165,1.412-1.504c0.5-0.353,1.2-0.587,1.94-0.836c0.527-0.174,1.064-0.35,1.56-0.582\r\n							c0.227-0.594,0.29-1.24,0.319-1.889C38.782,28.885,38.243,29.146,37.629,29.376 M41.349,21.167l-0.07,0.101l-0.009,0.01\r\n							c-0.479,0.653-0.973,1.329-1.233,2.073c-0.174,0.529-0.239,1.09-0.268,1.653c0.171-0.271,0.37-0.55,0.576-0.835\r\n							c0,0,0.066-0.091,0.066-0.092c0.688-0.934,1.471-1.994,1.471-3.254c0-0.132-0.01-0.262-0.025-0.39\r\n							C41.698,20.678,41.522,20.924,41.349,21.167 M8.601,15.535c0,0-0.024,0.033-0.024,0.035L8.57,15.578\r\n							c-0.716,0.982-1.454,1.996-1.454,3.244c0,0.129,0.008,0.256,0.023,0.379c0.177-0.273,0.375-0.545,0.571-0.814\r\n							c0,0,0.011-0.014,0.011-0.015l0.032-0.045c0.467-0.641,0.95-1.307,1.197-2.036c0.177-0.525,0.243-1.096,0.272-1.65\r\n							C9.04,14.931,8.824,15.229,8.601,15.535 M17.817,4.02c-0.269,0.085-0.517,0.2-0.748,0.337\r\n							c-0.432,0.556-0.882,1.128-1.382,1.477c-0.119,0.084-0.248,0.161-0.386,0.233c-0.067,0.082-0.132,0.166-0.198,0.249\r\n							c0,0-0.012,0.013-0.014,0.016c-0.439,0.564-0.894,1.148-1.403,1.502c-0.523,0.366-1.25,0.607-1.954,0.838l-0.008,0.003\r\n							c-0.522,0.174-1.053,0.352-1.544,0.582c-0.222,0.59-0.29,1.232-0.319,1.878c0.349-0.381,0.888-0.64,1.499-0.867\r\n							c0.07-0.389,0.189-0.735,0.398-1.011c0.472-0.621,1.41-0.934,2.402-1.266l0.027-0.01l0.042-0.014\r\n							c0.69-0.232,1.401-0.471,2.014-0.838c0.564-0.717,1.103-1.394,1.764-1.7c0.065-0.081,0.129-0.163,0.193-0.244\r\n							c0,0,0.005-0.008,0.005-0.009l0.015-0.017c0.362-0.461,0.713-0.907,1.093-1.252c-0.169-0.016-0.336-0.025-0.5-0.025\r\n							C18.45,3.881,18.115,3.927,17.817,4.02"/>\r\n					</defs>\r\n					<clipPath id="SVGID_12_">\r\n						<use xlink:href="#SVGID_11_"  overflow="visible"/>\r\n					</clipPath>\r\n					<g clip-path="url(#SVGID_12_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_13_" width="47.257" height="60.008"/>\r\n							</defs>\r\n							<clipPath id="SVGID_14_">\r\n								<use xlink:href="#SVGID_13_"  overflow="visible"/>\r\n							</clipPath>\r\n						</g>\r\n					</g>\r\n				</g>\r\n				<g clip-path="url(#SVGID_4_)">\r\n					<defs>\r\n						<path id="SVGID_15_" d="M29.471,49.074c-0.064-0.169-0.18-0.475-0.332-0.876c-0.265,0.457-0.597,1.029-0.906,1.563\r\n							c0.274,0.725,0.447,1.18,0.447,1.181c0.059,0.149,0.161,0.268,0.29,0.344c0.674-1.175,1.465-2.554,1.617-2.818\r\n							c0.1,0.034,0.36,0.122,0.715,0.241c0.245-0.428,0.489-0.854,0.7-1.222c-0.592-0.197-1.099-0.367-1.349-0.451\r\n							C30.21,47.799,29.73,48.625,29.471,49.074 M34.457,47.097c0.559,0.188,1.167,0.393,1.715,0.576\r\n							c-0.184-0.486-0.399-1.053-0.635-1.672c-0.567-0.19-1.185-0.396-1.713-0.574C34.059,46.047,34.275,46.617,34.457,47.097\r\n							 M16.88,42.664c-0.002,0.001-0.006,0.001-0.008,0.002c0,0-2.458,0.824-3.868,1.297c0.063,0.018,0.128,0.028,0.195,0.028\r\n							c0.083,0,0.166-0.016,0.245-0.044l-0.012,0.004c0,0,2.257-0.76,3.85-1.295c-0.06-0.017-0.123-0.024-0.186-0.024\r\n							C17.021,42.631,16.949,42.642,16.88,42.664 M21.886,44.754c-0.175-0.305-0.451-0.784-0.747-1.3\r\n							c-0.216,0.566-0.44,1.156-0.642,1.689c0.472,0.82,0.866,1.504,0.906,1.574c0.515-1.358,1.166-3.074,1.458-3.845\r\n							c0.166,0.435,0.379,0.999,0.622,1.637c0.241-0.64,0.509-1.342,0.75-1.979c-0.418-1.104-0.703-1.855-0.703-1.855l0.008,0.025\r\n							l-0.021-0.063l-0.033-0.09C22.924,42.019,22.158,44.039,21.886,44.754 M22.834,35.525c0.145,0.385,0.369,0.975,0.369,0.975\r\n							s0.055,0.146,0.139,0.367c0.051-0.002,0.103-0.003,0.153-0.003c0.448,0,0.946,0.102,1.435,0.229l-0.198-0.525\r\n							c0,0-0.203-0.534-0.386-1.015c-0.282-0.045-0.566-0.072-0.851-0.072C23.274,35.481,23.053,35.498,22.834,35.525 M12.545,43.06\r\n							l0.004-0.008c-0.031,0.076-0.047,0.157-0.047,0.242c0,0.116,0.03,0.229,0.087,0.332c0.722-1.902,2.613-6.876,2.949-7.757\r\n							c0.269,0.327,0.559,0.651,0.883,0.937c0.194-0.511,0.379-0.996,0.541-1.424c-0.252-0.276-0.497-0.587-0.748-0.905\r\n							c0,0-0.009-0.012-0.01-0.014c-0.088-0.112-0.177-0.227-0.267-0.339C14.833,37.036,12.545,43.06,12.545,43.06 M37.629,29.375\r\n							c-0.07,0.388-0.189,0.732-0.402,1.009c-0.473,0.624-1.41,0.939-2.404,1.271l-0.015,0.005l-0.016,0.004\r\n							c-0.709,0.237-1.439,0.479-2.059,0.859l-0.442,0.558l0.023-0.026l-0.09,0.107l0.028-0.038\r\n							c-0.349,0.418-0.768,0.862-1.279,1.097c-0.053,0.066-0.105,0.133-0.158,0.199c0,0-0.035,0.042-0.037,0.046l-0.023,0.031\r\n							l-0.464,0.584l0.024-0.026l-0.091,0.107l0.028-0.038c-0.177,0.212-0.371,0.43-0.587,0.625\r\n							c0.152,0.015,0.304,0.022,0.455,0.022c0.383,0,0.737-0.05,1.059-0.147c0.25-0.078,0.491-0.187,0.729-0.326\r\n							c0.5-0.64,0.922-1.155,1.405-1.493c0.113-0.081,0.238-0.156,0.372-0.226c0.107-0.136,0.214-0.271,0.214-0.271\r\n							c0.504-0.645,0.928-1.165,1.412-1.504c0.5-0.353,1.2-0.587,1.94-0.836c0.528-0.174,1.064-0.351,1.56-0.582\r\n							c0.226-0.594,0.291-1.24,0.319-1.889C38.782,28.885,38.243,29.146,37.629,29.375 M41.349,21.167l-0.07,0.101l-0.009,0.01\r\n							c-0.479,0.653-0.973,1.329-1.233,2.073c-0.174,0.529-0.239,1.09-0.268,1.653c0.172-0.271,0.37-0.549,0.576-0.835\r\n							c0,0,0.066-0.091,0.066-0.092c0.688-0.934,1.471-1.994,1.471-3.254c0-0.132-0.009-0.262-0.024-0.39\r\n							C41.698,20.678,41.522,20.923,41.349,21.167 M8.601,15.535c0,0-0.024,0.033-0.024,0.035L8.57,15.578\r\n							c-0.716,0.982-1.454,1.996-1.454,3.244c0,0.129,0.008,0.255,0.023,0.38c0.177-0.274,0.375-0.546,0.571-0.815\r\n							c0,0,0.011-0.014,0.011-0.015l0.032-0.045c0.467-0.641,0.95-1.307,1.197-2.036c0.176-0.525,0.243-1.096,0.272-1.65\r\n							C9.041,14.931,8.824,15.229,8.601,15.535 M17.817,4.02c-0.269,0.085-0.517,0.2-0.747,0.338\r\n							c-0.434,0.555-0.883,1.127-1.383,1.476c-0.119,0.084-0.249,0.161-0.386,0.232c-0.067,0.083-0.132,0.167-0.198,0.25\r\n							c0,0-0.012,0.013-0.014,0.016c-0.439,0.564-0.894,1.148-1.403,1.502c-0.523,0.366-1.25,0.607-1.954,0.838l-0.008,0.003\r\n							c-0.522,0.174-1.052,0.352-1.544,0.582c-0.222,0.59-0.29,1.232-0.319,1.879c0.35-0.382,0.888-0.64,1.498-0.868\r\n							c0.071-0.389,0.19-0.735,0.399-1.011c0.472-0.621,1.41-0.934,2.402-1.266l0.027-0.01l0.042-0.014\r\n							c0.69-0.232,1.401-0.471,2.014-0.838c0.564-0.717,1.102-1.394,1.764-1.7c0.065-0.081,0.129-0.163,0.193-0.244\r\n							c0,0,0.005-0.008,0.005-0.009l0.015-0.017c0.362-0.461,0.713-0.907,1.093-1.251c-0.169-0.017-0.336-0.026-0.5-0.026\r\n							C18.45,3.881,18.115,3.927,17.817,4.02"/>\r\n					</defs>\r\n					<clipPath id="SVGID_16_">\r\n						<use xlink:href="#SVGID_15_"  overflow="visible"/>\r\n					</clipPath>\r\n					<g clip-path="url(#SVGID_16_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_17_" width="47.257" height="60.008"/>\r\n							</defs>\r\n							<clipPath id="SVGID_18_">\r\n								<use xlink:href="#SVGID_17_"  overflow="visible"/>\r\n							</clipPath>\r\n						</g>\r\n					</g>\r\n					<g opacity="0.2" clip-path="url(#SVGID_16_)">\r\n						<g>\r\n							<defs>\r\n								<rect id="SVGID_19_" x="5.116" y="3.881" width="36.766" height="49.499"/>\r\n							</defs>\r\n							<clipPath id="SVGID_20_">\r\n								<use xlink:href="#SVGID_19_"  overflow="visible"/>\r\n							</clipPath>\r\n						</g>\r\n					</g>\r\n				</g>\r\n				<g opacity="0.2" clip-path="url(#SVGID_4_)">\r\n					<g>\r\n						<defs>\r\n							<rect id="SVGID_21_" x="5.116" y="3.881" width="36.766" height="49.499"/>\r\n						</defs>\r\n						<clipPath id="SVGID_22_">\r\n							<use xlink:href="#SVGID_21_"  overflow="visible"/>\r\n						</clipPath>\r\n					</g>\r\n				</g>\r\n				<path clip-path="url(#SVGID_4_)" fill="#6395C4" d="M21.163,26.757h-3.91l0.003-7.384h2.395c0.347,0,0.691,0.287,0.763,0.637\r\n					l1.254,6.114C21.74,26.474,21.515,26.762,21.163,26.757 M33.87,21.341c0,0,0.903,1.529-0.684,2.754c0,0,0.737,2.107-2.208,2.752\r\n					c-0.868,0.19-1.958,0.183-2.986,0.098c-2.571,0.055-5.133-0.287-5.133-0.287l-1.656-7.388c0.504-0.313,0.741-0.669,0.853-0.901\r\n					c0.025-0.073,0.053-0.154,0.085-0.238c0.141-0.347,0.363-0.769,0.718-1.152c1.656-1.306,3.387-6.204,3.387-6.204\r\n					S25.974,9,26.784,9c0.81,0,2.735,0.555,1.577,4.148c-1.155,3.594,0,3.041,0,3.041c0.265-0.065,0.513-0.117,0.746-0.158\r\n					c0,0,3.336-0.768,4.565,0.387c0.985,0.923,0.223,2.144,0.223,2.144S35.282,19.829,33.87,21.341"/>\r\n			</g>\r\n		</g>\r\n	</g>\r\n</g>\r\n</svg>\r\n'),
+(25, 1473765916, NULL, 1, '<?xml version="1.0" encoding="utf-8"?>\r\n<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\r\n<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n	 width="54.758px" height="53.257px" viewBox="0 0 54.758 53.257" enable-background="new 0 0 54.758 53.257" xml:space="preserve">\r\n<g>\r\n	<defs>\r\n		<rect id="SVGID_1_" width="54.758" height="53.257"/>\r\n	</defs>\r\n	<clipPath id="SVGID_2_">\r\n		<use xlink:href="#SVGID_1_"  overflow="visible"/>\r\n	</clipPath>\r\n	<g clip-path="url(#SVGID_2_)">\r\n		<defs>\r\n			<rect id="SVGID_3_" y="0" width="54.758" height="53.257"/>\r\n		</defs>\r\n		<clipPath id="SVGID_4_">\r\n			<use xlink:href="#SVGID_3_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g opacity="0.2" clip-path="url(#SVGID_4_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_5_" x="5.495" y="4.251" width="43.511" height="42.01"/>\r\n				</defs>\r\n				<clipPath id="SVGID_6_">\r\n					<use xlink:href="#SVGID_5_"  overflow="visible"/>\r\n				</clipPath>\r\n				<path clip-path="url(#SVGID_6_)" d="M5.506,44.753h43.5v1.508h-43.5V44.753z M5.495,4.251h1.484V45.5H5.495V4.251z"/>\r\n			</g>\r\n		</g>\r\n	</g>\r\n	<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M7.506,42.753h43.5v1.508h-43.5V42.753z M7.495,2.251h1.484V43.5H7.495V2.251z"\r\n		/>\r\n	<g clip-path="url(#SVGID_2_)">\r\n		<defs>\r\n			<polygon id="SVGID_7_" points="7.495,2.25 7.495,43.5 7.506,43.5 7.506,44.261 51.006,44.261 51.006,42.753 8.979,42.753 \r\n				8.979,2.25 			"/>\r\n		</defs>\r\n		<clipPath id="SVGID_8_">\r\n			<use xlink:href="#SVGID_7_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g clip-path="url(#SVGID_8_)">\r\n			<defs>\r\n				<path id="SVGID_9_" d="M5.506,44.753h43.5v1.508h-43.5V44.753z M5.495,4.251h1.484V45.5H5.495V4.251z"/>\r\n			</defs>\r\n			<clipPath id="SVGID_10_">\r\n				<use xlink:href="#SVGID_9_"  overflow="visible"/>\r\n			</clipPath>\r\n			<g opacity="0.2" clip-path="url(#SVGID_10_)">\r\n				<g>\r\n					<defs>\r\n						<rect id="SVGID_11_" x="5.495" y="4.251" width="43.511" height="42.01"/>\r\n					</defs>\r\n					<clipPath id="SVGID_12_">\r\n						<use xlink:href="#SVGID_11_"  overflow="visible"/>\r\n					</clipPath>\r\n				</g>\r\n			</g>\r\n		</g>\r\n	</g>\r\n	<g clip-path="url(#SVGID_2_)">\r\n		<defs>\r\n			<rect id="SVGID_13_" y="0" width="54.758" height="53.257"/>\r\n		</defs>\r\n		<clipPath id="SVGID_14_">\r\n			<use xlink:href="#SVGID_13_"  overflow="visible"/>\r\n		</clipPath>\r\n		<g opacity="0.2" clip-path="url(#SVGID_14_)">\r\n			<g>\r\n				<defs>\r\n					<rect id="SVGID_15_" x="5.495" y="4.251" width="43.511" height="42.01"/>\r\n				</defs>\r\n				<clipPath id="SVGID_16_">\r\n					<use xlink:href="#SVGID_15_"  overflow="visible"/>\r\n				</clipPath>\r\n			</g>\r\n		</g>\r\n		<g clip-path="url(#SVGID_14_)">\r\n			<path fill="#6395C4" d="M46.591,18.919c-1.242,0-2.248,1.007-2.248,2.251c0,0.178,0.026,0.35,0.065,0.516l-4.878,5.366\r\n				c-0.389-0.674-1.107-1.132-1.94-1.132c-1.01,0-1.854,0.67-2.138,1.585l-6.147-4.257c0.016-0.108,0.033-0.215,0.033-0.328\r\n				c0-1.244-1.008-2.252-2.249-2.252c-1.243,0-2.249,1.008-2.249,2.252c0,0.334,0.078,0.649,0.208,0.935l-4.029,4.431\r\n				c-0.216-0.068-0.442-0.116-0.681-0.116c-1.242,0-2.249,1.008-2.249,2.25c0,1.243,1.007,2.251,2.249,2.251\r\n				c1.241,0,2.248-1.008,2.248-2.251c0-0.725-0.349-1.362-0.88-1.774l3.777-4.154c0.408,0.417,0.976,0.679,1.606,0.679\r\n				c0.853,0,1.586-0.481,1.967-1.181l6.304,4.364c0.095,1.155,1.051,2.067,2.23,2.067c1.242,0,2.248-1.008,2.248-2.251\r\n				c0-0.105-0.017-0.206-0.031-0.308l4.931-5.422c0.404,0.591,1.083,0.98,1.854,0.98c1.242,0,2.248-1.008,2.248-2.251\r\n				C48.839,19.926,47.833,18.919,46.591,18.919z"/>\r\n			<path fill="#6395C4" d="M48.082,4.166c-3.318,0-6.008,2.682-6.008,5.99c0,0.826,0.168,1.613,0.471,2.329l-3.015,3.316\r\n				c-0.389-0.674-1.107-1.132-1.94-1.132c-1.01,0-1.854,0.669-2.138,1.586L29.12,11.87c0.136-0.29,0.218-0.61,0.218-0.952\r\n				c0-1.243-1.008-2.25-2.249-2.25c-1.243,0-2.249,1.007-2.249,2.25c0,0.524,0.186,1,0.485,1.382l-4.526,4.978\r\n				c-0.35-0.225-0.765-0.359-1.212-0.359c-1.241,0-2.249,1.007-2.249,2.251c0,1.243,1.008,2.251,2.249,2.251\r\n				c1.242,0,2.249-1.008,2.249-2.251c0-0.524-0.187-1-0.486-1.383l4.525-4.978c0.351,0.226,0.766,0.36,1.214,0.36\r\n				c0.631,0,1.199-0.262,1.607-0.681l6.663,4.613c0.094,1.156,1.051,2.068,2.23,2.068c1.242,0,2.248-1.007,2.248-2.25\r\n				c0-0.105-0.017-0.207-0.031-0.308l3.105-3.416c1.045,1.764,2.966,2.951,5.17,2.951c3.317,0,6.008-2.682,6.008-5.991\r\n				C54.09,6.848,51.399,4.166,48.082,4.166z"/>\r\n		</g>\r\n	</g>\r\n</g>\r\n</svg>\r\n'),
+(26, 1473765935, 1473766297, 1, '<svg id="advantage-icon1.svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74" height="57" viewBox="0 0 74 57">\r\n  <defs>\r\n    <style>\r\n      .cls-1, .cls-3 {\r\n        fill: #6395c4;\r\n      }\r\n\r\n      .cls-1, .cls-2 {\r\n        fill-rule: even;\r\n		stroke-linejoin: round;\r\n      }\r\n\r\n      .cls-2 {\r\n        fill: #fff;\r\n        stroke: #fff;\r\n        stroke-width: 1px;\r\n        filter: url(#filter);\r\n      }\r\n    </style>\r\n    <filter id="filter" x="494" y="2024" width="52" height="48" filterUnits="userSpaceOnUse">\r\n      <feOffset result="offset" dx="-2.868" dy="4.096" in="SourceAlpha"/>\r\n      <feGaussianBlur result="blur" stdDeviation="2.828"/>\r\n      <feFlood result="flood" flood-color="#0d0c0d"/>\r\n      <feComposite result="composite" operator="in" in2="blur"/>\r\n      <feBlend result="blend" in="SourceGraphic"/>\r\n    </filter>\r\n  </defs>\r\n  <path class="cls-1" d="M508.522,2038.54c-2.047,3.55-4.109,7.12-6.164,10.68l-6.3,10.91a0.546,0.546,0,0,1-.449.22,0.347,0.347,0,0,1-.1-0.01,0.411,0.411,0,0,1-.388-0.37v-42.63q-2.5,4.8-5,9.59-2.965,5.67-5.923,11.37a0.521,0.521,0,0,1-.457.24H472.488a0.4,0.4,0,1,1,0-.77h10.923c1.931-3.72,3.869-7.42,5.8-11.13q2.978-5.685,5.946-11.4a0.52,0.52,0,0,1,.551-0.23,0.412,0.412,0,0,1,.395.37v42.8c1.783-3.08,3.566-6.18,5.357-9.27,2.1-3.64,4.21-7.28,6.3-10.91m-0.076.31,0.576-.5,5.357,6.14-0.576.51Zm5.935,6.15-0.581-.5,4.592-5.38,0.581,0.5Zm4.056-5.34,0.49-.59,4.592,3.84-0.49.6Zm5.143,3.78-0.612-.46,2.295-3.07,0.613,0.46Z" transform="translate(-472 -2015)"/>\r\n  <g style="fill: #fff; filter: url(#filter)">\r\n    <path id="Forma_1" data-name="Forma 1" class="cls-2" d="M540.733,2058.82l-11.274-9.09a13.916,13.916,0,0,0,2.917-10.36,14.142,14.142,0,1,0-3.8,11.38l11.3,9.11a0.688,0.688,0,0,0,.51.15,0.716,0.716,0,0,0,.444-0.24A0.673,0.673,0,0,0,540.733,2058.82Zm-20.94-5.11a12.746,12.746,0,1,1,11.236-14.18A12.879,12.879,0,0,1,519.793,2053.71Z" transform="translate(-472 -2015)" style="stroke: inherit; filter: none; fill: inherit"/>\r\n  </g>\r\n  <use xlink:href="#Forma_1" style="stroke: #fff; filter: none; fill: #fff"/>\r\n  <circle id="Ellipse_1_copy" data-name="Ellipse 1 copy" class="cls-3" cx="46.015" cy="26" r="7.015"/>\r\n</svg>\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `svg_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `svg_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `text` text,
+  `h1` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text,
+  `keywords` text,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `svg_i18n`
+--
+
+INSERT INTO `svg_i18n` (`id`, `name`, `text`, `h1`, `title`, `description`, `keywords`, `row_id`, `language`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'ru'),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'en'),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'de'),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'sp'),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'fr'),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, 2, 'ru'),
+(7, NULL, NULL, NULL, NULL, NULL, NULL, 2, 'en'),
+(8, NULL, NULL, NULL, NULL, NULL, NULL, 2, 'de'),
+(9, NULL, NULL, NULL, NULL, NULL, NULL, 2, 'sp'),
+(10, NULL, NULL, NULL, NULL, NULL, NULL, 2, 'fr'),
+(11, NULL, NULL, NULL, NULL, NULL, NULL, 3, 'ru'),
+(12, NULL, NULL, NULL, NULL, NULL, NULL, 3, 'en'),
+(13, NULL, NULL, NULL, NULL, NULL, NULL, 3, 'de'),
+(14, NULL, NULL, NULL, NULL, NULL, NULL, 3, 'sp'),
+(15, NULL, NULL, NULL, NULL, NULL, NULL, 3, 'fr'),
+(16, NULL, NULL, NULL, NULL, NULL, NULL, 4, 'ru'),
+(17, NULL, NULL, NULL, NULL, NULL, NULL, 4, 'en'),
+(18, NULL, NULL, NULL, NULL, NULL, NULL, 4, 'de'),
+(19, NULL, NULL, NULL, NULL, NULL, NULL, 4, 'sp'),
+(20, NULL, NULL, NULL, NULL, NULL, NULL, 4, 'fr'),
+(21, NULL, NULL, NULL, NULL, NULL, NULL, 5, 'ru'),
+(22, NULL, NULL, NULL, NULL, NULL, NULL, 5, 'en'),
+(23, NULL, NULL, NULL, NULL, NULL, NULL, 5, 'de'),
+(24, NULL, NULL, NULL, NULL, NULL, NULL, 5, 'sp'),
+(25, NULL, NULL, NULL, NULL, NULL, NULL, 5, 'fr'),
+(26, NULL, NULL, NULL, NULL, NULL, NULL, 6, 'ru'),
+(27, NULL, NULL, NULL, NULL, NULL, NULL, 6, 'en'),
+(28, NULL, NULL, NULL, NULL, NULL, NULL, 6, 'de'),
+(29, NULL, NULL, NULL, NULL, NULL, NULL, 6, 'sp'),
+(30, NULL, NULL, NULL, NULL, NULL, NULL, 6, 'fr'),
+(31, NULL, NULL, NULL, NULL, NULL, NULL, 7, 'ru'),
+(32, NULL, NULL, NULL, NULL, NULL, NULL, 7, 'en'),
+(33, NULL, NULL, NULL, NULL, NULL, NULL, 7, 'de'),
+(34, NULL, NULL, NULL, NULL, NULL, NULL, 7, 'sp'),
+(35, NULL, NULL, NULL, NULL, NULL, NULL, 7, 'fr'),
+(36, NULL, NULL, NULL, NULL, NULL, NULL, 8, 'ru'),
+(37, NULL, NULL, NULL, NULL, NULL, NULL, 8, 'en'),
+(38, NULL, NULL, NULL, NULL, NULL, NULL, 8, 'de'),
+(39, NULL, NULL, NULL, NULL, NULL, NULL, 8, 'sp'),
+(40, NULL, NULL, NULL, NULL, NULL, NULL, 8, 'fr'),
+(41, NULL, NULL, NULL, NULL, NULL, NULL, 9, 'ru'),
+(42, NULL, NULL, NULL, NULL, NULL, NULL, 9, 'en'),
+(43, NULL, NULL, NULL, NULL, NULL, NULL, 9, 'de'),
+(44, NULL, NULL, NULL, NULL, NULL, NULL, 9, 'sp'),
+(45, NULL, NULL, NULL, NULL, NULL, NULL, 9, 'fr'),
+(46, NULL, NULL, NULL, NULL, NULL, NULL, 10, 'ru'),
+(47, NULL, NULL, NULL, NULL, NULL, NULL, 10, 'en'),
+(48, NULL, NULL, NULL, NULL, NULL, NULL, 10, 'de'),
+(49, NULL, NULL, NULL, NULL, NULL, NULL, 10, 'sp'),
+(50, NULL, NULL, NULL, NULL, NULL, NULL, 10, 'fr'),
+(51, NULL, NULL, NULL, NULL, NULL, NULL, 11, 'ru'),
+(52, NULL, NULL, NULL, NULL, NULL, NULL, 11, 'en'),
+(53, NULL, NULL, NULL, NULL, NULL, NULL, 11, 'de'),
+(54, NULL, NULL, NULL, NULL, NULL, NULL, 11, 'sp'),
+(55, NULL, NULL, NULL, NULL, NULL, NULL, 11, 'fr'),
+(56, NULL, NULL, NULL, NULL, NULL, NULL, 12, 'ru'),
+(57, NULL, NULL, NULL, NULL, NULL, NULL, 12, 'en'),
+(58, NULL, NULL, NULL, NULL, NULL, NULL, 12, 'de'),
+(59, NULL, NULL, NULL, NULL, NULL, NULL, 12, 'sp'),
+(60, NULL, NULL, NULL, NULL, NULL, NULL, 12, 'fr'),
+(61, NULL, NULL, NULL, NULL, NULL, NULL, 13, 'ru'),
+(62, NULL, NULL, NULL, NULL, NULL, NULL, 13, 'en'),
+(63, NULL, NULL, NULL, NULL, NULL, NULL, 13, 'de'),
+(64, NULL, NULL, NULL, NULL, NULL, NULL, 13, 'sp'),
+(65, NULL, NULL, NULL, NULL, NULL, NULL, 13, 'fr'),
+(66, NULL, NULL, NULL, NULL, NULL, NULL, 14, 'ru'),
+(67, NULL, NULL, NULL, NULL, NULL, NULL, 14, 'en'),
+(68, NULL, NULL, NULL, NULL, NULL, NULL, 14, 'de'),
+(69, NULL, NULL, NULL, NULL, NULL, NULL, 14, 'sp'),
+(70, NULL, NULL, NULL, NULL, NULL, NULL, 14, 'fr'),
+(71, NULL, NULL, NULL, NULL, NULL, NULL, 15, 'ru'),
+(72, NULL, NULL, NULL, NULL, NULL, NULL, 15, 'en'),
+(73, NULL, NULL, NULL, NULL, NULL, NULL, 15, 'de'),
+(74, NULL, NULL, NULL, NULL, NULL, NULL, 15, 'sp'),
+(75, NULL, NULL, NULL, NULL, NULL, NULL, 15, 'fr'),
+(76, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'ru'),
+(77, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'en'),
+(78, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'de'),
+(79, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'sp'),
+(80, NULL, NULL, NULL, NULL, NULL, NULL, 16, 'fr'),
+(81, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'ru'),
+(82, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'en'),
+(83, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'de'),
+(84, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'sp'),
+(85, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'fr'),
+(86, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'ru'),
+(87, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'en'),
+(88, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'de'),
+(89, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'sp'),
+(90, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'fr'),
+(91, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'ru'),
+(92, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'en'),
+(93, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'de'),
+(94, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'sp'),
+(95, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'fr'),
+(96, NULL, NULL, NULL, NULL, NULL, NULL, 20, 'ru'),
+(97, NULL, NULL, NULL, NULL, NULL, NULL, 20, 'en'),
+(98, NULL, NULL, NULL, NULL, NULL, NULL, 20, 'de'),
+(99, NULL, NULL, NULL, NULL, NULL, NULL, 20, 'sp'),
+(100, NULL, NULL, NULL, NULL, NULL, NULL, 20, 'fr'),
+(101, NULL, NULL, NULL, NULL, NULL, NULL, 21, 'ru'),
+(102, NULL, NULL, NULL, NULL, NULL, NULL, 21, 'en'),
+(103, NULL, NULL, NULL, NULL, NULL, NULL, 21, 'de'),
+(104, NULL, NULL, NULL, NULL, NULL, NULL, 21, 'sp'),
+(105, NULL, NULL, NULL, NULL, NULL, NULL, 21, 'fr'),
+(106, NULL, NULL, NULL, NULL, NULL, NULL, 22, 'ru'),
+(107, NULL, NULL, NULL, NULL, NULL, NULL, 22, 'en'),
+(108, NULL, NULL, NULL, NULL, NULL, NULL, 22, 'de'),
+(109, NULL, NULL, NULL, NULL, NULL, NULL, 22, 'sp'),
+(110, NULL, NULL, NULL, NULL, NULL, NULL, 22, 'fr'),
+(111, NULL, NULL, NULL, NULL, NULL, NULL, 24, 'ru'),
+(112, NULL, NULL, NULL, NULL, NULL, NULL, 24, 'en'),
+(113, NULL, NULL, NULL, NULL, NULL, NULL, 24, 'de'),
+(114, NULL, NULL, NULL, NULL, NULL, NULL, 24, 'sp'),
+(115, NULL, NULL, NULL, NULL, NULL, NULL, 24, 'fr'),
+(116, NULL, NULL, NULL, NULL, NULL, NULL, 25, 'ru'),
+(117, NULL, NULL, NULL, NULL, NULL, NULL, 25, 'en'),
+(118, NULL, NULL, NULL, NULL, NULL, NULL, 25, 'de'),
+(119, NULL, NULL, NULL, NULL, NULL, NULL, 25, 'sp'),
+(120, NULL, NULL, NULL, NULL, NULL, NULL, 25, 'fr'),
+(121, NULL, NULL, NULL, NULL, NULL, NULL, 26, 'ru'),
+(122, NULL, NULL, NULL, NULL, NULL, NULL, 26, 'en'),
+(123, NULL, NULL, NULL, NULL, NULL, NULL, 26, 'de'),
+(124, NULL, NULL, NULL, NULL, NULL, NULL, 26, 'sp'),
+(125, NULL, NULL, NULL, NULL, NULL, NULL, 26, 'fr');
 
 -- --------------------------------------------------------
 
@@ -2870,6 +3462,114 @@ CREATE TABLE IF NOT EXISTS `users_wishlist` (
   `catalog_id` int(10) DEFAULT NULL,
   `user_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `video`
+--
+
+CREATE TABLE IF NOT EXISTS `video` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `image` varchar(128) DEFAULT NULL,
+  `alias` varchar(255) NOT NULL,
+  `sort` int(10) DEFAULT NULL,
+  `on_main` int(1) DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `video`
+--
+
+INSERT INTO `video` (`id`, `created_at`, `updated_at`, `status`, `image`, `alias`, `sort`, `on_main`) VALUES
+(3, 1473659910, NULL, 1, NULL, 'https://www.youtube.com/watch?v=FsGNipiXaEY', NULL, 0),
+(4, 1473660399, NULL, 1, NULL, 'https://www.youtube.com/watch?v=di7NMssrqsE', NULL, 0),
+(5, 1473660442, NULL, 1, NULL, 'https://www.youtube.com/watch?v=Iyy3YOpxL2k', NULL, 0),
+(6, 1473660514, NULL, 1, NULL, 'https://www.youtube.com/watch?v=vEKRKZ8W38M', NULL, 0),
+(7, 1473660866, NULL, 1, NULL, 'https://www.youtube.com/watch?v=Z_Tzi5awvzs', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `video_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `video_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `description` text CHARACTER SET cp1251,
+  `keywords` text CHARACTER SET cp1251,
+  `text` text CHARACTER SET cp1251,
+  `h1` varchar(250) CHARACTER SET cp1251 DEFAULT NULL,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `video_i18n`
+--
+
+INSERT INTO `video_i18n` (`id`, `name`, `title`, `description`, `keywords`, `text`, `h1`, `row_id`, `language`) VALUES
+(7, 'Салли', NULL, NULL, NULL, NULL, NULL, 3, 'ru'),
+(8, 'Salli', NULL, NULL, NULL, NULL, NULL, 3, 'en'),
+(9, 'Salli', NULL, NULL, NULL, NULL, NULL, 3, 'de'),
+(10, 'Salli', NULL, NULL, NULL, NULL, NULL, 3, 'sp'),
+(11, 'Salli', NULL, NULL, NULL, NULL, NULL, 3, 'fr'),
+(12, 'Poets Of The Fall', NULL, NULL, NULL, NULL, NULL, 4, 'ru'),
+(13, 'Poets Of The Fall', NULL, NULL, NULL, NULL, NULL, 4, 'en'),
+(14, 'Poets Of The Fall', NULL, NULL, NULL, NULL, NULL, 4, 'de'),
+(15, 'Poets Of The Fall', NULL, NULL, NULL, NULL, NULL, 4, 'sp'),
+(16, 'Poets Of The Fall', NULL, NULL, NULL, NULL, NULL, 4, 'fr'),
+(17, 'The 1975 - Robbers', NULL, NULL, NULL, NULL, NULL, 5, 'ru'),
+(18, 'The 1975 - Robbers', NULL, NULL, NULL, NULL, NULL, 5, 'en'),
+(19, 'The 1975 - Robbers', NULL, NULL, NULL, NULL, NULL, 5, 'de'),
+(20, 'The 1975 - Robbers', NULL, NULL, NULL, NULL, NULL, 5, 'sp'),
+(21, 'The 1975 - Robbers', NULL, NULL, NULL, NULL, NULL, 5, 'fr'),
+(22, 'Filatov & Karas – Tell It To My Heart', NULL, NULL, NULL, NULL, NULL, 6, 'ru'),
+(23, 'Filatov & Karas – Tell It To My Heart', NULL, NULL, NULL, NULL, NULL, 6, 'en'),
+(24, 'Filatov & Karas – Tell It To My Heart', NULL, NULL, NULL, NULL, NULL, 6, 'de'),
+(25, 'Filatov & Karas – Tell It To My Heart', NULL, NULL, NULL, NULL, NULL, 6, 'sp'),
+(26, 'Filatov & Karas – Tell It To My Heart', NULL, NULL, NULL, NULL, NULL, 6, 'fr'),
+(27, 'Gromee - Fearless ft. May-Britt Scheffer', NULL, NULL, NULL, NULL, NULL, 7, 'ru'),
+(28, 'Gromee - Fearless ft. May-Britt Scheffer', NULL, NULL, NULL, NULL, NULL, 7, 'en'),
+(29, 'Gromee - Fearless ft. May-Britt Scheffer', NULL, NULL, NULL, NULL, NULL, 7, 'de'),
+(30, 'Gromee - Fearless ft. May-Britt Scheffer', NULL, NULL, NULL, NULL, NULL, 7, 'sp'),
+(31, 'Gromee - Fearless ft. May-Britt Scheffer', NULL, NULL, NULL, NULL, NULL, 7, 'fr');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `video_reviews`
+--
+
+CREATE TABLE IF NOT EXISTS `video_reviews` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL,
+  `youtube` varchar(250) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `video_reviews`
+--
+
+INSERT INTO `video_reviews` (`id`, `created_at`, `updated_at`, `status`, `name`, `youtube`, `language`) VALUES
+(1, 1473317406, NULL, 1, 'First review', 'https://www.youtube.com/watch?v=Im4qbR70hVY', 'ru'),
+(2, 1473320397, NULL, 1, 'Need for Speed', 'https://www.youtube.com/watch?v=Gu6rBfW49a4', 'ru'),
+(3, 1473320477, NULL, 1, 'Toyota Supra', 'https://www.youtube.com/watch?v=xVh1Qr73xpU', 'ru'),
+(4, 1473321811, NULL, 1, 'Premier League 16/17', 'https://www.youtube.com/watch?v=B99q3ZKAgzo', 'ru'),
+(5, 1473321892, NULL, 1, 'Football Today', 'https://www.youtube.com/watch?v=FErD__n5wEI', 'ru'),
+(8, 1473338436, NULL, 1, 'Mochkinbird', 'https://www.youtube.com/watch?v=S9bCLPwzSC0', 'ru'),
+(9, 1473338486, NULL, 1, 'BBC F1 2011 Season Montage Review', 'https://www.youtube.com/watch?v=NaJy97-KEQc', 'ru'),
+(11, 1473338550, NULL, 1, 'Formula 1 2010', 'https://www.youtube.com/watch?v=Jg3JJk7xr4Y', 'ru'),
+(14, 1473338821, NULL, 1, 'Тех поддержка', 'https://www.youtube.com/watch?v=bCDjHVhgDDQ', 'ru');
 
 -- --------------------------------------------------------
 
@@ -6091,6 +6791,114 @@ INSERT INTO `visitors_referers` (`id`, `ip`, `url`, `created_at`) VALUES
 (4, '62.76.103.137', 'http://ya.ru/', 1439323710),
 (5, '93.79.245.43', 'http://vk.com/away.php', 1444231244);
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `vista`
+--
+
+CREATE TABLE IF NOT EXISTS `vista` (
+  `id` int(10) NOT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `sort` int(10) NOT NULL DEFAULT '0',
+  `url` varchar(255) DEFAULT NULL,
+  `nofollow` tinyint(1) unsigned DEFAULT '0',
+  `group` tinyint(1) unsigned DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `vista`
+--
+
+INSERT INTO `vista` (`id`, `created_at`, `updated_at`, `status`, `sort`, `url`, `nofollow`, `group`) VALUES
+(1, 1474006520, NULL, 1, 0, NULL, 0, 0),
+(2, 1474006840, NULL, 1, 0, NULL, 0, 0),
+(3, 1474006854, NULL, 1, 0, NULL, 0, 0),
+(4, 1474006874, NULL, 1, 0, NULL, 0, 0),
+(5, 1474006899, NULL, 1, 0, NULL, 0, 0),
+(6, 1474006929, NULL, 1, 0, NULL, 0, 0),
+(7, 1474006946, NULL, 1, 0, NULL, 0, 0),
+(8, 1474006980, NULL, 1, 0, NULL, 0, 1),
+(9, 1474007052, NULL, 1, 0, NULL, 0, 1),
+(10, 1474007107, NULL, 1, 0, NULL, 0, 1),
+(11, 1474007133, NULL, 1, 0, NULL, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `vista_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `vista_i18n` (
+  `id` int(10) NOT NULL,
+  `name` varchar(64) DEFAULT NULL,
+  `row_id` int(10) DEFAULT NULL,
+  `language` varchar(2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `vista_i18n`
+--
+
+INSERT INTO `vista_i18n` (`id`, `name`, `row_id`, `language`) VALUES
+(1, 'Заболеваний и возможных осложнений', 1, 'ru'),
+(2, 'Disease and possible complications', 1, 'en'),
+(3, 'Krankheit und mögliche Komplikationen', 1, 'de'),
+(4, 'Las enfermedades y posibles complicaciones', 1, 'sp'),
+(5, 'Maladies et complications possibles', 1, 'fr'),
+(6, 'Возбудителей заболеваний', 2, 'ru'),
+(7, 'pathogens', 2, 'en'),
+(8, 'pathogens', 2, 'de'),
+(9, 'patógenos', 2, 'sp'),
+(10, 'pathogens', 2, 'fr'),
+(11, 'Слабых систем организма', 3, 'ru'),
+(12, 'Sistemas débiles del cuerpo', 3, 'en'),
+(13, 'Sistemas débiles del cuerpo', 3, 'de'),
+(14, 'Sistemas débiles del cuerpo', 3, 'sp'),
+(15, 'Sistemas débiles del cuerpo', 3, 'fr'),
+(16, 'Всех нарушений в органах и их причин', 4, 'ru'),
+(17, 'Todas las violaciónes de los órganos y sus causas', 4, 'en'),
+(18, 'Todas las violaciónes de los órganos y sus causas', 4, 'de'),
+(19, 'Todas las violaciónes de los órganos y sus causas', 4, 'sp'),
+(20, 'Todas las violaciónes de los órganos y sus causas', 4, 'fr'),
+(21, 'Аллергенов, токсинов, вредных продуктов', 5, 'ru'),
+(22, 'Alérgenos, toxinas, alimentos poco saludables', 5, 'en'),
+(23, 'Alérgenos, toxinas, alimentos poco saludables', 5, 'de'),
+(24, 'Alérgenos, toxinas, alimentos poco saludables', 5, 'sp'),
+(25, 'Alérgenos, toxinas, alimentos poco saludables', 5, 'fr'),
+(26, 'Генетической предрасположенности', 6, 'ru'),
+(27, 'genetic predisposition', 6, 'en'),
+(28, 'genetic predisposition', 6, 'de'),
+(29, 'genetic predisposition', 6, 'sp'),
+(30, 'genetic predisposition', 6, 'fr'),
+(31, 'Прогноза развития заболеваний в будущем', 7, 'ru'),
+(32, 'Outlook for the future diseases', 7, 'en'),
+(33, 'Outlook for the future diseases', 7, 'de'),
+(34, 'Outlook for the future diseases', 7, 'sp'),
+(35, 'Outlook for the future diseases', 7, 'fr'),
+(36, 'Индивидуальная эффективная cхема лечения препаратами', 8, 'ru'),
+(37, 'Individual Scheme effective treatment drugs', 8, 'en'),
+(38, 'Individual Scheme effective treatment drugs', 8, 'de'),
+(39, 'Individual Scheme effective treatment drugs', 8, 'sp'),
+(40, 'Individual Scheme effective treatment drugs', 8, 'fr'),
+(41, 'Моментальная энергетическая коррекция любой болезни', 9, 'ru'),
+(42, 'Instant Energy correction of any disease', 9, 'en'),
+(43, 'Instant Energy correction of any disease', 9, 'de'),
+(44, 'Instant Energy correction of any disease', 9, 'sp'),
+(45, 'Instant Energy correction of any disease', 9, 'fr'),
+(46, 'Подбор правильного питания', 10, 'ru'),
+(47, 'Selection of proper nutrition', 10, 'en'),
+(48, 'Selection of proper nutrition', 10, 'de'),
+(49, 'Selection of proper nutrition', 10, 'sp'),
+(50, 'Selection of proper nutrition', 10, 'fr'),
+(51, 'Общее восстановление организма', 11, 'ru'),
+(52, 'Total recovery of organism', 11, 'en'),
+(53, 'Total recovery of organism', 11, 'de'),
+(54, 'Total recovery of organism', 11, 'sp'),
+(55, 'Total recovery of organism', 11, 'fr');
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -6101,6 +6909,20 @@ INSERT INTO `visitors_referers` (`id`, `ip`, `url`, `created_at`) VALUES
 ALTER TABLE `access`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`) USING BTREE;
+
+--
+-- Индексы таблицы `advantages`
+--
+ALTER TABLE `advantages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `advantages_i18n`
+--
+ALTER TABLE `advantages_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `news_row_id` (`row_id`),
+  ADD KEY `news_lang` (`language`);
 
 --
 -- Индексы таблицы `blacklist`
@@ -6364,6 +7186,27 @@ ALTER TABLE `cron`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `gallery_i18n`
+--
+ALTER TABLE `gallery_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `row_id` (`row_id`),
+  ADD KEY `lang` (`language`);
+
+--
+-- Индексы таблицы `gallery_images`
+--
+ALTER TABLE `gallery_images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `gallery_id` (`gallery_id`) USING BTREE;
+
+--
 -- Индексы таблицы `i18n`
 --
 ALTER TABLE `i18n`
@@ -6617,6 +7460,34 @@ ALTER TABLE `slider_i18n`
   ADD KEY `slider_lang` (`language`);
 
 --
+-- Индексы таблицы `slider_simple`
+--
+ALTER TABLE `slider_simple`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `slider_simple_i18n`
+--
+ALTER TABLE `slider_simple_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `slider_row_id` (`row_id`),
+  ADD KEY `slider_lang` (`language`);
+
+--
+-- Индексы таблицы `svg`
+--
+ALTER TABLE `svg`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `svg_i18n`
+--
+ALTER TABLE `svg_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `news_row_id` (`row_id`),
+  ADD KEY `news_lang` (`language`);
+
+--
 -- Индексы таблицы `tags`
 --
 ALTER TABLE `tags`
@@ -6698,6 +7569,26 @@ ALTER TABLE `users_wishlist`
   ADD KEY `uw_u_id` (`user_id`);
 
 --
+-- Индексы таблицы `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `video_i18n`
+--
+ALTER TABLE `video_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lang` (`language`) USING BTREE,
+  ADD KEY `row_id` (`row_id`) USING BTREE;
+
+--
+-- Индексы таблицы `video_reviews`
+--
+ALTER TABLE `video_reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `visitors`
 --
 ALTER TABLE `visitors`
@@ -6720,6 +7611,20 @@ ALTER TABLE `visitors_referers`
   ADD KEY `ip` (`ip`) USING BTREE;
 
 --
+-- Индексы таблицы `vista`
+--
+ALTER TABLE `vista`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `vista_i18n`
+--
+ALTER TABLE `vista_i18n`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menu_row_id` (`row_id`),
+  ADD KEY `menu_lang` (`language`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -6728,6 +7633,16 @@ ALTER TABLE `visitors_referers`
 --
 ALTER TABLE `access`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблицы `advantages`
+--
+ALTER TABLE `advantages`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT для таблицы `advantages_i18n`
+--
+ALTER TABLE `advantages_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT для таблицы `blacklist`
 --
@@ -6832,12 +7747,12 @@ ALTER TABLE `colors_i18n`
 -- AUTO_INCREMENT для таблицы `config`
 --
 ALTER TABLE `config`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=98;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=104;
 --
 -- AUTO_INCREMENT для таблицы `config_groups`
 --
 ALTER TABLE `config_groups`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT для таблицы `config_types`
 --
@@ -6862,22 +7777,22 @@ ALTER TABLE `contacts_phones`
 -- AUTO_INCREMENT для таблицы `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT для таблицы `content_i18n`
 --
 ALTER TABLE `content_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT для таблицы `control`
 --
 ALTER TABLE `control`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `control_i18n`
 --
 ALTER TABLE `control_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT для таблицы `country_ems`
 --
@@ -6904,6 +7819,21 @@ ALTER TABLE `coupons_groups`
 ALTER TABLE `cron`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT для таблицы `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `gallery_i18n`
+--
+ALTER TABLE `gallery_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT для таблицы `gallery_images`
+--
+ALTER TABLE `gallery_images`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+--
 -- AUTO_INCREMENT для таблицы `i18n`
 --
 ALTER TABLE `i18n`
@@ -6912,7 +7842,7 @@ ALTER TABLE `i18n`
 -- AUTO_INCREMENT для таблицы `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `mail_templates`
 --
@@ -6927,7 +7857,7 @@ ALTER TABLE `mail_templates_i18n`
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=171;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=190;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
@@ -6937,7 +7867,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT для таблицы `news_i18n`
 --
 ALTER TABLE `news_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=89;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=98;
 --
 -- AUTO_INCREMENT для таблицы `news_items`
 --
@@ -7012,7 +7942,7 @@ ALTER TABLE `promo_groups`
 -- AUTO_INCREMENT для таблицы `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT для таблицы `seo_links`
 --
@@ -7047,12 +7977,12 @@ ALTER TABLE `seo_templates_i18n`
 -- AUTO_INCREMENT для таблицы `sitemenu`
 --
 ALTER TABLE `sitemenu`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT для таблицы `sitemenu_i18n`
 --
 ALTER TABLE `sitemenu_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=95;
 --
 -- AUTO_INCREMENT для таблицы `sizes`
 --
@@ -7072,12 +8002,32 @@ ALTER TABLE `sizes_groups_i18n`
 -- AUTO_INCREMENT для таблицы `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT для таблицы `slider_i18n`
 --
 ALTER TABLE `slider_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+--
+-- AUTO_INCREMENT для таблицы `slider_simple`
+--
+ALTER TABLE `slider_simple`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT для таблицы `slider_simple_i18n`
+--
+ALTER TABLE `slider_simple_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT для таблицы `svg`
+--
+ALTER TABLE `svg`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT для таблицы `svg_i18n`
+--
+ALTER TABLE `svg_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=126;
 --
 -- AUTO_INCREMENT для таблицы `tags`
 --
@@ -7134,6 +8084,21 @@ ALTER TABLE `users_roles`
 ALTER TABLE `users_wishlist`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT для таблицы `video`
+--
+ALTER TABLE `video`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT для таблицы `video_i18n`
+--
+ALTER TABLE `video_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT для таблицы `video_reviews`
+--
+ALTER TABLE `video_reviews`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
 -- AUTO_INCREMENT для таблицы `visitors`
 --
 ALTER TABLE `visitors`
@@ -7148,6 +8113,16 @@ ALTER TABLE `visitors_hits`
 --
 ALTER TABLE `visitors_referers`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT для таблицы `vista`
+--
+ALTER TABLE `vista`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT для таблицы `vista_i18n`
+--
+ALTER TABLE `vista_i18n`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -7279,6 +8254,19 @@ ALTER TABLE `coupons`
 ALTER TABLE `coupons_groups`
   ADD CONSTRAINT `coupons_groups_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `catalog_tree` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `coupons_groups_ibfk_2` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `gallery_i18n`
+--
+ALTER TABLE `gallery_i18n`
+  ADD CONSTRAINT `gallery_lang` FOREIGN KEY (`language`) REFERENCES `i18n` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gallery_row_id` FOREIGN KEY (`row_id`) REFERENCES `gallery` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `gallery_images`
+--
+ALTER TABLE `gallery_images`
+  ADD CONSTRAINT `gallery_images_ibfk_1` FOREIGN KEY (`gallery_id`) REFERENCES `gallery` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `mail_templates_i18n`
@@ -7431,6 +8419,13 @@ ALTER TABLE `users_networks`
 ALTER TABLE `users_wishlist`
   ADD CONSTRAINT `uw_c_id` FOREIGN KEY (`catalog_id`) REFERENCES `catalog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `uw_u_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `video_i18n`
+--
+ALTER TABLE `video_i18n`
+  ADD CONSTRAINT `video_lang` FOREIGN KEY (`language`) REFERENCES `i18n` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `video_row_id` FOREIGN KEY (`row_id`) REFERENCES `video` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `visitors_hits`

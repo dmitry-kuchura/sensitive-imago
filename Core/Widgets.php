@@ -125,8 +125,28 @@ class Widgets
 
     public function HiddenData()
     {
-        $styles = array(HTML::media('css/vendor/normalize.css'), HTML::media('css/vendor/magnific-popup.css'), HTML::media('css/style.css'), HTML::media('css/wnoty/jquery.wnoty-2.0.css'), HTML::media('css/wnoty/jquery.wnoty-theme-default.css'), HTML::media('css/programmer/my.css'),);
-        $scripts = array(HTML::media('js/vendor/jquery.js'), HTML::media('js/vendor/jquery.carouFredSel-6.2.1.js'), HTML::media('js/vendor/jquery.mousewheel.min.js'), HTML::media('js/vendor/jquery.touchSwipe.min.js'), HTML::media('js/vendor/nouislider.min.js'), HTML::media('js/vendor/jquery.transit.min.js'), HTML::media('js/vendor/svgeverybody.min.js'), HTML::media('js/vendor/jquery-validate.js'), 'http://maps.google.com/maps/api/js?key=AIzaSyD1ZFkcClQJYuZVq_y84oiqtNnpxeX2ieg', HTML::media('js/bundle.js'), HTML::media('js/programmer/my.js'),);
+        $styles = [
+            HTML::media('css/vendor/normalize.css'),
+            HTML::media('css/vendor/magnific-popup.css'),
+            HTML::media('css/style.css'),
+            HTML::media('css/wnoty/jquery.wnoty-2.0.css'),
+            HTML::media('css/wnoty/jquery.wnoty-theme-default.css'),
+            HTML::media('css/programmer/my.css')
+        ];
+        $scripts = [
+            HTML::media('js/vendor/jquery.js'),
+            HTML::media('js/vendor/jquery.carouFredSel-6.2.1.js'),
+            HTML::media('js/vendor/jquery.mousewheel.min.js'),
+            HTML::media('js/vendor/jquery.touchSwipe.min.js'),
+            HTML::media('js/vendor/nouislider.min.js'),
+            HTML::media('js/vendor/jquery.transit.min.js'),
+            HTML::media('js/vendor/svgeverybody.min.js'),
+            HTML::media('js/vendor/jquery-validate.js'),
+            HTML::media('js/wnoty/jquery.wnoty-2.0.js'),
+            'http://maps.google.com/maps/api/js?key=AIzaSyD1ZFkcClQJYuZVq_y84oiqtNnpxeX2ieg',
+            HTML::media('js/bundle.js'),
+            HTML::media('js/programmer/my.js')
+        ];
         return ['scripts' => $scripts, 'styles' => $styles];
     }
 
