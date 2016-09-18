@@ -5,7 +5,8 @@ namespace Core;
 use Core\QB\DB;
 use Wezom\Modules\Contacts\Models\Contacts;
 
-class WidgetsBackend {
+class WidgetsBackend
+{
 
     static $_instance; // Constant that consists self class
     public $_data = array(); // Array of called widgets
@@ -13,21 +14,24 @@ class WidgetsBackend {
 
     // Instance method
 
-    static function factory() {
+    static function factory()
+    {
         if (self::$_instance == NULL) {
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    public function common($viewpath, $array) {
+    public function common($viewpath, $array)
+    {
         if (file_exists(HOST . APPLICATION . '/Views/Widgets/' . $viewpath . '.php')) {
             return View::widget($array, $viewpath);
         }
         return NULL;
     }
 
-    public function Sidebar() {
+    public function Sidebar()
+    {
         $result = DB::select()->from('menu')->where('status', '=', 1)->order_by('sort')->find_all();
         $arr = array();
         if (User::god()) {
@@ -58,22 +62,23 @@ class WidgetsBackend {
         }
 
         $counts = array();
-        $counts['contacts'] = (int) DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('contacts')->where('status', '=', 0)->count_all();
-        $counts['orders'] = (int) Common::factory('orders')->countRows(0);
-        $counts['cert'] = (int) Common::factory('orders_certificates')->countRows(0);
-        $counts['simple'] = (int) Common::factory('orders_simple')->countRows(0);
-        $counts['only'] = (int) Common::factory('orders_only')->countRows(0);
+        $counts['contacts'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('contacts')->where('status', '=', 0)->count_all();
+        $counts['orders'] = (int)Common::factory('orders')->countRows(0);
+        $counts['cert'] = (int)Common::factory('orders_certificates')->countRows(0);
+        $counts['simple'] = (int)Common::factory('orders_simple')->countRows(0);
+        $counts['only'] = (int)Common::factory('orders_only')->countRows(0);
         $counts['all_orders'] = $counts['orders'] + $counts['cert'] + $counts['simple'] + $counts['only'];
-        $counts['reviews'] = (int) DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('reviews')->where('status', '=', 0)->count_all();
-        $counts['users'] = (int) DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('users')->where('status', '=', 0)->where('role_id', '=', 1)->count_all();
-        $counts['admins'] = (int) DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('users')->where('status', '=', 0)->where('role_id', '!=', 1)->count_all();
-        $counts['projects'] = (int) DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('projects_info')->where('status', '=', 0)->count_all();
+        $counts['reviews'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('reviews')->where('status', '=', 0)->count_all();
+        $counts['users'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('users')->where('status', '=', 0)->where('role_id', '=', 1)->count_all();
+        $counts['admins'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('users')->where('status', '=', 0)->where('role_id', '!=', 1)->count_all();
+        $counts['projects'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('projects_info')->where('status', '=', 0)->count_all();
         $counts['all_users'] = $counts['users'] + $counts['admins'];
 
         return array('result' => $arr, 'counts' => $counts);
     }
 
-    public function Crumbs() {
+    public function Crumbs()
+    {
         $count_orders = 0;
         $result = DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('orders')->where('status', '=', 0)->as_object()->execute()->current();
         if ($result) {
@@ -87,41 +92,38 @@ class WidgetsBackend {
         return array('cc' => $count_comments, 'co' => $count_orders);
     }
 
-    public function Header_Contacts() {
+    public function Header_Contacts()
+    {
         $contacts = Contacts::getRows(0, NULL, NULL, 'id', 'DESC', 5);
         $cContacts = Contacts::countRows(0);
-        return array(
-            'contacts' => $contacts,
-            'cContacts' => $cContacts,
-        );
+        return array('contacts' => $contacts, 'cContacts' => $cContacts,);
     }
 
-    public function Header_Log() {
+    public function Header_Log()
+    {
         $count = DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('log')->where('deleted', '=', 0)->count_all();
         $result = DB::select()->from('log')->where('deleted', '=', 0)->order_by('id', 'DESC')->limit(7)->find_all();
-        return array(
-            'count' => $count,
-            'result' => $result,
-        );
+        return array('count' => $count, 'result' => $result,);
     }
 
-    public function Index_Visitors() {
+    public function Index_Visitors()
+    {
         if (!Config::get('main.visitor')) {
             return NULL;
         }
         return array();
     }
 
-    public function Index_Readme() {
+    public function Index_Readme()
+    {
         if (!is_file(HOST . '/README.md')) {
             return NULL;
         }
-        return array(
-            'readme' => Parsedown::instance()->text(file_get_contents(HOST . '/README.md')),
-        );
+        return array('readme' => Parsedown::instance()->text(file_get_contents(HOST . '/README.md')),);
     }
 
-    public function Index_News() {
+    public function Index_News()
+    {
         if (function_exists('curl_init')) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, 'http://wezom.com.ua/api/get_news');
@@ -147,17 +149,19 @@ class WidgetsBackend {
         } else {
             return NULL;
         }
-        return array(
-            'news' => $news,
-            'blog' => $blog,
-        );
+        return array('news' => $news, 'blog' => $blog,);
     }
 
-    public function Index_Log() {
+    public function Index_Log()
+    {
         $log = DB::select()->from('log')->where('deleted', '=', 0)->order_by('id', 'DESC')->limit(20)->find_all();
-        return array(
-            'log' => $log,
-        );
+        return array('log' => $log,);
     }
 
+    public function Index_Orders()
+    {
+        $result = DB::select()->from('prices')->limit(8)->order_by('id', 'DESC')->find_all();
+
+        return ['prices' => $result];
+    }
 }

@@ -154,6 +154,7 @@ class Form extends \Modules\Ajax
         $data['email'] = $email;
         $data['other'] = $text;
         $data['item'] = $item;
+        $data['created_at'] = time();
 
         $keys = [];
         $values = [];
@@ -165,7 +166,7 @@ class Form extends \Modules\Ajax
         $price_id = DB::insert('prices', $keys)->values($values)->execute();
         $price_id = Arr::get($price_id, 0);
 
-        $qName = 'Публикация нового отзыва';
+        $qName = 'Заказ прайса';
         $url = '/wezom/prices/edit/' . $price_id;
         Log::add($qName, $url, 2);
 

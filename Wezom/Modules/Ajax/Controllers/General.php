@@ -146,7 +146,7 @@ class General extends \Wezom\Modules\Ajax {
         $month = date('n');
         $date = strtotime('01.' . Support::addZero($month) . '.' . (date('Y') - 1));
         $result = DB::select(array(DB::expr('COUNT(`id`)'), 'count'), array(DB::expr('FROM_UNIXTIME(`created_at`, "%c")'), 'month'))
-                ->from('orders')
+                ->from('prices')
                 ->where('created_at', '>=', $date)
                 ->order_by('created_at')
                 ->group_by(DB::expr('month'))

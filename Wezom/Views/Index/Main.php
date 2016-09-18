@@ -65,7 +65,7 @@
     </div>
 </div>
 
-<?php echo \Core\Widgets::get('Index_Visitors'); ?>
+<?php echo \Core\Widgets::get('Index_Orders'); ?>
 
 <?php if (\Core\User::god()): ?>
     <div class="rowSection clearFix">
