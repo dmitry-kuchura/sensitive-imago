@@ -346,5 +346,19 @@ class HTML
 
         return $now_alias;
     }
+    
+    public static function backendRedirect($data, $controller, $id) {
+        switch ($data) {
+            case 'save-close':
+                return HTTP::redirect('wezom/' . $controller . '/index');
+                break;
+            case 'save-add':
+                return HTTP::redirect('wezom/' . $controller . '/add');
+                break;
+            default:
+                HTTP::redirect('wezom/' . $controller . '/edit/' . $id);
+                break;
+        }
+    }
 
 }

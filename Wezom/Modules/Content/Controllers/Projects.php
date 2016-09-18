@@ -15,7 +15,7 @@ use Wezom\Modules\Content\Models\Projects AS Model;
 
 class Projects extends \Wezom\Modules\Base {
 
-    public $tpl_folder = 'Content/Projects';
+    public $tpl_folder = 'Content/Prices';
     public $limit;
 
     function before() {

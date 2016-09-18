@@ -1,6 +1,6 @@
-<?php if($_SERVER['REQUEST_METHOD'] == 'POST'): ?>
+<?php if ($_SERVER['REQUEST_METHOD'] == 'POST'): ?>
     <?php $langs = array(); ?>
-    <?php foreach($languages AS $key => $lang): ?>
+    <?php foreach ($languages AS $key => $lang): ?>
         <?php $langs[$key] = $obj->$key; ?>
         <?php unset($obj->$key); ?>
     <?php endforeach; ?>
@@ -23,54 +23,60 @@
                 </div>
                 <div class="widgetContent">
                     <ul class="liTabs t_wrap">
-                        <?php foreach( $languages AS $key => $lang ): ?>
-                        <?php $public = \Core\Arr::get($langs, $key, array()); ?>
-                        <?php echo $lang['default'] == 1 ? '<input type="hidden" class="default_lang" value="'.$lang['name'].'">' : ''; ?>
-                        <li class="t_item">
-                            <a class="t_link" href="#"><?php echo $lang['name']; ?></a>
-                            <div class="t_content">
-                                <div class="form-group">
-                                    <label class="control-label" for="f_name"><?php echo __('Название'); ?></label>
-                                    <div class="">
-                                        <input id="f_name" class="form-control <?php echo $lang['default'] == 1 ? 'translitSource' : ''; ?> valid" name="FORM[<?php echo $key; ?>][name]" type="text" value="<?php echo $public->name; ?>" />
+                        <?php foreach ($languages AS $key => $lang): ?>
+                            <?php $public = \Core\Arr::get($langs, $key, array()); ?>
+                            <?php echo $lang['default'] == 1 ? '<input type="hidden" class="default_lang" value="' . $lang['name'] . '">' : ''; ?>
+                            <li class="t_item">
+                                <a class="t_link" href="#"><?php echo $lang['name']; ?></a>
+                                <div class="t_content">
+                                    <div class="form-group">
+                                        <label class="control-label" for="f_name"><?php echo __('Название'); ?></label>
+                                        <div class="">
+                                            <input id="f_name"
+                                                   class="form-control <?php echo $lang['default'] == 1 ? 'translitSource' : ''; ?> valid"
+                                                   name="FORM[<?php echo $key; ?>][name]" type="text"
+                                                   value="<?php echo $public->name; ?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="f_h1">
+                                            <?php echo __('Заголовок страницы (h1)'); ?>
+                                        </label>
+                                        <div class="">
+                                            <input id="f_h1" class="form-control" name="FORM[<?php echo $key; ?>][h1]"
+                                                   type="text" value="<?php echo $public->h1; ?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="f_title">
+                                            title
+                                        </label>
+                                        <div class="">
+                                            <input id="f_title" class="form-control" type="text"
+                                                   name="FORM[<?php echo $key; ?>][title]"
+                                                   value="<?php echo $public->title; ?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"
+                                               for="f_keywords"><?php echo __('Ключевые слова (keywords)'); ?></label>
+                                        <div class="">
+                                            <textarea id="f_keywords" class="form-control"
+                                                      name="FORM[<?php echo $key; ?>][keywords]"
+                                                      rows="5"><?php echo $public->keywords; ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"
+                                               for="f_description"><?php echo __('Описание (description)'); ?></label>
+                                        <div class="">
+                                            <textarea id="f_description" class="form-control"
+                                                      name="FORM[<?php echo $key; ?>][description]"
+                                                      rows="5"><?php echo $public->description; ?></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label"><?php echo __('SEO текст'); ?></label>
-                                    <div class="">
-                                        <textarea style="height: 350px;0" class="tinymceEditor form-control" rows="20" name="FORM[<?php echo $key; ?>][text]"><?php echo $public->text; ?></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="f_h1">
-                                        <?php echo __('Заголовок страницы (h1)'); ?>
-                                    </label>
-                                    <div class="">
-                                        <input id="f_h1" class="form-control" name="FORM[<?php echo $key; ?>][h1]" type="text" value="<?php echo $public->h1; ?>" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="f_title">
-                                        title
-                                    </label>
-                                    <div class="">
-                                        <input id="f_title" class="form-control" type="text" name="FORM[<?php echo $key; ?>][title]" value="<?php echo $public->title; ?>" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="f_keywords"><?php echo __('Ключевые слова (keywords)'); ?></label>
-                                    <div class="">
-                                        <textarea id="f_keywords" class="form-control" name="FORM[<?php echo $key; ?>][keywords]" rows="5"><?php echo $public->keywords; ?></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="f_description"><?php echo __('Описание (description)'); ?></label>
-                                    <div class="">
-                                        <textarea id="f_description" class="form-control" name="FORM[<?php echo $key; ?>][description]" rows="5"><?php echo $public->description; ?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -91,24 +97,30 @@
                         <label class="control-label"><?php echo __('Опубликовано'); ?></label>
                         <div class="">
                             <label class="checkerWrap-inline">
-                                <input name="status" value="0" type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>
+                                <input name="status" value="0"
+                                       type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>
                                 <?php echo __('Нет'); ?>
                             </label>
                             <label class="checkerWrap-inline">
-                                <input name="status" value="1" type="radio" <?php echo ($obj->status OR !$obj) ? 'checked' : ''; ?>>
+                                <input name="status" value="1"
+                                       type="radio" <?php echo ($obj->status OR !$obj) ? 'checked' : ''; ?>>
                                 <?php echo __('Да'); ?>
                             </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="f_group"><?php echo __('Группа'); ?></label>
+                        <label class="control-label"><?php echo __('Внешняя ссылка'); ?></label>
                         <div class="">
-                            <div class="controls">
-                                <select class="form-control valid" id="f_group" name="FORM[parent_id]">
-                                    <option value="0"><?php echo __('Вехний уровень'); ?></option>
-                                    <?php echo $tree; ?>
-                                </select>
-                            </div>
+                            <label class="checkerWrap-inline">
+                                <input name="param" value="0"
+                                       type="radio" <?php echo (!$obj->param AND $obj) ? 'checked' : ''; ?>>
+                                <?php echo __('Нет'); ?>
+                            </label>
+                            <label class="checkerWrap-inline">
+                                <input name="param" value="1"
+                                       type="radio" <?php echo ($obj->param OR !$obj) ? 'checked' : ''; ?>>
+                                <?php echo __('Да'); ?>
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -116,46 +128,27 @@
                             <?php echo __('Алиас'); ?>
                         </label>
                         <div class="">
-                            <div class="input-group">
-                                <input class="form-control translitConteiner valid" id="f_alias" name="FORM[alias]" type="text" value="<?php echo $obj->alias; ?>" />
-                                <span class="input-group-btn">
-                                    <button class="btn translitAction" type="button"><?php echo __('Заполнить автоматически'); ?></button>
-                                </span>
-                            </div>
+                            <input class="form-control valid" <?php //echo $obj->param == 0 ? 'disabled' : ''; ?> id="f_alias" name="FORM[alias]"
+                                   type="text" value="<?php echo $obj->alias; ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label"><?php echo __('Обложка для списков'); ?></label>
                         <div class="">
-                            <?php if (is_file( HOST . Core\HTML::media('images/catalog-tree/small/'.$obj->image))): ?>
-                                <a href="<?php echo Core\HTML::media('images/catalog-tree/original/'.$obj->image); ?>" rel="lightbox">
-                                    <img style="max-height: 150px;" src="<?php echo Core\HTML::media('images/catalog-tree/small/'.$obj->image); ?>" />
+                            <?php if (is_file(HOST . Core\HTML::media('images/catalog_tree/main/' . $obj->image))): ?>
+                                <a href="<?php echo Core\HTML::media('images/catalog_tree/original/' . $obj->image); ?>"
+                                   rel="lightbox">
+                                    <img style="max-height: 150px;"
+                                         src="<?php echo Core\HTML::media('images/catalog_tree/main/' . $obj->image); ?>"/>
                                 </a>
-                                <br />
-                                <a class="otherLink" href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>" onclick="return confirm('<?php echo __('Это действие удалит изображение безвозвратно. Продолжить?'); ?>');"><?php echo __('Удалить изображение'); ?></a>
-                                <br />
-                                <a href="<?php echo \Core\General::crop('catalog-tree', 'small', $obj->image); ?>"><?php echo __('Редактировать'); ?></a>
+                                <br/>
+                                <a class="otherLink"
+                                   href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>"
+                                   onclick="return confirm('<?php echo __('Это действие удалит изображение безвозвратно. Продолжить?'); ?>');"><?php echo __('Удалить изображение'); ?></a>
+                                <br/>
+                                <a href="<?php echo \Core\General::crop('catalog_tree', 'main', $obj->image); ?>"><?php echo __('Редактировать'); ?></a>
                             <?php else: ?>
-                                <input type="file" name="file" />
-                            <?php endif ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">
-                            <?php echo __('Обложка для выпадающего меню'); ?>
-                            <i class="fa-info-circle text-info bs-tooltip nav-hint" title="<b><?php echo __('Используется только для групп самого верхнего уровня'); ?></b>"></i>
-                        </label>
-                        <div class="">
-                            <?php if (is_file( HOST . Core\HTML::media('images/catalog-tree-menu/big/'.$obj->menu))): ?>
-                                <a href="<?php echo Core\HTML::media('images/catalog-tree-menu/original/'.$obj->menu); ?>" rel="lightbox">
-                                    <img style="max-height: 150px;" src="<?php echo Core\HTML::media('images/catalog-tree-menu/big/'.$obj->menu); ?>" />
-                                </a>
-                                <br />
-                                <a class="otherLink" href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image_menu/<?php echo $obj->id; ?>" onclick="return confirm('<?php echo __('Это действие удалит изображение безвозвратно. Продолжить?'); ?>');"><?php echo __('Удалить изображение'); ?></a>
-                                <br />
-                                <a href="<?php echo \Core\General::crop('catalog-tree-menu', 'big', $obj->image); ?>"><?php echo __('Редактировать'); ?></a>
-                            <?php else: ?>
-                                <input type="file" name="menu" />
+                                <input type="file" name="file"/>
                             <?php endif ?>
                         </div>
                     </div>

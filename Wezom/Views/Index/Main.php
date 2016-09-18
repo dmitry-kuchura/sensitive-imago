@@ -6,12 +6,12 @@
                     <i class="fa-shopping-cart"></i>
                 </div>
                 <div class="title">
-                    <?php echo __('Заказы подробного отчета'); ?>
+                    <?php echo __('Заказы прайсов'); ?>
                 </div>
                 <div class="value">
                     <?php echo $count_orders; ?>
                 </div>
-                <a href="/wezom/feedback/index" class="more"><?php echo __('Подробнее'); ?> <i class="pull-right fa-angle-right"></i></a>
+                <a href="/wezom/prices/index" class="more"><?php echo __('Подробнее'); ?> <i class="pull-right fa-angle-right"></i></a>
             </div>
         </div>
     </div>

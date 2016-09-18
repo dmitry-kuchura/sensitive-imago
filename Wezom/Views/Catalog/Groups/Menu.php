@@ -22,11 +22,12 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="hidden-xs" valign="middle">
-                            <div>
-                                <?php echo Core\Text::limit_words(strip_tags($obj->text), 25); ?>
-                            </div>
-                        </td>
+                        <?php if ($obj->image){
+                            $image = Core\HTML::media('images/catalog_tree/main/' . $obj->image);
+                        } else {
+                            $image = Core\HTML::media('images/no-image.png');
+                        }?>
+                            <td><img src="<?php echo $image; ?>" style="max-width: 60px;"></td>
                         <td width="45" valign="top" class="icon-column status-column">
                             <?php echo Core\View::widget(array( 'status' => $obj->status, 'id' => $obj->id ), 'StatusList'); ?>
                         </td>

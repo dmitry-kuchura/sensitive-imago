@@ -6,7 +6,7 @@
     class Groups extends \Core\CommonI18n {
 
         public static $table = 'catalog_tree';
-        public static $image = 'catalog-tree';
+        public static $image = 'catalog_tree';
         public static $rulesI18n;
         public static $rules;
 

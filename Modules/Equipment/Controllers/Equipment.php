@@ -31,7 +31,7 @@ class Equipment extends \Modules\Base
 
         $this->setBreadcrumbs($this->current->name, $this->current->alias);
         $this->page = !(int)Route::param('page') ? 1 : (int)Route::param('page');
-        $this->limit = (int)Config::get('basic.limit_news');
+//        $this->limit = (int)Config::get('basic.limit_news');
         $this->offset = ($this->page - 1) * $this->limit;
         $this->_template = 'Text';
     }
@@ -48,7 +48,7 @@ class Equipment extends \Modules\Base
         $this->_seo['description'] = $this->current->description;
         $this->_seo['seo_text'] = $this->current->text;
         // Get Rows
-        $result = Model::getRows(1, 'sort', 'DESC', $this->limit, $this->offset);
+        $result = Model::getTree(1, 'sort', 'ASC', $this->limit, $this->offset);
         // Get full count of rows
         $count = Model::countRows(1);
         // Generate pagination

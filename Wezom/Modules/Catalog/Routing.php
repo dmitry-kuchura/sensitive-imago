@@ -7,7 +7,6 @@
         'wezom/groups/edit/<id:[0-9]*>' => 'catalog/groups/edit',
         'wezom/groups/delete/<id:[0-9]*>' => 'catalog/groups/delete',
         'wezom/groups/delete_image/<id:[0-9]*>' => 'catalog/groups/deleteImage',
-        'wezom/groups/delete_image_menu/<id:[0-9]*>' => 'catalog/groups/deleteImageMenu',
         'wezom/groups/add' => 'catalog/groups/add',
         // Items
         'wezom/items/index' => 'catalog/items/index',

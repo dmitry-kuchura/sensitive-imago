@@ -84,6 +84,15 @@ return [
             'crop' => 1,
         ],
     ],
+    'catalog_tree' => [
+        [
+            'path' => 'main',
+            'width' => 289,
+            'height' => 201,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
     'slider_simple' => [
         [
             'path' => 'main',
