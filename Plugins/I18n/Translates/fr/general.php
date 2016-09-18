@@ -40,4 +40,5 @@
 		'ТОВ Альфа-Мед Юкрейн' => 'Ukraine TOV de Alfa-Med',
 		'Медицинские комплексы Сенситив Имаго' => 'Médicale complexe Sensitive Imago',
 		'диагностика и лечение всего организма человека' => 'Le diagnostic et le traitement du corps humain tout entier',
+		'Страница не найдена' => 'Page not found',
 	);
