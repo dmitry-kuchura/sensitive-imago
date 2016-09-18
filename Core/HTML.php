@@ -346,8 +346,9 @@ class HTML
 
         return $now_alias;
     }
-    
-    public static function backendRedirect($data, $controller, $id) {
+
+    public static function backendRedirect($data, $controller, $id)
+    {
         switch ($data) {
             case 'save-close':
                 return HTTP::redirect('wezom/' . $controller . '/index');
@@ -358,6 +359,15 @@ class HTML
             default:
                 HTTP::redirect('wezom/' . $controller . '/edit/' . $id);
                 break;
+        }
+    }
+
+    public static function ifImage($image, $alias)
+    {
+        if (is_file($alias . $image)) {
+            return HTML::media($alias . $image);
+        } else {
+            return HTML::media('images/no-image.png');
         }
     }
 

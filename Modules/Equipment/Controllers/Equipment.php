@@ -10,6 +10,7 @@ use Core\Config;
 use Core\Pager\Pager;
 use Core\Widgets;
 use Modules\Equipment\Models\Equipment AS Model;
+use Modules\Equipment\Models\Items;
 use Modules\Content\Models\Control;
 
 class Equipment extends \Modules\Base
@@ -62,20 +63,29 @@ class Equipment extends \Modules\Base
         if (Config::get('error')) {
             return false;
         }
-        $item = Model::getRowSimple(Route::param('alias'), 'alias', 1);
-        if (!$item) {
+        switch (Route::param('alias')) {
+            case 'models':
+                $category = Model::getSeo('models','alias', 1);
+                $result = Items::getModels('sort', 'ASC', $this->limit, $this->offset);
+                $template = 'Equipment/Models';
+                // SEO
+                $this->seo($category);
+                break;
+        }
+        if (!$result AND !$template) {
             return Config::error();
         }
-        // Seo
-        $this->_seo['h1'] = $item->h1 ? $item->h1 : $item->name;
-        $this->_seo['title'] = $item->title ? $item->title : $item->name;
-        $this->_seo['keywords'] = $item->keywords;
-        $this->_seo['description'] = $item->description;
-        $this->setBreadcrumbs($item->name);
-        // Add plus one to views
-        Model::addView($item);
         // Render
-        $this->_content = View::tpl(['item' => $item], 'Equipment/Inner');
+        $this->_content = View::tpl(['result' => $result], $template);
+    }
+
+    public function seo($data) {
+        // Seo
+        $this->_seo['h1'] = $data->h1 ? $data->h1 : $data->name;
+        $this->_seo['title'] = $data->title ? $data->title : $data->name;
+        $this->_seo['keywords'] = $data->keywords;
+        $this->_seo['description'] = $data->description;
+        $this->setBreadcrumbs($data->name);
     }
 
 }
