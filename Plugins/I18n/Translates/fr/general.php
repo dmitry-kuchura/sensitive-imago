@@ -33,4 +33,11 @@
 		'Лечебные возможности' => 'possibilités thérapeutiques',
 		'Главный торговый офис' => 'Le bureau de vente principal',
 		'Региональные предстваительства' => 'Les bureaux régionaux',
+		'Для медицинского бизнеса' => 'Pour les affaires médicales',
+		'Лучшее решение' => 'La meilleure solution',
+		'Сенситив Имаго' => 'Sensible Imago',
+		'Медицинское оборудование' => 'matériel médical',
+		'ТОВ Альфа-Мед Юкрейн' => 'Ukraine TOV de Alfa-Med',
+		'Медицинские комплексы Сенситив Имаго' => 'Médicale complexe Sensitive Imago',
+		'диагностика и лечение всего организма человека' => 'Le diagnostic et le traitement du corps humain tout entier',
 	);

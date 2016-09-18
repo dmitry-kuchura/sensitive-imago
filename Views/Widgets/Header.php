@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div class="grid">
-                <p class="mobile__text">Сенситив Имаго</p>
+                <p class="mobile__text"><?php echo __('Сенситив Имаго'); ?></p>
             </div>
             <div class="grid">
                 <div data-dropdown class="dropdown dropdown--dib">
@@ -127,7 +127,7 @@
             <div class="pageSize">
                 <div class="grid grid--justify-between grid--items-center">
                     <div class="grid__cell">
-                        <div class="copyright">ТОВ Альфа-Мед Юкрейн</div>
+                        <div class="copyright"><?php echo __('ТОВ Альфа-Мед Юкрейн'); ?></div>
                     </div>
                     <div class="grid__cell">
                         <div class="languageLinks">
@@ -181,8 +181,8 @@
                                 </svg>
                             </div>
                             <div class="logo__text">
-                                <big>Сенситив Имаго</big>
-                                <small>Медицинское оборудование</small>
+                                <big><?php echo __('Сенситив Имаго'); ?></big>
+                                <small><?php echo __('Медицинское оборудование'); ?></small>
                             </div>
                         </a>
                     </div>
@@ -247,9 +247,10 @@
                 <div class="grid grid--justify-around grid--lg-justify-end heroBlock">
                     <div class="grid__cell grid__cell--12 grid__cell--lg-7">
                         <div class="heroBlock__text">
-                            <small>Лучшее решение</small>
+                            <?php $word = explode(' ', __('Для медицинского бизнеса')); ?>
+                            <small><?php echo __('Лучшее решение'); ?></small>
                             <br class="_hide _lg-show">
-                            Для<br class="_hide _lg-show"> медицинского<br class="_hide _lg-show"> бизнеса
+                            <?php echo $word[0]; ?><br class="_hide _lg-show"> <?php echo $word[1]; ?><br class="_hide _lg-show"> <?php echo $word[2]; ?>
                         </div>
                     </div>
                 </div>

@@ -130,13 +130,30 @@ class Form extends \Modules\Ajax
         $city = Arr::get($this->post, 'city');
         $confirm = Arr::get($this->post, 'confirm');
         $email = Arr::get($this->post, 'email');
+        $text = Arr::get($this->post, 'text');
+        $item = Arr::get($this->post, 'item');
+
+        // Rules
+//        if (!$name) {
+//            $this->error(__('Введенное имя слишком короткое!'));
+//        }
+        if (!$country) {
+            $this->error(__('Введенная страна слишком короткая!'));
+        }
+        if (!$city) {
+            $this->error(__('Введенный город слишком короткий!'));
+        }
+        if ($email != $confirm OR !$email) {
+            $this->error(__('Email не соотвествует подтверждению, либо введен не корректно!'));
+        }
 
         $data = [];
-        $data = ['name'] = $name;
-        $data = ['country'] = $country;
-        $data = ['city'] = $city;
-        $data = ['email'] = $email;
-        $data = ['confirm'] = $confirm;
+        $data['name'] = $name;
+        $data['country'] = $country;
+        $data['city'] = $city;
+        $data['email'] = $email;
+        $data['other'] = $text;
+        $data['item'] = $item;
 
         $keys = [];
         $values = [];
@@ -145,7 +162,14 @@ class Form extends \Modules\Ajax
             $values[] = $value;
         }
 
-        $order_id = DB::insert('orders', $keys)->values($values)->execute();
+        $price_id = DB::insert('prices', $keys)->values($values)->execute();
+        $price_id = Arr::get($price_id, 0);
+
+        $qName = 'Публикация нового отзыва';
+        $url = '/wezom/prices/edit/' . $price_id;
+        Log::add($qName, $url, 2);
+
+        $this->success(__('Запрос на прайс отпрален!'));
     }
 
 }

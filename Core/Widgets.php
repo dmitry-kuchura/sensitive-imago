@@ -214,6 +214,32 @@ class Widgets
         return ['result' => $result];
     }
 
+    public function Main_Devices() {
+        $result = DB::select('catalog_i18n.*', 'catalog.*')
+            ->from('catalog')
+            ->join('catalog_i18n', 'LEFT')->on('catalog_i18n.row_id', '=', 'catalog.id')
+            ->where('catalog_i18n.language', '=', \I18n::$lang)
+            ->where('catalog.status', '=', 1)
+            ->limit(4)
+            ->order_by('catalog.sort', 'DESC')
+            ->find_all();
+
+        return ['result' => $result];
+    }
+
+    public function Page_Devices() {
+        $result = DB::select('catalog_i18n.*', 'catalog.*')
+            ->from('catalog')
+            ->join('catalog_i18n', 'LEFT')->on('catalog_i18n.row_id', '=', 'catalog.id')
+            ->where('catalog_i18n.language', '=', \I18n::$lang)
+            ->where('catalog.status', '=', 1)
+            ->limit(4)
+            ->order_by('catalog.sort', 'DESC')
+            ->find_all();
+
+        return ['result' => $result];
+    }
+
     public function Main_Capabilities()
     {
             $vista = [];

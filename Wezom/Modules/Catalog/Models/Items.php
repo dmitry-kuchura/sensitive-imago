@@ -4,6 +4,7 @@
     class Items extends \Core\CommonI18n {
 
         public static $table = 'catalog';
+        public static $image = 'equipment';
         public static $filters;
         public static $rulesI18n;
         public static $rules;

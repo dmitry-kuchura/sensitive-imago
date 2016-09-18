@@ -10,7 +10,7 @@
                         <a href="<?php echo Core\HTML::link('video'); ?>"><?php echo __('Видео'); ?></a>
                     </li>
                 </ul>
-                <span data-url="./hidden/callback.php"
+                <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
                       class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>
             </div>
             <div class="grid__cell">

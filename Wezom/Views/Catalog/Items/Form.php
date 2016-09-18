@@ -102,6 +102,23 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="rowSection">
+                        <div class="col-md-4">
+                            <label class="control-label"><?php echo __('Выводить на главной?'); ?></label>
+                            <div class="">
+                                <label class="checkerWrap-inline">
+                                    <input name="main" value="0" type="radio" <?php echo (!$obj->main AND $obj) ? 'checked' : ''; ?>>
+                                    <?php echo __('Нет'); ?>
+                                </label>
+                                <label class="checkerWrap-inline">
+                                    <input name="main" value="1" type="radio" <?php echo ($obj->main OR !$obj) ? 'checked' : ''; ?>>
+                                    <?php echo __('Да'); ?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="f_alias">
                         <?php echo __('Алиас'); ?>
                     </label>
@@ -117,28 +134,42 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="widget">
+            <div class="widgetHeader myWidgetHeader">
+                <div class="widgetTitle">
+                    <i class="fa-reorder"></i>
+                    <?php echo __('Изображение'); ?>
+                </div>
+            </div>
+            <div class="widgetContent">
+                <div class="form-group">
+                    <label class="control-label"><?php echo __('Изображение'); ?></label>
+                    <div class="">
+                        <?php if (is_file(HOST . Core\HTML::media('images/equipment/original/' . $obj->image))): ?>
+                            <a href="<?php echo Core\HTML::media('images/equipment/original/' . $obj->image); ?>" rel="lightbox">
+                                <img src="<?php echo Core\HTML::media('images/equipment/main/' . $obj->image); ?>" style="max-height: 100px;" />
+                            </a>
+                            <br >
+                            <div class="contentImageControl">
+                                <a class="btn btn-danger otherBtn"
+                                   href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>">
+                                    <i class="fa-remove"></i>
+                                    <?php echo __('Удалить изображение'); ?>
+                                </a>
+                                <a class="btn btn-info otherBtn"
+                                   href="<?php echo \Core\General::crop('equipment', 'main', $obj->image); ?>">
+                                    <i class="fa-edit"></i>
+                                    <?php echo __('Редактировать изображение'); ?>
+                                </a>
+                            </div>
+                        <?php else: ?>
+                            <input type="file" name="file" />
+                        <?php endif ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
-
 <?php echo $uploader; ?>
-<?php echo $related; ?>
-
-<script>
-    $(function(){
-        $('input[name="sale"]').on('change', function(){
-            var val = parseInt( $(this).val() );
-            if( val ) {
-                var cost = $('input[name="FORM[price]"]').val();
-                var cost_old = $('input[name="FORM[price_old]"]').val();
-                $('input[name="FORM[price]"]').val(cost_old);
-                $('input[name="FORM[price_old]"]').val(cost);
-                $('.hiddenCostField').show();
-            } else {
-                var cost = $('input[name="FORM[price]"]').val();
-                var cost_old = $('input[name="FORM[price_old]"]').val();
-                $('input[name="FORM[price]"]').val(cost_old);
-                $('input[name="FORM[price_old]"]').val(cost);
-                $('.hiddenCostField').hide();
-            }
-        });
-    });
-</script>

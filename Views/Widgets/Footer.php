@@ -8,8 +8,8 @@
                             <svg><use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use></svg>
                         </div>
                         <div class="logo__text">
-                            <big>Сенситив Имаго</big>
-                            <small>Медицинское оборудование</small>
+                            <big><?php echo __('Сенситив Имаго'); ?></big>
+                            <small><?php echo __('Медицинское оборудование'); ?></small>
                             <span class="logo__copyright"><?php echo Core\Config::get('basic.copy-'.\I18n::$lang);?></span>
                         </div>
                     </div>

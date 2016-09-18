@@ -1,9 +1,9 @@
 <?php if (count($images)): ?>
     <?php foreach($images as $im): ?>
-        <?php if (is_file(HOST.Core\HTML::media('images/catalog/medium/'.$im->image))): ?>
+        <?php if (is_file(HOST.Core\HTML::media('images/equipment/main/'.$im->image))): ?>
             <div class="loadedBlock <?= $im->status == 1 ? 'chk' : ''; ?>" data-image="<?=$im->id; ?>">
                 <div class="loadedImage">
-                    <img src="<?php echo Core\HTML::media('images/catalog/medium/'.$im->image); ?>" />
+                    <img src="<?php echo Core\HTML::media('images/equipment/main/'.$im->image); ?>" />
                 </div>
                 <div class="loadedControl">
                     <?php if(\Core\User::god() || \Core\User::get_access_for_controller('items') == 'edit'): ?>
@@ -25,11 +25,11 @@
                         </div>
                     <?php endif; ?>
                     <div class="loadedCtrl loadedView">
-                        <button class="btn btn-primary btnImage" alt="<?php echo __('Просмотр'); ?>" href="<?php echo Core\HTML::media('images/catalog/big/'.$im->image); ?>"><i class="fa-zoom-in"></i></button>
+                        <button class="btn btn-primary btnImage" alt="<?php echo __('Просмотр'); ?>" href="<?php echo Core\HTML::media('images/equipment/main/'.$im->image); ?>"><i class="fa-zoom-in"></i></button>
                     </div>
                     <?php if(\Core\User::god() || \Core\User::get_access_for_controller('items') == 'edit'): ?>
                         <div class="loadedCtrl">
-                            <button class="btn btn-warning" alt="<?php echo __('Редактировать'); ?>" href="<?php echo \Core\General::crop('catalog', 'small', $im->image, $_SERVER['HTTP_REFERER']); ?>"><i class="fa-pencil"></i></button>
+                            <button class="btn btn-warning" alt="<?php echo __('Редактировать'); ?>" href="<?php echo \Core\General::crop('equipment', 'main', $im->image, $_SERVER['HTTP_REFERER']); ?>"><i class="fa-pencil"></i></button>
                         </div>
                         <div class="loadedCtrl loadedDelete">
                             <button class="btn btn-danger" data-id="<?php echo $im->id; ?>" alt="Удалить"><i class="fa-remove"></i></button>

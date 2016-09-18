@@ -12,7 +12,7 @@
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
-                <span data-url="./hidden/callback.php"
+                <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
                       class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>
             </div>
             <div class="grid__cell">
