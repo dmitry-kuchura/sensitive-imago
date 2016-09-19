@@ -118,16 +118,6 @@ class Groups extends \Wezom\Modules\Base
             Message::GetMessage(0, __('Данные не существуют!'));
             HTTP::redirect('wezom/' . Route::controller() . '/index');
         }
-        $countChildGroups = Model::countKids($id);
-        if ($countChildGroups) {
-            Message::GetMessage(0, __('Нельзя удалить эту группу, так как у нее есть подгруппы!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
-        $countChildItems = Model::countItems($id);
-        if ($countChildItems) {
-            Message::GetMessage(0, __('Нельзя удалить эту группу, так как в ней содержатся товары!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
-        }
         Model::deleteImage($page->image);
         Files::deleteImage('catalog-tree-menu', $page->menu);
         Model::delete($id);

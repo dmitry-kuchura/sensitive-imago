@@ -35,6 +35,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label"><?php echo __('Краткое описание'); ?></label>
+                                    <div class="">
+                                        <textarea class="form-control" rows="5" name="FORM[<?php echo $key; ?>][short]"><?php echo $public->short; ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label"><?php echo __('Описание'); ?></label>
                                     <div class="">
                                         <textarea style="height: 350px;0" class="tinymceEditor form-control" rows="20" name="FORM[<?php echo $key; ?>][text]"><?php echo $public->text; ?></textarea>

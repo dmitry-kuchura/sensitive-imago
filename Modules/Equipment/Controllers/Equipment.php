@@ -65,18 +65,18 @@ class Equipment extends \Modules\Base
         }
         switch (Route::param('alias')) {
             case 'models':
-                $category = Model::getSeo('models','alias', 1);
+                $seo = Model::getSeo('models','alias', 1);
                 $result = Items::getModels('sort', 'ASC', $this->limit, $this->offset);
                 $template = 'Equipment/Models';
                 // SEO
-                $this->seo($category);
+                $this->seo($seo);
                 break;
         }
         if (!$result AND !$template) {
             return Config::error();
         }
         // Render
-        $this->_content = View::tpl(['result' => $result], $template);
+        $this->_content = View::tpl(['result' => $result, 'seo' => $seo], $template);
     }
 
     public function seo($data) {

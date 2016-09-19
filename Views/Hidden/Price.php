@@ -69,6 +69,9 @@
                 <?php if(array_key_exists('token', $_SESSION)): ?>
                     <input type="hidden" data-name="token" value="<?php echo $_SESSION['token']; ?>" />
                 <?php endif; ?>
+                <?php if (isset($_POST['id'])): ?>
+                    <input type="hidden" data-name="item" value="<?php echo $_POST['id']; ?>" />
+                <?php endif; ?>
                 <div class="notate_mfi">« <span>*</span> » <?php echo __('Обязательны поля для заполнения'); ?></div>
                 <div class="grid__cell">
                     <span class="js-form-submit button button--primary"><?php echo __('Отправить'); ?></span>

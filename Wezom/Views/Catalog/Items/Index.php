@@ -83,9 +83,9 @@
                                         <label><input type="checkbox"></label>
                                     </td>
                                     <td>
-                                        <?php if (is_file(HOST.Core\HTML::media('images/catalog/small/'.$obj->image))): ?>
+                                        <?php if (is_file(HOST.Core\HTML::media('images/equipment/main/'.$obj->image))): ?>
                                             <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>">
-                                                <img src="<?php echo Core\HTML::media('images/catalog/small/'.$obj->image); ?>" alt="<?php echo $obj->name; ?>" width="50">
+                                                <img src="<?php echo Core\HTML::media('images/equipment/main/'.$obj->image); ?>" alt="<?php echo $obj->name; ?>" width="50">
                                             </a>
                                         <?php else: ?>
                                             ----
@@ -93,22 +93,9 @@
                                     </td>
                                     <td>
                                         <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>">
-                                            <?php echo $obj->artikul ? $obj->artikul : '----'; ?>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>">
                                             <?php echo $obj->name; ?>
                                         </a>
                                     </td>
-                                    <td>
-                                        <?php if($obj->parent_id): ?>
-                                            <a href="/wezom/groups/edit/<?php echo $obj->parent_id; ?>" target="_blank"><?php echo \Core\Arr::get($groups, $obj->parent_id); ?></a>
-                                        <?php else: ?>
-                                            Удалена
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?php echo $obj->price; ?> $</td>
                                     <td style="width: 100px;">
                                         <input style="width: 50px; display: inline-block;" type="text" class="form-control" value="<?php echo (int) $obj->sort; ?>" />
                                         <button style="display: inline-block;" class="setPosition btn btn-primary">OK</button>
@@ -123,9 +110,6 @@
                                                 <ul class="dropdownMenu pull-right">
                                                     <li>
                                                         <a data-id="<?php echo $obj->id; ?>" class="askForReturns" title="<?php echo __('Отправить письма пользователям с оповещением о появлении товара на складе'); ?>" href="#"><i class="fa-envelope-o"></i> <?php echo __('Сообщить о наличии'); ?></a>
-                                                    </li>
-                                                    <li>
-                                                        <a title="<?php echo __('Перейти'); ?>" href="<?php echo \Core\HTML::link($obj->alias.'/p'.$obj->id); ?>" target="_blank"><i class="fa-share-alt"></i> <?php echo __('Перейти'); ?></a>
                                                     </li>
                                                     <li>
                                                         <a title="<?php echo __('Редактировать'); ?>" href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"><i class="fa-pencil"></i> <?php echo __('Редактировать'); ?></a>

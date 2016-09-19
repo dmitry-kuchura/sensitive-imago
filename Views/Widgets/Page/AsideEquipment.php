@@ -12,12 +12,22 @@
                                 $link = Core\HTML::link($obj->alias);
                                 break;
                         } ?>
-                        <li>
+                        <li <?php echo  $obj->alias == 'models' ? 'has-subMenu' : ''; ?>>
                             <a href="<?php echo $link; ?>"><?php echo $obj->name; ?></a>
+                            <?php if ($obj->alias == 'models'): ?>
+                                <ul>
+                                    <li><a href="#">Сенситив Имаго 100 / 120</a></li>
+                                    <li><a href="#">Сенситив Имаго 130</a></li>
+                                    <li><a href="#">Сенситив Имаго 500 / 520</a></li>
+                                    <li><a href="equipment_model.html">Сенситив Имаго 530</a></li>
+                                    <li><a href="#">Сравнение моделей приборов</a></li>
+                                    <li><a href="#">Дополнительная комплектация</a></li>
+                                </ul>
+                            <?php endif; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
+                <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>" data-param='{"id": "sdf"}'
                       class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>
             </div>
             <div class="grid__cell">

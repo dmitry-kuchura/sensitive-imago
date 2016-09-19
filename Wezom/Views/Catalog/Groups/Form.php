@@ -75,6 +75,15 @@
                                                       rows="5"><?php echo $public->description; ?></textarea>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="control-label"
+                                               for="f_text"><?php echo __('SEO текст'); ?></label>
+                                        <div class="">
+                                            <textarea id="f_text" class="form-control tinymceEditor"
+                                                      name="FORM[<?php echo $key; ?>][text]"
+                                                      rows="5"><?php echo $public->text; ?></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         <?php endforeach; ?>

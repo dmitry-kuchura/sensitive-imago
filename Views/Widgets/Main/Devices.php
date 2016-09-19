@@ -18,9 +18,10 @@
                                class="mediaBlock__overflow"><?php echo $obj->name; ?></a>
                         </div>
                         <div class="mediaBlock__text">
-                            <div class="mediaBlock__textInner"><?php echo $obj->text; ?></div>
+                            <div class="mediaBlock__textInner"><?php echo $obj->short; ?></div>
                         </div>
-                        <span data-url="./hidden/callback.php"
+                        <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
+                              data-param='{"id": <?php echo $obj->row_id; ?>}'
                               class="button button--inverse-white js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>
                     </div>
                 </div>

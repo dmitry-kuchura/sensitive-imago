@@ -13,12 +13,17 @@
                 <div class="grid__cell mediaBlock">
                     <a href="#" class="mediaBlock__image" style="background-image: url('<?php echo $image; ?>');"></a>
                     <div class="mediaBlock__content">
-                        <div class="mediaBlock__title"><a href="<?php echo Core\HTML::link('equipment/' . $obj->alias); ?>" class="mediaBlock__overflow"><?php echo $obj->name; ?></a>
+                        <div class="mediaBlock__title"><a
+                                href="<?php echo Core\HTML::link('equipment/' . $obj->alias); ?>"
+                                class="mediaBlock__overflow"><?php echo $obj->name; ?></a>
                         </div>
                         <div class="mediaBlock__text">
-                            <div class="mediaBlock__textInner"><?php echo $obj->text; ?></div>
+                            <div class="mediaBlock__textInner"><?php echo $obj->short; ?></div>
                         </div>
-                        <a href="#" class="button button--inverse"><?php echo __('Узнать прайс'); ?></a>
+                        <a href="<?php echo Core\HTML::link('hidden/price'); ?>"
+                           data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
+                           data-param='{"id": <?php echo $obj->row_id; ?>}'
+                           class="button button--inverse js-mfp-ajax"><?php echo __('Узнать прайс'); ?></a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -36,7 +41,8 @@
                 </div>
             </div>
             <div class="grid__cell">
-                <a href="equipment_models.html" class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?></a>
+                <a href="equipment_models.html"
+                   class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?></a>
             </div>
         </div>
     </div>
