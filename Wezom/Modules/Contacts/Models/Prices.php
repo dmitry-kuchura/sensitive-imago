@@ -4,9 +4,9 @@ namespace Wezom\Modules\Contacts\Models;
 
 use Core\QB\DB;
 
-class Feedback extends \Core\Common {
+class Prices extends \Core\Common {
 
-    public static $table = 'projects_info';
+    public static $table = 'prices';
 
     public static function getRows($status = NULL, $date_s = NULL, $date_po = NULL, $sort = NULL, $type = NULL, $limit = NULL, $offset = NULL) {
         $result = DB::select()->from(static::$table);

@@ -48,7 +48,7 @@ class Projects extends \Wezom\Modules\Ajax {
         if (!$parent_id)
             die('Error!');
         $images = ProjectsImages::getRows($parent_id);
-        $show_images = View::tpl(array('images' => $images), 'Content/Projects/UploadedImages');
+        $show_images = View::tpl(array('images' => $images), 'Content/Prices/UploadedImages');
         $this->success(array(
             'images' => $show_images,
             'count' => sizeof($images),

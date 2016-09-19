@@ -25,7 +25,7 @@ return [
     'wezom/news/delete/<id:[0-9]*>' => 'content/news/delete',
     'wezom/news/delete_image/<id:[0-9]*>' => 'content/news/deleteImage',
     'wezom/news/add' => 'content/news/add',
-    // Projects
+    // Prices
     'wezom/projects/index' => 'content/projects/index',
     'wezom/projects/index/page/<page:[0-9]*>' => 'content/projects/index',
     'wezom/projects/edit/<id:[0-9]*>' => 'content/projects/edit',

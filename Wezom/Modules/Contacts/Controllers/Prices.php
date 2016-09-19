@@ -11,20 +11,20 @@ use Core\HTTP;
 use Core\View;
 use Core\Pager\Pager;
 use Core\QB\DB;
-use Wezom\Modules\Contacts\Models\Feedback AS Model;
+use Wezom\Modules\Contacts\Models\Prices AS Model;
 
-class Feedback extends \Wezom\Modules\Base {
+class Prices extends \Wezom\Modules\Base {
 
-    public $tpl_folder = 'Contacts/Projects';
+    public $tpl_folder = 'Contacts/Prices';
     public $page;
     public $limit;
     public $offset;
 
     function before() {
         parent::before();
-        $this->_seo['h1'] = __('Заказы подробного отчета');
-        $this->_seo['title'] = __('Заказы подробного отчета');
-        $this->setBreadcrumbs(__('Заказы подробного отчета'), 'wezom/' . Route::controller() . '/index');
+        $this->_seo['h1'] = __('Заказы прайсов');
+        $this->_seo['title'] = __('Заказы прайсов');
+        $this->setBreadcrumbs(__('Заказы прайсов'), 'wezom/' . Route::controller() . '/index');
         $this->page = (int) Route::param('page') ? (int) Route::param('page') : 1;
         $this->limit = Config::get('basic.limit_backend');
         $this->offset = ($this->page - 1) * $this->limit;

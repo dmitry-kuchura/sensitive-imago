@@ -1,11 +1,11 @@
 <?php
 
 return [
-    // Callback
-    'wezom/feedback/index' => 'contacts/feedback/index',
-    'wezom/feedback/index/page/<page:[0-9]*>' => 'contacts/feedback/index',
-    'wezom/feedback/edit/<id:[0-9]*>' => 'contacts/feedback/edit',
-    'wezom/feedback/delete/<id:[0-9]*>' => 'contacts/feedback/delete',
+    // Prices
+    'wezom/prices/index' => 'contacts/prices/index',
+    'wezom/prices/index/page/<page:[0-9]*>' => 'contacts/prices/index',
+    'wezom/prices/edit/<id:[0-9]*>' => 'contacts/prices/edit',
+    'wezom/prices/delete/<id:[0-9]*>' => 'contacts/prices/delete',
     // Contacts
     'wezom/contacts/index' => 'contacts/contacts/index',
     'wezom/contacts/index/page/<page:[0-9]*>' => 'contacts/contacts/index',
