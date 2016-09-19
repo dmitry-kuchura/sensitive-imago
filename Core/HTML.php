@@ -347,4 +347,28 @@ class HTML
         return $now_alias;
     }
 
+    public static function backendRedirect($data, $controller, $id)
+    {
+        switch ($data) {
+            case 'save-close':
+                return HTTP::redirect('wezom/' . $controller . '/index');
+                break;
+            case 'save-add':
+                return HTTP::redirect('wezom/' . $controller . '/add');
+                break;
+            default:
+                HTTP::redirect('wezom/' . $controller . '/edit/' . $id);
+                break;
+        }
+    }
+
+    public static function ifImage($image, $alias)
+    {
+        if (is_file($alias . $image)) {
+            return HTML::media($alias . $image);
+        } else {
+            return HTML::media('images/no-image.png');
+        }
+    }
+
 }

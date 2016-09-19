@@ -102,9 +102,7 @@ class Widgets
                 $slider[] = $value;
             }
         }
-        if (!sizeof($slider)) {
-            return null;
-        }
+
         return ['menu' => static::$_menu, 'slider' => $slider];
     }
 
@@ -214,7 +212,8 @@ class Widgets
         return ['result' => $result];
     }
 
-    public function Main_Devices() {
+    public function Main_Devices()
+    {
         $result = DB::select('catalog_i18n.*', 'catalog.*')
             ->from('catalog')
             ->join('catalog_i18n', 'LEFT')->on('catalog_i18n.row_id', '=', 'catalog.id')
@@ -227,7 +226,8 @@ class Widgets
         return ['result' => $result];
     }
 
-    public function Page_Devices() {
+    public function Page_Devices()
+    {
         $result = DB::select('catalog_i18n.*', 'catalog.*')
             ->from('catalog')
             ->join('catalog_i18n', 'LEFT')->on('catalog_i18n.row_id', '=', 'catalog.id')
@@ -242,11 +242,11 @@ class Widgets
 
     public function Main_Capabilities()
     {
-            $vista = [];
-            $result = CommonI18n::factory('vista')->getRows(1, 'sort', 'ASC');
-            foreach ($result AS $key => $value) {
-                $vista[$value->group][] = $value;
-            }
+        $vista = [];
+        $result = CommonI18n::factory('vista')->getRows(1, 'sort', 'ASC');
+        foreach ($result AS $key => $value) {
+            $vista[$value->group][] = $value;
+        }
         return ['vista' => $vista];
     }
 
@@ -287,6 +287,23 @@ class Widgets
         return compact('result');
     }
 
+    public function Page_AsideEquipment()
+    {
+        $lang = \I18n::$lang;
+
+        $catalog = DB::select('catalog_tree.*', 'catalog_tree_i18n.*')
+            ->from('catalog_tree')
+            ->join('catalog_tree_i18n', 'LEFT')->on('catalog_tree_i18n.row_id', '=', 'catalog_tree.id')
+            ->where('catalog_tree_i18n.language', '=', $lang)
+            ->where('catalog_tree.status', '=', 1)
+            ->order_by('catalog_tree.sort', 'ASC')
+            ->find_all();
+
+        $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(2)->find_all();
+
+
+        return ['catalog' => $catalog, 'result' => $result];
+    }
 
 
 }

@@ -46,7 +46,6 @@
                         <th>№</th>
                         <th><?php echo __('Имя'); ?></th>
                         <th><?php echo __('Страна'); ?></th>
-                        <th><?php echo __('Email'); ?></th>
                         <th><?php echo __('Дата'); ?></th>
                         <th><?php echo __('Статус'); ?></th>
                         <th class="align-center hidden-xs"><?php echo __('Перейти'); ?></th>
@@ -58,7 +57,6 @@
                             <td><a href="/wezom/prices/edit/<?php echo $obj->id; ?>">#<?php echo $obj->id; ?></a></td>
                             <td><a href="/wezom/prices/edit/<?php echo $obj->id; ?>"><?php echo $obj->name; ?></a></td>
                             <td><a href="/wezom/prices/edit/<?php echo $obj->id; ?>"><?php echo $obj->country; ?></a></td>
-                            <td><a href="tel:<?php echo $obj->email; ?>"><?php echo $obj->email; ?></a></td>
                             <td><?php echo date('d.m.Y H:i', $obj->created_at); ?></td>
                             <td>
                                 <?php switch ($obj->status) {

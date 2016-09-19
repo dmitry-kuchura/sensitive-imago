@@ -25,6 +25,9 @@
                                 case 'video':
                                     echo Core\Widgets::get('Page_AsideGallery');
                                     break;
+                                case 'equipment':
+                                    echo Core\Widgets::get('Page_AsideEquipment');
+                                    break;
                                 default:
                                     echo Core\Widgets::get('Page_Aside');
                                     break;

@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 17 2016 г., 15:37
--- Версия сервера: 5.5.48-log
+-- Время создания: Сен 18 2016 г., 22:18
+-- Версия сервера: 5.6.29
 -- Версия PHP: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -294,19 +294,18 @@ CREATE TABLE IF NOT EXISTS `catalog` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `sort` int(10) NOT NULL DEFAULT '0',
   `alias` varchar(255) DEFAULT NULL,
-  `parent_id` int(10) DEFAULT '0',
-  `best_price` tinyint(1) NOT NULL DEFAULT '0',
-  `sale` tinyint(1) NOT NULL DEFAULT '0',
-  `top` tinyint(1) NOT NULL DEFAULT '0',
+  `main` tinyint(1) NOT NULL DEFAULT '0',
   `available` tinyint(1) NOT NULL DEFAULT '1',
-  `price` double(12,2) NOT NULL DEFAULT '0.00',
-  `price_old` double(12,2) NOT NULL DEFAULT '0.00',
-  `artikul` varchar(128) DEFAULT NULL,
   `views` int(10) NOT NULL DEFAULT '0',
-  `brand_alias` varchar(255) DEFAULT NULL,
-  `image` varchar(128) DEFAULT NULL,
-  `video` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `image` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `catalog`
+--
+
+INSERT INTO `catalog` (`id`, `created_at`, `updated_at`, `status`, `sort`, `alias`, `main`, `available`, `views`, `image`) VALUES
+(3, 1474186788, 1474192601, 1, 0, 'sensitiv-imago-100-120-130', 0, 1, 1, '147ebcfedd222e06a434f428c604a783.jpg');
 
 -- --------------------------------------------------------
 
@@ -334,10 +333,20 @@ CREATE TABLE IF NOT EXISTS `catalog_i18n` (
   `keywords` text,
   `description` text,
   `text` text,
-  `consists` varchar(255) DEFAULT NULL,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `catalog_i18n`
+--
+
+INSERT INTO `catalog_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `description`, `text`, `row_id`, `language`) VALUES
+(1, 'Сенситив Имаго 100, 120, 130', 'Сенситив Имаго 100, 120, 130', 'Сенситив Имаго 100, 120, 130', 'Сенситив Имаго 100, 120, 130', 'Сенситив Имаго 100, 120, 130', '<p>Градация моделей &laquo;100&raquo; состоит из 2-х уже хорошо себя зарекомендовавших приборов Сенситив Имаго 120 и Сенситив Имаго 100, а также дополнилась новой моделью &mdash; Сенситив Имаго 130.</p>\r\n<p>Все модели имеют одинаковый внешний вид, возможности и функционал, достоверность (90%), программное обеспечение LifeStream (1 из 7 языковых версий), стандартный набор периферийных устройств. Однако существует и ряд различий.</p>', 3, 'ru'),
+(2, 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', '<p>Градация моделей &laquo;100&raquo; состоит из 2-х уже хорошо себя зарекомендовавших приборов Сенситив Имаго 120 и Сенситив Имаго 100, а также дополнилась новой моделью &mdash; Сенситив Имаго 130.</p>\r\n<p>Все модели имеют одинаковый внешний вид, возможности и функционал, достоверность (90%), программное обеспечение LifeStream (1 из 7 языковых версий), стандартный набор периферийных устройств. Однако существует и ряд различий.</p>', 3, 'en'),
+(3, 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', '<p>Градация моделей &laquo;100&raquo; состоит из 2-х уже хорошо себя зарекомендовавших приборов Сенситив Имаго 120 и Сенситив Имаго 100, а также дополнилась новой моделью &mdash; Сенситив Имаго 130.</p>\r\n<p>Все модели имеют одинаковый внешний вид, возможности и функционал, достоверность (90%), программное обеспечение LifeStream (1 из 7 языковых версий), стандартный набор периферийных устройств. Однако существует и ряд различий.</p>', 3, 'de'),
+(4, 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', '<p>Градация моделей &laquo;100&raquo; состоит из 2-х уже хорошо себя зарекомендовавших приборов Сенситив Имаго 120 и Сенситив Имаго 100, а также дополнилась новой моделью &mdash; Сенситив Имаго 130.</p>\r\n<p>Все модели имеют одинаковый внешний вид, возможности и функционал, достоверность (90%), программное обеспечение LifeStream (1 из 7 языковых версий), стандартный набор периферийных устройств. Однако существует и ряд различий.</p>', 3, 'sp'),
+(5, 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', 'Sensitiv Imago 100, 120, 130', '<p>Градация моделей &laquo;100&raquo; состоит из 2-х уже хорошо себя зарекомендовавших приборов Сенситив Имаго 120 и Сенситив Имаго 100, а также дополнилась новой моделью &mdash; Сенситив Имаго 130.</p>\r\n<p>Все модели имеют одинаковый внешний вид, возможности и функционал, достоверность (90%), программное обеспечение LifeStream (1 из 7 языковых версий), стандартный набор периферийных устройств. Однако существует и ряд различий.</p>', 3, 'fr');
 
 -- --------------------------------------------------------
 
@@ -353,7 +362,17 @@ CREATE TABLE IF NOT EXISTS `catalog_images` (
   `catalog_id` int(10) NOT NULL DEFAULT '0',
   `main` tinyint(1) NOT NULL DEFAULT '0',
   `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `catalog_images`
+--
+
+INSERT INTO `catalog_images` (`id`, `created_at`, `updated_at`, `sort`, `catalog_id`, `main`, `image`) VALUES
+(7, 1474189861, NULL, 0, 3, 1, '147ebcfedd222e06a434f428c604a783.jpg'),
+(8, 1474189861, NULL, 0, 3, 0, 'f78a67095b72f8e2c984d5bd32ce0c76.jpg'),
+(9, 1474189861, NULL, 0, 3, 0, 'f4d3e415162c8dbf2684167fe2d6f4b1.jpg'),
+(10, 1474189861, NULL, 0, 3, 0, 'b8fdecfe27b7d86a55dc59ed5cfa78e5.jpg');
 
 -- --------------------------------------------------------
 
@@ -421,26 +440,29 @@ CREATE TABLE IF NOT EXISTS `catalog_tree` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `sort` int(10) NOT NULL DEFAULT '0',
   `alias` varchar(255) NOT NULL,
+  `param` int(10) NOT NULL DEFAULT '0',
   `parent_id` int(10) NOT NULL DEFAULT '0',
   `image` varchar(64) DEFAULT NULL,
   `views` int(10) NOT NULL DEFAULT '0',
   `menu` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `catalog_tree`
 --
 
-INSERT INTO `catalog_tree` (`id`, `created_at`, `updated_at`, `status`, `sort`, `alias`, `parent_id`, `image`, `views`, `menu`) VALUES
-(37, 1448219981, 1452588273, 1, 0, 'swimwear', 0, '8543ae8c2819cef5192ce081b771828b.jpg', 1385, '45e69e37786574c97128555a41fbe614.jpg'),
-(38, 1448739968, 1452524091, 1, 1, 'bele', 0, '124a3bcae280c685c74e1b1cf332f4ab.jpg', 55, 'f1364efc35fd2593a39d6786fafff4f3.jpg'),
-(39, 1448739982, 1452528910, 1, 3, 'odezhda', 0, '7a4386308b40243f55f5aea5f7cfc08b.jpg', 19, NULL),
-(40, 1448739993, 1452262318, 1, 2, 'obuv', 0, 'dba667463a0aab1204ade0df33423d87.jpg', 20, NULL),
-(41, 1448740003, 1452178344, 1, 4, 'kosmetika', 0, '70a985ada498852b8f6d879a395f6800.jpg', 12, NULL),
-(42, 1448740015, 1452178344, 1, 5, 'aksessuary', 0, 'e426246047278482fe5b28f9c2863abd.jpg', 15, NULL),
-(43, 1450095683, 1452242447, 1, 0, 'sport', 38, 'e429cc0a5422222885601527a8dc8366.jpg', 23, NULL),
-(44, 1450095774, 1452242449, 1, 0, 'level2', 43, '0b32162619cb27eec9850d7bb8631283.jpg', 16, 'ed495fbfac41f48dcdf2ebb574b710d6.jpg'),
-(45, 1450095868, 1452524093, 1, 1, 'level3', 38, '63e2cf3960e150046a74100ad9eaeb8a.jpg', 19, NULL);
+INSERT INTO `catalog_tree` (`id`, `created_at`, `updated_at`, `status`, `sort`, `alias`, `param`, `parent_id`, `image`, `views`, `menu`) VALUES
+(46, 1474212975, 1474216186, 1, 0, 'models', 0, 0, 'c8495b56148378defbc9935e5c43634c.jpg', 0, NULL),
+(47, 1474213265, 1474216186, 1, 1, 'features', 0, 0, 'a1ab6dca62fb1126ad589fccaae8b531.jpg', 0, NULL),
+(48, 1474213352, 1474216186, 1, 2, 'advantages', 0, 0, '652492630f458cf4b32ddb152fd110b4.jpg', 0, NULL),
+(49, 1474213432, 1474216186, 1, 3, 'technology', 0, 0, 'f5fe9a3b5800caf8fe2a8df0d7f2bc3a.jpg', 0, NULL),
+(50, 1474213562, 1474216606, 1, 4, '', 0, 0, '4b7e801479801eb0e29db21791e8bf4b.jpg', 0, NULL),
+(51, 1474213697, 1474216186, 1, 5, 'software', 0, 0, 'fdf54bf52181c6b162db4cbd50398b6a.jpg', 0, NULL),
+(52, 1474213768, 1474216186, 1, 6, 'results', 0, 0, 'b552c1ef242f171e5a2c07c1305737e4.jpg', 0, NULL),
+(53, 1474213818, 1474216637, 1, 7, 'news', 1, 0, '0c8dd9697b96778995d9cc50874534ef.jpg', 0, NULL),
+(54, 1474213861, 1474216186, 1, 8, 'sertifications', 0, 0, 'a7ef8841885e154c91d0ddc60ade0753.jpg', 0, NULL),
+(55, 1474213977, 1474216186, 1, 9, 'guarantees', 0, 0, 'b72a410f650fdf0ea5abb17f00b6937a.jpg', 0, NULL),
+(56, 1474217227, 1474217591, 1, 0, 'sadfsdfsdfsdfsdf', 0, 0, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -458,31 +480,68 @@ CREATE TABLE IF NOT EXISTS `catalog_tree_i18n` (
   `text` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `catalog_tree_i18n`
 --
 
 INSERT INTO `catalog_tree_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `description`, `text`, `row_id`, `language`) VALUES
-(37, 'Купальники', '', '', '', '', '<p style="margin-bottom: 25px; color: black; font-size: 24px; font-weight: bold; text-transform: uppercase;">Заголовок сео текста</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eum excepturi veniam modi laborum sunt autem similique dicta quasi saepe voluptatibus ducimus, iusto, illum maxime labore, nesciunt obcaecati blanditiis neque nemo nulla reprehenderit error est ullam qui explicabo? Rerum quibusdam quasi quam temporibus numquam accusantium earum alias, iste veritatis optio.</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eum excepturi veniam modi laborum sunt autem similique dicta quasi saepe voluptatibus ducimus, iusto, illum maxime labore, nesciunt obcaecati blanditiis neque nemo nulla reprehenderit error est ullam qui explicabo? Rerum quibusdam quasi quam temporibus numquam accusantium earum alias, iste veritatis optio.</p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias eum excepturi veniam modi laborum sunt autem similique dicta quasi saepe voluptatibus ducimus, iusto, illum maxime labore, nesciunt obcaecati blanditiis neque nemo nulla reprehenderit error est ullam qui explicabo? Rerum quibusdam quasi quam temporibus numquam accusantium earum alias, iste veritatis optio.</p>', 37, 'ru'),
-(38, 'Swimwear', '', '', '', '', '', 37, 'en'),
-(40, 'Белье', '', '', '', '', '', 38, 'ru'),
-(41, ' Lingerie', '', '', '', '', '', 38, 'en'),
-(43, 'Одежда', '', '', '', '', '', 39, 'ru'),
-(44, 'Одежда', '', '', '', '', '', 39, 'en'),
-(46, 'Обувь', '', '', '', '', '', 40, 'ru'),
-(47, 'Обувь-1', '', '', '', '', '', 40, 'en'),
-(49, 'Косметика', '', '', '', '', '', 41, 'ru'),
-(50, 'Косметика', '', '', '', '', '', 41, 'en'),
-(52, 'Аксессуары', '', '', '', '', '', 42, 'ru'),
-(53, 'Аксессуары-en', '', '', '', '', '', 42, 'en'),
-(55, 'спортивные', '', '', '', '', '<p>ntcn ntcnc ctads asd asd</p>', 43, 'ru'),
-(56, 'sport', '', '', '', '', '', 43, 'en'),
-(58, 'уровень2', '', '', '', '', '', 44, 'ru'),
-(59, 'level2', '', '', '', '', '', 44, 'en'),
-(61, 'уровень3', '', '', '', '', '', 45, 'ru'),
-(62, 'level3', '', '', '', '', '', 45, 'en');
+(63, 'Модели приборов', 'Модели приборов', 'Модели приборов', 'Модели приборов', 'Модели приборов', NULL, 46, 'ru'),
+(64, 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', NULL, 46, 'en'),
+(65, 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', NULL, 46, 'de'),
+(66, 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', NULL, 46, 'sp'),
+(67, 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', 'equipment Models', NULL, 46, 'fr'),
+(68, 'Возможности оборудовния', 'Возможности оборудовния', 'Возможности оборудовния', 'Возможности оборудовния', 'Возможности оборудовния', NULL, 47, 'ru'),
+(69, 'Product Features', 'Product Features', 'Product Features', 'Product Features', 'Product Features', NULL, 47, 'en'),
+(70, 'Product Features', 'Product Features', 'Product Features', 'Product Features', 'Product Features', NULL, 47, 'de'),
+(71, 'Product Features', 'Product Features', 'Product Features', 'Product Features', 'Product Features', NULL, 47, 'sp'),
+(72, 'Product Features', 'Product Features', 'Product Features', 'Product Features', 'Product Features', NULL, 47, 'fr'),
+(73, 'Преимущества оборудования Сенсетив Имаго', 'Преимущества оборудования Сенсетив Имаго', 'Преимущества оборудования Сенсетив Имаго', 'Преимущества оборудования Сенсетив Имаго', 'Преимущества оборудования Сенсетив Имаго', NULL, 48, 'ru'),
+(74, 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', NULL, 48, 'en'),
+(75, 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', NULL, 48, 'de'),
+(76, 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', NULL, 48, 'sp'),
+(77, 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', 'Advantages of the equipment Sensitive Imago', NULL, 48, 'fr'),
+(78, 'Технологии метода', 'Технологии метода', 'Технологии метода', 'Технологии метода', 'Технологии метода', NULL, 49, 'ru'),
+(79, 'method Technology', 'method Technology', 'method Technology', 'method Technology', 'method Technology', NULL, 49, 'en'),
+(80, 'method Technology', 'method Technology', 'method Technology', 'method Technology', 'method Technology', NULL, 49, 'de'),
+(81, 'method Technology', 'method Technology', 'method Technology', 'method Technology', 'method Technology', NULL, 49, 'sp'),
+(82, 'method Technology', 'method Technology', 'method Technology', 'method Technology', 'method Technology', NULL, 49, 'fr'),
+(83, 'Механизм получения информации', 'Механизм получения информации', 'Механизм получения информации', 'Механизм получения информации', 'Механизм получения информации', NULL, 50, 'ru'),
+(84, 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', NULL, 50, 'en'),
+(85, 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', NULL, 50, 'de'),
+(86, 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', NULL, 50, 'sp'),
+(87, 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', 'The mechanism of information', NULL, 50, 'fr'),
+(88, 'Программное обеспечение', 'Программное обеспечение', 'Программное обеспечение', 'Программное обеспечение', 'Программное обеспечение', NULL, 51, 'ru'),
+(89, 'Software', 'Software', 'Software', 'Software', 'Software', NULL, 51, 'en'),
+(90, 'Software', 'Software', 'Software', 'Software', 'Software', NULL, 51, 'de'),
+(91, 'Software', 'Software', 'Software', 'Software', 'Software', NULL, 51, 'sp'),
+(92, 'Software', 'Software', 'Software', 'Software', 'Software', NULL, 51, 'fr'),
+(93, 'Примеры результатов тестирования', 'Примеры результатов тестирования', 'Примеры результатов тестирования', 'Примеры результатов тестирования', 'Примеры результатов тестирования', NULL, 52, 'ru'),
+(94, 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', NULL, 52, 'en'),
+(95, 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', NULL, 52, 'de'),
+(96, 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', NULL, 52, 'sp'),
+(97, 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', 'Examples of test results', NULL, 52, 'fr'),
+(98, 'Статьи', 'Статьи', 'Статьи', 'Статьи', 'Статьи', NULL, 53, 'ru'),
+(99, 'Articles', 'Articles', 'Articles', 'Articles', 'Articles', NULL, 53, 'en'),
+(100, 'Articles', 'Articles', 'Articles', 'Articles', 'Articles', NULL, 53, 'de'),
+(101, 'Articles', 'Articles', 'Articles', 'Articles', 'Articles', NULL, 53, 'sp'),
+(102, 'Articles', 'Articles', 'Articles', 'Articles', 'Articles', NULL, 53, 'fr'),
+(103, 'Сертификаты', 'Сертификаты', 'Сертификаты', 'Сертификаты', 'Сертификаты', NULL, 54, 'ru'),
+(104, 'Certifications', 'Certifications', 'Certifications', 'Certifications', 'Certifications', NULL, 54, 'en'),
+(105, 'Certifications', 'Certifications', 'Certifications', 'Certifications', 'Certifications', NULL, 54, 'de'),
+(106, 'Certifications', 'Certifications', 'Certifications', 'Certifications', 'Certifications', NULL, 54, 'sp'),
+(107, 'Certifications', 'Certifications', 'Certifications', 'Certifications', 'Certifications', NULL, 54, 'fr'),
+(108, 'Гарантии', 'Гарантии', 'Гарантии', 'Гарантии', 'Гарантии', NULL, 55, 'ru'),
+(109, 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', NULL, 55, 'en'),
+(110, 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', NULL, 55, 'de'),
+(111, 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', NULL, 55, 'sp'),
+(112, 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', 'Guarantees', NULL, 55, 'fr'),
+(113, 'Услуги', '', '', '', '', NULL, 56, 'ru'),
+(114, 'Услуги', '', '', '', '', NULL, 56, 'en'),
+(115, 'Услуги', '', '', '', '', NULL, 56, 'de'),
+(116, 'Услуги', '', '', '', '', NULL, 56, 'sp'),
+(117, 'Услуги', '', '', '', '', NULL, 56, 'fr');
 
 -- --------------------------------------------------------
 
@@ -894,14 +953,15 @@ CREATE TABLE IF NOT EXISTS `content` (
   `slider_first` varchar(150) DEFAULT NULL,
   `slider_second` varchar(150) DEFAULT NULL,
   `slider_third` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `content`
 --
 
 INSERT INTO `content` (`id`, `alias`, `status`, `created_at`, `updated_at`, `sort`, `parent_id`, `views`, `image_first`, `image_second`, `image_third`, `image_four`, `slider_first`, `slider_second`, `slider_third`) VALUES
-(7, 'about', 1, 1470748118, 1474013130, 0, 0, 0, '44054a1ca161d3f4f62fe6ae1cd26ba5.jpg', '2eb8e31efd818abcac8b6cfcbdbbc7a7.jpg', 'c9d407036bccad07c2a6cb2344225a56.jpg', NULL, '5aeb8c24a0ff39e38cc94df4956bc966.jpg', 'fe3ceb295d2fb8c0633bb535274d0548.jpg', 'c6816c599ca2feaa024fac169d512d7d.jpg');
+(7, 'about', 1, 1470748118, 1474013130, 0, 0, 0, '44054a1ca161d3f4f62fe6ae1cd26ba5.jpg', '2eb8e31efd818abcac8b6cfcbdbbc7a7.jpg', 'c9d407036bccad07c2a6cb2344225a56.jpg', NULL, '5aeb8c24a0ff39e38cc94df4956bc966.jpg', 'fe3ceb295d2fb8c0633bb535274d0548.jpg', 'c6816c599ca2feaa024fac169d512d7d.jpg'),
+(8, 'bussines', 1, 1474191408, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -949,7 +1009,7 @@ CREATE TABLE IF NOT EXISTS `content_i18n` (
   `beuseful_text1` varchar(250) DEFAULT NULL,
   `beuseful_text2` varchar(250) DEFAULT NULL,
   `beuseful_text3` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `content_i18n`
@@ -960,7 +1020,12 @@ INSERT INTO `content_i18n` (`id`, `name`, `title`, `description`, `keywords`, `t
 (17, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'en', 'Digital marketing <br/> and advertising company', 'The company combines creative people who like to do their work. We are convinced that the creative power of the movement is to understand the situation and the corresponding desire. ', 'history of the company', 'Now, Beatus this:', '<ul class="now_list">\r\n<li>thinkers</li>\r\n<li>visualizers</li>\r\n<li>researchers</li>\r\n<li>audience</li>\r\n<li>producers</li>\r\n<li>artists</li>\r\n</ul>\r\n<p>Are in constant movement forward.</p>', 'How can we be helpful?', 'Beatus changes 180 degrees complicated, sluggish situation of their customers confidently, quickly and efficiently, making customers happy.', 'Learn more about our services', '(If you do not know where to start)', 'What we see our mission?', '<p>Acting as a link between business, society and the individual we contribute to the understanding of each other and each implementation using the latest modern technology and creative approaches.</p>\r\n<p>After all, understanding makes our life easier, more pleasant and harmonious.</p>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Change the decline in growth', 'Push the sluggish trend of active growth', 'Inspire and motivate to action'),
 (22, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'de', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (23, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'sp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(24, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(24, 'About company', NULL, NULL, NULL, '<p>The company "Alfa-Med Ukraine" is presented on the market for over 12 years!</p>\r\n<p>At present the main field of activity of the company - providing business services - the search for new partners in napravleniiotkrytiya new medical diagnostic centers using advanced diagnostic equipment - hardware and software systems Sintensiv adults of hardware-software complexes Sintensiv adults certified in Ukraine, Russia, Europe, and tested certification in the United States, Korea, China, Malaysia, Mexico, Brazil, hardware-software complexes Sintensiv adults can be used for a wide range of applications, range of areas of their practical application is quite wide.</p>\r\n<p>We are interested in finding new partners worldwide. All interested welcome to our office in Kyiv to demonstrate capabilities of the equipment.</p>\r\n<p>You will be a presentation of the equipment, and provide detailed recommendations presented to the Planning package of information and the organization of this medical diagnostic kabineta.Krome addition, we opened more than 65 offices around the world, on all continents.</p>\r\n<p>We wish you to spend your time!</p>', NULL, 7, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 'Бизнес под ключ', NULL, NULL, NULL, '<p align="justify">Мы открываем Вам &laquo;под ключ&raquo; медицинский лечебно-диагностический центр, использующий передовое диагностическое оборудование &ndash; аппаратно-программный комплекс &laquo;<strong>Сенситив Имаго</strong>&raquo; (читать сравнительную характеристику с аналогичными приборами). Всё, что потребуется от Вас &ndash; это только подобрать помещение (купить или взять в аренду) площадью от 10 м<sup>2</sup>,&nbsp; Вы будете единственным хозяином. Мы продаем Вам оборудование, обучаем персонал, предоставляем наработки по организации и ведению бизнеса (смотрите). Мы в состоянии ответить на любые ваши вопросы в отношении диагностического процесса и моментов организации бизнеса. Для вашей успешной деятельности важно для Вас максимально точно выполнять наши рекомендации. Через 1-2 месяца после открытия чистая прибыль 8-10 тысяч у.е. - далеко не предел! (смотрите расчёт рентабельности). Наше предложение выгодно отличается от предложений других компаний-производителей аналогичного диагностического оборудования...</p>', NULL, 8, 'ru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 'Turnkey Business', NULL, NULL, NULL, '<p align="justify">Мы открываем Вам &laquo;под ключ&raquo; медицинский лечебно-диагностический центр, использующий передовое диагностическое оборудование &ndash; аппаратно-программный комплекс &laquo;<strong>Сенситив Имаго</strong>&raquo; (читать сравнительную характеристику с аналогичными приборами). Всё, что потребуется от Вас &ndash; это только подобрать помещение (купить или взять в аренду) площадью от 10 м<sup>2</sup>,&nbsp; Вы будете единственным хозяином. Мы продаем Вам оборудование, обучаем персонал, предоставляем наработки по организации и ведению бизнеса (смотрите). Мы в состоянии ответить на любые ваши вопросы в отношении диагностического процесса и моментов организации бизнеса. Для вашей успешной деятельности важно для Вас максимально точно выполнять наши рекомендации. Через 1-2 месяца после открытия чистая прибыль 8-10 тысяч у.е. - далеко не предел! (смотрите расчёт рентабельности). Наше предложение выгодно отличается от предложений других компаний-производителей аналогичного диагностического оборудования...</p>', NULL, 8, 'en', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 'Turnkey Business', NULL, NULL, NULL, '<p align="justify">Мы открываем Вам &laquo;под ключ&raquo; медицинский лечебно-диагностический центр, использующий передовое диагностическое оборудование &ndash; аппаратно-программный комплекс &laquo;<strong>Сенситив Имаго</strong>&raquo; (читать сравнительную характеристику с аналогичными приборами). Всё, что потребуется от Вас &ndash; это только подобрать помещение (купить или взять в аренду) площадью от 10 м<sup>2</sup>,&nbsp; Вы будете единственным хозяином. Мы продаем Вам оборудование, обучаем персонал, предоставляем наработки по организации и ведению бизнеса (смотрите). Мы в состоянии ответить на любые ваши вопросы в отношении диагностического процесса и моментов организации бизнеса. Для вашей успешной деятельности важно для Вас максимально точно выполнять наши рекомендации. Через 1-2 месяца после открытия чистая прибыль 8-10 тысяч у.е. - далеко не предел! (смотрите расчёт рентабельности). Наше предложение выгодно отличается от предложений других компаний-производителей аналогичного диагностического оборудования...</p>', NULL, 8, 'de', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 'Turnkey Business', NULL, NULL, NULL, '<p align="justify">Мы открываем Вам &laquo;под ключ&raquo; медицинский лечебно-диагностический центр, использующий передовое диагностическое оборудование &ndash; аппаратно-программный комплекс &laquo;<strong>Сенситив Имаго</strong>&raquo; (читать сравнительную характеристику с аналогичными приборами). Всё, что потребуется от Вас &ndash; это только подобрать помещение (купить или взять в аренду) площадью от 10 м<sup>2</sup>,&nbsp; Вы будете единственным хозяином. Мы продаем Вам оборудование, обучаем персонал, предоставляем наработки по организации и ведению бизнеса (смотрите). Мы в состоянии ответить на любые ваши вопросы в отношении диагностического процесса и моментов организации бизнеса. Для вашей успешной деятельности важно для Вас максимально точно выполнять наши рекомендации. Через 1-2 месяца после открытия чистая прибыль 8-10 тысяч у.е. - далеко не предел! (смотрите расчёт рентабельности). Наше предложение выгодно отличается от предложений других компаний-производителей аналогичного диагностического оборудования...</p>', NULL, 8, 'sp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 'Turnkey Business', NULL, NULL, NULL, '<p align="justify">Мы открываем Вам &laquo;под ключ&raquo; медицинский лечебно-диагностический центр, использующий передовое диагностическое оборудование &ndash; аппаратно-программный комплекс &laquo;<strong>Сенситив Имаго</strong>&raquo; (читать сравнительную характеристику с аналогичными приборами). Всё, что потребуется от Вас &ndash; это только подобрать помещение (купить или взять в аренду) площадью от 10 м<sup>2</sup>,&nbsp; Вы будете единственным хозяином. Мы продаем Вам оборудование, обучаем персонал, предоставляем наработки по организации и ведению бизнеса (смотрите). Мы в состоянии ответить на любые ваши вопросы в отношении диагностического процесса и моментов организации бизнеса. Для вашей успешной деятельности важно для Вас максимально точно выполнять наши рекомендации. Через 1-2 месяца после открытия чистая прибыль 8-10 тысяч у.е. - далеко не предел! (смотрите расчёт рентабельности). Наше предложение выгодно отличается от предложений других компаний-производителей аналогичного диагностического оборудования...</p>', NULL, 8, 'fr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -975,7 +1040,7 @@ CREATE TABLE IF NOT EXISTS `control` (
   `other` text,
   `sort` int(10) unsigned NOT NULL DEFAULT '0',
   `sitemap` tinyint(1) unsigned DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `control`
@@ -989,7 +1054,8 @@ INSERT INTO `control` (`id`, `alias`, `status`, `other`, `sort`, `sitemap`) VALU
 (5, 'reviews', 1, NULL, 5, 1),
 (6, 'gallery', 1, NULL, 6, 1),
 (7, 'video', 1, NULL, 7, 1),
-(8, 'advantage', 1, NULL, 9, 1);
+(8, 'advantage', 1, NULL, 9, 1),
+(9, 'equipment', 1, NULL, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -1009,15 +1075,15 @@ CREATE TABLE IF NOT EXISTS `control_i18n` (
   `time` text,
   `row_id` int(10) DEFAULT NULL,
   `language` varchar(2) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `control_i18n`
 --
 
 INSERT INTO `control_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `description`, `text`, `location`, `time`, `row_id`, `language`) VALUES
-(1, 'Sensitive - Imago - Главная страница', 'Sensitive - Imago - Главная страница h1', 'Sensitive - Imago - Главная страница title', 'Sensitive - Imago - Главная страница keywords', 'Sensitive - Imago - Главная страница description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', NULL, NULL, 1, 'ru'),
-(17, 'Sensitive - Imago - Main page', 'Sensitive - Imago - Main page h1', 'Sensitive - Imago - Main page title', 'Sensitive - Imago - Main page keywords', 'Sensitive - Imago - Main page description', '<p><strong>Использовать все виды списков</strong></p>\r\n<ul>\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.</li>\r\n</ul>\r\n<ol>\r\n<li>Curabitur vehicula arcu elementum ultrices convallis.</li>\r\n<li>Curabitur at massa ultrices, sollicitudin ipsum eu, tincidunt sem.</li>\r\n<li>Praesent iaculis nibh quis lectus egestas porta.</li>\r\n<li>Sed condimentum felis tristique elit ultrices, vel pulvinar nisl mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ul>\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: circle;">\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: square;">\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ul>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>левому</strong> <strong>краю</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed maximus lorem. Vivamus sed metus aliquet, tempor turpis sit amet, volutpat risus. Fusce magna neque, pellentesque vitae purus vel, pellentesque maximus ante. Vivamus diam lectus, lobortis nec ipsum quis, laoreet semper odio. Nam consectetur nisi turpis, ut pulvinar justo aliquam vitae. Fusce egestas eros sodales, aliquam erat sed, vulputate massa. Mauris eu dolor vitae dui tempus semper. Cras elementum, nibh vel scelerisque dignissim, metus orci malesuada tellus, maximus eleifend urna libero quis ipsum. Ut ex lectus, scelerisque sed cursus nec, ullamcorper ut elit.</p>\r\n<p><strong>Выравнивание по левому правому краю</strong></p>\r\n<p style="text-align: right;">Cras imperdiet dolor eu vestibulum congue. Proin suscipit fermentum ex, quis tempor est cursus non. Nullam suscipit augue dui. Ut molestie interdum tortor maximus commodo. Vestibulum non est volutpat, molestie mauris in, feugiat est. Donec consequat ligula sed egestas pretium. Nam ac mauris rhoncus, lobortis dui non, molestie leo. Quisque pretium sed metus sed tristique. Fusce a nibh eu justo pharetra blandit. Nullam id risus erat. Aenean malesuada quam ut est auctor, vitae ullamcorper velit congue. In in placerat tellus. Duis sit amet dui id purus porta ornare non ac erat. Aenean dapibus arcu elit, tempor gravida arcu blandit eu.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>центру</strong></p>\r\n<p style="text-align: center;">Sed tempor, ante vitae faucibus feugiat, felis magna pretium nisl, ac pellentesque mi mi id augue. Aliquam a mauris lobortis, congue odio ac, dictum quam. Suspendisse tempus orci ut molestie cursus. Etiam consectetur vehicula ipsum, et sodales nisl. Vestibulum id aliquam libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo in neque pharetra iaculis.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>ширине</strong></p>\r\n<p style="text-align: justify;">Donec quis fermentum risus. Aliquam efficitur aliquam urna, vitae ornare purus feugiat non. Nam laoreet, velit at porta aliquam, dolor sem pretium nulla, vel sagittis sapien ante eget sapien. Sed est elit, lacinia et urna vel, venenatis vestibulum tortor. Duis ac tincidunt dolor. Pellentesque lacinia hendrerit urna sit amet lobortis. Suspendisse potenti. Vivamus eu sapien sollicitudin, elementum turpis efficitur, feugiat sapien. Nulla congue rutrum nisl. Quisque pretium facilisis ligula eu tincidunt. Donec posuere lorem eu est mattis commodo. Suspendisse pretium nibh nec convallis vehicula. Cras ac suscipit mi, vitae laoreet mauris. Aliquam erat volutpat. Quisque scelerisque nunc ut congue scelerisque.</p>\r\n<p><strong>Добавить ссылку &ndash; одна открывается в текущем окне, одна в соседнем </strong></p>\r\n<p><a href="http://uk.lipsum.com/">Proin justo nisl, faucibus</a> nec dignissim a, tincidunt at lorem. Vivamus ligula arcu, faucibus a ex et, viverra molestie velit. Donec ut justo arcu. Integer a lorem ut massa mattis vestibulum. Fusce in lacus eget dolor finibus vestibulum. Vestibulum lobortis placerat felis non feugiat. Sed eu risus non nisi iaculis elementum. <a href="https://google.com/">Etiam eu eros eget</a> ante cursus laoreet in ut nisi. Phasellus porta, est vitae accumsan dictum, erat nibh bibendum tellus, id suscipit elit mauris nec felis. Nunc in sodales erat, in scelerisque sapien. Aenean rutrum ligula leo, nec fringilla mi consectetur a. Quisque molestie nulla sit amet nibh dictum maximus.</p>\r\n<p><a href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p>&nbsp;</p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><strong>Изменить форматирование &ndash; размер, цвет, фон, формат, начертание шрифта (все возможные варианты редактора)</strong></p>\r\n<p><strong>Nunc ac massa sit amet erat dignissim tristique. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent lorem justo, vestibulum quis posuere blandit, </strong>volutpat <em>vitae tellus. Sed blandit tortor vitae libero porttitor, eu vehicula odio dapibus. Quisque rhoncus facilisis vulputate. Etiam mi sem, placerat ut erat non, accumsan dignissim magna. Nullam tempor eleifend erat eu placerat. Nulla suscipit nunc sed</em> tortor sodales sodales. Suspendisse porta placerat tellus, eget luctus arcu blandit at. Suspendisse imperdiet, sapien ac hendrerit laoreet, mauris tortor porttitor augue, pellentesque mattis nisi nulla eu urna. Donec dictum sed velit id tristique. Vivamus sit amet eleifend ex. Quisque ullamcorper rhoncus congue.</p>\r\n<p>Duis imperdiet neque velit, vel tempor dui volutpat sit amet. Sed laoreet quam vitae sem vulputate vulputate sed et metus. Phasellus nec eros rhoncus, semper tortor nec, rutrum justo. Donec in lectus ullamcorper, aliquam nibh vitae, commodo augue. Duis eget lorem ac purus venenatis eleifend. Phasellus finibus magna at ante volutpat, vel porttitor ante gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<table width="717">\r\n<tbody>\r\n<tr>\r\n<td width="33">\r\n<p>№</p>\r\n</td>\r\n<td width="110">\r\n<p>1</p>\r\n</td>\r\n<td width="58">\r\n<p>2</p>\r\n</td>\r\n<td width="60">\r\n<p>3</p>\r\n</td>\r\n<td width="80">\r\n<p>4</p>\r\n</td>\r\n<td width="86">\r\n<p>5</p>\r\n</td>\r\n<td width="67">\r\n<p>6</p>\r\n</td>\r\n<td width="80">\r\n<p>7</p>\r\n</td>\r\n<td width="72">\r\n<p>8</p>\r\n</td>\r\n<td width="72">\r\n<p>9</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>1</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>2.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>3.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>', NULL, NULL, 1, 'en'),
+(1, 'Главная страница', 'Главная страница h1', 'Главная страница title', 'Главная страница keywords', 'Главная страница description', '<div id="conteiner">\r\n<div class="site_size2">\r\n<article class="content">\r\n<h1>Женская брендовая одежда</h1>\r\n<p>Для настоящей женщины всегда важен ее внешний вид. Сложно переоценить роль красивой одежды в формировании собственного неповторимого стиля и ярких ежедневных образов. Каждая женщина по-своему подчеркивает природное обаяния, шарм, индивидуальность, но есть один маленький секрет, который объединяет миллионы модниц со всего мира - Victoria''s Secret. Одежда, купальники, белье от этой легендарной марки &ndash; воплощение истинной женственности, элегантности, изысканной сексуальности. Бренды Victoria''s Secret и H&amp;M завоевали такую популярность благодаря отменному качеству и неповторимому проработанному дизайну каждой модели.</p>\r\n<p>Интернет-магазин H&amp;D не отстает от мировых тенденций fashion-индустрии и предлагает своим клиенткам купить женскую брендовую одежду актуального фасона и кроя. Новинки из последних коллекций H&amp;M и Victoria''s Secret обязательно удивят своим разнообразием и покорят красотой. Майки, туники, белье, повседневная, праздничная, спортивная одежда Deluxe качества позволят почувствовать себя привлекательной, отразят естественную красоту и подчеркнут все достоинства фигуры. Еще одним преимуществом, располагающим купить женскую брендовую одежду является её эксклюзивность, в одежде от Victoria''s Secret и H&amp;M сложно остаться незамеченной.</p>\r\n<h2>Почему стоит покупать именно брендовые вещи?</h2>\r\n<p>В первую очередь, конечно же, из-за высочайшего качества. Приобретая одежду от известных производителей, можно быть уверенной, что носить её можно будет до тех пор, пока она просто не надоест или её не вытеснят более актуальные новинки сезона. Клиентки, уже успевшие купить женскую брендовую одежду в онлайн магазине H&amp;D, также отмечают её комфорт. Кроме того, бренд &ndash; это:</p>\r\n<ul>\r\n<li>Изюминка. Каждая коллекция от торговой марки &ndash; это нечто абсолютно новое, непохожее на остальные предложения, яркое и актуальное;</li>\r\n<li>Неповторимость. Если вы желаете купить женскую брендовую одежду, то можете быть уверенны &ndash; вряд ли в своем городе вы встретите кого-то еще в подобной вещи;</li>\r\n<li>Приятные, натуральные высококлассные ткани. Использование уникальных материалов увеличивает срок носки изделий;</li>\r\n<li>Актуальность. Выбирая бренд, невозможно прогадать с модными тенденциями и оказаться одетой в вещи &laquo;вчерашнего дня&raquo;;</li>\r\n<li>Безупречность кроя, специфический дизайн, отражающий модную позицию бренда в текущем сезоне.</li>\r\n</ul>\r\n<p>В ассортименте нашего каталога представлены только оригинальные вещи. Поставки происходят непосредственно из США, что делает вещи еще более привлекательными. Если Вы желаете купить женскую брендовую одежду, которая не представлена в каталоге, мы доставим вам товар с официального сайта бренда в максимально быстрые сроки.</p>\r\n<p>Почувствуйте преимущества онлайн шопинга: удобные каталоги качественно заменяют модные шоу-румы, в интернет магазине можно проводить сколь угодно много времени, оплачивать покупки можно не выходя из дома, доставка происходит быстро.</p>\r\n<p>Одежда Victoria''s Secret и H&amp;M &ndash; роскошь, доступная Вам в интернет-магазине H&amp;D.</p>\r\n</article>\r\n</div>\r\n</div>', NULL, NULL, 1, 'ru'),
+(17, 'Main page', 'Main page h1', 'Main page title', 'Main page keywords', 'Main page description', '<p><strong>Использовать все виды списков</strong></p>\r\n<ul>\r\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>\r\n<li>Etiam id leo at eros tempor aliquet nec vitae mi.</li>\r\n<li>Sed vel leo quis est dictum egestas.</li>\r\n<li>Morbi ac orci at ex pharetra finibus vitae in sem.</li>\r\n<li>Sed et odio ac velit euismod varius vitae in ligula.</li>\r\n</ul>\r\n<ol>\r\n<li>Curabitur vehicula arcu elementum ultrices convallis.</li>\r\n<li>Curabitur at massa ultrices, sollicitudin ipsum eu, tincidunt sem.</li>\r\n<li>Praesent iaculis nibh quis lectus egestas porta.</li>\r\n<li>Sed condimentum felis tristique elit ultrices, vel pulvinar nisl mollis.</li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n<ul>\r\n<li>Nulla bibendum arcu pellentesque enim ultricies, at luctus mi scelerisque.</li>\r\n<li>Nulla vel risus sollicitudin, interdum felis non, consectetur risus.</li>\r\n<li>Phasellus ut odio non turpis tincidunt consectetur non non sem.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: circle;">\r\n<li>Duis in quam ac ante sagittis accumsan ut ac dolor.</li>\r\n<li>Morbi eleifend enim aliquam neque dapibus blandit.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<ul style="list-style-type: square;">\r\n<li>Vestibulum in mauris in velit malesuada volutpat ac eget orci.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n<li>Duis faucibus odio at arcu placerat, in aliquet leo mollis.</li>\r\n</ul>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>левому</strong> <strong>краю</strong></p>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed maximus lorem. Vivamus sed metus aliquet, tempor turpis sit amet, volutpat risus. Fusce magna neque, pellentesque vitae purus vel, pellentesque maximus ante. Vivamus diam lectus, lobortis nec ipsum quis, laoreet semper odio. Nam consectetur nisi turpis, ut pulvinar justo aliquam vitae. Fusce egestas eros sodales, aliquam erat sed, vulputate massa. Mauris eu dolor vitae dui tempus semper. Cras elementum, nibh vel scelerisque dignissim, metus orci malesuada tellus, maximus eleifend urna libero quis ipsum. Ut ex lectus, scelerisque sed cursus nec, ullamcorper ut elit.</p>\r\n<p><strong>Выравнивание по левому правому краю</strong></p>\r\n<p style="text-align: right;">Cras imperdiet dolor eu vestibulum congue. Proin suscipit fermentum ex, quis tempor est cursus non. Nullam suscipit augue dui. Ut molestie interdum tortor maximus commodo. Vestibulum non est volutpat, molestie mauris in, feugiat est. Donec consequat ligula sed egestas pretium. Nam ac mauris rhoncus, lobortis dui non, molestie leo. Quisque pretium sed metus sed tristique. Fusce a nibh eu justo pharetra blandit. Nullam id risus erat. Aenean malesuada quam ut est auctor, vitae ullamcorper velit congue. In in placerat tellus. Duis sit amet dui id purus porta ornare non ac erat. Aenean dapibus arcu elit, tempor gravida arcu blandit eu.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>центру</strong></p>\r\n<p style="text-align: center;">Sed tempor, ante vitae faucibus feugiat, felis magna pretium nisl, ac pellentesque mi mi id augue. Aliquam a mauris lobortis, congue odio ac, dictum quam. Suspendisse tempus orci ut molestie cursus. Etiam consectetur vehicula ipsum, et sodales nisl. Vestibulum id aliquam libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo in neque pharetra iaculis.</p>\r\n<p><strong>Выравнивание</strong> <strong>по</strong> <strong>ширине</strong></p>\r\n<p style="text-align: justify;">Donec quis fermentum risus. Aliquam efficitur aliquam urna, vitae ornare purus feugiat non. Nam laoreet, velit at porta aliquam, dolor sem pretium nulla, vel sagittis sapien ante eget sapien. Sed est elit, lacinia et urna vel, venenatis vestibulum tortor. Duis ac tincidunt dolor. Pellentesque lacinia hendrerit urna sit amet lobortis. Suspendisse potenti. Vivamus eu sapien sollicitudin, elementum turpis efficitur, feugiat sapien. Nulla congue rutrum nisl. Quisque pretium facilisis ligula eu tincidunt. Donec posuere lorem eu est mattis commodo. Suspendisse pretium nibh nec convallis vehicula. Cras ac suscipit mi, vitae laoreet mauris. Aliquam erat volutpat. Quisque scelerisque nunc ut congue scelerisque.</p>\r\n<p><strong>Добавить ссылку &ndash; одна открывается в текущем окне, одна в соседнем </strong></p>\r\n<p><a href="http://uk.lipsum.com/">Proin justo nisl, faucibus</a> nec dignissim a, tincidunt at lorem. Vivamus ligula arcu, faucibus a ex et, viverra molestie velit. Donec ut justo arcu. Integer a lorem ut massa mattis vestibulum. Fusce in lacus eget dolor finibus vestibulum. Vestibulum lobortis placerat felis non feugiat. Sed eu risus non nisi iaculis elementum. <a href="https://google.com/">Etiam eu eros eget</a> ante cursus laoreet in ut nisi. Phasellus porta, est vitae accumsan dictum, erat nibh bibendum tellus, id suscipit elit mauris nec felis. Nunc in sodales erat, in scelerisque sapien. Aenean rutrum ligula leo, nec fringilla mi consectetur a. Quisque molestie nulla sit amet nibh dictum maximus.</p>\r\n<p><a href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/">123</a></p>\r\n<p>&nbsp;</p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">http://beatus.wezom.ks.ua/</a></p>\r\n<p><a href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><a title="123" href="http://beatus.wezom.ks.ua/" target="_blank">123</a></p>\r\n<p><strong>Изменить форматирование &ndash; размер, цвет, фон, формат, начертание шрифта (все возможные варианты редактора)</strong></p>\r\n<p><strong>Nunc ac massa sit amet erat dignissim tristique. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent lorem justo, vestibulum quis posuere blandit, </strong>volutpat <em>vitae tellus. Sed blandit tortor vitae libero porttitor, eu vehicula odio dapibus. Quisque rhoncus facilisis vulputate. Etiam mi sem, placerat ut erat non, accumsan dignissim magna. Nullam tempor eleifend erat eu placerat. Nulla suscipit nunc sed</em> tortor sodales sodales. Suspendisse porta placerat tellus, eget luctus arcu blandit at. Suspendisse imperdiet, sapien ac hendrerit laoreet, mauris tortor porttitor augue, pellentesque mattis nisi nulla eu urna. Donec dictum sed velit id tristique. Vivamus sit amet eleifend ex. Quisque ullamcorper rhoncus congue.</p>\r\n<p>Duis imperdiet neque velit, vel tempor dui volutpat sit amet. Sed laoreet quam vitae sem vulputate vulputate sed et metus. Phasellus nec eros rhoncus, semper tortor nec, rutrum justo. Donec in lectus ullamcorper, aliquam nibh vitae, commodo augue. Duis eget lorem ac purus venenatis eleifend. Phasellus finibus magna at ante volutpat, vel porttitor ante gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\r\n<table width="717">\r\n<tbody>\r\n<tr>\r\n<td width="33">\r\n<p>№</p>\r\n</td>\r\n<td width="110">\r\n<p>1</p>\r\n</td>\r\n<td width="58">\r\n<p>2</p>\r\n</td>\r\n<td width="60">\r\n<p>3</p>\r\n</td>\r\n<td width="80">\r\n<p>4</p>\r\n</td>\r\n<td width="86">\r\n<p>5</p>\r\n</td>\r\n<td width="67">\r\n<p>6</p>\r\n</td>\r\n<td width="80">\r\n<p>7</p>\r\n</td>\r\n<td width="72">\r\n<p>8</p>\r\n</td>\r\n<td width="72">\r\n<p>9</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>1</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>2.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n<tr>\r\n<td width="33">\r\n<p>3.</p>\r\n</td>\r\n<td width="110">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="58">\r\n<p>mollis, sodales nulla non, molestie tortor. Vivamus pretium sed mi finibus efficitur. Sed in diam laoreet, varius dolor sed, ultrices leo.</p>\r\n</td>\r\n<td width="60">\r\n<p>Nam vulputate ipsum eros, sed vulputate massa mattis eu. In nec dolor nec magna molestie laoreet ut nec erat. Ut vulputate</p>\r\n</td>\r\n<td width="80">\r\n<p>gravida vestibulum. Aliquam vel leo magna. Nam in eros non ante suscipit placerat. Pellentesque feugiat ante augue, sed ultrices metus tempor a.</p>\r\n</td>\r\n<td width="86">\r\n<p>pulvinar condimentum. Integer ut pretium velit. Aliquam erat volutpat. Duis pretium, turpis eget rutrum euismod, leo odio eleifend mauris,</p>\r\n</td>\r\n<td width="67">\r\n<p>Vivamus eu risus sed mi pharetra tincidunt. Maecenas nibh dui, facilisis sed turpis vel, congue cursus mi. Nunc id accumsan ipsum.</p>\r\n</td>\r\n<td width="80">\r\n<p>libero. Maecenas erat elit, sollicitudin at nunc eleifend, auctor mollis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n<p>&nbsp;</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n<td width="72">\r\n<p>Phasellus non libero ut sem scelerisque dignissim. Fusce suscipit sit amet tellus eget semper. Aliquam sollicitudin quis lectus eu dignissim.</p>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>', NULL, NULL, 1, 'en'),
 (18, 'Sensitive - Imago - Hauptseite', 'Sensitive - Imago - Hauptseite - h1', 'Sensitive - Imago - Hauptseite - title', 'Sensitive - Imago - Hauptseite - keywords', 'Sensitive - Imago - Hauptseite - description', NULL, NULL, NULL, 1, 'de'),
 (19, 'Sensitive - Imago - Casa', 'Sensitive - Imago - Casa - h1', 'Sensitive - Imago - Casa - title', 'Sensitive - Imago - Casa - keywords', 'Sensitive - Imago - Casa - description', NULL, NULL, NULL, 1, 'sp'),
 (20, 'Sensitive - Imago - Maison', 'Sensitive - Imago - Maison h1', 'Sensitive - Imago - Maison title', 'Sensitive - Imago - Maison keywords', 'Sensitive - Imago - Maison description', NULL, NULL, NULL, 1, 'fr'),
@@ -1055,7 +1121,8 @@ INSERT INTO `control_i18n` (`id`, `name`, `h1`, `title`, `keywords`, `descriptio
 (52, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'en'),
 (53, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'de'),
 (54, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'sp'),
-(55, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'fr');
+(55, 'Advantage', 'Advantage - h1', 'Advantage - title', 'Advantage - keywords', 'Advantage - description', NULL, NULL, NULL, 8, 'fr'),
+(56, 'Оборудование', 'Оборудование - h1', 'Оборудование - title', 'Оборудование - keywords', 'Оборудование - description', NULL, NULL, NULL, 9, 'ru');
 
 -- --------------------------------------------------------
 
@@ -1755,28 +1822,14 @@ CREATE TABLE IF NOT EXISTS `log` (
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   `type` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `log`
 --
 
 INSERT INTO `log` (`id`, `created_at`, `updated_at`, `name`, `link`, `ip`, `deleted`, `type`, `status`) VALUES
-(1, 1471330867, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/46', '178.136.229.251', 0, 6, 0),
-(2, 1471331562, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/47', '178.136.229.251', 0, 6, 0),
-(3, 1471331593, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/48', '178.136.229.251', 0, 6, 0),
-(4, 1471331762, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/49', '178.136.229.251', 0, 6, 0),
-(5, 1471331836, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/1', '178.136.229.251', 0, 2, 0),
-(6, 1471331966, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/50', '178.136.229.251', 0, 6, 0),
-(7, 1471333032, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/51', '178.136.229.251', 0, 6, 0),
-(8, 1471333056, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/52', '178.136.229.251', 0, 6, 0),
-(9, 1471333736, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/2', '178.136.229.251', 0, 2, 0),
-(10, 1471336013, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/53', '178.136.229.251', 0, 6, 0),
-(11, 1471336835, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/3', '178.136.229.251', 0, 2, 0),
-(12, 1471337458, NULL, 'Сообщение из контактной формы', '/wezom/contacts/edit/4', '178.136.229.251', 0, 2, 0),
-(13, 1471337571, NULL, 'Заказ подробного отчета', '/wezom/feedback/edit/54', '178.136.229.251', 0, 6, 0),
-(14, 1474113299, NULL, 'Публикация нового отзыва', '/wezom/reviews/edit/29', '127.0.0.1', 0, 2, 0),
-(15, 1474113757, NULL, 'Публикация нового отзыва', '/wezom/reviews/edit/30', '127.0.0.1', 0, 2, 0);
+(16, 1474194555, NULL, 'Заказ прайса', '/wezom/prices/edit/2', '127.0.0.1', 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -1846,7 +1899,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `updated_at` int(10) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `count` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `menu`
@@ -1914,7 +1967,11 @@ INSERT INTO `menu` (`id`, `id_parent`, `name`, `link`, `sort`, `status`, `update
 (186, 185, 'Текстовые страницы', 'content/index', 0, 1, NULL, NULL, NULL),
 (187, 185, 'Добавить страницу', 'content/add', 1, 1, NULL, NULL, NULL),
 (188, 173, 'Слайдер "О нас"', 'simple/index', 11, 1, NULL, NULL, NULL),
-(189, 173, 'Добавить слайд "О нас"', 'simple/add', 12, 1, NULL, NULL, NULL);
+(189, 173, 'Добавить слайд "О нас"', 'simple/add', 12, 1, NULL, NULL, NULL),
+(190, 0, 'Оборудовние', NULL, 6, 1, NULL, 'fa-cube', NULL),
+(191, 190, 'Список приборов', 'items/index', 0, 1, NULL, NULL, NULL),
+(192, 190, 'Добавить прибор', 'items/add', 1, 1, NULL, NULL, NULL),
+(193, 190, 'Список категорий', 'groups/index', -2, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2206,6 +2263,31 @@ INSERT INTO `orders_simple` (`id`, `created_at`, `updated_at`, `status`, `ip`, 
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `prices`
+--
+
+CREATE TABLE IF NOT EXISTS `prices` (
+  `id` int(11) NOT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `name` varchar(150) NOT NULL,
+  `country` varchar(150) NOT NULL,
+  `city` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `other` text NOT NULL,
+  `item` int(10) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `prices`
+--
+
+INSERT INTO `prices` (`id`, `created_at`, `name`, `country`, `city`, `email`, `other`, `item`) VALUES
+(1, 1470834964, 'Дмитрий', 'Страна', 'Херсон', 'kuchura.d@yahoo.com', 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', NULL),
+(2, 1470834994, 'Дмитрий', 'Украина', 'Киев', 'kuchura.d.wezom@gmail.com', 'йййййййййййййййййй', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `prog`
 --
 
@@ -2436,22 +2518,6 @@ CREATE TABLE IF NOT EXISTS `promo_groups` (
   `promo_id` int(10) DEFAULT NULL,
   `group_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `promo_groups`
---
-
-INSERT INTO `promo_groups` (`id`, `promo_id`, `group_id`) VALUES
-(130, 6, 37),
-(131, 6, 38),
-(132, 6, 40),
-(133, 6, 39),
-(134, 6, 41),
-(135, 6, 42),
-(138, 7, 37),
-(139, 7, 38),
-(140, 8, 37),
-(141, 8, 43);
 
 -- --------------------------------------------------------
 
@@ -3218,13 +3284,6 @@ CREATE TABLE IF NOT EXISTS `tags_groups` (
   `tag_id` int(10) unsigned DEFAULT NULL,
   `group_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `tags_groups`
---
-
-INSERT INTO `tags_groups` (`id`, `tag_id`, `group_id`) VALUES
-(9, 1, 37);
 
 -- --------------------------------------------------------
 
@@ -6970,8 +7029,6 @@ ALTER TABLE `carts_items`
 ALTER TABLE `catalog`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `alias` (`alias`) USING BTREE,
-  ADD KEY `parent_id` (`parent_id`) USING BTREE,
-  ADD KEY `cat_brand_alias` (`brand_alias`) USING BTREE,
   ADD KEY `image_link` (`image`) USING BTREE;
 
 --
@@ -7311,6 +7368,12 @@ ALTER TABLE `orders_simple`
   ADD KEY `os_color_alias` (`color_alias`),
   ADD KEY `os_size_alias` (`size_alias`),
   ADD KEY `os_user_id` (`user_id`);
+
+--
+-- Индексы таблицы `prices`
+--
+ALTER TABLE `prices`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `prog`
@@ -7672,7 +7735,7 @@ ALTER TABLE `carts_items`
 -- AUTO_INCREMENT для таблицы `catalog`
 --
 ALTER TABLE `catalog`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT для таблицы `catalog_colors`
 --
@@ -7682,12 +7745,12 @@ ALTER TABLE `catalog_colors`
 -- AUTO_INCREMENT для таблицы `catalog_i18n`
 --
 ALTER TABLE `catalog_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `catalog_images`
 --
 ALTER TABLE `catalog_images`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `catalog_related`
 --
@@ -7707,12 +7770,12 @@ ALTER TABLE `catalog_sizes`
 -- AUTO_INCREMENT для таблицы `catalog_tree`
 --
 ALTER TABLE `catalog_tree`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT для таблицы `catalog_tree_i18n`
 --
 ALTER TABLE `catalog_tree_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=118;
 --
 -- AUTO_INCREMENT для таблицы `category`
 --
@@ -7777,22 +7840,22 @@ ALTER TABLE `contacts_phones`
 -- AUTO_INCREMENT для таблицы `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT для таблицы `content_i18n`
 --
 ALTER TABLE `content_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT для таблицы `control`
 --
 ALTER TABLE `control`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT для таблицы `control_i18n`
 --
 ALTER TABLE `control_i18n`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT для таблицы `country_ems`
 --
@@ -7842,7 +7905,7 @@ ALTER TABLE `i18n`
 -- AUTO_INCREMENT для таблицы `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT для таблицы `mail_templates`
 --
@@ -7857,7 +7920,7 @@ ALTER TABLE `mail_templates_i18n`
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=190;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=194;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
@@ -7903,6 +7966,11 @@ ALTER TABLE `orders_only_items`
 --
 ALTER TABLE `orders_simple`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT для таблицы `prices`
+--
+ALTER TABLE `prices`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `prog`
 --
@@ -8144,18 +8212,10 @@ ALTER TABLE `brands_i18n`
 -- Ограничения внешнего ключа таблицы `carts_items`
 --
 ALTER TABLE `carts_items`
-  ADD CONSTRAINT `carts_items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `carts_items_ibfk_2` FOREIGN KEY (`catalog_id`) REFERENCES `catalog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cart_color_alias` FOREIGN KEY (`color_alias`) REFERENCES `colors` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cart_size_alias` FOREIGN KEY (`size_alias`) REFERENCES `sizes` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `catalog`
---
-ALTER TABLE `catalog`
-  ADD CONSTRAINT `catalog_ibfk_1` FOREIGN KEY (`brand_alias`) REFERENCES `brands` (`alias`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `catalog_ibfk_3` FOREIGN KEY (`image`) REFERENCES `catalog_images` (`image`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `catalog_ibfk_4` FOREIGN KEY (`parent_id`) REFERENCES `catalog_tree` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `cart_size_alias` FOREIGN KEY (`size_alias`) REFERENCES `sizes` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `carts_items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `carts_items_ibfk_2` FOREIGN KEY (`catalog_id`) REFERENCES `catalog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `catalog_colors`
@@ -8300,10 +8360,10 @@ ALTER TABLE `orders_certificates`
 -- Ограничения внешнего ключа таблицы `orders_items`
 --
 ALTER TABLE `orders_items`
-  ADD CONSTRAINT `orders_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_items_ibfk_2` FOREIGN KEY (`catalog_id`) REFERENCES `catalog` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `ord_color_alias` FOREIGN KEY (`color_alias`) REFERENCES `colors` (`alias`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `ord_size_alias` FOREIGN KEY (`size_alias`) REFERENCES `sizes` (`alias`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `ord_size_alias` FOREIGN KEY (`size_alias`) REFERENCES `sizes` (`alias`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_items_ibfk_2` FOREIGN KEY (`catalog_id`) REFERENCES `catalog` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `orders_only`
@@ -8378,8 +8438,8 @@ ALTER TABLE `slider_i18n`
 -- Ограничения внешнего ключа таблицы `tags_brands`
 --
 ALTER TABLE `tags_brands`
-  ADD CONSTRAINT `tags_brands_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tags_brand_alias` FOREIGN KEY (`brand_alias`) REFERENCES `brands` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tags_brand_alias` FOREIGN KEY (`brand_alias`) REFERENCES `brands` (`alias`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tags_brands_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `tags_groups`
