@@ -120,6 +120,15 @@ return [
             'crop' => 1,
         ],
     ],
+    'results' => [
+        [
+            'path' => 'main',
+            'width' => 115,
+            'height' => 115,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
     'catalog_tree' => [
         [
             'path' => 'main',

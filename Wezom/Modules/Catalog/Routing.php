@@ -44,4 +44,10 @@ return [
     'wezom/software/edit/<id:[0-9]*>' => 'catalog/software/edit',
     'wezom/software/delete/<id:[0-9]*>' => 'catalog/software/delete',
     'wezom/software/add' => 'catalog/software/add',
+    // Results
+    'wezom/results/index' => 'catalog/results/index',
+    'wezom/results/index/page/<page:[0-9]*>' => 'catalog/results/index',
+    'wezom/results/edit/<id:[0-9]*>' => 'catalog/results/edit',
+    'wezom/results/delete/<id:[0-9]*>' => 'catalog/results/delete',
+    'wezom/results/add' => 'catalog/results/add',
 ];

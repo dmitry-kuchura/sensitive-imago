@@ -29,7 +29,7 @@
                         </td>
                         <td class="hidden-xs" valign="middle">
                             <?php if ($obj->image) : ?>
-                                <img src="<?php echo Core\HTML::media('images/software/main/' . $obj->image); ?>" style="max-width: 40px;">
+                                <img src="<?php echo Core\HTML::media('images/results/main/' . $obj->image); ?>" style="max-width: 40px;">
                             <?php endif; ?>
                         </td>
                         <td width="45" valign="top" class="icon-column status-column">
