@@ -145,36 +145,19 @@
             <div class="widgetHeader myWidgetHeader">
                 <div class="widgetTitle">
                     <i class="fa-reorder"></i>
-                    <?php echo __('Изображение'); ?>
+                    <?php echo __('Комплектация'); ?>
                 </div>
             </div>
-            <div class="widgetContent">
-                <div class="form-group">
-                    <label class="control-label"><?php echo __('Изображение'); ?></label>
-                    <div class="">
-                        <?php if (is_file(HOST . Core\HTML::media('images/equipment/original/' . $obj->image))): ?>
-                            <a href="<?php echo Core\HTML::media('images/equipment/original/' . $obj->image); ?>" rel="lightbox">
-                                <img src="<?php echo Core\HTML::media('images/equipment/main/' . $obj->image); ?>" style="max-height: 100px;" />
-                            </a>
-                            <br >
-                            <div class="contentImageControl">
-                                <a class="btn btn-danger otherBtn"
-                                   href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>">
-                                    <i class="fa-remove"></i>
-                                    <?php echo __('Удалить изображение'); ?>
-                                </a>
-                                <a class="btn btn-info otherBtn"
-                                   href="<?php echo \Core\General::crop('equipment', 'main', $obj->image); ?>">
-                                    <i class="fa-edit"></i>
-                                    <?php echo __('Редактировать изображение'); ?>
-                                </a>
-                            </div>
-                        <?php else: ?>
-                            <input type="file" name="file" />
-                        <?php endif ?>
-                    </div>
+            <?php if ($hide != true): ?>
+                <div class="widgetContent">
+                    <a class="btn" href="/wezom/files/<?php echo $obj->id; ?>/add"><?php echo __('Добавить файл'); ?></a>
+                    <?php echo $files; ?>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="widgetContent">
+                    <p>Файлы добавляются после публикации!</p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </form>

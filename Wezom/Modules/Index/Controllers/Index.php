@@ -13,12 +13,12 @@ class Index extends \Wezom\Modules\Base
         $this->_seo['h1'] = __('Панель управления');
         $this->_seo['title'] = __('Панель управления');
 
-        $count_orders = DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('prices')->count_all();
-        $count_contacts = DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('contacts')->count_all();
-        $count_projects = DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('projects')->count_all();
-        $count_news = DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('news')->count_all();
+        $count_orders = DB::select([DB::expr('COUNT(id)'), 'count'])->from('prices')->count_all();
+        $count_reviews = DB::select([DB::expr('COUNT(id)'), 'count'])->from('reviews')->count_all();
+        $count_equipment = DB::select([DB::expr('COUNT(id)'), 'count'])->from('catalog')->count_all();
+        $count_news = DB::select([DB::expr('COUNT(id)'), 'count'])->from('news')->count_all();
 
-        $this->_content = View::tpl(compact('count_orders', 'count_contacts', 'count_projects', 'count_news'), 'Index/Main');
+        $this->_content = View::tpl(compact('count_orders', 'count_reviews', 'count_equipment', 'count_news'), 'Index/Main');
     }
 
 }

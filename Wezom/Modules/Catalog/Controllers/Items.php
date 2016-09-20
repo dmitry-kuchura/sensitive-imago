@@ -18,10 +18,6 @@
     use Wezom\Modules\Catalog\Models\Groups;
     use Wezom\Modules\Catalog\Models\Items AS Model;
     use Wezom\Modules\Catalog\Models\CatalogImages AS Images;
-    use Wezom\Modules\Catalog\Models\Brands;
-    use Wezom\Modules\Catalog\Models\Specifications;
-    use Wezom\Modules\Catalog\Models\SpecificationsValues;
-    use Wezom\Modules\Catalog\Models\Models;
 
     class Items extends \Wezom\Modules\Base {
 
@@ -62,7 +58,6 @@
                     'pager' => $pager,
                     'pageName' => $this->_seo['h1'],
                     'tree' => Support::getSelectOptions('Catalog/Items/Select', 'catalog_tree', Arr::get($_GET, 'parent_id')),
-                    'brands' => Brands::getRows(NULL, 'sort', 'ASC'),
                     'groups' => $this->groups,
                 ), $this->tpl_folder.'/Index');
         }
@@ -72,6 +67,7 @@
                 $post = $_POST['FORM'];
                 $post['status'] = Arr::get( $_POST, 'status', 0 );
                 $post['sort'] = (int) Arr::get($post, 'sort');
+                $post['main'] = (int) Arr::get($post, 'main');
                 if( Model::valid($post) ) {
                     $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'), Route::param('id'));
                     $res = Model::update($post, Route::param('id'));
@@ -97,7 +93,6 @@
             $this->_seo['h1'] = __('Редактирование');
             $this->_seo['title'] = __('Редактирование');
             $this->setBreadcrumbs(__('Редактирование'), 'wezom/'.Route::controller().'/edit/'.Route::param('id'));
-            $brands = Brands::getRows(NULL, 'sort', 'ASC');
 
             $rel = DB::select('catalog.*', 'catalog_i18n.name')
                 ->from('catalog')
@@ -113,7 +108,6 @@
                     'obj' => $result,
                     'tpl_folder' => $this->tpl_folder,
                     'tree' => Support::getSelectOptions('Catalog/Items/Select', 'catalog_tree', $result['obj']->parent_id),
-                    'brands' => $brands,
                     'uploader' => View::tpl(array(), $this->tpl_folder.'/Upload'),
                     'related' => View::tpl(array('tree' => Support::getSelectOptions('Catalog/Items/Select', 'catalog_tree'), 'itemID' => Route::param('id'), 'items' => $rel), $this->tpl_folder.'/Related'),
                 ], $this->tpl_folder.'/Form');
@@ -124,7 +118,7 @@
                 $post = $_POST['FORM'];
                 $post['status'] = Arr::get( $_POST, 'status', 0 );
                 $post['sort'] = (int) Arr::get($post, 'sort');
-//                $post['main'] = (int) Arr::get($post, 'main');
+                $post['main'] = (int) Arr::get($post, 'main');
                 if( Model::valid($post) ) {
                     $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'));
                     $res = Model::insert($post);
@@ -152,7 +146,6 @@
             $this->_seo['h1'] = __('Добавление');
             $this->_seo['title'] = __('Добавление');
             $this->setBreadcrumbs(__('Добавление'), 'wezom/'.Route::controller().'/add');
-            $brands = Brands::getRows(NULL, 'sort', 'ASC');
             $this->_content = View::tpl(
                 [
                     'languages' => $this->_languages,

@@ -161,7 +161,7 @@
                 </div>
             </div>
         </div>
-        <div class="pageHeader__main">
+        <div class="pageHeader__main" style="background-image: url('<?php echo Core\HTML::media('css/pic/header-bg.jpg'); ?>');">
             <?php if (Core\Route::controller() == 'index'): ?>
                 <div id="headerSlider" class="headerSlider">
                     <?php foreach ($slider as $slide): ?>

@@ -22,12 +22,12 @@
                     <i class="fa-comments-o"></i>
                 </div>
                 <div class="title">
-                    <?php echo __('Обратная связь'); ?>
+                    <?php echo __('Отзывы'); ?>
                 </div>
                 <div class="value">
-                    <?php echo $count_contacts; ?>
+                    <?php echo $count_reviews; ?>
                 </div>
-                <a href="/wezom/contacts/index" class="more"><?php echo __('Подробнее'); ?> <i class="pull-right fa-angle-right"></i></a>
+                <a href="/wezom/reviews/index" class="more"><?php echo __('Подробнее'); ?> <i class="pull-right fa-angle-right"></i></a>
             </div>
         </div>
     </div>
@@ -38,12 +38,12 @@
                     <i class="fa-check-square-o"></i>
                 </div>
                 <div class="title">
-                    <?php echo __('Проекты'); ?>
+                    <?php echo __('Оборудование'); ?>
                 </div>
                 <div class="value">
-                    <?php echo $count_projects; ?>
+                    <?php echo $count_equipment; ?>
                 </div>
-                <a href="/wezom/projects/index" class="more"><?php echo __('Подробнее'); ?> <i class="pull-right fa-angle-right"></i></a>
+                <a href="/wezom/items/index" class="more"><?php echo __('Подробнее'); ?> <i class="pull-right fa-angle-right"></i></a>
             </div>
         </div>
     </div>

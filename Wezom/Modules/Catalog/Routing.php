@@ -50,4 +50,9 @@ return [
     'wezom/results/edit/<id:[0-9]*>' => 'catalog/results/edit',
     'wezom/results/delete/<id:[0-9]*>' => 'catalog/results/delete',
     'wezom/results/add' => 'catalog/results/add',
+    // Files
+    'wezom/files/<item_id:[0-9]*>/edit/<id:[0-9]*>' => 'catalog/files/edit',
+    'wezom/files/<item_id:[0-9]*>/delete/<id:[0-9]*>' => 'catalog/files/delete',
+    'wezom/files/<item_id:[0-9]*>/add' => 'catalog/files/add',
+    'wezom/files/<item_id:[0-9]*>/delete_file/<id:[0-9]*>' => 'catalog/files/deleteFile',
 ];
