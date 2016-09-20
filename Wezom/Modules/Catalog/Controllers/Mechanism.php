@@ -126,14 +126,19 @@ class Mechanism extends \Wezom\Modules\Base
     function deleteAction()
     {
         $id = (int)Route::param('id');
-        $page = Model::getRowSimple($id);
-        if (!$page) {
-            Message::GetMessage(0, __('Данные не существуют!'));
+        if ($id == 1) {
+            Message::GetMessage(0, __('Данная страница корневая удалить нельзя!'));
+            HTTP::redirect('wezom/' . Route::controller() . '/index');
+        } else {
+            $page = Model::getRowSimple($id);
+            if (!$page) {
+                Message::GetMessage(0, __('Данные не существуют!'));
+                HTTP::redirect('wezom/' . Route::controller() . '/index');
+            }
+            Model::update(array('parent_id' => $page->parent_id), $id, 'parent_id');
+            Model::delete($id);
+            Message::GetMessage(1, __('Данные удалены!'));
             HTTP::redirect('wezom/' . Route::controller() . '/index');
         }
-        Model::update(array('parent_id' => $page->parent_id), $id, 'parent_id');
-        Model::delete($id);
-        Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/index');
     }
 }

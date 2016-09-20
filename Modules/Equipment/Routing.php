@@ -24,4 +24,10 @@ return [
     // Mechanism
     'mechanism/<alias>' => 'equipment/mechanism/inner',
     '<lang:ru|en|fr|de|sp>/mechanism/<alias>' => 'equipment/mechanism/inner',
+    // Software
+    'software/<alias>' => 'equipment/software/inner',
+    '<lang:ru|en|fr|de|sp>/software/<alias>' => 'equipment/software/inner',
+    // Results
+    'results/<alias>' => 'equipment/results/inner',
+    '<lang:ru|en|fr|de|sp>/results/<alias>' => 'equipment/results/inner',
 ];

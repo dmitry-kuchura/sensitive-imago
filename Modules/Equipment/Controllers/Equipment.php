@@ -16,6 +16,7 @@ use Modules\Equipment\Models\Advantages;
 use Modules\Equipment\Models\Technology;
 use Modules\Equipment\Models\Mechanism;
 use Modules\Equipment\Models\Software;
+use Modules\Equipment\Models\Results;
 use Modules\Content\Models\Control;
 
 class Equipment extends \Modules\Base
@@ -103,6 +104,12 @@ class Equipment extends \Modules\Base
                 $result = Software::getRowSimple(1, 'id', 1);
                 $template = 'Equipment/Software';
                 $kids = Software::getKids($result->id);
+                $this->seo($result);
+                break;
+            case 'results':
+                $result = Results::getRowSimple(1, 'id', 1);
+                $template = 'Equipment/Results';
+                $kids = Results::getKids($result->id);
                 $this->seo($result);
                 break;
         }
