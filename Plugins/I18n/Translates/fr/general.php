@@ -42,4 +42,8 @@
 		'диагностика и лечение всего организма человека' => 'Le diagnostic et le traitement du corps humain tout entier',
 		'Страница не найдена' => 'Page not found',
 		'Возможности оборудования' => 'Product Features',
+		'Возможности оборудовния' => 'Product Features',
+		'Оборудование' => 'Equipment',
+		'Преимущества' => 'Benefits',
+		'Технология метода' => 'method Technology',
 	);

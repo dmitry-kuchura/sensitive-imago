@@ -25,8 +25,8 @@ class Models extends \Modules\Base
     public function before()
     {
         parent::before();
-        $this->setBreadcrumbs('Оборудование', 'equipment');
-        $this->setBreadcrumbs('Модели приборов', 'equipment/models');
+        $this->setBreadcrumbs(__('Оборудование'), 'equipment');
+        $this->setBreadcrumbs(__('Модели приборов'), 'equipment/models');
         $this->page = !(int)Route::param('page') ? 1 : (int)Route::param('page');
         $this->offset = ($this->page - 1) * $this->limit;
         $this->_template = 'Text';
