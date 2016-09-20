@@ -38,4 +38,10 @@ return [
     'wezom/mechanism/edit/<id:[0-9]*>' => 'catalog/mechanism/edit',
     'wezom/mechanism/delete/<id:[0-9]*>' => 'catalog/mechanism/delete',
     'wezom/mechanism/add' => 'catalog/mechanism/add',
+    // Software
+    'wezom/software/index' => 'catalog/software/index',
+    'wezom/software/index/page/<page:[0-9]*>' => 'catalog/software/index',
+    'wezom/software/edit/<id:[0-9]*>' => 'catalog/software/edit',
+    'wezom/software/delete/<id:[0-9]*>' => 'catalog/software/delete',
+    'wezom/software/add' => 'catalog/software/add',
 ];
