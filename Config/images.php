@@ -84,6 +84,42 @@ return [
             'crop' => 1,
         ],
     ],
+    'features' => [
+        [
+            'path' => 'main',
+            'width' => 115,
+            'height' => 115,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
+    'advantage' => [
+        [
+            'path' => 'main',
+            'width' => 115,
+            'height' => 115,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
+    'technology' => [
+        [
+            'path' => 'main',
+            'width' => 115,
+            'height' => 115,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
+    'mechanism' => [
+        [
+            'path' => 'main',
+            'width' => 115,
+            'height' => 115,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
     'catalog_tree' => [
         [
             'path' => 'main',

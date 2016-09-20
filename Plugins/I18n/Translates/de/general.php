@@ -41,4 +41,5 @@
 		'Медицинские комплексы Сенситив Имаго' => 'Medizinische komplexe Sensitive Imago',
 		'диагностика и лечение всего организма человека' => 'Diagnose und Behandlung des gesamten menschlichen Körpers',
 		'Страница не найдена' => 'Page not found',
+		'Возможности оборудования' => 'Product Features',
 	);

@@ -11,4 +11,17 @@ return [
     '<lang:ru|en|fr|de|sp>/models/<alias>' => 'equipment/models/inner',
     // Services
     'equipment/services/<alias>' => 'equipment/models/inner',
+    '<lang:ru|en|fr|de|sp>/equipment/services/<alias>' => 'equipment/models/inner',
+    // Features
+    'features/<alias>' => 'equipment/features/inner',
+    '<lang:ru|en|fr|de|sp>/features/<alias>' => 'equipment/features/inner',
+    // Advantages
+    'advantages/<alias>' => 'equipment/advantages/inner',
+    '<lang:ru|en|fr|de|sp>/advantages/<alias>' => 'equipment/advantages/inner',
+    // Technology
+    'technology/<alias>' => 'equipment/technology/inner',
+    '<lang:ru|en|fr|de|sp>/technology/<alias>' => 'equipment/technology/inner',
+    // Mechanism
+    'mechanism/<alias>' => 'equipment/mechanism/inner',
+    '<lang:ru|en|fr|de|sp>/mechanism/<alias>' => 'equipment/mechanism/inner',
 ];

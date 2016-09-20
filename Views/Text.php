@@ -28,6 +28,9 @@
                                 case 'equipment':
                                     echo Core\Widgets::get('Page_AsideEquipment');
                                     break;
+                                case 'features':
+                                    echo Core\Widgets::get('Page_AsideEquipment');
+                                    break;
                                 default:
                                     echo Core\Widgets::get('Page_Aside');
                                     break;

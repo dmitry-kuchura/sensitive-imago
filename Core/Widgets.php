@@ -301,8 +301,20 @@ class Widgets
 
         $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(2)->find_all();
 
+        $features = DB::select('features.alias', 'features.parent_id', 'features.id', 'features_i18n.name')
+            ->from('features')
+            ->join('features_i18n', 'LEFT')->on('features_i18n.row_id', '=', 'features.id')
+            ->where('features_i18n.language', '=', $lang)
+            ->where('features.status', '=', 1)
+            ->where('features_i18n.row_id', '!=', 1)
+            ->order_by('features.sort', 'ASC')
+            ->find_all();
+        $arr = [];
+        foreach ($features AS $obj) {
+            $arr[$obj->parent_id][] = $obj;
+        }
 
-        return ['catalog' => $catalog, 'result' => $result];
+        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr];
     }
 
 

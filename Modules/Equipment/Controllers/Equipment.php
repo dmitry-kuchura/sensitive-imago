@@ -11,6 +11,11 @@ use Core\Pager\Pager;
 use Core\Widgets;
 use Modules\Equipment\Models\Equipment AS Model;
 use Modules\Equipment\Models\Items;
+use Modules\Equipment\Models\Features;
+use Modules\Equipment\Models\Advantages;
+use Modules\Equipment\Models\Technology;
+use Modules\Equipment\Models\Mechanism;
+use Modules\Equipment\Models\Software;
 use Modules\Content\Models\Control;
 
 class Equipment extends \Modules\Base
@@ -65,21 +70,52 @@ class Equipment extends \Modules\Base
         }
         switch (Route::param('alias')) {
             case 'models':
-                $seo = Model::getSeo('models','alias', 1);
+                $seo = Model::getSeo('models', 'alias', 1);
                 $result = Items::getModels('sort', 'ASC', $this->limit, $this->offset);
                 $template = 'Equipment/Models';
-                // SEO
                 $this->seo($seo);
+                break;
+            case 'features':
+                $result = Features::getRowSimple(1, 'id', 1);
+                $template = 'Equipment/Features';
+                $kids = Features::getKids($result->id);
+                $this->seo($result);
+                break;
+            case 'advantages':
+                $result = Advantages::getRowSimple(1, 'id', 1);
+                $template = 'Equipment/Advantages';
+                $kids = Advantages::getKids($result->id);
+                $this->seo($result);
+                break;
+            case 'technology':
+                $result = Technology::getRowSimple(1, 'id', 1);
+                $template = 'Equipment/Technology';
+                $kids = Technology::getKids($result->id);
+                $this->seo($result);
+                break;
+            case 'mechanism':
+                $result = Mechanism::getRowSimple(1, 'id', 1);
+                $template = 'Equipment/Mechanism';
+                $kids = Mechanism::getKids($result->id);
+                $this->seo($result);
+                break;
+            case 'software':
+                $result = Software::getRowSimple(1, 'id', 1);
+                $template = 'Equipment/Software';
+                $kids = Software::getKids($result->id);
+                $this->seo($result);
                 break;
         }
         if (!$result AND !$template) {
             return Config::error();
         }
+
         // Render
-        $this->_content = View::tpl(['result' => $result, 'seo' => $seo], $template);
+        $this->_content = View::tpl(['result' => $result, 'kids' => $kids], $template);
     }
 
-    public function seo($data) {
+    public function seo($data)
+    {
         // Seo
         $this->_seo['h1'] = $data->h1 ? $data->h1 : $data->name;
         $this->_seo['title'] = $data->title ? $data->title : $data->name;

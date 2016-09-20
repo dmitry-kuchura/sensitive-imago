@@ -12,7 +12,7 @@
                                 $link = Core\HTML::link($obj->alias);
                                 break;
                         } ?>
-                        <li <?php echo  $obj->alias == 'models' ? 'has-subMenu' : ''; ?>>
+                        <li class="<?php echo in_array($obj->alias, ['models', 'features']) ? 'has-subMenu' : ''; ?> <?php if (Core\Route::param('alias') == $obj->alias) { echo 'is-active is-open'; } ?>">
                             <a href="<?php echo $link; ?>"><?php echo $obj->name; ?></a>
                             <?php if ($obj->alias == 'models'): ?>
                                 <ul>
@@ -24,10 +24,26 @@
                                     <li><a href="#">Дополнительная комплектация</a></li>
                                 </ul>
                             <?php endif; ?>
+                            <?php if ($obj->alias == 'features'): ?>
+                                <ul>
+                                    <?php foreach ($features[1] as $link): ?>
+                                        <li class="<?php if (isset($features[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active is-open'; } ?>">
+                                            <a href="<?php echo Core\HTML::link('features/' . $link->alias); ?>"><?php echo $link->name; ?></a>
+                                            <?php if (isset($features[$link->id])): ?>
+                                                <ul>
+                                                    <?php foreach ($features[$link->id] as $sub): ?>
+                                                        <li><a href="<?php echo Core\HTML::link('features/' . $sub->alias); ?>"><?php echo $sub->name; ?></a></li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>" data-param='{"id": "sdf"}'
+                <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
                       class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>
             </div>
             <div class="grid__cell">
