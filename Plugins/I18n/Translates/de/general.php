@@ -46,4 +46,7 @@
 		'Оборудование' => 'Equipment',
 		'Преимущества' => 'Benefits',
 		'Технология метода' => 'method Technology',
+		'К сожалению' => 'Unfortunately, the page you requested was not found',
+		'Перейти' => 'You can go to',
+		'главную страницу' => 'main page',
 	);

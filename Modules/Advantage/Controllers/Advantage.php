@@ -12,7 +12,8 @@ use Core\Widgets;
 use Modules\Advantage\Models\Advantage AS Model;
 use Modules\Content\Models\Control;
 
-class Advantage extends \Modules\Base {
+class Advantage extends \Modules\Base
+{
 
     public $current;
     public $page = 1;
@@ -20,21 +21,24 @@ class Advantage extends \Modules\Base {
     public $offset;
     public $model;
 
-    public function before() {
+    public function before()
+    {
+        die;
         parent::before();
         $this->current = Control::getRowSimple(Route::controller(), 'alias', 1);
         if (!$this->current) {
             return Config::error();
         }
-        
+
         $this->setBreadcrumbs($this->current->name, $this->current->alias);
-        $this->page = !(int) Route::param('page') ? 1 : (int) Route::param('page');
-        $this->limit = (int) Config::get('basic.limit_news');
+        $this->page = !(int)Route::param('page') ? 1 : (int)Route::param('page');
+        $this->limit = (int)Config::get('basic.limit_news');
         $this->offset = ($this->page - 1) * $this->limit;
         $this->_template = 'Text';
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if (Config::get('error')) {
             return false;
         }
@@ -54,7 +58,9 @@ class Advantage extends \Modules\Base {
         $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Advantage/List');
     }
 
-    public function innerAction() {
+    public function innerAction()
+    {
+        die;
         if (Config::get('error')) {
             return false;
         }

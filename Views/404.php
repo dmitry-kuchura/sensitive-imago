@@ -69,7 +69,7 @@
             <div class="errorHeader">404</div>
             <div class="wTxt">
                 <h3><?php echo __('Страница не найдена'); ?></h3>
-                <p><em><?php echo __('К сожалению');?></em> <br> <?php echo __('Перейти'); ?> <a href="<?php echo Core\HTML::link(); ?>"><?php echo __('главную страницу'); ?></a></p>
+                <p><em><?php echo __('К сожалению'); ?>.</em> <br> <?php echo __('Перейти'); ?> <a href="<?php echo Core\HTML::link(); ?>"><?php echo __('главную страницу'); ?></a></p>
             </div>
         </div>
     </div>
