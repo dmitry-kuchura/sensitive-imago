@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: kuchura.d
- * Date: 16.09.2016
- * Time: 11:06
- */
+<div class="wTxt"><?php echo $text; ?></div>
+<div class="pageSection__footer">
+    <a href="<?php echo Core\HTML::link('hidden/price'); ?>"
+       class="button--in-sectionFooter button button--primary js-mfp-ajax"><?php echo __('Узнать прайс'); ?></a>
+</div>

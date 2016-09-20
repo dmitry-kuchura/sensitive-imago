@@ -6,7 +6,7 @@
             </div>
             <div class="advantage__title"><?php echo $obj->name; ?></div>
             <div class="advantage__text"><?php echo $obj->text; ?></div>
-            <a href="<?php echo Core\HTML::link('advantages/' . $obj->alias) ?>"
+            <a href="<?php echo Core\HTML::link('advantage/' . $obj->alias) ?>"
                class="button button--inverse"><?php echo __('Подробнее'); ?></a>
         </div>
     <?php endforeach; ?>

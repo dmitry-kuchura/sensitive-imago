@@ -23,7 +23,6 @@ class Advantage extends \Modules\Base
 
     public function before()
     {
-        die;
         parent::before();
         $this->current = Control::getRowSimple(Route::controller(), 'alias', 1);
         if (!$this->current) {
@@ -60,7 +59,6 @@ class Advantage extends \Modules\Base
 
     public function innerAction()
     {
-        die;
         if (Config::get('error')) {
             return false;
         }

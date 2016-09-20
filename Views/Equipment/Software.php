@@ -21,6 +21,6 @@
 
 <div class="wTxt"><?php echo $result->text; ?></div>
 <div class="pageSection__footer">
-    <a href="<?php echo Core\HTML::link('hidden/price'); ?>"
-       class="button--in-sectionFooter button button--primary"><?php echo __('Узнать прайс'); ?></a>
+    <a href="<?php echo Core\HTML::link('hidden/price'); ?>" data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
+       class="button--in-sectionFooter button button--primary js-mfp-ajax"><?php echo __('Узнать прайс'); ?></a>
 </div>
