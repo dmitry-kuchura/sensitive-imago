@@ -16,6 +16,7 @@
     use Core\Pager\Pager;
 
     use Wezom\Modules\Catalog\Models\Groups;
+    use Wezom\Modules\Catalog\Models\File;
     use Wezom\Modules\Catalog\Models\Items AS Model;
     use Wezom\Modules\Catalog\Models\CatalogImages AS Images;
 
@@ -102,11 +103,14 @@
                 ->where('catalog_related.who_id', '=', Route::param('id'))
                 ->find_all();
 
+            $files = File::getFiles(Route::param('id'));
+
             $this->_content = View::tpl(
                 [
                     'languages' => $this->_languages,
                     'obj' => $result,
                     'tpl_folder' => $this->tpl_folder,
+                    'files' => View::tpl(['files' => $files, 'item_id' => Route::param('id')], '/Catalog/Files/FilesList'),
                     'tree' => Support::getSelectOptions('Catalog/Items/Select', 'catalog_tree', $result['obj']->parent_id),
                     'uploader' => View::tpl(array(), $this->tpl_folder.'/Upload'),
                     'related' => View::tpl(array('tree' => Support::getSelectOptions('Catalog/Items/Select', 'catalog_tree'), 'itemID' => Route::param('id'), 'items' => $rel), $this->tpl_folder.'/Related'),
@@ -152,7 +156,7 @@
                     'obj' => $result,
                     'tpl_folder' => $this->tpl_folder,
                     'tree' => Support::getSelectOptions('Catalog/Items/Select', 'catalog_tree', $parent_id),
-                    'brands' => $brands,
+                    'hide' => true,
                 ], $this->tpl_folder.'/Form');
         }
 

@@ -34,10 +34,10 @@ class File extends \Core\CommonI18n
         }
         $folder = 'Media/items';
         $file_name = Arr::get($_FILES[$name], 'name');
-        $type = substr($file_name, -3);
-        if ($type != 'apk') {
-            return false;
-        }
+//        $type = substr($file_name, -3);
+//        if ($type != in_array('pdf', 'docx', 'xlsx')) {
+//            return false;
+//        }
         Files::createFolder(HOST . $folder, 0777);
         move_uploaded_file(Arr::get($_FILES[$name], 'tmp_name'), HOST . $folder . "/" . $file_name);
 
@@ -66,7 +66,7 @@ class File extends \Core\CommonI18n
             ->from(static::$table)
             ->join(static::$tableI18n, 'LEFT')->on(static::$tableI18n . '.row_id', '=', static::$table . '.id')
             ->where(static::$tableI18n . '.language', '=', $lang)
-            ->where(static::$table . '.portfolio_id', '=', $id);
+            ->where(static::$table . '.item_id', '=', $id);
         $result->order_by(static::$table . '.id', 'DESC');
         return $result->find_all();
     }
