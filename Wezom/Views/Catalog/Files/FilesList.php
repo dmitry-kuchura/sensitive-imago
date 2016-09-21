@@ -27,13 +27,13 @@
                                             </a>
                                             <ul class="dropdownMenu pull-right">
                                                 <li>
-                                                    <a title="<?php echo __('Редактировать'); ?>" href="<?php echo '/wezom/files/' . $portfolio_id . '/edit/' . $file->id; ?>">
+                                                    <a title="<?php echo __('Редактировать'); ?>" href="<?php echo '/wezom/files/' . $item_id . '/edit/' . $file->id; ?>">
                                                         <i class="fa-pencil"></i> <?php echo __('Редактировать'); ?>
                                                     </a>
                                                 </li>
                                                 <li class="divider"></li>
                                                 <li>
-                                                    <a title="<?php echo __('Удалить'); ?>" onclick="return confirm('<?php echo __('Это действие необратимо. Продолжить?'); ?>');" href="<?php echo '/wezom/files/' . $portfolio_id . '/delete/' . $apk->id; ?>">
+                                                    <a title="<?php echo __('Удалить'); ?>" onclick="return confirm('<?php echo __('Это действие необратимо. Продолжить?'); ?>');" href="<?php echo '/wezom/files/' . $item_id . '/delete/' . $file->id; ?>">
                                                         <i class="fa-trash-o text-danger"></i> <?php echo __('Удалить'); ?>
                                                     </a>
                                                 </li>

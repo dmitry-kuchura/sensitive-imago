@@ -6,6 +6,7 @@ use Core\QB\DB;
 use Core\Arr;
 use Core\Files;
 use Core\HTML;
+use Core\Text;
 
 class File extends \Core\CommonI18n
 {
@@ -34,10 +35,15 @@ class File extends \Core\CommonI18n
         }
         $folder = 'Media/items';
         $file_name = Arr::get($_FILES[$name], 'name');
-//        $type = substr($file_name, -3);
-//        if ($type != in_array('pdf', 'docx', 'xlsx')) {
-//            return false;
-//        }
+
+        $type = explode(".", $file_name);
+        if (!$type[1]) {
+            return false;
+        }
+
+        $file_name = Text::translit($file_name);
+        $file_name = $file_name . "." . $type[1];
+
         Files::createFolder(HOST . $folder, 0777);
         move_uploaded_file(Arr::get($_FILES[$name], 'tmp_name'), HOST . $folder . "/" . $file_name);
 

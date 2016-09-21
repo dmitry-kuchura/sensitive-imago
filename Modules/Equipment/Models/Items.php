@@ -60,4 +60,20 @@ class Items extends \Core\CommonI18n
 
         return $images;
     }
+
+    public static function getFiles($id = NULL)
+    {
+        $lang = \I18n::$lang;
+        $file = 'files';
+        $fileI18n = $file . '_i18n';
+        $result = DB::select(
+            $fileI18n . '.*', $file . '.*'
+        )
+            ->from($file)
+            ->join($fileI18n, 'LEFT')->on($fileI18n . '.row_id', '=', $file . '.id')
+            ->where($fileI18n . '.language', '=', $lang)
+            ->where($file . '.item_id', '=', $id);
+        $result->order_by($file . '.id', 'DESC');
+        return $result->find_all();
+    }
 }

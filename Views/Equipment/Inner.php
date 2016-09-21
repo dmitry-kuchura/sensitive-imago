@@ -1,12 +1,14 @@
 <div class="wTxt">
     <div class="modelPreviews grid mfi-gallery">
         <div class="grid__cell grid__cell--12">
-            <a href="<?php echo Core\HTML::media('images/equipment/original/' . $result->image); ?>" class="modelPreview"
+            <a href="<?php echo Core\HTML::media('images/equipment/original/' . $result->image); ?>"
+               class="modelPreview"
                style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $result->image); ?>');"></a>
         </div>
         <?php foreach ($images as $im): ?>
             <div class="grid__cell grid__cell--4">
-                <a href="<?php echo Core\HTML::media('images/equipment/original/' . $im->image); ?>" class="modelPreview"
+                <a href="<?php echo Core\HTML::media('images/equipment/original/' . $im->image); ?>"
+                   class="modelPreview"
                    style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $im->image); ?>');"></a>
             </div>
         <?php endforeach; ?>
@@ -32,7 +34,13 @@
         </div>
     </div>
     <div class="grid__cell buttonsArray">
-        <a href="#" class="button button--primary button--in-sectionFooter _mb">УЗНАТЬ ПРАЙС</a>
-        <a href="#" class="button button--link button--in-sectionFooter">ДОПОЛНИТЕЛЬНАЯ КОМПЛЕКТАЦИЯ</a>
+        <a href="<?php echo Core\HTML::link('hidden/price') ?>"
+           class="button button--primary button--in-sectionFooter _mb"><?php echo __('Узнать прайс'); ?></a>
+        <?php if (count($files)): ?>
+            <?php foreach ($files as $file): ?>
+                <a href="<?php echo Core\HTML::media('items/' . $file->filename); ?>"
+                   class="button button--link button--in-sectionFooter"><?php echo __('Дополнительная комплектация'); ?> (<?php echo $file->filename; ?>)</a>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </div>

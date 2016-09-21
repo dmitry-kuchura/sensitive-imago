@@ -39,13 +39,14 @@ class Models extends \Modules\Base
         }
         $result = Items::getRowSimple(Route::param('alias'), 'alias', 1);
         $images = Items::getItemImages($result->row_id);
+        $files = Items::getFiles($result->row_id);
         // SEO
         $this->seo($result);
         if (!$result) {
             return Config::error();
         }
         // Render
-        $this->_content = View::tpl(['result' => $result, 'images' => $images], 'Equipment/Inner');
+        $this->_content = View::tpl(['result' => $result, 'images' => $images, 'files' => $files], 'Equipment/Inner');
     }
 
     public function seo($data)
