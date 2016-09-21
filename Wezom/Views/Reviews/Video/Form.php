@@ -16,11 +16,13 @@
                         <label class="control-label"><?php echo __('Опубликовано'); ?></label>
                         <div class="">
                             <label class="checkerWrap-inline">
-                                <input name="status" value="0" type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>
+                                <input name="status" value="0"
+                                       type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>
                                 <?php echo __('Нет'); ?>
                             </label>
                             <label class="checkerWrap-inline">
-                                <input name="status" value="1" type="radio" <?php echo ($obj->status OR ! $obj) ? 'checked' : ''; ?>>
+                                <input name="status" value="1"
+                                       type="radio" <?php echo ($obj->status OR !$obj) ? 'checked' : ''; ?>>
                                 <?php echo __('Да'); ?>
                             </label>
                         </div>
@@ -28,24 +30,33 @@
                     <div class="form-group">
                         <label class="control-label" for="f_name"><?php echo __('Название'); ?></label>
                         <div class="">
-                            <input id="f_name" class="form-control valid" name="FORM[name]" type="text" value="<?php echo $obj->name; ?>" />
+                            <input id="f_name" class="form-control valid" name="FORM[name]" type="text"
+                                   value="<?php echo $obj->name; ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="f_youtube"><?php echo __('ссылка на Youtube'); ?></label>
                         <div class="">
-                            <input id="f_youtube" class="form-control" name="FORM[youtube]" type="text" value="<?php echo $obj->youtube; ?>" />
+                            <input id="f_youtube" class="form-control" name="FORM[youtube]" type="text"
+                                   value="<?php echo $obj->youtube; ?>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="f_language"><?php echo __('Язык'); ?></label>
                         <div class="">
                             <select id="f_language" class="form-control valid" name="FORM[language]">
-                                <option value="ru" <?php echo $obj->language == 'ru' ? 'selected' : NULL; ?>>Русский</option>
-                                <option value="en" <?php echo $obj->language == 'en' ? 'selected' : NULL; ?>>Английский</option>
-                                <option value="es" <?php echo $obj->language == 'es' ? 'selected' : NULL; ?>>Испанский</option>
-                                <option value="de" <?php echo $obj->language == 'de' ? 'selected' : NULL; ?>>Немецкий</option>
-                                <option value="fr" <?php echo $obj->language == 'fr' ? 'selected' : NULL; ?>>Французкий</option>
+                                <option value="ru" <?php echo $obj->language == 'ru' ? 'selected' : NULL; ?>>Русский
+                                </option>
+                                <option value="en" <?php echo $obj->language == 'en' ? 'selected' : NULL; ?>>
+                                    Английский
+                                </option>
+                                <option value="es" <?php echo $obj->language == 'es' ? 'selected' : NULL; ?>>Испанский
+                                </option>
+                                <option value="de" <?php echo $obj->language == 'de' ? 'selected' : NULL; ?>>Немецкий
+                                </option>
+                                <option value="fr" <?php echo $obj->language == 'fr' ? 'selected' : NULL; ?>>
+                                    Французкий
+                                </option>
                             </select>
                         </div>
                     </div>
