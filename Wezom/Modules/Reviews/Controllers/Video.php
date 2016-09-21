@@ -14,7 +14,7 @@ use Wezom\Modules\Reviews\Models\Video AS Model;
 
 class Video extends \Wezom\Modules\Base {
 
-    public $tpl_folder = 'Reviews\Video';
+    public $tpl_folder = 'Reviews/Video';
     public $page;
     public $limit;
     public $offset;
