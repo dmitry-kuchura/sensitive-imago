@@ -84,7 +84,7 @@
                                     <label><input type="checkbox"></label>
                                 </td>
                                 <td>
-                                    <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>">
+                                    <a href="/wezom/video_review/edit/<?php echo $obj->id; ?>">
                                         <?php echo $obj->name; ?>
                                     </a>
                                 </td>
@@ -101,7 +101,7 @@
                                                title="<?php echo __('Управление'); ?>"><i class="fa-cog size14"></i></a>
                                             <ul class="dropdownMenu pull-right">
                                                 <li>
-                                                    <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"
+                                                    <a href="/wezom/video_review/edit/<?php echo $obj->id; ?>"
                                                        title="<?php echo __('Редактировать'); ?>"><i
                                                             class="fa-pencil"></i> <?php echo __('Редактировать'); ?>
                                                     </a>
@@ -109,7 +109,7 @@
                                                 <li class="divider"></li>
                                                 <li>
                                                     <a onclick="return confirm('<?php echo __('Это действие необратимо. Продолжить?'); ?>');"
-                                                       href="/wezom/<?php echo Core\Route::controller(); ?>/delete/<?php echo $obj->id; ?>"
+                                                       href="/wezom/video_review/delete/<?php echo $obj->id; ?>"
                                                        title="<?php echo __('Удалить'); ?>"><i
                                                             class="fa-trash-o text-danger"></i> <?php echo __('Удалить'); ?>
                                                     </a>

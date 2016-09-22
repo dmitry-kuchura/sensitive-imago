@@ -23,7 +23,7 @@ class Video extends \Wezom\Modules\Base {
         parent::before();
         $this->_seo['h1'] = __('Отзывы пользователей');
         $this->_seo['title'] = __('Отзывы пользователей');
-        $this->setBreadcrumbs(__('Отзывы пользователей'), 'wezom/' . Route::controller() . '/index');
+        $this->setBreadcrumbs(__('Отзывы пользователей'), 'wezom/video_review/index');
         $this->page = (int) Route::param('page') ? (int) Route::param('page') : 1;
         $this->limit = Arr::get($_GET, 'limit') > 0 ? (int) $_GET['limit'] : Config::get('basic.limit_backend');
         $this->offset = ($this->page - 1) * $this->limit;
@@ -58,11 +58,11 @@ class Video extends \Wezom\Modules\Base {
                 if ($res) {
                     Message::GetMessage(1, __('Вы успешно изменили данные!'));
                     if (Arr::get($_POST, 'button', 'save') == 'save-close') {
-                        HTTP::redirect('wezom/' . Route::controller() . '/index');
+                        HTTP::redirect('wezom/video_review/index');
                     } else if (Arr::get($_POST, 'button', 'save') == 'save-add') {
-                        HTTP::redirect('wezom/' . Route::controller() . '/add');
+                        HTTP::redirect('wezom/video_review/add');
                     } else {
-                        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . Route::param('id'));
+                        HTTP::redirect('wezom/video_review/edit/' . Route::param('id'));
                     }
                 } else {
                     Message::GetMessage(0, __('Не удалось изменить данные!'));
@@ -75,7 +75,7 @@ class Video extends \Wezom\Modules\Base {
         $this->_toolbar = Widgets::get('Toolbar/Edit');
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
-        $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . Route::param('id'));
+        $this->setBreadcrumbs(__('Редактирование'), 'wezom/video_review/edit/' . Route::param('id'));
         $this->_content = View::tpl(
                         [
                     'obj' => $result,
@@ -92,11 +92,11 @@ class Video extends \Wezom\Modules\Base {
                 if ($res) {
                     Message::GetMessage(1, __('Вы успешно добавили данные!'));
                     if (Arr::get($_POST, 'button', 'save') == 'save-close') {
-                        HTTP::redirect('wezom/' . Route::controller() . '/index');
+                        HTTP::redirect('wezom/video_review/index');
                     } else if (Arr::get($_POST, 'button', 'save') == 'save-add') {
-                        HTTP::redirect('wezom/' . Route::controller() . '/add');
+                        HTTP::redirect('wezom/video_review/add');
                     } else {
-                        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $res);
+                        HTTP::redirect('wezom/video_review/edit/' . $res);
                     }
                 } else {
                     Message::GetMessage(0, __('Не удалось добавить данные!'));
@@ -109,7 +109,7 @@ class Video extends \Wezom\Modules\Base {
         $this->_toolbar = Widgets::get('Toolbar/Edit');
         $this->_seo['h1'] = __('Добавление');
         $this->_seo['title'] = __('Добавление');
-        $this->setBreadcrumbs(__('Добавление'), 'wezom/' . Route::controller() . '/add');
+        $this->setBreadcrumbs(__('Добавление'), 'wezom/video_review/add');
         $this->_content = View::tpl(
                         [
                     'obj' => $result,
@@ -122,11 +122,11 @@ class Video extends \Wezom\Modules\Base {
         $page = Model::getRow($id);
         if (!$page) {
             Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
+            HTTP::redirect('wezom/video_review/index');
         }
         Model::delete($id);
         Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/index');
+        HTTP::redirect('wezom/video_review/index');
     }
 
 }
