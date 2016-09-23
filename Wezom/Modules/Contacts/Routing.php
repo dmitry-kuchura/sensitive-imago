@@ -11,4 +11,10 @@ return [
     'wezom/contacts/index/page/<page:[0-9]*>' => 'contacts/contacts/index',
     'wezom/contacts/edit/<id:[0-9]*>' => 'contacts/contacts/edit',
     'wezom/contacts/delete/<id:[0-9]*>' => 'contacts/contacts/delete',
+    // Regions
+    'wezom/regions/index' => 'contacts/regions/index',
+    'wezom/regions/add' => 'contacts/regions/add',
+    'wezom/regions/index/page/<page:[0-9]*>' => 'contacts/regions/index',
+    'wezom/regions/edit/<id:[0-9]*>' => 'contacts/regions/edit',
+    'wezom/regions/delete/<id:[0-9]*>' => 'contacts/regions/delete',
 ];

@@ -5,12 +5,15 @@
                 <a href="index.html" class="logo__link">
                     <div class="logo logo--small">
                         <div class="logo__image">
-                            <svg><use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use></svg>
+                            <svg>
+                                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
+                            </svg>
                         </div>
                         <div class="logo__text">
                             <big><?php echo __('Сенситив Имаго'); ?></big>
                             <small><?php echo __('Медицинское оборудование'); ?></small>
-                            <span class="logo__copyright"><?php echo Core\Config::get('basic.copy-'.\I18n::$lang);?></span>
+                            <span
+                                class="logo__copyright"><?php echo Core\Config::get('basic.copy-' . \I18n::$lang); ?></span>
                         </div>
                     </div>
                 </a>
@@ -33,21 +36,27 @@
                     </div>
                     <div class="grid__cell">
                         <div class="columnCaption"><?php echo __('Адрес'); ?></div>
-                        <div class="columnContent"><?php echo str_replace(['<p>', '</p>'], '', $contacts->location); ?></div>
+                        <div
+                            class="columnContent"><?php echo str_replace(['<p>', '</p>'], '', $contacts->location); ?></div>
                     </div>
                     <div class="grid__cell">
                         <div class="columnCaption"><?php echo __('Время работы'); ?></div>
-                        <div class="columnContent"><?php echo str_replace(['<p>', '</p>'], '', $contacts->time); ?></div>
+                        <div
+                            class="columnContent"><?php echo str_replace(['<p>', '</p>'], '', $contacts->time); ?></div>
                     </div>
                     <div class="grid__cell">
                         <div class="columnCaption"><?php echo __('Наши контакты'); ?></div>
                         <div class="columnContent">
-                            <a href="tel:+38 (068) 201-ХХ-ХХ">+38 (068) 201-ХХ-ХХ</a><br>
-                            <a href="tel:+38 (044) 227-ХХ-ХХ">+38 (044) 227-ХХ-ХХ</a><br>
+                            <?php if (\I18n::$lang == 'ru'): ?>
+                                <a href="tel:+38 (068) 201-ХХ-ХХ">+38 (068) 201-ХХ-ХХ</a><br>
+                                <a href="tel:+38 (044) 227-ХХ-ХХ">+38 (044) 227-ХХ-ХХ</a><br>
+                            <?php endif; ?>
                             <a href="mailto:ХХХХХХХ@gmail.com">ХХХХХХХ@gmail.com</a><br>
                             Skype: ХХХХХХ<br>
-                            <a class="inverseLink showContacts__link _color-white" href="#"><?php echo __('Показать контакты'); ?></a>
-                            <button class="button button--inverse-white button--expand _mt"><?php echo __('Обратная связь'); ?></button>
+                            <a class="inverseLink showContacts__link _color-white"
+                               href="#"><?php echo __('Показать контакты'); ?></a>
+                            <button
+                                class="button button--inverse-white button--expand _mt"><?php echo __('Обратная связь'); ?></button>
                         </div>
                     </div>
                 </div>
