@@ -40,6 +40,7 @@ class Models extends \Modules\Base
         $result = Items::getRowSimple(Route::param('alias'), 'alias', 1);
         $images = Items::getItemImages($result->row_id);
         $files = Items::getFiles($result->row_id);
+        $parents = Items::getFiles($result);
         // SEO
         $this->seo($result);
         if (!$result) {

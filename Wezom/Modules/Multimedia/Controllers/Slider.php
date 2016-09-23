@@ -134,7 +134,7 @@
                 Message::GetMessage(0, __('Данные не существуют!'));
                 HTTP::redirect('wezom/'.Route::controller().'/index');
             }
-            Model::deleteImage($page->image);
+            Model::deleteImage($page['obj']->image);
             Message::GetMessage(1, __('Данные удалены!'));
             HTTP::redirect('wezom/'.Route::controller().'/edit/'.$id);
         }

@@ -73,6 +73,7 @@ class Equipment extends \Modules\Base
             case 'models':
                 $seo = Model::getSeo('models', 'alias', 1);
                 $result = Items::getModels('sort', 'ASC', $this->limit, $this->offset);
+                $kids = Items::getKids(46);
                 $template = 'Equipment/Models';
                 $this->seo($seo);
                 break;

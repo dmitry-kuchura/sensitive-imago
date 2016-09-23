@@ -42,6 +42,24 @@ class Items extends \Core\CommonI18n
         return $result->find_all();
     }
 
+    public static function getKids($id)
+    {
+        $table = 'catalog_tree';
+        $tableI18n = $table . '_i18n';
+        $result = DB::select(
+            $tableI18n . '.*',
+            $table . '.*'
+        )
+            ->from($table)
+            ->join($tableI18n, 'LEFT')->on($tableI18n . '.row_id', '=', $table . '.id')
+            ->where($tableI18n . '.language', '=', \I18n::$lang);
+        $result->where($table . '.status', '=', 1);
+        $result->where($table . '.parent_id', '=', $id);
+        $result->order_by($table . '.sort', 'ASC');
+        $result->order_by($table . '.id', 'DESC');
+        return $result->find_all();
+    }
+
     public static function getItemImages($id)
     {
         $result = DB::select('image')

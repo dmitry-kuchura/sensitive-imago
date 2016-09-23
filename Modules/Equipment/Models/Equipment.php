@@ -21,6 +21,7 @@ class Equipment extends \Core\CommonI18n
         )
             ->from($tree)
             ->join($treeI18n, 'LEFT')->on($treeI18n . '.row_id', '=', $tree . '.id')
+            ->where($tree . '.parent_id', '=', 0)
             ->where($treeI18n . '.language', '=', $lang);
         if ($filter) {
             $result = static::setFilter($result);
