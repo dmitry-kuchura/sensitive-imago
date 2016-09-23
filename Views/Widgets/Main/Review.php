@@ -6,7 +6,7 @@
                 <?php foreach ($result as $obj): ?>
                     <?php $link = explode('?v=', $obj->youtube); ?>
                     <div class="grid__cell">
-                        <a href="<?php echo $video->youtube; ?>"
+                        <a href="<?php echo $obj->youtube; ?>"
                            class="videoLink"
                            style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg");'></a>
                     </div>
