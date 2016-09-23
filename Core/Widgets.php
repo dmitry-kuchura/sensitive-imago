@@ -193,7 +193,14 @@ class Widgets
 
         $lang = \I18n::$lang;
 
-        $result = DB::select('advantages.*', 'advantages_i18n.*', 'svg.svg')->from('advantages')->join('advantages_i18n', 'LEFT')->on('advantages_i18n.row_id', '=', 'advantages.id')->join('svg', 'LEFT')->on('advantages.svg', '=', 'svg.id')->where('advantages_i18n.language', '=', $lang)->find_all();
+        $result = DB::select('advantages.*', 'advantages_i18n.*', 'svg.svg')
+            ->from('advantages')
+            ->join('advantages_i18n', 'LEFT')->on('advantages_i18n.row_id', '=', 'advantages.id')
+            ->join('svg', 'LEFT')->on('advantages.svg', '=', 'svg.id')
+            ->where('advantages_i18n.language', '=', $lang)
+            ->where('svg.status', '=', 1)
+            ->where('advantages.status', '=', 1)
+            ->find_all();
 
         return compact('result');
     }
