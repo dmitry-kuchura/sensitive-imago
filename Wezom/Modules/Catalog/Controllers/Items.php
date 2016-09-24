@@ -107,6 +107,7 @@
 
             $this->_content = View::tpl(
                 [
+                    'count' => count($files),
                     'languages' => $this->_languages,
                     'obj' => $result,
                     'tpl_folder' => $this->tpl_folder,
