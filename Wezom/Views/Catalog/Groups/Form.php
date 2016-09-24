@@ -76,12 +76,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label"
-                                               for="f_text"><?php echo __('SEO текст'); ?></label>
+                                        <label class="control-label"><?php echo __('Содержание'); ?></label>
                                         <div class="">
-                                            <textarea id="f_text" class="form-control tinymceEditor"
-                                                      name="FORM[<?php echo $key; ?>][text]"
-                                                      rows="5"><?php echo $public->text; ?></textarea>
+                                            <textarea class="tinymceEditor form-control" style="height: 350px;" rows="20" name="FORM[<?php echo $key; ?>][text]"><?php echo $public->text; ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -134,11 +131,19 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="f_alias">
-                            <?php echo __('Алиас'); ?>
+                            Алиас
+                            <i class="fa-info-circle text-info bs-tooltip nav-hint"
+                               title="<b>Алиас (англ. alias - псевдоним)</b><br>Алиасы используются для короткого именования страниц. <br>Предположим, имеется страница с псевдонимом «<b>about</b>». Тогда для вывода этой страницы можно использовать или полную форму: <br><b>http://domain/?go=frontend&page=about</b><br>или сокращенную: <br><b>http://domain/about.html</b>"></i>
                         </label>
                         <div class="">
-                            <input class="form-control valid" <?php //echo $obj->param == 0 ? 'disabled' : ''; ?> id="f_alias" name="FORM[alias]"
-                                   type="text" value="<?php echo $obj->alias; ?>"/>
+                            <div class="input-group">
+                                <input id="f_alias" class="form-control translitConteiner valid" name="FORM[alias]"
+                                       type="text" value="<?php echo $obj->alias; ?>"/>
+                                <span class="input-group-btn">
+                                        <button class="btn translitAction"
+                                                type="button">Заполнить автоматически</button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

@@ -20,9 +20,9 @@ class Advan extends \Wezom\Modules\Base
     function before()
     {
         parent::before();
-        $this->_seo['h1'] = __('Возможности оборудования');
-        $this->_seo['title'] = __('Возможности оборудования');
-        $this->setBreadcrumbs(__('Возможности оборудования'), 'wezom/' . Route::controller() . '/index');
+        $this->_seo['h1'] = __('Преимущества оборудования');
+        $this->_seo['title'] = __('Преимущества оборудования');
+        $this->setBreadcrumbs(__('Преимущества оборудования'), 'wezom/' . Route::controller() . '/index');
     }
 
     function indexAction()
