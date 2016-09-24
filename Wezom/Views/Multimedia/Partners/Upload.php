@@ -17,10 +17,10 @@
             <div class="widgetContent">
                 <div
                     class="dropZone"
-                    data-config="/Wezom/Config/Uploader/gallery.json"
-                    data-sortable="gallery/sortPhotos"
-                    data-upload="gallery/getUploadedPhotos"
-                    data-default="gallery/setPhotoAsMain"
+                    data-config="/Wezom/Config/Uploader/partners.json"
+                    data-sortable="partners/sortPhotos"
+                    data-upload="partners/getUploadedPhotos"
+                    data-default="partners/setPhotoAsMain"
                     ></div>
             </div>
         </div>
@@ -59,7 +59,7 @@
             var getUploadedPhotos = function () {
                 $.ajax({
                     type: 'POST',
-                    url: '/wezom/ajax/gallery/getUploadedPhotos',
+                    url: '/wezom/ajax/partners/getUploadedPhotos',
                     dataType: 'JSON',
                     success: function (data) {
                         $('.dropDownload').html(data.images);
