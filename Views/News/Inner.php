@@ -3,8 +3,8 @@
         <?php echo date('d', $news->date); ?>
         <small><?php echo Core\Text::russianDate($news->date) ?></small>
     </div>
-    <?php if (is_file(HOST . Core\HTML::media('images/news/popup/' . $news->image))): ?>
-        <img src="<?php echo Core\HTML::media('images/news/popup/' . $news->image); ?>" alt="">
+    <?php if (is_file(HOST . Core\HTML::media('images/news/main/' . $news->image))): ?>
+        <img src="<?php echo Core\HTML::media('images/news/main/' . $news->image); ?>" alt="">
     <?php else: ?>
         <img src="<?php echo Core\HTML::media('pic/no-image.png'); ?>" alt="">
     <?php endif; ?>
