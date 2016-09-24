@@ -2,7 +2,7 @@
     <div class="pageSize">
         <div class="grid grid--justify-around grid--xl-justify-between">
             <div class="grid__cell _mr-x2 _mb-x2">
-                <a href="index.html" class="logo__link">
+                <a href="<?php echo Core\HTML::link(); ?>" class="logo__link">
                     <div class="logo logo--small">
                         <div class="logo__image">
                             <svg>
@@ -75,7 +75,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </footer>
