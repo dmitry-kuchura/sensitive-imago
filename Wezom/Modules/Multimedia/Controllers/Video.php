@@ -12,37 +12,41 @@ use Core\HTTP;
 use Core\View;
 use Wezom\Modules\Multimedia\Models\Video AS Model;
 
-class Video extends \Wezom\Modules\Base {
+class Video extends \Wezom\Modules\Base
+{
 
     public $tpl_folder = 'Multimedia/Video';
     public $page;
     public $limit;
     public $offset;
 
-    function before() {
+    function before()
+    {
         parent::before();
         $this->_seo['h1'] = 'Видео';
         $this->_seo['title'] = 'Видео';
         $this->setBreadcrumbs('Видео', 'wezom/' . Route::controller() . '/index');
-        $this->page = (int) Route::param('page') ? (int) Route::param('page') : 1;
+        $this->page = (int)Route::param('page') ? (int)Route::param('page') : 1;
         $this->limit = Config::get('basic.limit_backend');
         $this->offset = ($this->page - 1) * $this->limit;
     }
 
-    function indexAction() {
+    function indexAction()
+    {
         $count = Model::countRows();
-        $result = Model::getRows(NULL, 'on_main', 'DESC', $this->limit, $this->offset);
+        $result = Model::getRows(NULL, 'id', 'DESC', $this->limit, $this->offset);
         $this->_filter = Widgets::get('Filter_Pages');
         $this->_toolbar = Widgets::get('Toolbar_List', array('add' => 1, 'delete' => 1));
         $this->_content = View::tpl(array(
-                    'result' => $result,
-                    'count' => $count,
-                    'tpl_folder' => $this->tpl_folder,
-                    'tablename' => Model::$table,
-                        ), $this->tpl_folder . '/Index');
+            'result' => $result,
+            'count' => $count,
+            'tpl_folder' => $this->tpl_folder,
+            'tablename' => Model::$table,
+        ), $this->tpl_folder . '/Index');
     }
 
-    function editAction() {
+    function editAction()
+    {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
@@ -65,19 +69,22 @@ class Video extends \Wezom\Modules\Base {
         } else {
             $result = Model::getRow(Route::param('id'));
         }
+        $tree = Model::getTree();
         $this->_toolbar = Widgets::get('Toolbar_Edit');
         $this->_seo['h1'] = 'Редактирование';
         $this->_seo['title'] = 'Редактирование';
         $this->setBreadcrumbs('Редактирование', 'wezom/' . Route::controller() . '/edit/' . Route::param('id'));
         $this->_content = View::tpl(
-                        array(
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'languages' => $this->_languages,
-                        ), $this->tpl_folder . '/Form');
+            [
+                'tree' => $tree,
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'languages' => $this->_languages,
+            ], $this->tpl_folder . '/Form');
     }
 
-    function addAction() {
+    function addAction()
+    {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
@@ -100,20 +107,23 @@ class Video extends \Wezom\Modules\Base {
         } else {
             $result = array();
         }
+        $tree = Model::getTree();
         $this->_toolbar = Widgets::get('Toolbar_Edit');
         $this->_seo['h1'] = 'Добавление';
         $this->_seo['title'] = 'Добавление';
         $this->setBreadcrumbs('Добавление', 'wezom/' . Route::controller() . '/add');
         $this->_content = View::tpl(
-                        array(
-                    'obj' => $result,
-                    'languages' => $this->_languages,
-                    'tpl_folder' => $this->tpl_folder,
-                        ), $this->tpl_folder . '/Form');
+            [
+                'tree' => $tree,
+                'obj' => $result,
+                'languages' => $this->_languages,
+                'tpl_folder' => $this->tpl_folder,
+            ], $this->tpl_folder . '/Form');
     }
 
-    function deleteAction() {
-        $id = (int) Route::param('id');
+    function deleteAction()
+    {
+        $id = (int)Route::param('id');
         $page = Model::getRow($id);
         if (!$page) {
             Message::GetMessage(0, 'Данные не существуют!');
@@ -123,9 +133,10 @@ class Video extends \Wezom\Modules\Base {
         HTTP::redirect('wezom/' . Route::controller() . '/index');
     }
 
-    function deleteImageAction() {
-        $id = (int) Route::param('id');
-       $page = Model::getRowSimple($id);;
+    function deleteImageAction()
+    {
+        $id = (int)Route::param('id');
+        $page = Model::getRowSimple($id);;
         if (!$page) {
             Message::GetMessage(0, 'Данные не существуют!');
             HTTP::redirect('wezom/' . Route::controller() . '/index');

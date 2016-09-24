@@ -28,4 +28,24 @@ class Video extends \Core\CommonI18n {
         return $result->find_all();
     }
 
+    public static function getTree()
+    {
+        $lang = \I18n::$lang;
+
+        $table = 'video_tree';
+        $tableI18n = $table . '_i18n';
+
+        $result = DB::select(
+            $tableI18n . '.*',
+            $table . '.*'
+        )
+            ->from($table)
+            ->join($tableI18n, 'LEFT')->on($tableI18n . '.row_id', '=', $table . '.id')
+            ->where($tableI18n . '.language', '=', $lang);
+
+        $result->order_by($table . '.id', 'DESC');
+
+        return $result->find_all();
+    }
+
 }
