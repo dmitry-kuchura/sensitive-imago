@@ -70,7 +70,7 @@
                             <a class="inverseLink showContacts__link _color-white js-show-information"
                                href="#"><?php echo __('Показать контакты'); ?></a>
                             <button
-                                class="button button--inverse-white button--expand _mt"><?php echo __('Обратная связь'); ?></button>
+                                class="button button--inverse-white button--expand _mt"><?php echo __('Оставить заявку'); ?></button>
                         </div>
                     </div>
                 </div>

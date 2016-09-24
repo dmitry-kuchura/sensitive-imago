@@ -14,7 +14,7 @@
                        class="mediaBlock__overflow"><?php echo $item->name; ?></a>
                 </div>
                 <div class="mediaBlock__text">
-                    <div class="mediaBlock__textInner"><?php echo $item->text; ?></div>
+                    <div class="mediaBlock__textInner"><?php echo $item->short; ?></div>
                 </div>
                 <a href="<?php echo Core\HTML::link('models/' . $item->alias); ?>"
                    class="button button--primary"><?php echo __('Подробнее'); ?></a>

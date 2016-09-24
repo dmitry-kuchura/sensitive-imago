@@ -16,12 +16,12 @@
                             <a href="<?php echo $link; ?>"><?php echo $obj->name; ?></a>
                             <?php if ($obj->alias == 'models'): ?>
                                 <ul>
-                                    <li><a href="#">Сенситив Имаго 100 / 120</a></li>
-                                    <li><a href="#">Сенситив Имаго 130</a></li>
-                                    <li><a href="#">Сенситив Имаго 500 / 520</a></li>
-                                    <li><a href="equipment_model.html">Сенситив Имаго 530</a></li>
-                                    <li><a href="#">Сравнение моделей приборов</a></li>
-                                    <li><a href="#">Дополнительная комплектация</a></li>
+                                    <?php foreach ($models as $model): ?>
+                                        <li><a href="<?php echo Core\HTML::link('models/' . $model->alias); ?>"><?php echo $model->name; ?></a></li>
+                                    <?php endforeach; ?>
+                                    <?php foreach ($kids as $kid): ?>
+                                        <li><a href="<?php echo Core\HTML::link($kid->alias); ?>"><?php echo $kid->name; ?></a></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
                             <?php if ($obj->alias == 'features'): ?>

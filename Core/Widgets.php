@@ -303,10 +303,19 @@ class Widgets
             ->join('catalog_tree_i18n', 'LEFT')->on('catalog_tree_i18n.row_id', '=', 'catalog_tree.id')
             ->where('catalog_tree_i18n.language', '=', $lang)
             ->where('catalog_tree.status', '=', 1)
+            ->where('catalog_tree.parent_id', '=', 0)
             ->order_by('catalog_tree.sort', 'ASC')
             ->find_all();
 
-        $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(2)->find_all();
+        $result = DB::select('news.*', 'news_i18n.*')
+            ->from('news')
+            ->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')
+            ->where('news_i18n.language', '=', $lang)
+            ->where('news.status', '=', 1)
+            ->where('news.date', '<=', time())
+            ->order_by('news.date', 'DESC')
+            ->limit(2)
+            ->find_all();
 
         $features = DB::select('features.alias', 'features.parent_id', 'features.id', 'features_i18n.name')
             ->from('features')
@@ -321,7 +330,24 @@ class Widgets
             $arr[$obj->parent_id][] = $obj;
         }
 
-        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr];
+        $models = DB::select('catalog.*', 'catalog_i18n.*')
+            ->from('catalog')
+            ->join('catalog_i18n', 'LEFT')->on('catalog_i18n.row_id', '=', 'catalog.id')
+            ->where('catalog_i18n.language', '=', $lang)
+            ->where('catalog.status', '=', 1)
+            ->order_by('catalog.sort', 'ASC')
+            ->find_all();
+
+        $kids = DB::select('catalog_tree.*', 'catalog_tree_i18n.*')
+            ->from('catalog_tree')
+            ->join('catalog_tree_i18n', 'LEFT')->on('catalog_tree_i18n.row_id', '=', 'catalog_tree.id')
+            ->where('catalog_tree_i18n.language', '=', $lang)
+            ->where('catalog_tree.status', '=', 1)
+            ->where('catalog_tree.parent_id', '=', 46)
+            ->order_by('catalog_tree.sort', 'ASC')
+            ->find_all();
+
+        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr, 'models' => $models, 'kids' => $kids];
     }
 
 
