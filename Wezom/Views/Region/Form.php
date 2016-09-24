@@ -1,12 +1,12 @@
 <?php if($_SERVER['REQUEST_METHOD'] == 'POST'): ?>
-    <?php $langs = []; ?>
+    <?php $langs = array(); ?>
     <?php foreach($languages AS $key => $lang): ?>
         <?php $langs[$key] = $obj->$key; ?>
         <?php unset($obj->$key); ?>
     <?php endforeach; ?>
 <?php else: ?>
-    <?php $langs = \Core\Arr::get($obj, 'langs', []); ?>
-    <?php $obj = \Core\Arr::get($obj, 'obj', []); ?>
+    <?php $langs = \Core\Arr::get($obj, 'langs', array()); ?>
+    <?php $obj = \Core\Arr::get($obj, 'obj', array()); ?>
 <?php endif; ?>
 <form id="myForm" class="rowSection validat" method="post" action="">
     <div class="form-actions" style="display: none;">
@@ -37,19 +37,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="f_group"><?php echo __('Регион'); ?></label>
-                        <div class="">
-                            <select class="form-control valid" name="FORM[group]" id="f_group">
-                                    <option value="">Выберите регион</option>
-                                <?php foreach($region as $value): ?>
-                                    <option value="<?php echo $value->id; ?>" <?php echo $value->id == $obj->group ? 'selected' : NULL; ?>><?php echo $value->name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
                     <?php foreach( $languages AS $key => $lang ): ?>
-                        <?php $public = \Core\Arr::get($langs, $key, []); ?>
+                        <?php $public = \Core\Arr::get($langs, $key, array()); ?>
                         <?php echo $lang['default'] == 1 ? '<input type="hidden" class="default_lang" value="'.$lang['name'].'">' : ''; ?>
                         <div class="form-group">
                             <label class="control-label" for="f_<?php echo $key; ?>_name"><?php echo __('Название'); ?> (<?php echo $lang['name']; ?>)</label>

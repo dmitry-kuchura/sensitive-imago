@@ -1,9 +1,9 @@
 <div class="dd pageList" id="myNest" data-depth="1">
     <ol class="dd-list">
-        <?php foreach (\Core\Config::get('regions.regions') AS $key => $value): ?>
-            <h1><?php echo $value; ?></h1>
+        <?php foreach ($region as $value): ?>
+            <h1><?php echo $value->name; ?></h1>
             <?php foreach ($result as $obj): ?>
-                <?php if ($obj->group == $key): ?>
+                <?php if ($obj->group == $value->id): ?>
                     <li class="dd-item dd3-item" data-id="<?php echo $obj->id; ?>">
                         <div title="<?php echo __('Переместить строку'); ?>"
                              class="dd-handle dd3-handle"><?php echo __('Переместить строку'); ?></div>
