@@ -36,28 +36,19 @@ class Partners extends \Wezom\Modules\Ajax
         ));
     }
 
-
-    /**
-     * Get album photos list
-     */
     public function getUploadedPhotosAction()
     {
         $arr = explode('/', Arr::get($_SERVER, 'HTTP_REFERER'));
         $parent_id = (int)end($arr);
         if (!$parent_id) die('Error!');
         $images = PartnersImages::getRows($parent_id);
-        $show_images = View::tpl(array('images' => $images), 'Multimedia/Gallery/UploadedImages');
+        $show_images = View::tpl(array('images' => $images), 'Multimedia/Partners/UploadedImages');
         $this->success(array(
             'images' => $show_images,
             'count' => count($images),
         ));
     }
 
-
-    /**
-     * Delete uploaded photo from album
-     * $this->post['id'] => ID from gallery images table in DB
-     */
     public function deleteUploadedPhotosAction()
     {
         $id = (int)Arr::get($this->post, 'id');
@@ -68,11 +59,6 @@ class Partners extends \Wezom\Modules\Ajax
         $this->success();
     }
 
-
-    /**
-     * Switch flag between 0 & 1 (field "main" in this case)
-     * $this->post['id'] => photo ID to work with
-     */
     public function setPhotoAsMainAction()
     {
         $id = (int)Arr::get($this->post, 'id');
@@ -80,18 +66,15 @@ class Partners extends \Wezom\Modules\Ajax
         $obj = PartnersImages::getRow($id);
         if ($obj->main) {
             $main = 0;
+            PartnersImages::updateDefault(['image' => null], $obj->gallery_id);
         } else {
             $main = 1;
+            PartnersImages::updateDefault(['image' => $obj->image], $obj->gallery_id);
         }
-        PartnersImages::update(array('main' => $main), $id);
+        PartnersImages::update(['main' => $main], $id);
         $this->success();
     }
 
-
-    /**
-     * Sort photos in current album
-     * $this->post['order'] => array with photos IDs in right order
-     */
     public function sortPhotosAction()
     {
         $order = Arr::get($this->post, 'order');

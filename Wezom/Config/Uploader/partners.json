@@ -1,0 +1,6 @@
+{
+    "url":"/wezom/ajax/partners/uploadPhoto",
+    "urlUpload":"/wezom/ajax/partners/getUploadedPhotos",
+    "urlDelete":"/wezom/ajax/partners/deleteUploadedPhotos",
+    "idNumber": "35"
+}

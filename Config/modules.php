@@ -6,6 +6,7 @@ return [
     'Hidden',
     'News',
     'Gallery',
+    'Partners',
     'Equipment',
     'Advantage',
     'Catalog',
