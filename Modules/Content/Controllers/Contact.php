@@ -20,7 +20,7 @@ class Contact extends \Modules\Base
         if (!$this->current) {
             return Config::error();
         }
-        $this->setBreadcrumbs($this->current->name, $this->current->alias);
+        $this->setBreadcrumbs($this->current->name, 'contact');
         $this->_template = 'Text';
     }
 
@@ -44,16 +44,15 @@ class Contact extends \Modules\Base
             return false;
         }
         $regions = Contacts::getRegions();
-        var_dump($regions[0]);
-        die;
-        $branch = Contacts::getBranches();
+        $branches = Contacts::getBranches();
         // Seo
         $this->_seo['h1'] = __('Региональные представительства');
         $this->_seo['title'] = __('Региональные представительства');
         $this->_seo['keywords'] = $this->current->keywords;
         $this->_seo['description'] = $this->current->description;
+        $this->setBreadcrumbs(__('Региональные представительства'));
         // Render template
-        $this->_content = View::tpl(['$regions' => $regions, 'branch' => $branch], 'Contact/Region');
+        $this->_content = View::tpl(['regions' => $regions, 'branches' => $branches], 'Contact/Region');
     }
 
 }

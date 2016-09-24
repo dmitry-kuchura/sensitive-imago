@@ -6,7 +6,7 @@ use Core\QB\DB;
 class Contacts extends \Core\CommonI18n
 {
 
-    public static $table = 'regions';
+    public static $table = 'region';
 
     public static function getRegions()
     {
@@ -23,6 +23,26 @@ class Contacts extends \Core\CommonI18n
             ->where(static::$tableI18n . '.language', '=', $lang);
 
         $result->order_by(static::$table . '.id', 'DESC');
+
+        return $result->find_all();
+    }
+
+    public static function getBranches()
+    {
+        $lang = \I18n::$lang;
+
+        $table = 'regions';
+        $tableI18n = $table . '_i18n';
+
+        $result = DB::select(
+            $tableI18n . '.*',
+            $table . '.*'
+        )
+            ->from($table)
+            ->join($tableI18n, 'LEFT')->on($tableI18n . '.row_id', '=', $table . '.id')
+            ->where($tableI18n . '.language', '=', $lang);
+
+        $result->order_by($table . '.id', 'DESC');
 
         return $result->find_all();
     }

@@ -133,10 +133,6 @@ class Form extends \Modules\Ajax
         $text = Arr::get($this->post, 'text');
         $item = Arr::get($this->post, 'item');
 
-        // Rules
-//        if (!$name) {
-//            $this->error(__('Введенное имя слишком короткое!'));
-//        }
         if (!$country) {
             $this->error(__('Введенная страна слишком короткая!'));
         }
@@ -171,6 +167,49 @@ class Form extends \Modules\Ajax
         Log::add($qName, $url, 2);
 
         $this->success(__('Запрос на прайс отпрален!'));
+    }
+
+    public function contactAction()
+    {
+        $name = Arr::get($this->post, 'name');
+        $city = Arr::get($this->post, 'city');
+        $email = Arr::get($this->post, 'email');
+        $other = Arr::get($this->post, 'other');
+        $branch = Arr::get($this->post, 'branch');
+
+        if (!$branch) {
+            $this->error(__('Что то пошло не так =('));
+        }
+        if (!$city) {
+            $this->error(__('Введенный город слишком короткий!'));
+        }
+        if (!$email) {
+            $this->error(__('Email введен не корректно!'));
+        }
+
+        $data = [];
+        $data['name'] = $name;
+        $data['city'] = $city;
+        $data['email'] = $email;
+        $data['other'] = $other;
+        $data['branch'] = $branch;
+        $data['created_at'] = time();
+
+        $keys = [];
+        $values = [];
+        foreach ($data as $key => $value) {
+            $keys[] = $key;
+            $values[] = $value;
+        }
+
+        $last_id = DB::insert('contacts', $keys)->values($values)->execute();
+        $last_id = Arr::get($last_id, 0);
+
+        $qName = 'Сообщение в контактную форму';
+        $url = '/wezom/prices/edit/' . $last_id;
+        Log::add($qName, $url, 2);
+
+        $this->success(__('Ваше сообщение отправлено!'));
     }
 
 }
