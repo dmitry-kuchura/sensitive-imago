@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="grid__cell">
-                <a href="equipment_models.html"
+                <a href="<?php echo Core\HTML::link('equipment/models'); ?>"
                    class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?></a>
             </div>
         </div>

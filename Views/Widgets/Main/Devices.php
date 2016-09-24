@@ -28,7 +28,7 @@
             <?php endforeach; ?>
         </div>
         <div class="pageSection__footer">
-            <a href="<?php echo Core\HTML::link('equipment'); ?>"
+            <a href="<?php echo Core\HTML::link('equipment/models'); ?>"
                class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?></a>
         </div>
     </div>
