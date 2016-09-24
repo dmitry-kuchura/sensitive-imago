@@ -48,12 +48,26 @@
                         <div class="columnCaption"><?php echo __('Наши контакты'); ?></div>
                         <div class="columnContent">
                             <?php if (\I18n::$lang == 'ru'): ?>
-                                <a href="tel:+38 (068) 201-ХХ-ХХ">+38 (068) 201-ХХ-ХХ</a><br>
-                                <a href="tel:+38 (044) 227-ХХ-ХХ">+38 (044) 227-ХХ-ХХ</a><br>
+                                <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>
+                                    <span
+                                        class="js-hidden-information"
+                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span>
+                                </a>
+                                <br>
+                                <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>
+                                    <span
+                                        class="js-hidden-information"
+                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span>
+                                </a>
                             <?php endif; ?>
-                            <a href="mailto:ХХХХХХХ@gmail.com">ХХХХХХХ@gmail.com</a><br>
-                            Skype: ХХХХХХ<br>
-                            <a class="inverseLink showContacts__link _color-white"
+                            <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
+                            <a href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
+                                    class="js-hidden-information"
+                                    data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
+                            </a><br>
+                            Skype: <span class="js-hidden-information"
+                                         data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span><br>
+                            <a class="inverseLink showContacts__link _color-white js-show-information"
                                href="#"><?php echo __('Показать контакты'); ?></a>
                             <button
                                 class="button button--inverse-white button--expand _mt"><?php echo __('Обратная связь'); ?></button>
