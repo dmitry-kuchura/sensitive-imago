@@ -10,6 +10,7 @@ use Core\Config;
 use Core\Pager\Pager;
 use Core\Widgets;
 use Modules\Gallery\Models\Video AS Model;
+use Modules\Gallery\Models\Tree;
 use Modules\Content\Models\Control;
 
 class Video extends \Modules\Base
@@ -50,15 +51,36 @@ class Video extends \Modules\Base
         $this->_seo['seo_text'] = $this->current->seo_text;
 
         // Get Rows
-        $result = Model::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
-
+        $result = Tree::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
         // Get full count of rows
         $count = Model::countRows(1);
         // Generate pagination
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Gallery/Video');
+        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Gallery/VideoList');
 
+    }
+
+    public function innerAction()
+    {
+        if (Config::get('error')) {
+            return false;
+        }
+        // Check for existence
+        $category = Tree::getRowSimple(Route::param('alias'), 'alias', 1);
+        $result = Model::getVideos($category->row_id, 'parent_id', 1);
+        if (!$result) {
+            return Config::error();
+        }
+        // Seo
+        $this->_seo['h1'] = $category->h1 ? $category->h1 : $category->name;
+        $this->_seo['title'] = $category->title ? $category->title : $category->name;
+        $this->_seo['keywords'] = $category->keywords;
+        $this->_seo['description'] = $category->description;
+        $this->_seo['seo_text'] = $category->seo_text;
+        $this->setBreadcrumbs($category->name);
+        // Render template
+        $this->_content = View::tpl(['result' => $result], 'Gallery/VideoInner');
     }
 
 }

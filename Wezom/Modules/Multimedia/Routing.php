@@ -42,4 +42,13 @@ return array(
     'wezom/partners/delete/<id:[0-9]*>' => 'multimedia/partners/delete',
     'wezom/partners/delete_image/<id:[0-9]*>' => 'multimedia/partners/deleteImage',
     'wezom/partners/add' => 'multimedia/partners/add',
+
+    // Partners
+    'wezom/tree' => 'multimedia/tree/index',
+    'wezom/tree/index' => 'multimedia/tree/index',
+    'wezom/tree/index/page/<page:[0-9]*>' => 'multimedia/tree/index',
+    'wezom/tree/edit/<id:[0-9]*>' => 'multimedia/tree/edit',
+    'wezom/tree/delete/<id:[0-9]*>' => 'multimedia/tree/delete',
+    'wezom/tree/delete_image/<id:[0-9]*>' => 'multimedia/tree/deleteImage',
+    'wezom/tree/add' => 'multimedia/tree/add',
 );

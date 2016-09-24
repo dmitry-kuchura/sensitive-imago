@@ -69,6 +69,17 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label" for="f_group"><?php echo __('Раздел'); ?></label>
+                        <div class="">
+                            <select class="form-control valid" name="FORM[parent_id]" id="f_group">
+                                <option value=""><?php echo __('Выберите раздел'); ?></option>
+                                <?php foreach($tree as $value): ?>
+                                    <option value="<?php echo $value->id; ?>" <?php echo $value->id == $obj->parent_id ? 'selected' : NULL; ?>><?php echo $value->name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label" for="f_alias">
                             <?php echo __('Алиас'); ?>
                         </label>
