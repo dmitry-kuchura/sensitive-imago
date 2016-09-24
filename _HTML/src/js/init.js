@@ -164,7 +164,8 @@ jQuery(document).ready(function ($) {
 	$(window).load(function () {
 	});
 
-	$('.js-show-information').on('click', function () {
+	$('.js-show-information').on('click', function (event) {
+		event.preventDefault();
 		$('.js-hidden-information').each(function (index, element) {
 			var phone = $(element).data('information');
 			$(element).text(phone);

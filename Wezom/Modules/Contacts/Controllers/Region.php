@@ -9,35 +9,32 @@ use Core\Message;
 use Core\Arr;
 use Core\HTTP;
 use Core\View;
-use Wezom\Modules\Contacts\Models\Regions AS Model;
-use Wezom\Modules\Contacts\Models\Region;
+use Wezom\Modules\Contacts\Models\Region AS Model;
 
-class Regions extends \Wezom\Modules\Base
+class Region extends \Wezom\Modules\Base
 {
 
-    public $tpl_folder = 'Contacts/Regions';
+    public $tpl_folder = 'Region';
 
     function before()
     {
         parent::before();
-        $this->_seo['h1'] = __('Региональные представительства');
-        $this->_seo['title'] = __('Региональные представительства');
-        $this->setBreadcrumbs(__('Региональные представительства'), 'wezom/' . Route::controller() . '/index');
+        $this->_seo['h1'] = __('Регионы');
+        $this->_seo['title'] = __('Регионы');
+        $this->setBreadcrumbs(__('Регионы'), 'wezom/' . Route::controller() . '/index');
     }
 
     function indexAction()
     {
         $result = Model::getRows(NULL, 'sort', 'ASC');
-        $region = Region::getRegion();
         $this->_filter = Widgets::get('Filter_Pages');
-        $this->_toolbar = Widgets::get('Toolbar_List', ['add' => 1, 'delete' => 1]);
+        $this->_toolbar = Widgets::get('Toolbar_List', array('add' => 1, 'delete' => 1));
         $this->_content = View::tpl(
-            [
+            array(
                 'result' => $result,
-                'region' => $region,
                 'tpl_folder' => $this->tpl_folder,
                 'tablename' => Model::$table,
-            ], $this->tpl_folder . '/Index');
+            ), $this->tpl_folder . '/Index');
     }
 
     function editAction()
@@ -68,14 +65,12 @@ class Regions extends \Wezom\Modules\Base
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
         $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . (int)Route::param('id'));
-        $region = Region::getRegion();
         $this->_content = View::tpl(
-            [
-                'region' => $region,
+            array(
                 'obj' => $result,
                 'tpl_folder' => $this->tpl_folder,
                 'languages' => $this->_languages,
-            ], $this->tpl_folder . '/Form');
+            ), $this->tpl_folder . '/Form');
     }
 
     function addAction()
@@ -106,14 +101,12 @@ class Regions extends \Wezom\Modules\Base
         $this->_seo['h1'] = __('Добавление');
         $this->_seo['title'] = __('Добавление');
         $this->setBreadcrumbs(__('Добавление'), 'wezom/' . Route::controller() . '/add');
-        $region = Region::getRegion();
         $this->_content = View::tpl(
-            [
-                'region' => $region,
+            array(
                 'obj' => $result,
                 'tpl_folder' => $this->tpl_folder,
                 'languages' => $this->_languages,
-            ], $this->tpl_folder . '/Form');
+            ), $this->tpl_folder . '/Form');
     }
 
     function deleteAction()

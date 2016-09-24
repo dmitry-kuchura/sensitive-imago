@@ -40,15 +40,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="padding-top:0;" class="col-md-2 control-label">Телефон</label>
+                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Тема обращения'); ?></label>
                         <div class="col-md-10">
-                            <a href="tel:<?php echo $obj->email; ?>"><?php echo $obj->phone; ?></a>
+                            <?php echo $obj->other; ?>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Тема обращения'); ?></label>
+                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Региональное предстваительсво'); ?></label>
                         <div class="col-md-10">
-                            <?php echo $obj->theme; ?>
+                            <?php echo $branch->name; ?>
                         </div>
                     </div>
                 </div>

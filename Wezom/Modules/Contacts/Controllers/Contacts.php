@@ -12,24 +12,27 @@ use Core\View;
 use Core\Pager\Pager;
 use Wezom\Modules\Contacts\Models\Contacts AS Model;
 
-class Contacts extends \Wezom\Modules\Base {
+class Contacts extends \Wezom\Modules\Base
+{
 
     public $tpl_folder = 'Contacts/Form';
     public $page;
     public $limit;
     public $offset;
 
-    function before() {
+    function before()
+    {
         parent::before();
         $this->_seo['h1'] = __('Сообщения из контактной формы');
         $this->_seo['title'] = __('Сообщения из контактной формы');
         $this->setBreadcrumbs(__('Сообщения из контактной формы'), 'wezom/' . Route::controller() . '/index');
-        $this->page = (int) Route::param('page') ? (int) Route::param('page') : 1;
+        $this->page = (int)Route::param('page') ? (int)Route::param('page') : 1;
         $this->limit = Config::get('basic.limit_backend');
         $this->offset = ($this->page - 1) * $this->limit;
     }
 
-    function indexAction() {
+    function indexAction()
+    {
         $date_s = NULL;
         $date_po = NULL;
         $status = NULL;
@@ -45,19 +48,20 @@ class Contacts extends \Wezom\Modules\Base {
         $count = Model::countRows($status, $date_s, $date_po);
         $result = Model::getRows($status, $date_s, $date_po, 'created_at', 'DESC', $this->limit, $this->offset);
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
-        $this->_toolbar = Widgets::get('Toolbar_List', array('delete' => 1));
+        $this->_toolbar = Widgets::get('Toolbar_List', ['delete' => 1]);
         $this->_content = View::tpl(
-                        array(
-                    'result' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'tablename' => Model::$table,
-                    'count' => $count,
-                    'pager' => $pager,
-                    'pageName' => $this->_seo['h1'],
-                        ), $this->tpl_folder . '/Index');
+            [
+                'result' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'tablename' => Model::$table,
+                'count' => $count,
+                'pager' => $pager,
+                'pageName' => $this->_seo['h1'],
+            ], $this->tpl_folder . '/Index');
     }
 
-    function editAction() {
+    function editAction()
+    {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
@@ -82,19 +86,22 @@ class Contacts extends \Wezom\Modules\Base {
         } else {
             $result = Model::getRow(Route::param('id'));
         }
-        $this->_toolbar = Widgets::get('Toolbar_Edit', array('noAdd' => true));
+        $this->_toolbar = Widgets::get('Toolbar_Edit', ['noAdd' => true]);
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
-        $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . (int) Route::param('id'));
+        $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . (int)Route::param('id'));
+        $branch = Model::getBranch($result->branch);
         $this->_content = View::tpl(
-                        array(
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                        ), $this->tpl_folder . '/Form');
+            [
+                'branch' => $branch,
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+            ], $this->tpl_folder . '/Form');
     }
 
-    function deleteAction() {
-        $id = (int) Route::param('id');
+    function deleteAction()
+    {
+        $id = (int)Route::param('id');
         $page = Model::getRow($id);
         if (!$page) {
             Message::GetMessage(0, __('Данные не существуют!'));

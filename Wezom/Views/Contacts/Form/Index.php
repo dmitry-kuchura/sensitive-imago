@@ -7,7 +7,8 @@
                     <?php echo $pageName; ?>
                     <span class="label label-primary"><?php echo $count; ?></span>
                 </div>
-                <div class="toolbar no-padding" id="ordersToolbar" data-uri="<?php echo Core\Arr::get($_SERVER, 'REQUEST_URI'); ?>">
+                <div class="toolbar no-padding" id="ordersToolbar"
+                     data-uri="<?php echo Core\Arr::get($_SERVER, 'REQUEST_URI'); ?>">
                     <div class="btn-group">
                         <li class="btn btn-xs">
                             <a href="/wezom/<?php echo Core\Route::controller(); ?>/index">
@@ -17,7 +18,8 @@
                         </li>
                         <span class="btn btn-xs dropdownToggle dropdownSelect">
                              <i class="fa-filter"></i>
-                             <span class="current-item"><?php echo isset($_GET['status']) ? ( Core\Arr::get( $_GET, 'status' ) ? __('Прочитанные') : __('Непрочитанные') ) : __('Все'); ?></span>
+                             <span
+                                 class="current-item"><?php echo isset($_GET['status']) ? (Core\Arr::get($_GET, 'status') ? __('Прочитанные') : __('Непрочитанные')) : __('Все'); ?></span>
                              <span class="caret"></span>
                         </span>
                         <ul class="dropdownMenu pull-right">
@@ -45,65 +47,71 @@
                 <div class="widgetContent">
                     <table class="table table-striped table-hover checkbox-wrap ">
                         <thead>
-                            <tr>
-                                <th class="checkbox-head">
-                                    <label><input type="checkbox"></label>
-                                </th>
-                                <th><?php echo __('Имя'); ?></th>
-                                <th>E-Mail</th>
-                                <th><?php echo __('Сообщение'); ?></th>
-                                <th>IP</th>
-                                <th><?php echo __('Дата'); ?></th>
-                                <th><?php echo __('Статус'); ?></th>
-                                <th class="nav-column textcenter">&nbsp;</th>
-                            </tr>
+                        <tr>
+                            <th class="checkbox-head">
+                                <label><input type="checkbox"></label>
+                            </th>
+                            <th><?php echo __('Имя'); ?></th>
+                            <th>E-Mail</th>
+                            <th><?php echo __('Дата'); ?></th>
+                            <th><?php echo __('Статус'); ?></th>
+                            <th class="nav-column textcenter">&nbsp;</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ( $result as $obj ): ?>
-                                <tr data-id="<?php echo $obj->id; ?>">
-                                    <td class="checkbox-column">
-                                        <label><input type="checkbox"></label>
-                                    </td>
-                                    <td><a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"><?php echo html_entity_decode($obj->name); ?></a></td>
-                                    <td><a href="mailto:<?php echo $obj->email; ?>"><?php echo $obj->email; ?></a></td>
-                                    <td><?php echo Core\Text::limit_words( strip_tags($obj->text), 15 ); ?></td>
-                                    <td><?php echo $obj->ip; ?></td>
-                                    <td><?php echo $obj->created_at ? date( 'd.m.Y', $obj->created_at ) : '----'; ?></td>
-                                    <td width="45" valign="top" class="icon-column status-column">
-                                        <a
-                                            data-pub="<b><?php echo __('Отметить как непрочитанное'); ?></b><br><?php echo __('Прочитано'); ?>"
-                                            data-unpub="<b><?php echo __('Отметить как прочитано'); ?></b><br><?php echo __('Не прочитано'); ?>"
-                                            title="<?php echo $obj->status == 1 ? '<b>'.__('Отметить как непрочитанное').'</b><br>'.__('Прочитано') : '<b>'.__('Отметить как прочитано').'</b><br>'.__('Не прочитано'); ?>"
-                                            data-status="<?php echo $obj->status; ?>" 
-                                            data-id="<?php echo $obj->id; ?>"
-                                            href="#" 
-                                            class="setStatus bs-tooltip btn btn-xs <?php echo $obj->status == 1 ? 'btn-success' : 'btn-danger' ?>"
-                                        >
-                                            <?php if ($obj->status == 1): ?>
-                                                <i class="fa-check"></i>
-                                            <?php else: ?>
-                                                <i class="fa-dot-circle-o"></i>
-                                            <?php endif ?>
-                                        </a>
-                                    </td>
-                                    <td class="nav-column">
-                                        <ul class="table-controls">
-                                            <li>
-                                                <a class="bs-tooltip dropdownToggle" href="javascript:void(0);" title="<?php echo __('Управление'); ?>"><i class="fa-cog size14"></i></a>
-                                                <ul class="dropdownMenu pull-right">
-                                                    <li>
-                                                        <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>" title="<?php echo __('Редактировать'); ?>"><i class="fa-pencil"></i> <?php echo __('Редактировать'); ?></a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a onclick="return confirm('<?php echo __('Это действие необратимо. Продолжить?'); ?>');" href="/wezom/<?php echo Core\Route::controller(); ?>/delete/<?php echo $obj->id; ?>" title="<?php echo __('Удалить'); ?>"><i class="fa-trash-o text-danger"></i> <?php echo __('Удалить'); ?></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
+                        <?php foreach ($result as $obj): ?>
+                            <tr data-id="<?php echo $obj->id; ?>">
+                                <td class="checkbox-column">
+                                    <label><input type="checkbox"></label>
+                                </td>
+                                <td>
+                                    <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"><?php echo html_entity_decode($obj->name); ?></a>
+                                </td>
+                                <td><a href="mailto:<?php echo $obj->email; ?>"><?php echo $obj->email; ?></a></td>
+                                <td><?php echo $obj->created_at ? date('d.m.Y', $obj->created_at) : '----'; ?></td>
+                                <td width="45" valign="top" class="icon-column status-column">
+                                    <a
+                                        data-pub="<b><?php echo __('Отметить как непрочитанное'); ?></b><br><?php echo __('Прочитано'); ?>"
+                                        data-unpub="<b><?php echo __('Отметить как прочитано'); ?></b><br><?php echo __('Не прочитано'); ?>"
+                                        title="<?php echo $obj->status == 1 ? '<b>' . __('Отметить как непрочитанное') . '</b><br>' . __('Прочитано') : '<b>' . __('Отметить как прочитано') . '</b><br>' . __('Не прочитано'); ?>"
+                                        data-status="<?php echo $obj->status; ?>"
+                                        data-id="<?php echo $obj->id; ?>"
+                                        href="#"
+                                        class="setStatus bs-tooltip btn btn-xs <?php echo $obj->status == 1 ? 'btn-success' : 'btn-danger' ?>"
+                                    >
+                                        <?php if ($obj->status == 1): ?>
+                                            <i class="fa-check"></i>
+                                        <?php else: ?>
+                                            <i class="fa-dot-circle-o"></i>
+                                        <?php endif ?>
+                                    </a>
+                                </td>
+                                <td class="nav-column">
+                                    <ul class="table-controls">
+                                        <li>
+                                            <a class="bs-tooltip dropdownToggle" href="javascript:void(0);"
+                                               title="<?php echo __('Управление'); ?>"><i class="fa-cog size14"></i></a>
+                                            <ul class="dropdownMenu pull-right">
+                                                <li>
+                                                    <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"
+                                                       title="<?php echo __('Редактировать'); ?>"><i
+                                                            class="fa-pencil"></i> <?php echo __('Редактировать'); ?>
+                                                    </a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a onclick="return confirm('<?php echo __('Это действие необратимо. Продолжить?'); ?>');"
+                                                       href="/wezom/<?php echo Core\Route::controller(); ?>/delete/<?php echo $obj->id; ?>"
+                                                       title="<?php echo __('Удалить'); ?>"><i
+                                                            class="fa-trash-o text-danger"></i> <?php echo __('Удалить'); ?>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
                         </tbody>
                     </table>
                     <?php echo $pager; ?>
