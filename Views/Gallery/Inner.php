@@ -4,7 +4,7 @@
             <?php if (is_file(HOST . Core\HTML::media('images/gallery_images/main/' . $photo->image))) {
                 $image = Core\HTML::media('images/gallery_images/main/' . $photo->image);
             } else {
-                $image = Core\HTML::media('pic/no-photo.png');
+                $image = Core\HTML::media('pic/no-image.png');
             } ?>
             <span class="categoryLink" style="background-image: url('<?php echo $image; ?>');"></span>
         </div>
