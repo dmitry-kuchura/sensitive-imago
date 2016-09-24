@@ -105,22 +105,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">На главной</label>
-                        <div class="">
-                            <label class="checkerWrap-inline">
-                                <input name="on_main" value="0"
-                                       type="radio" <?php echo (!$obj->on_main OR !$obj) ? 'checked' : ''; ?>>
-                                Нет
-                            </label>
-                            <label class="checkerWrap-inline">
-                                <input name="on_main" value="1"
-                                       type="radio" <?php echo ($obj->on_main) ? 'checked' : ''; ?>>
-                                Да
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="control-label" for="f_alias">
                             Алиас
                             <i class="fa-info-circle text-info bs-tooltip nav-hint"
@@ -131,31 +115,10 @@
                                 <input id="f_alias" class="form-control translitConteiner valid" name="FORM[alias]"
                                        type="text" value="<?php echo $obj->alias; ?>"/>
                                 <span class="input-group-btn">
-                                            <button class="btn translitAction"
-                                                    type="button">Заполнить автоматически</button>
-                                        </span>
+                                        <button class="btn translitAction"
+                                                type="button">Заполнить автоматически</button>
+                                </span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Изображение</label>
-                        <div>
-                            <?php if (is_file(HOST . Core\HTML::media('images/gallery/original/' . $obj->image))): ?>
-                                <div class="contentImageView">
-                                    <img src="<?php echo Core\HTML::media('images/gallery/main/' . $obj->image); ?>"
-                                         style="max-width: 150px;">
-                                    <div class="contentImageControl">
-                                        <a class="btn btn-danger otherBtn"
-                                           href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>">
-                                            <i class="fa-remove"></i>
-                                            Удалить изображение
-                                        </a>
-                                    </div>
-                                </div>
-
-                            <?php else: ?>
-                                <input type="file" name="file"/>
-                            <?php endif ?>
                         </div>
                     </div>
                 </div>
