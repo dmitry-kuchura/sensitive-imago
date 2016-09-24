@@ -6,6 +6,7 @@ use Core\View;
 use Core\Config;
 use Core\Widgets;
 use Modules\Content\Models\Control;
+use Modules\Content\Models\Contacts;
 
 class Contact extends \Modules\Base
 {
@@ -42,13 +43,17 @@ class Contact extends \Modules\Base
         if (Config::get('error')) {
             return false;
         }
+        $regions = Contacts::getRegions();
+        var_dump($regions[0]);
+        die;
+        $branch = Contacts::getBranches();
         // Seo
         $this->_seo['h1'] = __('Региональные представительства');
         $this->_seo['title'] = __('Региональные представительства');
         $this->_seo['keywords'] = $this->current->keywords;
         $this->_seo['description'] = $this->current->description;
         // Render template
-        $this->_content = View::tpl(['obj' => $this->current], 'Contact/Region');
+        $this->_content = View::tpl(['$regions' => $regions, 'branch' => $branch], 'Contact/Region');
     }
 
 }

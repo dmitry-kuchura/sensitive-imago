@@ -10,6 +10,7 @@ use Core\Arr;
 use Core\HTTP;
 use Core\View;
 use Wezom\Modules\Contacts\Models\Regions AS Model;
+use Wezom\Modules\Contacts\Models\Region;
 
 class Regions extends \Wezom\Modules\Base
 {
@@ -27,7 +28,7 @@ class Regions extends \Wezom\Modules\Base
     function indexAction()
     {
         $result = Model::getRows(NULL, 'sort', 'ASC');
-        $region = Model::getRegion();
+        $region = Region::getRegion();
         $this->_filter = Widgets::get('Filter_Pages');
         $this->_toolbar = Widgets::get('Toolbar_List', ['add' => 1, 'delete' => 1]);
         $this->_content = View::tpl(
@@ -67,7 +68,7 @@ class Regions extends \Wezom\Modules\Base
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
         $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . (int)Route::param('id'));
-        $region = Model::getRegion();
+        $region = Region::getRegion();
         $this->_content = View::tpl(
             [
                 'region' => $region,
@@ -105,7 +106,7 @@ class Regions extends \Wezom\Modules\Base
         $this->_seo['h1'] = __('Добавление');
         $this->_seo['title'] = __('Добавление');
         $this->setBreadcrumbs(__('Добавление'), 'wezom/' . Route::controller() . '/add');
-        $region = Model::getRegion();
+        $region = Region::getRegion();
         $this->_content = View::tpl(
             [
                 'region' => $region,
