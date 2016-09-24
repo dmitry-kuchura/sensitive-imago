@@ -28,10 +28,10 @@ class Partners extends \Modules\Base
         if (!$this->current) {
             return Config::error();
         }
-        $this->setBreadcrumbs($this->current->name, 'gallery');
+        $this->setBreadcrumbs($this->current->name, 'partners');
 
         $this->page = !(int)Route::param('page') ? 1 : (int)Route::param('page');
-        $this->limit = (int)Config::get('basic.limit_photo');
+        $this->limit = (int)Config::get('basic.limit_partners');
         $this->offset = ($this->page - 1) * $this->limit;
         $this->_template = 'Text';
     }
@@ -55,7 +55,7 @@ class Partners extends \Modules\Base
         // Generate pagination
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Gallery/Photo');
+        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Partners/List');
     }
 
     public function innerAction()
@@ -79,7 +79,7 @@ class Partners extends \Modules\Base
         $this->_seo['seo_text'] = $gallery->seo_text;
         $this->setBreadcrumbs($gallery->name);
         // Render template
-        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Gallery/Inner');
+        $this->_content = View::tpl(['result' => $result, 'pager' => $pager], 'Partners/Inner');
     }
 
 }

@@ -33,4 +33,13 @@ return array(
     'wezom/video/delete/<id:[0-9]*>' => 'multimedia/video/delete',
     'wezom/video/delete_image/<id:[0-9]*>' => 'multimedia/video/deleteImage',
     'wezom/video/add' => 'multimedia/video/add',
+
+    // Partners
+    'wezom/partners' => 'multimedia/partners/index',
+    'wezom/partners/index' => 'multimedia/partners/index',
+    'wezom/partners/index/page/<page:[0-9]*>' => 'multimedia/partners/index',
+    'wezom/partners/edit/<id:[0-9]*>' => 'multimedia/partners/edit',
+    'wezom/partners/delete/<id:[0-9]*>' => 'multimedia/partners/delete',
+    'wezom/partners/delete_image/<id:[0-9]*>' => 'multimedia/partners/deleteImage',
+    'wezom/partners/add' => 'multimedia/partners/add',
 );
