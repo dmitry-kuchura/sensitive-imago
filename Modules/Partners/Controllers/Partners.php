@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Gallery\Controllers;
+namespace Modules\Partners\Controllers;
 
 use Core\HTML;
 use Core\QB\DB;
@@ -9,10 +9,10 @@ use Core\View;
 use Core\Config;
 use Core\Pager\Pager;
 use Core\Widgets;
-use Modules\Gallery\Models\Gallery AS Model;
+use Modules\Partners\Models\Partners AS Model;
 use Modules\Content\Models\Control;
 
-class Gallery extends \Modules\Base
+class Partners extends \Modules\Base
 {
 
     public $current;
@@ -65,7 +65,7 @@ class Gallery extends \Modules\Base
         }
         // Check for existence
         $gallery = Model::getGallery(Route::param('alias'), 'alias', 1);
-        $result = Model::getImage($gallery->id, 'sort', 'ASC');
+        $result = Model::getImage($gallery->id, 'sort', 'ASC', $this->limit, $this->offset);
         $count = Model::countImages($gallery->id);
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         if (!$result) {
