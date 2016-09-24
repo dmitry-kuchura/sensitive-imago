@@ -163,7 +163,13 @@ class Widgets
 
         $lang = \I18n::$lang;
 
-        $result = DB::select()->from('reviews')->where('language', '=', $lang)->where('status', '=', 1)->limit(3)->find_all();
+        $result = DB::select()
+            ->from('reviews')
+            ->where('language', '=', $lang)
+            ->where('status', '=', 1)
+            ->order_by(DB::expr('RAND()'))
+            ->limit(3)
+            ->find_all();
 
         return compact('result');
     }
@@ -173,8 +179,13 @@ class Widgets
 
         $lang = \I18n::$lang;
 
-        $result = DB::select()->from('video_reviews')->where('language', '=', $lang)->where('status', '=', 1)->limit(3)->find_all();
-
+        $result = DB::select()
+            ->from('video_reviews')
+            ->where('language', '=', $lang)
+            ->where('status', '=', 1)
+            ->order_by(DB::expr('RAND()'))
+            ->limit(3)
+            ->find_all();
         return compact('result');
     }
 
