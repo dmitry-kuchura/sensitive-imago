@@ -150,7 +150,9 @@
             </div>
             <?php if ($hide != true): ?>
                 <div class="widgetContent">
-                    <a class="btn" href="/wezom/files/<?php echo $obj->id; ?>/add"><?php echo __('Добавить файл'); ?></a>
+                    <?php if (!$count >= 1): ?>
+                        <a class="btn" href="/wezom/files/<?php echo $obj->id; ?>/add"><?php echo __('Добавить файл'); ?></a>
+                    <?php endif; ?>
                     <?php echo $files; ?>
                 </div>
             <?php else: ?>

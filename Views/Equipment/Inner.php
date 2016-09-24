@@ -35,7 +35,9 @@
     </div>
     <div class="grid__cell buttonsArray">
         <a href="<?php echo Core\HTML::link('hidden/price') ?>"
-           class="button button--primary button--in-sectionFooter _mb"><?php echo __('Узнать прайс'); ?></a>
+           data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
+           data-param='{"id": <?php echo $result->row_id; ?>}'
+           class="button button--primary button--in-sectionFooter _mb js-mfp-ajax"><?php echo __('Узнать прайс'); ?></a>
         <?php if (count($files)): ?>
             <?php foreach ($files as $file): ?>
                 <a href="<?php echo Core\HTML::media('items/' . $file->filename); ?>"
