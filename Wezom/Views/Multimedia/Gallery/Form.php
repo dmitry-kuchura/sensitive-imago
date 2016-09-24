@@ -105,22 +105,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">На главной</label>
-                        <div class="">
-                            <label class="checkerWrap-inline">
-                                <input name="on_main" value="0"
-                                       type="radio" <?php echo (!$obj->on_main OR !$obj) ? 'checked' : ''; ?>>
-                                Нет
-                            </label>
-                            <label class="checkerWrap-inline">
-                                <input name="on_main" value="1"
-                                       type="radio" <?php echo ($obj->on_main) ? 'checked' : ''; ?>>
-                                Да
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="control-label" for="f_alias">
                             Алиас
                             <i class="fa-info-circle text-info bs-tooltip nav-hint"
