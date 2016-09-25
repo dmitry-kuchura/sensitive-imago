@@ -42,6 +42,13 @@
                             <?php endif; ?>
                         </li>
                     <?php endforeach; ?>
+                    <?php if (Core\Arr::get($menu, 3, [])): ?>
+                        <?php foreach ($menu[3] AS $key => $value): ?>
+                            <li>
+                                <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
                 <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
                       class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>

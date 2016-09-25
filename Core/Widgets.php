@@ -365,7 +365,13 @@ class Widgets
             ->order_by('catalog_tree.sort', 'ASC')
             ->find_all();
 
-        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr, 'models' => $models, 'kids' => $kids];
+        $menu = [];
+        $sitemenu = CommonI18n::factory('sitemenu')->getRows(1, 'sort', 'ASC');
+        foreach ($sitemenu AS $key => $value) {
+            $menu[$value->group][] = $value;
+        }
+
+        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr, 'models' => $models, 'kids' => $kids, 'menu' => $menu];
     }
 
 

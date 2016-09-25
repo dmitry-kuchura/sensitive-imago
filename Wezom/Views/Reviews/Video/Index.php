@@ -2,14 +2,14 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widgetHeader" style="padding-bottom: 10px;">
-                <form class="widgetContent filterForm" action="/wezom/<?php echo Core\Route::controller(); ?>/index"
+                <form class="widgetContent filterForm" action="/wezom/video_review/index"
                       method="get">
                     <div class="col-md-2">
                         <label class="control-label"><?php echo __('Имя'); ?></label>
                         <div class="">
                             <div class="controls">
                                 <input name="name" class="form-control"
-                                       value="<?php echo Core\Arr::get($_GET, 'name', NULL); ?>">
+                                       value="<?php echo urldecode(Core\Arr::get($_GET, 'name', NULL)); ?>">
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <label class="control-label" style="height:19px;"></label>
                         <div class="">
                             <div class="controls">
-                                <a href="/wezom/<?php echo Core\Route::controller(); ?>/index">
+                                <a href="/wezom/video_review/index">
                                     <i class="fa-refresh"></i>
                                     <span class="hidden-xx"><?php echo __('Сбросить'); ?></span>
                                 </a>

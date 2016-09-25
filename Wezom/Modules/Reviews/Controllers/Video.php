@@ -34,8 +34,12 @@ class Video extends \Wezom\Modules\Base {
         if (isset($_GET['status']) && $_GET['status'] != '') {
             $status = Arr::get($_GET, 'status', 1);
         }
-        $count = Model::countRows($status, $date_s, $date_po);
-        $result = Model::getRows($status, $date_s, $date_po, 'id', 'DESC', $this->limit, $this->offset);
+        $name = NULL;
+        if (isset($_GET['name']) && $_GET['name'] != '') {
+            $name = urldecode(Arr::get($_GET, 'name', 1));
+        }
+        $count = Model::countRows($status, $name);
+        $result = Model::getRows($status, $name, 'id', 'DESC', $this->limit, $this->offset);
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         $this->_toolbar = Widgets::get('Toolbar_List', ['delete' => 1, 'add' => 1]);
         $this->_content = View::tpl(
@@ -53,6 +57,7 @@ class Video extends \Wezom\Modules\Base {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
+            $post['main'] = Arr::get($_POST, 'main', 0);
             if (Model::valid($post)) {
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
@@ -87,6 +92,7 @@ class Video extends \Wezom\Modules\Base {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
+            $post['main'] = Arr::get($_POST, 'main', 0);
             if (Model::valid($post)) {
                 $res = Model::insert($post);
                 if ($res) {
