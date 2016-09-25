@@ -4,13 +4,15 @@ namespace Wezom\Modules\Reviews\Models;
 
 use Core\QB\DB;
 
-class Reviews extends \Core\Common {
+class Reviews extends \Core\Common
+{
 
     public static $table = 'reviews';
     public static $filters;
     public static $rules;
 
-    public function __counstruct() {
+    public function __counstruct()
+    {
         static::$filters = array(
             'name' => array(
                 'table' => NULL,
@@ -40,16 +42,14 @@ class Reviews extends \Core\Common {
         );
     }
 
-    public static function getRows($status = NULL, $date_s = NULL, $date_po = NULL, $sort = NULL, $type = NULL, $limit = NULL, $offset = NULL, $filter = true) {
+    public static function getRows($status = NULL, $name = NULL, $sort = NULL, $type = NULL, $limit = NULL, $offset = NULL, $filter = true)
+    {
         $result = DB::select()->from(static::$table);
         if ($status !== NULL) {
             $result->where(static::$table . '.status', '=', $status);
         }
-        if ($date_s) {
-            $result->where(static::$table . '.date', '>=', $date_s);
-        }
-        if ($date_po) {
-            $result->where(static::$table . '.date', '<=', $date_po + 24 * 60 * 60 - 1);
+        if ($name) {
+            $result->where(static::$table . '.name', 'LIKE', '%' . $name . '%');
         }
         if ($filter) {
             $result = parent::setFilter($result);
@@ -71,16 +71,14 @@ class Reviews extends \Core\Common {
         return $result->find_all();
     }
 
-    public static function countRows($status = NULL, $date_s = NULL, $date_po = NULL, $filter = true) {
+    public static function countRows($status = NULL, $name = NULL, $filter = true)
+    {
         $result = DB::select(array(DB::expr('COUNT(' . static::$table . '.id)'), 'count'))->from(static::$table);
         if ($status !== NULL) {
             $result->where(static::$table . '.status', '=', $status);
         }
-        if ($date_s) {
-            $result->where(static::$table . '.date', '>=', $date_s);
-        }
-        if ($date_po) {
-            $result->where(static::$table . '.date', '<=', $date_po + 24 * 60 * 60 - 1);
+        if ($name) {
+            $result->where(static::$table . '.name', 'LIKE', '%' . $name . '%');
         }
         if ($filter) {
             $result = parent::setFilter($result);

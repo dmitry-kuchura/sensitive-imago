@@ -4,26 +4,30 @@
             <div class="widgetContent">
                 <div class="form-horizontal row-border">
                     <div class="form-actions" style="display: none;">
-                        <input class="submit btn btn-primary pull-right" type="submit" value="<?php echo __('Отправить'); ?>">
+                        <input class="submit btn btn-primary pull-right" type="submit"
+                               value="<?php echo __('Отправить'); ?>">
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label"><?php echo __('Опубликовано'); ?></label>
                         <div class="col-md-10">
                             <label class="checkerWrap-inline">
-                                <input name="status" value="0" type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>                            
+                                <input name="status" value="0"
+                                       type="radio" <?php echo (!$obj->status AND $obj) ? 'checked' : ''; ?>>
                                 <?php echo __('Нет'); ?>
                             </label>
                             <label class="checkerWrap-inline">
-                                <input name="status" value="1" type="radio" <?php echo ($obj->status OR !$obj) ? 'checked' : ''; ?>>
+                                <input name="status" value="1"
+                                       type="radio" <?php echo ($obj->status OR !$obj) ? 'checked' : ''; ?>>
                                 <?php echo __('Да'); ?>
                             </label>
                         </div>
                     </div>
                     <?php if ($obj->created_at): ?>
                         <div class="form-group">
-                            <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Дата'); ?></label>
+                            <label style="padding-top:0;"
+                                   class="col-md-2 control-label"><?php echo __('Дата'); ?></label>
                             <div class="col-md-10">
-                                <?php echo date( 'd.m.Y H:i:s', $obj->created_at ); ?>
+                                <?php echo date('d.m.Y H:i:s', $obj->created_at); ?>
                             </div>
                         </div>
                     <?php endif ?>
@@ -39,12 +43,16 @@
                             <a href="mailto:<?php echo $obj->email; ?>"><?php echo $obj->email; ?></a>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Выбраный проект'); ?></label>
-                        <div class="col-md-10">
-                            <a href="/wezom/projects/edit/<?php echo $item->row_id; ?>" target="_blank"><?php echo $item->name; ?></a>
+                    <?php if ($obj->item): ?>
+                        <div class="form-group">
+                            <label style="padding-top:0;"
+                                   class="col-md-2 control-label"><?php echo __('Выбранная модель прибора'); ?></label>
+                            <div class="col-md-10">
+                                <a href="/wezom/items/edit/<?php echo $obj->item; ?>"
+                                   target="_blank"><?php echo $item->name; ?></a>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

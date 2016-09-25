@@ -7,7 +7,7 @@
                         <label class="control-label"><?php echo __('Имя'); ?></label>
                         <div class="">
                             <div class="controls">
-                                <input name="name" class="form-control" value="<?php echo Core\Arr::get($_GET, 'name', NULL); ?>">
+                                <input name="name" class="form-control" value="<?php echo urldecode(Core\Arr::get($_GET, 'name', NULL)); ?>">
                             </div>
                         </div>
                     </div>
