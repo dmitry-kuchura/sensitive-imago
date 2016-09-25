@@ -7,7 +7,7 @@
                 if (is_file(HOST . Core\HTML::media('images/team/main/' . $doctor->image))) {
                     $image = Core\HTML::media('images/team/main/' . $doctor->image);
                 } else {
-                    $image = Core\HTML::media('pic/no-image.png');
+                    $image = Core\HTML::media('pic/no-avatar.png');
                 }
                 ?>
                 <div class="grid__cell person">
@@ -19,7 +19,8 @@
 
         </div>
         <div class="pageSection__footer">
-            <a href="<?php echo Core\HTML::link('team'); ?>" class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть всех'); ?></a>
+            <a href="<?php echo Core\HTML::link('team'); ?>"
+               class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть всех'); ?></a>
         </div>
     </div>
 </section>
