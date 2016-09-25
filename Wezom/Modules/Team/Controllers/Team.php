@@ -13,20 +13,23 @@ use Core\View;
 use Core\Pager\Pager;
 use Wezom\Modules\Team\Models\Team AS Model;
 
-class Team extends \Wezom\Modules\Base {
+class Team extends \Wezom\Modules\Base
+{
 
     public $tpl_folder = 'Team';
     public $limit;
 
-    function before() {
+    function before()
+    {
         parent::before();
         $this->_seo['h1'] = __('Наша команда');
         $this->_seo['title'] = __('Наша команда');
         $this->setBreadcrumbs(__('Наша команда'), 'wezom/' . Route::controller() . '/index');
-        $this->limit = (int) Arr::get($_GET, 'limit', Config::get('basic.limit_backend')) < 1 ? : Arr::get($_GET, 'limit', Config::get('basic.limit_backend'));
+        $this->limit = (int)Arr::get($_GET, 'limit', Config::get('basic.limit_backend')) < 1 ?: Arr::get($_GET, 'limit', Config::get('basic.limit_backend'));
     }
 
-    function indexAction() {
+    function indexAction()
+    {
         $name = NULL;
         $date_s = NULL;
         $date_po = NULL;
@@ -43,26 +46,28 @@ class Team extends \Wezom\Modules\Base {
         if (isset($_GET['status']) && $_GET['status'] != '') {
             $status = Arr::get($_GET, 'status', 1);
         }
-        $page = (int) Route::param('page') ? (int) Route::param('page') : 1;
+        $page = (int)Route::param('page') ? (int)Route::param('page') : 1;
         $count = Model::countRows($status, $date_s, $date_po, $name);
         $result = Model::getRows($status, $date_s, $date_po, 'id', 'DESC', $this->limit, ($page - 1) * $this->limit, $name);
         $pager = Pager::factory($page, $count, $this->limit)->create();
         $this->_toolbar = Widgets::get('Toolbar/List', array('add' => 1, 'delete' => 1));
         $this->_content = View::tpl(
-                        [
-                    'result' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'tablename' => Model::$table,
-                    'count' => $count,
-                    'pager' => $pager,
-                    'pageName' => $this->_seo['h1'],
-                        ], $this->tpl_folder . '/Index');
+            [
+                'result' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'tablename' => Model::$table,
+                'count' => $count,
+                'pager' => $pager,
+                'pageName' => $this->_seo['h1'],
+            ], $this->tpl_folder . '/Index');
     }
 
-    function editAction() {
+    function editAction()
+    {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
+            $post['main'] = Arr::get($_POST, 'main', 0);
             if (Model::valid($post)) {
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
@@ -86,7 +91,7 @@ class Team extends \Wezom\Modules\Base {
             }
             $result = Arr::to_object($post);
         } else {
-            $result = Model::getRow((int) Route::param('id'));
+            $result = Model::getRow((int)Route::param('id'));
         }
         $this->_toolbar = Widgets::get('Toolbar/Edit');
         $this->_seo['h1'] = __('Редактирование');
@@ -94,17 +99,19 @@ class Team extends \Wezom\Modules\Base {
         $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . Route::param('id'));
 
         $this->_content = View::tpl(
-                        [
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'languages' => $this->_languages,
-                        ], $this->tpl_folder . '/Form');
+            [
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'languages' => $this->_languages,
+            ], $this->tpl_folder . '/Form');
     }
 
-    function addAction() {
+    function addAction()
+    {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
+            $post['main'] = Arr::get($_POST, 'main', 0);
             if (Model::valid($post)) {
                 $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'));
                 $res = Model::insert($post);
@@ -136,15 +143,16 @@ class Team extends \Wezom\Modules\Base {
         $this->_seo['title'] = __('Добавление');
         $this->setBreadcrumbs(__('Добавление'), 'wezom/' . Route::controller() . '/add');
         $this->_content = View::tpl(
-                        [
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'languages' => $this->_languages,
-                        ], $this->tpl_folder . '/Form');
+            [
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'languages' => $this->_languages,
+            ], $this->tpl_folder . '/Form');
     }
 
-    function deleteAction() {
-        $id = (int) Route::param('id');
+    function deleteAction()
+    {
+        $id = (int)Route::param('id');
         $page = Model::getRowSimple($id);
         if (!$page) {
             Message::GetMessage(0, __('Данные не существуют!'));
@@ -155,8 +163,9 @@ class Team extends \Wezom\Modules\Base {
         HTTP::redirect('wezom/' . Route::controller() . '/index');
     }
 
-    function deleteImageAction() {
-        $id = (int) Route::param('id');
+    function deleteImageAction()
+    {
+        $id = (int)Route::param('id');
         $page = Model::getRowSimple($id);
         if (!$page) {
             Message::GetMessage(0, __('Данные не существуют!'));

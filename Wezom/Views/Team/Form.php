@@ -77,6 +77,19 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label"><?php echo __('На главной'); ?></label>
+                        <div class="">
+                            <label class="checkerWrap-inline">
+                                <input name="main" value="0" type="radio" <?php echo (!$obj->main AND $obj) ? 'checked' : ''; ?>>
+                                <?php echo __('Нет'); ?>
+                            </label>
+                            <label class="checkerWrap-inline">
+                                <input name="main" value="1" type="radio" <?php echo ($obj->main OR ! $obj) ? 'checked' : ''; ?>>
+                                <?php echo __('Да'); ?>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label" for="f_alias">
                             <?php echo __('Алиас'); ?>
                         </label>

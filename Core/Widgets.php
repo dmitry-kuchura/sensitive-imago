@@ -194,7 +194,14 @@ class Widgets
 
         $lang = \I18n::$lang;
 
-        $result = DB::select('team.*', 'team_i18n.*')->from('team')->join('team_i18n', 'LEFT')->on('team_i18n.row_id', '=', 'team.id')->where('team_i18n.language', '=', $lang)->where('team.status', '=', 1)->limit(5)->find_all();
+        $result = DB::select('team.*', 'team_i18n.*')
+            ->from('team')
+            ->join('team_i18n', 'LEFT')->on('team_i18n.row_id', '=', 'team.id')
+            ->where('team_i18n.language', '=', $lang)
+            ->where('team.status', '=', 1)
+            ->where('team.main', '=', 1)
+            ->limit(5)
+            ->find_all();
 
         return compact('result');
     }
