@@ -21,9 +21,9 @@ class Groups extends \Wezom\Modules\Base
     function before()
     {
         parent::before();
-        $this->_seo['h1'] = __('Группы товаров');
-        $this->_seo['title'] = __('Группы товаров');
-        $this->setBreadcrumbs(__('Группы товаров'), 'wezom/' . Route::controller() . '/index');
+        $this->_seo['h1'] = __('Список категорий');
+        $this->_seo['title'] = __('Список категорий');
+        $this->setBreadcrumbs(__('Список категорий'), 'wezom/' . Route::controller() . '/index');
     }
 
     function indexAction()

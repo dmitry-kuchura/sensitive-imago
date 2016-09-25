@@ -83,11 +83,11 @@ class Prices extends \Wezom\Modules\Base {
         } else {
             $result = Model::getRow(Route::param('id'));
         }
+        $item = DB::select()->from('catalog_i18n')->where('row_id', '=', $result->item)->and_where('language', '=', 'ru')->find();
         $this->_toolbar = Widgets::get('Toolbar_Edit', array('noAdd' => true));
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
         $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . (int) Route::param('id'));
-        $item = DB::select()->from('projects_i18n')->where('row_id', '=', $result->project)->and_where('language', '=', 'ru')->find();
         $this->_content = View::tpl(
                         [
                     'obj' => $result,
