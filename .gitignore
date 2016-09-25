@@ -11,4 +11,6 @@ Config/database.php
 Media/images/
 Plugins/I18n/*
 Media/items/
+Media/files/
 nbproject/
+Cache/TMP/*
