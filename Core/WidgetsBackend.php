@@ -72,6 +72,7 @@ class WidgetsBackend
         $counts['users'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('users')->where('status', '=', 0)->where('role_id', '=', 1)->count_all();
         $counts['admins'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('users')->where('status', '=', 0)->where('role_id', '!=', 1)->count_all();
         $counts['projects'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('projects_info')->where('status', '=', 0)->count_all();
+        $counts['prices'] = (int)DB::select(array(DB::expr('COUNT(id)'), 'count'))->from('prices')->where('status', '=', 0)->count_all();
         $counts['all_users'] = $counts['users'] + $counts['admins'];
 
         return array('result' => $arr, 'counts' => $counts);
