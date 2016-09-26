@@ -51,8 +51,6 @@
                                 </th>
                                 <th><?php echo __('Имя'); ?></th>
                                 <th>E-Mail</th>
-                                <th><?php echo __('Сообщение'); ?></th>
-                                <th>IP</th>
                                 <th><?php echo __('Дата'); ?></th>
                                 <th><?php echo __('Статус'); ?></th>
                                 <th class="nav-column textcenter">&nbsp;</th>
@@ -67,8 +65,6 @@
                                     
                                     <td><a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"><?php echo html_entity_decode($obj->name); ?></a></td>
                                     <td><a href="mailto:<?php echo $obj->email; ?>"><?php echo $obj->email; ?></a></td>
-                                    <td><?php echo Core\Text::limit_words( strip_tags($obj->text), 15 ); ?></td>
-                                    <td><?php echo $obj->ip; ?></td>
                                     <td><?php echo $obj->created_at ? date( 'd.m.Y', $obj->created_at ) : '----'; ?></td>
                                     <td width="45" valign="top" class="icon-column status-column">
                                         <a

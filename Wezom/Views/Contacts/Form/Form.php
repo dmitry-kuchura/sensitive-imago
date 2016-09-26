@@ -40,6 +40,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Город'); ?></label>
+                        <div class="col-md-10">
+                            <?php echo $obj->city; ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Тема обращения'); ?></label>
                         <div class="col-md-10">
                             <?php echo $obj->other; ?>

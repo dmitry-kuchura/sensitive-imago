@@ -53,7 +53,7 @@ class Video extends \Modules\Base
         // Get Rows
         $result = Tree::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
         // Get full count of rows
-        $count = Model::countRows(1);
+        $count = count($result);
         // Generate pagination
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
         // Render template

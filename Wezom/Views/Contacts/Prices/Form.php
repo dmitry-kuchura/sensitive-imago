@@ -43,6 +43,18 @@
                             <a href="mailto:<?php echo $obj->email; ?>"><?php echo $obj->email; ?></a>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Страна'); ?></label>
+                        <div class="col-md-10">
+                            <?php echo $obj->country; ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Город'); ?></label>
+                        <div class="col-md-10">
+                            <?php echo $obj->city; ?>
+                        </div>
+                    </div>
                     <?php if ($obj->item): ?>
                         <div class="form-group">
                             <label style="padding-top:0;"
