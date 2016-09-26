@@ -63,6 +63,16 @@
             <input class="form__input numbers_only" type="text" name="tel" data-name="tel"
                    placeholder="<?php echo __('Ваш телефон'); ?>" required data-rule-phone="true">
         </div>
+        <div class="grid__cell">
+            <input class="form__input" type="text" name="name" data-name="name"
+                   placeholder="<?php echo __('Возраст'); ?>*"
+                   data-rule-word="true" data-rule-minlength="2" required>
+        </div>
+        <div class="grid__cell">
+            <input class="form__input" type="text" name="country" data-name="country"
+                   placeholder="<?php echo __('Страна'); ?>*"
+                   data-rule-word="true" data-rule-minlength="2" required>
+        </div>
         <div class="grid__cell grid__cell--grow"></div>
         <div class="grid__cell ">
             <span class="form__label">Оцените предоставляемую услугу</span>

@@ -55,6 +55,8 @@ class Form extends \Modules\Ajax
     {
 
         $name = Arr::get($this->post, 'name');
+        $age = Arr::get($this->post, 'age');
+        $country = Arr::get($this->post, 'country');
         $tel = Arr::get($this->post, 'tel');
         $rating = Arr::get($this->post, 'rating');
         $text = Arr::get($this->post, 'text');
@@ -62,6 +64,12 @@ class Form extends \Modules\Ajax
 
         if (!$name) {
             $this->error(__('Введенное имя слишком короткое!'));
+        }
+        if (!$age) {
+            $this->error(__('Введенный возраст слишком короткий!'));
+        }
+        if (!$country) {
+            $this->error(__('Введенная страна слишком короткая!'));
         }
         if (!$tel) {
             $this->error(__('Не указан номер телефона!'));
@@ -77,6 +85,8 @@ class Form extends \Modules\Ajax
         $data['name'] = $name;
         $data['phone'] = $tel;
         $data['mark'] = $rating;
+        $data['title'] = $age;
+        $data['city'] = $country;
         $data['language'] = $lang;
         $data['text'] = $text;
         $data['ip'] = System::getRealIP();
