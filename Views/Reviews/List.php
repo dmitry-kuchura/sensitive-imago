@@ -65,12 +65,12 @@
         </div>
         <div class="grid__cell">
             <input class="form__input" type="text" name="age" data-name="age"
-                   placeholder="<?php echo __('Возраст'); ?>*"
-                   data-rule-word="true" data-rule-minlength="2" required>
+                   placeholder="<?php echo __('Возраст'); ?>*"  data-rule-minlength="2" required>
         </div>
         <div class="grid__cell">
-            <input class="form__input numbers_only" type="text" name="country" data-name="country"
-                   placeholder="<?php echo __('Страна'); ?>*" data-rule-minlength="2" required>
+            <input class="form__input" type="text" name="country" data-name="country"
+                   placeholder="<?php echo __('Страна'); ?>*"
+                   data-rule-word="true" data-rule-minlength="2" required>
         </div>
         <div class="grid__cell grid__cell--grow"></div>
         <div class="grid__cell ">
