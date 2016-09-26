@@ -64,7 +64,7 @@
                    placeholder="<?php echo __('Ваш телефон'); ?>" required data-rule-phone="true">
         </div>
         <div class="grid__cell">
-            <input class="form__input" type="text" name="name" data-name="name"
+            <input class="form__input" type="text" name="age" data-name="age"
                    placeholder="<?php echo __('Возраст'); ?>*"
                    data-rule-word="true" data-rule-minlength="2" required>
         </div>
