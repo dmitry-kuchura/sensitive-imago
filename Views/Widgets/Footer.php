@@ -70,7 +70,8 @@
                             <a class="inverseLink showContacts__link _color-white js-show-information"
                                href="#"><?php echo __('Показать контакты'); ?></a>
                             <button
-                                class="button button--inverse-white button--expand _mt"><?php echo __('Оставить заявку'); ?></button>
+                                data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
+                                class="button button--inverse-white button--expand _mt js-mfp-ajax"><?php echo __('Оставить заявку'); ?></button>
                         </div>
                     </div>
                 </div>
