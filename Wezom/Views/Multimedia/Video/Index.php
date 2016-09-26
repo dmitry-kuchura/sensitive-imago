@@ -1,6 +1,80 @@
 <div class="rowSection">
     <div class="col-md-12">
 
+        <div class="widgetHeader" style="padding-bottom: 10px;">
+            <form class="widgetContent filterForm" action="/wezom/<?php echo Core\Route::controller(); ?>/index"
+                  method="get">
+                <div class="col-md-2">
+                    <label class="control-label"><?php echo __('Наименование'); ?></label>
+                    <div class="">
+                        <div class="controls">
+                            <input name="name" class="form-control"
+                                   value="<?php echo urldecode(Core\Arr::get($_GET, 'name', NULL)); ?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label"><?php echo __('Группа'); ?></label>
+                    <div class="">
+                        <div class="controls">
+                            <select name="group" class="form-control">
+                                <option value=""><?php echo __('Все'); ?></option>
+                                <?php foreach ($groups as $group): ?>
+                                    <option value="<?php echo $group->row_id; ?>" <?php echo $group->row_id == $_GET['group'] ? 'selected' : ''; ?>><?php echo $group->name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label"><?php echo __('Статус'); ?></label>
+                    <div class="">
+                        <div class="controls">
+                            <select name="status" class="form-control">
+                                <option value=""><?php echo __('Все'); ?></option>
+                                <option
+                                    value="0" <?php echo Core\Arr::get($_GET, 'status', 2) == '0' ? 'selected' : ''; ?>><?php echo __('Неопубликованы'); ?></option>
+                                <option
+                                    value="1" <?php echo Core\Arr::get($_GET, 'status') == '1' ? 'selected' : ''; ?>><?php echo __('Опубликованы'); ?></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label"><?php echo __('Выводить по'); ?></label>
+                    <div class="">
+                        <div class="controls">
+                            <select name="limit" class="form-control">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <?php $number = $i * Core\Config::get('basic.limit_backend'); ?>
+                                    <option
+                                        value="<?php echo $number; ?>" <?php echo Core\Arr::get($_GET, 'limit', Core\Config::get('basic.limit_backend')) == $number ? 'selected' : ''; ?>><?php echo $number; ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <label class="control-label" style="height:13px;"></label>
+                    <div class="">
+                        <div class="controls">
+                            <input type="submit" class="btn btn-primary" value="<?php echo __('Подобрать'); ?>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <label class="control-label" style="height:19px;"></label>
+                    <div class="">
+                        <div class="controls">
+                            <a href="/wezom/<?php echo Core\Route::controller(); ?>/index">
+                                <i class="fa-refresh"></i>
+                                <span class="hidden-xx"><?php echo __('Сбросить'); ?></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 
         <div class="widget">
             <div class="widgetContent">
@@ -13,6 +87,7 @@
                         <th>Ссылка</th>
                         <th>Название</th>
                         <th>Изображение</th>
+                        <th>Группа</th>
                         <th>Статус</th>
                         <th class="nav-column textcenter">&nbsp;</th>
                     </tr>
@@ -48,6 +123,7 @@
                                          style="max-width: 95px;">
                                 </a>
                             </td>
+                            <td><?php echo $obj->group_name; ?></td>
                             <td width="45" valign="top" class="icon-column status-column">
                                 <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
                             </td>

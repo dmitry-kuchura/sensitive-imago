@@ -33,13 +33,28 @@ class Video extends \Wezom\Modules\Base
 
     function indexAction()
     {
+        // Filter
+        $name = NULL;
+        $group = NULL;
+        $status = NULL;
+        if (Arr::get($_GET, 'name')) {
+            $name = urldecode(Arr::get($_GET, 'name'));
+        }
+        if (Arr::get($_GET, 'group')) {
+            $group = Arr::get($_GET, 'group');
+        }
+        if (isset($_GET['status']) && $_GET['status'] != '') {
+            $status = Arr::get($_GET, 'status', 1);
+        }
         $count = Model::countRows();
-        $result = Model::getRows(NULL, 'id', 'DESC', $this->limit, $this->offset);
+        $result = Model::getRows($status, 'id', 'DESC', $this->limit, $this->offset, $name, $group);
         $this->_filter = Widgets::get('Filter_Pages');
         $this->_toolbar = Widgets::get('Toolbar_List', array('add' => 1, 'delete' => 1));
+        $groups = Model::getTree();
         $this->_content = View::tpl(array(
             'result' => $result,
             'count' => $count,
+            'groups' => $groups,
             'tpl_folder' => $this->tpl_folder,
             'tablename' => Model::$table,
         ), $this->tpl_folder . '/Index');
