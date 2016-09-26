@@ -67,7 +67,7 @@
                                     <label><input type="checkbox"></label>
                                 </th>
                                 <th><?php echo __('Имя'); ?></th>
-                                <th><?php echo __('Заголовок'); ?></th>
+                                <th><?php echo __('Возраст'); ?></th>
                                 <th><?php echo __('Город'); ?></th>
                                 <th><?php echo __('Статус'); ?></th>
                                 <th class="nav-column textcenter">&nbsp;</th>

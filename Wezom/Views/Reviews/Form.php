@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="f_title"><?php echo __('Заголовок'); ?></label>
+                        <label class="control-label" for="f_title"><?php echo __('Возраст'); ?></label>
                         <div class="">
                             <input id="f_title" class="form-control" name="FORM[title]" type="text" value="<?php echo $obj->title; ?>" />
                         </div>
