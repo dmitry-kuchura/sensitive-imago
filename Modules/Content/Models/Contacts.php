@@ -22,7 +22,7 @@ class Contacts extends \Core\CommonI18n
             ->join(static::$tableI18n, 'LEFT')->on(static::$tableI18n . '.row_id', '=', static::$table . '.id')
             ->where(static::$tableI18n . '.language', '=', $lang);
 
-        $result->order_by(static::$table . '.id', 'DESC');
+        $result->order_by(static::$table . '.sort', 'DESC');
 
         return $result->find_all();
     }
@@ -42,7 +42,7 @@ class Contacts extends \Core\CommonI18n
             ->join($tableI18n, 'LEFT')->on($tableI18n . '.row_id', '=', $table . '.id')
             ->where($tableI18n . '.language', '=', $lang);
 
-        $result->order_by($table . '.id', 'DESC');
+        $result->order_by($table . '.sort', 'DESC');
 
         return $result->find_all();
     }
