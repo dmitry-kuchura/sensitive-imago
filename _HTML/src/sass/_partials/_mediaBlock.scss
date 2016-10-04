@@ -37,14 +37,16 @@
 	&__title {
 		color: #3d3d3d;
 		font-weight: 700;
-		font-size: rem(14rem);
+		font-size: rem(14);
+
 		text-transform: uppercase;
 		overflow: hidden;
 	}
 	&__overflow{
 		display: block;
 		overflow:hidden;
-		max-height:3em;
+		line-height:rem(24);
+		max-height:rem(48);
 	}
 	&__text {
 		color: #636363;
@@ -81,8 +83,9 @@
 
 	}
 	&__textInner {
-		max-height: rem(18px * 4);
+		max-height: rem(18px * 3.9);
 		overflow: hidden;
+
 	}
 	&--inverse {
 		&:hover{
@@ -139,6 +142,7 @@
 		position: relative;
 		margin:0 auto;
 		max-width: 306px;
+		box-shadow: none !important;
 		@include media(md){
 			height:250px;
 			max-width: 450px;
@@ -203,5 +207,8 @@
 				margin-left: 0;
 			}
 		}
+	}
+	&--equipment{
+		box-shadow: none !important;
 	}
 }

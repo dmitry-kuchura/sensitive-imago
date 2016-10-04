@@ -5,7 +5,7 @@
         } else {
             $image = Core\HTML::media('pic/no-image.png');
         } ?>
-        <div class="grid__cell mediaBlock mediaBlockEquipment">
+        <div class="grid__cell mediaBlock mediaBlock--equipment">
             <a href="<?php echo Core\HTML::link('models/' . $item->alias); ?>" class="mediaBlock__image"
                style="background-image: url('<?php echo $image; ?>');"></a>
             <div class="mediaBlock__content">

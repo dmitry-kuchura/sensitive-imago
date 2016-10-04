@@ -60,14 +60,6 @@ a {
       text-decoration: none;
     }
   }
-  &[href="#"] {
-
-    &:hover{
-      cursor: not-allowed;
-      color: pink;
-      text-decoration: line-through;
-    }
-  }
 }
 b{
   color: #000;

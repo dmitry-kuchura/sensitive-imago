@@ -174,4 +174,20 @@ jQuery(document).ready(function ($) {
 
 	$('.numbers_only').ForceNumericOnly();
 
+	if ($('#scrollerUp').length) {
+		$(window).scroll(function() {
+			// показ/скрытие кнопки
+			($(this).scrollTop() > 300) && $(this).scrollTop() < ($(document).height()-$(window).height()*2)
+				? $('#scrollerUp').stop().show(300)
+				: $('#scrollerUp').stop().hide(300);
+
+		});
+		$('#scrollerUp').on('click', function() {
+			// расчет времени скролла от высоты документа и текущей позиции - контролл для варирования скорости -> множитель 1000
+			var scrollerUpSdeed = ($(document).scrollTop() / $(document).height()).toFixed(2) * 1000;
+			$('body, html').stop().animate({
+				scrollTop: 0
+			}, scrollerUpSdeed);
+		});
+	}
 });
