@@ -1,18 +1,20 @@
 <div class="wTxt">
-    <div class="modelPreviews grid mfi-gallery">
-        <div class="grid__cell grid__cell--12">
-            <a href="<?php echo Core\HTML::media('images/equipment/original/' . $result->image); ?>"
-               class="modelPreview"
-               style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $result->image); ?>');"></a>
-        </div>
-        <?php foreach ($images as $im): ?>
-            <div class="grid__cell grid__cell--4">
-                <a href="<?php echo Core\HTML::media('images/equipment/original/' . $im->image); ?>"
+    <?php if (is_file(HOST . Core\HTML::media('images/equipment/original/' . $result->image))): ?>
+        <div class="modelPreviews grid mfi-gallery">
+            <div class="grid__cell grid__cell--12">
+                <a href="<?php echo Core\HTML::media('images/equipment/original/' . $result->image); ?>"
                    class="modelPreview"
-                   style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $im->image); ?>');"></a>
+                   style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $result->image); ?>');"></a>
             </div>
-        <?php endforeach; ?>
-    </div>
+            <?php foreach ($images as $im): ?>
+                <div class="grid__cell grid__cell--4">
+                    <a href="<?php echo Core\HTML::media('images/equipment/original/' . $im->image); ?>"
+                       class="modelPreview"
+                       style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $im->image); ?>');"></a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
     <?php echo str_replace('<ol>', '<ol class="customList">', $result->text); ?>
 </div>
 <hr>
@@ -35,7 +37,8 @@
         <?php if (count($files)): ?>
             <?php foreach ($files as $file): ?>
                 <a href="<?php echo Core\HTML::media('items/' . $file->filename); ?>"
-                   class="button button--link button--in-sectionFooter"><?php echo __('Дополнительная комплектация'); ?> (<?php echo $file->filename; ?>)</a>
+                   class="button button--link button--in-sectionFooter"><?php echo __('Дополнительная комплектация'); ?>
+                    (<?php echo $file->filename; ?>)</a>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>

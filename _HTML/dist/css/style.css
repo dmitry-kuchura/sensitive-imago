@@ -2258,12 +2258,6 @@ a.inverseLink:hover {
   text-decoration: none;
 }
 
-a[href="#"]:hover {
-  cursor: not-allowed;
-  color: pink;
-  text-decoration: line-through;
-}
-
 b {
   color: #000;
 }
@@ -3387,18 +3381,18 @@ hr {
   height: 100%;
 }
 
-ul.customList {
+.wTxt ul {
   padding: 0;
 }
 
-ul.customList > li {
+.wTxt ul > li {
   display: -webkit-box;
   display: flex;
   line-height: 1em;
   margin-bottom: 1.5625rem;
 }
 
-ul.customList > li:before {
+.wTxt ul > li:before {
   content: '';
   background: url("../css/pic/customList-marker.svg") center no-repeat;
   height: 0.75rem;
@@ -3408,17 +3402,17 @@ ul.customList > li:before {
   flex-shrink: 0;
 }
 
-ul.customList > li:last-child {
+.wTxt ul > li:last-child {
   margin-bottom: 0;
 }
 
-ol.customList {
+.wTxt ol {
   padding: 0;
   counter-reset: order-list;
   list-style-type: none;
 }
 
-ol.customList > li {
+.wTxt ol > li {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: start;
@@ -3427,7 +3421,7 @@ ol.customList > li {
   margin-bottom: 0.625rem;
 }
 
-ol.customList > li:before {
+.wTxt ol > li:before {
   content: counter(order-list) "";
   counter-increment: order-list;
   font-size: 0.75em;
@@ -3937,7 +3931,8 @@ ol.customList > li:before {
 .mediaBlock__overflow {
   display: block;
   overflow: hidden;
-  max-height: 3em;
+  line-height: 1.5rem;
+  max-height: 3rem;
 }
 
 .mediaBlock__text {
@@ -3983,7 +3978,7 @@ ol.customList > li:before {
 }
 
 .mediaBlock__textInner {
-  max-height: 4.5rem;
+  max-height: 4.3875rem;
   overflow: hidden;
 }
 
@@ -4043,6 +4038,7 @@ ol.customList > li:before {
   position: relative;
   margin: 0 auto;
   max-width: 306px;
+  box-shadow: none !important;
 }
 
 @media only screen and (min-width: 769px) {
@@ -4128,6 +4124,10 @@ ol.customList > li:before {
 
 .mediaBlock--air .categoryLink__title:after {
   margin-left: 0;
+}
+
+.mediaBlock--equipment {
+  box-shadow: none !important;
 }
 
 .pageFooter {
@@ -5383,9 +5383,7 @@ ul.asideMenu > li > ul > li > ul > li:before {
 }
 
 .noUi-active {
-  box-shadow: inset 0 0 1px #FFF,
- inset 0 1px 7px #DDD,
- 0 3px 6px -3px #BBB;
+  box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #DDD, 0 3px 6px -3px #BBB;
 }
 
 /* Handle stripes;
@@ -5445,4 +5443,24 @@ ul.asideMenu > li > ul > li > ul > li:before {
 
 .is-visible {
   display: block !important;
+}
+
+.scrollerUp {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  left: 0px;
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 100;
+  border-radius: 6px 6px 0 0;
+  line-height: 50px;
+  background: #6395c4;
+  text-align: center;
+  color: #fff;
+  -webkit-transform-origin: bottom;
+  transform-origin: bottom;
+  -webkit-transform: translateX(-50%) rotate(90deg);
+  transform: translateX(-50%) rotate(90deg);
 }

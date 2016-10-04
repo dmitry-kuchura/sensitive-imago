@@ -79,3 +79,6 @@
         </div>
     </div>
 </footer>
+<div id="scrollerUp" class="scrollerUp">
+    <span>Наверх</span>
+</div>
