@@ -12,12 +12,6 @@
                    style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $im->image); ?>');"></a>
             </div>
         <?php endforeach; ?>
-        <div class="_hide">
-            <a href="images/index_new1.jpg"></a>
-            <a href="images/index_new2.jpg"></a>
-            <a href="images/index_new3.jpg"></a>
-            <a href="images/index_new4.jpg"></a>
-        </div>
     </div>
     <?php echo str_replace('<ol>', '<ol class="customList">', $result->text); ?>
 </div>

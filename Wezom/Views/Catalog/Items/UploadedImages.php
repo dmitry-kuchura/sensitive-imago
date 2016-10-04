@@ -32,7 +32,7 @@
                             <button class="btn btn-warning" alt="<?php echo __('Редактировать'); ?>" href="<?php echo \Core\General::crop('equipment', 'main', $im->image, $_SERVER['HTTP_REFERER']); ?>"><i class="fa-pencil"></i></button>
                         </div>
                         <div class="loadedCtrl loadedDelete">
-                            <button class="btn btn-danger" data-id="<?php echo $im->id; ?>" alt="Удалить"><i class="fa-remove"></i></button>
+                            <button class="btn btn-danger" data-item="<?php echo Core\Route::param('id'); ?>" data-id="<?php echo $im->id; ?>" alt="Удалить"><i class="fa-remove"></i></button>
                         </div>
                     <?php endif; ?>
                 </div>

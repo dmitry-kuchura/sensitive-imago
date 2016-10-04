@@ -47,9 +47,17 @@ class Catalog extends \Wezom\Modules\Ajax
     public function delete_catalog_photoAction()
     {
         $id = (int)Arr::get($this->post, 'id');
-        if (!$id) die('Error!');
+        if (!$id) {
+            die('Error!');
+        }
 
         $image = DB::select('image')->from('catalog_images')->where('id', '=', $id)->find()->image;
+
+        $check = DB::select('image')->from('catalog')->where('image', 'LIKE', $image)->find();
+        if ($check) {
+            DB::update('catalog')->set(['image' => NULL])->where('image', 'LIKE', $image)->execute();
+        }
+
         DB::delete('catalog_images')->where('id', '=', $id)->execute();
 
         Files::deleteImage('catalog', $image);
