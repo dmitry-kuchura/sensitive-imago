@@ -18,6 +18,3 @@
         </div>
     </section>
 <?php endif; ?>
-<?php foreach ($result as $obj): ?>
-    <?php echo $obj->svg; ?>
-<?php endforeach; ?>
