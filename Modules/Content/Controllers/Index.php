@@ -4,6 +4,7 @@ namespace Modules\Content\Controllers;
 
 use Core\Route;
 use Core\Config;
+use Core\QB\DB;
 use Core\Widgets;
 use Modules\Content\Models\Control;
 
@@ -32,12 +33,6 @@ class Index extends \Modules\Base {
         $this->_seo['description'] = $this->current->description;
         // Render template
         $this->_seo['seo_text'] = $this->current->text;
-
-        $this->_widgets['Index_Slider'] = Widgets::get('Index_Slider');
-        $this->_widgets['Index_Groups'] = Widgets::get('Index_Groups');
-        $this->_widgets['Index_NoveltyItems'] = Widgets::get('Index_NoveltyItems');
-        $this->_widgets['Index_BlackBanner'] = Widgets::get('Index_BlackBanner');
-        $this->_widgets['Index_Brands'] = Widgets::get('Index_Brands');
     }
 
 }
