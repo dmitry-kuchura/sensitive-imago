@@ -69,6 +69,7 @@
                                 <th><?php echo __('Название'); ?></th>
                                 <th><?php echo __('Фотография'); ?></th>
                                 <th><?php echo __('Статус'); ?></th>
+                                <th><?php echo __('На главной'); ?></th>
                                 <th class="nav-column textcenter">&nbsp;</th>
                             </tr>
                         </thead>
@@ -89,7 +90,10 @@
                                         <td>----</td>
                                     <?php endif; ?>    
                                     <td width="45" valign="top" class="icon-column status-column">
-                                        <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
+                                        <?php echo Core\View::widget(['status' => $obj->status, 'id' => $obj->id], 'StatusList'); ?>
+                                    </td>
+                                    <td width="45" valign="top" class="icon-column status-column">
+                                        <?php echo Core\View::widget(['main' => $obj->main, 'id' => $obj->id], 'StatusList'); ?>
                                     </td>
                                     <td class="nav-column">
                                         <ul class="table-controls">
