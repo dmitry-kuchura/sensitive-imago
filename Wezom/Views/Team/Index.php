@@ -69,7 +69,7 @@
                                 <th><?php echo __('Название'); ?></th>
                                 <th><?php echo __('Фотография'); ?></th>
                                 <th><?php echo __('Статус'); ?></th>
-                                <th><?php echo __('На главной'); ?></th>
+                                <th style="width: 75px;"><?php echo __('На главной'); ?></th>
                                 <th class="nav-column textcenter">&nbsp;</th>
                             </tr>
                         </thead>
