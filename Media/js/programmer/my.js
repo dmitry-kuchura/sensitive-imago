@@ -74,11 +74,11 @@ jQuery(document).ready(function ($) {
         position: 'bottom right',
         stack: 7
     });
-    var generate = function( message, type, time ) {
-        if(type == 'success') {
+    var generate = function (message, type, time) {
+        if (type == 'success') {
             type = 'succes';
         }
-        if(time && time != 'undefined') {
+        if (time && time != 'undefined') {
             $.wNoty.alert({
                 msg: message,
                 status: type,
@@ -93,8 +93,8 @@ jQuery(document).ready(function ($) {
         }
     };
     var mark = '<div id="cssload-loader"><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div></div>';
-    var preloader = function() {
-        if($('.wpreloader_wraper').length && $('.wpreloader_wraper').is(':visible')) {
+    var preloader = function () {
+        if ($('.wpreloader_wraper').length && $('.wpreloader_wraper').is(':visible')) {
             wPreloader.hide();
         } else {
             wPreloader.show(false, {
@@ -140,7 +140,7 @@ jQuery(document).ready(function ($) {
                     if (resp.success) {
                         if (!resp.noclear) {
                             $form.find('input').each(function () {
-                                if ($(this).attr('type') != 'hidden' && $(this).attr('type') != 'checkbox') {
+                                if ($(this).attr('type') != 'hidden' && $(this).attr('type') != 'checkbox' && $(this).attr('type') != 'radio') {
                                     $(this).val('');
                                 }
                             });
