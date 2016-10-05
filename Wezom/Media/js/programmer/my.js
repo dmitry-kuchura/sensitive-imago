@@ -184,6 +184,41 @@ $(document).ready(function(){
             }
         });
     };
+
+    var change_status = function( it, id ) {
+        var current = it.data('status');
+        var table = $('#parameters').data('table');
+        $.ajax({
+            url: '/wezom/ajax/setMain',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                id: id,
+                current: current,
+                table: table
+            },
+            success: function(data){
+                it.data('status', data.status);
+                var html;
+                if(data.status == 1) {
+                    html = '<i class="fa-check"></i>';
+                    it.removeClass('btn-danger');
+                    it.addClass('btn-success');
+                } else {
+                    html = '<i class="fa-dot-circle-o"></i>';
+                    it.removeClass('btn-success');
+                    it.addClass('btn-danger');
+                }
+                it.html(html);
+                $('.liTipContent').remove();
+                $('.bs-tooltip').each(function(){
+                    $(this).liTip();
+                });
+                it.trigger('mouseenter');
+            }
+        });
+    };
+
     $('.setStatus').on('click', function(e){
         e.preventDefault();
         var it = $(this);

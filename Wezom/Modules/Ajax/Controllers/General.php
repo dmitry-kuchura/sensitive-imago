@@ -19,15 +19,18 @@ use Core\User;
 use Core\Validation\Rules;
 use Wezom\Modules\Catalog\Models\Items;
 
-class General extends \Wezom\Modules\Ajax {
+class General extends \Wezom\Modules\Ajax
+{
 
-    public function changeLanguageAction() {
+    public function changeLanguageAction()
+    {
         $lang = Arr::get($_POST, 'lang', Config::get('i18n.default'));
         Cookie::set('backend_lang', $lang, 7 * 24 * 60 * 60);
         $this->success();
     }
 
-    public function askForReturnsAction() {
+    public function askForReturnsAction()
+    {
         $catalog_id = Arr::get($_POST, 'id');
         $item = Items::getRow($catalog_id);
         if (!$item) {
@@ -80,7 +83,8 @@ class General extends \Wezom\Modules\Ajax {
         $this->success(__('В очередь добавлено N писем!', array(':count' => $count)));
     }
 
-    public function sendNewPasswordAction() {
+    public function sendNewPasswordAction()
+    {
         $password = trim(Arr::get($_POST, 'password'));
         if (!$password) {
             $password = Text::random('alnum', 12);
@@ -107,7 +111,8 @@ class General extends \Wezom\Modules\Ajax {
         $this->success(__('Пароль успешно отправлен!'));
     }
 
-    public function sendCouponEmailAction() {
+    public function sendCouponEmailAction()
+    {
         $coupon_id = Arr::get($_POST, 'id');
         $coupon = Common::factory('coupons')->getRow($coupon_id);
         if (!$coupon) {
@@ -132,7 +137,8 @@ class General extends \Wezom\Modules\Ajax {
         $this->success(__('E-Mail успешно отправлен!'));
     }
 
-    public function generateCodeAction() {
+    public function generateCodeAction()
+    {
         $this->success(array(
             'code' => Text::random('distinct', 12),
         ));
@@ -141,30 +147,31 @@ class General extends \Wezom\Modules\Ajax {
     /**
      * Get count of orders for last 12 months
      */
-    public function ordersChartAction() {
+    public function ordersChartAction()
+    {
         $months = array(NULL, 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек');
         $month = date('n');
         $date = strtotime('01.' . Support::addZero($month) . '.' . (date('Y') - 1));
         $result = DB::select(array(DB::expr('COUNT(`id`)'), 'count'), array(DB::expr('FROM_UNIXTIME(`created_at`, "%c")'), 'month'))
-                ->from('prices')
-                ->where('created_at', '>=', $date)
-                ->order_by('created_at')
-                ->group_by(DB::expr('month'))
-                ->find_all();
+            ->from('prices')
+            ->where('created_at', '>=', $date)
+            ->order_by('created_at')
+            ->group_by(DB::expr('month'))
+            ->find_all();
         $orders = array();
         foreach ($result AS $obj) {
-            $orders[(int) $obj->month] = $obj->count;
+            $orders[(int)$obj->month] = $obj->count;
         }
         $chart = array();
         if ($month > 0) {
             for ($i = $month + 1; $i <= 12; $i++) {
                 $chart['months'][] = $months[$i] . ' ' . (date('Y') - 1);
-                $chart['count'][] = (int) Arr::get($orders, $i, 0);
+                $chart['count'][] = (int)Arr::get($orders, $i, 0);
             }
         }
         for ($i = 1; $i <= $month; $i++) {
             $chart['months'][] = $months[$i] . ' ' . date('Y');
-            $chart['count'][] = (int) Arr::get($orders, $i, 0);
+            $chart['count'][] = (int)Arr::get($orders, $i, 0);
         }
         $this->success($chart);
     }
@@ -172,7 +179,8 @@ class General extends \Wezom\Modules\Ajax {
     /**
      * Get data for visitors chart on main page
      */
-    public function visitorsMainDataAction() {
+    public function visitorsMainDataAction()
+    {
         $days = 14;
         $now = strtotime(date('d.m.Y'));
         $today = date('j');
@@ -180,7 +188,7 @@ class General extends \Wezom\Modules\Ajax {
         $year = date('Y');
         $chart = array();
         if ($today > $days) {
-            for ($i = $today - $days + 1; $i <= $today; $i ++) {
+            for ($i = $today - $days + 1; $i <= $today; $i++) {
                 $chart[Support::addZero($i) . '.' . Support::addZero($month) . '.' . $year] = array(
                     'visits' => 0,
                     'visitors' => 0,
@@ -196,7 +204,7 @@ class General extends \Wezom\Modules\Ajax {
                 $last_month = 12;
                 $last_year = $year - 1;
             }
-            for ($i = $countDays - $days2 + 1; $i <= $countDays; $i ++) {
+            for ($i = $countDays - $days2 + 1; $i <= $countDays; $i++) {
                 $chart[Support::addZero($i) . '.' . Support::addZero($last_month) . '.' . $last_year] = array(
                     'visits' => 0,
                     'visitors' => 0,
@@ -204,7 +212,7 @@ class General extends \Wezom\Modules\Ajax {
                     'unique_hits' => 0,
                 );
             }
-            for ($i = $today - $days1 + 1; $i <= $today; $i ++) {
+            for ($i = $today - $days1 + 1; $i <= $today; $i++) {
                 $chart[Support::addZero($i) . '.' . Support::addZero($month) . '.' . $year] = array(
                     'visits' => 0,
                     'visitors' => 0,
@@ -214,18 +222,18 @@ class General extends \Wezom\Modules\Ajax {
             }
         }
         $result = DB::select(array(DB::expr('COUNT(ip)'), 'visits'), 'ip', array(DB::expr('FROM_UNIXTIME(`created_at`, "%d.%m.%Y")'), 'date'))
-                ->from('visitors_hits')
-                ->where('created_at', '>=', $now - $days * 24 * 60 * 60)
-                ->group_by(DB::expr('date'))
-                ->find_all();
+            ->from('visitors_hits')
+            ->where('created_at', '>=', $now - $days * 24 * 60 * 60)
+            ->group_by(DB::expr('date'))
+            ->find_all();
         foreach ($result AS $obj) {
             $chart[$obj->date]['visits'] += $obj->visits;
         }
         $result = DB::select(array(DB::expr('COUNT(DISTINCT ip)'), 'visitors'), array(DB::expr('FROM_UNIXTIME(`created_at`, "%d.%m.%Y")'), 'date'))
-                ->from('visitors_hits')
-                ->where('created_at', '>=', $now - $days * 24 * 60 * 60)
-                ->group_by(DB::expr('date'))
-                ->find_all();
+            ->from('visitors_hits')
+            ->where('created_at', '>=', $now - $days * 24 * 60 * 60)
+            ->group_by(DB::expr('date'))
+            ->find_all();
         foreach ($result AS $obj) {
             $chart[$obj->date]['visitors'] += $obj->visitors;
         }
@@ -237,17 +245,17 @@ class General extends \Wezom\Modules\Ajax {
         }
         $chart = $result;
         $result = DB::select(array(DB::expr('COUNT(ip)'), 'hits'), array(DB::expr('COUNT(DISTINCT ip)'), 'unique'))
-                ->from('visitors_hits')
-                ->where('created_at', '>=', $now - $days * 24 * 60 * 60)
-                ->find_all();
+            ->from('visitors_hits')
+            ->where('created_at', '>=', $now - $days * 24 * 60 * 60)
+            ->find_all();
         foreach ($result AS $obj) {
             $chart['hits'] += $obj->hits;
             $chart['unique_hits'] += $obj->unique;
         }
         $result = DB::select(array(DB::expr('COUNT(ip)'), 'hits'), array(DB::expr('COUNT(DISTINCT ip)'), 'unique'))
-                ->from('visitors_hits')
-                ->where('created_at', '>=', time() - 24 * 60 * 60)
-                ->find_all();
+            ->from('visitors_hits')
+            ->where('created_at', '>=', time() - 24 * 60 * 60)
+            ->find_all();
         foreach ($result AS $obj) {
             $chart['hits_tf'] += $obj->hits;
             $chart['unique_hits_tf'] += $obj->unique;
@@ -262,7 +270,8 @@ class General extends \Wezom\Modules\Ajax {
     /**
      * Remove ALL minified files from /Media/cache folder
      */
-    public function clearMinifyCacheAction() {
+    public function clearMinifyCacheAction()
+    {
         \Minify_Core::clearCache();
         $this->success();
     }
@@ -271,7 +280,8 @@ class General extends \Wezom\Modules\Ajax {
      * Transliterate incoming string
      * $this->post['source'] => incoming string
      */
-    public function translitAction() {
+    public function translitAction()
+    {
         $this->success(array(
             'result' => Text::translit(Arr::get($this->post, 'source')),
         ));
@@ -283,11 +293,12 @@ class General extends \Wezom\Modules\Ajax {
      * $this->post['table'] => table where status will be change
      * $this->post['current'] => current status 0/1
      */
-    public function setStatusAction() {
+    public function setStatusAction()
+    {
         if (!isset($this->post['id'])) {
             die('Не указаны данные записи');
         }
-        $status = (int) Arr::get($this->post, 'current', 0);
+        $status = (int)Arr::get($this->post, 'current', 0);
         if ($status) {
             $status = 0;
         } else {
@@ -301,12 +312,32 @@ class General extends \Wezom\Modules\Ajax {
         ));
     }
 
+    public function setMainAction()
+    {
+        if (!isset($this->post['id'])) {
+            die('Не указаны данные записи');
+        }
+        $main = (int)Arr::get($this->post, 'current', 0);
+        if ($main) {
+            $main = 0;
+        } else {
+            $main = 1;
+        }
+        $id = Arr::get($this->post, 'id', 0);
+        $table = Arr::get($this->post, 'table', 0);
+        DB::update($table)->set(array('main' => $main))->where('id', '=', $id)->execute();
+        $this->success(array(
+            'status' => $main
+        ));
+    }
+
     /**
      * Delete rows from table
      * $this->post['ids'] => array with IDs of rows we want to delete
      * $this->post['table'] => table where we want to delete rows
      */
-    public function deleteMassAction() {
+    public function deleteMassAction()
+    {
         if (!isset($this->post['ids'])) {
             die(__('Не указаны данные записи'));
         }
@@ -349,11 +380,12 @@ class General extends \Wezom\Modules\Ajax {
      * $this->post['table'] => table where status will be change
      * $this->post['status'] => status we want
      */
-    public function setStatusMassAction() {
+    public function setStatusMassAction()
+    {
         if (!isset($this->post['ids'])) {
             die(__('Не указаны данные записи'));
         }
-        $status = (int) Arr::get($this->post, 'status', 0);
+        $status = (int)Arr::get($this->post, 'status', 0);
         $ids = Arr::get($this->post, 'ids', 0);
         $table = Arr::get($this->post, 'table', 0);
         if (!empty($ids)) {
@@ -369,7 +401,8 @@ class General extends \Wezom\Modules\Ajax {
      * $this->post["from"] => date from
      * $this->post["to"] => date to
      */
-    public function getURIAction() {
+    public function getURIAction()
+    {
         $uri = Arr::get($this->post, "uri");
         $date_s = Arr::get($this->post, "from");
         $date_po = Arr::get($this->post, "to");
@@ -385,12 +418,14 @@ class General extends \Wezom\Modules\Ajax {
      * $this->post['table'] => table where we want to sort rows
      * $this->post['json'] => tree with IDs in right order and depth in JSON format
      */
-    public function sortableAction() {
+    public function sortableAction()
+    {
         $table = Arr::get($this->post, 'table');
         $json = Arr::get($this->post, 'json');
         $arr = json_decode(stripslashes($json), true);
 
-        function saveSort($arr, $table, $parentID, $i = 0) {
+        function saveSort($arr, $table, $parentID, $i = 0)
+        {
             foreach ($arr AS $a) {
                 $inner = Common::checkField($table, 'parent_id');
                 if ($inner) {
@@ -423,7 +458,8 @@ class General extends \Wezom\Modules\Ajax {
      * $this->post['password'] => user password
      * $this->post['remember'] => does user want to remember his password
      */
-    public function loginAction() {
+    public function loginAction()
+    {
         $login = Arr::get($this->post, 'login');
         $password = Arr::get($this->post, 'password');
         $remember = Arr::get($this->post, 'remember');
@@ -444,8 +480,9 @@ class General extends \Wezom\Modules\Ajax {
      * $this->post['table'] => table where field will be change
      * $this->post['field'] => field to change
      */
-    public function change_fieldAction() {
-        $id = (int) Arr::get($this->post, 'id');
+    public function change_fieldAction()
+    {
+        $id = (int)Arr::get($this->post, 'id');
         $field = Arr::get($this->post, 'field');
         $table = Arr::get($this->post, 'table');
         if (!$id) {
@@ -465,7 +502,8 @@ class General extends \Wezom\Modules\Ajax {
         ));
     }
 
-    public function saveTranslationAction() {
+    public function saveTranslationAction()
+    {
         $lang = Arr::get($_POST, 'lang');
         $key = Arr::get($_POST, 'key');
         $value = Arr::get($_POST, 'value');
@@ -496,7 +534,8 @@ class General extends \Wezom\Modules\Ajax {
         )));
     }
 
-    public function addTranslationAction() {
+    public function addTranslationAction()
+    {
         $_key = Arr::get($_POST, 'key');
         $filename = Arr::get($_POST, 'filename');
         foreach ($this->_languages AS $lang) {
@@ -520,7 +559,8 @@ class General extends \Wezom\Modules\Ajax {
         )));
     }
 
-    public function saveTranslationBackendAction() {
+    public function saveTranslationBackendAction()
+    {
         $lang = Arr::get($_POST, 'lang');
         $key = Arr::get($_POST, 'key');
         $value = Arr::get($_POST, 'value');
@@ -550,7 +590,8 @@ class General extends \Wezom\Modules\Ajax {
         )));
     }
 
-    public function addTranslationBackendAction() {
+    public function addTranslationBackendAction()
+    {
         $_key = Arr::get($_POST, 'key');
         foreach (Config::get('i18n.languages') AS $lang) {
             $path = HOST . '/Plugins/I18n/TranslatesBackend/' . $lang['alias'] . '/general.php';

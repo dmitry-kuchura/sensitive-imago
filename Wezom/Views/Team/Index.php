@@ -93,7 +93,7 @@
                                         <?php echo Core\View::widget(['status' => $obj->status, 'id' => $obj->id], 'StatusList'); ?>
                                     </td>
                                     <td width="45" valign="top" class="icon-column status-column">
-                                        <?php echo Core\View::widget(['main' => $obj->main, 'id' => $obj->id], 'StatusList'); ?>
+                                        <?php echo Core\View::widget(['main' => $obj->main, 'id' => $obj->id], 'MainList'); ?>
                                     </td>
                                     <td class="nav-column">
                                         <ul class="table-controls">
