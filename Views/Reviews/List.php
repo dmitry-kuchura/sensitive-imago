@@ -77,15 +77,15 @@
             <span class="form__label">Оцените предоставляемую услугу</span>
             <div class="rating">
                 <span class="rating__stars">
-                    <input type="radio" name="rating" data-name="rating" value="5" required>
+                    <input type="radio" name="rating" data-name="rating" value="5">
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
-                    <input type="radio" name="rating" data-name="rating" value="4" required>
+                    <input type="radio" name="rating" data-name="rating" value="4">
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
-                    <input type="radio" name="rating" data-name="rating" value="3" required>
+                    <input type="radio" name="rating" data-name="rating" value="3" checked>
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
-                    <input type="radio" name="rating" data-name="rating" value="2" required>
+                    <input type="radio" name="rating" data-name="rating" value="2">
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
-                    <input type="radio" name="rating" data-name="rating" value="1" required>
+                    <input type="radio" name="rating" data-name="rating" value="1">
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
                 </span>
             </div>
