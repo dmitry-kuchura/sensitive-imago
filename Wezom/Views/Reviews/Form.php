@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="f_city"><?php echo __('Город'); ?></label>
+                        <label class="control-label" for="f_city"><?php echo __('Страна'); ?></label>
                         <div class="">
                             <input id="f_city" class="form-control" name="FORM[city]" type="text" value="<?php echo $obj->city; ?>" />
                         </div>

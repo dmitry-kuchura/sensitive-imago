@@ -166,7 +166,7 @@
                 <div id="headerSlider" class="headerSlider">
                     <?php foreach ($slider as $slide): ?>
                         <div class="headerSlider__slide"
-                             style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image) ?>');"></div>
+                             style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');"></div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>

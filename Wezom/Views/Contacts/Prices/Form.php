@@ -55,6 +55,12 @@
                             <?php echo $obj->city; ?>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label style="padding-top:0;" class="col-md-2 control-label"><?php echo __('Примечание'); ?></label>
+                        <div class="col-md-10">
+                            <?php echo $obj->other; ?>
+                        </div>
+                    </div>
                     <?php if ($obj->item): ?>
                         <div class="form-group">
                             <label style="padding-top:0;"
