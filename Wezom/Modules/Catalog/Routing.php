@@ -19,6 +19,7 @@ return [
     'wezom/features/index/page/<page:[0-9]*>' => 'catalog/features/index',
     'wezom/features/edit/<id:[0-9]*>' => 'catalog/features/edit',
     'wezom/features/delete/<id:[0-9]*>' => 'catalog/features/delete',
+    'wezom/features/delete_image/<id:[0-9]*>' => 'catalog/features/deleteImage',
     'wezom/features/add' => 'catalog/features/add',
     // Advantages
     'wezom/advan/index' => 'catalog/advan/index',
