@@ -141,4 +141,17 @@ class Mechanism extends \Wezom\Modules\Base
             HTTP::redirect('wezom/' . Route::controller() . '/index');
         }
     }
+
+    function deleteImageAction()
+    {
+        $id = (int)Route::param('id');
+        $page = Model::getRowSimple($id);
+        if (!$page) {
+            Message::GetMessage(0, __('Данные не существуют!'));
+            HTTP::redirect('wezom/' . Route::controller() . '/index');
+        }
+        Model::deleteImage($page->image, $page->id);
+        Message::GetMessage(1, __('Данные удалены!'));
+        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
+    }
 }

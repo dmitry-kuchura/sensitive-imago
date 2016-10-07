@@ -34,7 +34,7 @@ class Groups extends \Wezom\Modules\Base
             $arr[$obj->parent_id][] = $obj;
         }
         $this->_filter = Widgets::get('Filter_Pages', array('open' => 1));
-        $this->_toolbar = Widgets::get('Toolbar_List', array('add' => 1));
+        $this->_toolbar = Widgets::get('Toolbar_List', array('add' => 0));
         $this->_content = View::tpl(
             [
                 'result' => $arr,
