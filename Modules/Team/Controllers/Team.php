@@ -45,7 +45,7 @@ class Team extends \Modules\Base {
         $this->_seo['description'] = $this->current->description;
         $this->_seo['seo_text'] = $this->current->text;
         // Get Rows
-        $result = Model::getRows(1, 'id', 'DESC', $this->limit, $this->offset);
+        $result = Model::getRows(1, 'sort', 'ASC', $this->limit, $this->offset);
         // Get full count of rows
         $count = Model::countRows(1);
         // Generate pagination

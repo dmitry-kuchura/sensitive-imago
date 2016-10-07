@@ -185,7 +185,7 @@ $(document).ready(function(){
         });
     };
 
-    var change_status = function( it, id ) {
+    var change_main = function( it, id ) {
         var current = it.data('status');
         var table = $('#parameters').data('table');
         $.ajax({
@@ -229,6 +229,18 @@ $(document).ready(function(){
             id = it.closest('li').data('id');
         }
         change_status( it, id );
+    });
+
+    $('.setMain').on('click', function(e){
+        e.preventDefault();
+        var it = $(this);
+        var id;
+        if( it.attr( 'data-id' ) ) {
+            id = it.attr( 'data-id' );
+        } else {
+            id = it.closest('li').data('id');
+        }
+        change_main( it, id );
     });
 
     $('.toolbar').on('click', '.delete-items', function(e){

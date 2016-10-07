@@ -200,6 +200,7 @@ class Widgets
             ->where('team_i18n.language', '=', $lang)
             ->where('team.status', '=', 1)
             ->where('team.main', '=', 1)
+            ->order_by('sort', 'ASC')
             ->limit(5)
             ->find_all();
 

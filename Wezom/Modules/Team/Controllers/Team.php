@@ -48,7 +48,7 @@ class Team extends \Wezom\Modules\Base
         }
         $page = (int)Route::param('page') ? (int)Route::param('page') : 1;
         $count = Model::countRows($status, $date_s, $date_po, $name);
-        $result = Model::getRows($status, $date_s, $date_po, 'id', 'DESC', $this->limit, ($page - 1) * $this->limit, $name);
+        $result = Model::getRows($status, $date_s, $date_po, 'sort', 'ASC', $this->limit, ($page - 1) * $this->limit, $name);
         $pager = Pager::factory($page, $count, $this->limit)->create();
         $this->_toolbar = Widgets::get('Toolbar/List', array('add' => 1, 'delete' => 1));
         $this->_content = View::tpl(

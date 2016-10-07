@@ -82,7 +82,7 @@ class Team extends \Core\CommonI18n {
         if ($status <> NULL) {
             $result->where(static::$table . '.status', '=', $status);
         }
-        $result->order_by(static::$table . '.id', 'DESC');
+        $result->order_by(static::$table . '.sort', 'ASC');
         if ($sort <> NULL) {
             if ($type <> NULL) {
                 $result->order_by(static::$table . '.' . $sort, $type);
