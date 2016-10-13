@@ -162,15 +162,25 @@ jQuery(document).ready(function ($) {
 	}
 
 	$(window).load(function () {
+
 	});
 
 	$('.js-show-information').on('click', function (event) {
 		event.preventDefault();
 		$('.js-hidden-information').each(function (index, element) {
-			var phone = $(element).data('information');
+			var phone = $(element).attr('data-information');
 			$(element).text(phone);
+			$(element).removeAttr('data-information');
 		});
 	});
+
+	$('.js-hidden-information').on('click',function(e){
+		if($(this).attr('data-information')){
+			e.preventDefault();
+			$('.js-show-information').trigger('click');
+		}
+	});
+
 
 	$('.numbers_only').ForceNumericOnly();
 
