@@ -56,20 +56,24 @@
     <div class="grid grid--space grid--items-center">
         <div class="grid__cell">
             <input class="form__input" type="text" name="name" data-name="name"
+                   data-msg="<?php echo __('Введите корректное имя'); ?>"
                    placeholder="<?php echo __('Ваше имя'); ?>*"
                    data-rule-word="true" data-rule-minlength="2" required>
         </div>
         <div class="grid__cell">
             <input class="form__input numbers_only" type="text" name="tel" data-name="tel"
+                   data-msg="<?php echo __('Введите корректный номер телефона'); ?>"
                    placeholder="<?php echo __('Ваш телефон'); ?>" required data-rule-phone="true">
         </div>
         <div class="grid__cell">
             <input class="form__input" type="text" name="age" data-name="age"
+                   data-msg="<?php echo __('Введите корректный возраст'); ?>"
                    placeholder="<?php echo __('Возраст'); ?>*"  data-rule-minlength="2" required>
         </div>
         <div class="grid__cell">
             <input class="form__input" type="text" name="country" data-name="country"
                    placeholder="<?php echo __('Страна'); ?>*"
+                   data-msg="<?php echo __('Введите корректную страну'); ?>"
                    data-rule-word="true" data-rule-minlength="2" required>
         </div>
         <div class="grid__cell grid__cell--grow"></div>
@@ -92,6 +96,7 @@
         </div>
         <div class="grid__cell grid__cell--12">
             <textarea class="form__input form__input--textarea" type="text" data-name="text"
+                      data-msg="<?php echo __('Введите корректный комментарий'); ?>"
                       placeholder="<?php echo __('Ваш комментарий'); ?>*" required></textarea>
         </div>
         <input type="hidden" name="lang" data-name="lang" value="<?php echo \I18n::$lang; ?>">

@@ -12,6 +12,7 @@
                     <div class="form__dib">
                         <input class="form__input" type="text" name="name"
                                data-name="name"
+                               data-msg="<?php echo __('Введите корректное имя'); ?>"
                                placeholder="<?php echo __('Пример: Иванов Иван'); ?>"
                                data-rule-word="true"
                                data-rule-minlength="2" required>
@@ -22,6 +23,7 @@
                     <div class="form__dib">
                         <input class="form__input" type="text" name="city"
                                data-name="city"
+                               data-msg="<?php echo __('Введите корректный город'); ?>"
                                placeholder="<?php echo __('Пример: Киев'); ?>"
                                required data-rule-word="true">
                     </div>
@@ -31,6 +33,7 @@
                     <div class="form__dib">
                         <input class="form__input" id="demo_equalTo_email" type="email" name="email"
                                data-name="email"
+                               data-msg="<?php echo __('Укажите корректный email'); ?>"
                                placeholder="<?php echo __('Пример: myemail@mail.com'); ?>" required
                                data-rule-email="true">
                     </div>
@@ -40,6 +43,7 @@
                     <div class="form__dib">
                         <textarea class="form__input--textarea"
                                   data-name="other"
+                                  data-msg="<?php echo __('Примечание должно быть длиннее 10 символов'); ?>"
                                   placeholder="<?php echo __('Введите ваши примечания'); ?>"
                                   data-rule-minlength="10" required></textarea>
                     </div>
