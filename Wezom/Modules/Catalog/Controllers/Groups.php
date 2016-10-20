@@ -51,7 +51,6 @@ class Groups extends \Wezom\Modules\Base
             $post['status'] = Arr::get($_POST, 'status', 0);
             $post['param'] = Arr::get($_POST, 'param', 0);
             if (Model::valid($post)) {
-                $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'), Route::param('id'));
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
                     Model::uploadImage(Route::param('id'));
@@ -84,7 +83,6 @@ class Groups extends \Wezom\Modules\Base
             $post['status'] = Arr::get($_POST, 'status', 0);
             $post['param'] = Arr::get($_POST, 'param', 0);
             if (Model::valid($post)) {
-                $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'));
                 $res = Model::insert($post);
                 if ($res) {
                     Model::uploadImage($res);

@@ -12,7 +12,7 @@
                 $link = Core\HTML::link('equipment/' . $obj->alias);
                 break;
             case '1':
-                $link = Core\HTML::link($obj->alias);
+                $link = $obj->alias;
                 break;
         } ?>
         <div class="grid__cell">
