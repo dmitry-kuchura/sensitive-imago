@@ -144,6 +144,7 @@ class Video extends \Wezom\Modules\Base
             Message::GetMessage(0, 'Данные не существуют!');
             HTTP::redirect('wezom/' . Route::controller() . '/index');
         }
+        Model::delete($id);
         Message::GetMessage(1, 'Данные удалены!');
         HTTP::redirect('wezom/' . Route::controller() . '/index');
     }
