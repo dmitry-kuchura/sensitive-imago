@@ -8,12 +8,12 @@
         }
         ?>
         <div class="grid__cell">
-            <a href="#" class="person">
+            <span href="#" class="person">
                 <div class="person__image"
                      style="background-image: url('<?php echo $image; ?>');"></div>
                 <div class="person__name"><?php echo $obj->name; ?></div>
                 <div class="person__position"><?php echo $obj->position; ?></div>
-            </a>
+            </span>
         </div>
     <?php endforeach; ?>
 </div>
