@@ -168,10 +168,6 @@
                 Message::GetMessage(0, __('Данные не существуют!'));
                 HTTP::redirect('wezom/'.Route::controller().'/index');
             }
-            $images = Images::getRows($id);
-            foreach ( $images AS $im ) {
-                Images::deleteImage($im->image);
-            }
             Model::delete($id);
             Message::GetMessage(1, __('Данные удалены!'));
             HTTP::redirect('wezom/'.Route::controller().'/index');

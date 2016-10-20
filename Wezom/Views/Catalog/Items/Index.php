@@ -109,9 +109,6 @@
                                                 <a title="<?php echo __('Управление'); ?>" class="bs-tooltip dropdownToggle" href="javascript:void(0);"><i class="fa-cog size14"></i></a>
                                                 <ul class="dropdownMenu pull-right">
                                                     <li>
-                                                        <a data-id="<?php echo $obj->id; ?>" class="askForReturns" title="<?php echo __('Отправить письма пользователям с оповещением о появлении товара на складе'); ?>" href="#"><i class="fa-envelope-o"></i> <?php echo __('Сообщить о наличии'); ?></a>
-                                                    </li>
-                                                    <li>
                                                         <a title="<?php echo __('Редактировать'); ?>" href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>"><i class="fa-pencil"></i> <?php echo __('Редактировать'); ?></a>
                                                     </li>
                                                     <li class="divider"></li>
