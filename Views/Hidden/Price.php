@@ -64,14 +64,15 @@
                                   data-rule-minlength="10" required></textarea>
                     </div>
                 </div>
-<!--                <div class="grid__cell">-->
-<!--                    <label for=""-->
-<!--                           class="description_range">--><?php //echo __('Перетащите ползунок, если Вы не робот'); ?><!--</label>-->
-<!--                    <!--<input type="text" id="slider-toggle">-->-->
-<!--                    <div class="form__dib">-->
-<!--                        <div id="slider-connect" class="range-slider"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <?php /*
+                <div class="grid__cell">
+                    <label for=""
+                           class="description_range"><?php echo __('Перетащите ползунок, если Вы не робот'); ?></label>
+                    <!--<input type="text" id="slider-toggle">-->
+                    <div class="form__dib">
+                        <div id="slider-connect" class="range-slider"></div>
+                    </div>
+                </div> */ ?>
                 <?php if(array_key_exists('token', $_SESSION)): ?>
                     <input type="hidden" data-name="token" value="<?php echo $_SESSION['token']; ?>" />
                 <?php endif; ?>
