@@ -153,7 +153,7 @@ class Form extends \Modules\Ajax
             $this->error(__('Email не соотвествует подтверждению, либо введен не корректно!'));
         }
 
-        $check = DB::select([DB::expr('COUNT(prices.id)'), 'count'])->from('prices')->where('ip', '=', ASystem::getRealIP())->where('created_at', '>', time() - 60)->as_object()->execute()->current();
+        $check = DB::select([DB::expr('COUNT(prices.id)'), 'count'])->from('prices')->where('ip', '=', System::getRealIP())->where('created_at', '>', time() - 60)->as_object()->execute()->current();
         if (is_object($check) AND $check->count) {
             $this->error(__('Частая отправка сообщений'));
         }

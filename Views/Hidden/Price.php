@@ -16,7 +16,7 @@
                         <input class="form__input" type="text" data-name="name" name="name"
                                data-msg="<?php echo __('Введите корректное имя'); ?>"
                                placeholder="<?php echo __('Пример: Иванов Иван'); ?>" data-rule-word="true"
-                               data-rule-minlength="2" required>
+                               data-rule-minlength="2">
                     </div>
                 </div>
                 <div class="grid__cell">
@@ -61,7 +61,7 @@
                         <textarea class="form__input--textarea" data-name="text"
                                   data-msg="<?php echo __('Примечание должно быть длиннее 10 символов'); ?>"
                                   placeholder="<?php echo __('Введите ваши примечания'); ?>"
-                                  data-rule-minlength="10" required></textarea>
+                                  data-rule-minlength="10"></textarea>
                     </div>
                 </div>
                 <?php /*
