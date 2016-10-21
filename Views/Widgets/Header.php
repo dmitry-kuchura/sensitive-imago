@@ -131,31 +131,13 @@
                     </div>
                     <div class="grid__cell">
                         <div class="languageLinks">
-                            <a href="<?php echo Core\HTML::changeLanguage('sp'); ?>" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-spa.jpg'); ?>');"></div>
-                                <span class="languageLink__text">spa</span>
-                            </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('fr'); ?>" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-fra.jpg'); ?>');"></div>
-                                <span class="languageLink__text">fra</span>
-                            </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('ru'); ?>" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-ru.jpg'); ?>');"></div>
-                                <span class="languageLink__text">ru</span>
-                            </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('en'); ?>" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-eng.jpg'); ?>');"></div>
-                                <span class="languageLink__text">eng</span>
-                            </a>
-                            <a href="<?php echo Core\HTML::changeLanguage('de'); ?>" class="languageLink">
-                                <div class="languageLink__icon"
-                                     style="background-image: url('<?php echo Core\HTML::media('pic/flag-deu.jpg'); ?>');"></div>
-                                <span class="languageLink__text">deu</span>
-                            </a>
+                            <?php foreach ($languages as $lang): ?>
+                                <a href="<?php echo Core\HTML::changeLanguage($lang->alias); ?>" class="languageLink">
+                                    <div class="languageLink__icon"
+                                         style="background-image: url('<?php echo Core\HTML::media('pic/flag-'. $lang->text .'.jpg'); ?>');"></div>
+                                    <span class="languageLink__text"><?php echo $lang->text; ?></span>
+                                </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

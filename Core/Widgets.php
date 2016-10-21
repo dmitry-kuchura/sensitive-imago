@@ -94,6 +94,7 @@ class Widgets
                 static::$_menu[$value->group][] = $value;
             }
         }
+        $languages = Common::factory('i18n')->getRows(1, 'sort', 'ASC');
 
         $result = Common::factory('slider')->getRows(1, 'sort', 'ASC');
         $slider = [];
@@ -103,7 +104,7 @@ class Widgets
             }
         }
 
-        return ['menu' => static::$_menu, 'slider' => $slider];
+        return ['menu' => static::$_menu, 'slider' => $slider, 'languages' => $languages];
     }
 
     public function Footer()
