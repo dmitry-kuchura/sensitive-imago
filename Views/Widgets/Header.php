@@ -162,14 +162,12 @@
             </div>
         </div>
         <div class="pageHeader__main" style="background-image: url('<?php echo Core\HTML::media('css/pic/header-bg.jpg'); ?>');">
-            <?php if (Core\Route::controller() == 'index'): ?>
                 <div id="headerSlider" class="headerSlider">
                     <?php foreach ($slider as $slide): ?>
                         <div class="headerSlider__slide"
                              style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');"></div>
                     <?php endforeach; ?>
                 </div>
-            <?php endif; ?>
 
             <div class="pageSize">
                 <div class="grid grid--justify-around grid--lg-justify-between">
@@ -177,7 +175,7 @@
                         <a href="<?php echo Core\HTML::link(); ?>" class="logo">
                             <div class="logo__image">
                                 <svg>
-                                    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo'); ?>"></use>
+                                    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#logo', null, false); ?>"></use>
                                 </svg>
                             </div>
                             <div class="logo__text">
