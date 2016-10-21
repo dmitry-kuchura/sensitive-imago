@@ -1,7 +1,7 @@
 <?php
-
+use Core\HTML;
 return [
-    'watermark' => \Core\HTML::media('images/watermark.png'),
+    'watermark' => HTML::media('pic/watermark.png'),
     'types' => [
         'jpg', 'jpeg', 'png', 'gif',
     ],
@@ -12,6 +12,7 @@ return [
             'height' => 720,
             'resize' => 1,
             'crop' => 1,
+            'watermark' => 1
         ],
         [
             'path' => 'main',
@@ -19,6 +20,7 @@ return [
             'height' => 440,
             'resize' => 1,
             'crop' => 1,
+            'watermark' => 1
         ],
     ],
     'team' => [
@@ -100,6 +102,7 @@ return [
             'height' => 201,
             'resize' => 1,
             'crop' => 1,
+            'watermark' => 1
         ],
     ],
     'features' => [

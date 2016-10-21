@@ -12,8 +12,6 @@ class WidgetsBackend
     public $_data = array(); // Array of called widgets
     public $_tree = array(); // Only for catalog menus on footer and header. Minus one query
 
-    // Instance method
-
     static function factory()
     {
         if (self::$_instance == NULL) {

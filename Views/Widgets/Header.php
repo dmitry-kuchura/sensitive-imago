@@ -144,12 +144,12 @@
             </div>
         </div>
         <div class="pageHeader__main" style="background-image: url('<?php echo Core\HTML::media('css/pic/header-bg.jpg'); ?>');">
-                <div id="headerSlider" class="headerSlider">
-                    <?php foreach ($slider as $slide): ?>
-                        <div class="headerSlider__slide"
-                             style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');"></div>
-                    <?php endforeach; ?>
-                </div>
+            <div id="headerSlider" class="headerSlider">
+                <?php foreach ($slider as $slide): ?>
+                    <div class="headerSlider__slide"
+                         style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');"></div>
+                <?php endforeach; ?>
+            </div>
 
             <div class="pageSize">
                 <div class="grid grid--justify-around grid--lg-justify-between">
