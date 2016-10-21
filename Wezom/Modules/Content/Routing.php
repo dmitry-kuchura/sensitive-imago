@@ -1,5 +1,4 @@
 <?php
-
 return [
     // System pages
     'wezom/control/index' => 'content/control/index',
@@ -38,4 +37,9 @@ return [
     'wezom/category/edit/<id:[0-9]*>' => 'content/category/edit',
     'wezom/category/delete/<id:[0-9]*>' => 'content/category/delete',
     'wezom/category/add' => 'content/category/add',
+    // Language
+    'wezom/langs' => 'content/langs/index',
+    'wezom/langs/index' => 'content/langs/index',
+    'wezom/langs/index/page/<page:[0-9]*>' => 'content/langs/index',
+
 ];
