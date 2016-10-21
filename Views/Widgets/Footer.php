@@ -25,7 +25,7 @@
                         <div class="columnContent">
                             <?php if (Core\Arr::get($menu, 1, [])): ?>
                                 <ul>
-                                    <?php foreach ($menu[2] AS $key => $value): ?>
+                                    <?php foreach ($menu[1] AS $key => $value): ?>
                                         <li>
                                             <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
                                         </li>
