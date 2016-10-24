@@ -17,10 +17,10 @@
                             <?php if ($obj->alias == 'models'): ?>
                                 <ul>
                                     <?php foreach ($models as $model): ?>
-                                        <li><a href="<?php echo Core\HTML::link('models/' . $model->alias); ?>"><?php echo $model->name; ?></a></li>
+                                        <li <?php echo Core\Route::param('alias') == $model->alias ? 'is-active' : ''; ?>><a href="<?php echo Core\HTML::link('models/' . $model->alias); ?>"><?php echo $model->name; ?></a></li>
                                     <?php endforeach; ?>
                                     <?php foreach ($kids as $kid): ?>
-                                        <li><a href="<?php echo Core\HTML::link($kid->alias); ?>"><?php echo $kid->name; ?></a></li>
+                                        <li <?php echo Core\Route::param('alias') == $kid->alias ? 'is-active' : ''; ?>><a href="<?php echo Core\HTML::link($kid->alias); ?>"><?php echo $kid->name; ?></a></li>
                                     <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
