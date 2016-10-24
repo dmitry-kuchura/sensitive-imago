@@ -188,13 +188,11 @@
                                                 </svg>
                                             </div>
                                             <div class="contactItem__value">
-                                                <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>
-                                                    <span
+                                                <a href="tel:<?php echo Core\Config::get('contacts.phone_1'); ?>"><span><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?></span><span
                                                         class="js-hidden-information"
                                                         data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span></a>
                                                 <br>
-                                                <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>
-                                                    <span
+                                                <a href="tel:<?php echo Core\Config::get('contacts.phone_2'); ?>"><span><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?></span><span
                                                         class="js-hidden-information"
                                                         data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span></a>
                                             </div>
