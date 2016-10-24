@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Content\Controllers;
 
+use Modules\Base;
 use Core\Route;
 use Core\View;
 use Core\Config;
@@ -10,21 +11,19 @@ use Core\CommonI18n as Common;
 use Modules\Content\Models\Content AS Model;
 use Modules\Content\Models\Control;
 
-class Content extends \Modules\Base
+class Content extends Base
 {
 
     public function indexAction()
     {
-        $simple = true;
         $page = Model::getRowSimple(Route::param('alias'), 'alias', 1);
         if (!$page) {
-            $simple = false;
             $page = Control::getRowSimple(Route::param('alias'), 'alias', 1);
             if (!$page) {
                 return Config::error();
             }
         }
-        // Layot
+
         $this->_template = 'Text';
         // Seo
         $this->_seo['h1'] = $page->h1 ? $page->h1 : $page->name;
@@ -52,7 +51,9 @@ class Content extends \Modules\Base
                 break;
         }
 
-        $this->_content = View::tpl(['text' => $page->text, 'slider' => $slider], $template);
+        $kids = Model::getKids($page->id);
+
+        $this->_content = View::tpl(['text' => $page->text, 'slider' => $slider, 'kids' => $kids], $template);
     }
 
 }

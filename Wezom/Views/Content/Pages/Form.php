@@ -96,6 +96,41 @@
                     </div>
                 </div>
             </div>
+            <div class="widgetHeader myWidgetHeader">
+                <div class="widgetTitle">
+                    <i class="fa-reorder"></i>
+                    <?php echo __('Изображение'); ?>
+                </div>
+            </div>
+            <div class="widgetContent">
+                <div class="form-vertical row-border">
+                    <div class="form-group">
+                        <label class="control-label"><?php echo __('Изображение'); ?></label>
+                        <div class="">
+                            <?php if (is_file(HOST . Core\HTML::media('images/content/original/' . $obj->image))): ?>
+                                <a href="<?php echo Core\HTML::media('images/content/original/' . $obj->image); ?>" rel="lightbox">
+                                    <img src="<?php echo Core\HTML::media('images/content/main/' . $obj->image); ?>" style="max-height: 100px;" />
+                                </a>
+                                <br >
+                                <div class="contentImageControl">
+                                    <a class="btn btn-danger otherBtn"
+                                       href="/wezom/<?php echo Core\Route::controller(); ?>/delete_image/<?php echo $obj->id; ?>">
+                                        <i class="fa-remove"></i>
+                                        <?php echo __('Удалить изображение'); ?>
+                                    </a>
+                                    <a class="btn btn-info otherBtn"
+                                       href="<?php echo \Core\General::crop('content', 'main', $obj->image); ?>">
+                                        <i class="fa-edit"></i>
+                                        <?php echo __('Редактировать изображение'); ?>
+                                    </a>
+                                </div>
+                            <?php else: ?>
+                                <input type="file" name="file" />
+                            <?php endif ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="pageInfo alert alert-info">
                 <div class="rowSection">

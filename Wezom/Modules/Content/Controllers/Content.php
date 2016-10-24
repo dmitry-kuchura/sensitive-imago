@@ -47,6 +47,7 @@ class Content extends \Wezom\Modules\Base {
                 $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'), Route::param('id'));
                 $res = Model::update($post, Route::param('id'));
                 if ($res) {
+                    Model::uploadImage(Route::param('id'));
                     Message::GetMessage(1, __('Вы успешно изменили данные!'));
                     if(Arr::get($_POST, 'button', 'save') == 'save-close') {
                         HTTP::redirect('wezom/'.Route::controller().'/index');
@@ -86,6 +87,7 @@ class Content extends \Wezom\Modules\Base {
                 $post['alias'] = Model::getUniqueAlias(Arr::get($post, 'alias'));
                 $res = Model::insert($post);
                 if($res) {
+                    Model::uploadImage($res);
                     Message::GetMessage(1, __('Вы успешно добавили данные!'));
                     if(Arr::get($_POST, 'button', 'save') == 'save-close') {
                         HTTP::redirect('wezom/'.Route::controller().'/index');
@@ -128,5 +130,17 @@ class Content extends \Wezom\Modules\Base {
         Model::delete($id);
         Message::GetMessage(1, __('Данные удалены!'));
         HTTP::redirect('wezom/'.Route::controller().'/index');
+    }
+
+    function deleteImageAction() {
+        $id = (int) Route::param('id');
+        $page = Model::getRowSimple($id);
+        if (!$page) {
+            Message::GetMessage(0, __('Данные не существуют!'));
+            HTTP::redirect('wezom/' . Route::controller() . '/index');
+        }
+        Model::deleteImage($page->image, $id);
+        Message::GetMessage(1, __('Данные удалены!'));
+        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
     }
 }
