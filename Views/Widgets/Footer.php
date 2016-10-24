@@ -1,7 +1,7 @@
 <footer class="pageFooter">
     <div class="pageSize">
         <div class="grid grid--justify-around grid--xl-justify-between">
-            <div class="grid__cell _mr-x2 _mb-x2">
+            <div class="grid__cell _mr _mb-x2">
                 <a href="<?php echo Core\HTML::link(); ?>" class="logo__link">
                     <div class="logo logo--small">
                         <div class="logo__image">
@@ -48,23 +48,22 @@
                         <div class="columnCaption"><?php echo __('Наши контакты'); ?></div>
                         <div class="columnContent">
                             <?php if (\I18n::$lang == 'ru'): ?>
-                                <a href="tel:<?php echo Core\Config::get('contacts.phone_1'); ?>"><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?><span
-                                        class="js-hidden-information"
-                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span>
+                                <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_1'); ?>">
+                                    <span><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?></span><span  data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span>
                                 </a>
                                 <br>
-                                <a href="tel:<?php echo Core\Config::get('contacts.phone_2'); ?>"><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?><span
-                                        class="js-hidden-information"
-                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span>
+                                <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_2'); ?>">
+                                    <span><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?></span><span  data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span>
                                 </a>
                             <?php endif; ?>
                             <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
-                            <a href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
-                                    class="js-hidden-information"
-                                    data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
+                            <a class="js-hidden-information" href="mailto:XXXXXX@<?php echo $mail[1]; ?>">
+                                <span data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
                             </a><br>
-                            Skype: <span class="js-hidden-information"
-                                         data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span><br>
+                            <a class="js-hidden-information"  href="skype:<?php echo Core\Config::get('contacts.skype'); ?>?call">
+                            Skype: <span data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span>
+                            </a>
+                            <br>
                             <a class="inverseLink showContacts__link _color-white js-show-information"
                                href="#"><?php echo __('Показать контакты'); ?></a>
                             <button
@@ -77,6 +76,4 @@
         </div>
     </div>
 </footer>
-<div id="scrollerUp" class="scrollerUp">
-    <span>Наверх</span>
-</div>
+<div id="scrollerUp" class="scrollerUp"></div>

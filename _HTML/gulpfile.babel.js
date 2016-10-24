@@ -615,7 +615,7 @@
 	 */
 		lazyRequireTask('sass:files', './tasks/sass', {
 			src: './src/sass/*.scss',
-			dest: './dist/css',
+			dest: '../Media/css/',
 			watch: [
 				'./src/sass/*.scss',
 				'./src/sass/_mixins/**/*.scss',

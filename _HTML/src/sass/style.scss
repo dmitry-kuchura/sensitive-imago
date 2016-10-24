@@ -492,19 +492,43 @@
 	display: block !important;
 }
 .scrollerUp {
+	font-size: 0;
 	display: none;
 	position: fixed;
-	bottom: 100px;
-	left:0px;
-	width: 80px;
-	height: 40px;
+	bottom: 20px;
+	right: 20px;
+	width: 60px;
+	height: 60px;
 	cursor: pointer;
 	z-index: 100;
-	border-radius: 6px 6px 0 0;
+	border-radius: 6px;
 	line-height: 50px;
 	background: #6395c4;
-	text-align: center;
 	color: #fff;
-	transform-origin: bottom;
 	transform: translateX(-50%) rotate(90deg);
+	border:1px solid #6395c4;
+	&:after{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom:0;
+		left: 0;
+		margin: auto;
+		height: 50%;
+		width: 50%;
+		transform-origin: center;
+		border-top: 3px solid #fff;
+		border-left: 3px solid #fff;
+		transform:rotate(-45deg) translate(20%,20%)  ;
+		transition: transform .2s;
+	}
+	&:hover{
+		background: #fff;
+		&:after{
+			border-color: #6395c4;
+		}
+	}
+
 }

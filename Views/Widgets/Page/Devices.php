@@ -28,6 +28,12 @@
                 </div>
             <?php endforeach; ?>
         </div>
+        <div class="pageSection__footer">
+            <a
+                href="<?php echo Core\HTML::link('equipment/models'); ?>"
+                class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?>
+            </a>
+        </div>
         <hr>
         <div class="grid grid--justify-center grid--md-justify-between grid--items-end">
             <div class="grid__cell grid__cell--grow grid__cell--sm-nogrow">
@@ -41,8 +47,7 @@
                 </div>
             </div>
             <div class="grid__cell">
-                <a href="<?php echo Core\HTML::link('equipment/models'); ?>"
-                   class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?></a>
+
             </div>
         </div>
     </div>
