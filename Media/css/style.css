@@ -5506,3 +5506,66 @@ ul.asideMenu > li > ul > li > ul > li:before {
 .scrollerUp:hover:after {
   border-color: #6395c4;
 }
+
+.slider-wrapper {
+  position: relative;
+}
+
+.slider-arrow {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 100%;
+  z-index: 1;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.slider-arrow:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 20px;
+  width: 20px;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  border-top: 3px solid #6395c4;
+  border-left: 3px solid #6395c4;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+}
+
+.slider-arrow:hover {
+  background: #fff;
+  border-color: #6395c4;
+}
+
+.slider-arrow:hover:after {
+  border-right-color: #fff;
+}
+
+.slider-arrow--prev {
+  right: 40px;
+}
+
+.slider-arrow--prev:after {
+  -webkit-transform: rotate(-45deg) translate(15%, 15%);
+  transform: rotate(-45deg) translate(15%, 15%);
+}
+
+.slider-arrow--next {
+  right: 0px;
+}
+
+.slider-arrow--next:after {
+  -webkit-transform: rotate(135deg) translate(15%, 15%);
+  transform: rotate(135deg) translate(15%, 15%);
+}

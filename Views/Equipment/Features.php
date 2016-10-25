@@ -1,5 +1,8 @@
 <?php if (count($kids)): ?>
-    <div id="slider_else_universal" class="slider_else_universal">
+<div class="slider-wrapper" id="slider_else_universal" data-duration="500">
+    <div class="slider-arrow slider-arrow--prev"></div>
+    <div class="slider-arrow slider-arrow--next"></div>
+    <div  class="slider_else_universal">
         <?php foreach ($kids as $kid): ?>
             <?php
             if (is_file(HOST . Core\HTML::media('images/features/main/' . $kid->image))) {
@@ -17,6 +20,8 @@
             </div>
         <?php endforeach; ?>
     </div>
+</div>
+
 <?php endif; ?>
 
 <div class="wTxt"><?php echo $result->text; ?></div>
