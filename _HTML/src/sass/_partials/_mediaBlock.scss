@@ -10,6 +10,7 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
+		flex-grow: 1;
 	}
 	&__image {
 		display: block;

@@ -14,9 +14,10 @@
                         data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
                 </a>
             </div>
-            <span>Skype:</span>
-            <span class="js-hidden-information"
-                  data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span>
+            <a class="js-hidden-information" href="skype:<?php echo Core\Config::get('contacts.skype'); ?>?call">
+                <span>Skype:</span>
+                <span data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span>
+            </a>
             <br>
             <a href="#" class="js-show-information"><?php echo __('Показать контакты'); ?></a>
         </div>
@@ -24,15 +25,11 @@
     <div class="grid__cell grid__cell--contacts grid__cell--grow">
         <div class="contactColumn__caption"><?php echo __('Телефоны'); ?></div>
         <div class="contactItem__value contactColumn__content">
-            <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?>
-                <span
-                    class="js-hidden-information"
-                    data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span></a>
+            <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_1') ?>">
+                <span><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?></span><span data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span></a>
             <br>
-            <a href="tel:<?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>XX-XX"><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?>
-                <span
-                    class="js-hidden-information"
-                    data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span></a>
+            <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_2') ?>">
+                <span><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?></span><span data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span></a>
             <br>
             <a href="#" class="js-show-information"><?php echo __('Показать контакты'); ?></a>
         </div>

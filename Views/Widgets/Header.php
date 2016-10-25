@@ -69,31 +69,39 @@
                     <div class="dropdown__content dropdown__content--wide dropdown__content--right">
                         <div class="contactItem">
                             <div class="contactItem__key">Skype:</div>
-                            <div class="contactItem__value"></div>
-                        </div>
-                        <div class="contactItem">
-                            <div class="contactItem__key">
-                                <svg>
-                                    <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
-                                </svg>
-                            </div>
-                            <div class="contactItem__value">
-                                <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information"
-                                                                                      data-information="12-34">XX-XX</span></a>
-                                <br>
-                                <a href="tel:+38 (050) 227-XX-XX">+38 (050) 227-<span class="js-hidden-information"
-                                                                                      data-information="12-34">XX-XX</span></a>
+                            <div class="contactItem__value js-hidden-information">
+                                <span data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span>
                             </div>
                         </div>
+                        <?php if (\I18n::$lang == 'ru'): ?>
+                            <div class="contactItem">
+                                <div class="contactItem__key">
+                                    <svg>
+                                        <use xlink:href="<?php echo Core\HTML::media('sprite.svg#phone'); ?>"></use>
+                                    </svg>
+                                </div>
+                                <div class="contactItem__value">
+                                    <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_1') ?>">
+                                        <span><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?></span><span data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span>
+                                    </a>
+                                    <br>
+                                    <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_2') ?>">
+                                        <span><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?></span><span data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="contactItem">
                             <div class="contactItem__key">
                                 <svg>
                                     <use xlink:href="<?php echo Core\HTML::media('sprite.svg#mail'); ?>"></use>
                                 </svg>
                             </div>
+                            <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
                             <div class="contactItem__value">
-                                <a href="mailto:XXXXXX@gmail.com"><span class="js-hidden-information"
-                                                                        data-information="elsead">XXXXXX</span>@gmail.com</a>
+                                <a class="js-hidden-information" href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
+                                        data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -172,9 +180,8 @@
                                 <div class="grid__cell">
                                     <div class="contactItem">
                                         <div class="contactItem__key">Skype:</div>
-                                        <div class="contactItem__value">
-                                            <span class="js-hidden-information"
-                                                  data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span>
+                                        <div class="contactItem__value js-hidden-information">
+                                            <span data-information="<?php echo Core\Config::get('contacts.skype'); ?>">XXXXXX</span>
                                         </div>
                                     </div>
                                 </div>
@@ -188,13 +195,11 @@
                                                 </svg>
                                             </div>
                                             <div class="contactItem__value">
-                                                <a href="tel:<?php echo Core\Config::get('contacts.phone_1'); ?>"><span><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?></span><span
-                                                        class="js-hidden-information"
-                                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span></a>
+                                                <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_1') ?>">
+                                                    <span><?php echo substr(Core\Config::get('contacts.phone_1'), 0, -5); ?></span><span data-information="<?php echo substr(Core\Config::get('contacts.phone_1'), 14); ?>">XX-XX</span></a>
                                                 <br>
-                                                <a href="tel:<?php echo Core\Config::get('contacts.phone_2'); ?>"><span><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?></span><span
-                                                        class="js-hidden-information"
-                                                        data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span></a>
+                                                <a class="js-hidden-information" href="tel:<?php echo Core\Config::get('contacts.phone_2') ?>">
+                                                    <span><?php echo substr(Core\Config::get('contacts.phone_2'), 0, -5); ?></span><span data-information="<?php echo substr(Core\Config::get('contacts.phone_2'), 14); ?>">XX-XX</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -209,8 +214,7 @@
                                         </div>
                                         <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
                                         <div class="contactItem__value">
-                                            <a href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
-                                                    class="js-hidden-information"
+                                            <a class="js-hidden-information" href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
                                                     data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
                                             </a>
                                         </div>

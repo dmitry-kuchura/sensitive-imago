@@ -168,14 +168,17 @@ jQuery(document).ready(function ($) {
 	$('.js-show-information').on('click', function (event) {
 		event.preventDefault();
 		$('.js-hidden-information').each(function (index, element) {
-			var phone = $(element).attr('data-information');
-			$(element).text(phone);
-			$(element).removeAttr('data-information');
+			var $element= $(element).find('[data-information]');
+			var phone = $element.attr('data-information');
+			$element.text(phone);
+			$element.removeAttr('data-information');
 		});
 	});
 
 	$('.js-hidden-information').on('click',function(e){
-		if($(this).attr('data-information')){
+		let switchingInfo = $(this).find('[data-information]');
+		console.log(switchingInfo);
+		if(switchingInfo.length){
 			e.preventDefault();
 			$('.js-show-information').trigger('click');
 		}

@@ -113,6 +113,7 @@ $columns:12;
         }
         &__cell {
             display: inline-block;
+			min-width: 1px;
             &--start {
                 align-self: flex-start;
             }
