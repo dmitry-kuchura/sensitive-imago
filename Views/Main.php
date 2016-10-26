@@ -8,6 +8,9 @@
         <?php echo $GLOBAL_MESSAGE; ?>
     </head>
     <body class="indexPage">
+        <?php foreach ( $_seo['scripts']['body'] as $script ): ?>
+            <?php echo $script; ?>
+        <?php endforeach ?>
         <div class="pageWrapper">
             <?php echo Core\Widgets::get('Header'); ?>
             <div class="pageContainer">
