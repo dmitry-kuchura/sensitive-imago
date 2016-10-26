@@ -96,7 +96,15 @@ class Widgets
         }
         $languages = Common::factory('i18n')->getRows(1, 'sort', 'ASC');
 
-        $result = Common::factory('slider')->getRows(1, 'sort', 'ASC');
+        $lang = \I18n::$lang;
+        $result = DB::select('slider.*', 'slider_i18n.*')
+            ->from('slider')->join('slider_i18n', 'LEFT')
+            ->on('slider_i18n.row_id', '=', 'slider.id')
+            ->where('slider_i18n.language', '=', $lang)
+            ->where('slider.status', '=', 1)
+            ->order_by('slider.sort', 'DESC')
+            ->find_all();
+
         $slider = [];
         foreach ($result AS $key => $value) {
             if (is_file(HOST . HTML::media('images/slider/main/' . $value->image))) {

@@ -166,12 +166,16 @@
                         <div class="pageSize">
                             <div class="grid grid--justify-around grid--lg-justify-end heroBlock" >
                                 <div class="grid__cell grid__cell--12 grid__cell--lg-7">
-                                    <div class="heroBlock__text">
-                                        <?php $word = explode(' ', __('Лучшее решение')); ?>
-                                        <small><?php echo __('Лучшее решение'); ?></small>
-                                        <br class="_hide _lg-show">
-                                        <?php echo $word[0]; ?><br class="_hide _lg-show"> <?php echo $word[1]; ?><br class="_hide _lg-show"> <?php echo $word[2]; ?>
-                                    </div>
+                                    <?if ($slide->second OR $slide->second): ?>
+                                        <div class="heroBlock__text">
+                                            <?php $word = explode(' ', $slide->second); ?>
+                                            <small><?php echo $slide->first; ?></small>
+                                            <br class="_hide _lg-show">
+                                            <?php foreach ($word as $text): ?>
+                                                <?php echo $text; ?><br>
+                                            <?php endforeach;?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

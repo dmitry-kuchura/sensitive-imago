@@ -39,6 +39,26 @@
                                                        value="<?php echo $public->name; ?>"/>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="control-label"
+                                                   for="f_name"><?php echo __('Превая строка'); ?></label>
+                                            <div class="">
+                                                <input id="f_name"
+                                                       class="form-control"
+                                                       name="FORM[<?php echo $key; ?>][first]" type="text"
+                                                       value="<?php echo $public->first; ?>"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label"
+                                                   for="f_name"><?php echo __('Втроая строка'); ?></label>
+                                            <div class="">
+                                                <input id="f_name"
+                                                       class="form-control"
+                                                       name="FORM[<?php echo $key; ?>][second]" type="text"
+                                                       value="<?php echo $public->second; ?>"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                             <?php endforeach; ?>
