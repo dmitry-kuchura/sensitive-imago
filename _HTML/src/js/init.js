@@ -143,6 +143,11 @@ jQuery(document).ready(function ($) {
 			}
 		});
 	}
+	let $textTable = $('.wTxt').find('table');
+		$textTable.each((i, table) => {
+			let $table = $(table);
+			$table.wrap('<div style="overflow-y: auto;"></div>')
+		})
 
 	$(window).load(function () {
 

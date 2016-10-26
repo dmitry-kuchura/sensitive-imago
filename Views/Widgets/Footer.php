@@ -57,7 +57,7 @@
                                 </a>
                             <?php endif; ?>
                             <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
-                            <a class="js-hidden-information" href="mailto:XXXXXX@<?php echo $mail[1]; ?>">
+                            <a class="js-hidden-information" href="mailto:<?php echo Core\Config::get('contacts.email'); ?>">
                                 <span data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
                             </a><br>
                             <a class="js-hidden-information"  href="skype:<?php echo Core\Config::get('contacts.skype'); ?>?call">

@@ -100,7 +100,7 @@
                             </div>
                             <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
                             <div class="contactItem__value">
-                                <a class="js-hidden-information" href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
+                                <a class="js-hidden-information" href="mailto:<?php echo Core\Config::get('contacts.email'); ?>"><span
                                         data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
                                 </a>
                             </div>
@@ -239,7 +239,7 @@
                                         </div>
                                         <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
                                         <div class="contactItem__value">
-                                            <a class="js-hidden-information" href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
+                                            <a class="js-hidden-information" href="mailto:<?php echo Core\Config::get('contacts.email'); ?>"><span
                                                     data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
                                             </a>
                                         </div>

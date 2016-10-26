@@ -8,9 +8,8 @@
         <div class="contactColumn__content">
             <span>Email:</span>
             <?php $mail = explode('@', Core\Config::get('contacts.email')); ?>
-            <div class="contactItem__value">c
-                <a href="mailto:XXXXXX@<?php echo $mail[1]; ?>"><span
-                        class="js-hidden-information"
+            <div class="contactItem__value">
+                <a class="js-hidden-information" href="mailto:<?php echo Core\Config::get('contacts.email'); ?>"><span
                         data-information="<?php echo $mail[0]; ?>">XXXXXX</span>@<?php echo $mail[1]; ?>
                 </a>
             </div>
