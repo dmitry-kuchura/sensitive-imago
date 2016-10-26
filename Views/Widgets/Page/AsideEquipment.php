@@ -1,8 +1,8 @@
 <div class="grid__cell grid__cell grid__cell--12 grid__cell--md-auto grid__cell--grow grid__cell--md-nogrow">
-    <section class="pageAside js-multiLevelMenu">
+    <section class="pageAside ">
         <div class="grid grid--justify-around grid--space grid--md-nospace">
             <div class="asideMenu__cell grid__cell grid__cell--grow">
-                <ul class="asideMenu">
+                <ul class="asideMenu js-multiLevelMenu">
                     <?php foreach ($catalog as $obj): ?>
                         <?php switch ($obj->param) {
                             case '0':
@@ -12,7 +12,7 @@
                                 $link = Core\HTML::link($obj->alias);
                                 break;
                         } ?>
-                        <li class="<?php echo in_array($obj->alias, ['models', 'features']) ? 'has-subMenu' : ''; ?> <?php if (Core\Route::param('alias') == $obj->alias) { echo 'is-active is-open'; } ?>">
+                        <li class="<?php echo in_array($obj->alias, ['models', 'features']) ? 'has-subMenu' : ''; ?> <?php if (Core\Route::param('alias') == $obj->alias) { echo 'is-active'; } ?>">
                             <a href="<?php echo $link; ?>"><?php echo $obj->name; ?></a>
                             <?php if ($obj->alias == 'models'): ?>
                                 <ul>
@@ -27,7 +27,7 @@
                             <?php if ($obj->alias == 'features'): ?>
                                 <ul>
                                     <?php foreach ($features[1] as $link): ?>
-                                        <li class="<?php if (isset($features[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active is-open'; } ?>">
+                                        <li class="<?php if (isset($features[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active'; } ?>">
                                             <a href="<?php echo Core\HTML::link('features/' . $link->alias); ?>"><?php echo $link->name; ?></a>
                                             <?php if (isset($features[$link->id])): ?>
                                                 <ul>

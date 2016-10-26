@@ -1,9 +1,9 @@
 <div class="grid__cell grid__cell grid__cell--12 grid__cell--md-auto grid__cell--grow grid__cell--md-nogrow">
-    <section class="pageAside js-multiLevelMenu">
+    <section class="pageAside">
         <div class="grid grid--justify-around grid--space grid--md-nospace">
             <div class="asideMenu__cell grid__cell grid__cell--grow">
                 <?php if (Core\Arr::get($menu, 2, [])): ?>
-                    <ul class="asideMenu">
+                    <ul class="asideMenu js-multiLevelMenu">
                         <?php $alias = Core\HTML::activeUrl(); ?>
                         <?php foreach ($menu[2] AS $key => $value): ?>
                             <li <?php echo $alias == $value->url ? 'class="is-active"' : ''; ?>>

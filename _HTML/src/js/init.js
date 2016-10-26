@@ -78,42 +78,47 @@ jQuery(document).ready(function ($) {
 	});
 
 
-	if ($('#headerSlider').length) {
-		heroSlider()
-	}
-	function heroSlider() {
-		$('#headerSlider').each(function () {
-			var $this = $(this);
-			var $slides = $this.children();
-			var playSpeed = $this.data('speed') || 3000;
-			function _changeSlide() {
-				var currentIndex = $slides.filter('.is-active').index();
-				var nextIndex;
-				if(currentIndex + 1 > $slides.length - 1) {
-					nextIndex = 0;
-				} else {
-					nextIndex = currentIndex + 1;
-				}
-				$slides
-					.eq(currentIndex).removeClass('is-active')
-					.end()
-					.eq(nextIndex).addClass('is-active');
-				setTimeout(function () {
-					_changeSlide();
-				}, playSpeed);
+	let $headerSlider = $('#headerSlider');
+	if ($headerSlider.length) {
+		$headerSlider.children('.slider_else_universal').carouFredSel({
+
+			play: true,
+			circular: true,
+			responsive: true,
+			//width: '100%',
+			// height: 300,
+			prev:$headerSlider.children('.slider-arrow--prev'),
+			next:$headerSlider.children('.slider-arrow--next'),
+			swipe: {
+				onTouch: true,
+				onMouse: false
+			},
+			items:{
+				height:$headerSlider.innerHeight()
+			},
+			scroll: {
+				items: 1,
+				fx: 'fade',
+				easing: "swing",
+				pauseOnHover: false
+			},
+			auto:{
+				play:true,
+				timeoutDuration:parseInt($headerSlider.data('duration')) || 3000
+			},
+			onCreate:function(){
+				$headerSlider.css('opacity',1)
 			}
-			_changeSlide();
-		})
+		});
 	}
 	let $sliderElseUniversal = $('#slider_else_universal');
 	if ($sliderElseUniversal.length) {
 		$sliderElseUniversal.children('.slider_else_universal').carouFredSel({
 			play: true,
-			auto: true,
 			circular: true,
 			responsive: true,
 			width: '100%',
-			// height: 285,
+			height: 285,
 			prev:$sliderElseUniversal.children('.slider-arrow--prev'),
 			next:$sliderElseUniversal.children('.slider-arrow--next'),
 			items: {
@@ -124,7 +129,7 @@ jQuery(document).ready(function ($) {
 			},
 			swipe: {
 				onTouch: true,
-				onMouse: true
+				onMouse: false
 			},
 			scroll: {
 				items: 1,
