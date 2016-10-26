@@ -1,7 +1,11 @@
+<?php use Core\Config; ?>
+<?php $speed = Config::get('media.speed_info') * 1000; ?>
 <?php if (count($kids)): ?>
-    <div class="slider-wrapper" id="slider_else_universal">
-        <div class="slider-arrow slider-arrow--prev"></div>
-        <div class="slider-arrow slider-arrow--next"></div>
+    <div class="slider-wrapper" id="slider_else_universal" data-duration="<?php echo $speed; ?>">
+        <?if (count($kids) > 4): ?>
+            <div class="slider-arrow slider-arrow--prev"></div>
+            <div class="slider-arrow slider-arrow--next"></div>
+        <?php endif; ?>
         <div class="slider_else_universal">
             <?php foreach ($kids as $kid): ?>
                 <?php

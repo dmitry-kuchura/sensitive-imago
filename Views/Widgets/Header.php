@@ -1,3 +1,4 @@
+<?php use Core\Config; ?>
 <header class="pageHeader">
     <div class="pageHeader">
         <div class="pageHeader__mobile">
@@ -152,9 +153,12 @@
             </div>
         </div>
         <div class="pageHeader__main" style="">
-            <div id="headerSlider" class="headerSlider" data-duration="50000">
-                <div class="slider-arrow slider-arrow--prev"></div>
-                <div class="slider-arrow slider-arrow--next"></div>
+            <?php $speed = Config::get('media.speed_slide') * 1000; ?>
+            <div id="headerSlider" class="headerSlider" data-duration="<?php echo $speed; ?>">
+                <?php if (count($slider) > 1): ?>
+                    <div class="slider-arrow slider-arrow--prev"></div>
+                    <div class="slider-arrow slider-arrow--next"></div>
+                <?php endif; ?>
                 <div class="slider_else_universal">
                 <?php foreach ($slider as $slide): ?>
                     <div class="headerSlider__slide"
