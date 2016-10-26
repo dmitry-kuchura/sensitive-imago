@@ -27,7 +27,7 @@
                             <?php if ($obj->alias == 'features'): ?>
                                 <ul>
                                     <?php foreach ($features[1] as $link): ?>
-                                        <li class="<?php if (isset($features[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active is-open'; } ?>">
+                                        <li class="<?php if (isset($features[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias AND Core\Route::controller() == 'features') { echo 'is-active is-open'; } ?>">
                                             <a href="<?php echo Core\HTML::link('features/' . $link->alias); ?>"><?php echo $link->name; ?></a>
                                             <?php if (isset($features[$link->id])): ?>
                                                 <ul>
