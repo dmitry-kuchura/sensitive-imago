@@ -57,18 +57,18 @@
         <div class="grid__cell">
             <input class="form__input" type="text" name="name" data-name="name"
                    data-msg="<?php echo __('Введите корректное имя'); ?>"
-                   placeholder="<?php echo __('Ваше имя'); ?>*"
-                   data-rule-word="true" data-rule-minlength="2" required>
+                   placeholder="<?php echo __('Ваше имя'); ?>"
+                   data-rule-word="true" data-rule-minlength="2">
         </div>
         <div class="grid__cell">
             <input class="form__input numbers_only" type="text" name="tel" data-name="tel"
                    data-msg="<?php echo __('Введите корректный номер телефона'); ?>"
-                   placeholder="<?php echo __('Ваш телефон'); ?>" required data-rule-phone="true">
+                   placeholder="<?php echo __('Ваш телефон'); ?>" data-rule-phone="true">
         </div>
         <div class="grid__cell">
             <input class="form__input" type="text" name="age" data-name="age"
                    data-msg="<?php echo __('Введите корректный возраст'); ?>"
-                   placeholder="<?php echo __('Возраст'); ?>*"  data-rule-minlength="2" required>
+                   placeholder="<?php echo __('Возраст'); ?>"  data-rule-minlength="2">
         </div>
         <div class="grid__cell">
             <input class="form__input" type="text" name="country" data-name="country"
@@ -85,7 +85,7 @@
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
                     <input type="radio" name="rating" data-name="rating" value="4">
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
-                    <input type="radio" name="rating" data-name="rating" value="3" checked>
+                    <input type="radio" name="rating" data-name="rating" value="3">
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>
                     <input type="radio" name="rating" data-name="rating" value="2">
                     <i><svg><use xlink:href="<?php echo Core\HTML::media('css/pic/sprite.svg#star'); ?>"/></svg></i>

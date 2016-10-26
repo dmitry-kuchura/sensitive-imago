@@ -77,70 +77,50 @@ jQuery(document).ready(function ($) {
 		toggleOnBlur: true
 	});
 
-	if ($('#slider_else').length) {
-		$('#slider_else').carouFredSel({
+
+	let $headerSlider = $('#headerSlider');
+	if ($headerSlider.length) {
+		$headerSlider.children('.slider_else_universal').carouFredSel({
+
 			play: true,
-			auto: true,
 			circular: true,
 			responsive: true,
-			width: '100%',
-			height: 350,
-			items: {
-				visible: {
-					min: 1,
-					max: 4
-				}
-			},
+			//width: '100%',
+			// height: 300,
+			prev:$headerSlider.children('.slider-arrow--prev'),
+			next:$headerSlider.children('.slider-arrow--next'),
 			swipe: {
 				onTouch: true,
-				onMouse: true
+				onMouse: false
+			},
+			items:{
+				height:$headerSlider.innerHeight()
 			},
 			scroll: {
 				items: 1,
-				fx: 'scroll',
+				fx: 'fade',
 				easing: "swing",
-				duration: 1000,
 				pauseOnHover: false
+			},
+			auto:{
+				play:true,
+				timeoutDuration:parseInt($headerSlider.data('duration')) || 3000
+			},
+			onCreate:function(){
+				$headerSlider.css('opacity',1)
 			}
 		});
 	}
-
-	if ($('#headerSlider').length) {
-		heroSlider()
-	}
-	function heroSlider() {
-		$('#headerSlider').each(function () {
-			var $this = $(this);
-			var $slides = $this.children();
-			var playSpeed = $this.data('speed') || 3000;
-			function _changeSlide() {
-				var currentIndex = $slides.filter('.is-active').index();
-				var nextIndex;
-				if(currentIndex + 1 > $slides.length - 1) {
-					nextIndex = 0;
-				} else {
-					nextIndex = currentIndex + 1;
-				}
-				$slides
-					.eq(currentIndex).removeClass('is-active')
-					.end()
-					.eq(nextIndex).addClass('is-active');
-				setTimeout(function () {
-					_changeSlide();
-				}, playSpeed);
-			}
-			_changeSlide();
-		})
-	}
-
-	if ($('#slider_else_universal').length) {
-		$('#slider_else_universal').carouFredSel({
+	let $sliderElseUniversal = $('#slider_else_universal');
+	if ($sliderElseUniversal.length) {
+		$sliderElseUniversal.children('.slider_else_universal').carouFredSel({
 			play: true,
-			auto: true,
 			circular: true,
 			responsive: true,
 			width: '100%',
-			height: 350,
+			height: 285,
+			prev:$sliderElseUniversal.children('.slider-arrow--prev'),
+			next:$sliderElseUniversal.children('.slider-arrow--next'),
 			items: {
 				visible: {
 					min: 1,
@@ -149,14 +129,17 @@ jQuery(document).ready(function ($) {
 			},
 			swipe: {
 				onTouch: true,
-				onMouse: true
+				onMouse: false
 			},
 			scroll: {
 				items: 1,
 				fx: 'scroll',
 				easing: "swing",
-				duration: 1000,
 				pauseOnHover: false
+			},
+			auto:{
+				play:true,
+				timeoutDuration:parseInt($sliderElseUniversal.data('duration')) || 3000
 			}
 		});
 	}

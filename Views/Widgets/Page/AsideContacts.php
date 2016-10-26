@@ -1,8 +1,8 @@
 <div class="grid__cell grid__cell grid__cell--12 grid__cell--md-auto grid__cell--grow grid__cell--md-nogrow">
-    <section class="pageAside js-multiLevelMenu">
+    <section class="pageAside ">
         <div class="grid grid--justify-around grid--space grid--md-nospace">
             <div class="asideMenu__cell grid__cell grid__cell--grow">
-                <ul class="asideMenu">
+                <ul class="asideMenu js-multiLevelMenu">
                     <li <?php echo Core\Route::param('alias') == 'regions' ? '' : 'class="is-active"'; ?>><a href="<?php echo Core\HTML::link('contact'); ?>"><?php echo __('Главный торговый офис'); ?></a></li>
                     <li <?php echo Core\Route::param('alias') == 'regions' ? 'class="is-active"' : ''; ?>><a href="<?php echo Core\HTML::link('contact/regions'); ?>"><?php echo __('Региональные предстваительства'); ?></a></li>
 

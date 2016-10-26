@@ -151,12 +151,29 @@
                 </div>
             </div>
         </div>
-        <div class="pageHeader__main" style="background-image: url('<?php echo Core\HTML::media('css/pic/header-bg.jpg'); ?>');">
-            <div id="headerSlider" class="headerSlider">
+        <div class="pageHeader__main" style="">
+            <div id="headerSlider" class="headerSlider" data-duration="50000">
+                <div class="slider-arrow slider-arrow--prev"></div>
+                <div class="slider-arrow slider-arrow--next"></div>
+                <div class="slider_else_universal">
                 <?php foreach ($slider as $slide): ?>
                     <div class="headerSlider__slide"
-                         style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');"></div>
+                         style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');">
+                        <div class="pageSize">
+                            <div class="grid grid--justify-around grid--lg-justify-end heroBlock" >
+                                <div class="grid__cell grid__cell--12 grid__cell--lg-7">
+                                    <div class="heroBlock__text">
+                                        <?php $word = explode(' ', __('Лучшее решение')); ?>
+                                        <small><?php echo __('Лучшее решение'); ?></small>
+                                        <br class="_hide _lg-show">
+                                        <?php echo $word[0]; ?><br class="_hide _lg-show"> <?php echo $word[1]; ?><br class="_hide _lg-show"> <?php echo $word[2]; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <?php endforeach; ?>
+                </div>
             </div>
 
             <div class="pageSize">
@@ -226,7 +243,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid--justify-around grid--lg-justify-end heroBlock">
+                <div class="grid grid--justify-around grid--lg-justify-end heroBlock heroBlock--mobile">
                     <div class="grid__cell grid__cell--12 grid__cell--lg-7">
                         <div class="heroBlock__text">
                             <?php $word = explode(' ', __('Для медицинского бизнеса')); ?>
