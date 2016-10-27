@@ -62,20 +62,8 @@ class Form extends \Modules\Ajax
         $text = Arr::get($this->post, 'text');
         $lang = Arr::get($this->post, 'lang');
 
-        if (!$name) {
-            $this->error(__('Введенное имя слишком короткое!'));
-        }
-        if (!$age) {
-            $this->error(__('Введенный возраст слишком короткий!'));
-        }
         if (!$country) {
             $this->error(__('Введенная страна слишком короткая!'));
-        }
-        if (!$tel) {
-            $this->error(__('Не указан номер телефона!'));
-        }
-        if (!$rating) {
-            $this->error(__('Необходимо указать рейтинг!'));
         }
         if (!$text) {
             $this->error(__('Нужно ввести отзыв!'));
