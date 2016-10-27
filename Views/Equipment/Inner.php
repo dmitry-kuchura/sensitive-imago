@@ -1,14 +1,14 @@
 <div class="wTxt">
-    <?php if (is_file(HOST . Core\HTML::media('images/equipment/big/' . $result->image))): ?>
+    <?php if (is_file(HOST . Core\HTML::media('images/equipment/original/' . $result->image))): ?>
         <div class="modelPreviews grid mfi-gallery">
             <div class="grid__cell grid__cell--12">
-                <a href="<?php echo Core\HTML::media('images/equipment/big/' . $result->image); ?>"
+                <a href="<?php echo Core\HTML::media('images/equipment/original/' . $result->image); ?>"
                    class="modelPreview"
                    style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $result->image); ?>');"></a>
             </div>
             <?php foreach ($images as $im): ?>
                 <div class="grid__cell grid__cell--4">
-                    <a href="<?php echo Core\HTML::media('images/equipment/big/' . $im->image); ?>"
+                    <a href="<?php echo Core\HTML::media('images/equipment/original/' . $im->image); ?>"
                        class="modelPreview"
                        style="background-image: url('<?php echo Core\HTML::media('images/equipment/main/' . $im->image); ?>');"></a>
                 </div>
