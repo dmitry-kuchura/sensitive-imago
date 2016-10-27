@@ -22,6 +22,10 @@ return [
             'crop' => 1,
             'watermark' => 1
         ],
+        [
+            'path' => 'main',
+            'watermark' => 1
+        ],
     ],
     'team' => [
         [
@@ -102,6 +106,10 @@ return [
             'height' => 201,
             'resize' => 1,
             'crop' => 1,
+            'watermark' => 1
+        ],
+        [
+            'path' => 'big',
             'watermark' => 1
         ],
     ],

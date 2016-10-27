@@ -38,7 +38,7 @@ class Files {
             if (Arr::get($one, 'watermark') && is_file(HOST . Config::get('images.watermark'))) {
                 $watermark = ImageClass::factory(HOST . Config::get('images.watermark'));
                 $watermark->resize(ceil($image->width * 0.5), NULL, ImageClass::INVERSE);
-                $image->watermark($watermark, $image->width - ceil($image->width * 0.5) - 20, $image->height - $watermark->height - 20);
+                $image->watermark($watermark, $image->width - ceil($image->width * 0.5), $image->height - $watermark->height);
                 $image->watermark($watermark, 0, 0);
             }
             $image->save($file, Arr::get($one, 'quality', 100));
