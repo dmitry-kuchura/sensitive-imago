@@ -186,6 +186,9 @@ class Form extends \Modules\Ajax
         if (!$city) {
             $this->error(__('Введенный город слишком короткий!'));
         }
+        if (!$rating) {
+            $this->error(__('Необходимо указать рейтинг!'));
+        }
         if (!$email) {
             $this->error(__('Email введен не корректно!'));
         }
