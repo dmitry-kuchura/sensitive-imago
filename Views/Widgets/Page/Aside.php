@@ -10,6 +10,13 @@
                                 <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
                             </li>
                         <?php endforeach; ?>
+                        <?php if ($bussines): ?>
+                            <?php foreach ($menu[4] AS $key => $value): ?>
+                                <li <?php echo $alias == $value->url ? 'class="is-active"' : ''; ?>>
+                                    <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 <?php endif; ?>
                 <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"

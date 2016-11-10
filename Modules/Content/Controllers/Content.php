@@ -51,6 +51,14 @@ class Content extends Base
                 break;
         }
 
+        if ($page->parent_id == '8') {
+            $this->_business = true;
+        } elseif ($page->alias == 'bussines') {
+            $this->_business = true;
+        } else {
+            $this->_business = false;
+        }
+
         $kids = Model::getKids($page->id);
 
         $this->_content = View::tpl(['text' => $page->text, 'slider' => $slider, 'kids' => $kids], $template);

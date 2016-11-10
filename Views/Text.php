@@ -43,7 +43,7 @@ use Core\Widgets;
                                 echo Widgets::get('Page_AsideEquipment');
                                 break;
                             default:
-                                echo Widgets::get('Page_Aside');
+                                echo Widgets::get('Page_Aside', ['bussines' => $_business]);
                                 break;
                         }
                         ?>
