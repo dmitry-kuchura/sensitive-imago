@@ -970,3 +970,7 @@ a.label-primary:hover {
     transform: translate(-50%, -50%);
     width: auto;
 }
+
+html.mce-fullscreen .t_include {
+    z-index: 9999;
+}
