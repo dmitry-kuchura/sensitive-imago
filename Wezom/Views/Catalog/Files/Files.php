@@ -55,7 +55,7 @@
                     <label class="control-label"><?php echo __('Файл'); ?></label>
                     <div class="">
                         <?php if ($obj->filename): ?>
-                            <a href="/wezom/<?php echo Core\Route::controller(); ?>/<?php echo Core\Route::param('item_id'); ?>/delete_file/<?php echo $obj->id; ?>"><?php echo __('Удалить файл'); ?></a>
+                            <a href="/wezom/<?php echo Core\Route::controller(); ?>/<?php echo Core\Route::param('item_id'); ?>/delete/<?php echo $obj->id; ?>"><?php echo __('Удалить файл'); ?></a>
                             <br>
                             <a href="<?php echo Core\HTML::media('items/'.$obj->filename)?>"><?php echo __('Скачать файл'); ?></a>
                         <?php else: ?>
