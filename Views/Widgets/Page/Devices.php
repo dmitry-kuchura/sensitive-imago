@@ -34,7 +34,10 @@
                 class="button button--primary button--in-sectionFooter"><?php echo __('Смотреть больше'); ?>
             </a>
         </div>
-        <hr>
+        <?php
+        /*
+         * http://wezom.worksection.com/project/138481/4100712/4112247/
+         * <hr>
         <div class="grid grid--justify-center grid--md-justify-between grid--items-end">
             <div class="grid__cell grid__cell--grow grid__cell--sm-nogrow">
                 <div class="shareBlock">
@@ -49,6 +52,7 @@
             <div class="grid__cell">
 
             </div>
-        </div>
+        </div>*/
+        ?>
     </div>
 </section>
