@@ -41,7 +41,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label"
-                                                   for="f_name"><?php echo __('Превая строка'); ?></label>
+                                                   for="f_name"><?php echo __('Первая строка'); ?></label>
                                             <div class="">
                                                 <input id="f_name"
                                                        class="form-control"
@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label"
-                                                   for="f_name"><?php echo __('Втроая строка'); ?></label>
+                                                   for="f_name"><?php echo __('Вторая строка'); ?></label>
                                             <div class="">
                                                 <input id="f_name"
                                                        class="form-control"
