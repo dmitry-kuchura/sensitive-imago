@@ -11,7 +11,7 @@
                 }
                 ?>
                 <div class="grid__cell mediaBlock">
-                    <a href="#" class="mediaBlock__image" style="background-image: url('<?php echo $image; ?>');"></a>
+                    <a href="<?php echo Core\HTML::link('models/' . $obj->alias); ?>" class="mediaBlock__image" style="background-image: url('<?php echo $image; ?>');"></a>
                     <div class="mediaBlock__content">
                         <div class="mediaBlock__title"><a
                                 href="<?php echo Core\HTML::link('equipment/' . $obj->alias); ?>"
