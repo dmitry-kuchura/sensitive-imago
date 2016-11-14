@@ -14,7 +14,7 @@
                     <a href="<?php echo Core\HTML::link('models/' . $obj->alias); ?>" class="mediaBlock__image" style="background-image: url('<?php echo $image; ?>');"></a>
                     <div class="mediaBlock__content">
                         <div class="mediaBlock__title"><a
-                                href="<?php echo Core\HTML::link('equipment/' . $obj->alias); ?>"
+                                href="<?php echo Core\HTML::link('models/' . $obj->alias); ?>"
                                 class="mediaBlock__overflow"><?php echo $obj->name; ?></a>
                         </div>
                         <div class="mediaBlock__text">
