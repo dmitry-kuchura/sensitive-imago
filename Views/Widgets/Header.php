@@ -118,11 +118,12 @@
                     <?php if (Core\Arr::get($menu, 0, [])): ?>
                         <div class="dropdown__content dropdown__content--wide">
                             <ul class="asideMenu">
-                                <li class="is-active"><a
-                                        href="<?php echo Core\HTML::link($value->url); ?>"><?php echo __('Главная'); ?></a>
+                                <?php $alias = Core\HTML::activeUrl(); ?>
+                                <li <?php echo Core\Route::controller() == 'index' ? 'class="is-active"' : ''; ?>>
+                                    <a href="<?php echo Core\HTML::link(); ?>"><?php echo __('Главная'); ?></a>
                                 </li>
                                 <?php foreach ($menu[0] AS $key => $value): ?>
-                                    <li>
+                                    <li <?php echo $alias == $value->url ? 'class="is-active"' : ''; ?>>
                                         <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
                                     </li>
                                 <?php endforeach; ?>
