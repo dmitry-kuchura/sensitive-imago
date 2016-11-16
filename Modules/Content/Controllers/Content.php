@@ -24,14 +24,20 @@ class Content extends Base
             }
         }
 
+        if ($page->id == '10' OR $page->id == '9') {
+            $this->setBreadcrumbs(__('Оборудование'), 'equipment');
+            $this->setBreadcrumbs(__('Модели приборов'), 'equipment/models');
+            $this->setBreadcrumbs($page->name);
+        } else {
+            $this->generateParentBreadcrumbs($page->parent_id, 'content', 'parent_id');
+            $this->setBreadcrumbs($page->name);
+        }
         $this->_template = 'Text';
         // Seo
         $this->_seo['h1'] = $page->h1 ? $page->h1 : $page->name;
         $this->_seo['title'] = $page->title ? $page->title : $page->name;
         $this->_seo['keywords'] = $page->keywords;
         $this->_seo['description'] = $page->description;
-        $this->generateParentBreadcrumbs($page->parent_id, 'content', 'parent_id');
-        $this->setBreadcrumbs($page->name);
 
         // Slider
         $result = Common::factory('slider_simple')->getRows(1, 'sort', 'ASC');
