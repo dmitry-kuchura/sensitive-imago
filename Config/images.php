@@ -61,6 +61,7 @@ return [
             'height' => 201,
             'resize' => 1,
             'crop' => 1,
+            'watermark' => 1
         ],
     ],
     'gallery_images' => [
@@ -70,6 +71,7 @@ return [
             'height' => 201,
             'resize' => 1,
             'crop' => 1,
+            'watermark' => 1
         ],
     ],
     'partners' => [
