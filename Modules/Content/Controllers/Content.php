@@ -65,6 +65,12 @@ class Content extends Base
             $this->_business = false;
         }
 
+        if ($page->id == '10' OR $page->id == '9') {
+            $this->_controller = 'models';
+        } else {
+            $this->_controller = Route::controller();
+        }
+
         $kids = Model::getKids($page->id);
 
         $this->_content = View::tpl(['text' => $page->text, 'slider' => $slider, 'kids' => $kids], $template);

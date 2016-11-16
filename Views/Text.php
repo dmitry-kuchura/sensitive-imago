@@ -23,7 +23,7 @@ use Core\Widgets;
                 <div class="pageSize">
                     <div class="grid grid--md-nowrap">
                         <?php
-                        switch (Route::controller()) {
+                        switch ($_controller) {
                             case 'contact':
                                 echo Widgets::get('Page_AsideContacts');
                                 break;
