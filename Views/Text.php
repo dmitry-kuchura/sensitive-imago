@@ -22,8 +22,11 @@ use Core\Widgets;
             <div class="pageSection">
                 <div class="pageSize">
                     <div class="grid grid--md-nowrap">
+                        <?php if ($_controller == 'models') : ?>
+                            <?php echo Widgets::get('Page_AsideEquipment'); ?>
+                        <?php endif; ?>
                         <?php
-                        switch ($_controller) {
+                        switch (Route::controller()) {
                             case 'contact':
                                 echo Widgets::get('Page_AsideContacts');
                                 break;
