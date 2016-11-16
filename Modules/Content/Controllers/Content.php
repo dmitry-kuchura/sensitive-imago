@@ -28,6 +28,9 @@ class Content extends Base
             $this->setBreadcrumbs(__('Оборудование'), 'equipment');
             $this->setBreadcrumbs(__('Модели приборов'), 'equipment/models');
             $this->setBreadcrumbs($page->name);
+        } elseif($page->id == '35') {
+            $this->setBreadcrumbs(__('Оборудование'), 'equipment');
+            $this->setBreadcrumbs($page->name);
         } else {
             $this->generateParentBreadcrumbs($page->parent_id, 'content', 'parent_id');
             $this->setBreadcrumbs($page->name);
@@ -65,7 +68,7 @@ class Content extends Base
             $this->_business = false;
         }
 
-        if ($page->id == '10' OR $page->id == '9') {
+        if ($page->id == '10' OR $page->id == '9' OR $page->id == '35') {
             $this->_controller = 'models';
         } else {
             $this->_controller = Route::controller();
