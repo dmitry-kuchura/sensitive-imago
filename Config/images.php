@@ -73,6 +73,10 @@ return [
             'crop' => 1,
             'watermark' => 1
         ],
+        [
+            'path' => 'big',
+            'watermark' => 1
+        ],
     ],
     'partners' => [
         [
