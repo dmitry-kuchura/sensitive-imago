@@ -11,9 +11,18 @@
                             </li>
                         <?php endforeach; ?>
                         <?php if ($bussines): ?>
-                            <?php foreach ($menu[4] AS $key => $value): ?>
-                                <li <?php echo $alias == $value->url ? 'class="is-active"' : ''; ?>>
+                            <?php foreach ($bussinesMenu[0] as $value): ?>
+                                <li class="<?php echo $alias == $value->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$value->id]) ? 'has-subMenu' : ''; ?>">
                                     <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
+                                    <?php if (isset($bussinesMenu[$value->id])): ?>
+                                        <ul>
+                                        <?php foreach ($bussinesMenu[$value->id] as $obj): ?>
+                                            <li <?php echo $alias == $obj->url ? 'class="is-active"' : ''; ?>>
+                                                <a href="<?php echo Core\HTML::link($obj->url); ?>"><?php echo $obj->name; ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
                                 </li>
                             <?php endforeach; ?>
                         <?php endif; ?>

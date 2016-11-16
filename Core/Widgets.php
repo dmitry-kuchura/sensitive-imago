@@ -297,9 +297,14 @@ class Widgets
 
         $lang = \I18n::$lang;
 
+        $bussinesMenu = [];
+        foreach(static::$_menu[4] AS $obj) {
+            $bussinesMenu[$obj->parent_id][] = $obj;
+        }
+
         $result = DB::select('news.*', 'news_i18n.*')->from('news')->join('news_i18n', 'LEFT')->on('news_i18n.row_id', '=', 'news.id')->where('news_i18n.language', '=', $lang)->where('news.status', '=', 1)->where('news.date', '<=', time())->order_by('news.date', 'DESC')->limit(2)->find_all();
 
-        return ['result' => $result, 'menu' => static::$_menu];
+        return ['result' => $result, 'menu' => static::$_menu, 'bussinesMenu' => $bussinesMenu];
     }
 
     public function Page_AsideContacts()

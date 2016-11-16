@@ -9,32 +9,44 @@ use Core\Message;
 use Core\Arr;
 use Core\HTTP;
 use Core\View;
+use Wezom\Modules\Base;
 use Wezom\Modules\Menu\Models\Menu AS Model;
 
-class Menu extends \Wezom\Modules\Base {
+class Menu extends Base
+{
 
     public $tpl_folder = 'Menu';
 
-    function before() {
+    function before()
+    {
         parent::before();
         $this->_seo['h1'] = __('Меню сайта');
         $this->_seo['title'] = __('Меню сайта');
         $this->setBreadcrumbs(__('Меню сайта'), 'wezom/' . Route::controller() . '/index');
     }
 
-    function indexAction() {
+    function indexAction()
+    {
         $result = Model::getRows(NULL, 'sort', 'ASC');
         $this->_filter = Widgets::get('Filter_Pages');
-        $this->_toolbar = Widgets::get('Toolbar_List', array('add' => 1, 'delete' => 1));
+        $this->_toolbar = Widgets::get('Toolbar_List', ['add' => 1, 'delete' => 1]);
+
+        $arr = [];
+        foreach($result AS $obj) {
+            $arr[$obj->parent_id][] = $obj;
+        }
+
+
         $this->_content = View::tpl(
-                        array(
-                    'result' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'tablename' => Model::$table,
-                        ), $this->tpl_folder . '/Index');
+            [
+                'result' => $arr,
+                'tpl_folder' => $this->tpl_folder,
+                'tablename' => Model::$table,
+            ], $this->tpl_folder . '/Index');
     }
 
-    function editAction() {
+    function editAction()
+    {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
@@ -62,16 +74,17 @@ class Menu extends \Wezom\Modules\Base {
         $this->_toolbar = Widgets::get('Toolbar_Edit');
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
-        $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . (int) Route::param('id'));
+        $this->setBreadcrumbs(__('Редактирование'), 'wezom/' . Route::controller() . '/edit/' . (int)Route::param('id'));
         $this->_content = View::tpl(
-                        array(
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'languages' => $this->_languages,
-                        ), $this->tpl_folder . '/Form');
+            [
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'languages' => $this->_languages,
+            ], $this->tpl_folder . '/Form');
     }
 
-    function addAction() {
+    function addAction()
+    {
         if ($_POST) {
             $post = $_POST['FORM'];
             $post['status'] = Arr::get($_POST, 'status', 0);
@@ -94,22 +107,23 @@ class Menu extends \Wezom\Modules\Base {
             }
             $result = Arr::to_object($post);
         } else {
-            $result = array();
+            $result = [];
         }
         $this->_toolbar = Widgets::get('Toolbar/Edit');
         $this->_seo['h1'] = __('Добавление');
         $this->_seo['title'] = __('Добавление');
         $this->setBreadcrumbs(__('Добавление'), 'wezom/' . Route::controller() . '/add');
         $this->_content = View::tpl(
-                        array(
-                    'obj' => $result,
-                    'tpl_folder' => $this->tpl_folder,
-                    'languages' => $this->_languages,
-                        ), $this->tpl_folder . '/Form');
+            [
+                'obj' => $result,
+                'tpl_folder' => $this->tpl_folder,
+                'languages' => $this->_languages,
+            ], $this->tpl_folder . '/Form');
     }
 
-    function deleteAction() {
-        $id = (int) Route::param('id');
+    function deleteAction()
+    {
+        $id = (int)Route::param('id');
         $page = Model::getRowSimple($id);
         if (!$page) {
             Message::GetMessage(0, __('Данные не существуют!'));
