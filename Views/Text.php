@@ -22,9 +22,9 @@ use Core\Widgets;
             <div class="pageSection">
                 <div class="pageSize">
                     <div class="grid grid--md-nowrap">
-                        <?php if ($_controller == 'models') : ?>
+                        <?php if ($_controller == 'models'): ?>
                             <?php echo Widgets::get('Page_AsideEquipment'); ?>
-                        <?php endif; ?>
+                        <?php else: ?>
                         <?php
                         switch (Route::controller()) {
                             case 'contact':
@@ -50,6 +50,7 @@ use Core\Widgets;
                                 break;
                         }
                         ?>
+                        <?php endif; ?>
                         <div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
                             <section class="pageCenter">
                                 <?php echo $_breadcrumbs; ?>
