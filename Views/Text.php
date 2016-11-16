@@ -45,6 +45,9 @@ use Core\Widgets;
                             case 'models':
                                 echo Widgets::get('Page_AsideEquipment');
                                 break;
+                            case 'advantages':
+                                echo Widgets::get('Page_AsideEquipment');
+                                break;
                             default:
                                 echo Widgets::get('Page_Aside', ['bussines' => $_business]);
                                 break;

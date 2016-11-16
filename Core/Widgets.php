@@ -363,6 +363,19 @@ class Widgets
             $arr[$obj->parent_id][] = $obj;
         }
 
+        $advantages = DB::select('advantage.alias', 'advantage.parent_id', 'advantage.id', 'advantage_i18n.name')
+            ->from('advantage')
+            ->join('advantage_i18n', 'LEFT')->on('advantage_i18n.row_id', '=', 'advantage.id')
+            ->where('advantage_i18n.language', '=', $lang)
+            ->where('advantage.status', '=', 1)
+            ->where('advantage_i18n.row_id', '!=', 1)
+            ->order_by('advantage.sort', 'ASC')
+            ->find_all();
+        $arr = [];
+        foreach ($advantages AS $obj) {
+            $arr[$obj->parent_id][] = $obj;
+        }
+
         $models = DB::select('catalog.*', 'catalog_i18n.*')
             ->from('catalog')
             ->join('catalog_i18n', 'LEFT')->on('catalog_i18n.row_id', '=', 'catalog.id')
@@ -386,7 +399,7 @@ class Widgets
             $menu[$value->group][] = $value;
         }
 
-        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr, 'models' => $models, 'kids' => $kids, 'menu' => $menu];
+        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr, 'models' => $models, 'kids' => $kids, 'menu' => $menu, 'advantages' => $advantages];
     }
 
 

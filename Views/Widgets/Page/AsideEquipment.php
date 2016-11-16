@@ -12,7 +12,7 @@
                                 $link = Core\HTML::link($obj->alias);
                                 break;
                         } ?>
-                        <li class="<?php echo in_array($obj->alias, ['models', 'features']) ? 'has-subMenu' : ''; ?> <?php if (Core\Route::param('alias') == $obj->alias) { echo 'is-active'; } ?>">
+                        <li class="<?php echo in_array($obj->alias, ['models', 'features', 'advantages']) ? 'has-subMenu' : ''; ?> <?php if (Core\Route::param('alias') == $obj->alias) { echo 'is-active'; } ?>">
                             <a href="<?php echo $link; ?>"><?php echo $obj->name; ?></a>
                             <?php if ($obj->alias == 'models'): ?>
                                 <ul>
@@ -33,6 +33,22 @@
                                                 <ul>
                                                     <?php foreach ($features[$link->id] as $sub): ?>
                                                         <li <?php echo Core\Route::param('alias') == $sub->alias ? 'class="is-active"' : ''; ?>><a href="<?php echo Core\HTML::link('features/' . $sub->alias); ?>"><?php echo $sub->name; ?></a></li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <?php if ($obj->alias == 'advantages'): ?>
+                                <ul>
+                                    <?php foreach ($features[1] as $link): ?>
+                                        <li class="<?php if (isset($features[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active'; } ?>">
+                                            <a href="<?php echo Core\HTML::link('advantages/' . $link->alias); ?>"><?php echo $link->name; ?></a>
+                                            <?php if (isset($features[$link->id])): ?>
+                                                <ul>
+                                                    <?php foreach ($features[$link->id] as $sub): ?>
+                                                        <li <?php echo Core\Route::param('alias') == $sub->alias ? 'class="is-active"' : ''; ?>><a href="<?php echo Core\HTML::link('advantages/' . $sub->alias); ?>"><?php echo $sub->name; ?></a></li>
                                                     <?php endforeach; ?>
                                                 </ul>
                                             <?php endif; ?>
