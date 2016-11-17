@@ -371,9 +371,22 @@ class Widgets
             ->where('advantage_i18n.row_id', '!=', 1)
             ->order_by('advantage.sort', 'ASC')
             ->find_all();
-        $arr = [];
+        $adv = [];
         foreach ($advantages AS $obj) {
-            $arr[$obj->parent_id][] = $obj;
+            $adv[$obj->parent_id][] = $obj;
+        }
+
+        $software = DB::select('software.alias', 'software.parent_id', 'software.id', 'software_i18n.name')
+            ->from('software')
+            ->join('software_i18n', 'LEFT')->on('software_i18n.row_id', '=', 'software.id')
+            ->where('software_i18n.language', '=', $lang)
+            ->where('software.status', '=', 1)
+            ->where('software_i18n.row_id', '!=', 1)
+            ->order_by('software.sort', 'ASC')
+            ->find_all();
+        $soft = [];
+        foreach ($software AS $obj) {
+            $soft[$obj->parent_id][] = $obj;
         }
 
         $models = DB::select('catalog.*', 'catalog_i18n.*')
@@ -399,7 +412,7 @@ class Widgets
             $menu[$value->group][] = $value;
         }
 
-        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr, 'models' => $models, 'kids' => $kids, 'menu' => $menu, 'advantages' => $advantages];
+        return ['catalog' => $catalog, 'result' => $result, 'features' => $arr, 'models' => $models, 'kids' => $kids, 'menu' => $menu, 'advantages' => $adv, 'software' => $soft];
     }
 
 
