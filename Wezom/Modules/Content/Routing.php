@@ -18,6 +18,13 @@ return [
     'wezom/news/delete/<id:[0-9]*>' => 'content/news/delete',
     'wezom/news/delete_image/<id:[0-9]*>' => 'content/news/deleteImage',
     'wezom/news/add' => 'content/news/add',
+    // Articles
+    'wezom/articles/index' => 'content/articles/index',
+    'wezom/articles/index/page/<page:[0-9]*>' => 'content/articles/index',
+    'wezom/articles/edit/<id:[0-9]*>' => 'content/articles/edit',
+    'wezom/articles/delete/<id:[0-9]*>' => 'content/articles/delete',
+    'wezom/articles/delete_image/<id:[0-9]*>' => 'content/articles/deleteImage',
+    'wezom/articles/add' => 'content/articles/add',
     // Prices
     'wezom/projects/index' => 'content/projects/index',
     'wezom/projects/index/page/<page:[0-9]*>' => 'content/projects/index',

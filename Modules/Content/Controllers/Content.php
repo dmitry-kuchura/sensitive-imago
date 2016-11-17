@@ -24,11 +24,11 @@ class Content extends Base
             }
         }
 
-        if ($page->id == '10' OR $page->id == '9') {
+        if ((int) $page->id == 10 OR (int) $page->id == 9) {
             $this->setBreadcrumbs(__('Оборудование'), 'equipment');
             $this->setBreadcrumbs(__('Модели приборов'), 'equipment/models');
             $this->setBreadcrumbs($page->name);
-        } elseif($page->id == '35') {
+        } elseif((int) $page->id == 35 OR (int) $page->id == 37) {
             $this->setBreadcrumbs(__('Оборудование'), 'equipment');
             $this->setBreadcrumbs($page->name);
         } else {
@@ -68,7 +68,7 @@ class Content extends Base
             $this->_business = false;
         }
 
-        if ($page->id == '10' OR $page->id == '9' OR $page->id == '35') {
+        if ((int) $page->id == 10 OR (int) $page->id == 9 OR (int) $page->id == 35 OR (int) $page->id == 37) {
             $this->_controller = 'models';
         } else {
             $this->_controller = Route::controller();
