@@ -24,7 +24,7 @@ class Content extends Base
             }
         }
 
-        if ((int) $page->id == 10 OR (int) $page->id == 9) {
+        if ((int) $page->id == 39 OR (int) $page->id == 9) {
             $this->setBreadcrumbs(__('Оборудование'), 'equipment');
             $this->setBreadcrumbs(__('Модели приборов'), 'equipment/models');
             $this->setBreadcrumbs($page->name);
@@ -68,7 +68,7 @@ class Content extends Base
             $this->_business = false;
         }
 
-        if ((int) $page->id == 10 OR (int) $page->id == 9 OR (int) $page->id == 35 OR (int) $page->id == 37) {
+        if ((int) $page->id == 39 OR (int) $page->id == 9 OR (int) $page->id == 35 OR (int) $page->id == 37) {
             $this->_controller = 'models';
         } else {
             $this->_controller = Route::controller();
