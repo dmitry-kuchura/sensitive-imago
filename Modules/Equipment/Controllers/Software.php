@@ -38,6 +38,7 @@ class Software extends \Modules\Base
         if (!$result) {
             return Config::error();
         }
+        $this->_controller = 'models';
         // Render
         $this->_content = View::tpl(['result' => $result, 'kids' => $kids], 'Equipment/Software');
     }
