@@ -6,6 +6,7 @@ use Core\Route;
 use Core\View;
 use Core\Config;
 use Core\HTML;
+use Core\QB\DB;
 use Core\CommonI18n as Common;
 
 use Modules\Content\Models\Content AS Model;
@@ -23,6 +24,15 @@ class Content extends Base
                 return Config::error();
             }
         }
+
+        $table = 'content';
+        $tableI18n = $table . '_i18n';
+        $parent = DB::select($table . '.id', $table . '.' . 'parent_id', $table . '.alias', $table . '.status', $tableI18n . '.name')
+            ->from($table)
+            ->join($tableI18n)->on($table . '.id', '=', $tableI18n . '.row_id')
+            ->where($tableI18n . '.language', '=', \I18n::$lang)
+            ->where($table . '.id', '=', $page->parent_id)
+            ->find();
 
         if ((int) $page->id == 39 OR (int) $page->id == 9) {
             $this->setBreadcrumbs(__('Оборудование'), 'equipment');
@@ -60,7 +70,7 @@ class Content extends Base
                 break;
         }
 
-        if ($page->parent_id == '8') {
+        if ($page->parent_id == '8' or $parent->parent_id == '8') {
             $this->_business = true;
         } elseif ($page->alias == 'bussines') {
             $this->_business = true;
