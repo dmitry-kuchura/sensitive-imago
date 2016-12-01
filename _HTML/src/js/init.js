@@ -155,6 +155,7 @@ jQuery(document).ready(function ($) {
 
 	$('.js-show-information').on('click', function (event) {
 		event.preventDefault();
+		event.stopPropagation();
 		$('.js-hidden-information').each(function (index, element) {
 			var $element= $(element).find('[data-information]');
 			var phone = $element.attr('data-information');
@@ -165,10 +166,11 @@ jQuery(document).ready(function ($) {
 
 	$('.js-hidden-information').on('click',function(e){
 		let switchingInfo = $(this).find('[data-information]');
-		console.log(switchingInfo);
 		if(switchingInfo.length){
-			e.preventDefault();
-			$('.js-show-information').trigger('click');
+			if($(e.currentTarget).is('a')) e.preventDefault();
+			setTimeout(()=>{
+				$('.js-show-information').trigger('click');
+			},10);
 		}
 	});
 

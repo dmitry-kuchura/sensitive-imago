@@ -87,7 +87,11 @@
 			left: 0;
 			margin: auto;
 			height:calc(100% - 265px);
+			@include media(md,max){
+				height:calc(100% - 145px);
+			}
 		}
+
 	}
 }
 .sectionTitle {

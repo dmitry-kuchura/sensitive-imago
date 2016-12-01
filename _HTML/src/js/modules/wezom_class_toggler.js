@@ -43,10 +43,10 @@ $.fn.wzmClassToggle = function (options) {
 				$(e.delegateTarget).toggleClass(activeClassName);
 
 				if (toggleOnBlur) {
-					$(document).on('click.onBlur touchstart.onBlur', function (e) {
+					$(document).on('click touchstart', function (e) {
 						if (!$(e.target).closest(collectionSelector).length) {
 							$(target).removeClass(activeClassName);
-							$(document).off('click.onBlur touchstart.onBlur');
+							$(document).off('click touchstart');
 						}
 					});
 				}

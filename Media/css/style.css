@@ -2379,6 +2379,12 @@ hr {
   height: calc(100% - 265px);
 }
 
+@media only screen and (max-width: 768px) {
+  .pageSection--partialBg:before {
+    height: calc(100% - 145px);
+  }
+}
+
 .sectionTitle {
   padding-bottom: 2.1875rem;
   margin-bottom: 3.125rem;
@@ -4895,6 +4901,12 @@ ul.asideMenu > li > ul > li > ul > li:before {
   background: #6395c4;
 }
 
+@media only screen and (max-width: 480px) {
+  .mfiModal__header {
+    padding: 10px;
+  }
+}
+
 .mfiModal__title {
   position: relative;
   text-align: center;
@@ -4919,6 +4931,16 @@ ul.asideMenu > li > ul > li > ul > li:before {
   background: #fff;
 }
 
+@media only screen and (max-width: 480px) {
+  .mfiModal__title {
+    font-size: 14px;
+    line-height: 15px;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}
+
 .mfiModal__subtitle {
   color: white;
   font-family: Arial;
@@ -4941,7 +4963,7 @@ ul.asideMenu > li > ul > li > ul > li:before {
   text-align: center;
 }
 
-.mfiModal label cd _ span {
+.mfiModal label span {
   color: #6395c4;
 }
 
@@ -4962,6 +4984,15 @@ ul.asideMenu > li > ul > li > ul > li:before {
   }
   .mfiModal .mfiModal__body {
     padding: 15px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .priceForm .grid__cell label {
+    width: 35%;
+  }
+  .priceForm .grid__cell:not(:last-child) {
+    padding-top: 0;
   }
 }
 
@@ -5254,6 +5285,12 @@ ul.asideMenu > li > ul > li > ul > li:before {
   float: right;
   width: 55%;
   position: relative;
+}
+
+@media only screen and (max-width: 480px) {
+  .form__dib {
+    width: 65%;
+  }
 }
 
 .description_range {
