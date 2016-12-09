@@ -23,7 +23,6 @@ class Files extends \Wezom\Modules\Base
         parent::before();
         $this->_seo['h1'] = __('Редактирование ссылки');
         $this->_seo['title'] = __('Редактирование ссылки');
-        $this->setBreadcrumbs(__('Редактирование ссылки'), 'wezom/' . Route::controller() . '/index');
         $this->limit = (int)Arr::get($_GET, 'limit', Config::get('basic.limit_backend')) < 1 ?: Arr::get($_GET, 'limit', Config::get('basic.limit_backend'));
     }
 
@@ -47,7 +46,8 @@ class Files extends \Wezom\Modules\Base
         $this->_toolbar = Widgets::get('Toolbar/Edit');
         $this->_seo['h1'] = __('Редактирование ссылки');
         $this->_seo['title'] = __('Редактирование ссылки');
-        $this->setBreadcrumbs(__('Редактирование ссылки'), 'wezom/' . Route::controller() . '/edit/' . Route::param('id'));
+        $this->setBreadcrumbs(__('Модели приборов'), 'wezom/items/edit/' . Route::param('item_id'));
+        $this->setBreadcrumbs(__('Редактирование ссылки'));
 
         $this->_content = View::tpl(
             [
@@ -79,7 +79,8 @@ class Files extends \Wezom\Modules\Base
         $this->_toolbar = Widgets::get('Toolbar/Edit');
         $this->_seo['h1'] = __('Добавление спецификации');
         $this->_seo['title'] = __('Добавление спецификации');
-        $this->setBreadcrumbs(__('Добавление спецификации'), 'wezom/' . Route::controller() . '/add');
+        $this->setBreadcrumbs(__('Модели приборов'), 'wezom/items/edit/' . Route::param('item_id'));
+        $this->setBreadcrumbs(__('Добавление спецификации'));
         $this->_content = View::tpl(
             [
                 'obj' => $result,
