@@ -38,7 +38,7 @@
             <?php foreach ($files as $file): ?>
                 <a href="<?php echo Core\HTML::media('items/' . $file->filename); ?>"
                    class="button button--link button--in-sectionFooter"><?php echo __('Дополнительная комплектация'); ?>
-                    (<?php echo $file->filename; ?>)</a>
+                </a>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
