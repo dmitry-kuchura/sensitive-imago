@@ -4212,28 +4212,49 @@ ul.asideMenu .has-subMenu > a {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
+  flex-basis: calc(100% - 40px);
 }
 
-ul.asideMenu .has-subMenu > a:after {
+ul.asideMenu .has-subMenu .trigger {
+  width: 40px;
+  border: none;
+  background: none;
+  flex-shrink: 0;
+  flex-basis: 40px;
+  position: relative;
+  height: 40px;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+  cursor: pointer;
+}
+
+ul.asideMenu .has-subMenu .trigger:after {
   content: '';
-  display: inline-block;
+  display: block;
   flex-shrink: 0;
   height: .7em;
   width: .7em;
   border-bottom: 1px solid #fff;
   border-right: 1px solid #fff;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  -webkit-transform: translate(-30%) rotate(-45deg);
+  transform: translate(-30%) rotate(-45deg);
   -webkit-transition: -webkit-transform .2s;
   transition: -webkit-transform .2s;
   transition: transform .2s;
   transition: transform .2s, -webkit-transform .2s;
-  margin-left: 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 
-ul.asideMenu .has-subMenu.is-open > a:after {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+ul.asideMenu .has-subMenu.is-open .trigger {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 ul.asideMenu .is-active > a {
@@ -4242,7 +4263,6 @@ ul.asideMenu .is-active > a {
 
 ul.asideMenu > li {
   position: relative;
-  padding: 1.25rem 1.25rem;
   font-size: 0.9375rem;
   line-height: 1em;
   display: -webkit-box;
@@ -4254,13 +4274,10 @@ ul.asideMenu > li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-ul.asideMenu > li.has-subMenu > a {
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-}
-
 ul.asideMenu > li > a {
-  flex-basis: 100%;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  padding: 1.25rem 0 1.25rem 1.25rem;
   text-transform: uppercase;
 }
 
@@ -4269,7 +4286,9 @@ ul.asideMenu > li:last-child {
 }
 
 ul.asideMenu > li > ul {
+  flex-basis: 100%;
   margin-top: 1.25rem;
+  padding: 0 1.25rem;
 }
 
 ul.asideMenu > li > ul > li {

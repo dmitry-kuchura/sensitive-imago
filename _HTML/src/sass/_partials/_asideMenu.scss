@@ -22,26 +22,42 @@ ul.asideMenu {
 		& > a {
 			display: flex;
 			align-items: center;
+			flex-basis: calc(100% - 40px);
 		}
-		& > a:after {
-			content: '';
-			display: inline-block;
+		.trigger {
+			width: 40px;
+			border: none;
+			background: none;
 			flex-shrink: 0;
-			height: .7em;
-			width: .7em;
-			border-bottom: 1px solid #fff;
-			border-right: 1px solid #fff;
-			transform: rotate(-45deg);
+			flex-basis: 40px;
+			position: relative;
+			height: 40px;
 			transition: transform .2s;
-			margin-left: 1em;
-		}
-		&.is-open {
-			& > a {
-				&:after {
-					transform: rotate(45deg);
-				}
+			cursor: pointer;
+			&:after {
+				content: '';
+				display: block;
+				flex-shrink: 0;
+				height: .7em;
+				width: .7em;
+				border-bottom: 1px solid #fff;
+				border-right: 1px solid #fff;
+				transform:translate(-30%) rotate(-45deg);
+				transition: transform .2s;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto;
 			}
 		}
+		&.is-open {
+			.trigger {
+				transform: rotate(90deg);
+			}
+		}
+
 	}
 	.is-active {
 		& > a {
@@ -50,7 +66,7 @@ ul.asideMenu {
 	}
 	& > li {
 		position: relative;
-		padding: rem(20px) rem(20px);
+		//padding: rem(20px) rem(20px);
 		font-size: rem(15px);
 		line-height: 1em;
 		display: flex;
@@ -59,10 +75,11 @@ ul.asideMenu {
 		color: #fff;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 		&.has-subMenu > a {
-			justify-content: space-between;
+
 		}
 		& > a {
-			flex-basis: 100%;
+			flex-grow: 1;
+			padding: rem(20) 0 rem(20) rem(20);
 			text-transform: uppercase;
 
 		}
@@ -71,7 +88,9 @@ ul.asideMenu {
 			border-bottom: none;
 		}
 		& > ul {
+			flex-basis: 100%;
 			margin-top: rem(20px);
+			padding: 0 rem(20);
 
 			& > li {
 				list-style: none;
