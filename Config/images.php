@@ -1,7 +1,14 @@
 <?php
 use Core\HTML;
 return [
-    'watermark' => HTML::media('pic/watermark.png'),
+    'watermark' => [
+        'path' => HTML::media('pic/watermark.png'),
+        'width' => 0.5, // % from image width
+        'position' => 'bottom right',
+        'opacity' => 1,
+        'offsetX' => 0,
+        'offsetY' => 0,
+    ],
     'types' => [
         'jpg', 'jpeg', 'png', 'gif',
     ],
