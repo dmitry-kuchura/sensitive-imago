@@ -352,7 +352,7 @@ class Widgets
 
         $features = DB::select('features.alias', 'features.parent_id', 'features.id', 'features_i18n.name')
             ->from('features')
-            ->join('features_i18n', 'LEFT')->on('features_i18n.row_id', '=', 'features.id')
+            ->join('features_i18n')->on('features_i18n.row_id', '=', 'features.id')
             ->where('features_i18n.language', '=', $lang)
             ->where('features.status', '=', 1)
             ->where('features_i18n.row_id', '!=', 1)

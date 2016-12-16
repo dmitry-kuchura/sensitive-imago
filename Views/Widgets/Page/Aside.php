@@ -3,30 +3,33 @@
         <div class="grid grid--justify-around grid--space grid--md-nospace">
             <div class="asideMenu__cell grid__cell grid__cell--grow">
                 <?php if (Core\Arr::get($menu, 2, [])): ?>
+                    <?php if($bussines): ?>
                     <ul class="asideMenu js-multiLevelMenu">
-                        <?php $alias = Core\HTML::activeUrl(); ?>
-                        <?php foreach ($menu[2] AS $key => $value): ?>
-                            <li <?php echo $alias == $value->url ? 'class="is-active"' : ''; ?>>
+                        <?php foreach ($bussinesMenu[0] as $value): ?>
+                            <li class="<?php echo $alias == $value->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$value->id]) ? 'has-subMenu' : ''; ?>">
                                 <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
-                            </li>
-                        <?php endforeach; ?>
-                        <?php if ($bussines): ?>
-                            <?php foreach ($bussinesMenu[0] as $value): ?>
-                                <li class="<?php echo $alias == $value->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$value->id]) ? 'has-subMenu' : ''; ?>">
-                                    <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
-                                    <?php if (isset($bussinesMenu[$value->id])): ?>
-                                        <ul>
+                                <?php if (isset($bussinesMenu[$value->id])): ?>
+                                    <ul>
                                         <?php foreach ($bussinesMenu[$value->id] as $obj): ?>
                                             <li <?php echo $alias == $obj->url ? 'class="is-active"' : ''; ?>>
                                                 <a href="<?php echo Core\HTML::link($obj->url); ?>"><?php echo $obj->name; ?></a>
                                             </li>
                                         <?php endforeach; ?>
-                                        </ul>
-                                    <?php endif; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php else: ?>
+                        <ul class="asideMenu js-multiLevelMenu">
+                            <?php $alias = Core\HTML::activeUrl(); ?>
+                            <?php foreach ($menu[2] AS $key => $value): ?>
+                                <li <?php echo $alias == $value->url ? 'class="is-active"' : ''; ?>>
+                                    <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
                                 </li>
                             <?php endforeach; ?>
-                        <?php endif; ?>
-                    </ul>
+                        </ul>
+                    <?php endif; ?>
                 <?php endif; ?>
                 <span data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
                       class="button button--primary button--expand button--in-aside js-mfp-ajax"><?php echo __('Узнать прайс'); ?></span>

@@ -12,7 +12,22 @@
                                 $link = Core\HTML::link($obj->alias);
                                 break;
                         } ?>
-                        <li class="<?php echo in_array($obj->alias, ['models', 'features', 'advantages', 'software']) ? 'has-subMenu' : ''; ?> <?php if (Core\Route::param('alias') == $obj->alias) { echo 'is-active'; } ?>">
+                        <?php
+                            $submenu = false;
+                            if ($obj->alias == 'models' && (sizeof($models) || sizeof($kids))) {
+                                $submenu = true;
+                            }
+                            if ($obj->alias == 'features' && isset($features[1]) && is_array($features[1]) && count($features[1])) {
+                                $submenu = true;
+                            }
+                            if ($obj->alias == 'advantages' && isset($advantages[1]) && is_array($advantages[1]) && count($advantages[1])) {
+                                $submenu = true;
+                            }
+                            if ($obj->alias == 'software' && isset($software[1]) && is_array($software[1]) && count($software[1])) {
+                                $submenu = true;
+                            }
+                        ?>
+                        <li class="<?php echo $submenu ? 'has-subMenu' : ''; ?> <?php if (Core\Route::param('alias') == $obj->alias) { echo 'is-active'; } ?>">
                             <a href="<?php echo $link; ?>"><?php echo $obj->name; ?></a>
                             <?php if ($obj->alias == 'models'): ?>
                                 <ul>
@@ -24,7 +39,7 @@
                                     <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
-                            <?php if ($obj->alias == 'features'): ?>
+                            <?php if ($obj->alias == 'features' and isset($features[1]) and is_array($features[1]) and count($features[1])): ?>
                                 <ul>
                                     <?php foreach ($features[1] as $link): ?>
                                         <li class="<?php if (isset($features[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active'; } ?>">
@@ -40,7 +55,7 @@
                                     <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
-                            <?php if ($obj->alias == 'advantages'): ?>
+                            <?php if ($obj->alias == 'advantages' && isset($advantages[1]) && is_array($advantages[1]) && count($advantages[1])): ?>
                                 <ul>
                                     <?php foreach ($advantages[1] as $link): ?>
                                         <li class="<?php if (isset($advantages[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active'; } ?>">
@@ -56,7 +71,7 @@
                                     <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
-                            <?php if ($obj->alias == 'software'): ?>
+                            <?php if ($obj->alias == 'software' && isset($software[1]) && is_array($software[1]) && count($software[1])): ?>
                                 <ul>
                                     <?php foreach ($software[1] as $link): ?>
                                         <li class="<?php if (isset($software[$link->id])) { echo 'has-subMenu'; } ?> <?php if (Core\Route::param('alias') == $link->alias) { echo 'is-active'; } ?>">
