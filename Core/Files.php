@@ -105,8 +105,10 @@ class Files {
             }
             $image->save($file, Arr::get($one, 'quality', 100));
         }
+        $path = HOST.HTML::media('/images/'.$mainFolder.'/original');
+        Files::createFolder($path, 0777);
         $image = SimpleImage::factory($_FILES[$name]['tmp_name']);
-        $image->save(HOST.HTML::media('/images/'.$mainFolder.'/original' . DIRECTORY_SEPARATOR . $filename . '.' . $ext), 100);
+        $image->save($path . DIRECTORY_SEPARATOR . $filename . '.' . $ext, 100);
         return $filename.'.'.$ext;
     }
 
