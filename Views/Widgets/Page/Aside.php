@@ -11,8 +11,18 @@
                                 <?php if (isset($bussinesMenu[$value->id])): ?>
                                     <ul>
                                         <?php foreach ($bussinesMenu[$value->id] as $obj): ?>
-                                            <li <?php echo $alias == $obj->url ? 'class="is-active"' : ''; ?>>
+                                            <li class="<?php echo $alias == $obj->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$value->id]) ? 'has-subMenu' : ''; ?>">
                                                 <a href="<?php echo Core\HTML::link($obj->url); ?>"><?php echo $obj->name; ?></a>
+                                                <?php if (isset($bussinesMenu[$obj->id])): ?>
+                                                    <ul>
+                                                        <?php foreach ($bussinesMenu[$obj->id] as $sameObj): ?>
+                                                            <li <?php echo $alias == $sameObj->url ? 'class="is-active"' : ''; ?>>
+                                                                <a href="<?php echo Core\HTML::link($sameObj->url); ?>"><?php echo $sameObj->name; ?></a>
+
+                                                            </li>
+                                                        <?php endforeach; ?>
+                                                    </ul>
+                                                <?php endif; ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
