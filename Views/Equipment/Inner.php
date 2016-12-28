@@ -19,7 +19,7 @@
 </div>
 <hr>
 <div class="grid grid--justify-center grid--md-justify-between grid--items-end">
-    <div class="grid__cell grid__cell--grow grid__cell--sm-nogrow">
+    <div class="grid__cell grid__cell--grow grid__cell--sm-nogrow _mb">
         <div class="shareBlock">
             <div class="shareBlock__title"><?php echo __('Понравилась страница'); ?>?</div>
             <div class="shareBlock__text"><?php echo __('Расскажите друзьям'); ?></div>
@@ -33,7 +33,7 @@
         <a href="<?php echo Core\HTML::link('hidden/price') ?>"
            data-url="<?php echo Core\HTML::link('hidden/price'); ?>"
            data-param='{"id": <?php echo $result->row_id; ?>}'
-           class="button button--primary button--in-sectionFooter _mb js-mfp-ajax"><?php echo __('Узнать прайс'); ?></a>
+           class="button button--primary button--in-sectionFooter _sm-mb js-mfp-ajax"><?php echo __('Узнать прайс'); ?></a>
         <?php if (count($files)): ?>
             <?php foreach ($files as $file): ?>
                 <a href="<?php echo Core\HTML::media('items/' . $file->filename); ?>"

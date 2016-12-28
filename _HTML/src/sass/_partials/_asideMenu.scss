@@ -19,6 +19,11 @@ ul.asideMenu {
 		}
 	}
 	.has-subMenu {
+		display: flex;
+		flex-wrap: wrap;
+		&>ul{
+			flex-basis: 100%;
+		}
 		& > a {
 			display: flex;
 			align-items: center;
@@ -53,11 +58,10 @@ ul.asideMenu {
 			}
 		}
 		&.is-open {
-			.trigger {
+			&>.trigger {
 				transform: rotate(90deg);
 			}
 		}
-
 	}
 	.is-active {
 		& > a {
