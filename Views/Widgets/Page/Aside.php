@@ -11,7 +11,7 @@
                                 <?php if (isset($bussinesMenu[$value->id])): ?>
                                     <ul>
                                         <?php foreach ($bussinesMenu[$value->id] as $obj): ?>
-                                            <li class="<?php echo $alias == $obj->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$value->id]) ? 'has-subMenu' : ''; ?>">
+                                            <li class="<?php echo $alias == $obj->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$obj->id]) ? 'has-subMenu' : ''; ?>">
                                                 <a href="<?php echo Core\HTML::link($obj->url); ?>"><?php echo $obj->name; ?></a>
                                                 <?php if (isset($bussinesMenu[$obj->id])): ?>
                                                     <ul>
