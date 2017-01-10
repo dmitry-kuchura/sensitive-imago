@@ -1,5 +1,6 @@
 .shareBlock {
 	position: relative;
+	min-width: 300px;
 	&__title {
 		font-size: rem(30px);
 		color: $color-primary;

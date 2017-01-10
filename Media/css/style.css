@@ -4453,6 +4453,7 @@ ul.asideMenu > li > ul > li > ul > li:before {
 
 .shareBlock {
   position: relative;
+  min-width: 300px;
 }
 
 .shareBlock__title {

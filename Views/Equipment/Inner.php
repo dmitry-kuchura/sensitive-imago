@@ -24,7 +24,7 @@
             <div class="shareBlock__title"><?php echo __('Понравилась страница'); ?>?</div>
             <div class="shareBlock__text"><?php echo __('Расскажите друзьям'); ?></div>
             <svg class="shareBlock__arrow">
-                <use xlink:href="<?php echo Core\HTML::media('hidden/sprite.svg#share_arrow'); ?>"></use>
+                <use xlink:href="<?php echo Core\HTML::media('sprite.svg#share_arrow'); ?>"></use>
             </svg>
             <img src="<?php echo Core\HTML::media('css/pic/share.png'); ?>" alt="">
         </div>
