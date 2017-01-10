@@ -2,7 +2,7 @@
 <?php $speed = Config::get('media.speed_info') * 1000; ?>
 <?php if (count($kids)): ?>
     <div class="slider-wrapper" id="slider_else_universal" data-duration="<?php echo $speed; ?>">
-        <?if (count($kids) > 4): ?>
+        <?php if (count($kids) > 4): ?>
             <div class="slider-arrow slider-arrow--prev"></div>
             <div class="slider-arrow slider-arrow--next"></div>
         <?php endif; ?>
@@ -26,9 +26,7 @@
             <?php endforeach; ?>
         </div>
     </div>
-
 <?php endif; ?>
-
 <div class="wTxt"><?php echo $result->text; ?></div>
 <div class="pageSection__footer">
     <a href="<?php echo Core\HTML::link('hidden/price'); ?>"
