@@ -144,7 +144,7 @@
                         <div class="pageSize">
                             <div class="grid grid--justify-around grid--lg-justify-end heroBlock" >
                                 <div class="grid__cell grid__cell--12 grid__cell--lg-7">
-                                    <?if ($slide->second OR $slide->second): ?>
+                                    <?php if ($slide->second OR $slide->second): ?>
                                         <div class="heroBlock__text">
                                             <?php $word = explode(' ', $slide->second); ?>
                                             <small><?php echo $slide->first; ?></small>
