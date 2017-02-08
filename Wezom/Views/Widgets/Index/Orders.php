@@ -78,7 +78,7 @@
                                 <span class="btn-group">
                                     <a title="<?php echo __('Перейти к заказу'); ?>"
                                        class="tip btn btn-xs bs-tooltip"
-                                       href="/wezom/prices/edit/<?php echo $obj->id; ?>"><?php echo __('К прайсу'); ?></a>
+                                       href="/wezom/prices/edit/<?php echo $obj->id; ?>"><?php echo __('К запросу'); ?></a>
                                 </span>
                             </td>
                         </tr>
