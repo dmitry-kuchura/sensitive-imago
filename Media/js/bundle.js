@@ -193,12 +193,12 @@
 				items: {
 					height: $headerSlider.innerHeight()
 				},
-				scroll: {
-					items: 1,
-					fx: 'fade',
-					easing: "swing",
-					pauseOnHover: false
-				},
+				// scroll: {
+					// items: 1,
+					// fx: 'fade',
+					// easing: "swing",
+					// pauseOnHover: false
+				// },
 				auto: {
 					play: true,
 					timeoutDuration: parseInt($headerSlider.data('duration')) || 3000
