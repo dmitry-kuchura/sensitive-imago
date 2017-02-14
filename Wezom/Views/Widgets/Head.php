@@ -29,7 +29,6 @@
 
 <!-- <link rel="stylesheet" href="<?php echo Core\HTML::bmedia('css/sresponsiveness.css'); ?>"> -->
 
-
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <!-- <meta name="viewport" content="target-densitydpi=device-dpi"> -->

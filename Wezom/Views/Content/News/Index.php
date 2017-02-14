@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widgetHeader" style="padding-bottom: 10px;">
-                <form class="widgetContent filterForm" action="/wezom/<?php echo Core\Route::controller(); ?>/index" method="get">
+                <form class="widgetContent filterForm rowSection" action="/wezom/<?php echo Core\Route::controller(); ?>/index" method="get">
                     <div class="col-md-2">
                         <label class="control-label"><?php echo __('Наименование'); ?></label>
                         <div class="">
@@ -53,20 +53,20 @@
                         </div>
                     </div>
                     <div class="col-md-1">
-                        <label class="control-label" style="height:13px;"></label>
+                        <label class="control-label"><?php echo __('Подобрать'); ?></label>
                         <div class="">
                             <div class="controls">
-                                <input type="submit" class="btn btn-primary" value="<?php echo __('Подобрать'); ?>" />
+                                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-1">
-                        <label class="control-label" style="height:19px;"></label>
+                        <label class="control-label"><?php echo __('Сбросить'); ?></label>
                         <div class="">
                             <div class="controls">
-                                <a href="/wezom/<?php echo Core\Route::controller(); ?>/index">
+                                <a class='btn' href="/wezom/<?php echo Core\Route::controller(); ?>/index" style="width: 100%;">
                                     <i class="fa-refresh"></i>
-                                    <span class="hidden-xx"><?php echo __('Сбросить'); ?></span>
+                                    <!-- <span><?php //echo __('Сбросить'); ?></span> -->
                                 </a>
                             </div>
                         </div>

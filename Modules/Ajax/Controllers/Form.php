@@ -172,6 +172,16 @@ class Form extends \Modules\Ajax
         $url = '/wezom/prices/edit/' . $price_id;
         Log::add($qName, $url, 2);
 
+        // Send E-Mail to admin
+        $mail = CommonI18n::factory('mail_templates')->getRowSimple(1, 'id', 1);
+        if ($mail) {
+            $from = array('{{site}}', '{{name}}', '{{country}}', '{{city}}', '{{email}}', '{{text}}', '{{item}}', '{{ip}}');
+            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name, $country, $city, $email, $text, $item, System::getRealIP());
+            $subject = str_replace($from, $to, $mail->subject);
+            $text = str_replace($from, $to, $mail->text);
+            Email::send($subject, $text);
+        }
+
         $this->success(__('Запрос на прайс отпрален!'));
     }
 
@@ -214,6 +224,16 @@ class Form extends \Modules\Ajax
         $qName = 'Сообщение в контактную форму';
         $url = '/wezom/prices/edit/' . $last_id;
         Log::add($qName, $url, 2);
+
+        // Send E-Mail to admin
+        $mail = CommonI18n::factory('mail_templates')->getRowSimple(1, 'id', 1);
+        if ($mail) {
+            $from = array('{{site}}', '{{name}}', '{{city}}', '{{email}}', '{{other}}', '{{branch}}', '{{ip}}');
+            $to = array(Arr::get($_SERVER, 'HTTP_HOST'), $name, $city, $email, $other, $branch, System::getRealIP());
+            $subject = str_replace($from, $to, $mail->subject);
+            $text = str_replace($from, $to, $mail->text);
+            Email::send($subject, $text);
+        }
 
         $this->success(__('Ваше сообщение отправлено!'));
     }

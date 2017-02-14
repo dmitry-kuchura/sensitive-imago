@@ -1,5 +1,5 @@
 <div class="rowSection clearFix">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="widget box">
             <div class="widgetHeader">
                 <div class="widgetTitle">
@@ -31,7 +31,7 @@
         });
     </script>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="widget box">
             <div class="widgetHeader">
                 <div class="widgetTitle">

@@ -65,35 +65,9 @@
     </div>
 </div>
 
-<!-- <?php echo \Core\Widgets::get('Index_Orders'); ?>
+<?php echo \Core\Widgets::get('Index_Orders'); ?>
 
 <?php if (\Core\User::god()): ?>
-    <div class="rowSection clearFix">
-        <div class="col-md-6">
-            <div class="widget">
-                <?php echo \Core\Widgets::get('Index_Log'); ?>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="widget">
-                <?php echo \Core\Widgets::get('Index_News'); ?>
-            </div>
-        </div>
-    </div>
-<?php else: ?>
-    <div class="rowSection clearFix">
-        <div class="col-md-6">
-            <div class="widget">
-                <?php echo \Core\Widgets::get('Index_News'); ?>
-            </div>
-        </div>
-    </div>
-<?php endif; ?> -->
-<?php if( \Core\User::get_access_for_controller('orders') != 'no' || \Core\User::god() ): ?>
-    <?php echo \Core\Widgets::get('Index_Orders'); ?>
-<?php endif; ?>
-
-<?php if(\Core\User::god()): ?>
     <div class="rowSection clearFix">
         <div class="col-md-6">
             <div class="widget">
