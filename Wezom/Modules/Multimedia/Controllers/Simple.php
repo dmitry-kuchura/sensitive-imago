@@ -133,16 +133,15 @@ class Simple extends \Wezom\Modules\Base
         HTTP::redirect('wezom/' . Route::controller() . '/index');
     }
 
-    function deleteImageAction()
-    {
-        $id = (int)Route::param('id');
+    function deleteImageAction() {
+        $id = (int) Route::param('id');
         $page = Model::getRow($id);
-        if (!$page) {
+        if(!$page) {
             Message::GetMessage(0, __('Данные не существуют!'));
-            HTTP::redirect('wezom/' . Route::controller() . '/index');
+            HTTP::redirect('wezom/'.Route::controller().'/index');
         }
-        Model::deleteImage($page->image);
+        Model::deleteImage($page['obj']->image);
         Message::GetMessage(1, __('Данные удалены!'));
-        HTTP::redirect('wezom/' . Route::controller() . '/edit/' . $id);
+        HTTP::redirect('wezom/'.Route::controller().'/edit/'.$id);
     }
 }
