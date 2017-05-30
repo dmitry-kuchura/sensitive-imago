@@ -1,6 +1,6 @@
 {
   "name": "sensitive-imago",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "sensitive-imago",
   "main": "index.js",
   "scripts": {
@@ -56,5 +56,8 @@
     "sassdoc": "^2.1.20",
     "vinyl-ftp": "^0.5.0",
     "yargs": "^4.8.1"
+  },
+  "dependencies": {
+    "webpack": "^1.15.0"
   }
 }

@@ -56,10 +56,10 @@ jQuery(document).ready(function ($) {
 		})
 	}
 
-	$('.textReview').on('click', '.textReview__moreLink', function (e) {
+	$('.textReviews').on('click', '.textReview__moreLink', function (e) {
 		let
-			$block = $(e.delegateTarget),
-			$this = $(this),
+            $this = $(this),
+			$block = $this.closest('.textReview'),
 			tmp = $this.html();
 		$this.html($this.data('text'));
 		$this.data('text', tmp);

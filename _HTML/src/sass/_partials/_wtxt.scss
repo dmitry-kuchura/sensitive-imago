@@ -17,16 +17,19 @@ $radius: $global-radius;
 
 $h1: rem(48);
 .wTxt {
-	text-align: left;
-	text-decoration: none;
 	position: relative;
-	line-height: $lineHeight;
+	display: block;
+	margin: rem(25) 0;
 	color: $color;
-	text-transform: none;
 	font-family: $font-family;
 	font-size: $font-size;
 	font-weight: $font-weight;
 	font-style: normal;
+	line-height: $lineHeight;
+	text-align: left;
+	text-transform: none;
+	text-decoration: none;
+	
 	a {
 		text-decoration: underline;
 		color: $link-color;
@@ -104,7 +107,7 @@ $h1: rem(48);
 	}
 	ul, ol {
 		ul, ol {
-			margin-top: 0;
+			margin: 10px 0 !important;
 		}
 	}
 	li {
@@ -139,7 +142,7 @@ $h1: rem(48);
 		background-color: transparent;
 		border-collapse: collapse;
 		border-spacing: 0;
-		border: 1px solid $borderColor;
+		border: 1px solid #606060;
 		caption {
 			margin-bottom: 0.5em;
 			caption-side: top;
@@ -212,23 +215,6 @@ $h1: rem(48);
 	ul {
 		padding: 0;
 		list-style-type: none;
-		& > li {
-			display: flex;
-			align-items: flex-start;
-			line-height: em(18);
-			&:before {
-				content: '';
-				display: inline-block;
-				line-height: 1em;
-				margin-top: .5em;
-				margin-right: 1em;
-				height: em(2px);
-				width: em(18px);
-				background-color: $color-primary;
-				flex-shrink: 0;
-			}
-			margin-bottom: 1em	;
-		}
 	}
 	img{
 		display: block;
@@ -264,17 +250,27 @@ $h1: rem(48);
 .wTxt ul {
 	padding: 0;
 	& > li {
-		display: flex;
+		position: relative;
+		margin: 0 0 15px 0;
+		padding: 5px 0 0 20px;
 		line-height: 1em;
-		margin-bottom: rem(25px);
+		overflow: hidden;
 		&:before {
 			content: '';
-			background: url('../css/pic/customList-marker.svg') center no-repeat;
-			height: rem(12px);
+			
+			position: absolute;
+			top: 7px;
+			left: 0;
+			z-index: 1;
+			
+			display: inline-block;
 			width: rem(12px);
+			height: rem(12px);
+			
+			background-image: url('../css/pic/customList-marker.svg');
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
 			background-size: contain;
-			margin-right: rem(20px);
-			flex-shrink: 0;
 		}
 		&:last-child {
 			margin-bottom: 0;
@@ -287,29 +283,39 @@ $h1: rem(48);
 	counter-reset: order-list;
 	list-style-type: none;
 	& > li {
-		display: flex;
-		align-items: flex-start;
+		position: relative;
+		margin: 0 0 15px 0;
+		padding: 5px 0 0 30px;
 		line-height: em(18);
+		overflow: hidden;
 		&:before {
 			content: counter(order-list) '';
 			counter-increment: order-list;
-			font-size: em(12);
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			
 			display: inline-block;
-			//height: em(26*1.3333333333);
-			padding: em(8*1.333333333) 0;
-			line-height: 1em;
 			vertical-align: middle;
 			min-width: em(22*1.3333333333);
-			margin-right: em(10*1.3333333333);
-			font-family: "Arial", sans-serif;
-			background: url('../css/pic/customOl-marker.png') center no-repeat;
+			padding: em(8*1.333333333) 0;
+			
+			background-image: url('../css/pic/customOl-marker.png');
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
 			background-size: contain;
+			
 			color: #fff;
+			font-family: "Arial", sans-serif;
+			font-size: em(12);
+			line-height: 1em;
 			text-align: center;
-			flex-shrink: 0;
-			margin-top: -.5em;
 		}
-		margin-bottom: rem(10px);
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 }
 
