@@ -37,20 +37,19 @@
                         </div>
                     </div>
                     <div class="col-md-1">
-                        <label class="control-label" style="height:13px;"></label>
+                        <label class="control-label"><?php echo __('Подобрать'); ?></label>
                         <div class="">
                             <div class="controls">
-                                <input type="submit" class="btn btn-primary" value="<?php echo __('Подобрать'); ?>" />
+                                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-1">
-                        <label class="control-label" style="height:19px;"></label>
+                        <label class="control-label"><?php echo __('Сбросить'); ?></label>
                         <div class="">
                             <div class="controls">
-                                <a href="/wezom/<?php echo Core\Route::controller(); ?>/index">
+                                <a class='btn' href="/wezom/<?php echo Core\Route::controller(); ?>/index" style="width: 100%;">
                                     <i class="fa-refresh"></i>
-                                    <span class="hidden-xx"><?php echo __('Сбросить'); ?></span>
                                 </a>
                             </div>
                         </div>
@@ -69,6 +68,7 @@
                                 <th><?php echo __('Имя'); ?></th>
                                 <th><?php echo __('Возраст'); ?></th>
                                 <th><?php echo __('Город'); ?></th>
+                                <th><?php echo __('Язык'); ?></th>
                                 <th><?php echo __('Статус'); ?></th>
                                 <th class="nav-column textcenter">&nbsp;</th>
                             </tr>
@@ -86,6 +86,7 @@
                                     </td>
                                     <td><?php echo $obj->title; ?></td>
                                     <td><?php echo $obj->city ? $obj->city : '----'; ?></td>
+                                    <td><?php echo $obj->language; ?></td>
                                     <td width="45" valign="top" class="icon-column status-column">
                                         <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
                                     </td>
