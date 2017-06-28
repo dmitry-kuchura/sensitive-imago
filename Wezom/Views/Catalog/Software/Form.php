@@ -122,7 +122,7 @@
                                         <?php echo __('Удалить изображение'); ?>
                                     </a>
                                     <a class="btn btn-info otherBtn"
-                                       href="<?php echo \Core\General::crop('features', 'main', $obj->image); ?>">
+                                       href="<?php echo \Core\General::crop('software', 'main', $obj->image); ?>">
                                         <i class="fa-edit"></i>
                                         <?php echo __('Редактировать изображение'); ?>
                                     </a>

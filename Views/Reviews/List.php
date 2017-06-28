@@ -67,7 +67,7 @@
         </div>
         <div class="grid__cell">
             <input class="form__input" type="text" name="age" data-name="age"
-                   data-msg="<?php echo __('Введите корректный Возраст'); ?>"
+                   data-msg="<?php echo __('Введите корректный возраст'); ?>"
                    placeholder="<?php echo __('Возраст'); ?>"  data-rule-minlength="2">
         </div>
         <div class="grid__cell">

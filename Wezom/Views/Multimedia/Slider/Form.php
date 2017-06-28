@@ -94,7 +94,7 @@
             <div class="widgetHeader myWidgetHeader">
                 <div class="widgetTitle">
                     <i class="fa-reorder"></i>
-                    <?php echo __('Изображение (1920 x 398)'); ?>
+                    <?php echo __('Изображение').' (1920 x 398)'; ?>
                 </div>
             </div>
             <div class="widgetContent">
