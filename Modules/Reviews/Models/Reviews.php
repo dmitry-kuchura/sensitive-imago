@@ -34,4 +34,19 @@ class Reviews extends \Core\Common {
         return $result->find_all();
     }
 
+    public static function countRows($status = NULL, $filter = true) {
+        
+        $lang = \I18n::$lang;
+
+        $result = DB::select(array(DB::expr('COUNT(' . static::$table . '.id)'), 'count'))->from(static::$table);
+        $result->where('language', '=', $lang);
+        if ($status !== NULL) {
+            $result->where(static::$table . '.status', '=', $status);
+        }
+        if ($filter) {
+            $result = static::setFilter($result);
+        }
+        return $result->count_all();
+    }
+
 }

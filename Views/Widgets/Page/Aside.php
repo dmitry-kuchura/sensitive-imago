@@ -6,17 +6,17 @@
                     <?php if($bussines): ?>
                     <ul class="asideMenu js-multiLevelMenu">
                         <?php foreach ($bussinesMenu[0] as $value): ?>
-                            <li class="<?php echo $alias == $value->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$value->id]) ? 'has-subMenu' : ''; ?>">
+                            <li class="<?php echo $alias == str_replace('/', '', $value->url) ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$value->id]) ? 'has-subMenu' : ''; ?>">
                                 <a href="<?php echo Core\HTML::link($value->url); ?>"><?php echo $value->name; ?></a>
                                 <?php if (isset($bussinesMenu[$value->id])): ?>
                                     <ul>
                                         <?php foreach ($bussinesMenu[$value->id] as $obj): ?>
-                                            <li class="<?php echo $alias == $obj->url ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$obj->id]) ? 'has-subMenu' : ''; ?>">
+                                            <li class="<?php echo $alias == str_replace('/', '', $obj->url) ? 'is-active' : ''; ?> <?php echo isset($bussinesMenu[$obj->id]) ? 'has-subMenu' : ''; ?>">
                                                 <a href="<?php echo Core\HTML::link($obj->url); ?>"><?php echo $obj->name; ?></a>
                                                 <?php if (isset($bussinesMenu[$obj->id])): ?>
                                                     <ul>
                                                         <?php foreach ($bussinesMenu[$obj->id] as $sameObj): ?>
-                                                            <li <?php echo $alias == $sameObj->url ? 'class="is-active"' : ''; ?>>
+                                                            <li <?php echo $alias == str_replace('/', '', $sameObj->url) ? 'class="is-active"' : ''; ?>>
                                                                 <a href="<?php echo Core\HTML::link($sameObj->url); ?>"><?php echo $sameObj->name; ?></a>
                                                             </li>
                                                         <?php endforeach; ?>

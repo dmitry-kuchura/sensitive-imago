@@ -255,7 +255,7 @@ class Widgets
             ->where('catalog_i18n.language', '=', \I18n::$lang)
             ->where('catalog.status', '=', 1)
             ->limit(4)
-            ->order_by('catalog.sort', 'DESC')
+            ->order_by('catalog.sort', 'ASC')
             ->find_all();
 
         return ['result' => $result];
@@ -269,7 +269,7 @@ class Widgets
             ->where('catalog_i18n.language', '=', \I18n::$lang)
             ->where('catalog.status', '=', 1)
             ->limit(4)
-            ->order_by('catalog.sort', 'DESC')
+            ->order_by('catalog.sort', 'ASC')
             ->find_all();
 
         return ['result' => $result];

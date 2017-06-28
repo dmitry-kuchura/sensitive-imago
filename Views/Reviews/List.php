@@ -67,7 +67,7 @@
         </div>
         <div class="grid__cell">
             <input class="form__input" type="text" name="age" data-name="age"
-                   data-msg="<?php echo __('Введите корректный возраст'); ?>"
+                   data-msg="<?php echo __('Введите корректный Возраст'); ?>"
                    placeholder="<?php echo __('Возраст'); ?>"  data-rule-minlength="2">
         </div>
         <div class="grid__cell">
@@ -78,7 +78,7 @@
         </div>
         <div class="grid__cell grid__cell--grow"></div>
         <div class="grid__cell ">
-            <span class="form__label">Оцените предоставляемую услугу</span>
+            <span class="form__label"><?php echo __('Оцените предоставляемую услугу') ?></span>
             <div class="rating">
                 <span class="rating__stars">
                     <input type="radio" name="rating" data-name="rating" value="5">

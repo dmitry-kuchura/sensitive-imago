@@ -107,7 +107,7 @@ return [
         [
             'path' => 'main',
             'width' => 1920,
-            'height' => 430,
+            'height' => 398,
             'resize' => 1,
             'crop' => 1,
         ],
@@ -131,6 +131,15 @@ return [
             'path' => 'main',
             'width' => 115,
             'height' => 115,
+            'resize' => 1,
+            'crop' => 1,
+        ],
+    ],
+    'software' => [
+        [
+            'path' => 'main',
+            'width' => 120,
+            'height' => 120,
             'resize' => 1,
             'crop' => 1,
         ],

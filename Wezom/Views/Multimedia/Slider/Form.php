@@ -94,13 +94,12 @@
             <div class="widgetHeader myWidgetHeader">
                 <div class="widgetTitle">
                     <i class="fa-reorder"></i>
-                    <?php echo __('Изображение'); ?>
+                    <?php echo __('Изображение (1920 x 398)'); ?>
                 </div>
             </div>
             <div class="widgetContent">
                 <div class="form-vertical row-border">
                     <div class="form-group">
-                        <label class="control-label"><?php echo __('Изображение'); ?></label>
                         <div class="">
                             <?php if (is_file(HOST . Core\HTML::media('images/slider/original/' . $obj->image))): ?>
                                 <a href="<?php echo Core\HTML::media('images/slider/original/' . $obj->image); ?>"
