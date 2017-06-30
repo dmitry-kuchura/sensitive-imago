@@ -86,7 +86,7 @@
                                     </td>
                                     <td><?php echo $obj->title; ?></td>
                                     <td><?php echo $obj->city ? $obj->city : '----'; ?></td>
-                                    <td><?php echo $obj->language; ?></td>
+                                    <td><?php echo substr(str_replace('","', ', ', $obj->language), 2, -2); ?></td>
                                     <td width="45" valign="top" class="icon-column status-column">
                                         <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
                                     </td>

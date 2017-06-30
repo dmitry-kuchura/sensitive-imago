@@ -78,7 +78,7 @@ class Form extends \Modules\Ajax
         $data['mark'] = $rating;
         $data['title'] = $age;
         $data['city'] = $country;
-        $data['language'] = $lang;
+        $data['language'] = '["'.$lang.'"]';
         $data['text'] = $text;
         $data['ip'] = System::getRealIP();
         $data['created_at'] = time();

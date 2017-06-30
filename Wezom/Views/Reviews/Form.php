@@ -70,17 +70,24 @@
                     <div class="form-group">
                         <label class="control-label" for="f_language"><?php echo __('Язык'); ?></label>
                         <div class="">
-                            <select id="f_language" class="form-control valid" name="FORM[language]">
-                                <option value="ru" <?php echo $obj->language == 'ru' ? 'selected' : NULL; ?>>Русский</option>
-                                <option value="en" <?php echo $obj->language == 'en' ? 'selected' : NULL; ?>>Английский</option>
-                                <option value="es" <?php echo $obj->language == 'es' ? 'selected' : NULL; ?>>Испанский</option>
-                                <option value="de" <?php echo $obj->language == 'de' ? 'selected' : NULL; ?>>Немецкий</option>
-                                <option value="fr" <?php echo $obj->language == 'fr' ? 'selected' : NULL; ?>>Французкий</option>
+                            <select id="f_language" multiple class="form-control valid" name="FORM[language][]" value='' style="min-height: 120px;">
+                                <option value="ru">Русский</option>
+                                <option value="en">Английский</option>
+                                <option value="sp">Испанский</option>
+                                <option value="de">Немецкий</option>
+                                <option value="fr">Французкий</option>
                             </select>
                         </div>
+                        <input type="hidden" value='<?php echo $obj->language; ?>' id="h_language">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+<script>
+    $(function(){
+        $('#f_language').val(JSON.parse($('#h_language').val()));
+    });
+</script>

@@ -174,7 +174,7 @@ class Widgets
 
         $result = DB::select()
             ->from('reviews')
-            ->where('language', '=', $lang)
+            ->where('language', 'LIKE', '%"'.$lang.'"%')
             ->where('status', '=', 1)
             ->order_by(DB::expr('RAND()'))
             ->limit(3)

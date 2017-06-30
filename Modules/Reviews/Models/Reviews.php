@@ -13,7 +13,7 @@ class Reviews extends \Core\Common {
         $lang = \I18n::$lang;
 
         $result = DB::select()->from(static::$table);
-        $result->where('language', '=', $lang);
+        $result->where('language', 'LIKE', '%"'.$lang.'"%');
         if ($status !== NULL) {
             $result->where('status', '=', $status);
         }
@@ -39,7 +39,7 @@ class Reviews extends \Core\Common {
         $lang = \I18n::$lang;
 
         $result = DB::select(array(DB::expr('COUNT(' . static::$table . '.id)'), 'count'))->from(static::$table);
-        $result->where('language', '=', $lang);
+        $result->where('language', 'LIKE', '%"'.$lang.'"%');
         if ($status !== NULL) {
             $result->where(static::$table . '.status', '=', $status);
         }

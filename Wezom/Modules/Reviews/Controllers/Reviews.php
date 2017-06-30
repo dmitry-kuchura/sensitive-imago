@@ -60,6 +60,7 @@ class Reviews extends \Wezom\Modules\Base
     {
         if ($_POST) {
             $post = $_POST['FORM'];
+            $post['language'] = json_encode($post['language']);
             $post['status'] = Arr::get($_POST, 'status', 0);
             if (Model::valid($post)) {
                 $res = Model::update($post, Route::param('id'));
@@ -95,6 +96,7 @@ class Reviews extends \Wezom\Modules\Base
     {
         if ($_POST) {
             $post = $_POST['FORM'];
+            $post['language'] = json_encode($post['language']);
             $post['status'] = Arr::get($_POST, 'status', 0);
             if (Model::valid($post)) {
                 $res = Model::insert($post);

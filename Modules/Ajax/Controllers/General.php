@@ -42,7 +42,8 @@ class General extends \Modules\Ajax
     public function getMoreReviewsAction()
     {
 
-        $lang = Arr::get($this->post, 'lang');
+        $lang = \I18n::$lang;
+
         $page = Arr::get($this->post, 'page');
         $limit = 3;
         $html = '';
@@ -54,7 +55,7 @@ class General extends \Modules\Ajax
         }
 
         $result = DB::select()->from('reviews')
-            ->where('language', '=', $lang)
+            ->where('language', 'LIKE', '%"'.$lang.'"%')
             ->where('status', '=', 1)
             ->limit(3)
             ->offset($offset)
