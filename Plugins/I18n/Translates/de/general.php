@@ -65,6 +65,8 @@
 		'Ваш комментарий' => 'Ihr Kommentar',
 		'Отправить отзыв' => 'Feedback senden',
 		'Региональные представительства' => 'Regionalbüros',
+		'Оставить заявку' => 'Submit your application',
+		'Скрыть' => 'Hide',
 		'Янв' => 'Jan',
 		'Фев' => 'Feb',
 		'Мар' => 'Mar',
