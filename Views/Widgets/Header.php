@@ -138,27 +138,27 @@
                     <div class="slider-arrow slider-arrow--next"></div>
                 <?php endif; ?>
                 <div class="slider_else_universal">
-                <?php foreach ($slider as $slide): ?>
-                    <div class="headerSlider__slide"
-                         style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');">
-                        <div class="pageSize">
-                            <div class="grid grid--justify-around grid--lg-justify-end heroBlock" >
-                                <div class="grid__cell grid__cell--12 grid__cell--lg-7">
-                                    <?php if ($slide->second OR $slide->second): ?>
-                                        <div class="heroBlock__text">
-                                            <?php $word = explode(' ', $slide->second); ?>
-                                            <small><?php echo $slide->first; ?></small>
-                                            <br class="_hide _lg-show">
-                                            <?php foreach ($word as $text): ?>
-                                                <?php echo $text; ?><br>
-                                            <?php endforeach;?>
-                                        </div>
-                                    <?php endif; ?>
+                    <?php foreach ($slider as $slide): ?>
+                        <div class="headerSlider__slide"
+                             style="background-image: url('<?php echo Core\HTML::media('images/slider/main/' . $slide->image); ?>');">
+                            <div class="pageSize">
+                                <div class="grid grid--justify-around grid--lg-justify-end heroBlock" >
+                                    <div class="grid__cell grid__cell--12 grid__cell--lg-7">
+                                        <?php if ($slide->second OR $slide->second): ?>
+                                            <div class="heroBlock__text">
+                                                <?php $word = explode(' ', $slide->second); ?>
+                                                <small><?php echo $slide->first; ?></small>
+                                                <br class="_hide _lg-show">
+                                                <?php foreach ($word as $text): ?>
+                                                    <?php echo $text; ?><br>
+                                                <?php endforeach;?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
 

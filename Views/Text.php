@@ -57,8 +57,7 @@ use Core\Widgets;
                         <div class="grid__cell grid__cell--grow grid__cell--order-start grid__cell--md-noorder">
                             <section class="pageCenter">
                                 <?php echo $_breadcrumbs; ?>
-                                <div
-                                    class="sectionTitle sectionTitle--inner"><?php echo Core\Arr::get($_seo, 'h1'); ?></div>
+                                <h1 class="sectionTitle sectionTitle--inner"><?php echo Core\Arr::get($_seo, 'h1'); ?></h1>
                                 <?php echo $_content; ?>
                             </section>
                         </div>
