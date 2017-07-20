@@ -101,6 +101,7 @@
         </div>
         <input type="hidden" name="lang" data-name="lang" value="<?php echo \I18n::$lang; ?>">
         <div class="grid__cell grid__cell--grow"></div>
+        <input type="hidden" data-name="current_lang" value="<?php echo \I18n::$lang; ?>" />
         <?php if(array_key_exists('token', $_SESSION)): ?>
             <input type="hidden" data-name="token" value="<?php echo $_SESSION['token']; ?>" />
         <?php endif; ?>

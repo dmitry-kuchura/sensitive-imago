@@ -19,6 +19,10 @@ class Form extends \Modules\Ajax
     function before()
     {
         parent::before();
+        $current_lang = Arr::get($this->post, 'current_lang');
+        if ($current_lang) {
+            \I18n::lang($current_lang);
+        }
         // Check for bans in blacklist
         $ip = GeoIP::ip();
         $ips = array();

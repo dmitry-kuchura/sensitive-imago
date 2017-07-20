@@ -49,6 +49,7 @@
                     </div>
                 </div>
                 <input type="hidden" data-name="branch" value="<?php echo $_POST['branch']; ?>"/>
+                <input type="hidden" data-name="current_lang" value="<?php echo \I18n::$lang; ?>" />
                 <?php if (array_key_exists('token', $_SESSION)): ?>
                     <input type="hidden" data-name="token" value="<?php echo $_SESSION['token']; ?>"/>
                 <?php endif; ?>
