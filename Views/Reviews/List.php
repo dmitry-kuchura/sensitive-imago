@@ -5,7 +5,7 @@
             <?php $link = explode('?v=', $review->youtube); ?>
             <div class="grid__cell" data-page="1">
                 <a href="<?php echo $review->youtube; ?>" class="videoLink"
-                   style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg");'></a>
+                   style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/mqdefault.jpg");'></a>
             </div>
         <?php endforeach; ?>
     </div>

@@ -8,7 +8,7 @@
                     <?php $link = explode('?v=', $video->alias); ?>
                     <div class="grid__cell">
                         <a href="<?php echo $video->alias; ?>" class="videoLink"
-                           style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg");'></a>
+                           style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/mqdefault.jpg");'></a>
                     </div>
                 <?php endforeach; ?>
             </div>

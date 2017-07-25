@@ -119,7 +119,7 @@
                             <?php $link = explode('?v=', $obj->alias); ?>
                             <td>
                                 <a href="/wezom/<?php echo Core\Route::controller(); ?>/edit/<?php echo $obj->id; ?>">
-                                    <img src="//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg"
+                                    <img src="//img.youtube.com/vi/<?php echo $link[1]; ?>/mqdefault.jpg"
                                          style="max-width: 95px;">
                                 </a>
                             </td>

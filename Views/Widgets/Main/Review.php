@@ -8,7 +8,7 @@
                     <div class="grid__cell">
                         <a href="<?php echo $obj->youtube; ?>"
                            class="videoLink"
-                           style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg");'></a>
+                           style='background-image: url("//img.youtube.com/vi/<?php echo $link[1]; ?>/mqdefault.jpg");'></a>
                     </div>
                 <?php endforeach; ?>
             </div>

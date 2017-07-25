@@ -89,7 +89,7 @@
                                     </a>
                                 </td>
                                 <?php $link = explode('?v=', $obj->youtube); ?>
-                                <td><img src="//img.youtube.com/vi/<?php echo $link[1]; ?>/maxresdefault.jpg"
+                                <td><img src="//img.youtube.com/vi/<?php echo $link[1]; ?>/mqdefault.jpg"
                                          style="max-width: 95px;"></td>
                                 <td width="45" valign="top" class="icon-column status-column">
                                     <?php echo Core\View::widget(array('status' => $obj->status, 'id' => $obj->id), 'StatusList'); ?>
