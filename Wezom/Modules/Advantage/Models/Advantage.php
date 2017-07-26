@@ -57,7 +57,7 @@ class Advantage extends \Core\CommonI18n
 
     public static function getSvg($status)
     {
-        $result = DB::select('svg.*', 'svg_i18n.*')->from('svg')->join('svg_i18n', 'LEFT')->on('svg_i18n.row_id', '=', 'svg.id')->where('svg_i18n.language', '=', 'ru')->where('svg.status', '=', $status)->find_all();
+        $result = DB::select('svg.*', 'svg_i18n.*')->from('svg')->join('svg_i18n', 'LEFT')->on('svg_i18n.row_id', '=', 'svg.id')->where('svg_i18n.language', '=', 'ru')->where('svg.status', '=', $status)->order_by('svg.sort', 'ASC')->find_all();
         return $result;
     }
 

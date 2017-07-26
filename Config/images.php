@@ -39,6 +39,7 @@ return [
             'path' => 'main',
             'width' => 138,
             'height' => 137,
+            'quality' => 100,
             'resize' => 1,
             'crop' => 1,
         ],

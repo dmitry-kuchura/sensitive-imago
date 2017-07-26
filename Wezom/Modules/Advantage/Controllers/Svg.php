@@ -26,7 +26,7 @@ class Svg extends \Wezom\Modules\Base
 
     function indexAction()
     {
-        $result = Model::getRows(NULL, 'id', 'ASC');
+        $result = Model::getRows(NULL, 'sort', 'ASC');
         $this->_filter = Widgets::get('Filter_Pages');
         $this->_toolbar = Widgets::get('Toolbar_List', array('add' => 1, 'delete' => 1));
 
