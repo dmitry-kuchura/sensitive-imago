@@ -9,6 +9,7 @@ use Core\Widgets;
 use Core\Message;
 use Core\Arr;
 use Core\HTTP;
+use Core\HTML;
 use Core\View;
 use Wezom\Modules\Reviews\Models\Video AS Model;
 
@@ -41,7 +42,7 @@ class Video extends \Wezom\Modules\Base {
         $count = Model::countRows($status, $name);
         $result = Model::getRows($status, $name, 'id', 'DESC', $this->limit, $this->offset);
         $pager = Pager::factory($this->page, $count, $this->limit)->create();
-        $this->_toolbar = Widgets::get('Toolbar_List', ['delete' => 1, 'add' => 1]);
+        $this->_toolbar = Widgets::get('Toolbar_List', ['delete' => 1, 'addLink' => HTML::link('/wezom/video_review/add')]);
         $this->_content = View::tpl(
                         [
                     'result' => $result,
@@ -77,7 +78,7 @@ class Video extends \Wezom\Modules\Base {
         } else {
             $result = Model::getRow((int) Route::param('id'));
         }
-        $this->_toolbar = Widgets::get('Toolbar/Edit');
+        $this->_toolbar = Widgets::get('Toolbar/Edit', ['list_link' => HTML::link('/wezom/video_review/index')]);
         $this->_seo['h1'] = __('Редактирование');
         $this->_seo['title'] = __('Редактирование');
         $this->setBreadcrumbs(__('Редактирование'), 'wezom/video_review/edit/' . Route::param('id'));
@@ -112,7 +113,7 @@ class Video extends \Wezom\Modules\Base {
         } else {
             $result = [];
         }
-        $this->_toolbar = Widgets::get('Toolbar/Edit');
+        $this->_toolbar = Widgets::get('Toolbar/Edit', ['list_link' => HTML::link('/wezom/video_review/index')]);
         $this->_seo['h1'] = __('Добавление');
         $this->_seo['title'] = __('Добавление');
         $this->setBreadcrumbs(__('Добавление'), 'wezom/video_review/add');
